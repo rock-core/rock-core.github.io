@@ -1,0 +1,65 @@
+---
+title: Task States
+sort_info: 120
+---
+
+One important aspect of RTT task contexts is that they are not only an
+interface. They also have a representation of a state machine.
+
+TODO: add a picture of the RTT state machine
+
+There are two points that need to be considered when writing an task context in
+oroGen:
+
+1. from which state should my component start ? It can start from either the
+   Stopped or PreOperational state [more](#needs_configuration).
+2. the ability to extend the default state machine by defining new sub-states.
+   This is a great way to provide a fine-grained interface to monitor a task
+   context's status [more](#extended_states)
+
+Components that need configuration {#needs_configuration}
+==================================
+
+Task contexts can either start from the Stopped state  or the PreOperational
+state. In the first case, only the C++ method startHook() will be called to
+start the component. In the second case, botht the configureHook() and
+startHook() C++ methods will be called.
+
+As its name implies, the transition between PreOperational and Stopped is meant
+to encapsulate the need for complex and/or costly configuration. For instance,
+trying to open and configure a device (which can take very long). To give you
+another example, in hard realtime contexts, it is expected that startHook() is
+hard realtime while configureHook() does not need to be.
+
+If your component needs a configuration step, you will have to tell it to
+oroGen. To do that, add the <tt>default_configuration</tt> statement in the task
+context block:
+
+{coderay:: ruby}
+task_context "Task" do
+  needs_configuration
+
+  # other definitions
+end
+{coderay}
+
+Et voila !
+
+<div markdown="1" class="content-txtbox-warning">
+**Removing or adding the <tt>needs_configuration</tt> flag after the first code
+generation**
+
+Adding and/or removing this flag actually requires to change the
+signature of the constructor of the generated code.
+
+So, when you change this flag, you need to:
+
+1. open templates/task/TaskName.hpp and templates/tasks/TaskName.cpp
+2. update the constructor declaration in task/TaskName.hpp and task/TaskName.cpp
+   to match the declaration in the templates
+</div>
+
+Extending the state machine {#extended_states}
+===========================
+
+

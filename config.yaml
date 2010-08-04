@@ -19,6 +19,8 @@
 default_meta_info:
     Webgen::SourceHandler::Page:
         in_menu: true
+        link:
+            css: /style_screen.css
 
 tag.menu.nested: false
 

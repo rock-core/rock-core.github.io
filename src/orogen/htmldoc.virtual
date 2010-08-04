@@ -1,8 +1,8 @@
 \--- !omap
-- /api/:
+- api/:
     in_menu: true
 
-- /api/index.html:
+- api/index.html:
     routed_title: API
     in_menu: false
     sort_info: 99999

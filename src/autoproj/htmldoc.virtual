@@ -1,17 +1,17 @@
 \--- !omap
-- /api/:
+- api/:
     in_menu: true
 
-- /api/index.html:
+- api/index.html:
     routed_title: Autoproj API
     in_menu: false
     sort_info: 99999
     url: ../../api/index.html
 
-- /autobuild/:
+- autobuild/:
     in_menu: true
 
-- /autobuild/index.html:
+- autobuild/index.html:
     routed_title: Autobuild API
     in_menu: false
     sort_info: 99999

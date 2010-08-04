@@ -1,0 +1,9 @@
+index.page:
+    title: Introduction
+    sort_info: 0
+
+*/index.page:
+    in_menu: false
+
+triggering:
+    sort_info: 200

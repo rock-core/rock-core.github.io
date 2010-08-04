@@ -1,0 +1,101 @@
+---
+title: Type definitions
+sort_info: 50
+--- name:content pipeline:tags,markdown,blocks
+
+One of the first thing that a component designer has to think about is defining
+the data structures that will be used in the component's interfaces:
+
+* in the communication between components (ports)
+* in the configuration of the component (properties)
+* in the control of the component (operations)
+
+From your component definitions, oroGen will generate the necessary RTT plugins
+to support:
+
+* XML marshalling as .xml or .cpf
+* CORBA marshalling to use with the CORBA transport
+* Typelib marshalling to use with the data logger
+* the classes needed for the Ruby bindings
+
+In principle, if you are using oroGen, all the tools that are offered by the
+Orocos/DFKI toolchain should work seamlessly. If they don't, it's because you
+found a bug !
+
+Defining types
+==============
+In oroGen, the types are described in C++. However, not all C++ types can be
+used in the data flow. To be usable in the data flow, a type must:
+
+* be default constructible and copyable (i.e. have a constructor that have no
+  arguments and can be copied).
+* have no private fields
+* have no parent class (this might be removed in a future version of oroGen)
+
+Moreover, oroGen has a special support for the std::string and std::vector
+standard classes, so you can use them freely.
+
+Example: defining a Time class
+
+{coderay:: cpp}
+namespace base {
+  struct Time
+  {
+    uint64_t microseconds;
+    static Time fromMilliseconds(uint64_t ms);
+    Time operator +(Time const& other);
+  };
+}
+{coderay}
+
+Note that, for now, all types that are defined in the orogen project must be
+defined inline: orogen does not support separating the implementation from the
+definition. Types that are defined in separate libraries are fine, though.
+
+Limitations due to the RTT itself
+=================================
+Unfortunately, oroGen has to cope with RTT limited support for basic types (int,
+long, ...), and therefore the following limitations apply:
+
+ * char, short, 64 bit integers and float are forbidden as argument types for an
+   operation. Use int instead of char or short, and double instead of
+   float. Unfortunately there is no equivalent for 64 bit integers.
+ * structs that contain 64 bit integers won't be marshallable as XML.
+ * there is no typelib marshalling - and hence no logging - for base types (int,
+   float, ...). They work fine if used as fields in a structure though.
+
+Defining types in an oroGen project
+===================================
+In an oroGen project, one adds one or many following statement to load a C/C++
+file that defines the project's types:
+
+{coderay:: ruby}
+import_types_from "myproject.h"
+{coderay}
+
+At the load point, all types used by "myproject.h" must already be defined. So,
+if you define type A in a.h and type B, that uses A, in b.h, you need to order
+the imports as:
+
+{coderay:: ruby}
+import_types_from "a.h"
+import_types_from "b.h"
+{coderay}
+
+The reverse order will not work properly (types from a.h will not be loaded).
+
+Finally, one can directly use types defined in a library, provided that this
+library gives a pkg-config file for dependency discovery.
+
+Let's consider a 'drivers/hokuyo' package that would define a hokuyo::Statistics
+structure. Assuming that this package (1) installs a hokuyo.pc file, and (2)
+installs the relevant header as "hokuyo.hpp", it is possible to do
+
+{coderay:: ruby}
+using_library "hokuyo"
+import_types_from "hokuyo.hpp"
+{coderay}
+
+The issue of loading types from other oroGen projects is handled [in
+here](cross_project.html)
+
