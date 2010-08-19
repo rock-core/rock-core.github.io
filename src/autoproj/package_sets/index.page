@@ -1,7 +1,9 @@
 ---
 title: Overview
 sort_info: 100
----
+--- name:biglocaltoc
+{menu: {start_level: 3}}
+--- name:content
 A package set is made of three things:
 
  * the description file (source.yml)

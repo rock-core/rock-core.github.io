@@ -1,13 +1,17 @@
 index.page:
-    routed_title: The Orocos Toolchain
     sort_info: 0
+    routed_title: The Orocos Toolchain
 
-autoproj/index.page:
-    routed_title: Build System Reference
+startup:
+    sort_info: 50
+    title: Getting Started
+
+autoproj:
+    title: Build System
     sort_info: 100
 
-orogen/index.page:
-    routed_title: C++ Component Development
-    sort_info: 200
+orogen:
+    title: Developping Components
+    sort_info: 150
 
 

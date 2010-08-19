@@ -81,7 +81,7 @@
 		<!-- NAVIGATION -->				
   	<!-- Navigation Level 3 -->
 		<div class="nav3">
-        {menu: {max_levels: 3, show_current_subtree_only: true, nested: true, used_nodes: files}}
+        {menu: {max_levels: 2, show_current_subtree_only: true, nested: true, used_nodes: files}}
 <!--      <ul>-->
 <!--        <li class="group"><a href="#">Group Link</a></li>		-->
 <!--        <li class="group"><a href="#">Group Link</a></li>-->
@@ -131,8 +131,28 @@
                 				
 			<!-- Text container -->
 			<div class="content2-container line-box">
-				<div class="content2-container-1col">
-          <webgen:block name="content" />
+          <div class="content2-container-1col">
+          <% if context.node.node_info[:page].blocks.has_key?('localtoc') %>
+          <div markdown="1" class="localtoc">
+              <!--
+              <ul>
+                  <li class="title">Title</li>
+              </ul>
+              -->
+              <webgen:block name="localtoc" />
+          </div>
+          <% end %>
+          <% if context.node.node_info[:page].blocks.has_key?('biglocaltoc') %>
+          <div markdown="1" class="biglocaltoc localtoc">
+              <!--
+              <ul>
+                  <li class="title">Title</li>
+              </ul>
+              -->
+              <webgen:block name="biglocaltoc" />
+          </div>
+          <% end %>
+              <webgen:block name="content" />
 				</div>
       </div>
       

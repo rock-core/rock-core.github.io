@@ -1,8 +1,4 @@
-index.page:
-    title: Introduction
-    sort_info: 0
-
 package_sets:
-    title: Writing the package sets
+    title: Creating package sets
+    routed_title: Creating package sets
     sort_info: 100
-

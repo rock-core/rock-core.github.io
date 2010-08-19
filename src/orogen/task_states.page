@@ -62,4 +62,47 @@ So, when you change this flag, you need to:
 Extending the state machine {#extended_states}
 ===========================
 
+oroGen offers a way to have a more fine-grained reporting mechanism for
+components to their coordination (or supervision) layer. This mechanism is based
+on the definition of sub-states for each of the runtime and terminal states of
+the task context state machine: Running, RunTimeError, Exception and Fatal.
+
+These sub-states are declared in the <tt>task_context</tt> block of the oroGen
+specification:
+
+{coderay:: ruby}
+task_context "MotionTask" do
+  # Sub-states of Running (nominal operations)
+  runtime_states 'GOING_FORWARD', 'TURNING_LEFT'
+  # Sub-states of RunTimeError (degraded functionality)
+  error_states 'CANNOT_TURN'
+  # Sub-states of Exception (non-nominal end)
+  exception_states 'BLOCKED', 'SLIPPING'
+  # Sub-states of Fatal (not recoverable error)
+  fatal_states 'TOTALLY_BROKEN'
+end
+{coderay}
+
+On the C++ side, this mechanism is available through two things:
+
+* a States enumeration that defines all the states in a manner that is usable in
+  the code
+* the state(States), error(States), exception(States) and fatal(States) that
+  allow to declare state changes in the C++ code.
+
+For instance, if the updateHook() detects that the system is blocked, it would
+do
+
+{coderay:: cpp}
+void MotionTask::updateHook()
+{
+    // code
+    if (blocked)
+    {
+        exception(BLOCKED);
+        return;
+    }
+    // code
+}
+{coderay}
 

@@ -1,6 +1,8 @@
 ---
 title: Triggering Mechanisms
----
+--- name:localtoc
+{menu: {max_levels: 3, start_level: 3, show_current_subtree_only: true, nested: true, used_nodes: files}}
+--- name:content
 
 At runtime, a task context requires to be triggered. It means that the state
 hook methods need to be called at specified times/in reaction to specific

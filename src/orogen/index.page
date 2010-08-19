@@ -1,5 +1,7 @@
-Orogen: easy component building for Orocos/RTT
-----------------------------------------------
+---
+title: Introduction
+sort_info: 0
+---
 
 oroGen is a specification language and code generator for the Orocos Realtime
 Toolkit (RTT). The Orocos/Real Time Toolkit is a C++ library allowing to build

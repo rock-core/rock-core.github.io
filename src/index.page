@@ -1,10 +1,7 @@
 ---
-title: Main
+title: The Orocos Toolchain
+routed_title: The Orocos Toolchain
 ---
-
-* Blablabla
-{: toc}
-
 
 <div markdown="1" class="content2-container-3col-left">
 
@@ -12,7 +9,7 @@ Get it
 {: .content-title-noshade-size3}
 
 <div markdown="1" class="content2-container-3col-left content-txtbox-noshade">
-Get started with the [step-by-step installation guide](installing.html).
+Get started with the [step-by-step installation guide](startup/index.html).
 Reference documentation on [the build system](autoproj/index.html) is also
 available, and you can browse the code and contribute on
 [Gitorious](http://gitorious.com/orocos-dfki).

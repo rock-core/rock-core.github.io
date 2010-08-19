@@ -1,7 +1,9 @@
 ---
 title: Writing autobuild scripts
 sort_info: 200
----
+--- name:biglocaltoc
+{menu: {start_level: 3}}
+--- name:content
 
 Defining CMake packages
 -----------------------

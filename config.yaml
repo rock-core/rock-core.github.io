@@ -22,6 +22,9 @@ default_meta_info:
         link:
             css: /style_screen.css
 
+#default_processing_pipeline:
+#  Page: erb,tags,kramdown,erb,blocks
+
 tag.menu.nested: false
 
 tag.breadcrumbtrail.omit_index_path: true
