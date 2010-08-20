@@ -11,7 +11,14 @@ autoproj:
     sort_info: 100
 
 orogen:
-    title: Developping Components
+    title: Developping
     sort_info: 150
 
+running:
+    title: Running
+    sort_info: 200
+
+data_analysis:
+    title: Data Analaysis
+    sort_info: 250
 
