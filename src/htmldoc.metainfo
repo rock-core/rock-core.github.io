@@ -1,6 +1,6 @@
 index.page:
     sort_info: 0
-    routed_title: The Orocos Toolchain
+    routed_title: The Orocos/DFKI Toolchain
 
 startup:
     sort_info: 50
@@ -14,9 +14,13 @@ orogen:
     title: Developping
     sort_info: 150
 
-running:
+runtime:
     title: Running
     sort_info: 200
+
+system:
+    title: Advanced System Deployment
+    sort_info: 220
 
 data_analysis:
     title: Data Analaysis

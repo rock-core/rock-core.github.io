@@ -59,7 +59,7 @@ body {font-size: 62.5%; margin: 0px auto; padding: 0px; background: url(../img/b
 .nav1 {margin: 0px; padding: 0px; font-family: verdana, arial, sans serif; font-size: 1.0em;}
 .nav1 ul {float: right; margin: 0px; padding: 0px 20px 0px 0px; border-left: solid 1px rgb(115,162,182); background-color: rgb(255,255,255); font-weight: bold;}	
 .nav1 li {display: inline; list-style: none; margin: 0px; padding: 0px;}
-.nav1 li a {display: block; float: left; margin: 0px; padding: 2px 5px 2px 5px; border-right: solid 1px rgb(115,162,182); color: rgb(115,162,182); text-decoration: none; font-size: 10px;}
+.nav1 li a {display: block; float: left; margin: 0px; padding: 2px 5px 2px 5px; border-right: solid 1px rgb(115,162,182); color: rgb(115,162,182); text-decoration: none; font-size: 10px; text-decoration: none;}
 .nav1 a:hover, .nav2 a.selected {color: rgb(50,50,50); text-decoration: none;}
 
 /*----------------------------*/
@@ -68,7 +68,7 @@ body {font-size: 62.5%; margin: 0px auto; padding: 0px; background: url(../img/b
 .nav2 {clear: both; margin: 0px; padding: 0px; font-family: verdana, arial, sans serif; font-size: 1.0em;}
 .nav2 ul {float: left; width: 770px; margin: 0px; padding: 0px; border-top: solid 1px rgb(54,83,151); border-bottom: solid 1px rgb(54,83,151); background-color: rgb(127,162,202); font-weight: bold;}	
 .nav2 li {display: inline; list-style: none; margin: 0px; padding: 0px;}
-.nav2 li a {display: block; float: left; margin: 0px 0px 0px 0px; padding: 5px 10px 5px 10px; border-right: solid 1px rgb(54,83,151); color: rgb(255,255,255); text-transform: uppercase; text-decoration: none; font-size: 100%;}
+.nav2 li a {display: block; float: left; margin: 0px 0px 0px 0px; padding: 5px 10px 5px 10px; border-right: solid 1px rgb(54,83,151); color: rgb(255,255,255); text-transform: uppercase; text-decoration: none; font-size: 100%; text-decoration: none;}
 .nav2 li span {display: block; float: left; margin: 0px 0px 0px 0px; padding: 5px 10px 5px 10px; border-right: solid 1px rgb(54,83,151); color: rgb(255,255,255); text-transform: uppercase; text-decoration: none; font-size: 100%;}
 .nav2 a:hover, .nav2 a.selected {color: rgb(50,50,50); text-decoration: none;}
 .buffer {clear: both; width: 770px; height: 30px; margin: 0px; padding: 0px; background-color: rgb(255,255,255);}
@@ -78,10 +78,10 @@ body {font-size: 62.5%; margin: 0px auto; padding: 0px; background: url(../img/b
 /*----------------------------*/
 .nav3 {overflow: hidden; clear: both; float: left; width: 160px; min-height: 500px; margin: 0px; padding: 0px; color: rgb(75,75,75); font-size: 1.0em;}
 .nav3 ul {width: 160px; margin: 0px 0px 20px 0px; padding: 0px; border-bottom: solid 1px rgb(216,206,159); background-color: rgb(219,230,241);}	
-.nav3 li {list-style: none; margin: 0px; padding: 0px;}
+.nav3 li {list-style: none; margin: 0px; padding: 0px; font-size: 100%;}
 .nav3 li.title {margin: 0px 0px 0px 0px; padding: 3px 5px 2px 15px; background-color: rgb(156,186,214); color: rgb(255,255,255); text-transform: uppercase; font-weight: bold; font-size: 120%;}
-.nav3 li.webgen-menu-level1 a    {display: block; min-height: 1.7em; height: auto !important; height: 1.7em; line-height: 1.7em; margin: 0px; padding: 0px 7px 0px 15px; border-top: solid 1px rgb(200,200,200); border-left: solid 7px rgb(219,230,241); color: rgb(75,75,75); font-weight: bold; font-size: 120%;}
-.nav3 li.webgen-menu-level2 a    {display: block; min-height: 1.7em; height: auto !important; height: 1.7em; line-height: 1.7em; margin: 0px; padding: 0px 7px 0px 20px; border-left: solid 7px rgb(219,230,241); color: rgb(75,75,75); text-decoration: none; font-weight: normal; font-size: 120%;}
+.nav3 li.webgen-menu-level1 a    {display: block; min-height: 1.7em; height: auto !important; height: 1.7em; line-height: 1.7em; margin: 0px; padding: 0px 7px 0px 15px; border-top: solid 1px rgb(200,200,200); border-left: solid 7px rgb(219,230,241); color: rgb(75,75,75); font-weight: bold; font-size: 120%; text-decoration: none; }
+.nav3 li.webgen-menu-level2 a    {display: block; min-height: 1.7em; height: auto !important; height: 1.7em; line-height: 1.7em; margin: 0px; padding: 0px 7px 0px 20px; border-left: solid 7px rgb(219,230,241); color: rgb(75,75,75); text-decoration: none; font-weight: normal; font-size: 120%; text-decoration: none;}
 .nav3 li.webgen-menu-level1 span {display: block; min-height: 1.7em; height: auto !important; height: 1.7em; line-height: 1.7em; margin: 0px; padding: 0px 7px 0px 15px; border-top: solid 1px rgb(200,200,200); border-left: solid 7px rgb(219,230,241); color: rgb(75,75,75); font-weight: bold; font-size: 120%;}
 .nav3 li.webgen-menu-level2 span {display: block; min-height: 1.7em; height: auto !important; height: 1.7em; line-height: 1.7em; margin: 0px; padding: 0px 7px 0px 20px; border-left: solid 7px rgb(219,230,241); color: rgb(75,75,75); text-decoration: none; font-size: 120%;}
 .nav3 li a:hover, .nav3 li.webgen-menu-level2.webgen-menu-submenu-inhierarchy, .nav3 li.webgen-menu-item-selected {border-left: solid 7px rgb(156,186,214);  color: rgb(100,100,100); text-decoration: none;}
@@ -104,7 +104,7 @@ body {font-size: 62.5%; margin: 0px auto; padding: 0px; background: url(../img/b
 
 .content1 {float: left; width: 428px; margin: 0px; padding: 0px 0px 10px 20px; color: rgb(75,75,75);}
 .content1-container {clear: both; float: left; width: 408px; margin: 0px 0px 15px 0px; padding: 0px;}
-.content1-container-1col {overflow: hidden; width: 408px; margin: 0px; padding: 0px;}
+.content1-container-1col {overflow: visible; width: 408px; margin: 0px; padding: 0px;}
 .content1-container-1col-txtright-200px {float: right; width: 196px; margin: 0px; padding: 0px;}
 .content1-container-1col-txtright-160px {float: right; width: 236px; margin: 0px; padding: 0px;}
 .content1-container-1col-txtright-120px {float: right; width: 276px; margin: 0px; padding: 0px;}
@@ -135,7 +135,7 @@ body {font-size: 62.5%; margin: 0px auto; padding: 0px; background: url(../img/b
 .content2 {float: left; width: 590px; min-height: 500px; margin: 0px; padding: 0px 0px 0px 20px; color: rgb(75,75,75); font-size: 1.0em;}
 .content3 {float: left; width: 590px; min-height: 500px; margin: 0px; padding: 0px 0px 0px 20px; color: rgb(75,75,75); font-size: 1.0em;}
 .content2-container, .content3-container {clear: both; float: left; width: 569px; margin: 0px 0px 15px 0px; padding: 0px;}
-.content2-container-1col, .content3-container-1col {overflow: hidden; width: 569px; margin: 0px; padding: 0px;}
+.content2-container-1col, .content3-container-1col {overflow: visible; width: 569px; margin: 0px; padding: 0px;}
 .content2-container-1col-txtright-200px, .content3-container-1col-txtright-200px {float: right; width: 357px; margin: 0px; padding: 0px;}
 .content2-container-1col-txtright-160px, .content3-container-1col-txtright-160px {float: right; width: 397px; margin: 0px; padding: 0px;}
 .content2-container-1col-txtright-120px, .content3-container-1col-txtright-120px {float: right; width: 437px; margin: 0px; padding: 0px;}
@@ -201,7 +201,7 @@ h5 {margin: 0px 0px 0.2em 0px; font-weight: bold; font-size: 130%;}
 h6 {margin: 0px 0px 0.2em 0px;font-weight: bold; font-style: italic; font-size: 130%;}
 
 /* Paragraphs */
-li p {margin: 0px 0px 0.5em 0px; padding: 0px; line-height: 1.3em; font-family: arial, sans serif; font-size: 100%; }
+li {margin: 0px 0px 0.5em 0px; padding: 0px; line-height: 1.3em; font-family: arial, sans serif; font-size: 120%; }
 p {margin: 0px 0px 0.5em 0px; padding: 0px; line-height: 1.3em; font-family: arial, sans serif; font-size: 120%; }
 p.readmore {margin: 1.0em 0px 0.5em 0px; padding: 0px; line-height: 1.2em; font-size: 110%; }
 p.quote {margin: 0em 30px 0.6em 30px;	line-height: 120%; font-size: 120%;}
@@ -501,4 +501,5 @@ margin-left: 0em;
 margin-right: 0em;
     font-family: monospace;
 }
+
 

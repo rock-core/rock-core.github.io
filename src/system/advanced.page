@@ -1,11 +1,11 @@
 ---
 title: Extended use of the Roby plugin
-sort_info: 0
+sort_info: 1000
 ---
 
-Now that you have seen [the basics of the Roby plugin](../roby/index.html), we'll get into its more
-complex (and more interesting) uses. All the more advanced features will be
-described by using the example of a robot at DFKI, the Asguard robot.
+Now that you have seen, we'll get into its more complex (and more interesting)
+uses. All the more advanced features will be described by using the example of a
+robot at DFKI, the Asguard robot.
 
  * its overall architecture will be presented. Then, we will discuss the
    __communication busses__ feature, that is used in the device list to handle

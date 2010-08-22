@@ -10,8 +10,8 @@
    xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="744.09448819"
-   height="1052.3622047"
+   width="521.80023"
+   height="167.28351"
    id="svg2"
    version="1.1"
    inkscape:version="0.47 r22583"
@@ -153,8 +153,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.98994949"
-     inkscape:cx="254.90184"
-     inkscape:cy="934.28571"
+     inkscape:cx="242.67832"
+     inkscape:cy="58.726564"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -178,7 +178,8 @@
   <g
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
-     id="layer1">
+     id="layer1"
+     transform="translate(-12.223521,-9.5195217)">
     <g
        id="g4241"
        transform="translate(-44.142545,-33.275159)">
@@ -221,8 +222,8 @@
     </g>
     <a
        xlink:href="../orogen/index.html"
-       target="_top"
-       id="a2899">
+       id="a2899"
+       target="_top">
       <g
          transform="translate(-44.142545,-37.375644)"
          id="g4249">
@@ -266,9 +267,9 @@
     </a>
     <a
        xlink:href="../autoproj/index.html"
-       target="_top"
+       id="a4559"
        transform="translate(-40.406102,-29.294424)"
-       id="a4559">
+       target="_top">
       <g
          transform="translate(-3.7364426,1.3052061)"
          id="g4233">
@@ -310,51 +311,56 @@
              id="tspan3871">System</tspan></text>
       </g>
     </a>
-    <g
-       id="g4257"
-       transform="translate(-59.627065,-62.160959)">
-      <rect
-         ry="7.4758282"
-         rx="7.4758282"
-         y="86.685638"
-         x="221.01585"
-         height="41.912621"
-         width="178.20197"
-         id="rect2999-48"
-         style="color:#000000;fill:#aaccff;stroke:#1d77ff;stroke-width:0.99999994px;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
-      <text
-         id="text3773-3"
-         y="111.86655"
-         x="231.74298"
-         style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
-         xml:space="preserve"><tspan
-           style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Arial;-inkscape-font-specification:Arial"
-           y="111.86655"
+    <a
+       xlink:href="../running/index.html"
+       target="_top"
+       id="a2900">
+      <g
+         transform="translate(-59.627065,-62.160959)"
+         id="g4257">
+        <rect
+           style="color:#000000;fill:#aaccff;stroke:#1d77ff;stroke-width:0.99999994px;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+           id="rect2999-48"
+           width="178.20197"
+           height="41.912621"
+           x="221.01585"
+           y="86.685638"
+           rx="7.4758282"
+           ry="7.4758282" />
+        <text
+           xml:space="preserve"
+           style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
            x="231.74298"
-           id="tspan3775-2"
-           sodipodi:role="line">orocos.rb</tspan></text>
-      <text
-         id="text3777-0"
-         y="97.729836"
-         x="294.30038"
-         style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-indent:0;text-align:start;text-decoration:none;line-height:normal;letter-spacing:normal;word-spacing:normal;text-transform:none;direction:ltr;block-progression:tb;writing-mode:lr-tb;text-anchor:start;color:#000000;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1px;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate;font-family:Arial;-inkscape-font-specification:Arial"
-         xml:space="preserve"><tspan
-           style="font-size:10px;font-style:italic"
-           id="tspan3781-1"
+           y="111.86655"
+           id="text3773-3"><tspan
+             sodipodi:role="line"
+             id="tspan3775-2"
+             x="231.74298"
+             y="111.86655"
+             style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Arial;-inkscape-font-specification:Arial">orocos.rb</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-indent:0;text-align:start;text-decoration:none;line-height:normal;letter-spacing:normal;word-spacing:normal;text-transform:none;direction:ltr;block-progression:tb;writing-mode:lr-tb;text-anchor:start;color:#000000;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1px;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate;font-family:Arial;-inkscape-font-specification:Arial"
+           x="294.30038"
            y="97.729836"
-           x="294.30038"
-           sodipodi:role="line">Startup and Monitoring</tspan><tspan
-           id="tspan3948"
-           style="font-size:10px;font-style:italic"
-           y="110.22984"
-           x="294.30038"
-           sodipodi:role="line">of components using</tspan><tspan
-           id="tspan3950"
-           style="font-size:10px;font-style:italic"
-           y="122.72984"
-           x="294.30038"
-           sodipodi:role="line">Ruby scripts</tspan></text>
-    </g>
+           id="text3777-0"><tspan
+             sodipodi:role="line"
+             x="294.30038"
+             y="97.729836"
+             id="tspan3781-1"
+             style="font-size:10px;font-style:italic">Startup and Monitoring</tspan><tspan
+             sodipodi:role="line"
+             x="294.30038"
+             y="110.22984"
+             style="font-size:10px;font-style:italic"
+             id="tspan3948">of components using</tspan><tspan
+             sodipodi:role="line"
+             x="294.30038"
+             y="122.72984"
+             style="font-size:10px;font-style:italic"
+             id="tspan3950">Ruby scripts</tspan></text>
+      </g>
+    </a>
     <g
        id="g4315"
        transform="translate(-59.381863,-9.0710679)">
@@ -450,51 +456,56 @@
            x="477.6564"
            sodipodi:role="line">component</tspan></text>
     </g>
-    <g
-       id="g4266"
-       transform="translate(-59.580884,-60.191757)">
-      <rect
-         ry="7.4758277"
-         rx="7.4758277"
-         y="132.68367"
-         x="221.01585"
-         height="41.407551"
-         width="178.1096"
-         id="rect2999-5"
-         style="color:#000000;fill:#aaccff;fill-opacity:1;fill-rule:nonzero;stroke:#1d77ff;stroke-width:0.99999994px;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
-      <text
-         id="text3773-3-2"
-         y="156.41968"
-         x="231.19806"
-         style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
-         xml:space="preserve"><tspan
-           style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Arial;-inkscape-font-specification:Arial"
-           y="156.41968"
+    <a
+       xlink:href="../sysdeployment/index.html"
+       target="_top"
+       id="a2910">
+      <g
+         transform="translate(-59.580884,-60.191757)"
+         id="g4266">
+        <rect
+           style="color:#000000;fill:#aaccff;fill-opacity:1;fill-rule:nonzero;stroke:#1d77ff;stroke-width:0.99999994px;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+           id="rect2999-5"
+           width="178.1096"
+           height="41.407551"
+           x="221.01585"
+           y="132.68367"
+           rx="7.4758277"
+           ry="7.4758277" />
+        <text
+           xml:space="preserve"
+           style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
            x="231.19806"
-           id="tspan3775-2-0"
-           sodipodi:role="line">Roby</tspan></text>
-      <text
-         id="text3777-0-6"
-         y="143.41431"
-         x="294.38828"
-         style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-indent:0;text-align:start;text-decoration:none;line-height:normal;letter-spacing:normal;word-spacing:normal;text-transform:none;direction:ltr;block-progression:tb;writing-mode:lr-tb;text-anchor:start;color:#000000;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1px;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate;font-family:Arial;-inkscape-font-specification:Arial"
-         xml:space="preserve"><tspan
-           id="tspan3950-2"
-           style="font-size:10px;font-style:italic"
+           y="156.41968"
+           id="text3773-3-2"><tspan
+             sodipodi:role="line"
+             id="tspan3775-2-0"
+             x="231.19806"
+             y="156.41968"
+             style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Arial;-inkscape-font-specification:Arial">Roby</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-indent:0;text-align:start;text-decoration:none;line-height:normal;letter-spacing:normal;word-spacing:normal;text-transform:none;direction:ltr;block-progression:tb;writing-mode:lr-tb;text-anchor:start;color:#000000;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1px;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate;font-family:Arial;-inkscape-font-specification:Arial"
+           x="294.38828"
            y="143.41431"
-           x="294.38828"
-           sodipodi:role="line">Model-based</tspan><tspan
-           id="tspan4108"
-           style="font-size:10px;font-style:italic"
-           y="155.91431"
-           x="294.38828"
-           sodipodi:role="line">deployment and</tspan><tspan
-           id="tspan4110"
-           style="font-size:10px;font-style:italic"
-           y="168.41431"
-           x="294.38828"
-           sodipodi:role="line">system supervision</tspan></text>
-    </g>
+           id="text3777-0-6"><tspan
+             sodipodi:role="line"
+             x="294.38828"
+             y="143.41431"
+             style="font-size:10px;font-style:italic"
+             id="tspan3950-2">Model-based</tspan><tspan
+             sodipodi:role="line"
+             x="294.38828"
+             y="155.91431"
+             style="font-size:10px;font-style:italic"
+             id="tspan4108">deployment and</tspan><tspan
+             sodipodi:role="line"
+             x="294.38828"
+             y="168.41431"
+             style="font-size:10px;font-style:italic"
+             id="tspan4110">system supervision</tspan></text>
+      </g>
+    </a>
     <text
        xml:space="preserve"
        style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-indent:0;text-align:start;text-decoration:none;line-height:normal;letter-spacing:normal;word-spacing:normal;text-transform:none;direction:ltr;block-progression:tb;writing-mode:lr-tb;text-anchor:start;color:#000000;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1px;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate;font-family:Arial;-inkscape-font-specification:Arial"

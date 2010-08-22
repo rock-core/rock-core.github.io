@@ -1,19 +1,17 @@
 ---
-title: The Orocos Toolchain
-routed_title: The Orocos Toolchain
+title: The Orocos/DFKI Toolchain
+routed_title: The Orocos/DFKI Toolchain
 ---
 
+<div markdown="1" class="content2-container">
 <div markdown="1" class="content2-container-3col-left">
-
 Get it
 {: .content-title-noshade-size3}
 
-<div markdown="1" class="content2-container-3col-left content-txtbox-noshade">
 Get started with the [step-by-step installation guide](startup/index.html).
 Reference documentation on [the build system](autoproj/index.html) is also
 available, and you can browse the code and contribute on
 [Gitorious](http://gitorious.com/orocos-dfki).
-</div>
 </div>
 
 <div markdown="1" class="content2-container-3col-middle">
@@ -26,4 +24,28 @@ Get help
 {: .content-title-noshade-size3}
 </div>
 </div>
+
+Overview
+--------
+
+_Click on a tool below to go directly to the documentation for it_
+
+<div>
+<object type="image/svg+xml" data="startup/tools_overview.svg" width="600" height="200">
+Browser does not support SVG files!
+</object>
+</div>
+
+What's the difference with the Orocos Toolchain ?
+-------------------------------------------------
+The Orocos/DFKI toolchain is centered around the use of oroGen for component
+writing, and the Ruby language for system deployment and data analysis. In
+practice, what you get is:
+
+ * use Ruby scripts to start your components and monitor them
+ * use a model-based tool for large-scale system deployment, and benefit from
+   its logging capabilities to do post-mortem analysis of system behaviour.
+ * use the data logger to log all data that your components generate, and use
+   Ruby scripts to analyze this load of data
+ * benefit from a large component repository
 
