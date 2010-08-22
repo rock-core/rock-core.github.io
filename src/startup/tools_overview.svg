@@ -361,103 +361,113 @@
              id="tspan3950">Ruby scripts</tspan></text>
       </g>
     </a>
-    <g
-       id="g4315"
-       transform="translate(-59.381863,-9.0710679)">
-      <rect
-         ry="7.4758277"
-         rx="7.4758277"
-         y="81.562981"
-         x="409.91443"
-         height="54.034451"
-         width="182.15392"
-         id="rect2999-4"
-         style="color:#000000;fill:#eeaaff;fill-opacity:1;fill-rule:nonzero;stroke:#cb00fe;stroke-width:0.99999994px;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
-      <text
-         id="text3773-3-7"
-         y="111.61243"
-         x="417.05212"
-         style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
-         xml:space="preserve"><tspan
-           style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Arial;-inkscape-font-specification:Arial"
-           y="111.61243"
-           x="417.05212"
-           id="tspan3775-2-4"
-           sodipodi:role="line">pocolog</tspan></text>
-      <text
-         id="text3777-0-4"
-         y="93.411751"
-         x="496.69757"
-         style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-indent:0;text-align:start;text-decoration:none;line-height:normal;letter-spacing:normal;word-spacing:normal;text-transform:none;direction:ltr;block-progression:tb;writing-mode:lr-tb;text-anchor:start;color:#000000;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1px;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate;font-family:Arial;-inkscape-font-specification:Arial"
-         xml:space="preserve"><tspan
-           id="tspan3950-7"
-           style="font-size:10px;font-style:italic"
-           y="93.411751"
-           x="496.69757"
-           sodipodi:role="line">Command-line tool</tspan><tspan
-           id="tspan4001"
-           style="font-size:10px;font-style:italic"
-           y="105.91175"
-           x="496.69757"
-           sodipodi:role="line">and Ruby library to</tspan><tspan
-           id="tspan4003"
-           style="font-size:10px;font-style:italic"
-           y="118.41175"
-           x="496.69757"
-           sodipodi:role="line">manipulate data log</tspan><tspan
-           id="tspan4005"
-           style="font-size:10px;font-style:italic"
-           y="130.91174"
-           x="496.69757"
-           sodipodi:role="line">files</tspan></text>
-    </g>
-    <g
-       id="g4461"
-       transform="translate(-40.406102,-28.801401)">
-      <rect
-         ry="7.4758286"
-         rx="7.4758277"
-         y="53.32608"
-         x="390.96603"
-         height="41.888515"
-         width="182.09915"
-         id="rect2999-6"
-         style="color:#000000;fill:#eeaaff;stroke:#cb00fe;stroke-width:0.99999994px;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
-      <text
-         id="text3773-3-7-6"
-         y="77.302567"
-         x="398.48459"
-         style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
-         xml:space="preserve"><tspan
-           style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Arial;-inkscape-font-specification:Arial"
-           y="77.302567"
-           x="398.48459"
-           id="tspan3775-2-4-8"
-           sodipodi:role="line">data_logger</tspan></text>
-      <text
-         id="text3777-0-4-8"
-         y="64.416824"
-         x="477.6564"
-         style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-indent:0;text-align:start;text-decoration:none;line-height:normal;letter-spacing:normal;word-spacing:normal;text-transform:none;direction:ltr;block-progression:tb;writing-mode:lr-tb;text-anchor:start;color:#000000;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1px;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate;font-family:Arial;-inkscape-font-specification:Arial"
-         xml:space="preserve"><tspan
-           id="tspan4005-4"
-           style="font-size:10px;font-style:italic"
-           y="64.416824"
-           x="477.6564"
-           sodipodi:role="line">High-performance</tspan><tspan
-           id="tspan4059"
-           style="font-size:10px;font-style:italic"
-           y="76.916824"
-           x="477.6564"
-           sodipodi:role="line">data logging</tspan><tspan
-           id="tspan4061"
-           style="font-size:10px;font-style:italic"
-           y="89.416824"
-           x="477.6564"
-           sodipodi:role="line">component</tspan></text>
-    </g>
     <a
-       xlink:href="../sysdeployment/index.html"
+       xlink:href="../data_analysis/reading_logfiles.html"
+       target="_top"
+       id="a2930">
+      <g
+         transform="translate(-59.381863,-9.0710679)"
+         id="g4315">
+        <rect
+           style="color:#000000;fill:#eeaaff;fill-opacity:1;fill-rule:nonzero;stroke:#cb00fe;stroke-width:0.99999994px;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+           id="rect2999-4"
+           width="182.15392"
+           height="54.034451"
+           x="409.91443"
+           y="81.562981"
+           rx="7.4758277"
+           ry="7.4758277" />
+        <text
+           xml:space="preserve"
+           style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+           x="417.05212"
+           y="111.61243"
+           id="text3773-3-7"><tspan
+             sodipodi:role="line"
+             id="tspan3775-2-4"
+             x="417.05212"
+             y="111.61243"
+             style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Arial;-inkscape-font-specification:Arial">pocolog</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-indent:0;text-align:start;text-decoration:none;line-height:normal;letter-spacing:normal;word-spacing:normal;text-transform:none;direction:ltr;block-progression:tb;writing-mode:lr-tb;text-anchor:start;color:#000000;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1px;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate;font-family:Arial;-inkscape-font-specification:Arial"
+           x="496.69757"
+           y="93.411751"
+           id="text3777-0-4"><tspan
+             sodipodi:role="line"
+             x="496.69757"
+             y="93.411751"
+             style="font-size:10px;font-style:italic"
+             id="tspan3950-7">Command-line tool</tspan><tspan
+             sodipodi:role="line"
+             x="496.69757"
+             y="105.91175"
+             style="font-size:10px;font-style:italic"
+             id="tspan4001">and Ruby library to</tspan><tspan
+             sodipodi:role="line"
+             x="496.69757"
+             y="118.41175"
+             style="font-size:10px;font-style:italic"
+             id="tspan4003">manipulate data log</tspan><tspan
+             sodipodi:role="line"
+             x="496.69757"
+             y="130.91174"
+             style="font-size:10px;font-style:italic"
+             id="tspan4005">files</tspan></text>
+      </g>
+    </a>
+    <a
+       xlink:href="../data_analysis/logging.html"
+       target="_top"
+       id="a2920">
+      <g
+         transform="translate(-40.406102,-28.801401)"
+         id="g4461">
+        <rect
+           style="color:#000000;fill:#eeaaff;stroke:#cb00fe;stroke-width:0.99999994px;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+           id="rect2999-6"
+           width="182.09915"
+           height="41.888515"
+           x="390.96603"
+           y="53.32608"
+           rx="7.4758277"
+           ry="7.4758286" />
+        <text
+           xml:space="preserve"
+           style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+           x="398.48459"
+           y="77.302567"
+           id="text3773-3-7-6"><tspan
+             sodipodi:role="line"
+             id="tspan3775-2-4-8"
+             x="398.48459"
+             y="77.302567"
+             style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Arial;-inkscape-font-specification:Arial">data_logger</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-indent:0;text-align:start;text-decoration:none;line-height:normal;letter-spacing:normal;word-spacing:normal;text-transform:none;direction:ltr;block-progression:tb;writing-mode:lr-tb;text-anchor:start;color:#000000;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1px;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate;font-family:Arial;-inkscape-font-specification:Arial"
+           x="477.6564"
+           y="64.416824"
+           id="text3777-0-4-8"><tspan
+             sodipodi:role="line"
+             x="477.6564"
+             y="64.416824"
+             style="font-size:10px;font-style:italic"
+             id="tspan4005-4">High-performance</tspan><tspan
+             sodipodi:role="line"
+             x="477.6564"
+             y="76.916824"
+             style="font-size:10px;font-style:italic"
+             id="tspan4059">data logging</tspan><tspan
+             sodipodi:role="line"
+             x="477.6564"
+             y="89.416824"
+             style="font-size:10px;font-style:italic"
+             id="tspan4061">component</tspan></text>
+      </g>
+    </a>
+    <a
+       xlink:href="../system/index.html"
        target="_top"
        id="a2910">
       <g
