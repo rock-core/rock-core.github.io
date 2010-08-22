@@ -1,4 +1,4 @@
----
+-/autoproj//autoproj/--
 title: Understanding autoproj error messages
 sort_info: 90
 ---
@@ -29,9 +29,9 @@ find out why and either remove it from there, or add XXX to the same section.
 
 In the second case, the package is disabled on your operating system version.
 This is done in the package set's autobuild files by using the [not_on and
-only_on statements](package_sets/autobuild.html#not_on_and_only_on). You will
+only_on statements](/autoproj/package_sets/autobuild.html#not_on_and_only_on). You will
 have to either exclude the XXX package as well (either by including it in the
 same not_on/only_on block, or by adding it to [the exclude_packages section
-of autoproj/manifest](customization.html#exclude_packages)), or to make it so
+of autoproj/manifest](/autoproj/customization.html#exclude_packages)), or to make it so
 that YYY builds on your OS, an thus remove it from the not_on/only_on block.
 

@@ -52,7 +52,7 @@ It will display the data type for the given stream. Example:
 <pre markdown="0">
 [....1_ImageAcquisition]% pocosim-log lowlevel.log -s controldev.motionCommand --type
 loading file info from ./lowlevel.idx... done
-/controldev/MotionCommand { translation </double>, rotation </double> }
+/controldev/MotionCommand { translation &lt;/double&gt;, rotation &lt;/double&gt; }
 </pre>
 
 Getting the data as a CSV file

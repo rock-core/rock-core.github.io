@@ -50,25 +50,34 @@ needs for each of its inputs. Three choices are possible:
 
  * the input should be connected with a data connection. This is specified with
    the <tt>needs_data_connection</tt> statement
-   {coderay:: ruby}
-   input_port('in', '/std/string').
-     needs_data_connection
-   {coderay}
+
+<div class="indent">
+{coderay:: ruby}
+input_port('in', '/std/string').
+ needs_data_connection
+{coderay}
+</div>
 
  * the input should be connected with a buffered connection of size 1. This is
    specified with the <tt>needs_buffered_connection</tt> statement:
-   {coderay:: ruby}
-   input_port('in', '/std/string').
-     needs_buffered_connection
-   {coderay}
+
+<div class="indent">
+{coderay:: ruby}
+input_port('in', '/std/string').
+ needs_buffered_connection
+{coderay}
+</div>
 
  * the third, and most interesting one, specifies that the component expects
    that it will receive all samples sent to it. This is specified with the
    <tt>needs_reliable_connection</tt> statement.
-   {coderay:: ruby}
-   input_port('in', '/std/string').
-     needs_reliable_connection
-   {coderay}
+
+<div class="indent">
+{coderay:: ruby}
+input_port('in', '/std/string').
+ needs_reliable_connection
+{coderay}
+</div>
 
 Each of these specifications can be added into the Roby models -- as opposed to
 changing the oroGen specification. This should be used rarely, but comes in
@@ -88,7 +97,7 @@ end
 {coderay}
 
 ***Note*** the trailing dot at the end of the input_port line. That dot is
-critical. In practice, all <tt>needs_*</tt> statements are method calls on the
+critical. In practice, all needs_* statements are method calls on the
 port objects.
 {: .warning}
 
@@ -148,20 +157,26 @@ sent, two statements can be used:
 
  * the <tt>sample_size</tt> statement specifies that the component will
    **always** send multiple samples on the connection
-   {coderay:: ruby}
-   output_port('out', '/std/string').
-     sample_size(4)
-   {coderay}
+
+<div class="indent">
+{coderay:: ruby}
+output_port('out', '/std/string').
+ sample_size(4)
+{coderay}
+</div>
 
  * the <tt>burst</tt> statement specifies that the component will usually send
    one sample, but that it may sometime send more. The following example
    specifies that the component will write 4 samples every 5 calls to
    updateHook(). The special period value of 0 can be used to mean "rarely
    enough".
-   {coderay:: ruby}
-   output_port('out', '/std/string').
-     burst(4, 5)
-   {coderay}
+
+<div class="indent">
+{coderay:: ruby}
+output_port('out', '/std/string').
+ burst(4, 5)
+{coderay}
+</div>
 
 Moreover, if the port is not written at each call to updateHook(), the
 <tt>period</tt> statement can be used to specify that. The following example

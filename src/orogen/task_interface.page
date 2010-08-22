@@ -173,7 +173,7 @@ with
 operation('operationName')
 {coderay}
 
-is mapped to an attribute named <tt>_operationName</tt>, of type <tt>RTT::Operation</tt>.
+is mapped to an attribute named <tt>\_operationName</tt>, of type <tt>RTT::Operation</tt>.
 
 The mappings are as follows:
 

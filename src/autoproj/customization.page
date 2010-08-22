@@ -77,7 +77,7 @@ exclude_packages:
 {coderay}
 
 If another package, that should be built, depends on an excluded package, [an
-error is generated](error_messages.html#exclusions)
+error is generated](/autoproj/error_messages.html#exclusions)
 
 Using packages that are already installed (<tt>ignore_packages</tt>) 
 -----------------------------------------
@@ -189,16 +189,22 @@ Some examples:
 
  * fixing dependencies: if a dependency is not listed in a package's manifest,
    then you can fix it by adding the following in <tt>autoproj/overrides.rb</tt>
-   {coderay:: ruby}
-   a = Autobuild::Package['a_package']
-   a.depends_on "other_package"
-   {coderay}
+
+<div class="indent">
+{coderay:: ruby}
+a = Autobuild::Package['a_package']
+a.depends_on "other_package"
+{coderay}
+</div>
 
  * changing the configuration of some cmake package:
-   {coderay:: ruby}
-   a = Autobuild::Package['a_package']
-   a.define "CONFIG_VAR", "CONFIG_VALUE"
-   {coderay}
+
+<div class="indent">
+{coderay:: ruby}
+a = Autobuild::Package['a_package']
+a.define "CONFIG_VAR", "CONFIG_VALUE"
+{coderay}
+</div>
 
 Building packages selectively on the command line
 -------------------------------------------------
