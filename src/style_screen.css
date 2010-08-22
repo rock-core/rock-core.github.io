@@ -473,8 +473,21 @@ ul.linklist-indent {margin: -0.3em 0px 0.5em 0px; padding: 0px 0px 0px 10px; lis
 /* SECTION 8 - MISCELLANEOUS */
 /*****************************/
 .showcode {font-family: monospace; font-weight: bold; font-size: 13px; color: rgb(255,0,0);}
-.CodeRay {margin-left: 1em; font-family: monospace; font-weight: bold; font-size: 10px;}
-pre {margin-left: 1em; font-family: monospace; font-weight: bold; font-size: 10px;}
+.CodeRay {font-family: monospace; font-weight: normal; font-size: 10px;}
+
+pre {
+padding:5px;
+background:#e4e4ff;
+color:#222;
+border:2px solid #ddd;
+margin-top: 1em;
+margin-bottom: 1em;
+margin-left: 0em;
+margin-right: 0em;
+font-family: monospace;
+font-size: 120%;
+}
+
 .clear {clear: both;}
 .hide {display: none;}
 br {clear: none;}
@@ -499,7 +512,7 @@ margin-top: 1em;
 margin-bottom: 1em;
 margin-left: 0em;
 margin-right: 0em;
-    font-family: monospace;
+font-family: monospace;
 }
 
 
