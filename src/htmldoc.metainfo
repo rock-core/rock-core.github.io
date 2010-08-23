@@ -11,11 +11,11 @@ autoproj:
     sort_info: 100
 
 orogen:
-    title: Developping
+    title: Developping Components
     sort_info: 150
 
 runtime:
-    title: Running
+    title: Running Components
     sort_info: 200
 
 system:
