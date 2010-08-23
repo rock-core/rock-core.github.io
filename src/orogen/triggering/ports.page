@@ -1,7 +1,10 @@
 ---
 title: Data-Driven Tasks
 sort_info: 200
----
+--- name:localtoc
+{menu: {max_levels: 3, start_level: 3, show_current_subtree_only: true, nested: true, used_nodes: files}}
+--- name:content
+
 A data-driven task is a task that wants to perform computations whenever new
 data is available on its input ports. In general, data-processing tasks (as for
 instance image processing tasks) fall into that category: their goal is to take

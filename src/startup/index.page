@@ -15,7 +15,7 @@ Installation: the easy way
     {: .commandline}
 
  2. Create and "cd" into the directory in which you want to install the toolchain
- 3. Save the [bootstrap.sh](http://gitorious.com/orocos-toolchain/build/blobs/raw/master/bootstrap.sh) script in the folder you just created
+ 3. Save the [bootstrap.sh](http://gitorious.com/orocos-dfki-toolchain/build/blobs/raw/master/bootstrap.sh) script in the folder you just created
  4. In a console, run
     
     sh bootstrap.sh
@@ -24,7 +24,7 @@ Installation: the easy way
  5. Important: as the build tool tells you, you **must** load the generated env.sh script at the end of the build !!!
     * source it in your current console
 
-      . ./env.sh)
+      . ./env.sh
       {: .commandline}
 
     * but also add it to your .bashrc: append the following line at the end of
@@ -33,7 +33,7 @@ Installation: the easy way
       . /path/to/the/directory/env.sh
       {: .commandline}
 
-Maintaining the Toolchain uptodate
+Maintaining the Orocos/DFKI Toolchain uptodate
 ----------------------------------
 
 Once it is installed, you can update it by going into the root folder and do
