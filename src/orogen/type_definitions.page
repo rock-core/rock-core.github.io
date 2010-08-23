@@ -52,15 +52,19 @@ Note that, for now, all types that are defined in the orogen project must be
 defined inline: orogen does not support separating the implementation from the
 definition. Types that are defined in separate libraries are fine, though.
 
-Limitations due to the RTT itself
-=================================
-Unfortunately, oroGen has to cope with RTT limited support for basic types (int,
-long, ...), and therefore the following limitations apply:
+Known Limitations
+=================
 
+ * structures and classes with private members are not handled (a warning is
+   issued)
+ * structures and classes that have a parent class are not handled (a warning is
+   issued)
  * char, short, 64 bit integers and float are forbidden as argument types for an
    operation. Use int instead of char or short, and double instead of
-   float. Unfortunately there is no equivalent for 64 bit integers.
- * structs that contain 64 bit integers won't be marshallable as XML.
+   float. Unfortunately there is no equivalent for 64 bit integers. This is due
+   to limitations in the RTT default typekit.
+ * structs that contain 64 bit integers won't be marshallable as XML. This is
+   because the CPF file format does not have 64bit integer support either.
  * there is no typelib marshalling - and hence no logging - for base types (int,
    float, ...). They work fine if used as fields in a structure though.
 
@@ -73,16 +77,30 @@ file that defines the project's types:
 import_types_from "myproject.h"
 {coderay}
 
-At the load point, all types used by "myproject.h" must already be defined. So,
-if you define type A in a.h and type B, that uses A, in b.h, you need to order
-the imports as:
+Be aware that <tt>myproject.h</tt> must be self-consistent, i.e. that it must
+include all the headers that are necessary to define the types that it wants to
+define.
+
+Moreover, only the types that are _directly_ defined in myproject.h will be
+exported in the typekit. It means that the include order actually matters
+(that's a bug, not a feature).
+
+In other words, if <tt>other_header.h</tt> is included in <tt>myproject.h</tt>
+**and** you want the types of <tt>other_header.h</tt> to be exported in the
+typekit, then you need to do
 
 {coderay:: ruby}
-import_types_from "a.h"
-import_types_from "b.h"
+import_types_from "other_header.h"
+import_types_from "myproject.h"
 {coderay}
 
-The reverse order will not work properly (types from a.h will not be loaded).
+and not
+
+{coderay:: ruby}
+import_types_from "myproject.h"
+import_types_from "other_header.h"
+{coderay}
+
 
 Finally, one can directly use types defined in a library, provided that this
 library gives a pkg-config file for dependency discovery.
@@ -98,4 +116,40 @@ import_types_from "hokuyo.hpp"
 
 The issue of loading types from other oroGen projects is handled [in
 here](cross_project.html)
+
+
+Standalone typekits
+===================
+
+If you don't want to use oroGen. The orogen package offers the typegen tool to
+generate the typekits for people that want to write their components themselves.
+
+To generate a typekit using typegen, do the following:
+
+* write your types as described in this page
+* save all of them under the same subdirectory, and put only these types there
+* run
+  
+  typegen _typekit_name_ _inputs_
+  {: .commandline}
+
+  where _inputs_ is the input directory.
+
+typeGen will generate a typekit/ directory which includes both the typekit code and
+the cmake code that is needed to compile it.
+
+All the caveats described in the oroGen section apply:
+
+* import order might matter. If you are in a situation where it does matter, you
+  will have to list the header files one by one on the command line. Note that
+  it is fine to do
+
+  typegen _typekit_name_ _header_file_ _input_directory_
+
+  to ensure that _header_file_ will be loaded before all the other files in the
+  directory.
+
+* it is possible to load headers from libraries that define pkg-config files and
+  from other typegen/orogen project. Use the <tt>-i</tt> option instead of using
+  using_library and import_types_from.
 
