@@ -1,7 +1,10 @@
 ---
 title: Introduction
 sort_info: 0
---- name:content pipeline:tags,markdown,blocks
+---
+
+Running components using Ruby
+=============================
 
 This library allows you to control Orocos/RTT components from Ruby, i.e. to set
 them up, start/stop and monitor them. It assumes that you have a basic knowledge
