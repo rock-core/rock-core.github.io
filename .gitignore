@@ -2,3 +2,4 @@ out/
 MultiFlex21b
 *.sw?
 webgen.cache
+src/api/*

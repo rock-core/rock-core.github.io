@@ -6,7 +6,7 @@
     routed_title: Autoproj API
     in_menu: false
     sort_info: 99999
-    url: ../../api/index.html
+    url: /api/autoproj/index.html
 
 - autobuild/:
     in_menu: true
@@ -15,5 +15,5 @@
     routed_title: Autobuild API
     in_menu: false
     sort_info: 99999
-    url: http://doudou.github.com/autobuild/index.html
+    url: /api/autobuild/index.html
 

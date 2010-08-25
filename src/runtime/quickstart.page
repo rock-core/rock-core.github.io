@@ -74,7 +74,8 @@ Orocos.run 'lowlevel', 'imu', 'gps', 'hokuyo', 'state_estimator' do
 end
 {coderay}
 
-The value returned by TaskContext.get is an instance of {rdoc_class: TaskContext}
+The value returned by TaskContext.get is an instance of {rdoc_class: {base_url:
+/api/orocos.rb, name: Orocos::TaskContext}}
 
 The task name is the first argument of the 'task' statements in the deployment
 definitions:
@@ -148,7 +149,8 @@ In our example, the <tt>state_estimator</tt> module is a Kalman filter that
 processes the IMU and GPS streams. We therefore need to connect the outputs of
 the imu and gps tasks to the corresponding inputs of the state estimator module.
 
-To do that, we use the {rdoc_class: OutputPort#connect_to} method:
+To do that, we use the {rdoc_class: {base_url: /api/orocos.rb, name:
+Orocos::OutputPort#connect_to}} method:
 
 {coderay:: ruby}
   imu = TaskContext.get 'imu'
@@ -182,7 +184,9 @@ end
 {coderay}
 
 In the above code snippet, <tt>imu.imu_readings</tt> is a {rdoc_class:
-OutputPort} instance and <tt>imu_reader</tt> is a {rdoc_class: OutputReader}
+{base_url: /api/orocos.rb, name: Orocos::OutputPort}} instance and
+<tt>imu_reader</tt> is a {rdoc_class: {base_url: /api/orocos.rb, name:
+Orocos::OutputReader}}
 instance.
 
 A complete description of the manipulation of ports can be found
