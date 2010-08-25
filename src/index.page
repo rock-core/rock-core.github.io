@@ -38,6 +38,10 @@ Browser does not support SVG files!
 
 What's the difference with the Orocos Toolchain ?
 -------------------------------------------------
+The Orocos Toolchain is the standard infrastructure required to build Orocos
+components. It contains the real-time toolkit, typeGen/oroGen code generators
+and supportive components for deployment and task browsing.
+
 The Orocos/DFKI toolchain is centered around the use of oroGen for component
 writing, and the Ruby language for system deployment and data analysis. In
 practice, what you get is:
