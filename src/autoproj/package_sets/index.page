@@ -62,7 +62,7 @@ the file, as for instance:
 version_control:
   - my/package:
       type: git
-      url: git://github.com/blabla/my-package.git
+      url: git://gitorious.com/blabla/my-package.git
 {coderay}
 
 The corresponding subversion definition would be:

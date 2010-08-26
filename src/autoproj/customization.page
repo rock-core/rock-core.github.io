@@ -12,18 +12,18 @@ The <tt>layout</tt> section of <tt>autoproj/manifest</tt> offers two things:
  * build packages in specific subdirectories
 
 This section lists packages or package sets that ought to be built by autoproj.
-For instance, in the following example, only the <tt>orocos/rtt</tt> and <tt>orocos/ocl</tt>
+For instance, in the following example, only the <tt>rtt</tt> and <tt>ocl</tt>
 packages of the rubim.orocos source will be built. The other will be excluded
 from the build.
 
 {coderay:: yaml}
 package_sets:
   - type: git
-    url: git://github.com/doudou/rubim.orocos.git
+    url: git://gitorious.com/orocos-toolchain/autoproj.git
 
 layout:
-  - orocos/rtt
-  - orocos/ocl
+  - rtt
+  - ocl
 {coderay}
 
 Instead of giving a package name, the name of a package set can be provided,
@@ -179,8 +179,9 @@ Autobuild.parallel_build_level = 10 # build with -j10
 More complex customization
 --------------------------
 
-More complex customization can be achieved by accessing the [Autoproj API](api/index.html) and
-the [Autobuild API](http://doudou.github.com/autobuild/index.html) directly in the <tt>autoproj/init.rb</tt> and
+More complex customization can be achieved by accessing the [Autoproj
+API](/api/autoproj/index.html) and
+the [Autobuild API](/api/autobuild/index.html) directly in the <tt>autoproj/init.rb</tt> and
 <tt>autoproj/overrides.rb</tt>
 files. The former is loaded before all source files and the latter is loaded
 after all source files.

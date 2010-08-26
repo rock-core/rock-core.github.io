@@ -64,7 +64,7 @@ Package sets are listed in the <tt>package_sets</tt> section of
 package_sets:
   - imoby
   - type: git
-    url:  git://github.com/doudou/autoproj-orocos.git
+    url:  git://gitorious.com/orocos-dfki-toolchain/build.git
 {coderay}
 
 It lists both local and remote sets that are available for this installation.

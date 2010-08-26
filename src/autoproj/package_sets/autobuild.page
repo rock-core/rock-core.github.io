@@ -31,8 +31,8 @@ end
 
 The above snippet being equivalent to calling <tt>cmake -DVAR=VALUE</tt>
 
-The "pkg" variable in the example above is an instance of
-[Autobuild::CMake](http://doudou.github.com/autobuild/Autobuild/CMake.html)
+The "pkg" variable in the example above is an instance of {rdoc_class:
+{base_url: /api/autobuild, name: Autobuild::CMake}}
 {: .block}
 
 Defining autotools packages {#autotools}
@@ -47,7 +47,7 @@ end
 {coderay}
 
 The 'pkg' variable in the example above is an instance of
-[Autobuild::Autotools](http://doudou.github.com/autobuild/Autobuild/Autotools.html)
+{rdoc_class: {base_url: /api/autobuild, name: Autobuild::Autotools}}
 {: .block}
 
 Defining Ruby packages
@@ -92,9 +92,9 @@ end
 {coderay}
 
 The 'pkg' variable in the example above is an instance of
-[Autobuild::ImporterPackage](http://doudou.github.com/autobuild/Autobuild/ImporterPackage.html),
-with additional methods coming from [the RubyPackage
-module](http://doudou.github.com/autoproj/api/Autoproj/RubyPackage.html)
+{rdoc_class: {base_url: /api/autobuild, name: Autobuild::ImporterPackage}}
+with additional methods coming from
+{rdoc_class: {base_url: /api/autoproj, name: RubyPackage}}
 {: .block}
 
 Defining oroGen packages
@@ -108,10 +108,10 @@ end
 {coderay}
 
 oroGen is a module generator for the Orocos component framework. See [the oroGen
-documentation](http://doudou.github.com/orogen) for more information.
+documentation](/orogen) for more information.
 
 The 'pkg' variable in the example above is an instance of
-[Autobuild::Orogen](http://doudou.github.com/autobuild/Autobuild/Orogen.html)
+{rdoc_class: {base_url: /api/autobuild, name: Autobuild::Orogen}}
 {: .block}
 
 OS-specific bits (<tt>not_on</tt> and <tt>only_on</tt>) {#not_on_and_only_on}

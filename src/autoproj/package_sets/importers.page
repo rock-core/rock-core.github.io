@@ -34,39 +34,38 @@ As an example, let's consider the following manifest:
 
 {coderay:: ruby}
 package_sets:
-    - rubim.base
-    - rubim.orocos
-    - rubim.drivers
+    - orocos.toolchain
+    - orocos.dfki.toolchain
 {coderay}
 
-Now, let's assume that the rubim.orocos package set has a source.yml file with:
+Now, it so happens that the orocos.dfki.toolchain package uses its own
+repository for the typelib library. So, while orocos.dfki has the following
+source.yml:
 
-{coderay:: ruby}
+{coderay:: yaml}
 version_control:
-    - orocos/:
+    - .*:
         type: git
-        url: git://github.com/$PACKAGE.git
-    - orocos/orocos.rb:
-        branch: roby
+        url: git://gitorious.com/orocos-toolchain/$PACKAGE.git
 {coderay}
 
-Finally, the rubim.drivers package set has:
+orocos.dfki.toolchain has
 
-{coderay:: ruby}
+{coderay:: yaml}
 overrides:
-    - orocos/logger:
-        branch: perf
+    - typelib:
+        url: git://gitorious.com/+orocos-dfki-maintainers/orocos-toolchain/dfki-ric-$PACKAGE.git
 {coderay}
 
-Then, the following will happen:
+Another common use for the overrides is to change the branch, for instance:
 
- * all packages that are prefixed with "orocos/" will match the general
-   definition of rubim.orocos.
- * in addition, the 'branch' flag of orocos/orocos.rb will be overriden from
-   'master' (the default) to 'roby'
- * in the case of orocos/logger, since there is a matching definition in
-   the overrides section of rubim.drivers, the 'perf' branch will be checked out
-   instead of the 'roby' branch, keeping the same importer type and URL
+{coderay:: yaml}
+overrides:
+    - typelib:
+        url: git://gitorious.com/+orocos-dfki-maintainers/orocos-toolchain/dfki-ric-$PACKAGE.git
+    - rtt:
+        branch: experimental
+{coderay}
 
 The remaining of this page will detail the various options that exist to import
 a source package.
