@@ -27,7 +27,7 @@ Adding support in autoproj
 
  1. you will have to find out how your OS is detected by autoproj. To do so, run
     
-      autoproj --os
+      autoproj --os-version
       {: .commandline}
 
       On Debian, the result is:
@@ -45,13 +45,14 @@ Adding support in autoproj
     operating_system method in <tt>lib/autoproj/osdeps.rb</tt> with custom
     detection code.
 
- 2. update the OS_PACKAGE_INSTALL mapping in <tt>lib/autoproj/osdeps.rb</tt>.
+ 2. update the OS_AUTO_PACKAGE_INSTALL mapping in <tt>lib/autoproj/osdeps.rb</tt>.
     Add a line of the form 'os_name' => 'stanza needed to install a package'
     In the stanza, %s is replaced by a space-separated list of packages to
     install. This placeholder **must** be quoted with single quotes (see other
-    OSes as examples).
+    OSes as examples). The command line must *not* expect any user intervention.
 
- 3. update <tt>lib/autoproj/default.osdeps</tt> to add your newly supported OS
+ 3. update <tt>lib/autoproj/default.osdeps</tt> to define the autoproj
+    dependencies for your newly supported OS
 
 Testing
 -------
@@ -83,7 +84,7 @@ bigger install by bootstrapping an existing installation, as for instance
 autoproj bootstrap git git://gitorious.com/orocos-dfki-toolchain/build.git
 </pre>
 
-**And don't forget to send me the patches !**
+**And don't forget to send the patches to orocos-dev@orocos.org !**
 
 Since you just added a new OS, none of the existing osdeps files will
 have your OS in them. So you will need to edit the osdeps files from the package
