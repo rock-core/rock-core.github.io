@@ -185,3 +185,37 @@ The mappings are as follows:
 Refer to the RTT's documentation to learn more on the operations available on
 these objects.
 
+Default and required activities
+===============================
+
+When deployed in a system, a task context is assigned an activity. This activity
+defines how the component should be triggered.
+
+In all generality, any component should be able to support any kind of activity.
+However, not giving any hint about what would be a "best" activity for a
+component makes it very hard for people to use such component.
+
+In order to make life easier, oroGen allows you to propose a default activity
+for your task contexts. This is done with
+
+{coderay:: ruby}
+default_activity "activity_type", activity_parameters
+{coderay}
+
+The available triggering mechanisms are detailed [here](triggering/index.html).
+They can be declared as default activities with
+
+{coderay:: ruby}
+default_activity 'periodic', 0.1 # periodic activity wit a period of 100ms
+default_activity 'fd_driven'     # IO-driven activity
+default_activity 'triggered'     # triggered by external events, i.e. explicit
+                                 # calls to trigger() or data-driven task
+{coderay}
+
+Note that fd_driven and triggered do not usually need to be specified.
+'triggered' is the default activity and 'fd_driven' is set as default activity
+if you use [the fd_driven statement](triggering/fd.html).
+
+Finally, one can force the deployment to use an activity by replacing
+"default_activity" by "required_activity".
+
