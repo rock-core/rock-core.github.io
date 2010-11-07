@@ -190,7 +190,7 @@ body {margin: 0px auto; padding: 0px; background: url(../img/background_body_gre
 .content-subtitle-shade-size5 {margin: 0px; padding: 0px 10px 3px 10px; background-color: rgb(215,215,215); color: rgb(88,144,168); font-weight: bold; font-size: 150%;}
 .content-txtbox-noshade {margin: 0px; padding: 7px 0px 0px 0px; background-color: rgb(255,255,255);}
 .content-txtbox-shade {margin: 0px; padding: 7px 10px 5px 10px; background-color: rgb(235,235,235);}
-.content-txtbox-warning {margin: 0px; padding: 7px 10px 5px 10px; background-color: rgb(255,210,210);}
+.warning, .content-txtbox-warning {margin: 0px; padding: 7px 10px 5px 10px; background-color: rgb(255,210,210);}
 
 /* Headings */
 h1 {margin: 1.0em 0px 0.5em 0px; font-weight: bold; font-size: 140%;}
