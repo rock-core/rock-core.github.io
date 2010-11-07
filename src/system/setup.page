@@ -6,7 +6,8 @@ sort_info: 100
 Setting up a Roby controller
 ----------------------------
 
- 1. make the Orocos/Roby plugin available to Roby by updating the
+ 1. if you are not using the toolchain's autoproj build configuration, you have
+    to make the Orocos/Roby plugin available to Roby by updating the
     ROBY_PLUGIN_PATH environment variable
 
     ROBY_PLUGIN_PATH=/path/to/orocos-rb/lib/orocos/roby:$ROBY_PLUGIN_PATH
