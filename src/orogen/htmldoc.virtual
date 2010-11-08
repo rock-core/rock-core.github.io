@@ -1,4 +1,11 @@
 \--- !omap
+- cheat_sheet.html:
+    title: "Cheat Sheet (PDF)"
+    routed_title: "Cheat Sheet (PDF)"
+    in_menu: true
+    sort_info: 20
+    url: orogen_cheat_sheet.pdf
+
 - api/:
     in_menu: true
 
