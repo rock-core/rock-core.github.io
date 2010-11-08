@@ -1,0 +1,136 @@
+---
+title: Replay Log Data
+sort_info: 300
+---
+
+Orocos::Log::Replay is a ruby library which is able to load log files and provides
+methods to access, filter and replay the data to ruby or RTT components.
+
+Features:
+---------
+  * loading and aligning logfiles
+  * time synchronous replay
+  * step by step replay
+  * seeking
+  * user-specific log data filter
+  * same interface like Orocos::TaskContext
+
+Example: Loading and accessing log data:
+---------------------------------------
+{coderay:: ruby}
+#!/usr/bin/env ruby
+
+require 'orocos/log'
+include Orocos
+
+replay = Log::Replay.open('camera.0.log')
+
+#access data of the port frame of the logged task camera
+camera = replay.camera          #same as replay.task('camera')
+camera.frame.tracked = true     #mark port for replay. This is done 
+                                #automatically if a reader is used 
+                                #or the port is connect to an other
+                                #port
+replay.run do                   #replay as fast as possible
+  frame = camera.frame.read     #read frame
+  puts frame.time if frame      #print time stamp
+end
+
+{coderay}
+
+Example: Loading and replaying log data
+---------------------------------------
+{coderay:: ruby}
+#!/usr/bin/env ruby
+
+require 'orocos/log'
+include Orocos
+
+replay = Log::Replay.open('camera.0.log')
+
+Orocos.run 'deployment_x' do
+  task_x = TaskContext.get('task_x')
+  replay.connetct_to task_x                    #auto connect
+  #replay.camera.frame.connect_to task_x.frame #manual connect
+
+  task_x.start
+  replay.run
+end
+{coderay}
+
+Example: Filtering log data
+---------------------------
+{coderay:: ruby}
+#!/usr/bin/env ruby
+
+require 'orocos/log'
+include Orocos
+
+replay = Log::Replay.open('camera.0.log')
+
+Orocos.run 'deployment_x' do
+  task_x = TaskContext.get('task_x')
+  replay.connetct_to task_x 
+
+  #the filter is applied on each frame
+  #before it is written to ports or readers
+  replay.camera.frame.filter = Proc.new do |frame|
+    frame.time = Time.now
+    frame
+  end
+
+  task_x.start
+  replay.run
+end
+{coderay}
+
+Example: Advanced
+---------------------------
+{coderay:: ruby}
+#!/usr/bin/env ruby
+
+require 'orocos/log'
+include Orocos
+
+replay = Log::Replay.open('camera.0.log','sonar.0.log')
+
+Orocos.run 'deployment_x','deployment_y' do
+  task_x = TaskContext.get('task_x')
+  task_y = TaskContext.get('task_y')
+  replay.connetct_to task_x  
+  replay.connetct_to task_y, "sonar.frame" => "iframe"  #port mapping
+  
+  #get a reader 
+  #Be careful. Here is a filter applied on the reader
+  #if the original frame is changed in the filter all 
+  #readers for the same frame which are created after this 
+  #reader are affected as well.
+  reader = replay.camera.frame.reader do |frame|
+    puts frame.time
+    frame
+  end
+
+  #display all ports of type /base/samples/frame/Frame
+  ports = replay.find_all_ports('/base/samples/frame/Frame')
+  ports.each do |port|
+    port.pp
+  end
+
+  task_x.start
+  task_y.start
+
+  replay.step(false)                    #replay one step
+  replay.step(false)                    #replay one step
+
+  puts replay.camera.frame.read.time    #display current 
+                                        #frame time stamp
+  puts reader.read.time                 #should be the same
+  replay.rewind                         #rewind log data
+
+  #the code block is called for each message on all
+  #ports
+  replay.run do |port,data|
+    puts data.time if port.name == 'frame'
+  do
+end
+{coderay}
