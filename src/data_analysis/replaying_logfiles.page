@@ -3,8 +3,10 @@ title: Replay Log Data
 sort_info: 300
 ---
 
-Orocos::Log::Replay is a ruby library which is able to load log files and provides
+Log::Replay is a ruby library which is able to load log files and provides
 methods to access, filter and replay the data to ruby or RTT components.
+It uses Pocolog to load the log data and emulates on top the ruby interface 
+of RTT components during replay.
 
 Features:
 ---------
@@ -15,6 +17,100 @@ Features:
   * user-specific log data filter
   * same interface like Orocos::TaskContext
 
+Usage:
+------
+The replayed log files are specified during initialization of Log::Replay 
+or with the method load after initialization.
+
+{coderay:: ruby}
+replay = Log::Replay.open(file0,folder0,...)
+replay.load(folder1)
+replay.load(file1)
+{coderay}
+
+So far it is not possible to load multiple log files from the same component at the
+same time because of overlapping names.
+{: .warning}
+
+After loading the log files the logged RTT components are modeled as Log::TaskContext which can be
+accessed by the names of the logged RTT components.
+
+{coderay:: ruby}
+task1 = replay.camera           #if a task named camera was logged to
+                                #loaded log files
+task2 = replay.task('camera')   #same as replay.camera
+{coderay}
+
+The ports of the Log::TaskContext can be used the same way RTT component ports are used.
+
+{coderay:: ruby}
+output_port = replay.camera.frame     #accessing the port frame
+{coderay}
+
+They are accessed through a reader or direct via the method read. 
+The only different between both ways is the method read will always returns the last replayed 
+data sample but in contrast the behavior of the reader depends on the applied connection policy.
+
+{coderay:: ruby}
+reader = output_port.reader :type => :data
+puts reader.read                      #no different between both
+puts output_port.read                 #reads
+{coderay}
+
+{coderay:: ruby}
+reader = output_port.reader :type => :buffer,:size => 1
+puts reader.read                      #=> last replayed sample
+puts reader.read                      #=> nil
+puts output_port.read                 #=> last replayed sample
+puts output_port.read                 #=> last replayed sample
+{coderay}
+
+To connect Log::OutputPort(s) to RTT component ports the connect_to method is used.
+
+{coderay:: ruby}
+replay.camera.frame.connect_to rtt_task.frame
+{coderay}
+
+An other way to set up the connection to RTT components is the auto 
+connect method, which requires for each input port an unique
+Log::OutputPort which has the same name and type. 
+To help Log::Replay by finding the right port pair a port mapping 
+can be provided.
+
+{coderay:: ruby}
+replay.connect_to rtt_task                      #auto connect
+{coderay}
+
+{coderay:: ruby}
+replay.connect_to rtt_task, :frame => :iframe   #port mapping
+{coderay}
+
+The replay is started either in auto mode or step by step. By default
+the auto mode is running as fast as possible.
+
+Note: All code blocks for ports and readers are applied as filers!!!
+{: .warning}
+
+{coderay:: ruby}
+replay.run              #replay all logged data as fast as possible
+{coderay}
+
+{coderay:: ruby}
+replay.run(true,1)      #replay as fast as the date were recorded
+{coderay}
+
+{coderay:: ruby}
+replay.step             #replay one data sample
+{coderay}
+
+Only ports are replayed which are connected to RTT Components, 
+a reader or filter was created for or are marked explicitly.
+{: .warning}
+
+{coderay:: ruby}
+replay.camera.frame.tracked = true      #mark port to be replayed
+{coderay}
+
 Example: Loading and accessing log data:
 ---------------------------------------
 {coderay:: ruby}
@@ -24,18 +120,10 @@ require 'orocos/log'
 include Orocos
 
 replay = Log::Replay.open('camera.0.log')
-
-#access data of the port frame of the logged task camera
-camera = replay.camera          #same as replay.task('camera')
-camera.frame.tracked = true     #mark port for replay. This is done 
-                                #automatically if a reader is used 
-                                #or the port is connect to an other
-                                #port
-replay.run do                   #replay as fast as possible
-  frame = camera.frame.read     #read frame
-  puts frame.time if frame      #print time stamp
+replay.camera.frame do |frame|
+  puts frame.time
 end
-
+replay.run                      #replay as fast as possible
 {coderay}
 
 Example: Loading and replaying log data
@@ -50,9 +138,7 @@ replay = Log::Replay.open('camera.0.log')
 
 Orocos.run 'deployment_x' do
   task_x = TaskContext.get('task_x')
-  replay.connetct_to task_x                    #auto connect
-  #replay.camera.frame.connect_to task_x.frame #manual connect
-
+  replay.connect_to task_x                    #auto connect
   task_x.start
   replay.run
 end
@@ -70,10 +156,11 @@ replay = Log::Replay.open('camera.0.log')
 
 Orocos.run 'deployment_x' do
   task_x = TaskContext.get('task_x')
-  replay.connetct_to task_x 
+  replay.connect_to task_x 
 
   #the filter is applied on each frame
   #before it is written to ports or readers
+  
   replay.camera.frame.filter = Proc.new do |frame|
     frame.time = Time.now
     frame
@@ -97,8 +184,8 @@ replay = Log::Replay.open('camera.0.log','sonar.0.log')
 Orocos.run 'deployment_x','deployment_y' do
   task_x = TaskContext.get('task_x')
   task_y = TaskContext.get('task_y')
-  replay.connetct_to task_x  
-  replay.connetct_to task_y, "sonar.frame" => "iframe"  #port mapping
+  replay.connect_to task_x  
+  replay.connect_to task_y, "sonar.frame" => "iframe"  #port mapping
   
   #get a reader 
   #Be careful. Here is a filter applied on the reader
