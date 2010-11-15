@@ -68,6 +68,12 @@ Known Limitations
  * there is no typelib marshalling - and hence no logging - for base types (int,
    float, ...). They work fine if used as fields in a structure though.
 
+What to do if your type cannot be understood by oroGen ?
+========================================================
+For types that can't be directly managed by oroGen, a special mechanism allows
+to give a way for oroGen to manipulate the data. See the [opaque
+types](opaque_types.html) section.
+
 Defining types in an oroGen project
 ===================================
 In an oroGen project, one adds one or many following statement to load a C/C++
