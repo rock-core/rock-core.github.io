@@ -86,7 +86,7 @@ body {margin: 0px auto; padding: 0px; background: url(../img/background_body_gre
 .nav3 li.webgen-menu-level2 span {display: block; min-height: 1.7em; height: auto !important; height: 1.7em; line-height: 1.7em; margin: 0px; padding: 0px 7px 0px 20px; border-left: solid 7px rgb(219,230,241); color: rgb(75,75,75); text-decoration: none; font-size: 100%;}
 .nav3 li a:hover, .nav3 li.webgen-menu-level2.webgen-menu-submenu-inhierarchy, .nav3 li.webgen-menu-item-selected {border-left: solid 7px rgb(156,186,214);  color: rgb(100,100,100); text-decoration: none;}
 
-.localtoc {float: right; width: 120px; margin: 1em 0em 1em 1em; padding: 0 0 0 0; background-color: rgb(238,237,249); font-size: 1.0em;}
+.localtoc {float: left; width: 120px; margin: 0em 2em 1em 0em; padding: 0 0 0 0; background-color: rgb(238,237,249); font-size: 1.0em;}
 .localtoc ul {width: 120px; margin: 5px 0px 0px 0px; padding: 0px; border-bottom: solid 1px rgb(216,206,159); background-color: rgb(219,230,241);}
 .biglocaltoc {width: 280px;}
 .biglocaltoc ul {width: 280px;}
