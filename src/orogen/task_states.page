@@ -60,7 +60,7 @@ So, when you change this flag, you need to:
 </div>
 
 Extending the state machine {#extended_states}
-===========================
+---------------------------
 
 oroGen offers a way to have a more fine-grained reporting mechanism for
 components to their coordination (or supervision) layer. This mechanism is based
