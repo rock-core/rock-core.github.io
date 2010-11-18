@@ -27,7 +27,7 @@ that want to develop RTT components directly. This tools is called typeGen and
 presented at the end of this page.
 
 Defining types
-==============
+--------------
 In oroGen, the types are described in C++. However, not all C++ types can be
 used in the data flow. To be usable in the data flow, a type must:
 
@@ -57,7 +57,7 @@ defined inline: orogen does not support separating the implementation from the
 definition. Types that are defined in separate libraries are fine, though.
 
 Known Limitations
-=================
+-----------------
 
  * structures and classes with private members are not handled (a warning is
    issued)
@@ -73,14 +73,14 @@ Known Limitations
    float, ...). They work fine if used as fields in a structure though.
 
 What to do if your type cannot be understood by oroGen ?
-========================================================
+--------------------------------------------------------
 For types that can't be directly managed by oroGen, a special mechanism allows
 to give a way for oroGen to manipulate the data. This is unfortunately only
 available to the users of oroGen -- not to the users of typeGen -- for now. See the [opaque
 types](opaque_types.html) section for more information.
 
 Defining types in an oroGen project
-===================================
+-----------------------------------
 In an oroGen project, one adds one or many following statement to load a C/C++
 file that defines the project's types:
 
@@ -129,7 +129,7 @@ The issue of loading types from other oroGen projects is handled [in
 here](cross_project.html)
 
 The special case of templates
-=============================
+-----------------------------
 Templates are not directly understood by oroGen. Howver, explicit instanciations
 of them can be used.
 
@@ -157,7 +157,7 @@ struct __orogen_workaround {
 one can use Vector<3> in its orogen interface, and in other structures.
 
 Standalone typekits
-===================
+-------------------
 
 If you don't want to use oroGen. The orogen package offers the typegen tool to
 generate the typekits for people that want to write their components themselves.

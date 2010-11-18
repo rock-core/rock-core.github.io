@@ -40,7 +40,7 @@ long, ...), and therefore the following limitations apply:
 </div>
 
 Ports
-=====
+-----
 Ports are defined with
 
 {coderay:: ruby}
@@ -101,7 +101,7 @@ if (_out.connected())
 {coderay}
 
 Properties
-==========
+----------
 Properties are defined with
 {coderay:: ruby}
 property('name', 'configuration_type').
@@ -117,7 +117,7 @@ _name.set(configuration_value)
 {coderay}
 
 Operations
-=======
+-------
 The operations offer a mechanism from which a task context can expose
 functionality through remote method calls. They are defined with:
 
@@ -164,7 +164,7 @@ operation('operationName').
 {coderay}
 
 C++ objects representing the interface elements
-===============================================
+-----------------------------------------------
 For each element of the interface, Orogen declares the corresponding RTT C++
 object as an attribute of the task implementation. The attribute's name is the
 object name with an underscore prepended. For instance, the operation declared
@@ -186,7 +186,7 @@ Refer to the RTT's documentation to learn more on the operations available on
 these objects.
 
 Default and required activities
-===============================
+-------------------------------
 
 When deployed in a system, a task context is assigned an activity. This activity
 defines how the component should be triggered.
