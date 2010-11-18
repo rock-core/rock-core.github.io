@@ -50,7 +50,8 @@ practice, what you get is:
  * use a model-based tool for large-scale system deployment, and benefit from
    its logging capabilities to do post-mortem analysis of system behaviour.
  * use the data logger to log all data that your components generate, and use
-   Ruby scripts to analyze this load of data
+   Ruby scripts to analyze this load of data. Replay the data into components
+   for testing, or use the Rock UI to display it.
  * benefit from a large component repository
 
 <div class="warning" markdown="1">
