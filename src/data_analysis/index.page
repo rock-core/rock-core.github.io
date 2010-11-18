@@ -4,7 +4,18 @@ sort_info: 0
 ---
 
 Data Analysis
-=============
+-------------
 
-TBD
+The data analysis parts of the Robot Construction Kit covers most of the area
+when tooling is needed:
+
+ * you can **log your data**. Logging data is cheap (CPU-wise) in Rock, and can
+   mostly always been kept turned on at all times without a great impact on the
+   system performance (unless you have I/O problems, obviously). The generated
+   log files are **self contained**, which means that the only thing you need
+   to read them are the log tools. No other software is required -- i.e. there
+   is no need for the modules that generated them to be kept around.
+ * you can **replay** logged data using Ruby scripting, with an API that is as
+   close as normal component deployment as possible.
+ * you can **display** both logged or live data in an uniform manner
 
