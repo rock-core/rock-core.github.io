@@ -71,8 +71,9 @@ Known Limitations
 What to do if your type cannot be understood by oroGen ?
 ========================================================
 For types that can't be directly managed by oroGen, a special mechanism allows
-to give a way for oroGen to manipulate the data. See the [opaque
-types](opaque_types.html) section.
+to give a way for oroGen to manipulate the data. This is unfortunately only
+available to the users of oroGen -- not to the users of typeGen -- for now. See the [opaque
+types](opaque_types.html) section for more information.
 
 Defining types in an oroGen project
 ===================================
