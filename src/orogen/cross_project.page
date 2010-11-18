@@ -71,7 +71,7 @@ by the task library itself. You therefore don't need to load the project's
 toolkit manually.
 {: .warning}
 
-Using external libraries which use pkg-config
+Using external libraries which use pkg-config {#using_library}
 ---------------------------------------------
 If you want to use types from a library that provides a pkg-config file, just
 add
