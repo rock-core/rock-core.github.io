@@ -142,7 +142,7 @@ interfaces.
 
 For instance, with
 
-{coderay: cpp}
+{coderay:: cpp}
 template <typename Scalar, int DIM>
 struct Vector {
   Scalar values[DIM];
