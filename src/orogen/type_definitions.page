@@ -154,7 +154,7 @@ struct __orogen_workaround {
 };
 {coderay}
 
-one can use Vector<3> in its orogen interface, and in other structures.
+one can use Vector&lt;3&gt; in its orogen interface, and in other structures.
 
 Standalone typekits
 -------------------
