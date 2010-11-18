@@ -22,6 +22,10 @@ In principle, if you are using oroGen, all the tools that are offered by the
 Rock toolchain should work seamlessly. If they don't, it's because you
 found a bug !
 
+The type-handling part of oroGen is available as a standalone tool for people
+that want to develop RTT components directly. This tools is called typeGen and
+presented at the end of this page.
+
 Defining types
 ==============
 In oroGen, the types are described in C++. However, not all C++ types can be
