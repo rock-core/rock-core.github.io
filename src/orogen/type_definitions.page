@@ -123,6 +123,33 @@ import_types_from "hokuyo.hpp"
 The issue of loading types from other oroGen projects is handled [in
 here](cross_project.html)
 
+The special case of templates
+=============================
+Templates are not directly understood by oroGen. Howver, explicit instanciations
+of them can be used.
+
+Unfortunately, typedef'ing the type that you need is not enough for gccxml --
+the tool that parses C++ for oroGen. You have to use the instanciated template
+directly in a structure. To work around this, you can define a structure whose
+name contains gccxml_workaround to get the template instanciated, and then
+define the typedefs that you will actually use in your typekits and oroGen task
+interfaces.
+
+For instance, with
+
+{coderay: cpp}
+template <typename Scalar, int DIM>
+struct Vector {
+  Scalar values[DIM];
+};
+
+struct __orogen_workaround {
+  Vector<3> vector3;
+  Vector<4> vector4;
+};
+{coderay}
+
+one can use Vector<3> in its orogen interface, and in other structures.
 
 Standalone typekits
 ===================
