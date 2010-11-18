@@ -19,7 +19,7 @@ to support:
 * the classes needed for the Ruby bindings
 
 In principle, if you are using oroGen, all the tools that are offered by the
-Orocos/DFKI toolchain should work seamlessly. If they don't, it's because you
+Rock toolchain should work seamlessly. If they don't, it's because you
 found a bug !
 
 Defining types

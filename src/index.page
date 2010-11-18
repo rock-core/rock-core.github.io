@@ -1,6 +1,6 @@
 ---
-title: The Orocos/DFKI Toolchain
-routed_title: The Orocos/DFKI Toolchain
+title: The Robot Construction Kit (rock)
+routed_title: The Robot Construction Kit
 ---
 
 <div markdown="1" class="content2-container">
@@ -11,7 +11,7 @@ Get it
 Get started with the [step-by-step installation guide](startup/index.html).
 Reference documentation on [the build system](autoproj/index.html) is also
 available, and you can browse the code and contribute on
-[Gitorious](http://gitorious.com/orocos-dfki-toolchain).
+[Gitorious](http://gitorious.com/rock).
 </div>
 
 <div markdown="1" class="content2-container-3col-middle">
@@ -42,7 +42,7 @@ The Orocos Toolchain is the standard infrastructure required to build Orocos
 components. It contains the real-time toolkit, typeGen/oroGen code generators
 and supportive components for deployment and task browsing.
 
-The Orocos/DFKI toolchain is centered around the use of oroGen for component
+The Rock toolchain is centered around the use of oroGen for component
 writing, and the Ruby language for system deployment and data analysis. In
 practice, what you get is:
 

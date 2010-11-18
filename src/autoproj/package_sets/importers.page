@@ -34,13 +34,13 @@ As an example, let's consider the following manifest:
 
 {coderay:: ruby}
 package_sets:
-    - orocos.toolchain
-    - orocos.dfki.toolchain
+    - tools:
+        - orocos.toolchain
+    - rock.toolchain
 {coderay}
 
-Now, it so happens that the orocos.dfki.toolchain package uses its own
-repository for the typelib library. So, while orocos.dfki has the following
-source.yml:
+Now, it so happens that the rock.toolchain package uses its own repository for
+the typelib library. So, while the orocos.toolchain has the following source.yml:
 
 {coderay:: yaml}
 version_control:
@@ -49,12 +49,12 @@ version_control:
         url: git://gitorious.com/orocos-toolchain/$PACKAGE.git
 {coderay}
 
-orocos.dfki.toolchain has
+rock.toolchain has
 
 {coderay:: yaml}
 overrides:
     - typelib:
-        url: git://gitorious.com/+orocos-dfki-maintainers/orocos-toolchain/dfki-ric-$PACKAGE.git
+        url: git://gitorious.com/orocos-toolchain/rock-$PACKAGE.git
 {coderay}
 
 Another common use for the overrides is to change the branch, for instance:
@@ -62,7 +62,7 @@ Another common use for the overrides is to change the branch, for instance:
 {coderay:: yaml}
 overrides:
     - typelib:
-        url: git://gitorious.com/+orocos-dfki-maintainers/orocos-toolchain/dfki-ric-$PACKAGE.git
+        url: git://gitorious.com/orocos-toolchain/rock-$PACKAGE.git
     - rtt:
         branch: experimental
 {coderay}

@@ -64,7 +64,7 @@ Package sets are listed in the <tt>package_sets</tt> section of
 package_sets:
   - imoby
   - type: git
-    url:  git://gitorious.com/orocos-dfki-toolchain/build.git
+    url:  git://gitorious.com/rock.drivers/autoproj.git
 {coderay}
 
 It lists both local and remote sets that are available for this installation.
@@ -102,8 +102,8 @@ autoproj list-sets
 Its output looks like this:
 
 <pre>
-rubim.orocos
-  local source in /home/doudou/dfki/imoby1.9/autoproj/orocos
+rock.dfki
+  local source in /home/doudou/dfki/imoby1.9/autoproj/dfki
   packages:
   | orocos/base      | git:/home/doudou/dfki/dfki-share/projects/all/Intelligent_Mobility/development/software/git/tools/orocos/base.git                           |
   | orocos/logger    | git:/home/doudou/dfki/dfki-share/projects/all/Intelligent_Mobility/development/software/git/tools/orocos/logger.git branch=fast_log         |
@@ -113,7 +113,7 @@ rubim.orocos
 The first line is the **package set name**. It is defined in the package set's
 source.yml file and *does not have to be identical to the set's directory
 name*. In the example above, the package set is saved in autoproj/orocos but is
-called dfki.orocos.
+called rock.dfki
 
 The second line tells you where this set comes from. It is local if it comes
 along with the main autoproj configuration (manifest and so on). It is remote

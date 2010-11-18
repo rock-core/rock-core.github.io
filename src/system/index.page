@@ -6,7 +6,7 @@ sort_info: 0
 Advanced System Deployment
 ==========================
 
-Roby is a plan management / supervision system. The Orocos/DFKI toolchain offers
+Roby is a plan management / supervision system. The Rock toolchain offers
 a Roby plugin that allows to manage Orocos component networks in Roby, thus
 leveraging its supervision capabilities. See [the Roby user's
 guide](http://doudou.github.com/roby) for details.
