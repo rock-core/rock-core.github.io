@@ -1,0 +1,8 @@
+\--- !omap
+- package_directory/index.html:
+    routed_title: Package Directory
+    in_menu: false
+    sort_info: 99999
+    url: /package_directory/index.html
+
+
