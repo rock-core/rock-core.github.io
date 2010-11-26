@@ -35,6 +35,18 @@ Installation: the easy way
       . /path/to/the/directory/env.sh
       {: .commandline}
 
+<div class="warning" markdown="1">
+**Important for existing Orocos users** The development workflow in Rock does
+not encourage the use of the Orocos deployer and of the RTT scripting language.
+Since they are both expensive to build, they are by default disabled when you
+build the Rock toolchain. However:
+
+ * you can reenable OCL by removing the 'ocl' line in exclude_packages in autoproj/manifest
+ * you can reenable the RTT scripting by changing PLUGINS_SCRIPTING_ENABLED from OFF
+   to ON in autoproj/overrides.rb
+</div>
+
+
 Maintaining a Rock installation uptodate
 ----------------------------------
 
