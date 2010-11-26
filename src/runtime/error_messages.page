@@ -22,7 +22,7 @@ console, this leads to an output whose last lines look like:
     trajectory_controller-tasks-gnulinux           trajectory_controllerTasks - tasks defined for the trajectory_controller component
     orogen-project-logger                          logger - the definition file for the orogen project itself
     hbridge                                        hbridge - Driver for the ASGuard Hbridge boards
-    can-toolkit-gnulinux                           canToolkit - can types support for the Orocos type system
+    can-typekit-gnulinux                           canTypekit - can types support for the Orocos type system
     QtHelp                                         Qthelp - Qthelp Library
     Package libdrm was not found in the pkg-config search path.
     Perhaps you should add the directory containing `libdrm.pc'

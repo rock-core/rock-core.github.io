@@ -7,7 +7,7 @@ Each oroGen project can be separated in three things:
 
  * a _type plugin_ for RTT, that supports the project's defined types in the
    RTT, providing marshalling/unmarshalling paths for XML and CORBA for
-   instance. In RTT terms, this is called the _toolkit_.
+   instance. In RTT terms, this is called the _typekit_.
  * a _task library_, which contains the code for all tasks contexts that the
    project defines.
  * one binary for each defined deployment.
@@ -21,7 +21,7 @@ Under the hood: the use of pkg-config
 All cross-project dependencies are managed in oroGen by using
 [pkg-config](http://pkg-config.freedesktop.org/wiki/). This means that oroGen
 will generate and install the pkg-config files necessary for it to work, namely
-one per generated component (toolkit, task library and each component), and
+one per parts of the oroGen project (typekit, task library and each deployment), and
 install them.
 
 Nonetheless, it also means that these pkg-config files *must be available to
@@ -63,12 +63,12 @@ using_task_library "project_name"
 
 Once it is done, you can use the imported task contexts in the local project to:
 
-* [subclass them](task_interface.html)
+* [subclass them](task_inheritance.html)
 * [use them in a deployment](deployment.html)
 
-Note that oroGen will load the project's toolkit, since this toolkit is required
+Note that oroGen will load the project's typekit, since this typekit is required
 by the task library itself. You therefore don't need to load the project's
-toolkit manually.
+typekit manually.
 {: .warning}
 
 Using external libraries which use pkg-config {#using_library}
