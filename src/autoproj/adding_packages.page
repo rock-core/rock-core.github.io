@@ -3,25 +3,39 @@ title: Adding packages (for the impatient)
 sort_info: 50
 ---
 
-To register a package in autoproj, you need to basically do two things
+When you create a new package, and want autoproj to build it, you can simply add
+it to the autoproj's main manifest. It will be picked up and built by autoproj.
+
+For instance, if I create a new Rock oroGen driver in
+
+  drivers/orogen/new_driver
+
+then I just have to add
+
+  - drivers/orogen/new_driver
+
+to autoproj/manifest. Then, autoproj will announce that the new package has been
+picked up with
+
+  - drivers
+
+
+Registering a VCS for it to be imported
+---------------------------------------
+The method above only works with packages that are already checked out. To add a
+new package and have autoproj check it out for you, you need to basically do two
+things:
 
  * declare it in an autobuild file
  * add VCS information for it (i.e. "where to get it")
 
-A first step
-------------
-
-A quick thing that can be done to register a new package in your autoproj
-installation is to add it to the local package set.
+A first step, if you don't want to share that package to a wide audience, is to
+add it to the local package set
 
  * [register it](package_sets/autobuild.html) in
    <tt>autoproj/local.autobuild</tt>
  * [give version control information](package_sets/importers.html) for it in
    <tt>autoproj/overrides.yml</tt>
-
-Alternatively to the last point, you can register it under the "type: none"
-importer in autoproj/overrides.yml to make autoproj not care about updating that
-package.
 
 Sharing package definitions with the rest of the world
 ------------------------------------------------------
@@ -35,6 +49,11 @@ autoproj/local.autobuild to an autobuild file in the package set directory (name
 does not matter as long as it ends with .autobuild). Moreover, you will have to
 move the importer definition from autoproj/overrides.yml to the package set's
 source.yml file.
+
+For instance, to add a package to the rock.drivers package set in a Rock
+installation, one would move the autobuild file to
+autoproj/remotes/rock.drivers/ and add the relevant VCS information to
+autoproj/remotes/rock.drivers/source.yml
 
 For the second solution, [read on](package_sets/index.html)
 

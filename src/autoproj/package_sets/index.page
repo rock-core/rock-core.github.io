@@ -1,9 +1,10 @@
 ---
-title: Overview
+title: Creating a package set
 sort_info: 100
---- name:biglocaltoc
+--- name:localtoc
 {menu: {start_level: 3}}
 --- name:content
+
 A package set is made of three things:
 
  * the description file (source.yml)
@@ -11,16 +12,37 @@ A package set is made of three things:
    (overrides.rb)
  * autobuild scripts (\*.autobuild)
 
-Starting a new package set
---------------------------
+To create a new package set that is going to be shared with others, the simplest
+solution is to
 
-Create a subdirectory in autoproj/ and add a source.yml file that looks like:
+ 1. create a new directory
+ 2. add a source.yml file with just the set name in it:
 
 {coderay:: yaml}
 name: my_package_set_name
 {coderay}
 
-Et voila ! You have a new empty package set
+ 3. push it to whatever VCS you want. For git and gitorious, you would do
+   something like
+
+     git init
+     git add source.yml
+     git commit -m "create the my_package_set_name package set"
+     git push git@gitorious.com:my-project/package_set.git
+
+ 4. add the package set to autoproj/manifest and run
+     
+     autoproj update-config
+
+At this stage, the empty set is properly checked out in
+autoproj/remotes/my_package_set_name. You can add package definition and VCS
+information (see below), test it with autoproj update an autoproj build, commit
+and push !
+
+If you are **not** going to share the package set, the simplest solution is to
+just add the autobuild and version control information in
+autoproj/local.autobuild and autoproj/overrides.yml -- i.e. to not create a
+separate package set at all.
 
 Adding a package
 ----------------
