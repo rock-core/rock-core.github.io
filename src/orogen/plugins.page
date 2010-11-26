@@ -115,6 +115,23 @@ add_base_destruction(kind, name, body)
 code snippets, so that the generated code always stays the same (avoiding
 unnecessary recompilations).
 
+Adding code the hooks in the base class
+---------------------------------------
+
+It is done with
+
+{coderay:: ruby}
+in_base_hook(hook_name, code)
+{coderay}
+
+For instance, oroGen clears all input ports in the base startHook() with
+
+{coderay:: ruby}
+each_input_port do |port|
+    in_base_hook('start', "_#{port.name}.clear();")
+end
+{coderay}
+
 Adding code at the toplevel
 ---------------------------
 
