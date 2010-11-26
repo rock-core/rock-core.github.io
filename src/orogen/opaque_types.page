@@ -32,7 +32,22 @@ dataflow, there is no need for convertions in intra-process dataflow.
 
 How to use them
 ---------------
-The general structure in an oroGen file is
+
+You first have to create a wrapper type (a.k.a. "intermediate type") for the
+opaque. In the case of Eigen::Vector3d, a suitable wrapper would be
+
+{coderay:: cpp}
+namespace wrappers
+{
+    struct Vector3d
+    {
+        double x, y, z;
+    };
+}
+{coderay}
+
+This wrapper then needs to be loaded with #import_types_from. Finally, one can
+use #opaque_type to declare the opaque.
 
 {coderay:: ruby}
 import_types_from "wrappers/my_opaque_wrapper.h"
@@ -49,6 +64,16 @@ the Ruby code and add them with the :include option
 import_types_from "wrappers/my_opaque_wrapper.h"
 opaque_type '/Eigen/Vector3d", "/wrappers/Vector3d", :includes => eigen_prefix
 {coderay}
+
+Once you have re-generated the project, a typekit/ directory is created with
+Opaques.cpp and Opaques.hpp in it. These files hold the convertion functions
+that should be used by oroGen to convert the opaque to the wrapper and the
+wrapper to the opaque.
+
+As usual, if you add new opaques to an orogen project that already has some, you
+will need to copy the new toIntermediate/fromIntermediate convertion functions
+from templates/typekit/Opaques.cpp
+{: .warning}
 
 The m-types: automatically generated intermediate types
 -------------------------------------------------------
