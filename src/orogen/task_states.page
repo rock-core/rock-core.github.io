@@ -6,8 +6,52 @@ sort_info: 120
 One important aspect of RTT task contexts is that they are not only an
 interface. They also have a representation of a state machine.
 
-TODO: add a picture of the RTT state machine
+The nominal RTT state machine
+-----------------------------
 
+<div class="img-left-noborder-notopmargin" markdown="1">
+![The default nominal RTT state machine](state_machine.png) 
+</div>
+
+On the left is depicted the **nominal** state machine. On each state transition,
+the italic names are the names of the method that can make the transition
+happen, and the non-italic name the name of the method that will be called on
+the component so that it does something, i.e. the ones that you -- the component
+developer -- must implement if something is needed for a particular transition.
+
+The configureHook() and startHook() methods can return false, in which case the
+transition is refused.
+
+The RuntimeError state is a "degraded runtime" state. Use it when the component
+can still perform its job partially. As an example, a motor driver hardware
+could go into RuntimeError in cases where the hardware cannot control the motor
+anymore -- for instance because of overheating protections in the hardware --
+but can still read the motor parameters.
+
+<div style="padding-top:2em;"></div>
+
+Error handling in the full RTT state machine
+--------------------------------------------
+
+<div class="img-left-noborder-notopmargin" markdown="1">
+![The RTT error handling](error_state_machine.png) 
+</div>
+
+Errors are represented in the way depicted on the left. The exception state is
+used to represent errors that demand the component to stop, but can be recovered
+from by restarting it. The fatal error state, however, is a terminal state:
+there is no way to get out of it except restarting the component's process.
+
+RTT will automatically transition from any state to Exception if a C++ exception
+is "leaked" by one of the hooks (i.e. uncaught exception). Because of such a
+transition, the stopHook and cleanupHook will be called before getting into
+Exception.
+
+If, while going into Exception, another C++ exception is caught, the component
+will go into Fatal. In general, there should be no reason to transition to fatal manually.
+
+Designing states in oroGen components
+-------------------------------------
 There are two points that need to be considered when writing an task context in
 oroGen:
 
