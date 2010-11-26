@@ -14,7 +14,7 @@
    height="221.24001"
    id="svg2"
    version="1.1"
-   inkscape:version="0.48.0 r9654"
+   inkscape:version="0.47 r22583"
    sodipodi:docname="tools_overview.svg">
   <defs
      id="defs4">
@@ -165,10 +165,10 @@
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
-     inkscape:window-width="1280"
-     inkscape:window-height="723"
+     inkscape:window-width="1276"
+     inkscape:window-height="773"
      inkscape:window-x="0"
-     inkscape:window-y="24"
+     inkscape:window-y="0"
      inkscape:window-maximized="1"
      units="ft"
      fit-margin-top="0"
@@ -234,8 +234,8 @@
     </g>
     <a
        xlink:href="../orogen/index.html"
-       id="a2899"
-       target="_top">
+       target="_top"
+       id="a2899">
       <g
          transform="translate(-44.142545,-37.375644)"
          id="g4249">
@@ -279,9 +279,9 @@
     </a>
     <a
        xlink:href="../autoproj/index.html"
-       id="a4559"
+       target="_top"
        transform="translate(-40.406102,-29.294424)"
-       target="_top">
+       id="a4559">
       <g
          transform="translate(-3.7364426,1.3052061)"
          id="g4233">
@@ -324,9 +324,9 @@
       </g>
     </a>
     <a
-       xlink:href="../running/index.html"
-       target="_top"
-       id="a2900">
+       xlink:href="../runtime/index.html"
+       id="a2900"
+       target="_top">
       <g
          transform="translate(-59.627065,-62.160959)"
          id="g4257">
@@ -375,9 +375,9 @@
     </a>
     <a
        xlink:href="../data_analysis/reading_logfiles.html"
-       transform="translate(0,50)"
+       id="a2930"
        target="_top"
-       id="a2930">
+       transform="translate(0,50)">
       <g
          transform="translate(-59.381863,-9.0710679)"
          id="g4315">
@@ -431,8 +431,8 @@
     </a>
     <a
        xlink:href="../data_analysis/logging.html"
-       target="_top"
-       id="a2920">
+       id="a2920"
+       target="_top">
       <g
          transform="translate(-40.406102,-28.801401)"
          id="g4461">
@@ -481,8 +481,8 @@
     </a>
     <a
        xlink:href="../system/index.html"
-       target="_top"
-       id="a2910">
+       id="a2910"
+       target="_top">
       <g
          transform="translate(-59.580884,-60.191757)"
          id="g4266">
@@ -564,8 +564,8 @@
          style="font-weight:bold">Data Display and Analysis</tspan></text>
     <a
        xlink:href="../data_analysis/replaying_logfiles.html"
-       target="_top"
-       id="a3161">
+       id="a3161"
+       target="_top">
       <g
          transform="translate(-59.20184,-8.627021)"
          id="g4315-1">
@@ -617,9 +617,9 @@
     </a>
     <a
        xlink:href="../orogen/type_definitions.html"
-       target="_top"
+       transform="translate(0,35.357143)"
        id="a2899-4"
-       transform="translate(0,35.357143)">
+       target="_top">
       <g
          transform="translate(-44.142545,-37.375644)"
          id="g4249-5">
