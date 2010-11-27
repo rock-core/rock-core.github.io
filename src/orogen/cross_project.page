@@ -40,6 +40,12 @@ shell, this is done with:
 export PKG_CONFIG_PATH=/my/installed/prefix/lib/pkgconfig:$PKG_CONFIG_PATH
 {coderay}
 
+What is available on my system ?
+--------------------------------
+One common task is to find out "what is already there ?", "what is exactly the
+definition of type X ?" and so on. The [oroinspect
+tool](../runtime/oroinspect.html) from orocos.rb allows you to find out.
+
 Importing types
 ---------------
 
