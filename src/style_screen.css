@@ -14,10 +14,10 @@
 /* SECTION 1 - MAIN BODY */
 /*************************/
 
-body {margin: 0px auto; padding: 0px; background: url(../img/background_body_grey.gif) top center repeat-y; font-family: arial, sans-serif; font-size: 10pt;}
-.page-container-1 {width: 770px; margin: 0px auto; padding: 0px; background: url(../img/background_layout_1.gif) top left repeat-y; border: solid 1px rgb(100,100,100);}
-.page-container-2 {width: 770px; margin: 0px auto; padding: 0px; background: url(../img/background_layout_2.gif) top left repeat-y; border: solid 1px rgb(100,100,100);}
-.page-container-3 {width: 770px; margin: 0px auto; padding: 0px; background: url(../img/background_layout_3.gif) top left repeat-y; border: solid 1px rgb(100,100,100);}
+body {margin: 0px auto; padding: 0px; background: url(img/background_body_grey.gif) top center repeat-y; font-family: arial, sans-serif; font-size: 10pt;}
+.page-container-1 {width: 770px; margin: 0px auto; padding: 0px; background: url(img/background_layout_1.gif) top left repeat-y; border: solid 1px rgb(100,100,100);}
+.page-container-2 {width: 770px; margin: 0px auto; padding: 0px; background: url(img/background_layout_2.gif) top left repeat-y; border: solid 1px rgb(100,100,100);}
+.page-container-3 {width: 770px; margin: 0px auto; padding: 0px; background: url(img/background_layout_3.gif) top left repeat-y; border: solid 1px rgb(100,100,100);}
 
 /*************************************/
 /* SECTION 2 - HEADER AND NAVIGATION */
