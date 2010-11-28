@@ -10,9 +10,6 @@ called whenever new data is made available on a file descriptor. It allows to
 very easily implement drivers, that are waiting for new data on the driver
 communication line(s).
 
-
-<div style="margin-top:12em;"> </div>
-
 Declaration
 -----------
 The IO-driven mechanism is a deployment choice, and therefore it is not required

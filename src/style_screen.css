@@ -26,7 +26,7 @@ body {margin: 0px auto; padding: 0px; background: url(../img/background_body_gre
 /*-----------------------------------*/
 /* 2.1 - Sitename, slogan and banner */
 /*-----------------------------------*/
-.site-name {width: 300px; height: 45px; top: 12px; z-index: 4; overflow: hidden; margin: 0px; padding-left: 75px; color: rgb(69,140,204);}
+.site-name {height: 45px; top: 12px; z-index: 4; margin: 0px; padding-left: 75px; color: rgb(69,140,204);}
 .site-name p.title  {margin: 0px; padding: 0px; font-family: "trebuchet ms", arial, sans serif; font-weight: bold; font-size: 24px;}
 .site-name p.subtitle  {clear: both; width: 300px; margin: -6px 0px 0px 0px; padding: 0px; background-color: transparent; font-family: "trebuchet ms", arial, sans serif; font-size: 12px;}
 .site-name a {margin: 0px; padding: 0px; text-decoration: none; color: rgb(88,144,168);}
@@ -60,6 +60,7 @@ body {margin: 0px auto; padding: 0px; background: url(../img/background_body_gre
 .nav1 ul {float: right; margin: 0px; padding: 0px 20px 0px 0px; border-left: solid 1px rgb(115,162,182); background-color: rgb(255,255,255); font-weight: bold;}	
 .nav1 li {display: inline; list-style: none; margin: 0px; padding: 0px;}
 .nav1 li a {display: block; float: left; margin: 0px; padding: 2px 5px 2px 5px; border-right: solid 1px rgb(115,162,182); color: rgb(115,162,182); text-decoration: none; font-size: 10px; text-decoration: none;}
+.nav1 li span {display: block; float: left; margin: 0px; padding: 2px 5px 2px 5px; border-right: solid 1px rgb(115,162,182); color: rgb(115,162,182); text-decoration: none; font-size: 10px; text-decoration: none;}
 .nav1 a:hover, .nav2 a.selected {color: rgb(50,50,50); text-decoration: none;}
 
 /*----------------------------*/
@@ -73,23 +74,56 @@ body {margin: 0px auto; padding: 0px; background: url(../img/background_body_gre
 .nav2 a:hover, .nav2 a.selected {color: rgb(50,50,50); text-decoration: none;}
 .buffer {clear: both; width: 770px; height: 30px; margin: 0px; padding: 0px; background-color: rgb(255,255,255);}
 
+.nav2 .main {font-size: 130%; }
+.nav2 .main li {width: 500px;}
+
+/*-----------------------------*/
+/* Container for nav3 and nav4 */
+/*-----------------------------*/
+.leftnav {overflow: hidden; clear: both; float: left; width: 220px;}
+
 /*----------------------------*/
 /* 2.5 - Navigation - Level 3 */
 /*----------------------------*/
-.nav3 {overflow: hidden; clear: both; float: left; width: 160px; min-height: 500px; margin: 0px; padding: 0px; color: rgb(75,75,75); font-size: 90%; font-family: arial, sans serif; }
-.nav3 ul {width: 160px; margin: 0px 0px 20px 0px; padding: 0px; border-bottom: solid 1px rgb(216,206,159); background-color: rgb(219,230,241);}	
+
+.nav3 {min-height: 500px; margin: 0px; padding: 0px; color: rgb(75,75,75); font-size: 90%; font-family: arial, sans serif; }
+.nav3 ul {width: 250px; margin: 0px 0px 20px 0px; padding: 0px; border-bottom: solid 1px rgb(216,206,159); background-color: rgb(219,230,241);}	
 .nav3 li {list-style: none; margin: 0px; padding: 0px; font-size: 100%;}
 .nav3 li.title {margin: 0px 0px 0px 0px; padding: 3px 5px 2px 15px; background-color: rgb(156,186,214); color: rgb(255,255,255); text-transform: uppercase; font-weight: bold; font-size: 100%;}
-.nav3 li.webgen-menu-level1 a    {display: block; min-height: 1.7em; height: auto !important; height: 1.7em; line-height: 1.7em; margin: 0px; padding: 0px 7px 0px 15px; border-top: solid 1px rgb(200,200,200); border-left: solid 7px rgb(219,230,241); color: rgb(75,75,75); font-weight: bold; font-size: 100%; text-decoration: none; }
-.nav3 li.webgen-menu-level2 a    {display: block; min-height: 1.7em; height: auto !important; height: 1.7em; line-height: 1.7em; margin: 0px; padding: 0px 7px 0px 20px; border-left: solid 7px rgb(219,230,241); color: rgb(75,75,75); text-decoration: none; font-weight: normal; font-size: 100%; text-decoration: none;}
-.nav3 li.webgen-menu-level1 span {display: block; min-height: 1.7em; height: auto !important; height: 1.7em; line-height: 1.7em; margin: 0px; padding: 0px 7px 0px 15px; border-top: solid 1px rgb(200,200,200); border-left: solid 7px rgb(219,230,241); color: rgb(75,75,75); font-weight: bold; font-size: 100%;}
-.nav3 li.webgen-menu-level2 span {display: block; min-height: 1.7em; height: auto !important; height: 1.7em; line-height: 1.7em; margin: 0px; padding: 0px 7px 0px 20px; border-left: solid 7px rgb(219,230,241); color: rgb(75,75,75); text-decoration: none; font-size: 100%;}
+.nav3 li.webgen-menu-level1 a    {display: block; min-height: 1.7em; height: auto !important; height: 1.7em; line-height: 1.7em; margin: 0px; padding: 0px 7px 0px 5px; border-top: solid 1px rgb(200,200,200); border-left: solid 7px rgb(219,230,241); color: rgb(75,75,75); font-weight: bold; font-size: 100%; text-decoration: none; }
+.nav3 li.webgen-menu-level2 a    {display: block; min-height: 1.7em; height: auto !important; height: 1.7em; line-height: 1.7em; margin: 0px; padding: 0px 7px 0px 10px; border-left: solid 7px rgb(219,230,241); color: rgb(75,75,75); text-decoration: none; font-weight: normal; font-size: 100%; text-decoration: none;}
+.nav3 li.webgen-menu-level1 span {display: block; min-height: 1.7em; height: auto !important; height: 1.7em; line-height: 1.7em; margin: 0px; padding: 0px 7px 0px 5px; border-top: solid 1px rgb(200,200,200); border-left: solid 7px rgb(219,230,241); color: rgb(75,75,75); font-weight: bold; font-size: 100%;}
+.nav3 li.webgen-menu-level2 span {display: block; min-height: 1.7em; height: auto !important; height: 1.7em; line-height: 1.7em; margin: 0px; padding: 0px 7px 0px 10px; border-left: solid 7px rgb(219,230,241); color: rgb(75,75,75); text-decoration: none; font-size: 100%;}
 .nav3 li a:hover, .nav3 li.webgen-menu-level2.webgen-menu-submenu-inhierarchy, .nav3 li.webgen-menu-item-selected {border-left: solid 7px rgb(156,186,214);  color: rgb(100,100,100); text-decoration: none;}
+
+
+/*----------------------------*/
+/* 2.5 - Navigation - Level 4 */
+/*----------------------------*/
+.nav4 {margin: 0px; padding: 0px; color: rgb(75,75,75); font-size: 90%; font-family: arial, sans serif; }
+.nav4 ul {width: 250px; margin: 0px 0px 20px 0px; padding: 0px; border-bottom: solid 1px rgb(216,206,159); background-color: rgb(219,230,241);}	
+.nav4 li {list-style: none; margin: 0px; padding: 0px; font-size: 100%;}
+.nav4 li.title {margin: 0px 0px 0px 0px; padding: 3px 5px 2px 15px; background-color: rgb(156,186,214); color: rgb(255,255,255); text-transform: uppercase; font-size: 100%;}
+.nav4 li.webgen-menu-level1 a    {display: block; min-height: 1.7em; height: auto !important; height: 1.7em; line-height: 1.7em; margin: 0px; padding: 0px 7px 0px 5px; border-top: solid 1px rgb(200,200,200); border-left: solid 7px rgb(219,230,241); color: rgb(75,75,75); font-size: 100%; text-decoration: none; }
+.nav4 li.webgen-menu-level2 a    {display: block; min-height: 1.7em; height: auto !important; height: 1.7em; line-height: 1.7em; margin: 0px; padding: 0px 7px 0px 20px; border-left: solid 7px rgb(219,230,241); color: rgb(75,75,75); text-decoration: none; font-weight: normal; font-size: 90%; text-decoration: none;}
+.nav4 li.webgen-menu-level1 span {display: block; min-height: 1.7em; height: auto !important; height: 1.7em; line-height: 1.7em; margin: 0px; padding: 0px 7px 0px 5px; border-top: solid 1px rgb(200,200,200); border-left: solid 7px rgb(219,230,241); color: rgb(75,75,75); font-size: 100%;}
+.nav4 li.webgen-menu-level2 span {display: block; min-height: 1.7em; height: auto !important; height: 1.7em; line-height: 1.7em; margin: 0px; padding: 0px 7px 0px 20px; border-left: solid 7px rgb(219,230,241); color: rgb(75,75,75); text-decoration: none; font-size: 90%;}
+.nav4 li a:hover, .nav4 li.webgen-menu-level2.webgen-menu-submenu-inhierarchy, .nav4 li.webgen-menu-item-selected {border-left: solid 7px rgb(156,186,214);  color: rgb(100,100,100); text-decoration: none;}
 
 .localtoc {float: left; width: 150px; margin: 0em 2em 1em 0em; padding: 0 0 0 0; background-color: rgb(238,237,249); font-size: 1.0em;}
 .localtoc ul {width: 150px; margin: 5px 0px 0px 0px; padding: 0px; border-bottom: solid 1px rgb(216,206,159); background-color: rgb(219,230,241);}
 .biglocaltoc {width: 280px;}
 .biglocaltoc ul {width: 280px;}
+.body-header-list {width: 510px; margin: 0em 2em 1em 0em; padding: 0 0 0 0; background-color: rgb(238,237,249); font-size: 1.0em;}
+.body-header-list ul {width: 510px; margin: 5px 0px 0px 0px; padding: 0px; border-bottom: solid 1px rgb(216,206,159); background-color: rgb(219,230,241);}
+.body-header-list li {list-style: none; margin: 0px; padding: 0px;display: block; min-height: 1.7em; height: auto !important; height: 1.7em; line-height: 1.7em; margin: 0px; padding: 0px 7px 0px 10px; border-top: solid 1px rgb(200,200,200); border-left: solid 7px rgb(219,230,241); color: rgb(75,75,75); font-weight: normal; font-size: 100%; text-decoration: none;}
+.body-header-list li.title {margin: 0px 0px 0px 0px; padding: 3px 5px 2px 15px; background-color: rgb(156,186,214); color: rgb(255,255,255); text-transform: uppercase; font-weight: bold;}
+
+.body-header-list li table {clear: left; margin: 0em 0px 0em 25px; empty-cells: show; border-collapse: collapse; }
+.body-header-list li table tr {margin: 0px; padding: 0px;}
+.body-header-list li table td {margin: 0px; padding: 0px 7px 0px 7px; border: none; text-align: left;}
+.body-header-list li table th {margin: 0px; padding: 0px; border: none; empty-cells: show; text-align: left; 	}
+
 .localtoc li {list-style: none; margin: 0px; padding: 0px;}
 .localtoc li.title {margin: 0px 0px 0px 0px; padding: 3px 5px 2px 15px; background-color: rgb(156,186,214); color: rgb(255,255,255); text-transform: uppercase; font-weight: bold; font-size: 120%;}
 .localtoc li.webgen-menu-level1 a    {display: block; min-height: 1.7em; height: auto !important; height: 1.7em; line-height: 1.7em; margin: 0px; padding: 0px 7px 0px 10px; border-top: solid 1px rgb(200,200,200); border-left: solid 7px rgb(219,230,241); color: rgb(75,75,75); font-weight: normal; font-size: 100%; text-decoration: none;}
@@ -132,10 +166,10 @@ body {margin: 0px auto; padding: 0px; background: url(../img/background_body_gre
 /* SECTION 4 - SPECIFIC CLASSES FOR LAYOUTS #2 and #3 */
 /******************************************************/
 
-.content2 {float: left; width: 590px; min-height: 500px; margin: 0px; padding: 0px 0px 0px 20px; color: rgb(75,75,75); font-size: 100%;}
-.content3 {float: left; width: 590px; min-height: 500px; margin: 0px; padding: 0px 0px 0px 20px; color: rgb(75,75,75); font-size: 100%;}
-.content2-container, .content3-container {clear: both; float: left; width: 569px; margin: 0px 0px 15px 0px; padding: 0px;}
-.content2-container-1col, .content3-container-1col {overflow: visible; width: 569px; margin: 0px; padding: 0px;}
+.content2 {float: left; width: 500px; min-height: 530px; margin: 0px; padding: 0px 0px 0px 20px; color: rgb(75,75,75); font-size: 100%;}
+.content3 {float: left; width: 500px; min-height: 530px; margin: 0px; padding: 0px 0px 0px 20px; color: rgb(75,75,75); font-size: 100%;}
+.content2-container, .content3-container {clear: both; float: left; width: 510px; margin: 0px 0px 15px 0px; padding: 0px;}
+.content2-container-1col, .content3-container-1col {overflow: visible; width: 510px; margin: 0px; padding: 0px;}
 .content2-container-1col-txtright-200px, .content3-container-1col-txtright-200px {float: right; width: 357px; margin: 0px; padding: 0px;}
 .content2-container-1col-txtright-160px, .content3-container-1col-txtright-160px {float: right; width: 397px; margin: 0px; padding: 0px;}
 .content2-container-1col-txtright-120px, .content3-container-1col-txtright-120px {float: right; width: 437px; margin: 0px; padding: 0px;}
@@ -157,7 +191,7 @@ body {margin: 0px auto; padding: 0px; background: url(../img/background_body_gre
 .content2-container-3col-txtright-40px, .content3-container-3col-txtright-40px {overflow: hidden; float: right; width: 121px; margin: 0px; padding: 0px;}
 .content2-container-3col-txtright-20px, .content3-container-3col-txtright-20px {overflow: hidden; float: right; width: 141px; margin: 0px; padding: 0px;}
 .content2-container-3col-txtright-10px, .content3-container-3col-txtright-10px {overflow: hidden; float: right; width: 151px; margin: 0px; padding: 0px;}
-.content2-pagetitle, .content3-pagetitle {overflow: hidden; width: 569px; margin: 0px 0px 10px 0px; padding: 0px 0px 2px 0px; border-bottom: solid 3px rgb(88,144,168); color: rgb(88,144,168); font-weight: bold; font-size: 160%;}
+.content2-pagetitle, .content3-pagetitle {overflow: hidden; width: 510px; margin: 0px 0px 10px 0px; padding: 0px 0px 2px 0px; border-bottom: solid 3px rgb(88,144,168); color: rgb(88,144,168); font-weight: bold; font-size: 160%;}
 
 /*********************************/
 /* SECTION 6 - COMMON PARAMETERS */

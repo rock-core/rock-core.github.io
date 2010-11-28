@@ -16,22 +16,62 @@
 
 <body>
   <div class="page-container-2">
+      <div class="nav1-container">
+          <div class="nav1">
+              <webgen:block name="navbar" notfound="ignore"/>
+              <ul>
+                  <li><span>Main</span></li>
+                  <li><%= context.node.link_to(context.node.resolve('/startup'), :link_text => 'Getting Started') %></li>
+                  <li><%= context.node.link_to(context.node.resolve('/autoproj'), :link_text => 'Build') %></li>
+                  <li><%= context.node.link_to(context.node.resolve('/orogen'), :link_text => 'Develop') %></li>
+                  <li><%= context.node.link_to(context.node.resolve('/runtime'), :link_text => 'Run') %></li>
+                  <li><%= context.node.link_to(context.node.resolve('/system'), :link_text => 'Systems') %></li>
+                  <li><%= context.node.link_to(context.node.resolve('/data_analysis'), :link_text => 'Analyze') %></li>
+                  <li><%= context.node.link_to(context.node.resolve('/package_directory/index.html'), :link_text => 'Package Directory') %></li>
+              </ul>
+          </div>
+      </div>
+
+      <div class="site-name">
+          <p class="title">Rock: the Robot Construction Kit</p>
+      </div>
+
+      <div class="buffer"></div>
+
       <div class="nav2">			
           <ul>
               <li>{breadcrumb_trail: { separator: '' }}</li>
-              <webgen:block name="navbar" notfound="ignore"/>
           </ul>
       </div>
     
       <div class="buffer"></div>
-      <div class="nav3">
-          {menu: {max_levels: 2, show_current_subtree_only: true, nested: true, used_nodes: files}}
-      </div>				
+
+      <div class="leftnav">
+          <% # Get the root for this node %>
+          <% root = context.node %>
+          <% if root.parent != root.tree.root %>
+          <%   while root.parent != root.tree.root %>
+          <%     root = root.parent %>
+          <%   end %>
+          <div class="nav4">
+              <ul><li class="title"><%= root['title'] %></li>
+                  {menu: {start_level: 2, max_levels: 4, show_current_subtree_only: true, nested: true, used_nodes: files}}
+              </ul>
+          </div>
+          <% end %>
+
+          <div class="nav3">
+              <ul><li class="title">Rock</li>
+                  {menu: {max_levels: 1, show_current_subtree_only: true, nested: true, used_nodes: files}}
+              </ul>
+          </div>
+      </div>
 
       <div class="content2">
           <div class="content2-pagetitle">{title: }</div>			
           <div class="content2-container line-box">
               <div class="content2-container-1col">
+                  <% if false %>
                   <% if context.node.node_info[:page].blocks.has_key?('localtoc') %>
                   <div markdown="1" class="localtoc">
                       <webgen:block name="localtoc" />
@@ -41,6 +81,7 @@
                   <div markdown="1" class="biglocaltoc localtoc">
                       <webgen:block name="biglocaltoc" />
                   </div>
+                  <% end %>
                   <% end %>
                   <webgen:block name="content" />
               </div>

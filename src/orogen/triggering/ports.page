@@ -13,8 +13,6 @@ data from their input, process it, and push it to their outputs.
 Note that in Orocos, port-triggering is a mechanism that can be overlaid on top
 of other triggering mechanisms like periodic or file-descriptor triggerings.
 
-<div style="margin-top:5em;"> </div>
-
 Declaration
 -----------
 A data-driven task is declared by using the <tt>#port_driven</tt> statement.

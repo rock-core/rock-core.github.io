@@ -1,8 +1,9 @@
 \--- !omap
 - package_directory/index.html:
-    in_menu: false
+    in_menu: true
     sort_info: 99999
     url: /package_directory/index.html
+    title: Package Directory
 
 - api/autoproj/index.html:
     in_menu: false
