@@ -140,6 +140,14 @@ command.mode = 'DM_PWM'
 command.mode => :DM_PWM # beware, this is a Ruby symbol !!!
 {coderay}
 
+### Opaque Types (ADVANCED SUBJECT)
+
+The opaque types are manipulated, on the Ruby side, through their intermediate
+type. For instance, if a property of type
+[base::Vector3d](http://rock-robotics.org/package_directory/orogen_types/_base_Vector3d.html) is created, it will be
+accessed as a structure [of the corresponding
+type](http://rock-robotics.org/package_directory/orogen_types/_wrappers_Matrix__double_3_1_.html)
+
 Customization on the Ruby side
 ------------------------------
 So, we now know how to manipulate the C++ types from within Ruby. However, the
