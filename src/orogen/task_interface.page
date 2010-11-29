@@ -51,9 +51,9 @@ output_port('out', 'another_type').
 {coderay}
 
 Input ports can be used in the C++ code in two ways, which one you want to use
-depends on what you actuall want to do.
+depends on what you actually want to do.
 
-1. if you want to read all new samples that are on the input
+* if you want to read all new samples that are on the input
 
 {coderay:: cpp}
 // my_type is the declared type of the port
@@ -65,7 +65,7 @@ while (_in.read(sample) == RTT::NewData)
 {coderay}
 
 
-2. if you are just interested by having some data
+* if you are just interested by having some data
 
 {coderay:: cpp}
 // my_type is the declared type of the port
