@@ -35,6 +35,9 @@ Installation: the easy way
       . /path/to/the/directory/env.sh
       {: .commandline}
 
+ 6. read [the autoproj quick start guide](/autoproj/quick_start.html) to get the
+    basics of the build system
+
 <div class="warning" markdown="1">
 **Important for existing Orocos users** The development workflow in Rock does
 not encourage the use of the Orocos deployer and of the RTT scripting language.
