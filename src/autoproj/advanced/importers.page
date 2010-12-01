@@ -5,7 +5,7 @@ sort_info: 250
 {menu: {start_level: 3}}
 --- name:content
 
-As [we already mentioned](index.html), the source.yml file contains information
+As [we already mentioned](creating_pkg_set.html), the source.yml file contains information
 on where to import the source packages from. This information is included in the
 version\_control field of the source.yml, and is of the general form:
 

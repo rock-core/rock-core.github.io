@@ -32,9 +32,9 @@ things:
 A first step, if you don't want to share that package to a wide audience, is to
 add it to the local package set
 
- * [register it](package_sets/autobuild.html) in
+ * [register it](advanced/autobuild.html) in
    <tt>autoproj/local.autobuild</tt>
- * [give version control information](package_sets/importers.html) for it in
+ * [give version control information](advanced/importers.html) for it in
    <tt>autoproj/overrides.yml</tt>
 
 Sharing package definitions with the rest of the world
@@ -55,5 +55,5 @@ installation, one would move the autobuild file to
 autoproj/remotes/rock.drivers/ and add the relevant VCS information to
 autoproj/remotes/rock.drivers/source.yml
 
-For the second solution, [read on](package_sets/index.html)
+For the second solution, [read on](advanced/creating_pkg_set.html)
 

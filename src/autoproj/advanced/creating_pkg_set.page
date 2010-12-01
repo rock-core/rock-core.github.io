@@ -1,9 +1,7 @@
 ---
 title: Creating a package set
-sort_info: 100
---- name:localtoc
-{menu: {start_level: 3}}
---- name:content
+sort_info: 150
+---
 
 A package set is made of three things:
 
@@ -15,24 +13,24 @@ A package set is made of three things:
 To create a new package set that is going to be shared with others, the simplest
 solution is to
 
- 1. create a new directory
- 2. add a source.yml file with just the set name in it:
+ * create a new directory
+ * add a source.yml file with just the set name in it:
 
 {coderay:: yaml}
 name: my_package_set_name
 {coderay}
 
- 3. push it to whatever VCS you want. For git and gitorious, you would do
+ * push it to whatever VCS you want. For git and gitorious, you would do
    something like
 
-     git init
-     git add source.yml
-     git commit -m "create the my_package_set_name package set"
-     git push git@gitorious.com:my-project/package_set.git
+       git init
+       git add source.yml
+       git commit -m "create the my_package_set_name package set"
+       git push git@gitorious.com:my-project/package_set.git
 
- 4. add the package set to autoproj/manifest and run
+ * add the package set to autoproj/manifest and run
      
-     autoproj update-config
+       autoproj update-config
 
 At this stage, the empty set is properly checked out in
 autoproj/remotes/my_package_set_name. You can add package definition and VCS

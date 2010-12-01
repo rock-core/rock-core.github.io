@@ -89,7 +89,7 @@ For the git importer, one of 'branch' or 'tag' options can be provided as well:
 Imported package sets are saved in the <tt>.remotes</tt> directory of the
 autoproj installation. The importers that are available for configuration are
 the same than the ones available for the packages themselves, so see [this
-page](package_sets/importers.html#all_importers) for the list of available importers.
+page](advanced/importers.html#all_importers) for the list of available importers.
 
 Listing the available packages.
 -----------------------------
@@ -142,5 +142,5 @@ This layout can either list packages one by one, but complete package sets can
 also be selected (the rubim.base above)
 
 More advanced mechanisms are available to customize this list. These mechanisms
-are [detailed here](customization.html)
+are [detailed here](advanced/customization.html)
 

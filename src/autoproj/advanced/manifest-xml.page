@@ -1,8 +1,6 @@
 ---
 title: The manifest.xml file
-sort_info: 120
---- name:biglocaltoc
-{menu: {start_level: 3}}
+sort_info: 100
 --- name:content
 
 The manifest.xml is an optional (but *very recommended*) file that lies in the

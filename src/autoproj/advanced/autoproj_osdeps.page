@@ -88,6 +88,6 @@ autoproj bootstrap git git://gitorious.com/rock/build-all.git
 
 Since you just added a new OS, none of the existing osdeps files will
 have your OS in them. So you will need to edit the osdeps files from the package
-sets and [add the relevant packages](package_sets/osdeps.html).
+sets and [add the relevant packages](osdeps.html).
 {: .content-txtbox-warning}
 

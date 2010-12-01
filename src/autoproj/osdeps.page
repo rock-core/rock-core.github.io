@@ -18,7 +18,7 @@ management system for Ruby programs) and so on.
 Declaring and inspecting dependencies
 -------------------------------------
 Dependencies on OS packages are declared the same way than cross-package
-dependencies are. See [this page](package_sets/osdeps.html) for more
+dependencies are. See [this page](advanced/osdeps.html) for more
 information.
 
 It is important to note that, in case both an osdeps definition *and* an
@@ -73,7 +73,7 @@ Behaviour on operating systems (OS) not supported by autoproj
 -------------------------------------------------------------
 In order to handle the OS packages, autoproj must know how to install them.
 Operating systems for which autoproj does *not* have this information are marked
-as "unsupported" (see [this page](autoproj_osdeps.html) to extend autoproj for
+as "unsupported" (see [this page](advanced/autoproj_osdeps.html) to extend autoproj for
 your OS).
 
 On these OS, the 'all' and 'os' options are obviously not available to you. You

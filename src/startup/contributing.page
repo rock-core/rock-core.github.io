@@ -8,7 +8,8 @@ There are multiple ways to contribute to Rock
 First and foremost, you can contribute bugfixes and enhancements to the main
 Rock codebase through [the gitorious interface](http://gitorious.org/). Clone a repository, add your changes and create merge requests.
 
-Second, [create your own package set](/autoproj/package_sets) to publish your
+Second, [create your own package
+set](/autoproj/advanced/creating_pkg_set.html) to publish your
 libraries and components. Once you have put this package set and the code on a
 public place (gitorious, github or even a svn-oriented code hosting), drop us a
 line on the [rock-dev] mailing list. We would be glad to include it in a (to be

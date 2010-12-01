@@ -66,5 +66,5 @@ using pkg-config.
 
 To describe the package, and more importantly to setup cross-package
 dependencies, [an optional manifest file can be
-added](package_sets/manifest-xml.html).
+added](advanced/manifest-xml.html).
 
