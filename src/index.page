@@ -29,6 +29,12 @@ Finally, have a look at the [existing packages](/package_directory/index.html).
 Get help and contribute
 {: .content-title-noshade-size3}
 </div>
+
+Don't hesitate ! Ask questions on the
+[orocos-users](http://lists.mech.kuleuven.be/mailman/listinfo/orocos-users)
+mailing list. If you are interested in the cutting-edge development of Rock, you
+can also join the
+[rock-dev](http://www.dfki.de/mailman/cgi-bin/listinfo/rock-dev) mailing list.
 </div>
 
 Overview
@@ -37,7 +43,7 @@ Overview
 _Click on a tool below to go directly to the documentation for it_
 
 <div>
-<object type="image/svg+xml" data="startup/tools_overview.svg" width="600" height="230">
+<object type="image/svg+xml" data="startup/tools_overview.svg" width="522" height="230">
 Browser does not support SVG files!
 </object>
 </div>
