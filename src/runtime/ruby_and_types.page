@@ -186,7 +186,12 @@ Typelib.convert_from_ruby Time, '/base/Time' do |value, typelib_type|
 end
 {coderay}
 
-Note that you can safely add a convert_to_ruby specification late in the
+See [the
+scripts/typelib.rb](http://gitorious.org/rock-toolchain/orogen-base-types/blobs/master/scripts/typelib.rb)
+file from the base/orogen/types package as an example.
+{: .note}
+
+You can safely add a convert_to_ruby specification late in the
 development process, without breaking the scripts that were accessing the
 structures. Indeed, the converted value is wrapped in a way that makes possible
 accessing the structure fields (seconds and microseconds) or accessing it as a
