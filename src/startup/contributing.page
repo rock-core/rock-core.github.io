@@ -24,28 +24,24 @@ submit them for inclusion in Rock itself. Just drop us a line on the
 Generating your own package directory
 -------------------------------------
 
-The rock-directory script in
-[rock/scripts](http://gitorious.org/rock/scripts.git) allows you to create your
-own package directory looking like [the one from
+The rock-directory script base/scripts allows you to create your own package
+directory looking like [the one from
 rock](http://rock-robotics.org/package_directory).
 
-To do so, you need to check out the scripts repository, update your path and run
-rock-directory:
+To do so, run rock-directory **from the autoproj installation you want to
+document**:
 
-    git clone git://gitorious.org/rock/scripts.git rock-scripts
-    PATH=$PWD/rock-scripts/bin:$PATH
-    cd to/your/autoproj/root/dir
-    rock-directory ../package_directory
+    rock-directory /home/mine/package_directory
 
 If you plan to publish this directory somewhere, we ask you to change the
 directory template. To do so, check it out first from
   
-    git://gitorious.org/rock/template-directory
+    git://gitorious.org/rock/template-directory customized_template
 
 modify the template to match your project/institute/... name (in
 src/default.template).
 
-Pass the template as a second argument to rock-directory
+Pass the path to the template as a second argument to rock-directory
 
-    rock-directory ../package_directory ../customized_template
+    rock-directory /home/mine/package_directory /path/to/customized_template
 
