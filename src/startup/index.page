@@ -17,7 +17,15 @@ Installation: the easy way
     Important: Rock requires ruby either 1.8.7 or better, or 1.9.2 or better
 
  2. Create and "cd" into the directory in which you want to install the toolchain
- 3. Save the [bootstrap.sh](http://gitorious.com/rock/buildconf-all/blobs/raw/master/bootstrap.sh) script in the folder you just created
+ 3. To build the base system (base packages + toolchain, but no
+    libraries/components), use this
+    [bootstrap.sh](http://gitorious.com/rock/buildconf/blobs/raw/master/bootstrap.sh)
+    script. Save it  in the folder you just created. For other options, see
+    below.
+
+    **There is an important note for long-term Orocos users.** See the red box
+    below.
+
  4. In a console, run
     
     sh bootstrap.sh
@@ -35,8 +43,24 @@ Installation: the easy way
       . /path/to/the/directory/env.sh
       {: .commandline}
 
- 6. read [the autoproj quick start guide](/autoproj/quick_start.html) to get the
-    basics of the build system
+ 6. read [the autoproj quick start guide](/autoproj/quick_start.html) to know the
+    basic operations of the build system
+
+Other bootstrapping options
+---------------------------
+
+ * **to build all of Rock**, use [this bootstrap.sh](http://gitorious.com/rock/buildconf-all/blobs/raw/master/bootstrap.sh)
+   instead of the one listed above
+ * you can also bootstrap the base system and then cherry-pick the packages you want. Have a look in [the package
+   directory](/package_directory/index.html), and add the package names to the
+   layout section in autoproj/manifest. For instance,  if you want to
+   get the [Xsens IMU component](http://rock-robotics.org/package_directory/packages/drivers_orogen_xsens_imu/index.html),
+   the layout section should look like:
+
+       layout:
+          - rock.base
+          - rock.toolchain
+          - drivers/orogen/xsens_imu
 
 <div class="warning" markdown="1">
 **Important for existing Orocos users** The development workflow in Rock does
@@ -48,7 +72,6 @@ build the Rock toolchain. However:
  * you can reenable the RTT scripting by changing PLUGINS_SCRIPTING_ENABLED from OFF
    to ON in autoproj/overrides.rb
 </div>
-
 
 Maintaining a Rock installation uptodate
 ----------------------------------
