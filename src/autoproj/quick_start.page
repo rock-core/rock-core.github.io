@@ -44,7 +44,7 @@ Additional options can be given for the version control system. For instance,
    ruby autoproj\_bootstrap git git://github.com/doudou/rubim.all.git branch=stable
    {: .cmdline}
 
-Shell helpers
+Shell helpers {#shell_helpers}
 -------------
 On bash and zsh, autoproj installs some shell helpers that make using an
 autoproj installation easier (for ROS users, they are the equivalent of the

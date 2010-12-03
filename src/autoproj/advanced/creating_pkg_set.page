@@ -207,7 +207,7 @@ has the following rules when searching for version control information:
    Consequence: this set *must* have a version\_control field for it, and an
    error will be issued otherwise.
 
-Using configuration options
+Using configuration options {#configopts}
 ---------------------------
 autoproj offers a configuration system that allows the user to tweak the build
 to its needs. If the version control definitions depend on such configuration
