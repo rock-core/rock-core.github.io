@@ -63,6 +63,9 @@ Orocos.run 'lowlevel', 'imu', 'gps', 'hokuyo', 'state_estimator' do
 end
 {coderay}
 
+where **the names given to Orocos.run are the deployment names**, i.e. the name
+given to the "deployment" statement.
+
 This starts all the processes, and wait for them to be ready to be used. The
 advantage of this method is that, whenever you leave the do ... end block (for
 instance because of an error in the Ruby program), all the processes will be
@@ -70,11 +73,13 @@ stopped properly.
 
 Now, let's configure and start the imu driver. To do that, you need to get a
 handle on the imu::XsensTask task that is declared in the imu deployment. You
-achieve this by using the task name:
+achieve this by **using the task name** -- i.e. the name given to the 'task'
+statement:
 
 {coderay:: ruby}
 Orocos.run 'lowlevel', 'imu', 'gps', 'hokuyo', 'state_estimator' do
   imu = TaskContext.get 'imu'
+  pose_estimator = TaskContext.get 'poseEstimator'
   # From this point on, the 'imu' variable represents the XsensTask task
   # context, and can be used to manipulate it.
 end
