@@ -32,26 +32,33 @@ required_activity :fd_driven
 {coderay}
 
 
-Configuration in the C++ task
+Mandatory setup in the C++ task
 -----------------------------
 
 On the C++ side, the triggering mechanism relies on a specific activity type,
 i.e. it puts the component in its own thread.
 
 To access more detailed information on the trigger reason, and to set up the
-trigger mechanism, one must access the underlying activity. To do that, a
-<tt>getFileDescriptorActivity()</tt> method is available. The set up has to be
-done in <tt>configureHook()</tt> as follows:
+trigger mechanism, one must access the underlying activity. Two parts are
+needed, one in startHook() to tell the activity which file descriptors to watch
+for, and one in stopHook() to remove all the watches (**that last part is
+mandatory**)
+
+First of all, include the header in the task's cpp file:
 
 {coderay:: cpp}
-bool MyTask::configureHook()
-{
-    // Open the device that is listed in the _device string property
-    int fd = open(_device.get().c_str(), O_RDONLY);
-    if (fd == -1)
-        return false;
+#include <rtt/extras/FileDescriptorActivity.hpp>
+{coderay}
 
-    RTT::FileDescriptorActivity* activity = getFileDescriptorActivity();
+Second, set up the watches in startHook
+
+{coderay:: cpp}
+bool MyTask::startHook()
+{
+    // Here, "fd" is the file descriptor of the underlying device
+    // it is usually created in configureHook()
+    RTT::extras::FileDescriptorActivity* activity =
+        getActivity<RTT::extras::FileDescriptorActivity>();
     activity->watch(fd);
     return true;
 }
@@ -63,14 +70,12 @@ the component will crash as getFileDescriptorActivity() returns NULL;
 If the use of an io-driven activity is optional, simply test for activity:
 
 {coderay:: cpp}
-bool MyTask::configureHook()
+bool MyTask::startHook()
 {
-    // Open the device that is listed in the _device string property
-    int fd = open(_device.get().c_str(), O_RDONLY);
-    if (fd == -1)
-        return false;
-
-    RTT::FileDescriptorActivity* activity = getFileDescriptorActivity();
+    // Here, "fd" is the file descriptor of the underlying device
+    // it is usually created in configureHook()
+    RTT::extras::FileDescriptorActivity* activity =
+        getActivity<RTT::extras::FileDescriptorActivity>();
     if (activity)
         activity->watch(fd);
     return true;
@@ -80,10 +85,22 @@ bool MyTask::configureHook()
 It is possible to list multiple file descriptors by having multiple calls to
 watch(). 
 
-Finally, it is possible to set a timeout in milliseconds with
+It is possible to set a timeout in milliseconds with
 
 {coderay:: cpp}
     activity->setTimeout(100);
+{coderay}
+
+Finally, you **must** clear all watches in stopHook():
+
+{coderay:: cpp}
+void MyTask::stopHook()
+{
+    RTT::extras::FileDescriptorActivity* activity =
+        getActivity<RTT::extras::FileDescriptorActivity>();
+    if (activity)
+        activity->clearAllWatches();
+}
 {coderay}
 
 Runtime use in updateHook()
@@ -94,7 +111,8 @@ related to the trigger reason (data availability, timeout, error on a file
 descriptor). These different conditions can be tested with:
 
 {coderay:: cpp}
-FileDescriptorActivity* fd_activity = getFileDescriptorActivity();
+RTT::extras::FileDescriptorActivity* fd_activity =
+    getActivity<RTT::extras::FileDescriptorActivity>();
 if (fd_activity)
 {
   if (fd_activity->hasError())
