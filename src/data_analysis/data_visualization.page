@@ -1,0 +1,210 @@
+---
+title: Data Visualization 
+sort_info: 500
+---
+
+One important aspect of data analysis is the visualisation of data, be it
+replayed from logs or live. How data is visualised is usually specific to the
+problem, and most likely there is more than one way to show the data and their
+relations. Simple values, like robot voltage level, can either be shown
+directly or in a time series as a graph. More complex values sometimes also
+allow the visualisation as a graph or similar. But quite often, very specific
+visualisations are required for complex data types. 
+
+In Rock, the visualization like most other things, also works in a modularized
+way. We believe that visualization is very problem specific, and there is no one
+size fits all solution. Visualization components are essentially Qt widgets,
+than can be connected to data sources and combined in an application specific to
+the current problem or project. The aim of the Rock visualization part is to
+provide an infrastructure and a collection of visualization components that
+require as little as possible additional work to perform the visualization task
+at hand. 
+
+3D Visualisation 
+----------------
+One particularly useful visualisation is a 3D view, since it allows to show the
+state of the robot's internal view on the world and also often internal states
+and how they correlate to the environment model. 
+
+The package that provides the base interface for visualization can be found in
+gui/vizkit. Vizkit for the time being is only concerned with 3D visualisation,
+and essentially provides a basic interface between the widget library Qt and the
+OpenSceneGraph library, which is used for the 3D domain. It does that in the
+form of a QtWidget call QVizkitWidget, which can either be used directly or
+embedded into other widgets.
+
+The widget in itself only performs the linking between Qt and OpenSceneGraph,
+but does not have an visualization abilities. These come in the form of plugins.
+All plugins need to be derived of vizkit::VizPluginBase. The vizkit package also
+provides some basic visualizations, and may contain visualisation for any
+data type which can be found in the base package and is generic enough to be
+useful cross-project.
+
+Using QVizkitWidget
+-------------------
+The QVizkitWidget is a QWidget, and provides two methods for plugin
+handling plugins:
+
+{coderay:: cpp}
+void addDataHandler( VizPluginBase *viz );
+void removeDataHandler( VizPluginBase *viz );
+{coderay}
+
+One common way to provide a visualization component, is to derive from
+QVizkitWidget, and provide methods for updating the data:
+
+{coderay:: cpp}
+#include <asguard/BodyState.hpp>
+#include <vizkit/QVizkitWidget.hpp>
+#include <base/pose.h>
+#include <vizkit/AsguardVisualization.hpp>
+
+namespace vizkit
+{
+
+class EslamWidget : public QVizkitWidget
+{
+public:
+    EslamWidget( QWidget* parent = 0, Qt::WindowFlags f = 0 );
+    : QVizkitWidget( parent, f ),
+    robotViz( new AsguardVisualization() ),
+    {
+	addDataHandler( robotViz.get() );
+    }
+    ~EslamWidget()
+    {
+	removeDataHandler( robotViz.get() );
+    }
+    void setReferencePose( const base::Pose& pose, const asguard::BodyState& body_state )
+    {
+	vizkit::AsguardState state;
+	state.rigidBodyState.position = pose.position;
+	state.rigidBodyState.orientation = pose.orientation;
+	state.bodyState = body_state;
+	
+	robotViz->updateData( state );
+    }
+
+private:
+    boost::shared_ptr<AsguardVisualization> robotViz;
+};
+{coderay}
+
+Teh resulting QWidget can either be used directly or embedded in another
+application.
+
+Writing Vizkit Plugins
+----------------------
+Plugins for base datatypes which are not too specific can go directly into the
+vizkit package. You need to derive your plugin in some way from
+vizkit::VizPluginBase. You need to take care of the fact, that the most of the
+visualization code will run in a different thread context to the one you would
+be supplying the plugin with data. One class that already does that for you is
+the vizkit::VizPlugin template class. An example of how to use that class is
+given below.
+
+{coderay:: cpp}
+#include <Eigen/Geometry>
+#include <vizkit/VizPlugin.hpp>
+
+namespace vizkit 
+{
+
+class TrajectoryVisualisation : public VizPlugin<Eigen::Vector3d>
+{
+    public:
+	TrajectoryVisualisation();    
+
+    protected:
+	virtual osg::ref_ptr<osg::Node> createMainNode()
+	{
+	    // create a new osg::Node object here, which 
+	    // contains all the relevant structure that is needed
+	    // e.g.
+	    return new osg::Group();	
+	}
+	virtual void updateMainNode( osg::Node* node )
+	{
+	    // access to internal data is guarded in this method
+	    
+	    // update the node object to reflect the changes in 
+	    // the internal data model
+	}
+
+	void updateDataIntern( const Eigen::Vector3d& data )
+	{
+	    // access to internal data is guarded in this method
+	    path.push_back( data );
+	}
+};
+    private:
+	std::vector<Eigen::Vector3d> path;
+}
+{coderay}
+
+You should put your plugin into the vizkit namespace. Using the VizPlugin
+template class, there is code that prevents that updateDataIntern and
+updateMainNode are called at the same time. The VizPlugin class provides an
+updateData(const &Data) method, that can be called from the outside to update
+the internal model of the node (e.g. set a new point in the trajectory). This
+will in turn call the updateDataIntern method, in which you can store updates to
+your internal model (in this case a list of points). The updateMainNode is
+called from within the visualization thread, when it is safe to access both your
+internal model (e.g. the path vector) and the osg::Node that represents your
+visualization. In this method, you need to modify the osg::Node to reflect the
+internal state of the visualization (e.g. create the osg structures to visualize
+the path). See the TrajectoryVisualization class in the vizkit package for an
+actual implementation.
+
+When writing plugins that are don't visualize data types that are base data
+types, they do not go into the vizkit package, but usually within the package
+that defines the datatype to be visualized. Also here, a convention should be
+followed, to add a directory in that package with the name viz, that builds
+optionally depending on wether gui/vizkit is available or not.
+
+You need to add the following things to your package:
+To the manifest:
+{coderay:: xml}
+<package>
+    ...
+    <depend package="gui/vizkit" optional="1" />
+</package>
+{coderay}
+
+To the CMakeLists.txt:
+{coderay:: cmake}
+...
+
+pkg_check_modules(VIZKIT "vizkit")
+include_directories(${VIZKIT_INCLUDE_DIRS})
+link_directories(${VIZKIT_LIBRARY_DIRS})
+
+...
+
+if( VIZKIT_FOUND )
+    add_subdirectory(viz)
+endif( VIZKIT_FOUND )
+{coderay}
+
+In the viz subdirectory you need to create an additional shared library, that is
+called the same way as the project, with the -viz suffix. So the CMakeLists.txt
+file in the viz subdirectory should contain something like this:
+{coderay:: cmake}
+...
+# compile shared library
+add_library(${PROJECT_NAME}-viz SHARED ${TARGET_SRC} ${moc_cpp})
+target_link_libraries(${PROJECT_NAME}-viz ${PROJECT_NAME}
+    ${VIZKIT_LIBRARIES}
+    )
+
+# install headers and library
+install(DIRECTORY . DESTINATION include/vizkit FILES_MATCHING PATTERN "*.hpp")
+install(TARGETS ${PROJECT_NAME}-viz
+    DESTINATION lib)
+
+# set-up pkg file
+configure_file(${PROJECT_NAME}-viz.pc.in ${PROJECT_NAME}-viz.pc @ONLY)
+install(FILES ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}-viz.pc
+    DESTINATION lib/pkgconfig)
+{coderay}
+
