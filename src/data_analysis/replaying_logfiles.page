@@ -26,7 +26,7 @@ from the C++ types in Ruby
 {: .notes}
 
 Usage:
--e----
+------
 The replayed log files can either be specified when initializing a
 Orocos::Log::Replay object, or later on by using the #load method.
 
