@@ -54,40 +54,35 @@ One common way to provide a visualization component, is to derive from
 QVizkitWidget, and provide methods for updating the data:
 
 {coderay:: cpp}
-#include <asguard/BodyState.hpp>
 #include <vizkit/QVizkitWidget.hpp>
-#include <base/pose.h>
-#include <vizkit/AsguardVisualization.hpp>
+#include <vizkit/QtThreadedWidget.hpp>
+#include <vizkit/TrajectoryVisualization.hpp>
 
 namespace vizkit
 {
-
-class EslamWidget : public QVizkitWidget
+class QTrajectoryWidget : public QVizkitWidget
 {
-public:
-    EslamWidget( QWidget* parent = 0, Qt::WindowFlags f = 0 );
-    : QVizkitWidget( parent, f ),
-    robotViz( new AsguardVisualization() ),
-    {
-	addDataHandler( robotViz.get() );
-    }
-    ~EslamWidget()
-    {
-	removeDataHandler( robotViz.get() );
-    }
-    void setReferencePose( const base::Pose& pose, const asguard::BodyState& body_state )
-    {
-	vizkit::AsguardState state;
-	state.rigidBodyState.position = pose.position;
-	state.rigidBodyState.orientation = pose.orientation;
-	state.bodyState = body_state;
-	
-	robotViz->updateData( state );
-    }
+    public:
+	QTrajectoryWidget( QWidget* parent = 0, Qt::WindowFlags f = 0 )
+	    : QVizkitWidget( parent, f ), trajViz( new TrajectoryVisualization() )
+	{
+	    addDataHandler( trajViz.get() );
+	}
 
-private:
-    boost::shared_ptr<AsguardVisualization> robotViz;
+	~QTrajectoryWidget()
+	{
+	    removeDataHandler( trajViz.get() );
+	}
+
+	void addPosition( const Eigen::Vector3d& point )
+	{
+	    trajViz->updateData( point );
+	}
+
+    private:
+	boost::shared_ptr<TrajectoryVisualization> trajViz;
 };
+}
 {coderay}
 
 Teh resulting QWidget can either be used directly or embedded in another
@@ -126,6 +121,8 @@ class TrajectoryVisualisation : public VizPlugin<Eigen::Vector3d>
 	virtual void updateMainNode( osg::Node* node )
 	{
 	    // access to internal data is guarded in this method
+	    // The node parameter is of the type that was created in 
+	    // the createMainNode method.
 	    
 	    // update the node object to reflect the changes in 
 	    // the internal data model
