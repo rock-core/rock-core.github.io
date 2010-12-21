@@ -55,7 +55,6 @@ QVizkitWidget, and provide methods for updating the data:
 
 {coderay:: cpp}
 #include <vizkit/QVizkitWidget.hpp>
-#include <vizkit/QtThreadedWidget.hpp>
 #include <vizkit/TrajectoryVisualization.hpp>
 
 namespace vizkit
