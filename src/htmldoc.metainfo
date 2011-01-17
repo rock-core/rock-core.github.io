@@ -11,7 +11,7 @@ autoproj:
     sort_info: 100
 
 orogen:
-    title: Developping Components
+    title: Developing Components
     sort_info: 150
 
 runtime:
