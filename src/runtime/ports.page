@@ -92,7 +92,16 @@ sample = reader.read
 {coderay}
 
 the returned value will be nil if there is no data available, and the
-corresponding Typelib::Type object otherwise. This object  allows to manipulate
+corresponding Typelib::Type object otherwise. It always return a sample if 
+the connection has been written at least once.
+
+To get only new samples (i.e. samples that you never read already), do
+
+{coderay:: ruby}
+sample = reader.read_new
+{coderay}
+
+The returned object allows to manipulate
 the C++ data structure as if it was a normal Ruby object. For instance, a data
 sample looking like
 
