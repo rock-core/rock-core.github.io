@@ -141,6 +141,6 @@ end
 {coderay}
 
 Devices are represented by an object of {rdoc_class:
-{base_url: /api/orocos.rb, name: Orocos::RobyPlugin::MasterDeviceInstance}}. See the documentation of that class for more
+{base_url: /api/tools/orocos.rb, name: Orocos::RobyPlugin::MasterDeviceInstance}}. See the documentation of that class for more
 information.
 {: .note}

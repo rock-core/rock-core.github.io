@@ -12,9 +12,9 @@ Getting a port from a task is as easy as
 port_object = my_task.port_name
 {coderay}
 
-The returned port object is either an {rdoc_class: {base_url: /api/orocos.rb,
+The returned port object is either an {rdoc_class: {base_url: /api/tools/orocos.rb,
 name: Orocos::InputPort}} or an {rdoc_class:
-{base_url: /api/orocos.rb, name: Orocos::OutputPort}}, based on the port type.
+{base_url: /api/tools/orocos.rb, name: Orocos::OutputPort}}, based on the port type.
 
 Creating connections
 --------------------
@@ -68,8 +68,8 @@ Reading outputs or writing inputs
 ---------------------------------
 
 One can read outputs and write inputs from the Ruby scripts. To achieve this,
-one gets a {rdoc_class: {base_url: /api/orocos.rb, name: Orocos::OutputReader}}
-or a {rdoc_class: {base_url: /api/orocos.rb, name: Orocos::InputWriter}} object
+one gets a {rdoc_class: {base_url: /api/tools/orocos.rb, name: Orocos::OutputReader}}
+or a {rdoc_class: {base_url: /api/tools/orocos.rb, name: Orocos::InputWriter}} object
 (respectively) with:
 
 {coderay:: ruby}

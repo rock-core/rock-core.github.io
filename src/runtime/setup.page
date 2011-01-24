@@ -20,7 +20,7 @@ will raise if the name server can't be found.
 
 If you want to use another name server, for instance because you have a system
 spread on multiple machines and you want to manipulate modules on the various
-machines, you have to set the {rdoc_class: {base_url: /api/orocos.rb, name:
+machines, you have to set the {rdoc_class: {base_url: /api/tools/orocos.rb, name:
 Orocos::CORBA.name_service}} value
 _before_ you call Orocos.initialize:
 
@@ -33,7 +33,7 @@ Orocos.initialize
 
 Finally, the CORBA.call\_timeout and CORBA.connect\_timeout
 specify timeouts at the CORBA level. See the {rdoc_class: {base_url:
-/api/orocos.rb, name: Orocos::CORBA}} documentation
+/api/tools/orocos.rb, name: Orocos::CORBA}} documentation
 for more information.
 
 Starting processes _(oroGen-based modules only)_
@@ -54,7 +54,7 @@ end
 
 where <tt>deployment1</tt> and <tt>deployment2</tt> are the names of the
 deployments. In the above code snippet, the <tt>p1</tt> and <tt>p2</tt>
-variables are the instances of {rdoc_class: {base_url: /api/orocos.rb, name:
+variables are the instances of {rdoc_class: {base_url: /api/tools/orocos.rb, name:
 Orocos::Process}} that represent the
 processes.
 
@@ -69,5 +69,5 @@ end
 {coderay}
 
 Orocos.run can also redirect the process outputs to files, and run them in
-valgrind. See the {rdoc_class: {base_url: /api/orocos.rb, name: Orocos, base_module: '', text: "documentation of the Orocos module"}} for more information.
+valgrind. See the {rdoc_class: {base_url: /api/tools/orocos.rb, name: Orocos, base_module: '', text: "documentation of the Orocos module"}} for more information.
 
