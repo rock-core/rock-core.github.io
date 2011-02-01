@@ -146,6 +146,9 @@ module Autoproj
 
         # The information contained in the OSdeps files, as a hash
         attr_reader :definitions
+        # All the information contained in all the OSdeps files, as a mapping
+        # from the OSdeps package name to [osdeps_file, definition] pairs
+        attr_reader :all_definitions
         # The information as to from which osdeps file the current package
         # information in +definitions+ originates. It is a mapping from the
         # package name to the osdeps file' full path
@@ -163,11 +166,14 @@ module Autoproj
 
         def initialize(defs = Hash.new, file = nil)
             @definitions = defs.to_hash
+            @all_definitions = Hash.new { |h, k| h[k] = Array.new }
+
             @sources     = Hash.new
             @installed_packages = Array.new
             if file
                 defs.each_key do |package_name|
                     sources[package_name] = file
+                    all_definitions[package_name] << [[file], defs[package_name]]
                 end
             end
             @silent = true
@@ -195,6 +201,16 @@ module Autoproj
                 v2
             end
             @sources = sources.merge(info.sources)
+            @all_definitions = all_definitions.merge(info.all_definitions) do |package_name, all_defs, new_all_defs|
+                all_defs = all_defs.dup
+                new_all_defs = new_all_defs.dup
+                new_all_defs.delete_if do |files, data|
+                    if entry = all_defs.find { |_, d| d == data }
+                        entry[0] |= files
+                    end
+                end
+                all_defs.concat(new_all_defs)
+            end
         end
 
         # Perform some sanity checks on the given osdeps definitions
@@ -243,9 +259,12 @@ module Autoproj
                 return @operating_system
             elsif Autoproj.has_config_key?('operating_system')
                 os = Autoproj.user_config('operating_system')
-                if os.respond_to?(:to_ary) # upgrade from previous format
-                    @operating_system = os
-                    return os
+		if os.respond_to?(:to_ary)
+		    if os[0].respond_to?(:to_ary) && os[0].all? { |s| s.respond_to?(:to_str) } &&
+		       os[1].respond_to?(:to_ary) && os[1].all? { |s| s.respond_to?(:to_str) }
+		       @operating_system = os
+                       return os
+		    end
                 end
             end
 
@@ -267,9 +286,9 @@ module Autoproj
                     if File.exists?('/etc/debian_version')
                         codenames = [File.read('/etc/debian_version').strip]
                         if codenames.first =~ /sid/
-                            codenames << "unstable" << "sid"
+                            versions = codenames + ["unstable", "sid"]
                         end
-                        [['debian'], codenames]
+                        [['debian'], versions]
                     elsif File.exists?('/etc/gentoo-release')
                         release_string = File.read('/etc/gentoo-release').strip
                         release_string =~ /^.*([^\s]+)$/
@@ -285,9 +304,14 @@ module Autoproj
             end
 
             # Normalize the names to lowercase
-            @operating_system =
-                 [@operating_system[0].map(&:downcase),
-                 [@operating_system[1].map(&:downcase) + ["default"]]]
+            names, versions = @operating_system[0], @operating_system[1]
+            names    = names.map(&:downcase)
+            versions = versions.map(&:downcase)
+            if !versions.include?('default')
+                versions += ['default']
+            end
+
+            @operating_system = [names, versions]
             Autoproj.change_option('operating_system', @operating_system, true)
             @operating_system
         end
@@ -393,7 +417,7 @@ fi
             # Find a matching entry for the OS name
             os_entry = nil
             os_names.find do |os_name|
-                os_entry = dep_def.find do |name_list, data|
+                os_entry = dep_def.find do |name_list, _|
                     name_list.split(',').
                         map(&:downcase).
                         any? { |n| n == os_name }
@@ -410,18 +434,14 @@ fi
                 return IGNORE
             end
 
+	    # If data is a hash, it means we have to check the OS version as well
             if data.kind_of?(Hash)
-                version_entry = nil
-                os_versions.each do |os_version|
-                    version_entry =
-                        data.find do |version_list, data|
-                            version_list.to_s.split(',').
-                                map(&:downcase).
-                                any? do |v|
-                                    os_version.any? { |osv| Regexp.new(v) =~ osv }
-                                end
+                version_entry = data.find do |version_list, _|
+                    version_list.to_s.split(',').
+                        map(&:downcase).
+                        any? do |v|
+                            os_versions.any? { |osv| Regexp.new(v) =~ osv }
                         end
-                    break if version_entry
                 end
 
                 if !version_entry
@@ -431,8 +451,10 @@ fi
             end
 
             if data.respond_to?(:to_ary)
+		# List of packages
                 return [PACKAGES, data]
             elsif data.respond_to?(:to_str)
+		# Single package
                 return [PACKAGES, [data.to_str]]
             else
                 raise ConfigError.new, "invalid package specificiation #{data} in #{source_of(name)}"
@@ -506,8 +528,10 @@ fi
                 else
                     status
                 end
-            else
+            elsif !gemdeps.empty?
                 AVAILABLE
+            else
+                NO_PACKAGE
             end
         end
 
@@ -519,7 +543,17 @@ fi
         # package manager, and the set of packages that have to be installed
         # using Ruby's package manager, RubyGems.
         #
-        # Raises ConfigError if no package can be found
+        # The os_packages arrays is a list of names (strings)
+        #
+        # The gem_packages arrays is a list of [name, version] pairs. +version+
+        # is a version string, that is set only if the package has been given
+        # with a =VERSION specification, e.g.
+        #
+        #   gems:
+        #       hoe=1.8.0
+        #
+        # Raises ConfigError if an error exists in the osdeps files, and returns
+        # empty sets if the package can't be found
         def partition_packages(package_set, package_osdeps = Hash.new)
             package_set = package_set.
                 map { |name| OSDependencies.aliases[name] || name }.
@@ -558,6 +592,13 @@ fi
                     if !pkg_def.empty?
                         osdeps << name
                     end
+                end
+            end
+            gems.map! do |name|
+                if name =~ /^([^><=~]*)([><=~]+.*)$/
+                    [$1.strip, $2.strip]
+                else
+                    [name]
                 end
             end
             return osdeps, gems
@@ -600,10 +641,10 @@ fi
         def filter_uptodate_gems(gems)
             # Don't install gems that are already there ...
             gems = gems.dup
-            gems.delete_if do |name|
-                version_requirements = Gem::Requirement.default
+            gems.delete_if do |name, version|
+                version_requirements = Gem::Requirement.new(version || '>= 0')
                 installed = Gem.source_index.find_name(name, version_requirements)
-                if !installed.empty? && Autobuild.do_update
+                if (!installed.empty? && !version) && Autobuild.do_update
                     # Look if we can update the package ...
                     dep = Gem::Dependency.new(name, version_requirements)
                     available = gem_fetcher.find_matching(dep, false, true, OSDependencies.gem_with_prerelease)
@@ -659,7 +700,7 @@ to what you should install to compile the software successfully.
 
 	    Autoproj.configuration_option 'osdeps_mode', 'string',
 		:default => 'ruby',
-		:doc => [short_doc, long_doc],
+		:doc => message,
                 :possible_values => %w{ruby none},
                 :lowercase => true
         end
@@ -832,7 +873,7 @@ with the corresponding option (--all, --ruby, --os or --none).
             false
         end
 
-        def gems_interaction(gems, cmdline, silent)
+        def gems_interaction(gems, cmdlines, silent)
             if OSDependencies.force_osdeps
                 return true
             elsif osdeps_mode == HANDLE_ALL || osdeps_mode == HANDLE_RUBY
@@ -853,7 +894,7 @@ with the corresponding option (--all, --ruby, --os or --none).
     
     The following command line can be used to install them manually
     
-      #{cmdline.join(" ")}
+      #{cmdlines.map { |c| c.join(" ") }.join("\n      ")}
     
     Autoproj expects these Gems to be installed in #{Autoproj.gem_home} This can
     be overriden by setting the AUTOPROJ_GEM_HOME environment variable manually
@@ -876,7 +917,7 @@ with the corresponding option (--all, --ruby, --os or --none).
 
             osdeps, gems = partition_packages(packages, package_osdeps)
             if handled_os
-                os_names, os_versions = OSDependencies.operating_system
+                os_names, _ = OSDependencies.operating_system
                 os_packages = resolve_os_dependencies(osdeps)
                 if filter_uptodate_packages
                     os_packages = filter_uptodate_os_packages(os_packages, os_names)
@@ -916,15 +957,26 @@ with the corresponding option (--all, --ruby, --os or --none).
             if !gems.empty?
                 guess_gem_program
 
-                cmdline = [Autobuild.tool('gem'), 'install']
+                base_cmdline = [Autobuild.tool('gem'), 'install']
                 if Autoproj::OSDependencies.gem_with_prerelease
-                    cmdline << "--prerelease"
+                    base_cmdline << "--prerelease"
                 end
-                cmdline.concat(gems)
+                with_version, without_version = gems.partition { |name, v| v }
 
-                if gems_interaction(gems, cmdline, silent?)
-                    Autobuild.progress "installing/updating RubyGems dependencies: #{gems.sort.join(", ")}"
-                    Autobuild::Subprocess.run 'autoproj', 'osdeps', *cmdline
+                cmdlines = []
+                if !without_version.empty?
+                    cmdlines << (base_cmdline + without_version.flatten)
+                end
+                with_version.each do |name, v|
+                    cmdlines << base_cmdline + [name, "-v", v]
+                end
+
+                if gems_interaction(gems, cmdlines, silent?)
+                    Autobuild.progress "installing/updating RubyGems dependencies: #{gems.map { |g| g.join(" ") }.sort.join(", ")}"
+
+                    cmdlines.each do |c|
+                        Autobuild::Subprocess.run 'autoproj', 'osdeps', *c
+                    end
                     did_something = true
                 end
             end
@@ -1241,6 +1293,12 @@ module Autoproj
         Autoproj.env_set 'LD_LIBRARY_PATH'
     end
 
+    class << self
+        attr_writer :shell_helpers
+        def shell_helpers?; !!@shell_helpers end
+    end
+    @shell_helpers = true
+
     # Create the env.sh script in +subdir+. In general, +subdir+ should be nil.
     def self.export_env_sh(subdir = nil)
         filename = if subdir
@@ -1265,6 +1323,20 @@ module Autoproj
             end
             variables.each do |var|
                 io.puts "export #{var}"
+            end
+
+            shell_dir = File.expand_path(File.join("..", "..", "shell"), File.dirname(__FILE__))
+            if Autoproj.shell_helpers? && shell = ENV['SHELL']
+                shell_kind = File.basename(shell)
+                if shell_kind =~ /^\w+$/
+                    shell_file = File.join(shell_dir, "autoproj_#{shell_kind}")
+                    if File.exists?(shell_file)
+                        Autoproj.progress
+                        Autoproj.progress "autodetected the shell to be #{shell_kind}, sourcing autoproj shell helpers"
+                        Autoproj.progress "add \"Autoproj.shell_helpers = false\" in autoproj/init.rb to disable"
+                        io.puts "source \"#{shell_file}\""
+                    end
+                end
             end
         end
     end
