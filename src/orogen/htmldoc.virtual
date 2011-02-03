@@ -13,5 +13,5 @@
     routed_title: API
     in_menu: false
     sort_info: 99999
-    url: /api/tools/orogen/index.html
+    url: /api/orogen/index.html
 
