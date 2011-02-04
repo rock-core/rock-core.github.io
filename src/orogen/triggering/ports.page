@@ -65,7 +65,12 @@ only 'image' is.
 
 C++ task implementation
 -----------------------
-In the C++ task implementation, the only needed change is the possibility to use
+In the C++ task implementation, the behaviour is slightly different between
+version up to RTT 2.X.
+
+Usage with RTT versions 1.X
+---------------------------
+Here, the only needed change is the possibility to use
 an overloaded version of the <tt>updateHook()</tt> call. As soon as the
 port\_driven statement is used, orogen will generate that other updateHook()
 instead of the standard one.
@@ -93,6 +98,23 @@ else if (isPortUpdated(_parameters))
 {
 }
 {coderay}
+
+
+Usage with RTT versions 2.X
+---------------------------
+For 2.X versions of the Orocos toolchain the <tt>updateHook</tt> won't be overloaded anymore.
+Instead, ports can be read, and have to be actively tested if a new data sample arrived. 
+
+{coderay:: cpp}
+if(_image.read(parameter_sample) == RTT::NewData)
+{
+}
+
+if(_parameters.read(parameter_sample) == RTT::NewData)
+{
+}
+{coderay}
+
 
 Deployment
 ----------
