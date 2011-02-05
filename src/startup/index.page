@@ -73,16 +73,15 @@ build the Rock toolchain. However:
    to ON in autoproj/overrides.rb
 </div>
 
-Maintaining a Rock installation uptodate
+Maintaining a Rock installation
 ----------------------------------
 
-Once it is installed, you can update it by going into the root of the
+Once Rock is installed, you can update your installation by going into the root of the
 installation folder and do
 
 autoproj update <br/>
 autoproj build
 {: .commandline}
 
-You might have to reload the env.sh script after that as well. Simply opening a
-new console will do the trick
+You might have to reload the env.sh script after that as well, to export updated environment variables into your current shell. Simply opening a new console will do the trick (given you have added sourcing env.sh to your .bashrc).
 
