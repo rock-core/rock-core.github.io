@@ -106,11 +106,13 @@ For 2.X versions of the Orocos toolchain the <tt>updateHook</tt> won't be overlo
 Instead, ports can be read, and have to be actively tested if a new data sample arrived. 
 
 {coderay:: cpp}
-if(_image.read(parameter_sample) == RTT::NewData)
+Camera::Frame frame;
+if(_image.read(frame) == RTT::NewData)
 {
 }
 
-if(_parameters.read(parameter_sample) == RTT::NewData)
+SIFT::Parameters parameters;
+if(_parameters.read(parameters) == RTT::NewData)
 {
 }
 {coderay}
