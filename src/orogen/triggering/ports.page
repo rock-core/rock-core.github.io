@@ -68,42 +68,7 @@ C++ task implementation
 In the C++ task implementation, the behaviour is slightly different between
 version up to RTT 2.X.
 
-Usage with RTT versions 1.X
----------------------------
-Here, the only needed change is the possibility to use
-an overloaded version of the <tt>updateHook()</tt> call. As soon as the
-port\_driven statement is used, orogen will generate that other updateHook()
-instead of the standard one.
-
-The overloaded updateHook() reads:
-
-{coderay:: cpp}
-void updateHook(std::vector<RTT::PortInterface*> const& updated_ports);
-{coderay}
-
-As usual, if you add a port\_driven statement to an existing task definition, you
-will have to define the other updateHook() yourself as orogen will not touch
-your code. You can copy/paste it from the relevant file in
-<tt>templates/tasks/</tt>.
-{.warning}
-
-The vector passed to overloaded updateHook() lists all input ports that have
-triggered this update. To test for a particular port, one must do:
-
-{coderay:: cpp}
-if (isPortUpdated(_image))
-{
-}
-else if (isPortUpdated(_parameters))
-{
-}
-{coderay}
-
-
-Usage with RTT versions 2.X
----------------------------
-For 2.X versions of the Orocos toolchain the <tt>updateHook</tt> won't be overloaded anymore.
-Instead, ports can be read, and have to be actively tested if a new data sample arrived. 
+In the updateHook(), you will have to read the ports and test if a new data sample arrived. 
 
 {coderay:: cpp}
 Camera::Frame frame;
