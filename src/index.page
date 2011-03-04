@@ -35,8 +35,36 @@ Don't hesitate ! Ask questions on the
 [orocos-users](http://lists.mech.kuleuven.be/mailman/listinfo/orocos-users)
 mailing list. If you are interested in the cutting-edge development of Rock, you
 can also join the
-[rock-dev](http://www.dfki.de/mailman/cgi-bin/listinfo/rock-dev) mailing list.
+[rock-dev](http://www.dfki.de/mailman/cgi-bin/listinfo/rock-dev) mailing list,
+and report bugs [on the Rock trac](http://rock.opendfki.de)
 </div>
+
+What is Rock ?
+--------------
+
+Rock is, in our opinion, _robot development done right_.
+
+Of course, we are a bit biased ;-)
+
+What rock's main 
+
+ * **sustainable systems**. The architecture and the tools in Rock are designed
+   with long-living systems in mind. In practice, it means that for us,
+   error detection, reporting and handling is key in any robotic architecture.
+ * **scaling up**. Provide the tools to be able to manage big systems with a
+   minimum fuss. But we don't require you to learn about these (complex) tools
+   right away: as soon as you use rock's component development tool, oroGen, you
+   have the guarantee that your components can be integrated from simple
+   scenarios using hardcoded C++ behaviours, to Ruby scripts up to the complete
+   system monitoring tools.
+ * **reusable codebase**. Even though we think that the rock toolchain is one of
+   the best out there, some other people might feel differently. And they might
+   be right. That's why, in rock, most of the functionality -- from control to
+   data display through data processing -- is implemented in a way that is
+   totally independent from rock's integration framework. That's right: just
+   pick our drivers, localization algorithms and control loops and integrate
+   them in **your** integration framework. You don't have to do anything on our
+   side, as the code is completely independent from the integration parts.
 
 Overview
 --------
