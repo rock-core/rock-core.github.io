@@ -34,7 +34,8 @@
       </div>
 
       <div class="site-name">
-          <p class="title">Rock: the Robot Construction Kit</p>
+          <p class="title">Rock</p>
+          <p class="subtitle">the Robot Construction Kit</p>
       </div>
 
       <div class="buffer"></div>
@@ -69,7 +70,11 @@
       </div>
 
       <div class="content2">
-          <div class="content2-pagetitle">{title: }</div>			
+          <% if context.node.node_info[:page].meta_info.has_key?('page_title') %>
+          <div class="content2-pagetitle"><%= context.node.node_info[:page].meta_info['page_title'] %></div>
+          <% else %>
+          <div class="content2-pagetitle">{title: }</div>
+          <% end %>
           <div class="content2-container line-box">
               <div class="content2-container-1col">
                   <% if false %>
