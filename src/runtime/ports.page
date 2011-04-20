@@ -32,13 +32,11 @@ use the :type option
 output_port.connect_to input_port, :type => :buffer, :size => 10
 {coderay}
 
-The following constraints apply:
-
- * both ports must have the same type
- * an input port can be part of only one connection
-
-If any of these constraints are not met, a ConnectionFailed exception is
+Both ports must have the same type, otherwise a ConnectionFailed exception is
 raised.
+
+Be reminded, that an input port can be part of multiple connections, i.e. multiple 
+output ports can be connected to the same input port.
 
 Disconnecting
 -------------

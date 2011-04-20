@@ -53,7 +53,8 @@ output_port('out', 'another_type').
 Input ports can be used in the C++ code in two ways, which one you want to use
 depends on what you actually want to do.
 
-* if you want to read all new samples that are on the input
+* if you want to read all new samples that are on the input (since an input port
+  can be connected to multiple output ports)
 
 {coderay:: cpp}
 // my_type is the declared type of the port
