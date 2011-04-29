@@ -14,7 +14,7 @@
    height="221.24001"
    id="svg2"
    version="1.1"
-   inkscape:version="0.47 r22583"
+   inkscape:version="0.48.1 r9760"
    sodipodi:docname="tools_overview.svg">
   <defs
      id="defs4">
@@ -234,8 +234,8 @@
     </g>
     <a
        xlink:href="../orogen/index.html"
-       target="_top"
-       id="a2899">
+       id="a2899"
+       target="_top">
       <g
          transform="translate(-44.142545,-37.375644)"
          id="g4249">
@@ -279,9 +279,9 @@
     </a>
     <a
        xlink:href="../autoproj/index.html"
-       target="_top"
+       id="a4559"
        transform="translate(-40.406102,-29.294424)"
-       id="a4559">
+       target="_top">
       <g
          transform="translate(-3.7364426,1.3052061)"
          id="g4233">
@@ -325,8 +325,8 @@
     </a>
     <a
        xlink:href="../runtime/index.html"
-       id="a2900"
-       target="_top">
+       target="_top"
+       id="a2900">
       <g
          transform="translate(-59.627065,-62.160959)"
          id="g4257">
@@ -375,9 +375,9 @@
     </a>
     <a
        xlink:href="../data_analysis/reading_logfiles.html"
-       id="a2930"
+       transform="translate(0,50)"
        target="_top"
-       transform="translate(0,50)">
+       id="a2930">
       <g
          transform="translate(-59.381863,-9.0710679)"
          id="g4315">
@@ -431,8 +431,8 @@
     </a>
     <a
        xlink:href="../data_analysis/logging.html"
-       id="a2920"
-       target="_top">
+       target="_top"
+       id="a2920">
       <g
          transform="translate(-40.406102,-28.801401)"
          id="g4461">
@@ -481,8 +481,8 @@
     </a>
     <a
        xlink:href="../system/index.html"
-       id="a2910"
-       target="_top">
+       target="_top"
+       id="a2910">
       <g
          transform="translate(-59.580884,-60.191757)"
          id="g4266">
@@ -564,8 +564,8 @@
          style="font-weight:bold">Data Display and Analysis</tspan></text>
     <a
        xlink:href="../data_analysis/replaying_logfiles.html"
-       id="a3161"
-       target="_top">
+       target="_top"
+       id="a3161">
       <g
          transform="translate(-59.20184,-8.627021)"
          id="g4315-1">
@@ -590,7 +590,7 @@
                y="107.75405"
                x="417.05212"
                id="tspan3775-2-4-4"
-               sodipodi:role="line">replay</tspan></text>
+               sodipodi:role="line">orocos.rb</tspan></text>
           <text
              id="text3777-0-4-9"
              y="93.570946"
@@ -617,9 +617,9 @@
     </a>
     <a
        xlink:href="../orogen/type_definitions.html"
-       transform="translate(0,35.357143)"
+       target="_top"
        id="a2899-4"
-       target="_top">
+       transform="translate(0,35.357143)">
       <g
          transform="translate(-44.142545,-37.375644)"
          id="g4249-5">
@@ -685,7 +685,7 @@
              id="tspan3775-2-4-4-9"
              x="417.05212"
              y="107.75405"
-             style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Arial;-inkscape-font-specification:Arial">robotui</tspan></text>
+             style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Arial;-inkscape-font-specification:Arial">vizkit</tspan></text>
         <text
            xml:space="preserve"
            style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-indent:0;text-align:start;text-decoration:none;line-height:normal;letter-spacing:normal;word-spacing:normal;text-transform:none;direction:ltr;block-progression:tb;writing-mode:lr-tb;text-anchor:start;color:#000000;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1px;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate;font-family:Arial;-inkscape-font-specification:Arial"
