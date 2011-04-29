@@ -42,29 +42,36 @@ and report bugs [on the Rock trac](http://rock.opendfki.de)
 What is Rock ?
 --------------
 
-Rock is, in our opinion, _robot development done right_.
+Rock is a software framework for the development of robotic systems. The
+underlying component model is based on the Orocos RTT (Real Time Toolkit). Rock
+provides all the tools required to set up and run high-performance and reliable
+robotic systems for wide variety of applications in research and industry. It
+contains a rich collection of ready to use drivers and modules for use in your
+own system, and can easily be extended by adding new components. The framework
+was developed to specifically address the following issues in existing
+solutions:
 
-Of course, we are a bit biased ;-)
+**sustainable systems**. The architecture and the tools in Rock are designed
+with long-living systems in mind. In practice, it means that for us, error
+detection, reporting and handling is key in any robotic architecture.
 
-Rock mains aim are at:
+**scalability**. Provide the tools to be able to manage big systems with
+a minimum fuss. But we don't require you to learn about these (complex)
+tools right away: as soon as you use rock's component development tool,
+oroGen, you have the guarantee that your components can be integrated
+from simple scenarios using hardcoded C++ behaviours, to Ruby scripts up
+to the complete system monitoring tools.
 
- * **sustainable systems**. The architecture and the tools in Rock are designed
-   with long-living systems in mind. In practice, it means that for us,
-   error detection, reporting and handling is key in any robotic architecture.
- * **scaling up**. Provide the tools to be able to manage big systems with a
-   minimum fuss. But we don't require you to learn about these (complex) tools
-   right away: as soon as you use rock's component development tool, oroGen, you
-   have the guarantee that your components can be integrated from simple
-   scenarios using hardcoded C++ behaviours, to Ruby scripts up to the complete
-   system monitoring tools.
- * **reusable codebase**. Even though we think that the rock toolchain is one of
-   the best out there, some other people might feel differently. And they might
-   be right. That's why, in rock, most of the functionality -- from control to
-   data display through data processing -- is implemented in a way that is
-   totally independent from rock's integration framework. That's right: just
-   pick our drivers, localization algorithms and control loops and integrate
-   them in **your** integration framework. You don't have to do anything on our
-   side, as the code is completely independent from the integration parts.
+**reusable codebase**. Even though we think that the rock toolchain
+is one of the best out there, some other people might feel
+differently. And they might be right. That's why, in rock, most of
+the functionality -- from control to data display through data
+processing -- is implemented in a way that is totally independent
+from rock's integration framework. That's right: just pick our
+drivers, localization algorithms and control loops and integrate
+them in **your** integration framework. You don't have to do
+anything on our side, as the code is completely independent from the
+integration parts. 
 
 Overview
 --------
