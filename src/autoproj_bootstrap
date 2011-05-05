@@ -196,7 +196,7 @@ module Autoproj
                     root_dir ||= "#{Autoproj.root_dir}/"
                     old = source_of(h).gsub(root_dir, '')
                     new = info.source_of(h).gsub(root_dir, '')
-                    Autoproj.warn("osdeps definition for #{h}, previously defined in #{old} overriden by #{new}")
+                    Autoproj.warn("osdeps definition for #{h}, previously defined in #{old} overridden by #{new}")
                 end
                 v2
             end
@@ -255,7 +255,7 @@ module Autoproj
         #
         # Examples: ['debian', ['sid', 'unstable']] or ['ubuntu', ['lucid lynx', '10.04']]
         def self.operating_system
-            if @operating_system
+            if !@operating_system.nil?
                 return @operating_system
             elsif Autoproj.has_config_key?('operating_system')
                 os = Autoproj.user_config('operating_system')
@@ -268,19 +268,28 @@ module Autoproj
                 end
             end
 
-            Autoproj.progress "  autodetecting the operating system"
-            name, versions = os_from_lsb
-            if name
-                if name != "debian"
-                    if File.exists?("/etc/debian_version")
-                        @operating_system = [[name, "debian"], versions]
-                    else
-                        @operating_system = [[name], versions]
+            if user_os = ENV['AUTOPROJ_OS']
+                if user_os.empty?
+                    @operating_system = false
+                else
+                    names, versions = user_os.split(':')
+                    @operating_system = [names.split(','), versions.split(',')]
+                end
+            else
+                Autoproj.progress "  autodetecting the operating system"
+                name, versions = os_from_lsb
+                if name
+                    if name != "debian"
+                        if File.exists?("/etc/debian_version")
+                            @operating_system = [[name, "debian"], versions]
+                        else
+                            @operating_system = [[name], versions]
+                        end
                     end
                 end
             end
 
-            if !@operating_system
+            if @operating_system.nil?
                 # Need to do some heuristics unfortunately
                 @operating_system =
                     if File.exists?('/etc/debian_version')
@@ -334,12 +343,27 @@ module Autoproj
             if !@dpkg_installed_packages
                 @dpkg_installed_packages = Set.new
                 dpkg_status = File.readlines('/var/lib/dpkg/status')
-                dpkg_status.grep(/^(Package|Status)/).
-                    each_slice(2) do |package, status|
-                        if status.chomp == "Status: install ok installed"
-                            @dpkg_installed_packages << package.split[1].chomp
+
+                current_packages = []
+                is_installed = false
+                dpkg_status.each do |line|
+                    line = line.chomp
+                    if line == ""
+                        if is_installed
+                            current_packages.each do |pkg|
+                                @dpkg_installed_packages << pkg
+                            end
+                            current_packages.clear
+                            is_installed = false
                         end
+                    elsif line =~ /Package: (.*)$/
+                        current_packages << $1
+                    elsif line =~ /Provides: (.*)$/
+                        current_packages.concat($1.split(',').map(&:strip))
+                    elsif line == "Status: install ok installed"
+                        is_installed = true
                     end
+                end
             end
             
             if package_name =~ /^(\w[a-z0-9+-.]+)/
@@ -408,6 +432,10 @@ fi
             dep_def = definitions[name]
             if !dep_def
                 return NO_PACKAGE
+            end
+
+            if dep_def == 'ignore'
+                return IGNORE
             end
 
             if !os_names
@@ -699,6 +727,8 @@ Finally, OS dependencies can be installed by calling "autoproj osdeps"
 with the corresponding option (--all, --ruby, --os or --none). Calling
 "autoproj osdeps" without arguments will also give you information as
 to what you should install to compile the software successfully.
+
+So, what do you want ? (ruby or none)
             EOT
             message = [ "Which prepackaged software (a.k.a. 'osdeps') should autoproj install automatically (ruby, none) ?", long_doc.strip ]
 
@@ -736,6 +766,8 @@ an autoproj operation with the --reconfigure option (e.g. autoproj update
 
 Finally, OS dependencies can be installed by calling "autoproj osdeps"
 with the corresponding option (--all, --ruby, --os or --none).
+
+So, what do you want ? (all, ruby, os or none)
             EOT
             message = [ "Which prepackaged software (a.k.a. 'osdeps') should autoproj install automatically (all, ruby, os, none) ?", long_doc.strip ]
 
@@ -825,7 +857,7 @@ with the corresponding option (--all, --ruby, --os or --none).
         def osdeps_interaction_unknown_os(osdeps)
             puts <<-EOMSG
   #{Autoproj.color("The build process requires some other software packages to be installed on our operating system", :bold)}
-  #{Autoproj.color("If they are already installed, simply ignore this message", :red)}"
+  #{Autoproj.color("If they are already installed, simply ignore this message", :red)}
   
     #{osdeps.join("\n    ")}
 
@@ -909,7 +941,7 @@ with the corresponding option (--all, --ruby, --os or --none).
       #{cmdlines.map { |c| c.join(" ") }.join("\n      ")}
     
     Autoproj expects these Gems to be installed in #{Autoproj.gem_home} This can
-    be overriden by setting the AUTOPROJ_GEM_HOME environment variable manually
+    be overridden by setting the AUTOPROJ_GEM_HOME environment variable manually
 
             EOMSG
             print "    #{Autoproj.color("Press ENTER to continue ", :bold)}"
@@ -1495,7 +1527,12 @@ ENV['AUTOPROJ_OSDEPS_MODE'] = osdeps_mode
 Autobuild.programs['gem'] = nil
 Autoproj::OSDependencies.autodetect_ruby
 
-osdeps_management = Autoproj::OSDependencies.new(YAML.load(DEFS))
+osdeps_management = 
+    if ENV['AUTOPROJ_DEFAULT_OSDEPS']
+        Autoproj::OSDependencies.load(ENV['AUTOPROJ_DEFAULT_OSDEPS'])
+    else
+        Autoproj::OSDependencies.new(YAML.load(DEFS))
+    end
 osdeps_management.silent = false
 
 begin
