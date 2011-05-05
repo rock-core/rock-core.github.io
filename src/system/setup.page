@@ -26,6 +26,8 @@ Setting up a Roby controller
 Roby.app.using 'orocos'
 {coderay}
 
+   at the end of the file.
+
 The role of task contexts and deployments
 -----------------------------------------
 As you may already know, there are two parts in the development of RTT/oroGen
@@ -56,7 +58,7 @@ task specification. The bottom line is that, for each task context model that
 the oroGen specification contains, Roby will create a corresponding model for
 its own purposes.
 
-The model is accessible as Orocos::RobyPlugin::OrogenProjectName::TaskContextName
+The model is accessible as Orocos::OrogenProjectName::TaskContextName
 
 Let's consider the Xsens IMU oroGen component definition:
 
@@ -68,9 +70,9 @@ task_context 'Task' do
 end
 {coderay}
 
-This definition will, when loaded in Roby, generate a
-Orocos::RobyPlugin::XsensImu::Task task model. These models will be used later
-in this guide to refer to these task contexts and to add functionality to them.
+This definition will, when loaded in Roby, generate a Orocos::XsensImu::Task
+class. These classes will be used later in this guide to refer to these task
+contexts and to add functionality to them.
 
 Deployments in Roby
 -------------------
@@ -91,6 +93,9 @@ Where "xsens_imu" and "left_camera" are the names given to oroGen's
 deployment "xsens_imu" do
   task "xsens_imu", "xsens_imu::Task"
 end
+deployment "left_camera" do
+  task "left_camera", "firewire_camera::Task"
+end
 {coderay}
 
 Alternatively, a preferred way is to *never* define system-wide deployments in
@@ -99,8 +104,8 @@ xsens_imu deployment in the xsens_imu project). This is because two different
 robots would have different deployment requirements.
 
 Instead, a better practice is to create a single oroGen project in which all the
-system's deployments (for instance deployment/asguard for our DFKI asguard
-robot). Then, all the deployments from this single oroGen project can be
+system's deployments (for instance asguard/orogen/deployment for our DFKI
+asguard robot). Then, all the deployments from this single oroGen project can be
 imported at once with
 
 {coderay:: ruby}

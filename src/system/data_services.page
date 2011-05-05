@@ -26,7 +26,7 @@ A data service is declared in a system model file with
 
 {coderay:: ruby}
 data_service 'Imu' do
-    output_port 'attitude_samples', '/wrappers/samples/RigidBodyState'
+    output_port 'attitude_samples', '/base/samples/RigidBodyState'
 end
 {coderay}
 
@@ -39,7 +39,7 @@ files (i.e. composition definitions), in place of an actual component:
 using_task_library 'attitude_servoing'
 using_task_library 'dynamixel'
 data_service 'Imu' do
-  output_port 'attitude_samples', '/wrappers/samples/RigidBodyState'
+  output_port 'attitude_samples', '/base/samples/RigidBodyState'
 end
 composition 'PTUStabilization' do
   add Imu
@@ -102,10 +102,12 @@ In tasks/compositions/attitude_servoing.rb:
 {coderay:: ruby}
 using_task_library 'attitude_servoing'
 using_task_library 'dynamixel'
-data_service 'Imu' do
-  output_port 'attitude_samples', '/wrappers/samples/RigidBodyState'
+data_service_type 'Imu' do
+  output_port 'attitude_samples', '/base/samples/RigidBodyState'
 end
-device_model 'XsensImu', :provides => 'Imu'
+device_type 'XsensImu' do
+  provides Srv::Imu
+end
 
 composition 'PTUStabilization' do
   add Imu
@@ -119,7 +121,11 @@ In tut.rb:
 
 {coderay:: ruby}
 class XsensImu::Task
-  driver_for 'xsens_imu'
+  driver_for Dev::XsensImu
 end
 {coderay}
+
+Note that one does not need to use a string in the driver_for statement anymore,
+as the device type has been defined separately using the device_type statement
+in attitude_servoing.rb
 

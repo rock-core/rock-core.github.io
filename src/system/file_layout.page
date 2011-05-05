@@ -31,10 +31,9 @@ image_processing.rb).
 Third, the **task context definitions** are stored on a per-orogen-project
 basis. What happens is that, each time an oroGen project is loaded (because the
 its task context definitions are needed), Orocos/Roby plugin will dynamically
-load a file named likewise in tasks/components. E.g., when the xsens_imu
-component is loaded, then a file named tasks/components/xsens_imu.rb will be
+load a file named likewise in tasks/orogen. E.g., when the xsens_imu
+component is loaded, then a file named tasks/orogen/xsens_imu.rb will be
 loaded if it exists.
-
 
 Robot definition file
 ---------------------

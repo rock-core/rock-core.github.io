@@ -38,11 +38,15 @@ composition 'PTUStabilization' do
 end
 {coderay}
 
+which leads to the availability of a Compositions::PTUStabilization class that
+represents the composition model. It can be shortened with
+Cmp::PTUStabilization.
+
 The first using_task_library statements requires the loading of the oroGen
 project which define the task contexts. This is needed so that Orocos/Roby knows
 about the task contexts we want to use.
 
-Compositions are then defines by
+Compositions are then defined by
 
 {coderay:: ruby}
 composition _composition_name_ do
@@ -53,6 +57,12 @@ end
 The first three <tt>add</tt> statements declare what the composition is made of:
 one XsensImu::Task (which will provide the orientation), one Dynamixel::Task
 (which commands the tilt axis) and one AttitudeServoing::Task to do the control.
+
+**Note**: Ruby requires class and namespace names to start with an uppercase
+letter, and it is common to have them written as CamelCase. To follow this
+custom, the orocos/roby plugin will convert the orogen project and task name to
+UpperCamelCase, for instance: xsens_imu::Task (orogen) => XsensImu::Task (roby)
+{: .block}
 
 Then, the "autoconnect" statement declares that the ports of these three
 components should be automatically connected. What will happen is that the Roby

@@ -21,9 +21,7 @@ The goal is to be able to specify what devices the PTUStabilization should use.
 After this page, we will therefore be able to specify our deployment with
 
 {coderay:: ruby}
-add PTUStabilization,
-    'imu'   => 'left_imu',
-    'servo' => 'left_servo'
+add(PTUStabilization).use('left_imu', 'left_servo')
 {coderay}
 
 Which can be read as "I want to have a PTUStabilization service which uses the
@@ -33,9 +31,7 @@ Then, assuming that two identical setups are present in the system you could
 servo both sides by having in addition to the declaration above:
 
 {coderay:: ruby}
-add PTUStabilization,
-    'imu'   => 'right_imu',
-    'servo' => 'right_servo'
+add(PTUStabilization).use('right_imu', 'right_servo')
 {coderay}
 
 Robot description files
@@ -54,7 +50,7 @@ definitions in tut.rb:
 {coderay:: ruby}
 # Roby-level representation of the XsensImu::Task RTT task context
 class XsensImu::Task
-  driver_for 'xsens_imu'
+  driver_for 'XsensImu'
   def configure
     orogen_task.port = "/dev/ttyS0"
   end
@@ -62,7 +58,7 @@ end
 
 # Roby-level representation of the Dynamixel::Task RTT task context
 class Dynamixel::Task
-  driver_for 'dynamixel'
+  driver_for 'Dynamixel'
   def configure
     orogen_task.device = "/dev/ttyS1"
   end
@@ -89,9 +85,9 @@ device files:
 
 {coderay:: ruby}
 Robot.devices do
-  device(Dynamixel, :as => 'left_servo').
+  device(Dev::Dynamixel, :as => 'left_servo').
     device_id('/dev/ttyS0')
-  device(XsensImu,  :as => 'left_imu').
+  device(Dev::XsensImu,  :as => 'left_imu').
     device_id('/dev/ttyS1')
 end
 {coderay}
@@ -100,7 +96,7 @@ The tasks can then access this definition by using the robot_device method:
 
 {coderay:: ruby}
 class Dynamixel::Task
-  driver_for 'dynamixel'
+  driver_for 'Dynamixel'
   def configure
     orogen_task.device = robot_device.device_id
   end
