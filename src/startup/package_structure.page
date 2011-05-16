@@ -18,6 +18,7 @@ The Rock packages are split into 6 main categories
 * **control** packages that are related to motion control
 * **planning** packages that are related to path and task planning
 * **toolchain** packages that are related to the toolchain
+* **image_processing** packages that are related to image processing
 
 On gitorious, each category has its own project, called rock-NAME (for instance,
 rock-drivers for the drivers).
@@ -25,6 +26,19 @@ rock-drivers for the drivers).
 When installed, packages go into folders that correspond to their main category.
 Moreover, the oroGen-independent packages are installed directly under that
 folder, while the oroGen components are installed in an 'orogen' subfolder.
+
+For instance, the driver libraries are stored in drivers/ and the driver oroGen
+components in drivers/orogen/
+
+ * no other subdirectories other than "orogen" can be created under the main
+   categories
+ * opening new categories is indeed possible but **must** be discussed first on
+   the mailing list.
+
+Naming
+------
+
+ * camel_case for all path components (categories and package names)
 
 Libraries and oroGen components
 -------------------------------
