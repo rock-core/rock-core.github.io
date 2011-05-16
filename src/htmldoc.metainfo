@@ -26,3 +26,11 @@ data_analysis:
     title: Data Analysis
     sort_info: 250
 
+package_directory:
+    title: Package Directory
+    sort_info: 500
+
+stream_aligner:
+    title: Stream Aligner
+    sort_info: 1000
+

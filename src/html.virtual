@@ -1,7 +1,7 @@
 \--- !omap
 - package_directory/index.html:
     in_menu: true
-    sort_info: 99999
+    sort_info: 500
     url: /package_directory/index.html
     title: Package Directory
 

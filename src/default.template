@@ -64,7 +64,10 @@
 
           <div class="nav3">
               <ul><li class="title">Rock</li>
-                  {menu: {max_levels: 1, show_current_subtree_only: true, nested: true, used_nodes: files}}
+                  {menu: {max_levels: 1, show_current_subtree_only: true, nested: true, used_nodes: files, range_end: 999}}
+              </ul>
+              <ul><li class="title">Additional Core Functionality</li>
+                  {menu: {max_levels: 1, show_current_subtree_only: true, nested: true, used_nodes: files, range_start: 1000}}
               </ul>
           </div>
       </div>
