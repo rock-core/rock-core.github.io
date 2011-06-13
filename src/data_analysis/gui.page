@@ -95,7 +95,7 @@ Log files are very import especially if it is expensive to run the software on
 the robot in the real environment like it is very much the case for example in
 underwater robotics. Therefore it is the goal of Rock to provide the developer
 with tools which doing all the hard work to replay logged date to all his
-components without changing his code more than necessary. Therefore it is
+components without changing his code more than necessary. For that reason it is
 possible to use the same gui for displaying logged data than it is used to
 display live data.
 
