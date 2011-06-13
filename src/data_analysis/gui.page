@@ -287,7 +287,7 @@ Vizkit can easily extended with custom c++ qt widgets. To do so follow the steps
  * write the custom qt c++ widget
  * all setter and getter must be implemented as slots or signals with qt data types as parameters
  * implement the QDesignerCustomWidgetInterface for the widget
- * install widget as shared library (install/lib/qt/designer/)
+ * install the widget as shared library (install/lib/qt/designer/)
  * write a ruby script to make the widget usable for Vizkit and require it after Vizkit is loaded
 
 Example: ruby script which integrates a c++ widget into vizkit
