@@ -1,0 +1,88 @@
+---
+title: Rock Tutorial 2
+sort_info: 2
+---
+Tutorial Info
+-----------
+
+This tutorial will show you a bit more of the functionality of orocos tasks and how they work together.
+In the last tutorial we built a task which visualizes a rock-like robot. 
+Now we will create another task to translate a motion command to a position and orientation. So we can use a motion command to control our robot.
+In the next tutorial we will extend this tutorial.
+
+
+Implementation
+-----------
+
+We have to define a new task context in our .orogen file.
+{coderay:: ruby}
+task_context "RockTutorialControl" do
+   # Declare input port motion_command
+   input_port "motion_command", "base::MotionCommand2D"
+   # Declare output port pose
+   output_port "pose", "base::Pose"
+end
+{coderay}
+The task RockTutorialControl has an input port called 'motion_command' of type base::MotionCommand2D and an output port called 'pose' of type base::Pose. The type base::MotionCommand2D contains a translation and a rotation of type double. The translation is in m/s and the rotation in rad/s. Of course the pose output port of this task and the input port of the other task (RockTutorialVisualization) will be connected later on. This task will compute a new position and orientation each time the update hook will triggered, given the translation and rotation speed it receives on its input port. The latest motion command will be used if there is no new one.
+The update hook of this task will triggered periodically. That will be defined in the same .orogen file but in the deployment. 
+{coderay:: ruby}
+deployment "rock_tutorial" do
+    task("rock_tutorial_visualization", "RockTutorialVisualization")
+
+    # Declares task as periodic, with a period of 10ms
+    task("rock_tutorial_control", "RockTutorialControl").
+        periodic(0.01)
+end
+{coderay}
+We add the task to the same deployment we already have. And make it periodic with a interval of 10 ms.
+So we will get one deployment named 'rock_tutorial' that contains both tasks.
+
+We won't discuss the c++ implementation of the new task here, because this could be to much. But you may have a look on the implementation in 'tutorials/orogen/rock_tutorial/tasks'. From now on you could just use the orocos component rock_tutorial in 'tutorials/orogen' because we are done with the implementation part for this component. 
+
+
+Run It
+----------
+
+This is a very simple test that will show the rock visualization and move the robot, but without any option to change the speed of translation or rotation while running. It can be found in tutorials/orogen/rock_tutorial/scripts/rockTutorial2.rb
+
+{coderay:: ruby}
+require 'orocos'
+require 'readline'
+include Orocos
+
+## Initialize orocos ##
+Orocos.initialize
+
+## Execute the deployment 'rock_tutorial' ##
+Orocos.run 'rock_tutorial' do
+
+## Get a specific task context ##
+rockControl = TaskContext.get 'rock_tutorial_control'
+rockVisualization = TaskContext.get 'rock_tutorial_visualization'
+
+## Connect the ports ##
+rockControl.pose.connect_to rockVisualization.pose
+
+## Create a sample writer for a port ##
+sampleWriter = rockControl.motion_command.writer
+
+## Start the tasks ##
+rockControl.start
+rockVisualization.start
+
+## Write motion command sample ##
+sample = sampleWriter.new_sample
+sample.translation = 1
+sample.rotation = 0.5
+sampleWriter.write(sample)
+
+Readline::readline('Press enter to exit')
+end
+{coderay}
+
+At first we will run our deployment 'rock_tutorial'. Then we can get our tasks using 'TaskContext.get'. Now we connect the output port of the task rock_tutorial_control with the input port of the task rock_tutorial_visualization. For the input port of the rock_tutorial_control, we actually have no task, so we will define a writer. Next we start both tasks, this will call the startHook() in each task. The next lines show you how to use the writer.
+We create a new sample, then we set the translation and rotation and then we write it to the port. The translation is in m/s and the rotation in rad/s.
+Since this is the only sample the task rock_tutorial_control will receive in this case, it will hold the same speed all the time.
+The Readline will be used here in order that the program won't terminate immediately.
+
+In the following tutorial we will add the possibility to control the robot by a joystick( or the keyboard).

@@ -1,0 +1,180 @@
+---
+title: Rock Tutorial 1
+sort_info: 1
+---
+Tutorial Info
+-----------
+
+This tutorial will show you how to create an orocos task and how it interacts with a library. We will use this task to visualize a rock-like robot.
+In the next tutorial we will extend this tutorial.
+
+Some Basics
+-----------
+
+We distinguish between the orocos compenents and the libraries. 
+The libraries hold the functionality and should be implemented in a way that is independent from the framework.
+The orocos part provides an integrated orocos component for the libraries. Each orocos component provides one or more tasks, 
+which could be stored in a deployment.
+
+Implementation
+-----------
+
+You don't have to execute the following steps by yourself, the result can also be found in 'tutorials/orogen/rock_tutorial'.
+
+### Create a new orocos component
+
+To create a new orocos component we use the command 'rock-create-orogen'. All orocos components should be created inside a separated folder called 'orogen' placed in the same folder as the libraries from which we abstract. In our case the libraries and the 'orogen' folder are placed in the 'tutorials' folder.
+{coderay:: sh}
+rock-create-orogen new_rock_tutorial
+{coderay}
+
+### Define tasks and deployments
+
+Now there is a new folder named 'new_rock_tutorial'. Inside we can find two files: manifest.xml and new_rock_tutorial.orogen.
+In the manifest.xml we have to insert dependencies to libraries or orocos components inside the framework and dependencies to libraries on your operation-system. In our case we have two dependencies:
+{coderay:: xml}
+  <depend package="tutorials/rock_tutorial" />
+  <depend package="base/types" />
+{coderay}
+The first package is the library we want to use and the second are the base types of the framework we also want to use.
+
+In the new_rock_tutorial.orogen we will define the orocos tasks and the deployments. In the orogen file is already a demo task and a demo deployment defined. For this tutorial it is recommend to replace them by our definitions.
+We define a task named RockTutorialVisualization:
+{coderay:: ruby}
+task_context "RockTutorialVisualization" do
+   # Declare input port pose
+   input_port "pose", "base::Pose"
+   # The update hook will be called if the input port 'pose' gets new data
+   port_driven "pose"
+end
+{coderay}
+The task RockTutorialVisualization has an input port called 'pose' of type base::Pose. A base::Pose type contains both position and orientation.
+Because it's 'port_driven', the update hook will be called if the input port 'pose' gets a new data sample. We are using a base type here, so we have to add the line {coderay:: ruby}import_types_from "base"{coderay} to the orogen file too.
+Next we define a deployment which contains the task:
+{coderay:: ruby}
+deployment "rock_tutorial" do
+    task("rock_tutorial_visualization", "RockTutorialVisualization")
+end
+{coderay}
+Because we want to use an existing library in our task, we have to add two more lines at the beginning of the orogen file:
+{coderay:: ruby}
+using_library "rock_tutorial-viz"
+using_library "vizkit"
+{coderay}
+Now we are done with the definitions and we can build the orocos component for the first time. Use:
+{coderay:: sh}
+autoproj build .
+{coderay}
+
+If you get an error here it must be something wrong in the syntax, then please compare your files with the files in 'tutorials/orogen/rock_tutorial'.
+
+### Writing the task
+With the execution of the last command several new files have been created. For instance a header and a class file for our task RockTutorialVisualization in the tasks folder. You have to uncomment the methods you want to define in your task. (startHook, updateHook, etc.)
+(More information about this methods could be found [here](../orogen/task_states.html))
+
+If you use your own orocos component please have a look in the existing files 'tutorials/orogen/rock_tutorial/tasks/RockTutorialVisualization.hpp/.cpp'. Because we won't discuss each following step in detail.
+
+In the header file of the task we will add three includes
+{coderay:: c++}
+#include <vizkit/QVizkitWidget.hpp>
+#include <vizkit/QtThreadedWidget.hpp>
+#include <rock_tutorial/RockVisualization.hpp>
+{coderay}
+and three declarations for the Vizkit plugin library we want to use.
+{coderay:: c++}
+QtThreadedWidget<vizkit::QVizkitWidget > app;
+vizkit::QVizkitWidget* vizkitWidget;
+vizkit::RockVisualization* rockVizPlugin;
+{coderay}
+
+We will use the startHook, the updateHook, the stopHook and the cleanHook. This methods are part of the RTT state machine, so we define them in the following way:
+{coderay:: c++}
+bool RockTutorialVisualization::startHook()
+{
+    // start thread containing the vizkit widget
+    app.start();
+    vizkitWidget = app.getWidget();
+    // add a new visualization to the vizkit widget
+    rockVizPlugin = new vizkit::RockVisualization();
+    vizkitWidget->addDataHandler(rockVizPlugin);
+    return true;
+}
+{coderay}
+The Vizkit plugin runs in his own thread context, we are using the startHook here to start this thread, instantiate the plugin add attach it to the Vizkit widget window.
+{coderay:: c++}
+void RockTutorialVisualization::updateHook()
+{
+    // read new pose if available
+    base::Pose pose;
+    if(_pose.readNewest(pose) == RTT::NewData)
+    {
+        // transmit the new pose to the visualization
+        rockVizPlugin->updateData(pose);
+    }
+}
+{coderay}
+Every time the update hook gets triggered, it takes the newest data on the input port and transmit it to the Vizkit plugin.
+{coderay:: c++}
+void RockTutorialVisualization::stopHook()
+{
+    // remove the plugin and stop the thread
+    vizkitWidget->removeDataHandler(rockVizPlugin);
+    app.stop();
+}
+{coderay}
+The stopHook is used to detach the plugin from the Vizkit widget window and to stop the Vizkit thread context.
+{coderay:: c++}
+void RockTutorialVisualization::cleanupHook()
+{
+    // delete the visualization plugin
+    if (rockVizPlugin)
+    {
+        delete rockVizPlugin;
+        rockVizPlugin = 0;
+    }
+}
+{coderay}
+Finally we use the cleanupHook to delete the Vizkit plugin we have created in the startHook.
+
+Now we are done with implementation of the first task. Now you have to run the build command from above again.
+
+
+The Vizkit Plugin
+-----------
+
+The Vizkit plugin named RockVisualization is defined as a library named rock_tutorial in the tutorial folder.
+The plugin inherits from vizkit::VizPlugin< base::Pose >, so it has a method called updateData with the attribute base::Pose. 
+The task RockTutorialVisualization uses this method to update the internal state of this plugin, in this case base::Pose.
+(More about this topic can be found [here](../data_analysis/data_visualization.html))
+
+
+Run it
+-----------
+
+Now we should run it to see if it works. You can execute the following lines in a seperate ruby file or just in the irb (Interactive Ruby Shell).
+The script can also be found in 'tutorials/orogen/rock_tutorial/scripts/rockTutorial1.rb'
+
+{coderay:: ruby}
+require 'orocos'
+require 'readline'
+include Orocos
+
+## Initialize orocos ##
+Orocos.initialize
+
+## Execute the deployment 'rock_tutorial' ##
+Orocos.run 'rock_tutorial' do
+
+## Get a specific task context ##
+rockVisualization = TaskContext.get 'rock_tutorial_visualization'
+
+## Start the tasks ##
+rockVisualization.start
+
+Readline::readline('Press enter to exit')
+end
+{coderay}
+At first we will run our deployment 'rock_tutorial'. Then we can get our tasks using 'TaskContext.get'. Next we start the task, this will call the startHook() in the task. The Readline will be used here in order that the program won't terminate immediately.
+
+What you can see after executing this script is a rock-like robot inside the Vizkit GUI.
+If you want to roll the rock visit the next tutorial.
