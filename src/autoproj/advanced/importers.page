@@ -108,6 +108,34 @@ Note that the repository *must* be accessible without any password, and the
 import will fail if a password was needed.
 {: .warning}
 
+CVS
+----------
+
+The general setup for CVS imports is:
+
+{coderay:: yaml}
+version_control:
+    package_name:
+        type: cvs
+        url: cvs_root
+        module: modulename
+{coderay}
+
+Note that the repository *must* be accessible without any password, and the
+import will fail if a password was needed.
+{: .warning}
+
+In case a :pserver: is used, it must be quoted as YAML would interpret it
+the wrong way otherwise:
+
+{coderay:: yaml}
+version_control:
+    package_name:
+        type: cvs
+        url: ":pserver:cvs@blabla:/"
+        module: modulename
+{coderay}
+
 Tar archives
 ------------
 
