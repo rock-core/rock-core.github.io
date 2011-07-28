@@ -38,7 +38,7 @@ components in drivers/orogen/
 Naming
 ------
 
- * camel_case for all path components (categories and package names)
+ * snake_case for all path components (categories and package names)
 
 Libraries and oroGen components
 -------------------------------
