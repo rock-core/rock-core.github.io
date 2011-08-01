@@ -291,7 +291,7 @@ ul.linklist-indent {margin: -0.3em 0px 0.5em 0px; padding: 0px 0px 0px 10px; lis
 /*--------------------*/
 /* 6.3 - Footer Area  */
 /*--------------------*/
-.footer {overflow: hidden; clear: both; width: 770px; height: 3.0em; margin: 0px; padding: 0.5em 0px 0.5em 0px; border-top: solid 1px rgb(125,125,125); background-color: rgb(128,161,202); color: rgb(255,255,255); font-size: 1.0em;}
+.footer {overflow: hidden; clear: both; width: 770px; height: 1.5em; margin: 0px; padding: 0.5em 0px 0.5em 0px; border-top: solid 1px rgb(125,125,125); background-color: rgb(128,161,202); color: rgb(255,255,255); font-size: 1.0em;}
 .footer p {margin: 0px; padding: 0px; text-align: center; line-height: 1.3em; font-size: 110%;}
 
 /*-------------------*/
