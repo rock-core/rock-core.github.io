@@ -55,19 +55,19 @@
       <div class="buffer"></div>
 
       <div class="leftnav">
+          <% if !page_is_root %>
           <div class="nav3">
-              <% if !page_is_root %>
               <ul><li class="title"><%= root_page['title'] %></li>
                   {menu: {start_level: 2, max_levels: 4, show_current_subtree_only: true, nested: true, used_nodes: files, range_end: 999}}
               </ul>
               <ul><li class="title">Additional Core Functionality</li>
                   {menu: {start_level: 2, max_levels: 4, show_current_subtree_only: true, nested: true, used_nodes: files, range_start: 1000}}
               </ul>
-              <% end %>
           </div>
+          <% end %>
       </div>
 
-      <div class="content2">
+      <div class="content2" <% if page_is_root %>style="margin-left: 120px;"<% end %>>
           <% if context.node.node_info[:page].meta_info.has_key?('page_title') %>
           <div class="content2-pagetitle"><%= context.node.node_info[:page].meta_info['page_title'] %></div>
           <% else %>
