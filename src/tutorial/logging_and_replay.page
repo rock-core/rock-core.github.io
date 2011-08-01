@@ -1,0 +1,120 @@
+---
+title: Logging And Replay
+sort_info: 10
+---
+
+Abstract
+-----------
+In this tutorial you will learn how to log data which are produced by orogen tasks and how to replay them into 
+the orocos framework.
+
+Logging Data
+-----------
+**Adding a default logger:** To log data produced by an orocos task you have to add a logger to a deployment. This 
+is done by the ruby method *add_default_logger*. In this case a logger is added to the producer_deployment which was 
+introduced in the tutorial basics.
+
+{coderay:: ruby}
+deployment "producer_deployment" do 
+    producer = task("producer","Task")
+    add_default_logger
+end
+{coderay}
+
+**Activating logging:** Now you can activate the logging by calling the ruby
+method *log_all* from your ruby start script. If you only want to log the
+ports or the properties of the tasks you can also calling the methods
+*log_all_ports* or *log_all_configuration* instead.
+
+{coderay:: ruby}
+Orocos.run "producer_deployment","consumer_deployment" do 
+    log_all
+    producer = Orocos::TaskContext.get "producer"
+    consumer = Orocos::TaskContext.get "consumer"
+
+    producer.msg.connect_to consumer.msg
+
+    producer.start
+    consumer.start
+
+    while true
+        sleep 0.1
+    end
+end
+{coderay}
+
+All the logged data go by default to log files called deployment_name.x.log in
+the current working directory. In this case all the logged data go to  
+producer_deployment.0.log.
+
+rock-display
+-----------
+Rock is shipped with is a command line tool for displaying the content of log
+files. Therefore if you want to look into a log file without replaying it to
+the framework you can call *rock-display log_file.x.log* to get a graphical
+overview of the logged data.  By double clicking on a port name Vizkit is
+trying to find a widget plugin to display the data. If it cannot find one
+vizkit is using a generic struct viewer widget to display the content of the
+sample. To display the log file recorded above call:  
+  
+*rock-display producer_deployment.0.log*
+
+Replaying Data
+-----------
+Replaying data into the framework is very convenient if you want to test your
+algorithm with a specific data set or if the producer is not available all the
+time. In this case the data producer of the tutorial basics is substituted by a
+log file which was recorded in the section above.
+
+{coderay:: ruby}
+#library for displaying data
+require 'vizkit'
+
+#load log file 
+log = Orocos::Log::Replay.open("producer_deployment.0.log")
+
+#now you can access all logged data by 
+#addressing them by their task and port name
+#log.task_name.port_name
+
+#start deployment
+Orocos.run "consumer_deployment" do 
+    consumer = Orocos::TaskContext.get "consumer"
+    log.producer.msg.connect_to consumer.msg
+    consumer.start
+
+    #open control widget and start replay
+    Vizkit.control log
+    Vizkit.exec
+end
+{coderay}
+
+You can also redirect all log data to code blocks if you want to process the data in the ruby script.
+
+{coderay:: ruby}
+require 'vizkit'
+
+log = Orocos::Log::Replay.open("producer_deployment.0.log")
+Orocos.run "consumer_deployment" do 
+    consumer = Orocos::TaskContext.get "consumer"
+    log.producer.msg.connect_to consumer.msg
+    consumer.start
+
+    #redirect data to a code block
+    log.producer.msg.connect_to |sample,_| do 
+        puts sample.time
+        sample             #you have to return the sample here
+    end
+
+    Vizkit.control log
+    Vizkit.exec
+end
+{coderay}
+
+Summary
+-----------
+In this tutorial you learned how to activate logging and how to replay
+the logged data to an orocos task. In the next tutorial you will learn 
+how to display live and logged data with the help of Qt widgets.
+
+
