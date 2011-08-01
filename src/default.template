@@ -67,7 +67,7 @@
           <% end %>
       </div>
 
-      <div class="content2" <% if page_is_root %>style="margin-left: 120px;"<% end %>>
+      <div class="content2" <% if page_is_root %>style="margin-left: 110px;"<% end %>>
           <% if context.node.node_info[:page].meta_info.has_key?('page_title') %>
           <div class="content2-pagetitle"><%= context.node.node_info[:page].meta_info['page_title'] %></div>
           <% else %>
