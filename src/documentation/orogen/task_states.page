@@ -56,10 +56,10 @@ There are two points that need to be considered when writing an task context in
 oroGen:
 
 1. from which state should my component start ? It can start from either the
-   Stopped or PreOperational state [more](/orogen/task_states.html#needs_configuration).
+   Stopped or PreOperational state [more](#needs_configuration).
 2. the ability to extend the default state machine by defining new sub-states.
    This is a great way to provide a fine-grained interface to monitor a task
-   context's status [more](/orogen/task_states.html#extended_states)
+   context's status [more](#extended_states)
 
 Components that need configuration          {#needs_configuration}
 ----------------

@@ -15,25 +15,31 @@
    <title>The Robot Construction Kit</title>
 </head>
 
+<% # Get the root for this node %>
+<% root_page = context.node %>
+<% page_is_root = (root_page.parent == root_page.tree.root) %>
+<% if root_page.parent != root_page.tree.root %>
+<%   while root_page.parent != root_page.tree.root %>
+<%     root_page = root_page.parent %>
+<%   end %>
+<% end %>
+
 <body>
   <div class="page-container-2">
       <div class="nav1-container">
           <div class="nav1">
               <webgen:block name="navbar" notfound="ignore"/>
               <ul>
-                  <li><span>Main</span></li>
-                  <li><%= context.node.link_to(context.node.resolve('/startup'), :link_text => 'Getting Started') %></li>
-                  <li><%= context.node.link_to(context.node.resolve('/autoproj'), :link_text => 'Build') %></li>
-                  <li><%= context.node.link_to(context.node.resolve('/orogen'), :link_text => 'Develop') %></li>
-                  <li><%= context.node.link_to(context.node.resolve('/runtime'), :link_text => 'Run') %></li>
-                  <li><%= context.node.link_to(context.node.resolve('/system'), :link_text => 'Systems') %></li>
-                  <li><%= context.node.link_to(context.node.resolve('/data_analysis'), :link_text => 'Analyze') %></li>
-                  <li><%= context.node.link_to(context.node.resolve('/package_directory/index.html'), :link_text => 'Package Directory') %></li>
+                  <li><%= context.node.link_to(context.node.resolve('/documentation/startup'), :link_text => 'Installation') %></li>
+                  <li><%= context.node.link_to(context.node.resolve('/documentation'), :link_text => 'Documentation') %></li>
+                  <li><%= context.node.link_to(context.node.resolve('/package_directory/index.html'), :link_text => 'Browse Packages') %></li>
+                  <li><a href="{relocatable: /news}">News</a></li>
+                  <li><a href="{relocatable: /documentation/startup/contributing.html}">Community</a></li>
               </ul>
           </div>
       </div>
 
-      <div class="site-name">
+      <div class="site-name" onclick="location.href='{relocatable: /}';" style="cursor: pointer;">
           <p class="title">Rock</p>
           <p class="subtitle">the Robot Construction Kit</p>
       </div>
@@ -49,26 +55,15 @@
       <div class="buffer"></div>
 
       <div class="leftnav">
-          <% # Get the root for this node %>
-          <% root = context.node %>
-          <% if root.parent != root.tree.root %>
-          <%   while root.parent != root.tree.root %>
-          <%     root = root.parent %>
-          <%   end %>
-          <div class="nav4">
-              <ul><li class="title"><%= root['title'] %></li>
-                  {menu: {start_level: 2, max_levels: 4, show_current_subtree_only: true, nested: true, used_nodes: files}}
-              </ul>
-          </div>
-          <% end %>
-
           <div class="nav3">
-              <ul><li class="title">Rock</li>
-                  {menu: {max_levels: 1, show_current_subtree_only: true, nested: true, used_nodes: files, range_end: 999}}
+              <% if !page_is_root %>
+              <ul><li class="title"><%= root_page['title'] %></li>
+                  {menu: {start_level: 2, max_levels: 4, show_current_subtree_only: true, nested: true, used_nodes: files, range_end: 999}}
               </ul>
               <ul><li class="title">Additional Core Functionality</li>
-                  {menu: {max_levels: 1, show_current_subtree_only: true, nested: true, used_nodes: files, range_start: 1000}}
+                  {menu: {start_level: 2, max_levels: 4, show_current_subtree_only: true, nested: true, used_nodes: files, range_start: 1000}}
               </ul>
+              <% end %>
           </div>
       </div>
 

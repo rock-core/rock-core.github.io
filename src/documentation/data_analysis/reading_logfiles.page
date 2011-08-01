@@ -95,6 +95,6 @@ data_stream.samples.each do |realtime, logical, sample|
 end
 {coderay}
 
-See [this page](/runtime/ruby_and_types.html) for a description of how the C++
+See [this page]({relocatable: ../runtime/ruby_and_types.html}) for a description of how the C++
 types look like on the Ruby side.
 

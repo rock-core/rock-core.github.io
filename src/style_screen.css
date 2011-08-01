@@ -554,3 +554,12 @@ font-family: monospace;
 .indent {
     margin-left: 4em;
 }
+
+a.highlight {
+    font-weight: bold;
+}
+
+a.highlight, a.highlight:hover, a.highlight:visited {
+    color: rgb(88,144,168); 
+}
+

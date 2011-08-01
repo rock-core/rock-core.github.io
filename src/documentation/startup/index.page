@@ -3,7 +3,7 @@ title: Installation
 sort_info: 0
 ---
 
-This page explains how to install the Orocos Toolchain and where to look for more
+This page explains how to install Rock and where to look for more
 information (tutorials, ...)
 
 Installation: the easy way
@@ -43,7 +43,8 @@ Installation: the easy way
       . /path/to/the/directory/env.sh
       {: .commandline}
 
- 6. read [the autoproj quick start guide](/autoproj/quick_start.html) to know the
+ 6. read [the autoproj quick start guide]({relocatable:
+ ../autoproj/quick_start.html}) to know the
     basic operations of the build system
 
 Other bootstrapping options

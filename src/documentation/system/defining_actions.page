@@ -1,0 +1,38 @@
+---
+title: Dynamic system reconfiguration
+---
+
+The underlying system allows to define _aggregate actions_, i.e., to dynamically
+reconfigure the system based on external events and/or the progress of tasks.
+
+This page will discuss the different ways in which you can define and access
+this interface:
+
+ * selection of modalities
+ * interactive action selection, through a shell-like interface
+ * plan-based action selection, through the creation of plans
+
+In this page, the term "system requirements" is used to represent all what the
+system is supposed to run, i.e. everything that has been declared using #add or
+#add_mission.
+
+General action interface
+------------------------
+Roby, the plan management system on top of which the network deployment is
+built, offers an **action interface**. This section will briefly describe it.
+
+To add a new action, one 
+
+Changing the system requirements
+--------------------------------
+Three different operations can be applied to modify the system requirements:
+
+ 1. adding a new requirement
+ 2. replacing an existing requirement by another one
+ 3. removing an existing requirement
+
+The plan-based interface to the deployment engine will always take care of (3).
+What you will have to do is either (1) or (2), and we will now see how.
+
+To **add** a new requirement, one has to inject a 
+ 

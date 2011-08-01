@@ -5,6 +5,12 @@
     url: /package_directory/index.html
     title: Package Directory
 
+- news/index.html:
+    in_menu: true
+    sort_info: 500
+    url: /news/index.html
+    title: News
+
 - api/autoproj/index.html:
     in_menu: false
     sort_info: 99999

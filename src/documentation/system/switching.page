@@ -1,0 +1,168 @@
+---
+title: Injecting requirements in Roby plans
+---
+
+**WARNING** This page assumes that you already followed [the Roby
+tutorial](http://rock-robotics.org/api/tools/roby/basics).
+{: .warning}
+
+The role of the deployment engine is to deploy required subsystems *when they
+are needed*, and integrate the new components with the existing components.
+Until now, we were using the 'add' and 'remove' statements to manipulate these
+requirements. What we will see on this page is how to represent these changes
+*in the Roby plan*, i.e. how to build sequences or more complex structures in
+which complex compositions get deployed.
+
+In a nutshell, this is done by injecting "placeholder" tasks in the plan, that
+get deployed on-demand. The general usefulness of this approach is that what the
+component network is supposed to achieve is represented at the same time than
+the rest of the system's activities, is integrated in Roby's error management
+mechanism, and -- last but not least -- it is ensured that requirements get
+removed when they are not needed.
+
+
+Simple usage in the action interface
+------------------------------------
+
+As normal in Roby, the main "action definition" interface is the planning
+interface, which can be found in planning/ROBOT_NAME/main.rb.
+
+The simplest way to deploy a composition would be to use its model. It can be
+done with
+
+{coderay:: ruby}
+method(:stabilize) do
+  Cmp::PTUStabilization
+end
+{coderay}
+  
+Normal #use, #use_conf and #with_arguments specifications can be given:
+
+{coderay:: ruby}
+method(:stabilize) do
+  Cmp::PTUStabilization.use('xsens').use_conf('fast')
+end
+{coderay}
+
+Often, it is interesting to use the #define mechanism. This can be done with
+
+{coderay:: ruby}
+method(:move) do
+  Orocos::Cmp::ControlLoop.use_def('base')
+end
+{coderay}
+
+Where 'base' has been defined in a deployment file with (for instance)
+ 
+{coderay:: ruby}
+define('base', Cmp::ControlLoop).use('xsens').use_conf('fast')
+{coderay}
+
+Managing more complex setups
+----------------------------
+
+Let's assume that we have to implement a mission in which the system should
+search for objects, and select a task dependent of the type of object found. 
+
+There are multiple ways to do this. One is to use a loop in the action interface
+(in the planning method). Another one is to inject the different modalities as
+an specialization of a Mission task. This page will present this second
+solution, as it is simpler to grasp, and introduces more concepts / usages.
+
+First and foremost, we need to create a toplevel task that represents the
+mission. This is done by editing e.g. tasks/search_and_act.rb and add
+
+{coderay:: ruby}
+class SearchAndAct < Roby::Task
+end
+{coderay}
+
+The SearchAndAct task will be used for two things:
+
+ * **represent** the fact that the system is doing this particular mission
+ * **manage** what the system should do to perfom this particular mission
+
+The task needs a few things to do its job
+
+ 1. detectors, i.e. what will actually tell if an object is detected or not
+ 2. a mapping from objects to actions, which tells what to do when a particular
+    object is detected
+ 3. a "search" behaviour that tells what to do if we have no object(s) in sight
+
+The envisionned structure will be to have the detectors added dynamically as
+children of a SearchAndAct task, with a certain role. These detectors are all
+supposed to offer a "detected" event to which the information of what detector
+has triggered is added and sent to the main task.
+
+This is done in the action interface with
+
+{coderay:: ruby}
+method(:search_and_act) do
+  main = SearchAndAct.new
+
+  arguments[:detectors].each do |detector_name|
+    detector = <get detector1>
+    detector.detected_event.filter(detector_name).signals(main.detected_object_event)
+    main.depends_on(detector)
+  end
+end
+{coderay}
+
+Let's take care of providing (2) and (3) as accessors on the task
+
+{coderay:: ruby}
+class SearchAndAct < Roby::Task
+  attr_accessor :search_behaviour
+  attr_reader :actions
+
+  def initialize(arguments = Hash.new)
+    super
+    @actions = Hash.new
+  end
+end
+{coderay}
+
+
+{coderay:: ruby}
+method(:move) do
+  main = MoveCommand.new(arguments[:command])
+  main.depends_on(Orocos::Cmp::ControlLoop.def('base'), :role => 'controller')
+  main
+end
+{coderay}
+
+  
+== What happens during execution ? ==
+
+
+{coderay:: ruby}
+class MoveCommand < Roby::Task
+  argument :motion
+
+  def initialize(arguments = Hash.new)
+    super
+  end
+
+  on :start do |event|
+    # Gets the 'motion' port of the 'motion_commands' child. See below
+    @motion_writer = data_writer 'controller', 'commands', 'motion'
+    # Precreate a sample that can be used to write on the controller's input
+    @motion_sample = @motion_writer.new_sample
+    @motion_sample.x_speed = command.x
+    @motion_sample.y_speed = command.y
+    @motion_sample.z = command.z
+    @motion_sample.heading = 0
+  end
+
+  poll do
+    # Periodically write the command on the controller
+    @motion_writer.write(@motion_sample)
+  end
+
+  terminates
+end
+{coderay}
+
+
+
+More 

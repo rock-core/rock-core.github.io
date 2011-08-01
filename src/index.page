@@ -3,13 +3,14 @@ page_title: '<span class="content-title-noshade-size1">Rock</span>: <span class=
 title: "Rock: the Robot Construction Kit"
 ---
 
-<div markdown="1" class="content2-container">
+<div markdown="1" class="content2-container bg-blue01" style="padding: .4em;">
 <div markdown="1" class="content2-container-3col-left">
 Get it
 {: .content-title-noshade-size3}
 
-Get started with the [step-by-step installation guide](startup/index.html).
-Reference documentation on [the build system](autoproj/index.html) is also
+Get started with the [step-by-step installation
+guide]({relocatable: documentation/startup/index.html}){:.highlight}. Reference documentation on [the build system]({relocatable:
+documentation/autoproj/index.html}) is also
 available, and you can browse the code and contribute on
 [Gitorious](http://gitorious.com/rock).
 </div>
@@ -19,24 +20,23 @@ Use it
 {: .content-title-noshade-size3}
 
 The toolchain offers a support [from the component
-development](orogen/index.html) to [running complete
-systems](runtime/index.html). Logging, log replay and data analysis [is also a
-very important part](data_analysis/index.html)
-Finally, have a look at the [existing packages](/package_directory/index.html).
-
+development]({relocatable: documentation/orogen/index.html}) to [running complete
+systems]({relocatable: documentation/runtime/index.html}). Logging, log replay and data analysis [is also a
+very important part]({relocatable: documentation/data_analysis/index.html})
+Finally, have a look at the [existing packages]({relocatable: package_directory/index.html}).
 </div>
 
 <div markdown="1" class="content2-container-3col-right">
-Get help and contribute
+Community
 {: .content-title-noshade-size3}
-</div>
 
 Don't hesitate ! Ask questions on the
-[orocos-users](http://lists.mech.kuleuven.be/mailman/listinfo/orocos-users)
+[orocos-users](http://lists.mech.kuleuven.be/mailman/listinfo/orocos-users){:.highlight}
 mailing list. If you are interested in the cutting-edge development of Rock, you
 can also join the
-[rock-dev](http://www.dfki.de/mailman/cgi-bin/listinfo/rock-dev) mailing list,
+[rock-dev](http://www.dfki.de/mailman/cgi-bin/listinfo/rock-dev){:.highlight} mailing list,
 and report bugs [on the Rock trac](http://rock.opendfki.de)
+</div>
 </div>
 
 What is Rock ?

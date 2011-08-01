@@ -1,0 +1,89 @@
+---
+title: Extending Tasks
+sort_info: 1100
+---
+
+**WARNING** This page assumes that you already followed [the Roby
+tutorial](http://rock-robotics.org/api/tools/roby/basics).
+{: .warning}
+
+This page deals with using Roby functionality to add some tweaking, monitoring
+and even implement functionality within the frame of the deployment engine.
+
+The idea here will be to prototype (someone could say "implement" the
+PTUStabilization composition using only Ruby, i.e. to not have to implement the
+AttitudeServoing::Task component that we used earlier.
+
+As a very important note, it is in general discouraged to do complex things in
+the supervision layer. This is only meant for fast prototyping. The two main reasons
+is that long execution times would impair reaction times of the supervision
+layer, and the executed code would not run in a proper deterministic realtime
+context, which is a bad idea for servoing tasks
+{: .warning}
+
+First and foremost, we will modify the PTUStabilization composition definition
+to remove the attitude servoing component. The composition therefore looks like
+
+{coderay:: ruby}
+composition 'PTUStabilization' do
+  add Imu
+  add Dynamixel::Task
+end
+{coderay}
+
+For the benefit of later, we have to name each child:
+
+{coderay:: ruby}
+composition 'PTUStabilization' do
+  add Imu, :as => "sensor"
+  add Dynamixel::Task, :as => "actuator"
+end
+{coderay}
+
+Then, we have to do two things:
+
+ * get hold on the output of the imu and the input of the dynamixel tasks
+ * implement a periodic loop that generates commands based on the readings
+
+This is done using the Roby task interface. First, we have to add a 'start'
+event handler on the composition definition, that will get a reader and a writer
+to communicate with the components.
+
+{coderay:: ruby}
+composition 'PTUStabilization' do
+  add Imu, :as => "sensor"
+  add Dynamixel::Task, :as => "actuator"
+
+  on :start do |event|
+    @reader = data_reader 'sensor', 'orientation_samples'
+    @writer = data_writer 'actuator', 'cmd_angle'
+  end
+end
+{coderay}
+
+The usage of data_reader and data_writer ensures proper cleanup, by removing the
+connections when the task finishes.
+{: .block}
+
+Then, we have to add a periodic block that will read the sensor, produce the
+command and write it
+
+{coderay:: ruby}
+composition 'PTUStabilization' do
+  add Imu, :as => "sensor"
+  add Dynamixel::Task, :as => "actuator"
+
+  on :start do |event|
+    @reader = data_reader 'sensor', 'orientation_samples'
+    @writer = data_writer 'actuator', 'cmd_angle'
+  end
+
+  poll do
+    if orientation = @reader.read
+       # do some computations to generate a command
+       @writer.write orientation
+    end
+  end
+end
+{coderay}
+
