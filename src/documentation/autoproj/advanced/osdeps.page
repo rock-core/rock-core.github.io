@@ -128,3 +128,42 @@ gnuplot:
     ubuntu: gnuplot
 ~~~~~~~~~~~~~~~~~~
 
+
+Relationship between source packages and osdeps packages
+--------------------------------------------------------
+
+In autoproj, osdeps and source ("normal") packages are seen the same way.
+
+However, since installing the OS package is less work (and much faster) than
+building it ourselves, the following prioritization exists:
+
+ * if both a normal autoproj package and an osdeps package exist, the osdeps
+   package takes precedence.
+ * on OSes where no osdeps package exist, the autoproj package will be built
+   instead
+
+This default scheme requires the source package and the osdeps package to have
+the same name. Moreover, one might want on some occasions to build the source
+package (for instance because it is slightly more up-to-date).
+
+This source package / osdeps package relationship can be fine tuned using
+Autoproj.add_osdeps_overrides. This is usually done either locally in
+autoproj/overrides.rb, or on a package set basis in the package set's
+overrides.rb.
+
+A different name can be given for the source package that can replace the
+osdeps. For instance, the following code snippet, when added to overrides.rb,
+will cause autoproj to look for external/opencv instead of opencv if the opencv
+osdeps is not available on the current machine.
+
+{coderay:: ruby}
+Autoproj.add_osdeps_overrides 'opencv', :package => 'external/opencv'
+{coderay}
+
+One can force the usage of the source package for the local installation
+(completely ignoring the osdeps package)
+
+{coderay:: ruby}
+Autoproj.add_osdeps_overrides 'opencv', :package => 'external/opencv', :force => true
+{coderay}
+
