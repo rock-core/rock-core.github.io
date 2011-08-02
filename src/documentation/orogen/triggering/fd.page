@@ -59,7 +59,8 @@ bool MyTask::startHook()
     // it is usually created in configureHook()
     RTT::extras::FileDescriptorActivity* activity =
         getActivity<RTT::extras::FileDescriptorActivity>();
-    activity->watch(fd);
+    if (activity)
+        activity->watch(fd);
     return true;
 }
 {coderay}
