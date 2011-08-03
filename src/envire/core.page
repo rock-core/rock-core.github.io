@@ -153,3 +153,54 @@ BOOST_AUTO_TEST_CASE( environment )
 
 ![Example Environment Structure](sample_env_struct.png)
 
+Serialization
+--------------
+
+Envire provides a system for serialization and deserialization. The
+functionality is capsuled in a serialization class. In order to save an
+environment you can use the following method
+
+{coderay:: cpp}
+#incude <envire/Core.hpp>
+using namespace envire;
+
+...
+Serialization so;
+// create the environment (and store in scoped ptr)
+boost::scoped_ptr<Environment> env( new Environment() );
+// fill the environment
+...
+
+// write the environment to disk
+so.serialize(env.get(), "build/test/");
+{coderay}
+
+loading the environment is equally simple. The unserialize method will take a
+file name and return an pointer to the newly created environment. Object
+ownership is passed to the caller, who is expected to delete the object after
+use (using a scoped_ptr in this example).
+
+{coderay:: cpp}
+// load the environment  
+boost::scoped_ptr<Environment> env( so.unserialize( "build/test" ) );
+{coderay}
+
+The way envire writes the files to disk is fairly simple. The file name provided
+is the name of a directory. Envire will use the full directory for its own use.
+It will generate a scene.yml file, which stores the structure of the environment
+in a yaml file format. This file can easily adapted for small changes. The
+scene.yml may also contain parameters relevant to the particular
+EnvironmentItem, like e.g. a frame transformation for a FrameNode, or flags for
+an operator.
+
+Every EnvironmentItem that is attached to the environment gets an id, which is
+unique in that environment. The id is used when serialized to reference the
+object. 
+
+There a two ways EnvironmentItems store information about themselves. One is the
+structural information which ends up in the scene.yml and also includes
+parameters. Further, items can (but don't need to) store information in a
+separate file. This is mostly useful for maps. Each item can pick their own
+format, so using formats which are readable by others is recommended for maps. 
+
+
