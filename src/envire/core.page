@@ -182,7 +182,8 @@ use (using a scoped_ptr in this example).
 
 {coderay:: cpp}
 // load the environment  
-boost::scoped_ptr<Environment> env( so.unserialize( "build/test" ) );
+boost::scoped_ptr<Environment> 
+    env( so.unserialize( "build/test" ) );
 {coderay}
 
 The way envire writes the files to disk is fairly simple. The file name provided
