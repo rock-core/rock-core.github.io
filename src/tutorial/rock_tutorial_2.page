@@ -5,84 +5,142 @@ sort_info: 2
 Tutorial Info
 -----------
 
-This tutorial will show you a bit more of the functionality of orocos tasks and how they work together.
-In the last tutorial we built a task which visualizes a rock-like robot. 
-Now we will create another task to translate a motion command to a position and orientation. So we can use a motion command to control our robot.
-In the next tutorial we will extend this tutorial.
+In this tutorial we show how to build a little control loop by adding a task that provides motion commands to 
+our setup.
 
 
 Implementation
 -----------
 
-We have to define a new task context in our .orogen file.
-{coderay:: ruby}
-task_context "RockTutorialControl" do
-   # Declare input port motion_command
-   input_port "motion_command", "base::MotionCommand2D"
-   # Declare output port pose
-   output_port "pose", "base::Pose"
-end
-{coderay}
-The task RockTutorialControl has an input port called 'motion_command' of type base::MotionCommand2D and an output port called 'pose' of type base::Pose. The type base::MotionCommand2D contains a translation and a rotation of type double. The translation is in m/s and the rotation in rad/s. Of course the pose output port of this task and the input port of the other task (RockTutorialVisualization) will be connected later on. This task will compute a new position and orientation each time the update hook will triggered, given the translation and rotation speed it receives on its input port. The latest motion command will be used if there is no new one.
-The update hook of this task will triggered periodically. That will be defined in the same .orogen file but in the deployment. 
-{coderay:: ruby}
-deployment "rock_tutorial" do
-    task("rock_tutorial_visualization", "RockTutorialVisualization")
+We are using here an existing task of the rock-robotics framework and the task from the previous tutorial, so we don't have to implement anything.
 
-    # Declares task as periodic, with a period of 10ms
-    task("rock_tutorial_control", "RockTutorialControl").
-        periodic(0.01)
-end
-{coderay}
-We add the task to the same deployment we already have. And make it periodic with a interval of 10 ms.
-So we will get one deployment named 'rock_tutorial' that contains both tasks.
+In order to get our control look we need a task that supplies us with 'base::MotionCommand2D'. 
+For that it it always good to take a look into the package directory :
 
-We won't discuss the c++ implementation of the new task here, because this could be to much. But you may have a look on the implementation in 'tutorials/orogen/rock_tutorial/tasks'. From now on you could just use the orocos component rock_tutorial in 'tutorials/orogen' because we are done with the implementation part for this component. 
+TODO enter url
+
+TODO add instructions how to find controldev
 
 
-Run It
+
+Run it
 ----------
 
-This is a very simple test that will show the rock visualization and move the robot, but without any option to change the speed of translation or rotation while running. It can be found in tutorials/orogen/rock_tutorial/scripts/rockTutorial2.rb
+Now that we have found a task, that supplies the needed motion commands we need to integrate it into
+our run script. Therefore we modify the last runscript. By adding a joystick driver to it.
+As we know from the package directory, the controldev package provides a tasks for our purpose. To find
+out which exact task we can use we call 
+{coderay:: sh}
+  orinspect -t controldev
+{coderay}
 
+This returns us an output of every installed task that is defined controldev.
+The interesting part of the output is in our case this :
+{coderay:: sh}
+
+===== controldev::JoystickTask is a task context defined in controldev
+------- controldev::JoystickTask ------
+subclass of controldev::GenericTask (the superclass elements are displayed below)
+Ports
+  [out]four_wheel_command:/controldev/FourWheelCommand
+  [out]motion_command:/base/MotionCommand2D
+  [out]raw_command:/controldev/RawCommand
+  [out]speed_command:/base/SpeedCommand6D
+No dynamic ports
+Properties
+  device:/std/string: Path to the joystick device
+  maxRotationSpeed:/double: Maximum rotation speed in rad/s
+  maxSpeed:/double: Maximum translation speed in m/s
+  minRotationSpeed:/double: Minimum rotation speed in rad/s
+  minSpeed:/double: Minimum translation speed in m/s
+No attributes
+No operations
+
+{coderay}
+This output tells us that there is a task controldev::JoystickTask, which has a
+output port with the name 'motion_command' of the type '/base/MotionCommand2D'.
+So it fits exactly our needs.
+
+As we also need a deployment with the JoystickTask we check weather controldev already provides 
+it. for doing so, we call
+
+{coderay:: sh}
+  orinspect -d controldev
+{coderay}
+
+which gives us the following output:
+{coderay:: sh}
+===== joystick is a deployment defined in controldev
+------- joystick ------
+Tasks
+  joystick[controldev::JoystickTask]
+    activity: FileDescriptorActivity, prio=25
+    scheduler: realtime,
+  joystick_Logger[logger::Logger]
+    activity: Triggered, prio=lowest
+    scheduler: non realtime
+{coderay}
+
+This tells us that there is a deployment joystick, which deploys the JostickTask and thus also 
+fits out needs. Note that the JoystickTask is deployed with the name 'joystick'.
+
+Knowing this, we can now modify the script from the previous tutorial :
 {coderay:: ruby}
 require 'orocos'
-require 'readline'
+require 'vizkit'
 include Orocos
 
 ## Initialize orocos ##
 Orocos.initialize
 
-## Execute the deployment 'rock_tutorial' ##
-Orocos.run 'rock_tutorial' do
+## create a widget for 3d display
+view3d = Vizkit.default_loader.create_widget('vizkit::QVizkitWidget')
 
-## Get a specific task context ##
-rockControl = TaskContext.get 'rock_tutorial_control'
-rockVisualization = TaskContext.get 'rock_tutorial_visualization'
+#show it
+view3d.show()
 
-## Connect the ports ##
-rockControl.pose.connect_to rockVisualization.pose
+## load and add the 3d plugin for the rock
+vizkit_rock = view3d.createPlugin('rock_tutorial', 'RockVisualization')
 
-## Create a sample writer for a port ##
-sampleWriter = rockControl.motion_command.writer
+## Execute the deployments 'rock_tutorial' and 'joystick_local' ##
+Orocos.run 'rock_tutorial', 'joystick' do
+  
+    ## Connect port to vizkit plugin
+    con = Vizkit.connect_port_to 'rock_tutorial_control', 'pose',
+	    :update_frequency => 33 do |sample, name|
+	##pass every pose sample to our visualizer plugin
+        vizkit_rock.updatePose(sample)
+        sample
+    end 
 
-## Start the tasks ##
-rockControl.start
-rockVisualization.start
+    ## Get the specific task context ##
+    rockControl = TaskContext.get 'rock_tutorial_control'
+    joystick = TaskContext.get 'joystick'
 
-## Write motion command sample ##
-sample = sampleWriter.new_sample
-sample.translation = 1
-sample.rotation = 0.5
-sampleWriter.write(sample)
+    ## Connect the ports ##
+    joystick.motion_command.connect_to rockControl.motion_command
 
-Readline::readline('Press enter to exit')
+    ## Set some properties ##
+    joystick.device = "/dev/input/js0"
+
+    ## Configure the tasks ##
+    joystick.configure
+
+    ## Start the tasks ##
+    joystick.start
+    rockControl.start
+
+    Vizkit.exec
 end
+
 {coderay}
 
-At first we will run our deployment 'rock_tutorial'. Then we can get our tasks using 'TaskContext.get'. Now we connect the output port of the task rock_tutorial_control with the input port of the task rock_tutorial_visualization. For the input port of the rock_tutorial_control, we actually have no task, so we will define a writer. Next we start both tasks, this will call the startHook() in each task. The next lines show you how to use the writer.
-We create a new sample, then we set the translation and rotation and then we write it to the port. The translation is in m/s and the rotation in rad/s.
-Since this is the only sample the task rock_tutorial_control will receive in this case, it will hold the same speed all the time.
-The Readline will be used here in order that the program won't terminate immediately.
+This script is quite the same as the script from rock tutorial 1, but with some improvements. As you can see
+we execute a second deployment named 'joystick', besides the 'rock_tutorial' deployment.
 
-In the following tutorial we will add the possibility to control the robot by a joystick( or the keyboard).
+Also we acquire a handle to the JoystickTask. Then we connect the output port 'motion_command'
+of the task 'joystick' with the equal named input port of the task 'rockControl'. The task 'joystick' of course uses the 
+joystick input to generate motion commands. In the next step we could set a property named 'device' of the task 'joystick'. 
+With that we can set a string which is the local device of the joystick on your machine. Next we configure the 'joystick' 
+task by issuing the command 'joystick.configure'. At least we will start all the Tasks. If everything works, you should now
+see a 3D-View of a rock on a plane and be able to steer it using your joystick.
