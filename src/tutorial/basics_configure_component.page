@@ -1,12 +1,20 @@
 ---
-title: Configuration
+title: Configure components
 sort_info: 120
 ---
 
 Abstract 
 ---------------------------------
 
- * how to configuration support for your component 
+This tutorial will give you some handson experience on:
+ 
+ * how to add configuration support for your component
+ * how to embed configuration into the Ruby script
+
+Components and underlying libraries often need to be configured before starting them. This tutorial will teach you
+how to use orogen component's properties to map to your library configuration option, and how to add the functionality
+to the orogen component. 
+
 
 Configure a component 
 ---------------------------------
@@ -252,4 +260,5 @@ In this tutorial you have learned to:
 In the next tutorial you will learn how to create a data driven component and how to connect it
 with an existing component.
 
+Progress to the [next tutorial](basics_connecting_components.html).
 

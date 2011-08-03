@@ -187,7 +187,7 @@ void MessageDriver::printMessage(const Message& msg)
 
 ### Integration into the build system
 
-Once you created a library in ROCK integrate it into the build system [autoproj](../autproj/index.html). The first step towards integration into the build system is adding the newly created files to the src/CMakeLists.txt file, since ROCK default C++ libraries use [CMake](http://www.cmake.org/cmake/help/documentation.html) for the build process. ROCK also comes with some CMake macros that facilitate setting up libraries, and resolving any required dependencies. 
+Once you created a library in ROCK integrate it into the build system [autoproj](../autoproj/index.html). The first step towards integration into the build system is adding the newly created files to the src/CMakeLists.txt file, since ROCK default C++ libraries use [CMake](http://www.cmake.org/cmake/help/documentation.html) for the build process. ROCK also comes with some CMake macros that facilitate setting up libraries, and resolving any required dependencies. 
 
 {coderay:: sh}
 rock_library(message_driver
@@ -221,7 +221,7 @@ layout:
 {coderay}
 
 ### Build it
-Just verify that your component builds an then progress to the [next tutorial](basics_task_creation.html).
+Just verify that your component builds and you finished your first ROCK tutorial.
 {coderay:: sh}
 amake basics_tutorial/message_driver
 {coderay}
@@ -236,4 +236,6 @@ In this tutorial you have learned to:
  * embed new packages into the build system
 
 In the next tutorial you will learn how to create an orogen component and embed you library into it.
+
+Progress to the [next tutorial](basics_create_component.html).
 
