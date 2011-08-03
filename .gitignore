@@ -3,3 +3,4 @@ MultiFlex21b
 *.sw?
 webgen.cache
 src/api/*
+src/package_directory/*
