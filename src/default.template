@@ -48,7 +48,7 @@
 
       <div class="nav2">			
           <ul>
-              <li>{breadcrumb_trail: { separator: '' }}</li>
+	      <li> <span style="width: 0px; border: none;">&nbsp;</span> {breadcrumb_trail: { separator: '' }} </li>
           </ul>
       </div>
     
