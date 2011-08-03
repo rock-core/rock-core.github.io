@@ -160,7 +160,7 @@ body {margin: 0px auto; padding: 0px; background: url(img/background_body_grey.g
 .content1-container-3col-txtright-40px {float: right; width: 67px; margin: 0px; padding: 0px;}
 .content1-container-3col-txtright-20px {float: right; width: 87px; margin: 0px; padding: 0px;}
 .content1-container-3col-txtright-10px {float: right; width: 97px; margin: 0px; padding: 0px;}
-.content1-pagetitle {overflow: hidden; width: 408px; margin: 0px 0px 10px 0px; padding: 0px 0px 2px 0px; border-bottom: solid 3px rgb(88,144,168);); color: rgb(88,144,168); font-weight: bold; font-size: 160%;}
+.content1-pagetitle {overflow: hidden; width: 408px; margin: 0px 0px 10px 0px; padding: 0px 0px 2px 0px; border-bottom: solid 3px rgb(88,144,168); color: rgb(88,144,168); font-weight: bold; font-size: 160%;}
 
 /******************************************************/
 /* SECTION 4 - SPECIFIC CLASSES FOR LAYOUTS #2 and #3 */
@@ -312,7 +312,7 @@ ul.linklist-indent {margin: -0.3em 0px 0.5em 0px; padding: 0px 0px 0px 10px; lis
 /*----------------------------*/
 .box-on {float: left; min-width: 0.3em; margin-right: 0.2em; padding: 0px 0.2em 0px 0.3em;}
 .box-off {display: none;}
-/* html box-on {width: 1%;} /* IE6-Hack for min-width. Also compliant with IE7-Beta2 */ */
+/* html box-on {width: 1%;} *//* IE6-Hack for min-width. Also compliant with IE7-Beta2 */ 
 
 /*-----------------------------*/
 /* 7.2 - Horizontal alignments */
