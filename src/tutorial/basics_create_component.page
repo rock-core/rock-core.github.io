@@ -66,7 +66,7 @@ using_library "message_driver"
 import_types_from "message_driver/Message.hpp"
 
 task_context "Task" do
-  output_port "messages", "basics_tutorial/message"
+  output_port "messages", "message_driver/Message"
 end
 
 deployment "message_producer_deployment"
@@ -138,6 +138,9 @@ namespace message_producer {
 
 Add the the message driver creation to the task's constructor and deallocation to the destructor.
 {coderay:: c++}
+#include <message_driver/MessageDriver.hpp>
+...
+
 Task::Task(std::string const& name,
 		 TaskCore::TaskState initial_state)
     : TaskBase(name, initial_state)
@@ -187,7 +190,6 @@ So create a subfolder scripts in the message producer component and create a fil
 
 {coderay:: ruby}
 require 'orocos'
-require 'readline'
 include Orocos
 
 ## Initialize orocos ##

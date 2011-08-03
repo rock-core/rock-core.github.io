@@ -137,7 +137,7 @@ task_context "producer_deployment"
 end
 {coderay}
 
-Edit the task/Task.hpp and add the configuration member and activate the configureHook: 
+Edit the task/Task.hpp and add the configuration member and activate the configureHook and the cleanupHook: 
 {coderay:: c++}
         // Configuration object for the task
         message_driver::Config mConfig;
@@ -145,6 +145,8 @@ Edit the task/Task.hpp and add the configuration member and activate the configu
 	...
 
         bool configureHook();
+
+        bool cleanupHook();
         
         ...
 {coderay}
@@ -203,7 +205,6 @@ Task::Task(std::string const& name, RTT::ExecutionEngine* engine)
 
 {coderay:: ruby}
 require 'orocos'
-require 'readline'
 
 include Orocos
 Orocos.initialize
@@ -247,6 +248,8 @@ between uppercase and mixed case printing by using your newly defined configurat
 Wed Aug 03 09:40:28 +0200 2011 MESSAGE FROM MESSAGEDRIVER
 Wed Aug 03 09:40:29 +0200 2011 MESSAGE FROM MESSAGEDRIVER
 {coderay}
+
+You can also try running the start.rb script. You will see, however, that the component will fail to start. Since you specified 'needs_configuration' in the component specification, it cannot be started without being configured beforehand. 
 
 
 Summary
