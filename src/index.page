@@ -9,7 +9,7 @@ Get it
 {: .content-title-noshade-size3}
 
 Get started with the [step-by-step installation
-guide]({relocatable: documentation/startup/index.html}){:.highlight}. Reference documentation on [the build system]({relocatable:
+guide]({relocatable: documentation/installation.html}){:.highlight}. Reference documentation on [the build system]({relocatable:
 documentation/autoproj/index.html}) is also
 available, and you can browse the code and contribute on
 [Gitorious](http://gitorious.com/rock).
@@ -39,6 +39,7 @@ and report bugs [on the Rock trac](http://rock.opendfki.de)
 </div>
 </div>
 
+
 What is Rock ?
 --------------
 
@@ -47,69 +48,5 @@ underlying component model is based on the Orocos RTT (Real Time Toolkit). Rock
 provides all the tools required to set up and run high-performance and reliable
 robotic systems for wide variety of applications in research and industry. It
 contains a rich collection of ready to use drivers and modules for use in your
-own system, and can easily be extended by adding new components. The framework
-was developed to specifically address the following issues in existing
-solutions:
-
-**sustainable systems**. The architecture and the tools in Rock are designed
-with long-living systems in mind. In practice, it means that for us, error
-detection, reporting and handling is key in any robotic architecture.
-
-**scalability**. Provide the tools to be able to manage big systems with
-a minimum fuss. But we don't require you to learn about these (complex)
-tools right away: as soon as you use rock's component development tool,
-oroGen, you have the guarantee that your components can be integrated
-from simple scenarios using hardcoded C++ behaviours, to Ruby scripts up
-to the complete system monitoring tools.
-
-**reusable codebase**. Even though we think that the rock toolchain
-is one of the best out there, some other people might feel
-differently. And they might be right. That's why, in rock, most of
-the functionality -- from control to data display through data
-processing -- is implemented in a way that is totally independent
-from rock's integration framework. That's right: just pick our
-drivers, localization algorithms and control loops and integrate
-them in **your** integration framework. You don't have to do
-anything on our side, as the code is completely independent from the
-integration parts. 
-
-Overview
---------
-
-_Click on a tool below to go directly to the documentation for it_
-
-<div>
-<object type="image/svg+xml" data="startup/tools_overview.svg" width="522" height="230">
-Browser does not support SVG files!
-</object>
-</div>
-
-What's the difference with the Orocos Toolchain ?
--------------------------------------------------
-The Orocos Toolchain is the standard infrastructure required to build Orocos
-components. It contains the real-time toolkit, typeGen/oroGen code generators
-and supportive components for deployment and task browsing.
-
-The Rock toolchain is centered around the use of oroGen for component
-writing, and the Ruby language for system deployment and data analysis. In
-practice, what you get is:
-
- * use Ruby scripts to start your components and monitor them
- * use a model-based tool for large-scale system deployment, and benefit from
-   its logging capabilities to do post-mortem analysis of system behaviour.
- * use the data logger to log all data that your components generate, and use
-   Ruby scripts to analyze this load of data. Replay the data into components
-   for testing, or use the Rock UI to display it.
- * benefit from a large component repository
-
-<div class="warning" markdown="1">
-**Important for existing Orocos users** The development workflow in Rock does
-not encourage the use of the Orocos deployer and of the RTT scripting language.
-Since they are both expensive to build, they are by default disabled when you
-build the Rock toolchain. However:
-
- * you can reenable OCL by removing the 'ocl' line in exclude_packages in autoproj/manifest
- * you can reenable the RTT scripting by changing PLUGINS_SCRIPTING_ENABLED from OFF
-   to ON in autoproj/overrides.rb
-</div>
-
+own system, and can easily be extended by adding new components. 
+[more...]({relocatable: documentation/about/index.html}) 
