@@ -5,25 +5,39 @@ sort_info: 2
 Tutorial Info
 -----------
 
-In this tutorial we show how to build a little control loop by adding a task that provides motion commands to 
-our setup.
+This tutorial will give you some handson experience on:
+
+ * how to find a 'standard' Rock package that provides a port X
+ * how to install the package.
+ * how to create a small control loop by attaching a Joystick to our rolling rock task.
 
 
-Implementation
+Finding a standard task that provides a port X.
 -----------
 
-We are using here an existing task of the rock-robotics framework and the task from the previous tutorial, so we don't have to implement anything.
+We are using here an existing task of the rock-robotics framework and the task from the previous 
+tutorial, so we don't have to implement anything.
 
 In order to get our control look we need a task that supplies us with 'base::MotionCommand2D'. 
-For that it it always good to take a look into the package directory :
+For that it it always good to take a look into the [package directory](../package_directory/).
 
-TODO enter url
+The package directory gives you a general overview of available 'standard' packages and types.
+For our purpose we need to look into the subcategory 'oroGen Types'. This category shows all
+available types that are exported by any task in the standard rock packages. As we are interested
+on 'base::MotionCommand2D' we open the page about this type. Apart from the general description of
+the type there is a section 'produced by' and 'consumed by', which gives us the list of all tasks
+producing 'base::MotionCommand2D'. As we want to integrate a joystick, we pick controldev::JoystickTask
+from the list, which is defined in 'drivers/orogen/controldev'.  
 
-TODO add instructions how to find controldev
+In order to install the package to your installation, either do 
+{coderay:: sh}
+autoproj build drivers/orogen/controldev
+{coderay}
+which will install the current version of the package, but not update / build it later,
+or edit the manifest.xml in your autoproj directory to add it permanent.
 
 
-
-Run it
+Integration of the task
 ----------
 
 Now that we have found a task, that supplies the needed motion commands we need to integrate it into
@@ -81,7 +95,7 @@ Tasks
     scheduler: non realtime
 {coderay}
 
-This tells us that there is a deployment joystick, which deploys the JostickTask and thus also 
+This tells us that there is a deployment joystick, which deploys the JoystickTask and thus also 
 fits out needs. Note that the JoystickTask is deployed with the name 'joystick'.
 
 Knowing this, we can now modify the script from the previous tutorial :
@@ -102,7 +116,7 @@ view3d.show()
 ## load and add the 3d plugin for the rock
 vizkit_rock = view3d.createPlugin('rock_tutorial', 'RockVisualization')
 
-## Execute the deployments 'rock_tutorial' and 'joystick_local' ##
+## Execute the deployments 'rock_tutorial' and 'joystick' ##
 Orocos.run 'rock_tutorial', 'joystick' do
   
     ## Connect port to vizkit plugin
@@ -142,5 +156,14 @@ Also we acquire a handle to the JoystickTask. Then we connect the output port 'm
 of the task 'joystick' with the equal named input port of the task 'rockControl'. The task 'joystick' of course uses the 
 joystick input to generate motion commands. In the next step we could set a property named 'device' of the task 'joystick'. 
 With that we can set a string which is the local device of the joystick on your machine. Next we configure the 'joystick' 
-task by issuing the command 'joystick.configure'. At least we will start all the Tasks. If everything works, you should now
+task by issuing the command 'joystick.configure'. At least we will start all the Tasks. 
+
+Run it
+----------
+You can now simply run it by executing
+{coderay:: sh}
+    ruby rockTutorial2.rb
+{coderay}
+If everything works, you should now
 see a 3D-View of a rock on a plane and be able to steer it using your joystick.
+
