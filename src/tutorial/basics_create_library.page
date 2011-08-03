@@ -8,8 +8,8 @@ Abstract
 
 This tutorial will give you some handson experience on:
 
- * how to create libraries in ROCK
- * how to embed them into the build system of ROCK
+ * how to create libraries in Rock
+ * how to embed them into the build system of Rock
 
 If you don't want to execute the following steps by yourself, the result can also be found in 'tutorials/basics_tutorial'.
 For this tutorial it is assumed that your autoproj installation can be found in ~/dev.
@@ -19,9 +19,9 @@ Creating libraries
 Before you start developing components, you will need to think about the functionality that is required for your component. This tutorial teaches you how to write a message producer and a message consumer component, which will pass timestamped messages inbetween each other. For the meesage producer and the consumer we will create a message library to provide message creation and message printing funcitionaltiy. This library will make use of the existing package base/types which simplifies creation of timestamps.
 
 Now, that it is clear what functionality is needed you can start writing the library. 
-Note, that ROCK strongly suggests to encapsulate your main functionality in libraries. Thus, your library code remains independent of the actual framework in use, and can be easily reused and maintained separately from any framework that wraps this functionality.
+Note, that Rock strongly suggests to encapsulate your main functionality in libraries. Thus, your library code remains independent of the actual framework in use, and can be easily reused and maintained separately from any framework that wraps this functionality.
 
-ROCK allows you to create a C++-library from an existing template - this template has been defined by ROCK maintainers and can be found in base/templates). Calling the command 'rock-create-lib' starts a command line dialog to create a library called 'basics_tutorial/message_driver'
+Rock allows you to create a C++-library from an existing template - this template has been defined by Rock maintainers and can be found in base/templates). Calling the command 'rock-create-lib' starts a command line dialog to create a library called 'basics_tutorial/message_driver'
 
 {coderay:: sh}
 ~/dev$ rock-create-lib basics_tutorial/message_driver
@@ -39,10 +39,10 @@ y
 We require some information to update the manifest.xml
 ------------------------------------------
 Brief package description (Press ENTER when finished):
-A message_driver for the basic ROCK tutorial
+A message_driver for the basic Rock tutorial
 Long description: 
 This is a library that allows message production
-and message handling for the the basic ROCK tutorial
+and message handling for the the basic Rock tutorial
 Author: 
 New user
 Author email: 
@@ -81,7 +81,7 @@ autoproj build basics_tutorial/message_driver
 ### Adding the required functionality
 Yet, the library does not contain message handling capabilities. So, we create three new files, i.e. a header Messages.hpp will contain the message type that is used to transport message between components, and a header and source file for the MessageDriver. Put all file into the src/ folder of the newly created package.
 
-***NOTE***: ROCK recommends to stick to the following coding styles and use a CamelCase naming C++ file: HeaderFile.hpp and SourceFile.cpp. However, due to historic reasons not all packages of ROCK conform to this style. 
+***NOTE***: Rock recommends to stick to the following coding styles and use a CamelCase naming C++ file: HeaderFile.hpp and SourceFile.cpp. However, due to historic reasons not all packages of Rock conform to this style. 
 {: .warning}
 
 First, create the message type for timestamped messages. Since base/types already provides a timestamp, include 'base/time.h' and make 'base/types' a
@@ -187,7 +187,7 @@ void MessageDriver::printMessage(const Message& msg)
 
 ### Integration into the build system
 
-Once you created a library in ROCK integrate it into the build system [autoproj](../autoproj/index.html). The first step towards integration into the build system is adding the newly created files to the src/CMakeLists.txt file, since ROCK default C++ libraries use [CMake](http://www.cmake.org/cmake/help/documentation.html) for the build process. ROCK also comes with some CMake macros that facilitate setting up libraries, and resolving any required dependencies. 
+Once you created a library in Rock integrate it into the build system [autoproj](../autoproj/index.html). The first step towards integration into the build system is adding the newly created files to the src/CMakeLists.txt file, since Rock default C++ libraries use [CMake](http://www.cmake.org/cmake/help/documentation.html) for the build process. Rock also comes with some CMake macros that facilitate setting up libraries, and resolving any required dependencies. 
 
 {coderay:: sh}
 rock_library(message_driver
@@ -221,7 +221,7 @@ layout:
 {coderay}
 
 ### Build it
-Just verify that your component builds and you finished your first ROCK tutorial.
+Just verify that your component builds and you finished your first Rock tutorial.
 {coderay:: sh}
 amake basics_tutorial/message_driver
 {coderay}
@@ -231,7 +231,7 @@ Summary
 ----------------------------
 In this tutorial you have learned to: 
 
- * create a C++-library from the ROCK template
+ * create a C++-library from the Rock template
  * create a simple orogen component
  * embed new packages into the build system
 

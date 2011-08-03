@@ -5,27 +5,27 @@ sort_info: 0
 
 Rock Tutorials
 --------------------------
-Welcome to the ROCK tutorials. The tutorials are intended to allow practicioners and developers in the robotics field to start working with the Robot Construction Kit. 
-To get the most out of the tutorials, you should be familiar with basic software development in C++. The tutorials will not teach you C++ or software development in general, but they provide you with a guideline for developing components within ROCK. 
+Welcome to the Rock tutorials. The tutorials are intended to allow practicioners and developers in the robotics field to start working with the Robot Construction Kit. 
+To get the most out of the tutorials, you should be familiar with basic software development in C++. The tutorials will not teach you C++ or software development in general, but they provide you with a guideline for developing components within Rock. 
 
 What to expect from the tutorials
 ----------------------------
 The tutorials are structured as follows.
-The first set of tutorials covers the basics for working with ROCK, and will teach you on how to create a library, embed into an Orocos component using orogen, and finally deploy it, i.e. build and run. 
+The first set of tutorials covers the basics for working with Rock, and will teach you on how to create a library, embed into an Orocos component using orogen, and finally deploy it, i.e. build and run. 
 Further, the tutorials will teach you how to log data from your running components and feed it back into components.
-Another tutorial, will enable you to visualize and eventually analyze your data with the ROCK toolchain.
+Another tutorial, will enable you to visualize and eventually analyze your data with the Rock toolchain.
 The complete set is wrapped up by a holistic example 'Rolling Rock'
 
 
 Quick Start.
 --------------------------
-In order to start with the tutorial you require a minimal but working installation of ROCK. Just follow the installation procedure as described in the [step-by-step installation guide](../startup/index.html).
+In order to start with the tutorial you require a minimal but working installation of Rock. Just follow the installation procedure as described in the [step-by-step installation guide](../startup/index.html).
 
 To check if you are ready for your first tutorial open your console and enter 'which rock-create-lib' and verify that the command returns a full path to the 'rock-create-lib'-script. 
 
 
 ### Tutorial package set
-In case you don't want to write all the package yourself, the ROCK tutorials have been packaged so that you can easily retrieve them.
+In case you don't want to write all the package yourself, the Rock tutorials have been packaged so that you can easily retrieve them.
 If you want to add the tutorials to your installation add the package set to your autoproj/manifest:
 {coderay:: sh}
 package_sets:

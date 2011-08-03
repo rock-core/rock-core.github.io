@@ -16,7 +16,7 @@ For this tutorial it is assumed that your autoproj installation can be found in 
 
 Creating an orogen component
 --------------------------------
-While ROCK uses the Orocos Realtime Toolkit (Orocos RTT) to build its components upon, and uses the Orocos generation tool 'orogen' to easily create so-called orogen components. Orogen requires a component specification to generate a skeleton for you, which you can fill with the functionality you require.
+While Rock uses the Orocos Realtime Toolkit (Orocos RTT) to build its components upon, and uses the Orocos generation tool 'orogen' to easily create so-called orogen components. Orogen requires a component specification to generate a skeleton for you, which you can fill with the functionality you require.
 This tutorial does not cover all details of Orocos components but refers to the [toolchain documentation of the Orocos Project](http://www.orocos.org/toolchain) for that purpose.
 
 Similar to the creation of a library you start to create an orogen component using the command 'rock-create-orogen'. 
@@ -185,7 +185,7 @@ amake basics_tutorial/orogen/message_producer
 Run it
 -----------
 
-Now, that you have a component ready to run, but probably want to see it running. ROCK offers a ruby scripting interface for that purpose: [orocos.rb](../runtime/index.html)
+Now, that you have a component ready to run, but probably want to see it running. Rock offers a ruby scripting interface for that purpose: [orocos.rb](../runtime/index.html)
 So create a subfolder scripts in the message producer component and create a file start.rb.
 
 {coderay:: ruby}

@@ -7,7 +7,7 @@ Abstract
 This tutorial is the basis for the followup tutorials in this section. Before you try this tutorial, 
 you should have worked through the basic and visualization tutorials. 
 
-In this tutorial, we will create a library for visualizing and simulating a 'ROCK'-Robot. 
+In this tutorial, we will create a library for visualizing and simulating a 'Rock'-Robot. 
 Further we will wrap it into an orocos task and fire it up. 
 
 Implementation
