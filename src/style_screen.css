@@ -563,3 +563,19 @@ a.highlight, a.highlight:hover, a.highlight:visited {
     color: rgb(88,144,168); 
 }
 
+table.short_doc {
+    margin-top: .2em;
+    background-color: rgb(238,237,249);
+    width: 100%;
+}
+table.short_doc td.short_doc {
+    font-style: italic;
+}
+table.list_alt {
+    background-color: rgb(230,228,249);
+}
+div.tagcloud {
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
+
