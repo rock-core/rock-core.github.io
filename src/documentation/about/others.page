@@ -1,0 +1,37 @@
+---
+title: Relation to Others 
+sort_info: 0
+---
+
+What's the difference with the Orocos Toolchain?
+-------------------------------------------------
+The Orocos Toolchain is the standard infrastructure required to build Orocos
+components. It contains the real-time toolkit, typeGen/oroGen code generators
+and supportive components for deployment and task browsing.
+
+The Rock toolchain is centered around the use of oroGen for component
+writing, and the Ruby language for system deployment and data analysis. In
+practice, what you get is:
+
+ * use Ruby scripts to start your components and monitor them
+ * use a model-based tool for large-scale system deployment, and benefit from
+   its logging capabilities to do post-mortem analysis of system behaviour.
+ * use the data logger to log all data that your components generate, and use
+   Ruby scripts to analyze this load of data. Replay the data into components
+   for testing, or use the Rock UI to display it.
+ * benefit from a large component repository
+
+<div class="warning" markdown="1">
+**Important for existing Orocos users** The development workflow in Rock does
+not encourage the use of the Orocos deployer and of the RTT scripting language.
+Since they are both expensive to build, they are by default disabled when you
+build the Rock toolchain. However:
+
+ * you can reenable OCL by removing the 'ocl' line in exclude_packages in autoproj/manifest
+ * you can reenable the RTT scripting by changing PLUGINS_SCRIPTING_ENABLED from OFF
+   to ON in autoproj/overrides.rb
+</div>
+
+How does Rock relate to the Robot Operating System (ROS)?
+----------------------------------------------
+

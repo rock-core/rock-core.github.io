@@ -2,9 +2,9 @@ index.page:
     sort_info: 0
     routed_title: /
 
-startup:
-    sort_info: 50
-    title: Getting Started
+about:
+    sort_info: 25 
+    title: About Rock
 
 autoproj:
     title: Build System

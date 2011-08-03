@@ -30,11 +30,11 @@
           <div class="nav1">
               <webgen:block name="navbar" notfound="ignore"/>
               <ul>
-                  <li><%= context.node.link_to(context.node.resolve('/documentation/startup'), :link_text => 'Installation') %></li>
+                  <li><a href="{relocatable: /documentation/installation.html}">Installation</a></li>
                   <li><%= context.node.link_to(context.node.resolve('/documentation'), :link_text => 'Documentation') %></li>
                   <li><%= context.node.link_to(context.node.resolve('/package_directory/index.html'), :link_text => 'Browse Packages') %></li>
                   <li><a href="{relocatable: /news}">News</a></li>
-                  <li><a href="{relocatable: /documentation/startup/contributing.html}">Community</a></li>
+                  <li><a href="{relocatable: /documentation/about/contributing.html}">Community</a></li>
               </ul>
           </div>
       </div>
@@ -96,7 +96,7 @@
       <div class="footer">
           <div class="nav1">
               <ul>
-                  <li><a href="{relocatable: documentation/startup/about.html}">About Rock</a></li>
+                  <li><a href="{relocatable: documentation/about/index.html}">About Rock</a></li>
               </ul>
           </div>
       </div>
