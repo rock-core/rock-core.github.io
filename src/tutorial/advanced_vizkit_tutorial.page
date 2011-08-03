@@ -1,0 +1,106 @@
+---
+title: Advanced Vizkit-Plugin Tutorial
+sort_info: 8
+---
+Abstract
+-----------
+
+In this tutorial you'll learn how to feed your Vizkit plugins with data input without using a separate orogen task.
+All examples of this tutorial were made in the /tutorials/rock_tutorial/viz Vizkit plugin library.
+
+Extensions to the Vizkit plugin
+-----------
+
+Everything we have to do in the plugin is to add at least two macros.
+
+The first macro declares the Vizkit plugin as qtplugin. Because of the qt bindings it will be loadable on the ruby side.
+The property has to be the name of the class, in this example it is RockVisualization.
+{coderay:: c++}
+VizkitQtPlugin(RockVisualization)
+{coderay}
+
+
+The second macro makes the default Vizkit plugin update method 'updateData(type)' available to ruby. Because ruby
+doesn't support operator overloading the method must have an unique name. So it will be named partly by the third parameter of
+this macro, it will be available as 'updatePose' for this case. The first parameter is just the name of this class again.
+And the second parameter is the type for which the 'updateData(type)' method should called.
+{coderay:: c++}
+VizPluginRubyAdapter(RockVisualization, base::Pose, Pose)
+{coderay}
+Note that this macro only could make the updateData methods available on the ruby side. We will discuss later on how to access other
+methods too.
+
+
+The Ruby Script
+-----------
+
+Now we can use a ruby script to load, feed and display the Vizkit plugin.
+
+{coderay:: ruby}
+require 'vizkit'
+require 'Qt4'
+require 'vizkittypelib'
+include Orocos
+Orocos.initialize
+
+# loading all base types
+Orocos::CORBA.load_typekit('base')
+
+# create an instance of the vizkit main window
+# alternatively vizkit::QVizkitWidget could also be used
+widget = Vizkit.default_loader.create_widget("vizkit::QVizkitMainWindow")
+# create an instance of the vizkit plugin
+plugin = widget.createPlugin("rock_tutorial", "RockVisualization")
+
+# use a config method of the plugin to activate a label
+#plugin.activateRockLabel(true)
+
+# create an instance of the base type Pose
+bodyState = Types::Base::Pose.new
+# set inital values
+bodyState.position.initialize
+bodyState.orientation = Eigen::Quaternion.new(1, 0, 0, 0)
+
+# a global index
+i = 0.0
+# initalize timer
+timer = Qt::Timer.new
+timer.connect(SIGNAL('timeout()')) do
+    i += 1.0
+    j = i / 100.0
+    bodyState.position.x = Math::cos(j) * j
+    bodyState.position.y = Math::sin(j) * j
+    plugin.updatePose(bodyState)
+end
+
+# start the timer with a timeout of 10 ms
+timer.start(10)
+
+widget.show
+Vizkit.exec 
+{coderay}
+
+First of all we load the Rock ruby bindings of the base types. This is important if you want to instantiate some base types.
+Next we in instantiate the Vizkit main window and the RockVisualization Vizkit plugin. The Vizkit window could be a QMainWindow or a QWidget. 
+The first parameter in createPlugin is the name of the library and the second the class name of the Plugin. Than we create the base type Pose and 
+initialize it.
+We are using a timer to feed the plugin periodically with new data using the method updatePose. Since we are only update the position here and not the orientation of the robot, the rock won't 'roll'.
+
+
+Further Extensions
+-----------
+
+If you want to access other methods on ruby side, for configuration purposes for instance, then you can use the VizPluginRubyConfig macro.
+
+You have to add it to the constructor of the class, like the VizPluginRubyAdapter macro. 
+{coderay:: c++}
+VizPluginRubyConfig(RockVisualization, bool, activateRockLabel)
+{coderay}
+Here the first parameter is the name of the plugin class again. The second is the parameter type and the third is the name of the configuration method.
+
+Now you can uncomment the following line in the script. 
+{coderay:: ruby}
+# use a configuration method of the plugin to activate a label
+plugin.activateRockLabel(true)
+{coderay}
+If we set activateRockLabel to true, we should see a label hovering over the rock.
