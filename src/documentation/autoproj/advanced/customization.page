@@ -77,7 +77,7 @@ exclude_packages:
 {coderay}
 
 If another package, that should be built, depends on an excluded package, [an
-error is generated]({relocatable: ../autoproj/error_messages.html#exclusions})
+error is generated](/documentation/autoproj/error_messages.html#exclusions).
 
 Using packages that are already installed (<tt>ignore_packages</tt>) 
 -----------------------------------------
