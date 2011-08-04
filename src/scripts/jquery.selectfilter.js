@@ -45,10 +45,13 @@
                             show = false;
                         }
                     }
-                    var value = $(this).attr('tags').toLowerCase();
-                    for (var i = 0; show && i < tags.length; ++i) {
-                        if (!tags[i].test(value)) {
-                            show = false;
+                    var value = $(this).attr('tags');
+                    if (value) {
+                        value = value.toLowerCase();
+                        for (var i = 0; show && i < tags.length; ++i) {
+                            if (!tags[i].test(value)) {
+                                show = false;
+                            }
                         }
                     }
                     if (show) {
