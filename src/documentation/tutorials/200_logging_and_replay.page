@@ -113,6 +113,11 @@ Orocos.run "message_consumer_deployment" do
 end
 {coderay}
 
+The dataflow of the replay mechanism looks like:
+
+![Log Replay Dataflow](200_log_replay.png)
+{: .align-center}
+
 Summary
 -----------
 In this tutorial you learned how to activate logging and how to replay

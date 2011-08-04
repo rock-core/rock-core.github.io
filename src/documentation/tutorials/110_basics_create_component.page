@@ -14,6 +14,22 @@ This tutorial will give you some handson experience on:
 If you don't want to execute the following steps by yourself, the result can also be found in 'tutorials/basics_tutorial'.
 For this tutorial it is assumed that your autoproj installation can be found in ~/dev.
 
+The component we want to create will **integrate** the functionality of the
+library developped in the previous tutorial, exposing that functionality into a
+system.
+
+The final component will look like:
+
+![Producer Component](110_producer_component.png)
+{: .align-center}
+
+This step-by-step tutorial will guide you through the process of:
+
+ * creating the oroGen component package
+ * declaring the component interface
+ * adding the necessary C++ code for the component to pull data from the
+   message\_driver library out to its output port.
+
 Creating an orogen component
 --------------------------------
 While Rock uses the Orocos Realtime Toolkit (Orocos RTT) to build its components upon, and uses the Orocos generation tool 'orogen' to easily create so-called orogen components. Orogen requires a component specification to generate a skeleton for you, which you can fill with the functionality you require.
