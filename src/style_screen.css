@@ -71,6 +71,7 @@ body {margin: 0px auto; padding: 0px; background: url(img/background_body_grey.g
 .nav2 li {display: inline; list-style: none; margin: 0px; padding: 0px;}
 .nav2 li a {display: block; float: left; margin: 0px 0px 0px 0px; padding: 5px 10px 5px 10px; border-right: solid 1px rgb(54,83,151); color: rgb(255,255,255); text-transform: uppercase; text-decoration: none; font-size: 100%; text-decoration: none;}
 .nav2 li span {display: block; float: left; margin: 0px 0px 0px 0px; padding: 5px 10px 5px 10px; border-right: solid 1px rgb(54,83,151); color: rgb(255,255,255); text-transform: uppercase; text-decoration: none; font-size: 100%;}
+.nav2 li span.empty { border: none; }
 .nav2 a:hover, .nav2 a.selected {color: rgb(50,50,50); text-decoration: none;}
 .buffer {clear: both; width: 770px; height: 30px; margin: 0px; padding: 0px; background-color: rgb(255,255,255);}
 

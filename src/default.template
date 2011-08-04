@@ -49,7 +49,7 @@
 
       <div class="nav2">			
           <ul>
-	      <li> <span style="width: 0px; border: none;">&nbsp;</span> {breadcrumb_trail: { separator: '' }} </li>
+	      <li>{breadcrumb_trail: { separator: '' }}<span class="empty">&nbsp;</span></li>
           </ul>
       </div>
     
