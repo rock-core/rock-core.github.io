@@ -21,6 +21,25 @@ side, so it is forbidden.
 The task interface is the focus of that page. Other issues, as using different
 triggering modes and subclassing between task contexts is covered later.
 
+Interface Elements
+------------------
+
+![RTT Component Interface](orocos_component.png)
+{: .align-center}
+
+ * **Ports** are used to transfer data between the components
+ * **Properties** are used to store and set configuration parameters
+ * Finally, **Operations** (not represented here) are used to do remote method
+   calls on the components
+
+As a general rule of thumb, the components should communicate with each other
+only through ports. The properties and operations (as well as the state machine
+covered in [the next page](task_states.html)) are meant to be used by
+a coordination layer (in the Rock case, either Ruby scripts or the model-based
+management layer).
+
+Limits on Types Used in the Interface
+-------------------------------------
 
 Unfortunately, oroGen has to cope with RTT limited support for basic types (int,
 long, ...), and therefore the following limitations apply:
