@@ -17,6 +17,10 @@ More details on this topic you find in the [general documentation](../runtime/se
 For this tutorial you will reuse the components that you created during the [basics tutorials](index.html#tutorials-outline).
 You can also retrieve them directly by [installing the tutorial package set](index.html#installing-the-tutorial-results)
 
+***IMPORTANT***:
+For this tutorial to work you need to have an +active+ network device, otherwise Avahi will not publish any information. 
+{.warning}
+
 Ruby scripts
 ----------------
 Until now you might not have questioned how the Ruby scripts establish a connection in details to a task that runs in a deployment. 
