@@ -46,21 +46,21 @@ Creates a C++ executable and (optionally) installs it
 
 The following arguments are mandatory:
 
-'''SOURCES''': list of the C++ sources that should be built into that library
+**SOURCES**: list of the C++ sources that should be built into that library
 
 The following optional arguments are available:
 
-'''DEPS''': lists the other targets from this CMake project against which the
+**DEPS**: lists the other targets from this CMake project against which the
 library should be linked
 
-'''DEPS_PKGCONFIG''': list of pkg-config packages that the library depends upon. The
+**DEPS_PKGCONFIG**: list of pkg-config packages that the library depends upon. The
 necessary link and compilation flags are added
 
-'''DEPS_CMAKE''': list of packages which can be found with CMake's find_package,
+**DEPS_CMAKE**: list of packages which can be found with CMake's find_package,
 that the library depends upon. It is assumed that the Find*.cmake scripts
 follow the cmake accepted standard for variable naming
 
-'''MOC''': if the library is Qt-based, a list of headers that should be processed by
+**MOC**: if the library is Qt-based, a list of headers that should be processed by
 moc. The resulting implementation files are built into the library
 
 Library Targets (<tt>rock_library</tt>)
@@ -85,27 +85,27 @@ needs to be in the same directory and called package_name.pc.in
 
 The following arguments are mandatory:
 
-'''SOURCES''': list of the C++ sources that should be built into that library
+**SOURCES**: list of the C++ sources that should be built into that library
 
 The following optional arguments are available:
 
-'''DEPS''': lists the other targets from this CMake project against which the
+**DEPS**: lists the other targets from this CMake project against which the
 library should be linked
 
-'''DEPS_PKGCONFIG''': list of pkg-config packages that the library depends upon. The
+**DEPS_PKGCONFIG**: list of pkg-config packages that the library depends upon. The
 necessary link and compilation flags are added
 
-'''DEPS_CMAKE''': list of packages which can be found with CMake's find_package,
+**DEPS_CMAKE**: list of packages which can be found with CMake's find_package,
 that the library depends upon. It is assumed that the Find*.cmake scripts
 follow the cmake accepted standard for variable naming
 
-'''HEADERS''': a list of headers that should be installed with the library. They get
+**HEADERS**: a list of headers that should be installed with the library. They get
 installed in include/project_name
 
-'''MOC''': if the library is Qt-based, a list of headers that should be processed by
+**MOC**: if the library is Qt-based, a list of headers that should be processed by
 moc. The resulting implementation files are built into the library
 
-'''NOINSTALL''': by default, the library gets installed on 'make install'. If this
+**NOINSTALL**: by default, the library gets installed on 'make install'. If this
 argument is given, this is turned off
 
 Vizkit Plugin Targets (<tt>rock_vizkit_plugin</tt>)
@@ -132,27 +132,27 @@ library, the headers get installed in include/vizkit
 
 The following arguments are mandatory:
 
-'''SOURCES''': list of the C++ sources that should be built into that library
+**SOURCES**: list of the C++ sources that should be built into that library
 
 The following optional arguments are available:
 
-'''DEPS''': lists the other targets from this CMake project against which the
+**DEPS**: lists the other targets from this CMake project against which the
 library should be linked
 
-'''DEPS_PKGCONFIG''': list of pkg-config packages that the library depends upon. The
+**DEPS_PKGCONFIG**: list of pkg-config packages that the library depends upon. The
 necessary link and compilation flags are added
 
-'''DEPS_CMAKE''': list of packages which can be found with CMake's find_package,
+**DEPS_CMAKE**: list of packages which can be found with CMake's find_package,
 that the library depends upon. It is assumed that the Find*.cmake scripts
 follow the cmake accepted standard for variable naming
 
-'''HEADERS''': a list of headers that should be installed with the library. They get
+**HEADERS**: a list of headers that should be installed with the library. They get
 installed in include/project_name
 
-'''MOC''': if the library is Qt-based, a list of headers that should be processed by
+**MOC**: if the library is Qt-based, a list of headers that should be processed by
 moc. The resulting implementation files are built into the library
 
-'''NOINSTALL''': by default, the library gets installed on 'make install'. If this
+**NOINSTALL**: by default, the library gets installed on 'make install'. If this
 argument is given, this is turned off
 
 Vizkit Widget Targets (<tt>rock_vizkit_widget</tt>)
@@ -184,26 +184,26 @@ library, the headers get installed in include/package_name
 
 The following arguments are mandatory:
 
-'''SOURCES''': list of the C++ sources that should be built into that library
-'''MOC''':     a list of headers that should be processed by moc. The resulting 
+**SOURCES**: list of the C++ sources that should be built into that library
+**MOC**:     a list of headers that should be processed by moc. The resulting 
          implementation files are built into the library
 
 The following optional arguments are available:
 
-'''DEPS''': lists the other targets from this CMake project against which the
+**DEPS**: lists the other targets from this CMake project against which the
 library should be linked
 
-'''DEPS_PKGCONFIG''': list of pkg-config packages that the library depends upon. The
+**DEPS_PKGCONFIG**: list of pkg-config packages that the library depends upon. The
 necessary link and compilation flags are added
 
-'''DEPS_CMAKE''': list of packages which can be found with CMake's find_package,
+**DEPS_CMAKE**: list of packages which can be found with CMake's find_package,
 that the library depends upon. It is assumed that the Find*.cmake scripts
 follow the cmake accepted standard for variable naming
 
-'''HEADERS''': a list of headers that should be installed with the library. They get
+**HEADERS**: a list of headers that should be installed with the library. They get
 installed in include/project_name
 
-'''NOINSTALL''': by default, the library gets installed on 'make install'. If this
+**NOINSTALL**: by default, the library gets installed on 'make install'. If this
 argument is given, this is turned off
 
 Test Suite Targets (<tt>rock_testsuite</tt>)
@@ -222,20 +222,20 @@ Creates a C++ test suite that is using the boost unit test framework
 
 The following arguments are mandatory:
 
-'''SOURCES''': list of the C++ sources that should be built into that library
+**SOURCES**: list of the C++ sources that should be built into that library
 
 The following optional arguments are available:
 
-'''DEPS''': lists the other targets from this CMake project against which the
+**DEPS**: lists the other targets from this CMake project against which the
 library should be linked
 
-'''DEPS_PKGCONFIG''': list of pkg-config packages that the library depends upon. The
+**DEPS_PKGCONFIG**: list of pkg-config packages that the library depends upon. The
 necessary link and compilation flags are added
 
-'''DEPS_CMAKE''': list of packages which can be found with CMake's find_package,
+**DEPS_CMAKE**: list of packages which can be found with CMake's find_package,
 that the library depends upon. It is assumed that the Find*.cmake scripts
 follow the cmake accepted standard for variable naming
 
-'''MOC''': if the library is Qt-based, a list of headers that should be processed by
+**MOC**: if the library is Qt-based, a list of headers that should be processed by
 moc. The resulting implementation files are built into the library
 
