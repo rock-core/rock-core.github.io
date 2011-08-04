@@ -209,6 +209,11 @@ Task::Task(std::string const& name, RTT::ExecutionEngine* engine)
 
 ### Embeding configuration into the ruby script
 
+Now, copy 'start.rb' to a new file 'configure.rb' -
+you will reuse 'start.rb' at a later stage. 
+Modify 'configure.rb' according to the following 
+code block:
+
 {coderay:: ruby}
 require 'orocos'
 
