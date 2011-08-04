@@ -26,8 +26,13 @@ This should give us an folder containing the following files :
 CMakeLists.txt  INSTALL  LICENSE  manifest.xml  README  src
 {coderay}
 
-We start by adding the needed dependencies to the mainfest.xml which are in our case 'base/types' and 'gui/vizkit'.
-Afterward we create a new class in the src folder named  'RockControl'.
+Make sure you add the required dependencies to the mainfest.xml, i.e. here 'base/types' and 'gui/vizkit'.
+{coderay:: sh}
+<depend package="/base/types" />
+<depend package="/gui/vizkit" />
+{coderay}
+
+Afterwards, create a new class in the src folder named 'RockControl'.
 
 This class will contain the (very basic) simulation logic for our Rock-Robot. Therefore it will calculate new positions
 of our robot given movement commands and a time step. 
@@ -88,11 +93,11 @@ private:
 {coderay}
 
 
-The implementation is rather straight forward and for readability reasons only the relevant piece will be explained:
+The implementation is rather straight forward and for readability reasons only relevant parts will be explained:
 
-The type base::MotionCommand2D contains a demanded translation and a rotation speed. The translation is in m/s and 
-the rotation in rad/s. The parameter deltaTime defines, how much the time advanced, since the last call. Inside of the
-method is a bit of math, that computes the new position and and rotation of our rock, in respect to the last pose.
+The type base::MotionCommand2D contains a demanded translation and a rotation speed. Translation is measured in m/s and 
+rotation in rad/s. The parameter deltaTime defines, how much time advanced since the last call. The function 
++computeNextPose+ computes the new position and and rotation of our rock, in respect to the last pose.
 
 {coderay:: c++}
 base::Pose RockControl::computeNextPose(
@@ -129,8 +134,8 @@ base::Pose RockControl::computeNextPose(
 {coderay}
 
 
-Now that we got a 'proper' simulation of our rock, we go on and create a visualization for it.
-Therefor we create a directory 'viz' and a class RockVisualization in it:
+Now, that we got a 'proper' simulation of our rock, we go on and create a visualization for it.
+Therefore, create a directory 'viz' and a class 'RockVisualization' in it:
 
 {coderay:: c++}
 #ifndef ROCKVISUALIZATION_H
@@ -264,7 +269,7 @@ void RockTutorialControl::updateHook()
 Run it
 -----------
 
-Now we should run it to see if it works. You can execute the following lines in a seperate ruby file or just in the irb (Interactive Ruby Shell).
+Now we should run it to see if it works. You can execute the following lines in a separate Ruby file or just in the irb (Interactive Ruby Shell).
 
 {coderay:: ruby}
 require 'orocos'
@@ -275,7 +280,6 @@ include Orocos
 ## Initialize orocos ##
 Orocos.initialize
 
-##TODO THIS IS A BUG
 Orocos.load_typekit('base')
 
 ## create a widget for 3d display
@@ -322,14 +326,19 @@ Orocos.run 'rock_tutorial' do
   Vizkit.exec
 end
 {coderay}
-At first we create a widget for 3D-display. Afterward we load and register our self written visualizer on it by calling  
-createPlugin. Now we will run our deployment 'rock_tutorial'. Then we will register a ruby method that get's called every time there is a new 
-sample on the pose port. Inside this method we'll call out visualizer plugin with the new data sample. 
-Then we can get a handle to our tasks using 'TaskContext.get'. Next we start the task, this will 
-call the startHook() in the task. Afterward we use a writer to write a motion command the the 'motion_command' port.
-Finally we call Vizkit.exec to start the GUI thread. 
+At first we create a widget for 3D-display and display it.
+In the next step we load and register our self-written visualizer on the widget by calling  
+createPlugin. 
+Now, the deployment 'rock_tutorial' can be run. 
+Every time there is a new sample the visualizer plugin should be updated. Therefore, we register a Ruby method that gets called every time there is a new 
+sample on the 'pose' port. Inside this method we'll call our visualizer plugin with the new data sample. 
+
+As in the basics tutorial, the following Ruby commands lead to a start of the task, i.e. calling the 
+startHook() of the task. 
+Afterwards we use a port writer to write a motion command to the 'motion_command' port.
+Finally calling Vizkit.exec starts the GUI thread. 
 
 What you can see after executing this script is a rock-like robot inside the Vizkit GUI. The rock should do a circular motion.
 If you want to steer the rock using a joystick, progress to [the next
-tutorial](510_joystick.html). If you don't have a joystick, you can skip it and
+tutorial](510_joystick.html). If you don't have a joystick
 go [to steer using a graphical interface](520_virtual_joystick.html)
