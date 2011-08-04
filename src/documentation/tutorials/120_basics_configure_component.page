@@ -174,12 +174,13 @@ bool Task::cleanupHook()
 
 
 ### Build the task
-Now, build the task. 
+Now, build the task, and be aware: it will fail!
+
 {coderay:: c++}
 amake basics_tutorial/orogen/message_producer
 {coderay}
 
-Building the task will fails, since some of the constructors need to be adapted to account for the configuration requirement. However, orogen supports you with this tasks, since it always generates the latest task template *.hpp and *.cpp files into the templates folder. 
+Building the task will fail, since some of the constructors need to be adapted to account for the configuration requirement. However, orogen supports you with this tasks, since it always generates the latest task template *.hpp and *.cpp files into the templates folder. 
 Thus copy the constructor from templates/task/Task.hpp and templates/task/Task.cpp to replace the current ones in tasks/Task.hpp and task.cpp. 
 
 Finally your header and source file should contain the following constructors:
