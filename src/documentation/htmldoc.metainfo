@@ -6,6 +6,10 @@ about:
     sort_info: 25 
     title: About Rock
 
+packages:
+    sort_info: 50
+    title: Creating Packages
+
 autoproj:
     title: Build System
     sort_info: 100
