@@ -21,6 +21,14 @@ deployment "message_producer_deployment" do
 end
 {coderay}
 
+**Advanced Tip** This adds [a logger
+component](../../package_directory/orogen_tasks/logger__Logger.html) to the
+deployment. This deployment has a standard name of _deployment\_name_\_Logger
+that can then be picked up by orocos.rb. Adding a logger per process, this way,
+ensures that you are not wasting CPU time marshalling / demarshalling data for
+logging purposes.
+{: .note}
+
 **Activating logging:** Now you can activate the logging by calling the ruby
 method *log_all* from your ruby start script. If you only want to log the
 ports or the properties of the tasks you can also calling the methods
