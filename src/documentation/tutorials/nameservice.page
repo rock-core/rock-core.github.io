@@ -123,7 +123,7 @@ end
 ### Run it
 First start the message producer, then the message consumer. The message consumer will output the message in 
 the same way a before, however, this time both component found each other using the Avahi naming service. 
-{coderay:: }
+{coderay:: sh}
 ruby message_producer/scripts/start.rb &
 ruby message_consumer/scripts/start.rb
 {coderay}
