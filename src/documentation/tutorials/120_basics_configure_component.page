@@ -197,12 +197,12 @@ Task(std::string const& name, RTT::ExecutionEngine* engine);
 
 {coderay:: c++}
 Task::Task(std::string const& name)
-    : TaskBase(name)
+    : TaskBase(name), mpMessageDriver(0)
 {
 }
 
 Task::Task(std::string const& name, RTT::ExecutionEngine* engine)
-    : TaskBase(name, engine)
+    : TaskBase(name, engine), mpMessageDriver(0)
 {
 }
 {coderay}
