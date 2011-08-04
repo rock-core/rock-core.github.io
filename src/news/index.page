@@ -1,0 +1,18 @@
+---
+title: News
+in_menu: false
+link:
+  css: /style_screen.css
+  alternate:
+    href: news.atom
+    type: application/atom+xml
+---
+# Latest news
+
+<webgen:block name='content' chain='news.template; website_update.html' />
+
+# News listing
+
+Following is a list of all news entries:
+
+{menu: {start_level: 2, max_levels: 4, used_nodes: files, range_start: 1000}}

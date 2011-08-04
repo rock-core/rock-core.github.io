@@ -46,3 +46,7 @@ stream_aligner:
     title: Stream Aligner
     sort_info: 1000
 
+envire:
+    title: Envire 
+    sort_info: 1100
+
