@@ -23,7 +23,7 @@ At the end of this tutorial, the component will look like:
 Configure a component 
 ---------------------------------
 Some libraries will require configuration before you can use them, e.g. add a the following property to the MessageDriver library.
-Therefore create a configuration object and extend the message_driver to allow for configuration. 
+Therefore, create Config.hpp in the message driver library and add the configuration object to allow for configuration. 
 
 The configuration object: 
 {coderay:: c++}
@@ -132,7 +132,7 @@ to the task_context specification.
 {coderay:: ruby}
 import_types_from "message_driver/Config.hpp"
 
-task_context "producer_deployment"
+task_context "Task"
   needs_configuration
     
   property "config", "message_driver/Config"
@@ -170,8 +170,10 @@ bool Task::configureHook()
 {coderay}
 
 {coderay:: c++}
-bool Task::cleanupHook()
+void Task::cleanupHook()
 {
+    TaskBase::cleanupHook();
+
     delete mpMessageDriver;
 }
 {coderay}
