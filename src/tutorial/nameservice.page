@@ -6,7 +6,7 @@ sort_info: 400
 Abstract
 ----------------
 In this tutorial you will learn how to use the Avahi nameservice that is available with Rock.
-This will allow you to distribute your components over multiple physical systems, or just in general allow intersystem communication. 
+This will allow you to distribute your components over multiple physical systems without having to rely on a centralized nameservice.
 The goal of this tutorial is thus: 
 
  * distributing two components, i.e. message_producer and message_consumer will be started independently
@@ -16,7 +16,9 @@ More details on this topic you find in the [general documentation](../runtime/se
 
 Ruby scripts
 ----------------
-Until now you might not have questioned how the Ruby scripts establish a connection to tasks. Most importantly, for orocos.rb to work you have to initialize it properly, i.e. the following statement are essential.
+Until now you might not have questioned how the Ruby scripts establish a connection in details to a task that runs in a deployment. 
+Orocos.rb used CORBA as one of its transport layers, and it also uses the CORBA nameservice for finding components. 
+For that reason, an orocos.rb script has an initialization section, i.e. the following statement are essential.
 
 {coderay:: ruby}
 require 'orocos'
@@ -26,14 +28,14 @@ Orocos.initialize
 
 By default this initialization sets up the CORBA communication layer, and if no other statements are made, a CORBA nameserver is started on localhost with IP 127.0.0.1. 
 
+You rely on this nameservice as soon as you call TaskContext.get. The call will query all available nameservices to find the task of the given name.
+
 {coderay:: ruby}
 Orocos.run 'message_producer_deployment' do 
     message_producer = TaskContext.get 'message_producer'
     ...
 end
 {coderay}
-
-A call to TaskContext.get will try to find the task of the given name, in the nameservers that are known. In the given case, only the default nameserver is active, i.e. CORBA. 
 
 If the task cannot be found, an exception will be raised, e.g. if you misspelled the task name and used 'message_producr' instead of the correct name: 
 {coderay:: sh}
@@ -47,18 +49,21 @@ Orocos.rb:   /home/rockuser/dev/tools/orocos.rb/
 {coderay}
 
 
-### Activation of service discovery support
-Before you can use Avahi nameservice you have to make sure the tools/service_discovery package 
-is installed on your system. As soon as its installed every orogen component will be generated with
+
+The Avahi nameservice
+-----------------------
+The CORBA nameserver enforces a centralized setup, while Avahi nameservice does not. 
+Now, you want to spread your system
+across multiple machines since you want to avoid having to specify a central instance.
+
+But before you can use the Avahi nameservice you have to make sure the tools/service_discovery package 
+is installed, since the support for service_discovery is optional. 
+Only when this package is installed orogen components will be generated with
 suppport for service discovery via Avahi. 
 The minimal Rock installation already provides this package for you, so you can continue right away.
 
-### The Avahi nameservice
-The CORBA nameserver enforces a centralized setup, while Avahi nameservice does not. 
-Now, you want to spread your system
-across multiple machines and you want to avoid having to specify a central instance.
-Thus, you enable the nameservice AVAHI for a specific domain, here '_robot._tcp'. The suffix must be either '._tcp'
-or '._udp'.
+After being sure service_discovery has been installed an you component has been build with service discovery support you enable the nameservice AVAHI in your Ruby script. 
+You enable Avahi for a specific domain, where you can use a pattern of 'name'.'suffix', where the suffix must be either '._tcp' or '._udp'. Here, use '_robot._tcp'.
 
 {rdoc_class: {base_url: /api/tools/orocos.rb, name:
 Nameservice::enable}}
@@ -71,9 +76,13 @@ Nameservice::enable(:AVAHI, :searchdomains => ['_robot._tcp'])
 Orocos.initialize
 {coderay}
 
+The nameservice has to be enabled +before+ the call to initalize Orocos.
+
 For the name resolution via Avahi to work, you have to start your deployment
-with a service discovery domain set, i.e. you need to forward command line options
-to the deployment. 
+within a service discovery domain, and since there exists a command line option 
+on the deployment to set the service discovery domain (sd-domain), you just forward the command line option to the deployment. 
+Be reminded, that this option is available to deployments +after+ the tools/service_discovery package has been installed and +after+ (re)building components with the available tools/service_discovery package.
+
 {coderay:: ruby}
 Orocos.run 'message_producer_deployment', :cmdline_args => 
 	{ 'sd-domain' => '_robot._tcp' }, :wait => 3 do |p|
@@ -81,11 +90,13 @@ Orocos.run 'message_producer_deployment', :cmdline_args =>
 end
 {coderay} 
 
-This option is available to deployments as soon as the tools/service_discovery package has been installed. 
-The publishing of the service in the Avahi domain has some latency, so you have to allow for a waiting time, here select 3 seconds 
-until the actual block of the Ruby script start to run. 
+Since the publishing of the service in the Avahi domain happens with delay once you start the deployment, you have to allow for a waiting time, before querying the nameservice for the name. 
+By setting the wait option you can pass a time in second that the script should wait, until executing the block. Select 3 seconds 
+until the actual block of the Ruby script starts to run. 
 
-After enabling the producer startup to use Avahi, also activate the Avahi nameserver for the message consumer. 
+After enabling the message producer startup to use Avahi, also activate the Avahi nameserver for the message consumer.
+The message producer will be started separately, thus remove the message_producer_deployment from the start.rb in the message consumer component.
+
 {coderay:: ruby}
 require 'orocos'
 require 'readline'
@@ -112,25 +123,24 @@ end
 ### Run it
 First start the message producer, then the message consumer. The message consumer will output the message in 
 the same way a before, however, this time both component found each other using the Avahi naming service. 
-
+{coderay:: }
+ruby message_producer/scripts/start.rb &
+ruby message_consumer/scripts/start.rb
+{coderay}
 
 ***NOTE***: You need to have a proper configuration of Avahi, and there are some known issue with using IPv4. 
-Switching to the following entries in /etc/avahi/avahi-daemon.conf
+Enabling IPv6 for the daemon in /etc/avahi/avahi-daemon.conf will help to make service discovery more robust.
 {: .warning}
 
 {coderay:: sh}
 [server]
-use-ipv4=no
+...
 use-ipv6=yes
-allow-interfaces=eth0,wlan0
-enable-dbus=yes
-
-[wide-area]
-enable-wide-area=yes
+...
 
 [publish]
-publish-aaaa-on-ipv4=yes
 publish-a-on-ipv6=yes
+...
 {coderay}
 
 
@@ -141,4 +151,5 @@ In this tutorial you have learned to:
  * enable the Avahi nameservice for finding running tasks
  * apply options to the Ruby script 
  * connect two components using the Avahi nameservice
+
 
