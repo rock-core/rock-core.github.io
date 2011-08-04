@@ -22,7 +22,8 @@ rock-add-vizkit
 You'll be asked for a name and a type for the plugin. The name should be a simple name as PathVisualization, without namespaces. The type is the type we want to display and should be something like base::Time (with namespace). In our case we use RockVisualization as name and base::Pose as type. 
 After that all files we need for the plugin were created in a separated folder named 'viz'.
 
-In the header file we can see that this plugin inherits from vizkit::VizPlugin<base::Pose>. From VizPlugin it has a method updateData of parameter base::Pose. This method will be called later from orocos components or ruby scripts to update its internal state.
+In the header file we can see that this plugin inherits from
+vizkit::VizPlugin&lt;base::Pose&gt;. From VizPlugin it has a method updateData of parameter base::Pose. This method will be called later from orocos components or ruby scripts to update its internal state.
 But we only have to take care of the three virtual methods.
 {coderay:: c++}
 #include <boost/noncopyable.hpp>
@@ -86,7 +87,8 @@ How it looks when we create a rock-like robot in the createMainNode method and u
 More than one Type
 -----------
 
-If you want to have more than one type to represent the internal state of your plugin you can inherit additionally from VizPluginAddType<SecondType>.
+If you want to have more than one type to represent the internal state of your
+plugin you can inherit additionally from VizPluginAddType&lt;SecondType&gt;.
 {coderay:: c++}
 namespace vizkit
 {
