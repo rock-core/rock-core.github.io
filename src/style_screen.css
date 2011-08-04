@@ -27,8 +27,8 @@ body {margin: 0px auto; padding: 0px; background: url(img/background_body_grey.g
 /* 2.1 - Sitename, slogan and banner */
 /*-----------------------------------*/
 .site-name {height: 45px; top: 12px; z-index: 4; margin: 0px; padding-left: 75px; color: rgb(69,140,204);}
-.site-name p.title  {margin: 0px; padding: 0px; font-family: "trebuchet ms", arial, sans serif; font-weight: bold; font-size: 24px;}
-.site-name p.subtitle  {clear: both; width: 300px; margin: -2px 0px 0px -2em; padding: 0px; background-color: transparent; font-family: "trebuchet ms", arial, sans serif; font-size: 15px;}
+.site-name p.title  {margin: 0px; padding: 0px; font-family: "trebuchet ms", arial, sans serif; font-weight: bold; font-size: 36px;}
+.site-name p.subtitle  {clear: both; width: 300px; margin: -2px 0px 0px -2em; padding: 0px; background-color: transparent; font-family: "trebuchet ms", arial, sans serif; font-size: 22px;}
 .site-name a {margin: 0px; padding: 0px; text-decoration: none; color: rgb(88,144,168);}
 .site-name a:hover {text-decoration: none;}
 .site-slogan-container  {width: 755px; height: 130px; top: 112px; position: absolute; z-index: 1; overflow: hidden; margin: 0px; padding-right: 15px; background-color: transparent;}
