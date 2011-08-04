@@ -23,8 +23,47 @@ In order to start with the tutorial you require a minimal but working installati
 
 To check if you are ready for your first tutorial open your console and enter 'which rock-create-lib' and verify that the command returns a full path to the 'rock-create-lib'-script. 
 
+Tutorials Outline
+-----------------
 
-### Tutorial package set
+**Basics**
+
+The basic tutorials cover how to get started: create new code, integrate it in
+the build system and then in components.
+
+ * [Create a C++ library package](100_basics_create_library.html)
+ * [Create a component](110_basics_create_component.html)
+ * [Configure your components](120_basics_configure_component.html)
+ * [Run the components together](130_basics_connect_components.html)
+
+**Logging**
+
+The logging tutorials cover the usage of the data logger, and the different ways
+you can use the logged data.
+
+ * [Logging and replay](200_logging_and_replay.html)
+ * [Data visualization](210_data_visualization.html)
+
+**Showcase Example**
+
+This example covers, in principle, the same subjects as the basic tutorials,
+but with a more complex (and more realistic) example. You will also learn how to
+browse and find components in the Rock component collection.
+
+ * [Writing a control component](500_writing_a_control_component.html)
+ * [Integrating a Joystick](510_joystick.html)
+ * [Integrating a Virtual Joystick (for those that don't have a physical
+   one)](520_virtual_joystick.html)
+
+**Advanced Development Tutorials**
+
+ * [Using Avahi to find the tasks](530_nameservice.html)
+ * [Writing a 3D visualization plugin](600_vizkit_plugin.html)
+ * [Interfacing a 3D visualization plugin with Ruby
+   scripts](610_vizkit_ruby_plugin.html)
+
+Installing the tutorial results
+-------------------------------
 In case you don't want to write all the package yourself, the Rock tutorials have been packaged so that you can easily retrieve them.
 If you want to add the tutorials to your installation add the package set to your autoproj/manifest:
 {coderay:: sh}

@@ -1,6 +1,6 @@
 ---
-title: Rock Tutorial 3
-sort_info: 3
+title: Control through a Virtual Joystick
+sort_info: 520
 ---
 Tutorial Info
 -----------
@@ -60,9 +60,4 @@ If you execute
 {coderay}
 two windows should pop up. One with our virtual joystick the other one should be the well known visualization of the rock. 
 Clicking and dragging the joystick should also make the rock move.
-
-
-
-
-
 

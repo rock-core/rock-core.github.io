@@ -117,4 +117,4 @@ In this tutorial you learned how to activate logging and how to replay
 the logged data to an orocos task. In the next tutorial you will learn 
 how to display live and logged data with the help of Vizkit.
 
-Progress to the [next tutorial](data_visualization.html).
+Progress to the [next tutorial](210_data_visualization.html).

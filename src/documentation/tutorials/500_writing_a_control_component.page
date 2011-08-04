@@ -1,6 +1,6 @@
 ---
-title: Rock Tutorial 1
-sort_info: 1
+title: Writing a Control Component
+sort_info: 500
 ---
 Abstract
 -----------
@@ -330,4 +330,6 @@ call the startHook() in the task. Afterward we use a writer to write a motion co
 Finally we call Vizkit.exec to start the GUI thread. 
 
 What you can see after executing this script is a rock-like robot inside the Vizkit GUI. The rock should do a circular motion.
-If you want to steer the rock visit the next tutorial.
+If you want to steer the rock using a joystick, progress to [the next
+tutorial](510_joystick.html). If you don't have a joystick, you can skip it and
+go [to steer using a graphical interface](520_virtual_joystick.html)
