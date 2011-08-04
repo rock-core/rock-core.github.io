@@ -43,8 +43,7 @@ Installation: the easy way
       . /path/to/the/directory/env.sh
       {: .commandline}
 
- 6. read [the autoproj quick start guide]({relocatable:
- ../autoproj/quick_start.html}) to know the
+ 6. read [the autoproj guide for bootstrap and basic usage](/documentation/autoproj/bootstrap_and_basic_usage.html) to know the
     basic operations of the build system
 
 Other bootstrapping options

@@ -1,110 +1,137 @@
 ---
-title: Writing a 3D Vizkit Visualizer
-sort_info: 600
+title: Vizkit-Plugin Tutorial
+sort_info: 7
 ---
 Abstract
 -----------
 
-In this tutorial you'll learn how to create your own Vizkit plugin.
-All examples of this tutorial were made in the /tutorials/rock_tutorial/viz library.
+In this tutorial you'll learn how to create your own Vizkit plugin. Vizkit plugins are used for the 3d-data visualization. 
+The 3d-data visualization in ROCK is based on OpenSceneGraph. For more informations and tutorials about OSG visit their [website](http://www.openscenegraph.org/projects/osg/wiki/Support).
+All examples made in this tutorial can be found in the /tutorials/vizkit3d_plugin_tutorial library.
 
 
 Implementation
 -----------
 
 Normally you add a Vizkit plugin to an existing library, to visualize data of this library.
-In this example we add a Vizkit plugin to the 'rock_tutorial' library.
+For this tutorial we create a new library using the command 'rock-create-library' and name it vizkit3d_plugin_tutorial.
+In the manifest.xml we have to add some dependencies:
+{coderay:: xml}
+...
+<!-- rock library dependencies -->
+<depend package="gui/vizkit" />
+<depend package="base/types" />
 
-The first step is to execute the following command inside the folder of this library.
+<!-- os dependencies -->
+<rosdep name="osg" />
+...
+{coderay}
+Vizkit is the 3d-data visualization part of ROCK and it depends on OpenSceneGraph (osg). And we are going to use some base types of ROCK.
+
+The next step is to execute the following command inside the folder of this library.
 {coderay:: sh}
 rock-add-vizkit
 {coderay}
-You'll be asked for a name and a type for the plugin. The name should be a simple name as PathVisualization, without namespaces. The type is the type we want to display and should be something like base::Time (with namespace). In our case we use RockVisualization as name and base::Pose as type. 
+You'll be asked for a name and a type for the plugin. The name should be a simple name as PathVisualization, without namespaces. The type is the type we want to display and should be something like base::Time (with namespace). In our case we use SphereVisualization as name and base::Vectro3d as type. 
 After that all files we need for the plugin were created in a separated folder named 'viz'.
 
-In the header file we can see that this plugin inherits from
-vizkit::VizPlugin&lt;base::Pose&gt;. From VizPlugin it has a method updateData of parameter base::Pose. This method will be called later from orocos components or ruby scripts to update its internal state.
-But we only have to take care of the three virtual methods.
+In the header file we can see that this plugin inherits from vizkit::VizPlugin< base::Vectro3d >. From VizPlugin it has a method updateData of parameter base::Vectro3d. This method will be called later from orocos components or ruby scripts to update its internal state. But we only have to take care of the three virtual methods.
+In the header file it self we have to add some includes and a pointer, base/eigen.h because of the base::Vector3d we use and osg/PositionAttitudeTransform for the pointer spherePos. We add this pointer here to change later easily attributes of this object. With a osg::PositionAttitudeTransform we can modify the relative position and orientation of all child objects.
 {coderay:: c++}
 #include <boost/noncopyable.hpp>
 #include <vizkit/VizPlugin.hpp>
 #include <osg/Geode>
+#include <osg/PositionAttitudeTransform>
+#include <base/eigen.h>
 
 namespace vizkit
 {
-    class RockVisualization
-        : public vizkit::VizPlugin<base::Pose>
+    class SphereVisualization
+        : public vizkit::VizPlugin<base::Vector3d>
         , boost::noncopyable
     {
     public:
-        RockVisualization();
-        ~RockVisualization();
+        SphereVisualization();
+        ~SphereVisualization();
 
     protected:
         virtual osg::ref_ptr<osg::Node> createMainNode();
         virtual void updateMainNode(osg::Node* node);
-        virtual void updateDataIntern(base::Pose const& plan);
+        virtual void updateDataIntern(base::Vector3d const& value);
         
     private:
+        osg::ref_ptr<osg::PositionAttitudeTransform> spherePos;
         struct Data;
         Data* p;
     };
 }
 {coderay}
 
-In createMainNode we have to create an osg node (e.g. osg::Geode, osg::Group, osg::Node), add to it all geometries we want to display and return it.
+In createMainNode we have to create an OSG node (e.g. osg::Geode, osg::Group, osg::Node), add to it all geometries we want to display and return it.
+In our case want draw a simple sphere. Here we use the PositionAttitudeTransform as main node, to which we add a Geode as child. To this Geode we add a drawable Sphere.
 {coderay:: c++}
-osg::ref_ptr<osg::Node> RockVisualization::createMainNode()
+osg::ref_ptr<osg::Node> SphereVisualization::createMainNode()
 {
-    // Geode is a common node used for vizkit plugins. It allows to display
-    // "arbitrary" geometries
-    return new osg::Geode();
+    // create a sphere with radius 0.5
+    osg::ref_ptr<osg::Sphere> sp = new osg::Sphere(osg::Vec3d(0,0,0), 0.5);
+    osg::ref_ptr<osg::ShapeDrawable> sd = new osg::ShapeDrawable(sp.get());
+    // set a color
+    sd->setColor(osg::Vec4(0.0f, 0.59f, 0.59f, 1.0f));
+    osg::ref_ptr<osg::Geode> spGeode = new osg::Geode();
+    spGeode->addDrawable(sd.get());
+    // attach it to a parent which is a osg::PositionAttitudeTransform
+    spherePos = new osg::PositionAttitudeTransform();
+    spherePos->addChild(spGeode);
+
+    return spherePos;
 }
 {coderay}
 
-The updateMainNode is an update callback of osg, it gets triggered when the internal states of the geometries can be updated.
-So what we have to do here is to update our nodes using the data in p->data.
+The updateMainNode is an update callback of OSG, it will be triggered if the internal states of the geometries can be updated.
+So what we have to do here is to update our nodes using the data in p->data. We use our pointer spherePos to modify the position of our sphere.
 {coderay:: c++}
-void RockVisualization::updateMainNode ( osg::Node* node )
+void SphereVisualization::updateMainNode ( osg::Node* node )
 {
-    osg::Geode* geode = static_cast<osg::Geode*>(node);
     // Update the main node using the data in p->data
+    osg::Vec3d position(p->data.x(), p->data.y(), p->data.z());
+    spherePos->setPosition(position);
 }
 {coderay}
 
-This method gets executed by the updateData method and updates the internal state of our type base::Pose.
+This method will be executed by the updateData method and updates the internal state of our type base::Vector3d.
 We don't need to change here anything.
 {coderay:: c++}
-void RockVisualization::updateDataIntern(base::Pose const& value)
+void SphereVisualization::updateDataIntern(base::Vector3d const& value)
 {
     p->data = value;
 }
 {coderay}
+Vizkit runs in a separated task context but it is assured that updateMainNode and updateDataIntern won't be triggered at the same time.
 
-How it looks when we create a rock-like robot in the createMainNode method and update its internal states in the updateMainNode method could be found in /tutorials/rock_tutorial/viz.
+Now you are done with your first Vizkit plugin. There are two different ways to execute the plugin, using an orocos task or only with a ruby script.
+How you start it using a ruby script is part of the Advanced Vizkit-Plugin Tutorial.
 
 
 More than one Type
 -----------
 
-If you want to have more than one type to represent the internal state of your
-plugin you can inherit additionally from VizPluginAddType&lt;SecondType&gt;.
+If you want to have more than one type to represent the internal state of your plugin you can inherit additionally from VizPluginAddType< SecondType >.
 {coderay:: c++}
 namespace vizkit
 {
-    class RockVisualization
-        : public vizkit::VizPlugin<base::Pose>
+    class SphereVisualization
+        : public vizkit::VizPlugin<base::Vector3d>
         , public vizkit::VizPluginAddType<int>
         , boost::noncopyable
     {
     public:
-        RockVisualization();
-        ~RockVisualization();
+        SphereVisualization();
+        ~SphereVisualization();
 
     protected:
         virtual osg::ref_ptr<osg::Node> createMainNode();
         virtual void updateMainNode(osg::Node* node);
-        virtual void updateDataIntern(base::Pose const& plan);
+        virtual void updateDataIntern(base::Vector3d const& value);
         virtual void updateDataIntern(int const& value);
         
     private:

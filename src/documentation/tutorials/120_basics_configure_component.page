@@ -178,7 +178,8 @@ bool Task::cleanupHook()
 
 
 ### Build the task
-Now, build the task (beware: it will fail!)
+Now, build the task, and be aware: it will fail!
+
 {coderay:: c++}
 amake basics_tutorial/orogen/message_producer
 {coderay}

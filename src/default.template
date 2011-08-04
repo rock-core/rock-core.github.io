@@ -1,8 +1,18 @@
+--- pipeline:erb,tags,blocks,head
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
 
 <!-- Recommended XHTML-Editor: HTML-Kit 292 (Freeware) -->
 <!-- http://www.chami.com/html-kit/download/ -->
+
+<% # Get the root for this node %>
+<% root_page = context.node %>
+<% page_is_root = (root_page.parent == root_page.tree.root) %>
+<% if root_page.parent != root_page.tree.root %>
+<%   while root_page.parent != root_page.tree.root %>
+<%     root_page = root_page.parent %>
+<%   end %>
+<% end %>
 
 <head>
   <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
@@ -15,15 +25,6 @@
    <title>The Robot Construction Kit</title>
    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
 </head>
-
-<% # Get the root for this node %>
-<% root_page = context.node %>
-<% page_is_root = (root_page.parent == root_page.tree.root) %>
-<% if root_page.parent != root_page.tree.root %>
-<%   while root_page.parent != root_page.tree.root %>
-<%     root_page = root_page.parent %>
-<%   end %>
-<% end %>
 
 <body>
   <div class="page-container-2">
@@ -56,16 +57,7 @@
       <div class="buffer"></div>
 
       <div class="leftnav">
-          <% if !page_is_root %>
-          <div class="nav3">
-              <ul><li class="title"><%= root_page['title'] %></li>
-                  {menu: {start_level: 2, max_levels: 4, show_current_subtree_only: true, nested: true, used_nodes: files, range_end: 999}}
-              </ul>
-              <ul><li class="title">Additional Core Functionality</li>
-                  {menu: {start_level: 2, max_levels: 4, show_current_subtree_only: true, nested: true, used_nodes: files, range_start: 1000}}
-              </ul>
-          </div>
-          <% end %>
+          <webgen:block name="leftbar" notfound="ignore"/>
       </div>
 
       <div class="content2" <% if page_is_root %>style="margin-left: 110px;"<% end %>>

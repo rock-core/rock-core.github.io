@@ -18,8 +18,8 @@ Finding a standard task that provides a port X.
 We are using here an existing task of the rock-robotics framework and the task from the previous 
 tutorial, so we don't have to implement anything.
 
-In order to get our control look we need a task that supplies us with 'base::MotionCommand2D'. 
-For that it it always good to take a look into the [package directory](../../package_directory/).
+In order to get our control we need a task that supplies us with 'base::MotionCommand2D'. 
+For that it is recommended to take a look into the [package directory](../../package_directory/).
 
 The package directory gives you a general overview of available 'standard' packages and types.
 For our purpose we need to look into the subcategory 'oroGen Types'. This category shows all

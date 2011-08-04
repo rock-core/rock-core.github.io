@@ -28,6 +28,12 @@ To check if you are ready for your first tutorial open your console and enter 'w
 Tutorials Outline
 -----------------
 
+The tutorials work along a typical Rock-workflow, and will give you a guideline on how to approach building software for your robotic system. 
+The typical workflow starts with implementing functionality in a library, allowing for a framework independant implementation, and proceeds further to generating an orogen (thus framework specific) component, and gives you some details on how to enhance your data analysis using logging and data visualization ([more](/documentation/orogen/index.html)).
+
+The showcase example allows you to repeat a more complex example to deepen your knowledge of how to use Rock, while you can still pick dedicated topics from the advanced tutorials. 
+
+
 **Basics**
 
 The basic tutorials cover how to get started: create new code, integrate it in
