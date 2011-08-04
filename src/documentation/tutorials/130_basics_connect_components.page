@@ -72,17 +72,17 @@ include Orocos
 Orocos.initialize
 
 
-Orocos.run 'message_producer_deployment', 'consumer_deployment' do  
+Orocos.run 'message_producer_deployment', 'message_consumer_deployment' do  
 
      message_producer = TaskContext.get 'message_producer'
-     consumer = TaskContext.get 'consumer'
+     message_consumer = TaskContext.get 'message_consumer'
 
      message_producer.configure
      message_producer.start
 
-     consumer.start
+     message_consumer.start
 
-     message_producer.messages.connect_to consumer.messages
+     message_producer.messages.connect_to message_consumer.messages
 
      Readline::readline("Press ENTER to exit\n") do
      end 
