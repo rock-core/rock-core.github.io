@@ -6,8 +6,16 @@ about:
     sort_info: 25 
     title: About Rock
 
-packages:
+installation.page:
     sort_info: 50
+    title: Installation
+
+tutorials:
+    sort_info: 70
+    title: Tutorials
+
+packages:
+    sort_info: 80
     title: Creating Packages
 
 autoproj:
