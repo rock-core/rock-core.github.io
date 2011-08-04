@@ -579,4 +579,9 @@ div.tagcloud {
     margin-top: 2em;
     margin-bottom: 2em;
 }
-
+div#index-table {
+    margin-top: 1em;
+}
+.half-size {
+    width: 250px;
+}
