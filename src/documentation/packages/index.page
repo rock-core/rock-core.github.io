@@ -21,6 +21,15 @@ dependencies w.r.t. other packages) is added to the
 [manifest.xml](../autoproj/advanced/manifest-xml.html) file in the top directory
 of the package.
 
+<div class="note">
+**Note** that these macros are meant as helpers for packages developped in Rock.
+However:
+
+ * they are simply wrappers on top of normal CMake target definitions, i.e. the
+   normal CMake functionality applies on the targets defined by these macros
+ * their usage is not mandatory (even though it is recommended)
+</div>
+
 Plain C++ Libraries
 -------------------
 
