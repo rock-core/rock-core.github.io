@@ -69,28 +69,47 @@ will work, as well as d/o/xsens (for instance).
 Management
 ----------
 
-To build the packages, simply do:
+**Building the installation and packages:**
+
+To build all packages, simply do:
 
 autoproj build
 {: .commandline}
 
 It will ask the value of newly defined configuration options, import code hosted
 remotely that is not yet present, install OS packages (e.g. Ubuntu packages on
-an Ubunut installation) and build everything.
+an Ubuntu installation) and build everything.
 
-autoproj will *not* ask you again about the configuration questions you already
-answered, so if you want to change them, do:
+If you want to build only a specific package you can use, here it for building 'orocos/rtt':
 
-autoproj build --reconfigure
+autoproj build orocos/rtt
 {: .commandline}
 
-Alternatively, you can edit the autoproj/config.yml file directly.
 
-By default, autoproj does not automatically update the package sources. To do
-that, you have to explicitely call
+Alternatively to autoproj build, you can use the 'short' command version:
+
+amake 
+{: .commandline}
+
+It runs autoproj build for the given directory or package name.
+Selects the current directory if none is given
+
+
+
+**Updating and maintaining your installation:**
+
+In order to update your 
 
 autoproj update
 {: .commandline}
+
+Alternatively, you can use the 'short' command version:
+
+aup 
+{: .commandline}
+
+It runs autoproj update for the given directory or package name.
+
 
 Finally, if you want to make sure that your build is fresh, then do
 
@@ -104,9 +123,32 @@ lot of values. To trigger this, do
 autoproj force-build
 {: .commandline}
 
+**Exception**: to avoid long builds, the rebuild and force-build commands apply only
+to the packages given on the command line. E.g., autoproj rebuild orocos/rtt
+will only rebuild the orocos/rtt packages. If you want to rebuild both the
+packages and its dependencies, use the --with-depends options.
+{: .warning}
+
 To add a new set, one edits the <tt>autoproj/manifest</tt> file and adds it
 there. Then, simply starting the build will update everything and rebuild what
 is needed.
+
+
+**Changing your configuration:**
+
+After having boostrapped your Rock installation, autoproj will *not* ask you again about the configuration, since 
+the questions you already answered. So if you want to change your configuration, i.e. you answers do:
+
+autoproj build --reconfigure
+{: .commandline}
+
+Alternatively, you can edit the autoproj/config.yml file directly.
+
+By default, autoproj does not automatically update the package sources. To do
+that, you have to explicitely update your packages as described in the following section. 
+
+
+**Generating documentation:**
 
 Documentation is generated only when asked explicitely:
 
@@ -121,14 +163,6 @@ All these commands (i.e. build, doc, and update) accept a package name as
 argument, thus triggering build only for this package and its dependencies. For
 instance:
 
-autoproj build orocos/rtt
-{: .commandline}
-
-**Exception**: to avoid long builds, the rebuild and force-build commands apply only
-to the packages given on the command line. E.g., autoproj rebuild orocos/rtt
-will only rebuild the orocos/rtt packages. If you want to rebuild both the
-packages and its dependencies, use the --with-depends options.
-{: .warning}
 
 Switching configuration after bootstrapping
 -------------------------------------------
