@@ -117,8 +117,8 @@ If you get an error here, you most likely have a syntax error, then please compa
 
 ### Writing the task
 Now, that you have created the orogen component you still have to embedd the functionality that message_driver provides, in order to achieve a proper message producing component. 
-With the execution of orogen command several new files have been created. For now, we only need to care about the files in the tasks subfolder and are ignoring the templates folder for a moment. 
-Within the tasks folder you will find two files: 'Task.hpp' and 'Task.cpp'. They contain the skeleton for the Orocos component that has been created. Within 'Task.hpp' you will find several commented so-called hook methods, and you have to uncomment the methods you want to define in your task. For this tutorial you uncomment updateHook, startHook and cleanupHook.
+Calling 'rock-create-orogen' created several new files. For now, you only need to care about the files in the tasks subfolder and can safely ignore the templates folder for a moment. 
+Within the subfolder 'tasks' of the created component you will find two files: 'Task.hpp' and 'Task.cpp'. They contain the skeleton for the Orocos component that has been created. Within 'Task.hpp' you will find several commented so-called hook methods, and you have to uncomment the methods you want to define in your task. For this tutorial you uncomment updateHook, startHook and cleanupHook.
 (More information about this methods could be found [here](../orogen/task_states.html))
 
 To add the message_driver functionality add a forward declaration for message_driver and add a message_driver::MessageDriver member to the Task.hpp:
