@@ -1,0 +1,175 @@
+---
+title: Data Visualization
+sort_info: 300
+---
+
+Abstract
+-----------
+In this tutorial you will learn how to display live and logged data with the help of Vizkit and how to 
+write a custom gui to display the data of your orocos task.
+
+Displaying Data with Vizkit
+-----------
+Vizkit is a ruby framework build around qtruby to support the developer with functionality of displaying his
+custom data in a convenient way. It is shipped with some Qt Widgets to display some basic types. 
+But its real strength lies in the ability to be customized.
+
+**Displaying Camera Samples** For some baes types like the camera frame Vizkit has a special display widget.
+To create an instance of a widget specialised to display camera frames you can use the Vizkit ruby 
+method *display* and a Orocos port which is producing camera frame as argument. In the case below the camera is 
+substituted by a log file called "camera_sample.0.log" but you can use the same syntax for orocos tasks as well.
+
+{coderay:: ruby}
+require 'vizkit'
+log = Orocos::Log::Replay.open("camera_sample.0.log")
+Vizkit.display log.camera.frame
+Vizkit.control log
+Vizkit.exec
+{coderay}
+
+Designing a custom GUI 
+-----------
+Vizkit is able to load ui files creates with the QDesigner. In this case a small GUI is loaded those ui file is 
+printed below (test_gui.ui). If you want to create your own ui file call *designer* in the command line.
+
+{coderay:: xml}
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Form</class>
+ <widget class="QWidget" name="Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>194</width>
+    <height>127</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Test-Gui</string>
+  </property>
+  <widget class="QPushButton" name="Button">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>80</y>
+     <width>90</width>
+     <height>27</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Send</string>
+   </property>
+  </widget>
+  <widget class="QTextEdit" name="textEdit">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>40</y>
+     <width>171</width>
+     <height>31</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>10</y>
+     <width>59</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Time:</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="Time">
+   <property name="geometry">
+    <rect>
+     <x>70</x>
+     <y>10</y>
+     <width>111</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
+{coderay}
+
+To load the ui file with Vizkit use the Vizkit ruby method *load*. After the ui file is loaded
+you can access all embedded objects by their object name and their qt signal/slots. 
+
+{coderay:: ruby}
+require 'vizkit'
+#load ui file
+gui = Vizkit.load 'test_gui.ui'
+
+#do something if someone is clicking on the 
+#button names Button
+gui.Button.connect(SIGNAL('clicked()')) do
+    puts 'someone presses on the button'
+end
+
+#display something in the label named Time
+gui.Time.setText(Time::now.to_s)
+
+gui.show
+Vizkit.exec
+{coderay}
+
+Connecting a custom GUI with an orocos task
+-----------
+{coderay:: ruby}
+require 'vizkit'
+#load ui file
+gui = Vizkit.load 'test_gui.ui'
+
+Orocos.run 'producer_deployment' do 
+    producer = Orocos::TaskContext.get 'producer'
+
+    #change a property 
+    gui.Button.connect(SIGNAL('clicked()')) do
+        producer.uppercase = !producer.uppercase
+    end
+
+    producer.msg connect_to do |data,_|
+        gui.Time.setText data.time.to_s
+    end
+
+    gui.show
+    Vizkit.exec
+end
+{coderay}
+
+
+Connecting a custom GUI with log files
+-----------
+If you want to connect your GUI with a log file you can use use the same syntax like for orocos tasks
+
+{coderay:: ruby}
+require 'vizkit'
+
+log = Vizkit::Log::Replay.open('producer_deployment.0.log')
+gui = Vizkit.load 'test_gui.ui'
+
+log.producer.msg connect_to do |data,_|
+    gui.Time.setText data.time.to_s
+end
+
+gui.show
+Vizkit.exec
+{coderay}
+
+Summary
+-----------
+In this tutorial you learned how to write a simple GUI and how to
+connect its object with log files and orocos tasks. 
+
+Progress to the [next tutorial](nameservice.html).
