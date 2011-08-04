@@ -19,7 +19,7 @@ We are using here an existing task of the rock-robotics framework and the task f
 tutorial, so we don't have to implement anything.
 
 In order to get our control look we need a task that supplies us with 'base::MotionCommand2D'. 
-For that it it always good to take a look into the [package directory](../package_directory/).
+For that it it always good to take a look into the [package directory](../../package_directory/).
 
 The package directory gives you a general overview of available 'standard' packages and types.
 For our purpose we need to look into the subcategory 'oroGen Types'. This category shows all
