@@ -17,7 +17,7 @@ For this tutorial it is assumed that your autoproj installation can be found in 
 Creating an orogen component
 --------------------------------
 While Rock uses the Orocos Realtime Toolkit (Orocos RTT) to build its components upon, and uses the Orocos generation tool 'orogen' to easily create so-called orogen components. Orogen requires a component specification to generate a skeleton for you, which you can fill with the functionality you require.
-This tutorial does not cover all details of Orocos components but refers to the [toolchain documentation of the Orocos Project](http://www.orocos.org/toolchain) for that purpose.
+This tutorial does not cover all details of Orocos components but you will find further information in the [orogen documentation](/documentation/orogen/index.html). 
 
 Similar to the creation of a library you start to create an orogen component using the command 'rock-create-orogen'. 
 
@@ -52,7 +52,7 @@ All orocos components should be created inside a separated folder called 'orogen
 ### Define tasks and deployments
 
 The previous command creates a new folder 'basics_tutorial/orogen/message_producer'. Inside you find two files: manifest.xml and message_producer.orogen.
-The manifest.xml will have been filled with the information you provided already, but you when you need to add additional dependencies to libraries or orocos components you will have to edit the file directly. Since you want to use your newly created library, check that your library has been added as dependency.
+The manifest.xml will have been filled with the information you provided already, but when you need to add additional dependencies to libraries or orocos components you will have to edit manifest.xml directly. Since you want to use your newly created library, check that your library has been added as dependency.
 {coderay:: xml}
 <depend package="basics_tutorial/message_driver" />
 {coderay}
@@ -104,16 +104,16 @@ layout:
   - rock.base
   - rock.toolchain
   - basics_tutorial/message_driver
-  - basic_tutorial/orogen/producer
+  - basics_tutorial/orogen/producer
 {coderay}
 
-After adding it to the build system you can call autoproj build.
+After adding it to the build system you can call amake for build the current package.
 
 {coderay:: sh}
-autoproj build .
+amake
 {coderay}
 
-If you get an error here, you most likely have a syntax error, then please compare your files with the files in 'tutorials/basics_tutorial'.
+If you get an error here, you most likely have a syntax error, then please compare your files against the files in the tutorial package set.
 
 ### Writing the task
 Now, that you have created the orogen component you still have to embedd the functionality that message_driver provides, in order to achieve a proper message producing component. 
@@ -198,20 +198,21 @@ Orocos.initialize
 ## Execute the deployment 'message_producer_deployment' ##
 Orocos.run 'message_producer_deployment' do
 
-## Get a the task context that is started with this deployment##
-message_producer = TaskContext.get 'message_producer'
-
-## Start the tasks ##
-message_producer.start
-
-reader = message_producer.messages.reader
-
-while true
-    if msg = reader.read_new
-	puts msg
-    end
-
-    sleep 0.1
+  ## Get a the task context that is started with this deployment##
+  message_producer = TaskContext.get 'message_producer'
+  
+  ## Start the tasks ##
+  message_producer.start
+  
+  reader = message_producer.messages.reader
+  
+  while true
+      if msg = reader.read_new
+  	puts "#{msg.time} #{msg.content}"
+      end
+  
+      sleep 0.1
+  end
 end
 {coderay}
 

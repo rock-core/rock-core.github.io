@@ -11,12 +11,14 @@ This tutorial will give you some handson experience on:
  * how to create libraries in Rock
  * how to embed them into the build system of Rock
 
-If you don't want to execute the following steps by yourself, the result can also be found in 'tutorials/basics_tutorial'.
+If you don't want to execute the following steps by yourself, the result can also be found in the package 'basics_tutorial/' after you [installed the tutorial package set](/documentation/tutorials/index.html#installing-the-tutorial-results).
+
 For this tutorial it is assumed that your autoproj installation can be found in ~/dev.
 
 Creating libraries
 -----------
-Before you start developing components, you will need to think about the functionality that is required for your component. This tutorial teaches you how to write a message producer and a message consumer component, which will pass timestamped messages inbetween each other. For the meesage producer and the consumer we will create a message library to provide message creation and message printing funcitionaltiy. This library will make use of the existing package base/types which simplifies creation of timestamps.
+Before you start developing components, you will need to think about the functionality that is required for your component. This tutorial teaches you how to write a message producer and a message consumer component, which will pass timestamped messages inbetween each other.
+For the message producer and the consumer we will create a message library to provide message creation and message printing functionality. This library will make use of the existing package base/types which simplifies creation of timestamps.
 
 Now, that it is clear what functionality is needed you can start writing the library. 
 Note, that Rock strongly suggests to encapsulate your main functionality in libraries. Thus, your library code remains independent of the actual framework in use, and can be easily reused and maintained separately from any framework that wraps this functionality.
@@ -69,7 +71,7 @@ create mode 100644 src/dummyproject.pc.in
 Done.
 {coderay}
 
-The newly created package comes in a ready to run fashion which means that you can build and install it right away using the build tools autoproj.
+The newly created package comes in a ready to run fashion which means that you can build and install it right away using the build tool [autoproj](/documentation/autoproj/bootstrap_and_basic_usage.html)
 {coderay:: sh}
 amake basics_tutorial/message_driver
 {coderay}
@@ -78,14 +80,19 @@ or
 autoproj build basics_tutorial/message_driver
 {coderay}
 
-### Adding the required functionality
-Yet, the library does not contain message handling capabilities. So, we create three new files, i.e. a header Messages.hpp will contain the message type that is used to transport message between components, and a header and source file for the MessageDriver. Put all file into the src/ folder of the newly created package.
+When calling amake in a package folder, it is the same as calling 'autoproj build .'. In the following tutorials 'amake' will be used. However, feel free to choose [more ...](/documentation/autoproj/bootstrap_and_basic_usage.html)
 
-***NOTE***: Rock recommends to stick to the following coding styles and use a CamelCase naming C++ file: HeaderFile.hpp and SourceFile.cpp. However, due to historic reasons not all packages of Rock conform to this style. 
+***NOTE***: The template project will generate several file for you: Dummy.cpp, Dummy.hpp, and Main.cpp. This should facilitate the initial modification of the CMakeLists.txt file, once you get started with your own libraries. You can choose to either reuse the dummy files by renaming and adapting them, or you just remove them and put your own files in place.
+{: .warning}
+
+### Adding the required functionality
+Yet, the library does not contain message handling capabilities. So, we create three new files, i.e. a header file Messages.hpp which will contain the message type that is used to transport message between components, and a header and source file for the MessageDriver. Put all files into the src/ folder of the newly created package.
+
+***NOTE***: Rock recommends to stick to the following coding styles and use CamelCase naming C++ file: HeaderFile.hpp and SourceFile.cpp. However, due to historic reasons not all packages of Rock conform to this style. 
 {: .warning}
 
 First, create the message type for timestamped messages. Since base/types already provides a timestamp, include 'base/time.h' and make 'base/types' a
-dependency of your library, if you haven't done it already. Check the manifest.xml and make sure it contains a 'base/types' dependency. 
+dependency of your library, if you haven't done it already. Check the manifest.xml and make sure it contains the 'base/types' dependency. 
 {coderay:: sh}
 <depend package="base/types" />
 {coderay}
@@ -136,7 +143,8 @@ The driver for creating and reading messages:
 
 #include <message_driver/Message.hpp>
 
-namespace message_driver {
+namespace message_driver 
+{
 
 class MessageDriver
 {
@@ -187,7 +195,7 @@ void MessageDriver::printMessage(const Message& msg)
 
 ### Integration into the build system
 
-Once you created a library in Rock integrate it into the build system [autoproj](../autoproj/index.html). The first step towards integration into the build system is adding the newly created files to the src/CMakeLists.txt file, since Rock default C++ libraries use [CMake](http://www.cmake.org/cmake/help/documentation.html) for the build process. Rock also comes with some CMake macros that facilitate setting up libraries, and resolving any required dependencies. 
+Once you created a library in Rock integrate it into the build system autoproj. The first step towards integration into the build system is adding the newly created files to the src/CMakeLists.txt file, since Rock default C++ libraries use [CMake](http://www.cmake.org/cmake/help/documentation.html) for the build process. Rock also comes with some CMake macros that facilitate setting up libraries, and resolving any required dependencies. 
 
 {coderay:: sh}
 rock_library(message_driver
@@ -199,7 +207,7 @@ rock_executable(message_driver_bin Main.cpp
     DEPS message_driver)
 {coderay}
 
-After adapting the CMakeLists.txt add the package to the build configuration, so that eventually you can embedded the library into orogen components. The easiest way to adapt the build configuration is by adding the package to the manifest's layout section. Thus, edit ~/dev/autoproj/manifest and add the package to the layout section. Package management in detail is discussed in [Adding packages](../autoproj/adding_packages.html)
+After adapting the CMakeLists.txt add the package to the build configuration, so that eventually you can embedded the library into orogen components. The easiest way to adapt the build configuration is by adding the package to the manifest's layout section. Thus, edit ~/dev/autoproj/manifest and add the package to the layout section. Package management in detail is discussed in [Adding packages](/documentation/autoproj/adding_packages.html)
 
 ***NOTE***: When adding the package, make sure you use the same indentation as the previous line, here '- rock.toolchain'. The manifest file is parsed as .yaml, and thus relies on proper indentation.
 {: .warning}
