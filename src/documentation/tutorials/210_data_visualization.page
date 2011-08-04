@@ -131,15 +131,15 @@ require 'vizkit'
 #load ui file
 gui = Vizkit.load 'test_gui.ui'
 
-Orocos.run 'producer_deployment' do 
-    producer = Orocos::TaskContext.get 'producer'
+Orocos.run 'message_producer_deployment' do 
+    producer = Orocos::TaskContext.get 'message_producer'
 
     #change a property 
     gui.Button.connect(SIGNAL('clicked()')) do
         producer.uppercase = !producer.uppercase
     end
 
-    producer.msg connect_to do |data,_|
+    producer.messages connect_to do |data,_|
         gui.Time.setText data.time.to_s
     end
 
@@ -156,10 +156,10 @@ If you want to connect your GUI with a log file you can use use the same syntax 
 {coderay:: ruby}
 require 'vizkit'
 
-log = Vizkit::Log::Replay.open('producer_deployment.0.log')
+log = Vizkit::Log::Replay.open('message_producer_deployment.0.log')
 gui = Vizkit.load 'test_gui.ui'
 
-log.producer.msg connect_to do |data,_|
+log.message_producer.messages connect_to do |data,_|
     gui.Time.setText data.time.to_s
 end
 

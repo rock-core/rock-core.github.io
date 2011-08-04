@@ -11,12 +11,12 @@ the orocos framework.
 Logging Data
 -----------
 **Adding a default logger:** To log data produced by an orocos task you have to add a logger to a deployment. This 
-is done by the ruby method *add_default_logger*. In this case a logger is added to the producer_deployment which was 
+is done by the ruby method *add_default_logger*. In this case a logger is added to the message_producer_deployment which was 
 introduced in the tutorial basics.
 
 {coderay:: ruby}
-deployment "producer_deployment" do 
-    producer = task("producer","Task")
+deployment "message_producer_deployment" do 
+    producer = task("message_producer","Task")
     add_default_logger
 end
 {coderay}
@@ -27,13 +27,15 @@ ports or the properties of the tasks you can also calling the methods
 *log_all_ports* or *log_all_configuration* instead.
 
 {coderay:: ruby}
-Orocos.run "producer_deployment","consumer_deployment" do 
+Orocos.run "message_producer_deployment",
+			"message_consumer_deployment" do 
     log_all
-    producer = Orocos::TaskContext.get "producer"
-    consumer = Orocos::TaskContext.get "consumer"
+    producer = Orocos::TaskContext.get "message_producer"
+    consumer = Orocos::TaskContext.get "message_consumer"
 
-    producer.msg.connect_to consumer.msg
+    producer.messages.connect_to consumer.messages
 
+    producer.configure
     producer.start
     consumer.start
 
@@ -45,7 +47,7 @@ end
 
 All the logged data go by default to log files called deployment_name.x.log in
 the current working directory. In this case all the logged data go to  
-producer_deployment.0.log.
+message_producer_deployment.0.log.
 
 rock-display
 -----------
@@ -57,13 +59,13 @@ trying to find a widget plugin to display the data. If it cannot find one
 vizkit is using a generic struct viewer widget to display the content of the
 sample. To display the log file recorded above call:  
   
-*rock-display producer_deployment.0.log*
+*rock-display message_producer_deployment.0.log*
 
 Replaying Data
 -----------
 Replaying data into the framework is very convenient if you want to test your
-algorithm with a specific data set or if the producer is not available all the
-time. In this case the data producer of the tutorial basics is substituted by a
+algorithm with a specific data set or if the message producer is not available all the
+time. In this case the message producer of the basics tutorial is substituted by a
 log file which was recorded in the section above.
 
 {coderay:: ruby}
@@ -71,16 +73,16 @@ log file which was recorded in the section above.
 require 'vizkit'
 
 #load log file 
-log = Orocos::Log::Replay.open("producer_deployment.0.log")
+log = Orocos::Log::Replay.open("message_producer_deployment.0.log")
 
 #now you can access all logged data by 
 #addressing them by their task and port name
 #log.task_name.port_name
 
 #start deployment
-Orocos.run "consumer_deployment" do 
-    consumer = Orocos::TaskContext.get "consumer"
-    log.producer.msg.connect_to consumer.msg
+Orocos.run "message_consumer_deployment" do 
+    consumer = Orocos::TaskContext.get "message_consumer"
+    log.message_producer.messages.connect_to consumer.messages
     consumer.start
 
     #open control widget and start replay
@@ -94,14 +96,14 @@ You can also redirect all log data to code blocks if you want to process the dat
 {coderay:: ruby}
 require 'vizkit'
 
-log = Orocos::Log::Replay.open("producer_deployment.0.log")
-Orocos.run "consumer_deployment" do 
-    consumer = Orocos::TaskContext.get "consumer"
-    log.producer.msg.connect_to consumer.msg
+log = Orocos::Log::Replay.open("message_producer_deployment.0.log")
+Orocos.run "message_consumer_deployment" do 
+    consumer = Orocos::TaskContext.get "message_consumer"
+    log.message_producer.messages.connect_to consumer.messages
     consumer.start
 
     #redirect data to a code block
-    log.producer.msg.connect_to |sample,_| do 
+    log.message_producer.messages.connect_to |sample,_| do 
         puts sample.time
         sample             #you have to return the sample here
     end
