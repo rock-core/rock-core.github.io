@@ -1,0 +1,55 @@
+---
+title: Creating Packages
+sort_info: 0
+---
+
+There are mainly four types of packages in Rock:
+
+ * plain C++ libraries, in which most of the functionality is implemented
+ * Ruby libraries
+ * vizkit widgets (or collections of)
+ * oroGen projects
+
+This page is an overview of these four types, and give pointer towards more
+information about how to create and manage them
+
+Naming scheme and directory structures is detailed
+[here](package_structure.html)
+
+In all four cases, high-level information about the package (including
+dependencies w.r.t. other packages) is added to the
+[manifest.xml](../autoproj/advanced/manifest-xml.html) file in the top directory
+of the package.
+
+Plain C++ Libraries
+-------------------
+
+The C++ libraries are plain CMake packages. When developped in relation to Rock,
+they are encouraged to use the [Rock CMake macros](cmake_macros.html). 
+
+This is not a hard requirement. Using the CMake macros and the CMake provided by
+Rock only ensures that you are following the [Rock guidelines on C++ library
+packages](http://rock.opendfki.de/wiki/WikiStart/Standards/RG4)
+
+C++ library packages can quickly be created by <tt>rock-create-lib</tt>. See
+[this tutorial](TODO) for detailed information.
+
+Ruby libraries
+--------------
+Ruby libraries follow the general structure for RubyGem packages. It is detailed
+on the Rock guidelines on Ruby packages](http://rock.opendfki.de/wiki/WikiStart/Standards/RG5).
+
+Information about the package (including dependencies w.r.t. other packages) is
+added to the [manifest.xml](../autoproj/advanced/manifest-xml.html) file in the
+top directory of the package.
+
+vizkit Widgets
+--------------
+vizkit widget packages are C++ library packages that define Qt widgets usable by
+vizkit. See [this tutorial](TODO) for more information.
+
+oroGen projects
+----------------
+oroGen projects are packages which contain a toplevel <tt>.orogen</tt> file
+which contain description of components. See [this tutorial](TODO) for more
+information.
