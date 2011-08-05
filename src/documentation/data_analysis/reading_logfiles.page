@@ -4,7 +4,7 @@ sort_info: 200
 ---
 
 There are two main ways to read log data. Either converting them to a
-space-separated file using the pocolog tool, or by writing ruby scripts that
+space-separated file using the pocolog tool, or by writing Ruby scripts that
 leverage the pocolog API.
 
 pocolog: command-line inspection of log files
@@ -16,31 +16,35 @@ pocolog _logfile_
 
 will list the streams that are present in _logfile_, along with how many samples they have, and their start and end time. Example:
 
-<pre markdown="0">
+{coderay:: sh}
 [....1_ImageAcquisition]% pocolog lowlevel.log
 File data is in little endian byte order
 loading file info from ./lowlevel.idx... invalid index file
 building index ...done
 Stream controldev.motionCommand [/controldev/MotionCommand]
-2503 samples from Fri 14/08/2009 15:01:00 to Fri 14/08/2009 15:02:59 [0:01:59.859]
+2503 samples from Fri 14/08/2009 15:01:00 
+	to Fri 14/08/2009 15:02:59 [0:01:59.859]
 Stream controldev.rawCommand [/controldev/RawCommand]
-2504 samples from Fri 14/08/2009 15:01:00 to Fri 14/08/2009 15:02:59 [0:01:59.859]
+2504 samples from Fri 14/08/2009 15:01:00 
+	to Fri 14/08/2009 15:02:59 [0:01:59.859]
 Stream hbridge.status [/hbridge/Status]
-112657 samples from Fri 14/08/2009 15:01:00 to Fri 14/08/2009 15:02:59 [0:01:59.999]
+112657 samples from Fri 14/08/2009 15:01:00 
+	to Fri 14/08/2009 15:02:59 [0:01:59.999]
 Stream simpleController.cmd_out [/hbridge/SimpleCommand]
-112986 samples from Fri 14/08/2009 15:01:00 to Fri 14/08/2009 15:02:59 [0:01:59.998]
+112986 samples from Fri 14/08/2009 15:01:00 
+	to Fri 14/08/2009 15:02:59 [0:01:59.998]
 No samples for
 can.stats [/can/Statistics]
-</pre>
+{coderay}
 
 The format of each stream description is:
 
-<pre markdown="0">
+{coderay:: sh}
 Stream stream_name [type_name]
 sample_count samples from start_time to end_time [duration]
-</pre>
+{coderay}
 
-As we already mentionned, the generated log files are self-contained. This means that all the information needed to read the data is already contained in the log file. The main information block is a description of each stream's data type.
+As we already mentioned, the generated log files are self-contained. This means that all the information needed to read the data is already contained in the log file. The main information block is a description of each stream's data type.
 
 To read this type definition, use:
 
@@ -50,15 +54,17 @@ pocolog _logfile_ -s _stream_name_ -\-type
 It will display the data type for the given stream. Example:
 
 <pre markdown="0">
-[....1_ImageAcquisition]% pocolog lowlevel.log -s controldev.motionCommand --type
+[....1_ImageAcquisition]% pocolog lowlevel.log -s 
+	controldev.motionCommand --type
 loading file info from ./lowlevel.idx... done
-/controldev/MotionCommand { translation &lt;/double&gt;, rotation &lt;/double&gt; }
+/controldev/MotionCommand { translation &lt;/double&gt;,
+	 rotation &lt;/double&gt; }
 </pre>
 
 Getting the data as a CSV file
 ------------------------------
 
-You can ask pocolog to generate a text file with each of the data field as a column. To do that, simply:
+You can ask pocolog to generate a text file with each of the data fields as a column. To do that, simply:
 
 pocolog _logfile_ -s _stream_name_
 {: .commandline}

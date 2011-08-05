@@ -3,19 +3,21 @@ title: Replay Log Data
 sort_info: 300
 ---
 
-Orocos::Log::Replay is a ruby class which eases common tasks on log files. It
+Orocos::Log::Replay is a Ruby class which eases common tasks on log files. It
 provides methods to access, filter and replay the data inside Ruby scripts, or
-in destination of RTT
-components. 
+into oroGen components. 
 
-Features:
+Features
 ---------
-  * loads log files
+
+The Replay class provides a range of features: 
+
+  * log file loading
   * time synchronous replay
   * step by step replay
   * seeking
-  * user-specific log data filter
-  * in the Ruby script, log files behave like instances Orocos::TaskContext
+  * user-specific log data filtering
+  * log file abstraction, i.e. in Ruby scripts, log files behave like instances of Orocos::TaskContext
 
 This functionality needs the orocos.rb package to be installed, which is
 contained in the Rock toolchain.
@@ -25,7 +27,7 @@ See [this page]({relocatable: ../runtime/ruby_and_types.html}) for a description
 from the C++ types in Ruby 
 {: .notes}
 
-Usage:
+Usage
 ------
 The replayed log files can either be specified when initializing a
 Orocos::Log::Replay object, or later on by using the #load method.
@@ -57,29 +59,30 @@ The equivalent call for live components is Orocos::TaskContext.get
 Then, each log stream is mapped to a port-like object:
 
 {coderay:: ruby}
-# Accesses the data logged from the port 'frame' of the task 'camera'
+# Accesses the data logged from the port 'frame' of the 
+# task 'camera'
 output_port = replay.camera.frame
 {coderay}
 
-They are accessed through a reader or direct via the method read. 
-The only different between both ways is the method read will always returns the last replayed 
-data sample but in contrast the behavior of the reader depends on the applied connection policy.
+They are accessed through a reader or directly via the method read. 
+The only difference between the two ways is the method 'read' will always returns the last replayed 
+data sample, while the behavior of the reader depends on the applied connection policy.
 
 {coderay:: ruby}
 reader = output_port.reader :type => :data
-puts reader.read                      #no different between both
-puts output_port.read                 #reads
+puts reader.read                    #no different between both
+puts output_port.read               #reads
 {coderay}
 
 {coderay:: ruby}
 reader = output_port.reader :type => :buffer,:size => 1
-puts reader.read                      #=> last replayed sample
-puts reader.read                      #=> nil
-puts output_port.read                 #=> last replayed sample
-puts output_port.read                 #=> last replayed sample
+puts reader.read                    #=> last replayed sample
+puts reader.read                    #=> nil
+puts output_port.read               #=> last replayed sample
+puts output_port.read               #=> last replayed sample
 {coderay}
 
-If you wish to feed logged data to a running RTT component, you can use the
+If you wish to feed logged data into a running RTT component, you can use the
 normal connect_to method:
 
 {coderay:: ruby}
@@ -96,23 +99,25 @@ replay.camera.frame.connect_to rtt_task.frame do |sample|
 end
 {coderay}
 
-Moreover, to make simple cases straightforward, the replay class can autoconnect
+Moreover, to make simple setups straightforward, the Replay class can autoconnect
 log streams to component ports. For each port of
 the target task, an equivalent port (same name and same type) is searched for in
 the logged data. If the name differs, a name mapping can be provided.
 
 {coderay:: ruby}
-replay.connect_to rtt_task                      #auto connect
+# performs an auto connect
+replay.connect_to rtt_task
 {coderay}
 
 {coderay:: ruby}
-# Connects matching ports between the log data and a running RTT component
-# When looking for matching names, 'frame' (on the logged side) will be replaced
-by "iframe" (on the component side).
+# Connects matching ports between the log data and a running 
+# RTT component
+# When looking for matching names, 'frame' (on logged 
+# side) will be replaced by "iframe" (on component side).
 replay.connect_to rtt_task, :frame => :iframe
 {coderay}
 
-Once the replay network is properly set up, you start replaying by calling #run.
+Once the replay network is properly set up, you start replaying by calling #run#.
 
 {coderay:: ruby}
 replay.run         # replay all logged data as fast as possible
@@ -123,9 +128,10 @@ replay.step        # replay one data sample
 <div class="warning">
 Only ports are replayed which are connected to RTT components, for which a
 reader has been created or a filter was specified. If you want to specify that
-one particular stream should be replayed, set its #tracked property to true:
+one particular stream should be replayed, set its #tracked# property to true:
 {coderay:: ruby}
-replay.camera.frame.tracked = true # Forces the log stream to be replayed
+# Forces the log stream to be replayed
+replay.camera.frame.tracked = true
 {coderay}
 </div>
 
@@ -141,7 +147,9 @@ replay = Log::Replay.open('camera.0.log')
 replay.camera.frame do |frame|
   puts frame.time
 end
-replay.run                      #replay as fast as possible
+
+#replay as fast as possible
+replay.run 
 {coderay}
 
 Example: Loading and replaying log data
@@ -156,7 +164,9 @@ replay = Log::Replay.open('camera.0.log')
 
 Orocos.run 'deployment_x' do
   task_x = TaskContext.get('task_x')
-  replay.connect_to task_x                    #auto connect
+
+  #auto connect
+  replay.connect_to task_x 
   task_x.start
   replay.run
 end
@@ -202,8 +212,9 @@ replay = Log::Replay.open('camera.0.log','sonar.0.log')
 Orocos.run 'deployment_x','deployment_y' do
   task_x = TaskContext.get('task_x')
   task_y = TaskContext.get('task_y')
-  replay.connect_to task_x  
-  replay.connect_to task_y, "sonar.frame" => "iframe"  #port mapping
+  replay.connect_to task_x 
+  #port mapping
+  replay.connect_to task_y, "sonar.frame" => "iframe"
   
   #get a reader 
   #Be careful. Here is a filter applied on the reader

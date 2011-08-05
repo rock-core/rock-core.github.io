@@ -11,7 +11,7 @@ replayed from logs or live. How data is visualized is usually specific to the
 problem, and most likely there is more than one way to show the data and their
 relations. Simple values, like robot voltage level, can either be shown
 directly or in a time series as a graph. More complex values sometimes also
-allow the visualization as a graph or similar. But quite often, very specific
+allow the visualization as a graph or similar. But often, very specific
 visualizations are required for complex data types. 
 
 In Rock, the visualization like most other things, also works in a modularized
@@ -25,10 +25,10 @@ at hand.
 
 2D Visualization
 ----------------
-For the purpose of 2D visualization rock utilizes the QT-Framework. In particular,
-the QT-Widgets. By default rock provides a set of QT-Widgets that may be used out of
+For the purpose of 2D visualization Rock utilizes the QT-Framework. In particular,
+the QT-Widgets. By default Rock provides a set of QT-Widgets that may be used out of
 the box for visualizing 2D data. These widgets are called VizkitWidgets. Besides 
-their C++ functionality these widgets provide a ruby binding.
+their C++ functionality these widgets provide a Ruby binding.
 
 A full list of these widgets can be found in the [package directory](../../package_directory/). 
 
@@ -39,9 +39,9 @@ One particularly useful visualization is a 3D view, since it allows to show the
 state of the robot's internal view on the world and also often internal states
 and how they correlate to the environment model. 
 
-For allowing easy and extendable 3D visualizations, rock provides a specialized
+For allowing easy and extendable 3D visualizations, Rock provides a specialized
 VizkitWidget the Vizkit3DWidget. The Vizkit3DWidget provides a OpenSceneGraph-Context
-and is a container for the Vizkit3DPlugins. Additionally it offers some utility 
+and is a container for the Vizkit3DPlugins. Additionally, it offers some utility 
 functions, for manipulating the point of view, and adding and removing of plugins.
 As any other VizkitWidget it offers ruby binding.
 
@@ -54,8 +54,9 @@ As any other VizkitWidget it offers ruby binding.
 
 The widget in itself only performs the linking between Qt and OpenSceneGraph,
 but does not have an visualization abilities. These come in the form of plugins.
-These plugins are called Vizkit3DPlugins. All plugins need to be derived from
-vizkit::Vizkit3DPlugin<>. As with the VizkitWidgets, rock provides a set of
+These plugins are called Vizkit3DPlugins. 
+All plugins need to be derived from vizkit::Vizkit3DPlugin<>. 
+As with the VizkitWidgets, Rock provides a set of
 standard Vizkit3DPlugins that may be found in the [package directory](../../package_directory/).  
 
 Using Vizkit
@@ -71,7 +72,8 @@ require 'vizkit'
 Orocos.initialize
 
 ## create a widget for 3d display
-view3d = Vizkit.default_loader.create_widget('vizkit::Vizkit3DWidget')
+view3d = Vizkit.default_loader.
+		create_widget('vizkit::Vizkit3DWidget')
 
 #show it
 view3d.show()
@@ -104,7 +106,8 @@ that should be visualized.
 namespace vizkit 
 {
 
-class TrajectoryVisualisation : public Vizkit3DPlugin<Eigen::Vector3d>
+class TrajectoryVisualisation 
+	: public Vizkit3DPlugin<Eigen::Vector3d>
 {
     public:
 	TrajectoryVisualisation();    
@@ -120,8 +123,8 @@ class TrajectoryVisualisation : public Vizkit3DPlugin<Eigen::Vector3d>
 	virtual void updateMainNode( osg::Node* node )
 	{
 	    // access to internal data is guarded in this method
-	    // The node parameter is of the type that was created in 
-	    // the createMainNode method.
+	    // The node parameter is of the type that was 
+	    // created in the createMainNode method.
 	    
 	    // update the node object to reflect the changes in 
 	    // the internal data model
@@ -140,11 +143,13 @@ class TrajectoryVisualisation : public Vizkit3DPlugin<Eigen::Vector3d>
 
 You should put your plugin into the vizkit namespace. Using the Vizkit3DPlugin
 template class, there is code that prevents that updateDataIntern and
-updateMainNode are called at the same time. The Vizkit3DPlugin class provides an
-updateData(const &Data) method, that can be called from the outside to update
+updateMainNode are called at the same time.  
+The Vizkit3DPlugin class provides an _updateData(const &Data)_ method, that can be called from the outside to update
 the internal model of the node (e.g. set a new point in the trajectory). This
-will in turn call the updateDataIntern method, in which you can store updates to
-your internal model (in this case a list of points). The updateMainNode is
+will in turn call the _updateDataIntern_ method, in which you can store updates to
+your internal model (in this case a list of points). 
+
+The updateMainNode is
 called from within the visualization thread, when it is safe to access both your
 internal model (e.g. the path vector) and the osg::Node that represents your
 visualization. In this method, you need to modify the osg::Node to reflect the
@@ -153,12 +158,12 @@ the path). See the TrajectoryVisualization class in the vizkit package for an
 actual implementation.
 
 When writing plugins that don't visualize data types that are base data
-types, they do not go into the vizkit package, but usually within the package
-that defines the datatype to be visualized. Also here, a convention should be
-followed, to add a directory in that package with the name viz, that builds
+types, they do not go into the vizkit package, but usually into the package
+that defines the datatype to be visualized. Follow the convention and
+ add a directory in that package with the name viz, that builds
 optionally depending on weather gui/vizkit is available or not.
 
-Therefor the following needs to added to the package:
+Therefore, the following needs to added to the package:
 To the manifest:
 {coderay:: xml}
 <package>
