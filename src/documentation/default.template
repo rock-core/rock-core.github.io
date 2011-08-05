@@ -3,7 +3,7 @@
 
 --- name:leftbar 
 <div class="nav3">
-  <ul><li class="title">Documentation</li>
+  <ul><li class="title">Core</li>
       {menu: {start_level: 2, max_levels: 4, show_current_subtree_only: true, nested: true, used_nodes: files, range_end: 999}}
   </ul>
   <ul><li class="title">Additional Core Functionality</li>
