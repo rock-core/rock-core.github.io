@@ -14,7 +14,7 @@ Installation: the easy way
     ruby --version
     {: .commandline}
 
-    Important: Rock requires ruby either 1.8.7 or better, or 1.9.2 or better
+    Important: Rock requires ruby either 1.8.7 or higher, or 1.9.2 or higher
 
  2. Create and "cd" into the directory in which you want to install the toolchain
  3. To build the base system (base packages + toolchain, but no
@@ -64,7 +64,7 @@ Other bootstrapping options
 
 <div class="warning" markdown="1">
 **Important for existing Orocos users** The development workflow in Rock does
-not encourage the use of the Orocos deployer and of the RTT scripting language.
+not encourage the use of the Orocos deployer and the RTT scripting language.
 Since they are both expensive to build, they are by default disabled when you
 build the Rock toolchain. However:
 
