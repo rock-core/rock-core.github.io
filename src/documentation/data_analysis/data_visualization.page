@@ -1,15 +1,18 @@
 ---
-title: Data Visualization 
+title: Data Visualization
 sort_info: 500
 ---
 
-One important aspect of data analysis is the visualisation of data, be it
-replayed from logs or live. How data is visualised is usually specific to the
+
+Vizkit
+----------------
+One important aspect of data analysis is the visualization of data, be it
+replayed from logs or live. How data is visualized is usually specific to the
 problem, and most likely there is more than one way to show the data and their
 relations. Simple values, like robot voltage level, can either be shown
 directly or in a time series as a graph. More complex values sometimes also
-allow the visualisation as a graph or similar. But quite often, very specific
-visualisations are required for complex data types. 
+allow the visualization as a graph or similar. But quite often, very specific
+visualizations are required for complex data types. 
 
 In Rock, the visualization like most other things, also works in a modularized
 way. We believe that visualization is very problem specific, and there is no one
@@ -20,91 +23,88 @@ provide an infrastructure and a collection of visualization components that
 require as little as possible additional work to perform the visualization task
 at hand. 
 
-3D Visualisation 
+2D Visualization
 ----------------
-One particularly useful visualisation is a 3D view, since it allows to show the
+For the purpose of 2D visualization rock utilizes the QT-Framework. In particular,
+the QT-Widgets. By default rock provides a set of QT-Widgets that may be used out of
+the box for visualizing 2D data. These widgets are called VizkitWidgets. Besides 
+their C++ functionality these widgets provide a ruby binding.
+
+A full list of these widgets can be found in the [package directory](../../package_directory/). 
+
+
+3D Visualization 
+----------------
+One particularly useful visualization is a 3D view, since it allows to show the
 state of the robot's internal view on the world and also often internal states
 and how they correlate to the environment model. 
 
-The package that provides the base interface for visualization can be found in
-gui/vizkit. Vizkit for the time being is only concerned with 3D visualisation,
-and essentially provides a basic interface between the widget library Qt and the
-OpenSceneGraph library, which is used for the 3D domain. It does that in the
-form of a QtWidget call QVizkitWidget, which can either be used directly or
-embedded into other widgets.
+For allowing easy and extendable 3D visualizations, rock provides a specialized
+VizkitWidget the Vizkit3DWidget. The Vizkit3DWidget provides a OpenSceneGraph-Context
+and is a container for the Vizkit3DPlugins. Additionally it offers some utility 
+functions, for manipulating the point of view, and adding and removing of plugins.
+As any other VizkitWidget it offers ruby binding.
+
+{coderay:: cpp}
+    void addDataHandler(VizPluginBase *viz);
+    void removeDataHandler(VizPluginBase *viz);
+    void setTrackedNode( vizkit::VizPluginBase* plugin );
+    void changeCameraView(const osg::Vec3& lookAtPos, const osg::Vec3& eyePos);
+{coderay}
 
 The widget in itself only performs the linking between Qt and OpenSceneGraph,
 but does not have an visualization abilities. These come in the form of plugins.
-All plugins need to be derived of vizkit::VizPluginBase. The vizkit package also
-provides some basic visualizations, and may contain visualisation for any
-data type which can be found in the base package and is generic enough to be
-useful cross-project.
+These plugins are called Vizkit3DPlugins. All plugins need to be derived from
+vizkit::Vizkit3DPlugin<>. As with the VizkitWidgets, rock provides a set of
+standard Vizkit3DPlugins that may be found in the [package directory](../../package_directory/).  
 
-Using QVizkitWidget
+Using Vizkit
 -------------------
-The QVizkitWidget is a QWidget, and provides two methods for plugin
-handling plugins:
+Vizkit can be used in two way. Either one can create C++ only applications or
+one may use the ruby bindings to create applications. 
 
-{coderay:: cpp}
-void addDataHandler( VizPluginBase *viz );
-void removeDataHandler( VizPluginBase *viz );
+As the ruby bindings allow greater flexibility in terms of integration into the
+work flow of the rock world it is the preferred way. 
+
+{coderay:: ruby}
+require 'vizkit'
+Orocos.initialize
+
+## create a widget for 3d display
+view3d = Vizkit.default_loader.create_widget('vizkit::Vizkit3DWidget')
+
+#show it
+view3d.show()
+
+## load and add the 3d plugin for the rock
+rbs_plugin = view3d.createPlugin('RigidBodyStateVisualization')
+rbs = Types::Base::Samples::RigidBodyState.new
+
+rbs.position = Eigen::Vector3.new(0, 5.0, 0)
+rbs.orientation = Eigen::Quaternion.new(0, 0, 0, 1)
+
+rbs_plugin.updateData(rbs)
+
+#execute the main GUI loop
+Vizkit.exec()
+
 {coderay}
 
-One common way to provide a visualization component, is to derive from
-QVizkitWidget, and provide methods for updating the data:
-
-{coderay:: cpp}
-#include <vizkit/QVizkitWidget.hpp>
-#include <vizkit/TrajectoryVisualization.hpp>
-
-namespace vizkit
-{
-class QTrajectoryWidget : public QVizkitWidget
-{
-    public:
-	QTrajectoryWidget( QWidget* parent = 0, Qt::WindowFlags f = 0 )
-	    : QVizkitWidget( parent, f ), trajViz( new TrajectoryVisualization() )
-	{
-	    addDataHandler( trajViz.get() );
-	}
-
-	~QTrajectoryWidget()
-	{
-	    removeDataHandler( trajViz.get() );
-	}
-
-	void addPosition( const Eigen::Vector3d& point )
-	{
-	    trajViz->updateData( point );
-	}
-
-    private:
-	boost::shared_ptr<TrajectoryVisualization> trajViz;
-};
-}
-{coderay}
-
-Teh resulting QWidget can either be used directly or embedded in another
-application.
 
 Writing Vizkit Plugins
 ----------------------
-Plugins for base datatypes which are not too specific can go directly into the
-vizkit package. You need to derive your plugin in some way from
-vizkit::VizPluginBase. You need to take care of the fact, that the most of the
-visualization code will run in a different thread context to the one you would
-be supplying the plugin with data. One class that already does that for you is
-the vizkit::VizPlugin template class. An example of how to use that class is
-given below.
+For writing your a custom Vizkit3DPlugin one needs to derive from the template 
+class vizkit::Vizkit3DPlugin<T>, where the template argument T is the data type
+that should be visualized. 
 
 {coderay:: cpp}
 #include <Eigen/Geometry>
-#include <vizkit/VizPlugin.hpp>
+#include <vizkit/Vizkit3DPlugin.hpp>
 
 namespace vizkit 
 {
 
-class TrajectoryVisualisation : public VizPlugin<Eigen::Vector3d>
+class TrajectoryVisualisation : public Vizkit3DPlugin<Eigen::Vector3d>
 {
     public:
 	TrajectoryVisualisation();    
@@ -138,9 +138,9 @@ class TrajectoryVisualisation : public VizPlugin<Eigen::Vector3d>
 }
 {coderay}
 
-You should put your plugin into the vizkit namespace. Using the VizPlugin
+You should put your plugin into the vizkit namespace. Using the Vizkit3DPlugin
 template class, there is code that prevents that updateDataIntern and
-updateMainNode are called at the same time. The VizPlugin class provides an
+updateMainNode are called at the same time. The Vizkit3DPlugin class provides an
 updateData(const &Data) method, that can be called from the outside to update
 the internal model of the node (e.g. set a new point in the trajectory). This
 will in turn call the updateDataIntern method, in which you can store updates to
@@ -152,13 +152,13 @@ internal state of the visualization (e.g. create the osg structures to visualize
 the path). See the TrajectoryVisualization class in the vizkit package for an
 actual implementation.
 
-When writing plugins that are don't visualize data types that are base data
+When writing plugins that don't visualize data types that are base data
 types, they do not go into the vizkit package, but usually within the package
 that defines the datatype to be visualized. Also here, a convention should be
 followed, to add a directory in that package with the name viz, that builds
-optionally depending on wether gui/vizkit is available or not.
+optionally depending on weather gui/vizkit is available or not.
 
-You need to add the following things to your package:
+Therefor the following needs to added to the package:
 To the manifest:
 {coderay:: xml}
 <package>
@@ -167,40 +167,12 @@ To the manifest:
 </package>
 {coderay}
 
-To the CMakeLists.txt:
-{coderay:: cmake}
-...
-
-pkg_check_modules(VIZKIT "vizkit")
-include_directories(${VIZKIT_INCLUDE_DIRS})
-link_directories(${VIZKIT_LIBRARY_DIRS})
-
-...
-
-if( VIZKIT_FOUND )
-    add_subdirectory(viz)
-endif( VIZKIT_FOUND )
-{coderay}
-
-In the viz subdirectory you need to create an additional shared library, that is
+In the viz subdirectory an additional shared library needs to be created, that is
 called the same way as the project, with the -viz suffix. So the CMakeLists.txt
 file in the viz subdirectory should contain something like this:
 {coderay:: cmake}
-...
-# compile shared library
-add_library(${PROJECT_NAME}-viz SHARED ${TARGET_SRC} ${moc_cpp})
-target_link_libraries(${PROJECT_NAME}-viz ${PROJECT_NAME}
-    ${VIZKIT_LIBRARIES}
-    )
-
-# install headers and library
-install(DIRECTORY . DESTINATION include/vizkit FILES_MATCHING PATTERN "*.hpp")
-install(TARGETS ${PROJECT_NAME}-viz
-    DESTINATION lib)
-
-# set-up pkg file
-configure_file(${PROJECT_NAME}-viz.pc.in ${PROJECT_NAME}-viz.pc @ONLY)
-install(FILES ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}-viz.pc
-    DESTINATION lib/pkgconfig)
+rock_vizkit_plugin(trajectory-viz
+    TrajectoryVisualization.cpp 
+    HEADERS TrajectoryVisualization.hpp)
 {coderay}
 
