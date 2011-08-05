@@ -1,5 +1,5 @@
 ---
-title: Adding packages (for the impatient)
+title: Adding packages
 sort_info: 50
 ---
 
@@ -22,7 +22,12 @@ then I would edit autoproj/manifest and add
 
   - drivers/orogen/new_driver
 
-to the layout: section. At build time, autoproj will announce that the new
+to the layout: section. The next time one calls 
+
+autoproj build
+{: .commandline}
+
+,autoproj will announce that the new
 package has been picked up with a message looking like
 
     auto-adding drivers/orogen/new_driver as an oroGen package
