@@ -1,0 +1,9 @@
+--- name:content pipeline:blocks
+<webgen:block name='content' />
+
+--- name:leftbar 
+<div class="nav3">
+  <ul><li class="title">Package Directory</li>
+      {menu: {start_level: 2, max_levels: 4, show_current_subtree_only: true, nested: true, used_nodes: files, range_end: 999}}
+  </ul>
+</div>
