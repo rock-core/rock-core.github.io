@@ -6,7 +6,7 @@ sort_info: 0
 What's the difference with the Orocos Toolchain?
 -------------------------------------------------
 The Orocos Toolchain is the standard infrastructure required to build Orocos
-components. It contains the real-time toolkit, typeGen/oroGen code generators
+components. It contains the Real-Time Toolkit, typeGen/oroGen code generators
 and supportive components for deployment and task browsing.
 
 The Rock toolchain is centered around the use of oroGen for component
@@ -15,7 +15,7 @@ practice, what you get is:
 
  * use Ruby scripts to start your components and monitor them
  * use a model-based tool for large-scale system deployment, and benefit from
-   its logging capabilities to do post-mortem analysis of system behaviour.
+   its logging capabilities to do post-mortem analysis of system behavior.
  * use the data logger to log all data that your components generate, and use
    Ruby scripts to analyze this load of data. Replay the data into components
    for testing, or use the Rock UI to display it.
@@ -63,12 +63,12 @@ with regard to differences in paradigm between ROS and Rock:
    ROS like pcl and opencv, but does not seem to be a general policy.  
  
  * Rock can use normal C++ classes (with restrictions) as interface types,
-   while ROS requires a special compiler for the interface types. This make
-   separation of functionality and communication easier, as most of a libraries
-   datatypes can be directly used between module communication.
+   while ROS requires a special compiler for the interface types. This makes
+   separation of functionality and communication easier, as most of the libraries
+   datatypes can be directly used for module communication.
 
  * Rock has native support for flexible module deployments. There is full
-   control over how the modules get split up into processes to avoid process
+   control over how modules get split up into processes to avoid process
    boundaries for high interacting modules. This is also possible in ROS with the
    help of Nodelets, but not as transparent.
  

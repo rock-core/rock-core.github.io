@@ -23,7 +23,7 @@ detection, reporting and handling is key in any robotic architecture.
 a minimum fuss. But we don't require you to learn about these (complex)
 tools right away: as soon as you use rock's component development tool,
 oroGen, you have the guarantee that your components can be integrated
-from simple scenarios using hardcoded C++ behaviours, to Ruby scripts up
+from simple scenarios using hardcoded C++ behaviors, to Ruby scripts up
 to the complete system monitoring tools.
 
 **reusable codebase**. Even though we think that the rock toolchain
@@ -40,7 +40,7 @@ integration parts.
 Origin
 ---------------
 
-Rock has initially been developped by the <a href="http://dfki.de/robotics">DFKI
+Rock has initially been developed by the <a href="http://dfki.de/robotics">DFKI
 Robotics Innovation Center</a>. It is based on <a href="orocos.org">the Orocos
 Toolchain</a>, whose primary contributor is the Katholieke Universiteit Leuven.
 
