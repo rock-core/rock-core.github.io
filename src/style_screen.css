@@ -519,11 +519,15 @@ padding:5px;
 background:#e4e4ff;
 color:#222;
 border:2px solid #ddd;
-margin-top: 1em;
-margin-bottom: 1em;
+margin-top: .2em;
+margin-bottom: .2em;
 margin-left: 0em;
 margin-right: 0em;
 font-family: monospace;
+}
+
+pre.vcs {
+    line-height: 1.2em;
 }
 
 .clear {clear: both;}
