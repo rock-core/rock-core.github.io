@@ -179,7 +179,7 @@ package_name:
   tag: tag_to_stick_to # it is branch OR tag
 {coderay}
 
-The options are applied in order, meaning that the top entries will be overriden
+The options are applied in order, meaning that the top entries will be overridden
 by the lower ones. In general, one will have a ".\*" entry to give options for
 all packages, and then override for specific packages:
 

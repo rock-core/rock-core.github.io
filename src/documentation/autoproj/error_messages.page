@@ -19,7 +19,7 @@ XXX depends on YYY, which is excluded from the build {#exclusions}
 ----------------------------------------------------
 
 The layout requires the XXX package to be built, but this package depends on YYY
-and YYY has explicitely been excluded from the build.
+and YYY has explicitly been excluded from the build.
 
 There are two cases.
 

@@ -20,10 +20,15 @@ The general form of the file is:
   <license>BSD</license>
   <url>http://sites.google.com/site/rubyinmotion</url>
   <logo>http://sites.google.com/site/rubyinmotion</logo>
-
-  <depend package="pkgname"/> <!-- add dependency on either another
-                               autoproj-built package, or an OS-provided one -->
+  
+  <!-- add dependency to another autoproj-built
+  package -->
+  <depend package="pkgname"/> 
   <depend package="common"/>
+
+
+   <!-- add dependency to an OS-provided package -->
+   <rosdep name="os-pkgname" />
 </package>
 {coderay}
 

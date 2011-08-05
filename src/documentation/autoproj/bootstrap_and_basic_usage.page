@@ -117,7 +117,7 @@ autoproj rebuild
 {: .commandline}
 
 A less intrusive version of it only forces all tools to reconsider building. It
-is mainly useful for CMake when the build environment changed -- cmake caches a
+is mainly useful for CMake when the build environment changed -- CMake caches a
 lot of values. To trigger this, do
 
 autoproj force-build
@@ -145,12 +145,12 @@ autoproj build --reconfigure
 Alternatively, you can edit the autoproj/config.yml file directly.
 
 By default, autoproj does not automatically update the package sources. To do
-that, you have to explicitely update your packages as described in the following section. 
+that, you have to explicitly update your packages as described in the following section. 
 
 
 **Generating documentation:**
 
-Documentation is generated only when asked explicitely:
+Documentation is generated only when asked explicitly:
 
 autoproj doc
 {: .commandline}
