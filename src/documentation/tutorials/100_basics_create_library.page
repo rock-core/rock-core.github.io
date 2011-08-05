@@ -97,6 +97,15 @@ dependency of your library, if you haven't done it already. Check the manifest.x
 <depend package="base/types" />
 {coderay}
 
+***NOTE***: Dependencies are added to the manifest.xml of a package, and you should add operating system dependencies using 
+{coderay:: sh}
+<rosdep name="osg" />
+{coderay}
+and dependencies to 'custom' packages using
+{coderay:: sh}
+<depend package="base/types" />
+{coderay}
+
 The actual message implementation looks as follows:
 {coderay:: c++}
 #ifndef _MESSAGE_DRIVER_MESSAGE_HPP_
@@ -133,7 +142,7 @@ namespace message_driver
 #endif // _MESSAGE_DRIVER_MESSAGE_HPP_
 {coderay}
 
-***NOTE***: There are some constraints on designing custom types, so that they can be used in an orogen component. Check the [general documentation](../orogen/task_interface.html) for details.
+***NOTE***: There are some constraints on designing custom types, so that they can be used in an oroGen component. Check the [general documentation](../orogen/task_interface.html) for details.
 {: .warning}
 
 The driver for creating and reading messages:
@@ -207,7 +216,7 @@ rock_executable(message_driver_bin Main.cpp
     DEPS message_driver)
 {coderay}
 
-After adapting the CMakeLists.txt add the package to the build configuration, so that eventually you can embedded the library into orogen components. The easiest way to adapt the build configuration is by adding the package to the manifest's layout section. Thus, edit ~/dev/autoproj/manifest and add the package to the layout section. Package management in detail is discussed in [Adding packages](/documentation/autoproj/adding_packages.html)
+After adapting the CMakeLists.txt add the package to the build configuration, so that eventually you can embedded the library into oroGen components. The easiest way to adapt the build configuration is by adding the package to the manifest's layout section. Thus, edit ~/dev/autoproj/manifest and add the package to the layout section. Package management in detail is discussed in [Adding packages](/documentation/autoproj/adding_packages.html)
 
 ***NOTE***: When adding the package, make sure you use the same indentation as the previous line, here '- rock.toolchain'. The manifest file is parsed as .yaml, and thus relies on proper indentation.
 {: .warning}
@@ -240,10 +249,10 @@ Summary
 In this tutorial you have learned to: 
 
  * create a C++-library from the Rock template
- * create a simple orogen component
+ * create a simple oroGen component
  * embed new packages into the build system
 
-In the next tutorial you will learn how to create an orogen component and embed you library into it.
+In the next tutorial you will learn how to create an oroGen component and embed you library into it.
 
 Progress to the [next tutorial](110_basics_create_component.html).
 
