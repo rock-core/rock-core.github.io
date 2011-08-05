@@ -23,7 +23,7 @@ practice, what you get is:
 
 <div class="warning" markdown="1">
 **Important for existing Orocos users** The development workflow in Rock does
-not encourage the use of the Orocos deployer and of the RTT scripting language.
+not encourage the use of the Orocos deployer and the RTT scripting language.
 Since they are both expensive to build, they are by default disabled when you
 build the Rock toolchain. However:
 
