@@ -10,7 +10,7 @@ The package `base/types` contains a collection of C++ types that are shared
 between modules. The general policy is that if there is more than one library
 that generates a certain datatype, that type should go into the `base/types`
 library. In general, types in base should be [compatible to
-orogen](orogen/type_definitions.html), so that they can be used as interface
+oroGen](orogen/type_definitions.html), so that they can be used as interface
 types between tasks. 
 
 Further, there is a distinction between basic shared types and types that
@@ -22,7 +22,7 @@ namespace. Samples are in the `base::samples` namespace.
 Having shared types is very important to maintain interoperability between
 libraries. Whenever new types are generated, it should be considered if not one
 of the existing types in base can be used, or related types in other packages
-can be generalised and moved into base.
+can be generalized and moved into base.
 
 Basic Types
 -----------------
@@ -33,7 +33,7 @@ information please refer to the api docs of the `base/types` package.
 ### Time ###
 
 `base::Time` is one of the most used types. It internally represents the time as
-microseconds since unix epoch. It can be used to represent both absolute and
+microseconds since UNIX epoch. It can be used to represent both absolute and
 relative time. 
 
 {coderay:: cpp}
@@ -89,7 +89,7 @@ needsRad( base::Angle::deg2Rad( 180.0 ) );
 
 The base types use the [Eigen3](http:://eigen.tuxfamily.org) library for
 handling and representing matrices and vectors. Eigen types have special
-constraints regarding aligment, which require special template parameters to be
+constraints regarding alignment, which require special template parameters to be
 used for using Eigen types as interface types. To simplify this, `base` declares
 a number of typedefs, which are equivalent to the corresponding Eigen types, but
 having alignment switched off.
@@ -128,7 +128,7 @@ underwater, UGV a.s.o).
 
 The base/odometry.h header contains interface classes, which can be implemented
 by odometry models. There is a distinction between 2d and 3d, as well as
-gaussian and sampling models.
+Gaussian and sampling models.
 
 ### Waypoint ###
 
