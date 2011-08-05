@@ -8,22 +8,19 @@ title: "Rock: the Robot Construction Kit"
 Get it
 {: .content-title-noshade-size3}
 
-Get started with the [step-by-step installation
-guide]({relocatable: documentation/installation.html}){:.highlight}. Reference documentation on [the build system]({relocatable:
-documentation/autoproj/index.html}) is also
-available, and you can browse the code and contribute on
-[Gitorious](http://gitorious.org/rock).
+Get started with the [step-by-step installation guide]({relocatable:
+documentation/installation.html}){:.highlight}.
 </div>
 
 <div markdown="1" class="content2-container-3col-middle">
 Use it
 {: .content-title-noshade-size3}
 
-The toolchain offers a support [from the component
-development]({relocatable: documentation/orogen/index.html}) to [running complete
-systems]({relocatable: documentation/runtime/index.html}). Logging, log replay and data analysis [is also a
-very important part]({relocatable: documentation/data_analysis/index.html})
-Finally, have a look at the [existing packages]({relocatable: package_directory/index.html}).
+First and foremost, [follow the tutorials
+!](documentation/tutorials){:.highlight} After that,
+you can have a look at the [existing packages]({relocatable:
+package_directory/index.html}) and at the [reference
+documentation](documentation)
 </div>
 
 <div markdown="1" class="content2-container-3col-right">
