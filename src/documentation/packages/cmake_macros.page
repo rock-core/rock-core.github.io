@@ -25,7 +25,7 @@ The signature of rock_init is:
 rock_init(project_name project_version)
 {: .cmdline}
 
-The <tt>rock_standard_layout()</tt> call looks for subdirectories of the
+The <tt>rock_standard_layout()</tt> call looks for sub-directories of the
 standard C++ package layout and sets it up accordingly. See
 [the Rock guidelines](http://rock.opendfki.de/wiki/WikiStart/Standards/RG4) for
 information about the standard package directory structure
@@ -58,7 +58,7 @@ necessary link and compilation flags are added
 
 **DEPS_CMAKE**: list of packages which can be found with CMake's find_package,
 that the library depends upon. It is assumed that the Find*.cmake scripts
-follow the cmake accepted standard for variable naming
+follow the CMake accepted standard for variable naming
 
 **MOC**: if the library is Qt-based, a list of headers that should be processed by
 moc. The resulting implementation files are built into the library
@@ -97,7 +97,7 @@ necessary link and compilation flags are added
 
 **DEPS_CMAKE**: list of packages which can be found with CMake's find_package,
 that the library depends upon. It is assumed that the Find*.cmake scripts
-follow the cmake accepted standard for variable naming
+follow the CMake accepted standard for variable naming
 
 **HEADERS**: a list of headers that should be installed with the library. They get
 installed in include/project_name
@@ -127,7 +127,7 @@ plugin. In Rock, vizkit is the base for data display. Vizkit plugins are
 plugins to the 3D display in vizkit.
 
 The library gets linked against the vizkit libraries automatically (no
-need to list them in DEPS_PKGCONFIG). Moreoer, unlike with a normal shared
+need to list them in DEPS_PKGCONFIG). Moreover, unlike with a normal shared
 library, the headers get installed in include/vizkit
 
 The following arguments are mandatory:
@@ -144,7 +144,7 @@ necessary link and compilation flags are added
 
 **DEPS_CMAKE**: list of packages which can be found with CMake's find_package,
 that the library depends upon. It is assumed that the Find*.cmake scripts
-follow the cmake accepted standard for variable naming
+follow the CMake accepted standard for variable naming
 
 **HEADERS**: a list of headers that should be installed with the library. They get
 installed in include/project_name
@@ -178,7 +178,7 @@ a ruby extension used to extend the C++ interface in ruby scripting. It gets
 installed in share/vizkit/cplusplus_extensions, where vizkit is looking for
 it.
 
-The library gets linked against the QtCore librariy automatically (no
+The library gets linked against the QtCore library automatically (no
 need to list them in DEPS_PKGCONFIG). Moreover, unlike with a normal shared
 library, the headers get installed in include/package_name
 
@@ -198,7 +198,7 @@ necessary link and compilation flags are added
 
 **DEPS_CMAKE**: list of packages which can be found with CMake's find_package,
 that the library depends upon. It is assumed that the Find*.cmake scripts
-follow the cmake accepted standard for variable naming
+follow the CMake accepted standard for variable naming
 
 **HEADERS**: a list of headers that should be installed with the library. They get
 installed in include/project_name
@@ -234,7 +234,7 @@ necessary link and compilation flags are added
 
 **DEPS_CMAKE**: list of packages which can be found with CMake's find_package,
 that the library depends upon. It is assumed that the Find*.cmake scripts
-follow the cmake accepted standard for variable naming
+follow the CMake accepted standard for variable naming
 
 **MOC**: if the library is Qt-based, a list of headers that should be processed by
 moc. The resulting implementation files are built into the library

@@ -10,7 +10,7 @@ Categories
 ----------
 The Rock packages are split into 6 main categories
 
-* **base** base types, CMake script respositories, ...
+* **base** base types, CMake script repositories, ...
 * **drivers** packages that are related to device drivers: drivers themselves,
   and common libraries that ease their development
 * **slam** packages that are related to localization and mapping both separately
@@ -57,7 +57,7 @@ packages:
 
 For instance, in the [rock-drivers](http://gitorious.org/rock-drivers)
 subproject, there is [the Hokuyo driver
-library](http://gitorious.org/rock-drivers/hokuyo) and the corresponding [orogen
+library](http://gitorious.org/rock-drivers/hokuyo) and the corresponding [oroGen
 component](http://gitorious.org/rock-drivers/orogen-hokuyo).
 
 Mapping between local installation and gitorious repositories
@@ -75,7 +75,7 @@ will be managed in a gitorious repository called
 the rock-toolchain project
 {: .warning}
 
-An orogen package installed on the local system as
+An oroGen package installed on the local system as
 
     category/orogen-package_name
 
