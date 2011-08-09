@@ -254,21 +254,17 @@ module Autoproj
         # one.
         #
         # Examples: ['debian', ['sid', 'unstable']] or ['ubuntu', ['lucid lynx', '10.04']]
-        def self.operating_system(options = Hash.new)
-            options = Kernel.validate_options options, :force => false
-
-            if !options[:force]
-                if !@operating_system.nil?
-                    return @operating_system
-                elsif Autoproj.has_config_key?('operating_system')
-                    os = Autoproj.user_config('operating_system')
-                    if os.respond_to?(:to_ary)
-                        if os[0].respond_to?(:to_ary) && os[0].all? { |s| s.respond_to?(:to_str) } &&
-                           os[1].respond_to?(:to_ary) && os[1].all? { |s| s.respond_to?(:to_str) }
-                           @operating_system = os
-                           return os
-                        end
-                    end
+        def self.operating_system
+            if !@operating_system.nil?
+                return @operating_system
+            elsif Autoproj.has_config_key?('operating_system')
+                os = Autoproj.user_config('operating_system')
+		if os.respond_to?(:to_ary)
+		    if os[0].respond_to?(:to_ary) && os[0].all? { |s| s.respond_to?(:to_str) } &&
+		       os[1].respond_to?(:to_ary) && os[1].all? { |s| s.respond_to?(:to_str) }
+		       @operating_system = os
+                       return os
+		    end
                 end
             end
 
@@ -436,11 +432,13 @@ fi
             dep_def = definitions[name]
             if !dep_def
                 return NO_PACKAGE
-            elsif dep_def == 'ignore'
+            end
+
+            if dep_def == 'ignore'
                 return IGNORE
-            elsif dep_def == 'nonexistent'
-                return WRONG_OS_VERSION
-            elsif !os_names
+            end
+
+            if !os_names
                 return UNKNOWN_OS
             end
 
@@ -478,10 +476,6 @@ fi
                     return WRONG_OS_VERSION
                 end
                 data = version_entry.last
-            end
-
-            if data.respond_to?(:to_str) && data.to_str == 'nonexistent'
-                return WRONG_OS_VERSION
             end
 
             if data.respond_to?(:to_ary)
@@ -608,7 +602,6 @@ fi
                 if pkg_def.respond_to?(:to_str)
                     case(pkg_def.to_str)
                     when "ignore" then
-                        osdeps << name
                     when "gem" then
                         gems << name
                     else
@@ -1217,10 +1210,6 @@ module Autoproj
         config_file = File.join(Autoproj.config_dir, "config.yml")
         if File.exists?(config_file)
             config = YAML.load(File.read(config_file))
-            if !config
-                return
-            end
-
             config.each do |key, value|
                 @user_config[key] = [value, false]
             end
@@ -1402,26 +1391,20 @@ module Autoproj
     # If any error is detected, the backtrace will be filtered so that it is
     # easier to understand by the user. Moreover, if +source+ is non-nil, the
     # package set name will be mentionned.
-    def self.load(package_set, *path)
+    def self.load(source, *path)
         path = File.join(*path)
-        in_package_set(package_set, File.expand_path(path).gsub(/^#{Regexp.quote(Autoproj.root_dir)}\//, '')) do
-            begin
-                Kernel.load path
-            rescue Interrupt
-                raise
-            rescue ConfigError => e
-                raise
-            rescue Exception => e
-                filter_load_exception(e, package_set, path)
-            end
-        end
+        Kernel.load path
+    rescue Interrupt
+        raise
+    rescue Exception => e
+        Autoproj.filter_load_exception(e, source, path)
     end
 
     # Same as #load, but runs only if the file exists.
-    def self.load_if_present(package_set, *path)
+    def self.load_if_present(source, *path)
         path = File.join(*path)
         if File.file?(path)
-            self.load(package_set, *path)
+            self.load(source, *path)
         end
     end
 
@@ -1452,8 +1435,6 @@ end
 
 DEFS = <<EODEFS
 --- 
-cvs: 
-  debian,ubuntu: cvs
 svn: 
   arch: subversion
   gentoo: dev-util/subversion
