@@ -96,7 +96,7 @@ Vizkit.exec()
 Writing Vizkit Plugins
 ----------------------
 For writing your a custom Vizkit3DPlugin one needs to derive from the template 
-class vizkit::Vizkit3DPlugin<T>, where the template argument T is the data type
+class vizkit::Vizkit3DPlugin&lt;T&gt;, where the template argument T is the data type
 that should be visualized. 
 
 {coderay:: cpp}
