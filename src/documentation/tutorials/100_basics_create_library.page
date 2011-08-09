@@ -71,7 +71,7 @@ create mode 100644 src/dummyproject.pc.in
 Done.
 {coderay}
 
-The newly created package comes in a ready to run fashion which means that you can build and install it right away using the build tool [autoproj](/documentation/autoproj/bootstrap_and_basic_usage.html)
+The newly created package comes in a ready to run fashion which means that you can build and install it right away using the build tool [autoproj](/documentation/autoproj/basic_usage.html)
 {coderay:: sh}
 amake basics_tutorial/message_driver
 {coderay}
@@ -80,7 +80,7 @@ or
 autoproj build basics_tutorial/message_driver
 {coderay}
 
-When calling amake in a package folder, it is the same as calling 'autoproj build .'. In the following tutorials 'amake' will be used. However, feel free to choose [more ...](/documentation/autoproj/bootstrap_and_basic_usage.html)
+When calling amake in a package folder, it is the same as calling 'autoproj build .'. In the following tutorials 'amake' will be used. However, feel free to choose [more ...](/documentation/autoproj/basic_usage.html)
 
 ***NOTE***: The template project will generate several file for you: Dummy.cpp, Dummy.hpp, and Main.cpp. This should facilitate the initial modification of the CMakeLists.txt file, once you get started with your own libraries. You can choose to either reuse the dummy files by renaming and adapting them, or you just remove them and put your own files in place.
 {: .warning}

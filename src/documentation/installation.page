@@ -43,8 +43,9 @@ Installation: the easy way
       . /path/to/the/directory/env.sh
       {: .commandline}
 
- 6. read [the autoproj guide for bootstrap and basic usage](/documentation/autoproj/bootstrap_and_basic_usage.html) to know the
-    basic operations of the build system
+ 6. read [the autoproj guide for basic usage](/documentation/autoproj/basic_usage.html) to know the
+    basic operations of the build system. More bootstrapping documentation is
+    also available [at the same place](/documentation/autoproj/bootstrap.html)
 
 Other bootstrapping options
 ---------------------------
