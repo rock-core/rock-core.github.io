@@ -159,9 +159,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.002826"
-     inkscape:cx="116.84599"
-     inkscape:cy="97.630289"
+     inkscape:zoom="1.4182101"
+     inkscape:cx="198.28145"
+     inkscape:cy="73.123989"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -233,9 +233,9 @@
            sodipodi:role="line">Implementation</tspan></text>
     </g>
     <a
-       xlink:href="../orogen/index.html"
-       id="a2899"
-       target="_top">
+       xlink:href="orogen/index.html"
+       target="_top"
+       id="a2899">
       <g
          transform="translate(-44.142545,-37.375644)"
          id="g4249">
@@ -278,10 +278,10 @@
       </g>
     </a>
     <a
-       xlink:href="../autoproj/index.html"
-       id="a4559"
+       xlink:href="autoproj/index.html"
+       target="_top"
        transform="translate(-40.406102,-29.294424)"
-       target="_top">
+       id="a4559">
       <g
          transform="translate(-3.7364426,1.3052061)"
          id="g4233">
@@ -324,9 +324,9 @@
       </g>
     </a>
     <a
-       xlink:href="../runtime/index.html"
-       target="_top"
-       id="a2900">
+       xlink:href="runtime/index.html"
+       id="a2900"
+       target="_top">
       <g
          transform="translate(-59.627065,-62.160959)"
          id="g4257">
@@ -375,9 +375,9 @@
     </a>
     <a
        xlink:href="../data_analysis/reading_logfiles.html"
-       transform="translate(0,50)"
+       id="a2930"
        target="_top"
-       id="a2930">
+       transform="translate(0,50)">
       <g
          transform="translate(-59.381863,-9.0710679)"
          id="g4315">
@@ -430,9 +430,9 @@
       </g>
     </a>
     <a
-       xlink:href="../data_analysis/logging.html"
-       target="_top"
-       id="a2920">
+       xlink:href="data_analysis/logging.html"
+       id="a2920"
+       target="_top">
       <g
          transform="translate(-40.406102,-28.801401)"
          id="g4461">
@@ -480,9 +480,9 @@
       </g>
     </a>
     <a
-       xlink:href="../system/index.html"
-       target="_top"
-       id="a2910">
+       xlink:href="system/index.html"
+       id="a2910"
+       target="_top">
       <g
          transform="translate(-59.580884,-60.191757)"
          id="g4266">
@@ -563,9 +563,9 @@
          y="18.109365"
          style="font-weight:bold">Data Display and Analysis</tspan></text>
     <a
-       xlink:href="../data_analysis/replaying_logfiles.html"
-       target="_top"
-       id="a3161">
+       xlink:href="data_analysis/replaying_logfiles.html"
+       id="a3161"
+       target="_top">
       <g
          transform="translate(-59.20184,-8.627021)"
          id="g4315-1">
@@ -616,10 +616,10 @@
       </g>
     </a>
     <a
-       xlink:href="../orogen/type_definitions.html"
-       target="_top"
+       xlink:href="orogen/type_definitions.html"
+       transform="translate(0,35.357143)"
        id="a2899-4"
-       transform="translate(0,35.357143)">
+       target="_top">
       <g
          transform="translate(-44.142545,-37.375644)"
          id="g4249-5">
@@ -661,53 +661,57 @@
              id="tspan2971">Typekit Generation</tspan></text>
       </g>
     </a>
-    <g
-       id="g4315-1-3"
-       transform="translate(-59.94314,100.6577)">
+    <a
+       xlink:href="data_analysis/data_visualization.html"
+       id="a3094">
       <g
-         id="g4550-2">
-        <rect
-           style="color:#000000;fill:#eeaaff;fill-opacity:1;fill-rule:nonzero;stroke:#cb00fe;stroke-width:0.99999988px;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
-           id="rect2999-4-5-1"
-           width="182.15392"
-           height="43.932926"
-           x="409.91443"
-           y="81.562981"
-           rx="7.4758277"
-           ry="7.4758282" />
-        <text
-           xml:space="preserve"
-           style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
-           x="417.05212"
-           y="107.75405"
-           id="text3773-3-7-9-5"><tspan
-             sodipodi:role="line"
-             id="tspan3775-2-4-4-9"
-             x="417.05212"
+         transform="translate(-59.94314,100.6577)"
+         id="g4315-1-3">
+        <g
+           id="g4550-2">
+          <rect
+             ry="7.4758282"
+             rx="7.4758277"
+             y="81.562981"
+             x="409.91443"
+             height="43.932926"
+             width="182.15392"
+             id="rect2999-4-5-1"
+             style="color:#000000;fill:#eeaaff;fill-opacity:1;fill-rule:nonzero;stroke:#cb00fe;stroke-width:0.99999988px;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
+          <text
+             id="text3773-3-7-9-5"
              y="107.75405"
-             style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Arial;-inkscape-font-specification:Arial">vizkit</tspan></text>
-        <text
-           xml:space="preserve"
-           style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-indent:0;text-align:start;text-decoration:none;line-height:normal;letter-spacing:normal;word-spacing:normal;text-transform:none;direction:ltr;block-progression:tb;writing-mode:lr-tb;text-anchor:start;color:#000000;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1px;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate;font-family:Arial;-inkscape-font-specification:Arial"
-           x="496.69757"
-           y="93.570946"
-           id="text3777-0-4-9-9"><tspan
-             sodipodi:role="line"
-             x="496.69757"
+             x="417.05212"
+             style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+             xml:space="preserve"><tspan
+               style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Arial;-inkscape-font-specification:Arial"
+               y="107.75405"
+               x="417.05212"
+               id="tspan3775-2-4-4-9"
+               sodipodi:role="line">vizkit</tspan></text>
+          <text
+             id="text3777-0-4-9-9"
              y="93.570946"
-             style="font-size:10px;font-style:italic"
-             id="tspan4005-7-1">Robot control</tspan><tspan
-             id="tspan4546-4"
-             sodipodi:role="line"
              x="496.69757"
-             y="106.07095"
-             style="font-size:10px;font-style:italic">and Data Display</tspan><tspan
-             id="tspan4548-9"
-             sodipodi:role="line"
-             x="496.69757"
-             y="118.57095"
-             style="font-size:10px;font-style:italic">UI, including offline</tspan></text>
+             style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-indent:0;text-align:start;text-decoration:none;line-height:normal;letter-spacing:normal;word-spacing:normal;text-transform:none;direction:ltr;block-progression:tb;writing-mode:lr-tb;text-anchor:start;color:#000000;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1px;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate;font-family:Arial;-inkscape-font-specification:Arial"
+             xml:space="preserve"><tspan
+               id="tspan4005-7-1"
+               style="font-size:10px;font-style:italic"
+               y="93.570946"
+               x="496.69757"
+               sodipodi:role="line">Robot control</tspan><tspan
+               style="font-size:10px;font-style:italic"
+               y="106.07095"
+               x="496.69757"
+               sodipodi:role="line"
+               id="tspan4546-4">and Data Display</tspan><tspan
+               style="font-size:10px;font-style:italic"
+               y="118.57095"
+               x="496.69757"
+               sodipodi:role="line"
+               id="tspan4548-9">UI, including offline</tspan></text>
+        </g>
       </g>
-    </g>
+    </a>
   </g>
 </svg>
