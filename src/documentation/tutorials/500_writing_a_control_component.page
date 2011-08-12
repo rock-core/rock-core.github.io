@@ -142,7 +142,7 @@ Therefore, create a directory 'viz' and a class 'RockVisualization' in it:
 #define ROCKVISUALIZATION_H
 
 #include <base/pose.h>
-#include <vizkit/VizPlugin.hpp>
+#include <vizkit/Vizkit3DPlugin.hpp>
 
 #include <osg/Node>
 #include <osg/PositionAttitudeTransform>
@@ -150,7 +150,7 @@ Therefore, create a directory 'viz' and a class 'RockVisualization' in it:
 namespace vizkit 
 {
     
-class RockVisualization: public vizkit::VizPlugin<base::Pose>
+class RockVisualization: public vizkit::Vizkit3DPlugin<base::Pose>
 {
   public:
     RockVisualization();
@@ -284,7 +284,7 @@ Orocos.load_typekit('base')
 
 ## create a widget for 3d display
 view3d = 
-  Vizkit.default_loader.create_widget('vizkit::QVizkitWidget')
+  Vizkit.default_loader.create_widget('vizkit::Vizkit3DWidget')
 
 #show it
 view3d.show()
