@@ -1,0 +1,53 @@
+---
+title: Data Timestamping
+sort_info: 50
+---
+
+Moreover, timestamping the data that originates from the sensors is a task that is
+hindered by phenomenons in the data acquisition chain: latency in the sensor acquisition process, latency in
+the communication layer, latency in the operating system and -- last but not least --
+clock synchronization in multi-CPU (and therefore multi-robot) systems.  Fortunately for
+us, a few of these can be estimated offline and/or online.
+
+This estimation of the time difference
+between an event and when this event is measured is commonly separated between an average latency (or in
+short: latency) and a jitter (variability). Since most sensors have
+a fixed acquisition period, the jitter can be filtered out over time by estimating the
+average sensor period and base time. The average latency, however, is a different issue
+altogether. It originates from different sources, each of which have to be solved by
+different means:
+
+__Sensor__ the latency in the sensor acquisition process is usually documented (or
+can at least be informally given by the company producing this sensor). In case of sensors
+developed in-house, this value can be estimated.
+
+__Communication layer__ a rough estimate can usually be obtained by looking at the
+amount of data and the communication layer bandwidth.
+
+__Operating system__ is the weak part of the chain if one does not use a
+hard-realtime operating system such as Xenomai or QNX \emph{or} has devices that are
+not compatible with that realtime operating system. However, some communication layers timestamp
+messages at the driver level (for instance, CAN and firewire stacks on Linux systems). For other layers, no
+information can be obtained directly.
+
+__Clock synchronization__ clock synchronization solutions like NTP are available
+to synchronize multiple CPUs. However, they take long to converge, especially over
+wireless networks (if they converge at all), making it practical only on systems that are
+up most of the time. Additionally to NTP, outdoors, one can use GPS as a time source.
+Indoors, no really good solution exist to our knowledge.
+
+__Throwing hardware at the task__ It became common for sensors used in robotic
+applications to have so-called hardware synchronization signals that announce a particular event (for instance,
+start of acquisition), or hardware triggers that allow to pick the point of acquisition
+(common on cameras). Using adapted hardware and combined with the techniques proposed
+above, this method allows to achieve data timestamping of the order of one milliseconds,
+regardless of the operating system properties.
+
+The TimestampEstimator class
+----------------------------
+
+The TimestampEstimator class, which lies in the aggregator package, is an
+implementation
+
+Estimating latency through hardware timestamps
+-------------------------------
