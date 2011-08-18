@@ -3,19 +3,46 @@ title: Data Timestamping
 sort_info: 50
 ---
 
-Moreover, timestamping the data that originates from the sensors is a task that is
-hindered by phenomenons in the data acquisition chain: latency in the sensor acquisition process, latency in
-the communication layer, latency in the operating system and -- last but not least --
-clock synchronization in multi-CPU (and therefore multi-robot) systems.  Fortunately for
-us, a few of these can be estimated offline and/or online.
+Let's look at a standard data acquisition process in a robotic system. As we
+already stated, our goal is to estimate, as closely as possible, _when_ the data
+has been acquired by the sensor.
 
-This estimation of the time difference
-between an event and when this event is measured is commonly separated between an average latency (or in
-short: latency) and a jitter (variability). Since most sensors have
-a fixed acquisition period, the jitter can be filtered out over time by estimating the
-average sensor period and base time. The average latency, however, is a different issue
-altogether. It originates from different sources, each of which have to be solved by
-different means:
+Let's assume we have a system with four sensors: an IMU, a laser scanner and two
+cameras (for the purpose of explaining the timestamping process, only the IMU
+will be used).
+
+Ideally, timestamping would match the sensor acquisition times:
+
+![Ideal timestamps](timeline_sensor_acquisition.png)
+{: .align-center}
+
+However, timestamping the data that originates from the sensors is a task that
+is hindered by phenomenons in the data acquisition chain: sensor acquisition
+process, communication between the sensor and the CPU, operating system
+scheduling (when the driver process gets executed once the data arrived) and --
+last but not least -- clock synchronization in multi-CPU (and therefore
+multi-robot) systems.  Fortunately for us, a few of these can be estimated
+offline and/or online.
+
+This estimation of the time difference between an event and when this event is
+measured is commonly separated between a mean _latency_ (constant part)
+and a _jitter_ (variability).
+
+![Latency and jitter](timeline_driver_component.png)
+{: .align-center}
+
+Filtering jitter
+----------------
+Since most sensors have a fixed acquisition period, the jitter can be filtered
+out over time by estimating the average sensor period and base time. In Rock,
+this is done by the aggregator::TimestampEstimator class [that is described in
+the next page](using_timestampestimator.page).
+
+Estimating latency
+------------------
+The average latency, however, is a different issue altogether. It
+originates from different sources, each of which have to be solved by different
+means:
 
 __Sensor__ the latency in the sensor acquisition process is usually documented (or
 can at least be informally given by the company producing this sensor). In case of sensors
@@ -41,13 +68,6 @@ applications to have so-called hardware synchronization signals that announce a 
 start of acquisition), or hardware triggers that allow to pick the point of acquisition
 (common on cameras). Using adapted hardware and combined with the techniques proposed
 above, this method allows to achieve data timestamping of the order of one milliseconds,
-regardless of the operating system properties.
-
-The TimestampEstimator class
-----------------------------
-
-The TimestampEstimator class, which lies in the aggregator package, is an
-implementation
-
-Estimating latency through hardware timestamps
--------------------------------
+regardless of the operating system properties. The TimestampEstimator class also
+accepts a separate stream of timestamps that it is using to estimate the
+latency. Check out the next page for details.
