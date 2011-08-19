@@ -36,7 +36,7 @@ Filtering jitter
 Since most sensors have a fixed acquisition period, the jitter can be filtered
 out over time by estimating the average sensor period and base time. In Rock,
 this is done by the aggregator::TimestampEstimator class [that is described in
-the next page](using_timestampestimator.page).
+the next page](using_timestampestimator.html).
 
 Estimating latency
 ------------------
