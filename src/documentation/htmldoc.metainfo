@@ -42,9 +42,13 @@ package_directory:
     title: Package Directory
     sort_info: 500
 
-stream_aligner:
-    title: Stream Aligner
-    sort_info: 1000
+data_processing:
+    title: Data Processing
+    sort_info: 1010
+
+device_drivers:
+    title: Device Drivers
+    sort_info: 1050
 
 envire:
     title: Envire 
