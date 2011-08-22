@@ -77,10 +77,7 @@ If you want to add the tutorials to your installation add the package set to you
 {coderay:: sh}
 package_sets:
 ...
-   - type: git
-     branch: $ROCK_FLAVOR
-     url: $GITORIOUS_ROOT/rock-tutorials/package_set.git
-     push_to: $GITORIOUS_PUSH_ROOT/rock-tutorials/package_set.git
+   - gitorious: rock-tutorials/package_set
 
 ...
 

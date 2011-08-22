@@ -55,8 +55,7 @@ To add this package set to your current autoproj installation copy the string to
 
 {coderay:: yml}
 package_sets:
-  - branch: $ROCK_FLAVOR
-    gitorious: rock/package_set
+  - gitorious: rock/package_set
 {coderay}
 
 Now autoproj nows about all packages which are part of the package sets. If you want to install one of them

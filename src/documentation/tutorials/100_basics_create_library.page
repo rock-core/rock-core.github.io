@@ -106,7 +106,10 @@ and dependencies to 'custom' packages using
 <depend package="base/types" />
 {coderay}
 
-The actual message implementation looks as follows:
+The message class definition will be contained in a header called
+src/Message.hpp, to follow Rock naming guidelines (a Message class should be
+declared in the src/Message.hpp header). It should contain the following code:
+
 {coderay:: c++}
 #ifndef _MESSAGE_DRIVER_MESSAGE_HPP_
 #define _MESSAGE_DRIVER_MESSAGE_HPP_
@@ -145,7 +148,10 @@ namespace message_driver
 ***NOTE***: There are some constraints on designing custom types, so that they can be used in an oroGen component. Check the [general documentation](../orogen/task_interface.html) for details.
 {: .warning}
 
-The driver for creating and reading messages:
+To follow the Rock guidelines, the MessageDriver class should be declared in
+src/MessageDriver.hpp and defined in src/MessageDriver.cpp.
+src/MessageDriver.hpp should therefore contain:
+
 {coderay:: c++}
 #ifndef _MESSAGE_DRIVER_HPP_
 #define _MESSAGE_DRIVER_HPP_
@@ -177,7 +183,9 @@ public:
 #endif // _MESSAGE_DRIVER_HPP_
 {coderay}
 
-Create a library that create a timestamped message:
+And, finally, the driver implementation creates the timestamped message, and is
+in src/MessageDriver.cpp:
+
 {coderay:: c++}
 #include "MessageDriver.hpp"
 #include <iostream>
@@ -212,8 +220,8 @@ rock_library(message_driver
     HEADERS MessageDriver.hpp Message.hpp
     DEPS_PKGCONFIG base-types)
 
-rock_executable(message_driver_bin Main.cpp
-    DEPS message_driver)
+# Do not forget to remove the rock_executable line that compiles Main.cpp, as it
+# is not used anymore
 {coderay}
 
 After adapting the CMakeLists.txt add the package to the build configuration, so that eventually you can embedded the library into oroGen components. The easiest way to adapt the build configuration is by adding the package to the manifest's layout section. Thus, edit ~/dev/autoproj/manifest and add the package to the layout section. Package management in detail is discussed in [Adding packages](/documentation/autoproj/adding_packages.html)
@@ -223,10 +231,7 @@ After adapting the CMakeLists.txt add the package to the build configuration, so
 
 {coderay:: sh}
 package_sets:
-  - type: git 
-     branch: $ROCK_FLAVOR
-     url: $GITORIOUS_ROOT/rock-toolchain/package_set.git
-     push_to: $GITORIOUS_PUSH_ROOT/rock-toolchain/package_set.git
+  - gitorious: rock-toolchain/package_set
 
 # Layout. Note that the rock.base, rock.toolchain
 # and orocos.toolchain sets are imported 
