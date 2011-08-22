@@ -73,15 +73,19 @@ browse and find components in the Rock component collection.
 Installing the tutorial results
 -------------------------------
 In case you don't want to write all the package yourself, the Rock tutorials have been packaged so that you can easily retrieve them.
-If you want to add the tutorials to your installation add the package set to your autoproj/manifest:
+If you want to add the tutorials to your installation add the package set to
+your autoproj/manifest.
+
+autoproj/manifest should look like:
+
 {coderay:: sh}
 package_sets:
-...
+   - gitorious: rock-toolchain/package_set
+   - gitorious: rock/package_set
    - gitorious: rock-tutorials/package_set
 
-...
-
 layout:
-   ...
+   - rock.toolchain
    - rock.tutorials
 {coderay}
+
