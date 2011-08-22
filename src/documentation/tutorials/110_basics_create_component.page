@@ -108,10 +108,7 @@ In order to make types known to your component so that you can use them in the s
 Again, you should add you component to the build system by adding the package to autproj/manifest's layout section:
 {coderay:: sh}
 package_sets:
-  - type: git 
-    branch: $ROCK_FLAVOR
-    url: $GITORIOUS_ROOT/rock-toolchain/package_set.git
-    push_to: $GITORIOUS_PUSH_ROOT/rock-toolchain/package_set.git
+  - gitorious: rock-toolchain/package_set
 
 # Layout. Note that the rock.base, rock.toolchain 
 # and orocos.toolchain sets are imported 
