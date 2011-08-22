@@ -1,6 +1,7 @@
 ---
 title: oroGen Integration
 sort_info: 50
+in_menu: false
 ---
 
 Once you [have written a driver based on

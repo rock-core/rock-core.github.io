@@ -121,4 +121,4 @@ To keep things simple, in this case, one can simply ignore sensing messages
 while doing commands, and having a simple interface to read command-related
 messages (since they don't have to be treated asynchronously).
 
-Let's now go to [the oroGen integration](writing_orogen_driver.html)
+The generic oroGen integration is still in writing ... coming soon !
