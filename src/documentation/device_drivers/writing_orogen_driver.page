@@ -1,8 +1,11 @@
 ---
 title: oroGen Integration
 sort_info: 50
-in_menu: false
 ---
+
+__At this point in time, this page defines the _wanted_ interface for the oroGen
+integration. The actual code is untested and will most likely not work__
+{: .warning}
 
 Once you [have written a driver based on
 iodrivers_base::Driver](writing_driver.html), you can think about integrating it
@@ -15,6 +18,9 @@ and then describe the component's interface design.
 Guidelines
 ----------
 
+ * if the device is periodic, the component should use [the
+   TimestampEstimator](../data_processing/timestamping.html) to correct the
+   timestamps
  * use as much [base data types](../base_types.html) as possible
  * common type names have also common port names. In general, it is good to
    check devices of the same type and follow the same naming conventions.
