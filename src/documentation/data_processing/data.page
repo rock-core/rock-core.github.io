@@ -33,7 +33,7 @@ Since robotics is all about managing physical systems that evolve in a physical
 environment, and modify it, the relationship between the data that are being processed and
 this environment is central to the problem of data processing. Key to that is the ability
 to associate data temporally: the ability to mark when a particular information was
-relevant in the physical world. This process is usually referred as ``data timestamping''.
+sensed from the physical world. This process is usually referred as ``data timestamping''.
 
 In the following example, since the two data acquisition
 pipelines have (tremendously) different processing times, the point cloud generated from
@@ -42,14 +42,14 @@ time in the real world_ are going to reach the pose estimator component at very 
 times. It is therefore important for the pose estimation component to be able to know
 their actual order _in the real world_. This is what data timestamping is meant to
 achieve: not mark when a particular data structure has been filled, but when the
-information contained in this data structure is relevant.
+information contained in this data structure was sensed in the real world.
 
 ![Time in a processing graph](timestamping.png)
 {: .align-center}
 
 Moreover, at the output of the pose estimator, the generated pose should also be
-timestamped properly, i.e. mark the time at which the pose estimate is relevant
-_in the real world_. Most estimation algorithms do provide this information
+timestamped properly, i.e. mark the time at which the pose estimate was the pose
+of the robot _in the real world_. Most estimation algorithms do provide this information
 (they provide a timestamped best estimate).
 
 It is unfortunately a not so well understood issue. Indeed, a recurrent idea is

@@ -9,11 +9,11 @@ The TimestampEstimator class
 The TimestampEstimator class, which lies in the aggregator package, is used to
 remove the jitter out of a periodic time stream. Basically, once configured, one
 gives it a time in a time series that (1) is periodic (2) can (rarely) contain
-lost samples and/or bursts, and gets back the best estimate for the provided
+lost samples and/or bursts, and returns the best estimate for the provided
 time.
 
-One design criteria for this class is that it has to be zero-latency, i.e. never
-delay the processing of a sample.
+One design criteria for this class is that it has to be zero-latency, i.e. the
+timestamp estimator never delays the processing of a sample.
 
 Timestamper Usage
 -----------------
@@ -91,7 +91,7 @@ Handling bursts and lost packages
 ---------------------------------
 
 The main issue here is that late samples look very much -- from the point of
-view of the estimator -- like 
+view of the estimator -- like lost samples.
 
 Let's take our IMU, and see a realistic case for latency and jitter during execution:
 
