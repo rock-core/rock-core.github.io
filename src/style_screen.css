@@ -633,3 +633,39 @@ span.vcs_override {
     line-height: 1.2em;
 }
  
+
+.package_status {
+width: 100%;
+}
+.package_status .name {
+text-align: left;
+background-color: rgb(176,206,234); 
+}
+.package_status .name .error {
+text-align: left;
+background-color: rgb(244,146,146); 
+}
+.error_message td {
+padding-left: 1em;
+background-color: rgb(244,182,182);
+}
+.message td {
+padding-left: 1em;
+background-color: rgb(219,230,241);
+}
+.from_commits_header td {
+padding-left: 1em;
+background-color: rgb(219,230,241);
+}
+.to_commits_header td {
+padding-left: 1em;
+background-color: rgb(219,230,241);
+}
+.from_commits td {
+padding-left: 1em;
+background-color: rgb(219,230,241);
+}
+.to_commits td {
+padding-left: 1em;
+background-color: rgb(219,230,241);
+}
