@@ -14,17 +14,21 @@ This page will explain:
 
 General API
 -----------
-To create a new value, one has to first get the type definition. It is
-accessible through the main registry:
+To create a new value, one has to first get the type definition. Type
+definitions available on the oroGen components are exported in the Types
+namespace:
 
 {coderay:: ruby}
-time_t = Orocos.registry.get '/base/Time'
-time = time_t.new
+time = Types::Base::Time.new
 {coderay}
 
-In most cases, accessing the registry directly is not necessary:
+Note that this mechanism takes into account custom Ruby-to-Typelib conversions
+(see below). For instance, by default, /base/Time gets converted to and from
+Ruby Time. Therefore, the class Types::Base::Time is the same as Time.
 
- * when modifying a property, one should first read that property from the task,
+In most cases, accessing the types directly is not necessary:
+
+ * when modifying a complex type in a property, [one should use the block form]
    modify it and write it back
  * when writing to an input port, the InputPort#new_sample method creates a new
    value object suitable for this particular port
@@ -203,3 +207,17 @@ This file will get installed automatically along with the oroGen code, in a
 place where it gets found and loaded automatically by typelib. Thus, the
 convertion code is made available to all Ruby scripts that use orocos.rb/orogen
 {: .note}
+
+Direct Access to the Type Models
+--------------------------------
+
+The 'Types::' export interface provides an easy-to-use access to the types.
+However, it one sometimes needs access to the "raw" typelib models.
+
+In orocos.rb, all types loaded for the benefit of accessing oroGen components
+are saved in the singleton Typelib::Registry instance saved in Orocos.registry.
+Therefore, to get the typelib model for type '/base/XXX', one needs to do
+
+{coderay:: ruby}
+Orocos.registry.get("/base/XXX")
+{coderay}
