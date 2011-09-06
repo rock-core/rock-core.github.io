@@ -114,7 +114,7 @@ declared in the src/Message.hpp header). It should contain the following code:
 #ifndef _MESSAGE_DRIVER_MESSAGE_HPP_
 #define _MESSAGE_DRIVER_MESSAGE_HPP_
 
-#include <string.h>
+#include <string>
 #include <base/time.h>
 
 namespace message_driver
