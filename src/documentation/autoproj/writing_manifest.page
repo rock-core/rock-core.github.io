@@ -18,16 +18,16 @@ The autoproj configuration and build process goes like this:
    either be local (saved along with the rest of the autoproj configuration) or
    remote (imported from a VCS). They declare how to get, build and install
    a certain number of packages. On the image above, there are three of those
-   sets: rubim.base, rubim.orocos and rubim.drivers.
+   sets: rock.base, rock.toolchain and rock
  * packages that are relevant to the local installation are cherry-picked from
    the package sets. One can either select packages one-by-one (the case for the
-   two packages of rubim.drivers above), or a package set can be imported as a
-   whole (rubim.orocos and rubim.base).
+   two packages of rock above), or a package set can be imported as a
+   whole (rock.toolchain and rock.base).
  * autoproj will then import the selected packages, auto-select their
    dependencies and import them as well, build and install all of this.
  * the selected packages can be imported and built in subdirectories of the
-   installation tree. In the above example, all packages from rubim.orocos are
-   built in the tools/ subdirectory, one package of rubim.drivers in the
+   installation tree. In the above example, all packages from rock.toolchain are
+   built in the tools/ subdirectory, one package of rock in the
    perception/ subdirectory and so on.
 
 In practice, the autoproj configuration is saved in an autoproj/ directory. It
@@ -102,26 +102,41 @@ autoproj list-sets
 Its output looks like this:
 
 <pre>
-rock.dfki
-  local source in /home/doudou/dfki/imoby1.9/autoproj/dfki
-  packages:
-  | orocos/base      | git:/home/doudou/dfki/dfki-share/projects/all/Intelligent_Mobility/development/software/git/tools/orocos/base.git                           |
-  | orocos/logger    | git:/home/doudou/dfki/dfki-share/projects/all/Intelligent_Mobility/development/software/git/tools/orocos/logger.git branch=fast_log         |
-  | orocos/ocl       | git:/home/doudou/dfki/dfki-share/projects/all/Intelligent_Mobility/development/software/git/tools/orocos/ocl.git branch=rubim               |
+orocos.toolchain (imported by rock.toolchain)
+  from:  git:git://gitorious.org/orocos-toolchain/autoproj.git push_to=git@gitorious.org:/orocos-toolchain/autoproj.git
+  local: /media/Data/dfki/hrov/autoproj/remotes/orocos.toolchain
+  defines: log4cpp, ocl, orogen, rtt, rtt_typelib, stdint_typekit, typelib, utilmm, utilrb
+rock (listed in manifest)
+  from:  git:git://gitorious.org/rock/package_set.git push_to=git@gitorious.org:/rock/package_set.git
+  local: /media/Data/dfki/hrov/autoproj/remotes/rock
+  imports 1 package sets
+    rock.base
+  defines: <snip>
+rock.base (imported by rock.toolchain)
+  from:  git:git://gitorious.org/rock-base/package_set.git push_to=git@gitorious.org:/rock-base/package_set.git
+  local: /media/Data/dfki/hrov/autoproj/remotes/rock.base
+  defines: <snip>
+rock.toolchain (listed in manifest)
+  from:  git:git://gitorious.org/rock-toolchain/package_set.git push_to=git@gitorious.org:/rock-toolchain/package_set.git
+  local: /media/Data/dfki/hrov/autoproj/remotes/rock.toolchain
+  imports 2 package sets
+    orocos.toolchain
+    rock.base
+  defines: base/orogen/types, tools/logger, tools/orocos.rb, tools/pocolog, tools/roby, tools/service_discovery
 </pre>
 
 The first line is the **package set name**. It is defined in the package set's
-source.yml file and *does not have to be identical to the set's directory
-name*. In the example above, the package set is saved in autoproj/orocos but is
-called rock.dfki
+source.yml file and does not necessarily have a relationship with the name of
+the repository it is stored into.
 
 The second line tells you where this set comes from. It is local if it comes
 along with the main autoproj configuration (manifest and so on). It is remote
 if it is imported from a version control system.
 
-Finally comes the list of packages that are defined in this set, along with the
-importer setup (URL and options, as for instance branches for orocos/logger
-above).
+Finally comes the list of packages that are defined in this set.
+
+A better way to browse packages is to look into [the package
+directory](http://rock-robotics.org/package_directory)
 
 Picking the packages to build
 -----------------------------
@@ -133,13 +148,12 @@ desired packages:
 
 {coderay:: yaml}
 layout:
-    - rubim.base
-    - orocos/rtt
-    - orocos/logger
+  - rock.base
+  - orogen
 {coderay}
 
 This layout can either list packages one by one, but complete package sets can
-also be selected (the rubim.base above)
+also be selected (as e.g. rock.base above)
 
 More advanced mechanisms are available to customize this list. These mechanisms
 are [detailed here](advanced/customization.html)
