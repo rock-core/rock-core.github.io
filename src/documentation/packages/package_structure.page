@@ -77,7 +77,7 @@ the rock-toolchain project
 
 An oroGen package installed on the local system as
 
-    category/orogen-package_name
+    category/orogen/package_name
 
 will be managed in a gitorious repository called
 
