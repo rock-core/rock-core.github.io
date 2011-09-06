@@ -156,7 +156,7 @@ void Driver::close()
     iodrivers_base::Driver::close();
 }
 
-int Driver::extractPacket(uint8_t const* buffer, size_t size)
+int Driver::extractPacket(uint8_t const* buffer, size_t size) const
 {
     // See the doxygen documentation of
     // iodrivers_base::Driver::extractPacket
