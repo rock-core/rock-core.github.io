@@ -121,4 +121,48 @@ To keep things simple, in this case, one can simply ignore sensing messages
 while doing commands, and having a simple interface to read command-related
 messages (since they don't have to be treated asynchronously).
 
-The generic oroGen integration is still in writing ... coming soon !
+Summary
+-------
+
+To summarize, a minimal driver class should look like:
+
+{coderay:: cpp}
+using namespace dvl_rdi;
+Driver::Driver()
+  : iodrivers_base::Driver(10000) {}
+  // The count above is the maximum packet size
+
+void Driver::open(std::string const& uri)
+{
+    openURI(uri);
+    // Do additional device setup
+}
+
+void Driver::read()
+{
+    uint8_t buffer[10000];
+    int packet_size = readPacket(buffer, 10000);
+
+    // parsePacket is a method that is specific to this driver.
+    // It gets a packet, extracts the information from it and
+    // updates the driver internal data structures
+    parsePacket(buffer, packet_size);
+}
+
+// Reimplement close() only if you have specific things to do
+// with your device before closing the I/O
+void Driver::close()
+{
+    iodrivers_base::Driver::close();
+}
+
+int Driver::extractPacket(uint8_t const* buffer, size_t size)
+{
+    // See the doxygen documentation of
+    // iodrivers_base::Driver::extractPacket
+    // to know what this method should do
+}
+
+// Finally, if you have to send commands to the device, always
+// use writePacket (from iodrivers_base::Driver)
+{coderay}
