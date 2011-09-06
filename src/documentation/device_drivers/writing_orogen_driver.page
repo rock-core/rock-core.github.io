@@ -18,6 +18,8 @@ and then describe the component's interface design.
 Guidelines
 ----------
 
+ * the oroGen project should have the same name than the corresponding library
+   package.
  * if the device is periodic, the component should use [the
    TimestampEstimator](../data_processing/timestamping.html) to correct the
    timestamps
