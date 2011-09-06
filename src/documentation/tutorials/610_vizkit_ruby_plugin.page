@@ -117,5 +117,6 @@ plugin = widget.createPlugin("vizkit3d_plugin_tutorial", "SphereVisualization")
 plugin.setTransparency(0.5)
 ...
 {coderay}
+
 If we set the transparency to 0.5 the sphere should have a transparency of 50 percent.
 So you can change easily values without recompiling.

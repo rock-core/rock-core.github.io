@@ -27,8 +27,9 @@ We start by adding the VirtualJoystick widget:
 joystickGui = Vizkit.default_loader.create_widget('VirtualJoystick')
 
 #show it
-joystickGui.show()
+joystickGui.show
 {coderay}
+
 This will open the desired widget and give us a handle to it.
 Using the handle we can register a code block in the run-loop that get's
 executed whenever the widget emits a QT-Signal:
@@ -47,6 +48,7 @@ executed whenever the widget emits a QT-Signal:
 	sampleWriter.write(sample)
     end	
 {coderay}
+
 So, what does this do ? Whenever the signal 'axisChanged' is emitted by the widget the
 code inside the 'do / end' is executed. One can think of it like a callback function. We use this 'callback' 
 to modify a MotionCommand2D in respect to the axis values and write it to our rockControl task. Thus we
@@ -55,9 +57,11 @@ provide the 'glue'-code between the widget and the Task and also show the power 
 Run it
 -----------
 If you execute 
+
 {coderay:: sh}
-    ruby rockTutorial3.rb
+ruby rockTutorial3.rb
 {coderay}
+
 two windows should pop up. One with our virtual joystick the other one should be the well known visualization of the rock. 
 Clicking and dragging the joystick should also make the rock move.
 

@@ -30,11 +30,11 @@ First we need to create the Vizkit3dWidget. We do this in the same way as we cre
 require 'vizkit'
 Orocos.initialize
 
-## create a widget for 3d display
+## Create a widget for 3d display
 view3d = Vizkit.default_loader.create_widget('vizkit::Vizkit3DWidget')
 
-#show it
-view3d.show()
+# Show it
+view3d.show
 {coderay}
 
 A list of available 'standard' Vizkit3DPlugins can be found TODO
@@ -47,7 +47,7 @@ to create complex 3D visualizations.
 ## load and add the 3d plugin for the rock
 rbs_plugin = view3d.createPlugin('RigidBodyStateVisualization')
 
-Vizkit.exec()
+Vizkit.exec
 {coderay}
 
 If you execute your script now, you should see a window with a sphere that is 'spiked' with three cylinders. 
@@ -55,7 +55,9 @@ By clicking inside the window and dragging you should be able to change the view
 
 Feeding data to your plugin
 -----------
-So, how do we pass new data to our visualizer. Quite simple, we just call 'updateData' on it.
+So, how do we pass new data to our visualizer. Quite simple, we just call
+'updateData' on it, before you call Vizkit.exec
+
 {coderay:: ruby}
 rbs = Types::Base::Samples::RigidBodyState.new
 
@@ -63,6 +65,5 @@ rbs.position = Eigen::Vector3.new(0, 5.0, 0)
 rbs.orientation = Eigen::Quaternion.new(0, 0, 0, 1)
 
 rbs_plugin.updateData(rbs)
-
 {coderay}
-Note this code needs to be inserted in front of the 'Vizkit.exec'.
+

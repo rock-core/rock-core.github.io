@@ -127,12 +127,12 @@ rock_library(message_driver
 In order to embed the configuration property into the oroGen component, 
 first add a property of the configuration type as follows (see also [Task Interface](../orogen/task_interface.html). 
 The new task should not be started without configuration, which can be set by adding the statement 'need_configuration' 
-to the task_context specification.
+to the task_context specification, stored in the message_producer.orogen file.
 
 {coderay:: ruby}
 import_types_from "message_driver/Config.hpp"
 
-task_context "Task"
+task_context "Task" do
   needs_configuration
     
   property "config", "message_driver/Config"

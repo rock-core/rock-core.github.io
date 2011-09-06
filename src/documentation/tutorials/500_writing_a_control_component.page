@@ -221,6 +221,7 @@ The task RockTutorialControl has an input port called 'motion_command' of type b
 of type base::Pose. This task will compute a new position and orientation each time the update hook will triggered, given 
 the translation and rotation speed it receives on its input port. The latest motion command will be used if there is no new one.
 The update hook of this task will triggered periodically. That will be defined in the same .orogen file but in the deployment. 
+
 {coderay:: ruby}
 deployment "rock_tutorial" do
   # Declares task as periodic, with a period of 10ms
@@ -228,6 +229,7 @@ deployment "rock_tutorial" do
     periodic(0.01)
 end
 {coderay}
+
 We add the task to the same deployment we already have. And make it periodic with a interval of 10 ms.
 So we will get one deployment named 'rock_tutorial'.
 
@@ -286,8 +288,8 @@ Orocos.load_typekit('base')
 view3d = 
   Vizkit.default_loader.create_widget('vizkit::Vizkit3DWidget')
 
-#show it
-view3d.show()
+# show it
+view3d.show
 
 ## load and add the 3d plugin for the rock
 vizkit_rock = 
@@ -326,6 +328,7 @@ Orocos.run 'rock_tutorial' do
   Vizkit.exec
 end
 {coderay}
+
 At first we create a widget for 3D-display and display it.
 In the next step we load and register our self-written visualizer on the widget by calling  
 createPlugin. 

@@ -37,7 +37,7 @@ ports or the properties of the tasks you can also calling the methods
 {coderay:: ruby}
 Orocos.run "message_producer_deployment",
 			"message_consumer_deployment" do 
-    log_all
+    Orocos.log_all
     producer = Orocos::TaskContext.get "message_producer"
     consumer = Orocos::TaskContext.get "message_consumer"
 

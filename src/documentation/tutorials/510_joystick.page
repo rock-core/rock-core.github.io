@@ -110,8 +110,8 @@ Orocos.initialize
 ## create a widget for 3d display
 view3d = Vizkit.default_loader.create_widget('vizkit::Vizkit3DWidget')
 
-#show it
-view3d.show()
+# show it
+view3d.show
 
 ## load and add the 3d plugin for the rock
 vizkit_rock = view3d.createPlugin('rock_tutorial', 'RockVisualization')
