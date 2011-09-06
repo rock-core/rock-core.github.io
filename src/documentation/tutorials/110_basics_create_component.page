@@ -85,7 +85,7 @@ task_context "Task" do
   output_port "messages", "message_driver/Message"
 end
 
-deployment "message_producer_deployment"
+deployment "message_producer_deployment" do
   task("message_producer", "Task").
       periodic(1)
 end
@@ -117,7 +117,7 @@ layout:
   - rock.base
   - rock.toolchain
   - basics_tutorial/message_driver
-  - basics_tutorial/orogen/producer
+  - basics_tutorial/orogen/message_producer
 {coderay}
 
 After adding it to the build system you can call amake for build the current package.
