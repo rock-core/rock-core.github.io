@@ -165,8 +165,8 @@
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
-     inkscape:window-width="1276"
-     inkscape:window-height="773"
+     inkscape:window-width="1676"
+     inkscape:window-height="1023"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1"
@@ -374,7 +374,7 @@
       </g>
     </a>
     <a
-       xlink:href="../data_analysis/reading_logfiles.html"
+       xlink:href="data_analysis/reading_logfiles.html"
        id="a2930"
        target="_top"
        transform="translate(0,50)">
@@ -663,6 +663,7 @@
     </a>
     <a
        xlink:href="data_analysis/data_visualization.html"
+       target="_top"
        id="a3094">
       <g
          transform="translate(-59.94314,100.6577)"

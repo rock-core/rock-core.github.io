@@ -28,7 +28,7 @@ Ruby Time. Therefore, the class Types::Base::Time is the same as Time.
 
 In most cases, accessing the types directly is not necessary:
 
- * when modifying a complex type in a property, [one should use the block form]
+ * when modifying a complex type in a property, [one should use the block form](properties.html)
    modify it and write it back
  * when writing to an input port, the InputPort#new_sample method creates a new
    value object suitable for this particular port
@@ -190,9 +190,8 @@ Typelib.convert_from_ruby Time, '/base/Time' do |value, typelib_type|
 end
 {coderay}
 
-See [the
-scripts/typelib.rb](http://gitorious.org/rock-toolchain/orogen-base-types/blobs/master/scripts/typelib.rb)
-file from the base/orogen/types package as an example.
+See [the typelib_plugin.rb](https://gitorious.org/rock-base/types_ruby/blobs/master/lib/base/typelib_plugin.rb)
+file from the base/types_ruby package as an example.
 {: .note}
 
 You can safely add a convert_to_ruby specification late in the
