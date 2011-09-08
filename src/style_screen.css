@@ -528,7 +528,7 @@ p.align-center {margin-left: auto; margin-right: auto;}
 /* SECTION 8 - MISCELLANEOUS */
 /*****************************/
 .showcode {font-family: monospace; font-weight: bold; color: rgb(255,0,0);}
-.CodeRay {font-family: monospace; font-weight: normal; font-size: 80%; }
+.CodeRay {font-family: monospace; font-weight: normal; }
 
 pre {
 padding:5px;
@@ -540,6 +540,7 @@ margin-bottom: .2em;
 margin-left: 0em;
 margin-right: 0em;
 font-family: monospace;
+font-size: 80%;
 }
 
 pre.vcs {

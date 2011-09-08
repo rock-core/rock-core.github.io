@@ -101,29 +101,27 @@ autoproj list-sets
 
 Its output looks like this:
 
-<pre>
-orocos.toolchain (imported by rock.toolchain)
-  from:  git:git://gitorious.org/orocos-toolchain/autoproj.git push_to=git@gitorious.org:/orocos-toolchain/autoproj.git
-  local: /media/Data/dfki/hrov/autoproj/remotes/orocos.toolchain
-  defines: log4cpp, ocl, orogen, rtt, rtt_typelib, stdint_typekit, typelib, utilmm, utilrb
-rock (listed in manifest)
-  from:  git:git://gitorious.org/rock/package_set.git push_to=git@gitorious.org:/rock/package_set.git
-  local: /media/Data/dfki/hrov/autoproj/remotes/rock
-  imports 1 package sets
-    rock.base
-  defines: <snip>
-rock.base (imported by rock.toolchain)
-  from:  git:git://gitorious.org/rock-base/package_set.git push_to=git@gitorious.org:/rock-base/package_set.git
-  local: /media/Data/dfki/hrov/autoproj/remotes/rock.base
-  defines: <snip>
-rock.toolchain (listed in manifest)
-  from:  git:git://gitorious.org/rock-toolchain/package_set.git push_to=git@gitorious.org:/rock-toolchain/package_set.git
-  local: /media/Data/dfki/hrov/autoproj/remotes/rock.toolchain
-  imports 2 package sets
-    orocos.toolchain
-    rock.base
-  defines: base/orogen/types, tools/logger, tools/orocos.rb, tools/pocolog, tools/roby, tools/service_discovery
-</pre>
+    orocos.toolchain (imported by rock.toolchain)
+      from:  git:git://gitorious.org/orocos-toolchain/autoproj.git push_to=git@gitorious.org:/orocos-toolchain/autoproj.git
+      local: /media/Data/dfki/hrov/autoproj/remotes/orocos.toolchain
+      defines: log4cpp, ocl, orogen, rtt, rtt_typelib, stdint_typekit, typelib, utilmm, utilrb
+    rock (listed in manifest)
+      from:  git:git://gitorious.org/rock/package_set.git push_to=git@gitorious.org:/rock/package_set.git
+      local: /media/Data/dfki/hrov/autoproj/remotes/rock
+      imports 1 package sets
+        rock.base
+      defines: [snip]
+    rock.base (imported by rock.toolchain)
+      from:  git:git://gitorious.org/rock-base/package_set.git push_to=git@gitorious.org:/rock-base/package_set.git
+      local: /media/Data/dfki/hrov/autoproj/remotes/rock.base
+      defines: [snip]
+    rock.toolchain (listed in manifest)
+      from:  git:git://gitorious.org/rock-toolchain/package_set.git push_to=git@gitorious.org:/rock-toolchain/package_set.git
+      local: /media/Data/dfki/hrov/autoproj/remotes/rock.toolchain
+      imports 2 package sets
+        orocos.toolchain
+        rock.base
+      defines: base/orogen/types, tools/logger, tools/orocos.rb, tools/pocolog, tools/roby, tools/service_discovery
 
 The first line is the **package set name**. It is defined in the package set's
 source.yml file and does not necessarily have a relationship with the name of

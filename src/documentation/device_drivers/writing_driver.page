@@ -8,7 +8,7 @@ drivers. While doing so, it dives into the usage of [the
 iodrivers_base::Driver](http://rock-robotics.org/api//drivers/iodrivers_base)
 class, which is the generic driver implementation in Rock.
 
-The following examples are examples from the implementation of the DVL 
+The following examples are examples from the implementation of [the DVL Teledyne driver](http://rock-robotics.org/package_directory/packages/drivers/drivers_dvl_teledyne/index.html).
 
 Guidelines
 ----------

@@ -23,13 +23,14 @@ For the message producer and the consumer we will create a message library to pr
 Now, that it is clear what functionality is needed you can start writing the library. 
 Note, that Rock strongly suggests to encapsulate your main functionality in libraries. Thus, your library code remains independent of the actual framework in use, and can be easily reused and maintained separately from any framework that wraps this functionality.
 
-Rock allows you to create a C++-library from an existing template - this template has been defined by Rock maintainers and can be found in base/templates). Calling the command 'rock-create-lib' starts a command line dialog to create a library called 'basics_tutorial/message_driver'
+Rock allows you to create a C++-library from an existing template - this template has been defined by Rock maintainers and can be found in base/templates). Calling the command 'rock-create-lib' starts a command line dialog to create a library called 'basics_tutorial/message_driver'. Remember: ~/dev is here the path to the Rock installation. It might differ on your machine.
 
 {coderay:: sh}
 ~/dev$ rock-create-lib basics_tutorial/message_driver
 {coderay}
 
-Once called the create script a command line dialog is started, that will request basic information to configure the template for you:
+Once called the create script a command line dialog is started, that will request basic information to configure the template for you. The following output is the output of the script AND the expected answers. Do not copy/paste the whole block at once !
+
 {coderay:: sh}
 Initialized empty Git repository 
 in ~/dev/basics_tutorial/message_driver/.git/
@@ -71,7 +72,7 @@ create mode 100644 src/dummyproject.pc.in
 Done.
 {coderay}
 
-The newly created package comes in a ready to run fashion which means that you can build and install it right away using the build tool [autoproj](/documentation/autoproj/basic_usage.html)
+The newly created package comes in a ready to run after a fashion: you can build and install it right away using the build tool [autoproj](/documentation/autoproj/basic_usage.html)
 {coderay:: sh}
 amake basics_tutorial/message_driver
 {coderay}
@@ -86,14 +87,14 @@ When calling amake in a package folder, it is the same as calling 'autoproj buil
 {: .warning}
 
 ### Adding the required functionality
-Yet, the library does not contain message handling capabilities. So, we create three new files, i.e. a header file Messages.hpp which will contain the message type that is used to transport message between components, and a header and source file for the MessageDriver. Put all files into the src/ folder of the newly created package.
+The library does not contain message handling capabilities yet. So, we create three new files, i.e. a header file Messages.hpp which will contain the message type that is used to transport message between components, and a header and source file for the MessageDriver. Put all files into the src/ folder of the newly created package.
 
-***NOTE***: Rock recommends to stick to the following coding styles and use CamelCase naming C++ file: HeaderFile.hpp and SourceFile.cpp. However, due to historic reasons not all packages of Rock conform to this style. 
+***NOTE***: Rock recommends to stick to use CamelCase for new structures, and to name the files after the class it defines (i.e. Message.hpp defines the Message structure, MessageDriver.hpp declares the MessageDriver class and MessageDriver.cpp defines it). However, due to historic reasons not all packages of Rock conform to this style. 
 {: .warning}
 
 First, create the message type for timestamped messages. Since base/types already provides a timestamp, include 'base/time.h' and make 'base/types' a
-dependency of your library, if you haven't done it already. Check the manifest.xml and make sure it contains the 'base/types' dependency. 
-{coderay:: sh}
+dependency of your library, if you haven't done it already. Check the manifest.xml and make sure it contains the 'base/types' dependency.
+{coderay:: xml}
 <depend package="base/types" />
 {coderay}
 
@@ -254,7 +255,6 @@ Summary
 In this tutorial you have learned to: 
 
  * create a C++-library from the Rock template
- * create a simple oroGen component
  * embed new packages into the build system
 
 In the next tutorial you will learn how to create an oroGen component and embed you library into it.
