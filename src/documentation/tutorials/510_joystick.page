@@ -44,33 +44,38 @@ Now that we have found a task, that supplies the needed motion commands we need 
 our run script. Therefore we modify the last runscript. By adding a joystick driver to it.
 As we know from the package directory, the controldev package provides a tasks for our purpose. To find
 out which exact task we can use we call 
+
 {coderay:: sh}
-  orinspect -t controldev
+rock-inspect -t controldev
 {coderay}
 
 This returns us an output of every installed task that is defined controldev.
 The interesting part of the output is in our case this :
-{coderay:: sh}
 
-===== controldev::JoystickTask is a task context defined in controldev
-------- controldev::JoystickTask ------
-subclass of controldev::GenericTask (the superclass elements are displayed below)
-Ports
-  [out]four_wheel_command:/controldev/FourWheelCommand
-  [out]motion_command:/base/MotionCommand2D
-  [out]raw_command:/controldev/RawCommand
-  [out]speed_command:/base/SpeedCommand6D
-No dynamic ports
-Properties
-  device:/std/string: Path to the joystick device
-  maxRotationSpeed:/double: Maximum rotation speed in rad/s
-  maxSpeed:/double: Maximum translation speed in m/s
-  minRotationSpeed:/double: Minimum rotation speed in rad/s
-  minSpeed:/double: Minimum translation speed in m/s
-No attributes
-No operations
+    ==========================================================
+    Task name:  controldev::JoystickTask
+    defined in controldev
+    ----------------------------------------------------------
+    
+    ------- controldev::JoystickTask ------
+    A Task that provides a joystick driver
+    subclass of controldev::GenericTask (the superclass elements are displayed below)
+    Ports
+      [out]four_wheel_command:/controldev/FourWheelCommand
+      [out]motion_command:/base/MotionCommand2D
+      [out]raw_command:/controldev/RawCommand
+      [out]speed_command:/base/SpeedCommand6D
+      [out]state:/int32_t
+    No dynamic ports
+    Properties
+      device:/std/string: Path to the joystick device
+      maxRotationSpeed:/double: Maximum rotation speed in rad/s
+      maxSpeed:/double: Maximum translation speed in m/s
+      minRotationSpeed:/double: Minimum rotation speed in rad/s
+      minSpeed:/double: Minimum translation speed in m/s
+    No attributes
+    No operations
 
-{coderay}
 This output tells us that there is a task controldev::JoystickTask, which has a
 output port with the name 'motion_command' of the type '/base/MotionCommand2D'.
 So it fits exactly our needs.
@@ -79,21 +84,24 @@ As we also need a deployment with the JoystickTask we check weather controldev a
 it. for doing so, we call
 
 {coderay:: sh}
-  orinspect -d controldev
+rock-inspect -t JoystickTask
 {coderay}
 
-which gives us the following output:
-{coderay:: sh}
-===== joystick is a deployment defined in controldev
-------- joystick ------
-Tasks
-  joystick[controldev::JoystickTask]
-    activity: FileDescriptorActivity, prio=25
-    scheduler: realtime,
-  joystick_Logger[logger::Logger]
-    activity: Triggered, prio=lowest
-    scheduler: non realtime
-{coderay}
+this time, we are looking for deployments. We are in particular interested in:
+
+    ==========================================================
+    Deployment name:  joystick
+    defined in controldev
+    ----------------------------------------------------------
+    
+      ------- joystick ------
+      Tasks
+        joystick[controldev::JoystickTask]
+          activity: FileDescriptorActivity, prio=25
+          scheduler: realtime,
+        joystick_Logger[logger::Logger]
+          activity: Triggered, prio=lowest
+          scheduler: non realtime
 
 This tells us that there is a deployment joystick, which deploys the JoystickTask and thus also 
 fits out needs. Note that the JoystickTask is deployed with the name 'joystick'.
