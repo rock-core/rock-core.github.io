@@ -20,6 +20,13 @@ tutorial, so we don't have to implement anything.
 
 In order to get our control we need a task that supplies us with 'base::MotionCommand2D'. 
 For that it is recommended to take a look into the [package directory](../../package_directory/).
+You will have two options there:
+
+ * look for a specific orogen package in the Packages section. For instance, you can search for
+   "joystick orogen"
+ * look for tasks that produce the type you require (here /base/MotionCommand2D) by going into
+   the oroGen types section, selecting the type and looking at the Produced by section at the
+   top of the page.
 
 The package directory gives you a general overview of available 'standard' packages and types.
 For our purpose we need to look into the subcategory 'oroGen Types'. This category shows all
