@@ -8,6 +8,7 @@ system deployment in Rock is done in Ruby, we have to understand how the oroGen
 C++ types are accessed on the Ruby side.
 
 This page will explain:
+
  * the mapping between C++ and Ruby in Rock
  * how to customize that mapping to get more functionality out of your Ruby
    scripts
