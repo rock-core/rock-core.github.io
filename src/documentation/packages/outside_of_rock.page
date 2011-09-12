@@ -46,14 +46,16 @@ needed for instance by the trajectory following / motion planning components. If
 you need the Spline class, install the external/sisl package beforehand.
 {: .note}
 
-Once you have installed this package, you will also need to set a very important
-environment variable: ROCK_CMAKE_MACROS to the types/cmake folder:
+Once you have installed this package, you will also need to set a few important
+environment variables:
 
 {coderay:: sh}
 export ROCK_CMAKE_MACROS=$HOME/dev/types/cmake
+export PKG_CONFIG_PATH=$HOME/dev/install/lib/pkgconfig:$HOME/dev/install/share/pkgconfig:$HOME/dev/install/lib64/pkgconfig:$PKG_CONFIG_PATH
+export LD_LIBRARY_PATH=$HOME/dev/install/lib:$HOME/dev/install/lib64:$PKG_CONFIG_PATH
+export PATH=$HOME/dev/install/bin:$PATH
 {coderay}
 
-This is required by quite a few Rock packages, so don't forget to do it.
 Usually, it is best practice to put this line in an env.sh line and source it
 automatically in e.g. your $HOME/.bashrc:
 
