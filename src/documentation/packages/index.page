@@ -45,7 +45,7 @@ C++ library packages can quickly be created using <tt>rock-create-lib</tt>. See
 Ruby libraries
 --------------
 Ruby libraries follow the general structure for RubyGem packages. It is detailed
-on the Rock guidelines on Ruby packages](http://rock.opendfki.de/wiki/WikiStart/Standards/RG5).
+on the [Rock guidelines on Ruby packages](http://rock.opendfki.de/wiki/WikiStart/Standards/RG5).
 
 Information about the package (including dependencies w.r.t. other packages) is
 added to the [manifest.xml](../autoproj/advanced/manifest-xml.html) file in the
