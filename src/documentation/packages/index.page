@@ -21,6 +21,12 @@ dependencies w.r.t. other packages) is added to the
 [manifest.xml](../autoproj/advanced/manifest-xml.html) file in the top directory
 of the package.
 
+Plain C++ Libraries
+-------------------
+
+The C++ libraries are plain CMake packages. When developed in relation to Rock,
+you are encouraged to use the [Rock CMake macros](cmake_macros.html). 
+
 **Note:** These macros are meant as helpers for packages developed in Rock.
 However:
 
@@ -28,12 +34,6 @@ However:
    normal CMake functionality applies on the targets defined by these macros
  * their usage is +not+ mandatory (even though it is recommended)
 {: .warning}
-
-Plain C++ Libraries
--------------------
-
-The C++ libraries are plain CMake packages. When developed in relation to Rock,
-you are encouraged to use the [Rock CMake macros](cmake_macros.html). 
 
 This is not a hard requirement. Using the CMake macros and the CMake provided by
 Rock only ensures that you are following the [Rock guidelines on C++ library
