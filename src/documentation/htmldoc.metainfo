@@ -16,7 +16,7 @@ tutorials:
 
 packages:
     sort_info: 80
-    title: Creating Packages
+    title: Managing Packages
 
 autoproj:
     title: Build System
