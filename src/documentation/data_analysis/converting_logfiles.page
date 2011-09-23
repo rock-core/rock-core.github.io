@@ -46,18 +46,18 @@ converter = Converter.new
 #register a bunch of conversions which will be
 #applied if the sample is older than time
 time = Time.new(2011,6,21, 13,30,0, "+09:00")
-converter.register_conversions "description",time,registry do 
-  #register a conversion for CustomType
+converter.register "description",time,registry do 
+  #add a conversion for CustomType
   #dest is the new version of CustomType and  
-  #src the old version
-  register "CustomType" do |dest,src|
+  #src the old version which must be converted
+  conversion "CustomType" do |dest,src|
     #update sample field
     dest.field_name = src.field_name * 10
   end
 
-  #register a conversion from CustomType2 
+  #add a conversion from CustomType2 
   #to CustomType3 which is basically a renaming
-  register "CustomType2", "CustomType3" do |dest,src|
+  conversion "CustomType2", "CustomType3" do |dest,src|
     #deep copy the hole sample
     deep_copy(dest,src)
   end
