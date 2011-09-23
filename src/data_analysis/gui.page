@@ -4,11 +4,11 @@ sort_info: 450
 ---
 
 Robots can be very different and so are their user interfaces. To support the
-programmer in a flexible way a ruby library was introduced which brings Rock and
+programmer in a flexible way, a ruby library was introduced which brings Rock and
 Qt together.
 
 Based on this library there are a number of widgets which can be used to develop
-a custom GUI in only a few minutes or for more complicated GUIs custom widgets
+a custom GUI in only a few minutes. For more complicated GUIs custom widgets
 can easily be added by implementing the QDesignerCustomWidgetInterface.
 
 Developing a Simple GUI
@@ -19,8 +19,8 @@ the status of the robot and if someone clicks on the button the GUI is
 sending a command to the robot.
 
 The following code is generating the window, the button and the text field. The
-underlaying library is qtruby. Please see
-[qtruby](http://techbase.kde.org/Development/Languages/Ruby) to get more
+underlying library is qtruby. Please see
+[qtruby](http://techbase.kde.org/Development/Languages/Ruby) for more
 informations about how to use the Qt ruby binding.
 
 {coderay:: ruby}
@@ -62,7 +62,7 @@ informations about how to use the Qt ruby binding.
 In the example above the connection between the text field and the output port
 of the task is done via a code block which is triggered by a QTimer with a
 default update frequency of 8 Hz. If it is necessary to retrieve all samples
-from a port which has a higher update frequency a buffered connection can be
+from a port which has a higher update frequency, a buffered connection can be
 used or the update frequency can be changed.
 
 {coderay:: ruby}
@@ -75,7 +75,7 @@ used or the update frequency can be changed.
 
 In the next example Vizkit is used to display the images taken by a camera.  If
 Vizkit cannot find a specialised widget to visualize a message a tree view
-widget is used to display all data fields. This mechanism can easily extended
+widget is used to display all data fields. This mechanism can easily be extended
 by custom widgets (see [writing custom widgets](#custom_widgets)).
 
 {coderay:: ruby}
@@ -92,27 +92,27 @@ by custom widgets (see [writing custom widgets](#custom_widgets)).
 Displaying Log Files
 ---------------
 Log files are very import especially if it is expensive to run the software on
-the robot in the real environment like it is very much the case for example in
-underwater robotics. Therefore it is the goal of Rock to provide the developer
-with tools which doing all the hard work to replay logged date to all his
+the robot in the real environment like it is very much the case, for example, in
+underwater robotics. Therefore, it is the goal of Rock to provide the developer
+with tools which are doing all the hard work to replay logged data to all his
 components without changing his code more than necessary. For that reason it is
-possible to use the same gui for displaying logged data than it is used to
+possible to use the same GUI for displaying logged data as well as it is used to
 display live data.
 
 If only the content of a log file matters and shall not be replayed to any
 component the tool named rock-replay can be used to inspect the log files. A
 double click on each listed message type will open a new widget which visualizes
-the message. If no specialised widget can be found a tree view widget is used to
+the message. If no specialised widget can be found, a tree view widget is used to
 display the content of the message.
 
 {: .commandline}
 rock-replay logfile1, logfile2, logfile3
 {: .commandline}
 
-All the mechanism which rock-replay uses to visualizes a log file can be easily
+All the mechanisms which rock-replay uses to visualizes a log file can be easily
 used or extended by custom ruby scripts to display live data or log data.
 
-For example the code block below is using the same user interface like rock-replay
+For example, the code block below is using the same user interface as rock-replay
 does to replay a log file to a custom qt widget.
 
 {coderay:: ruby}
@@ -198,10 +198,10 @@ Qt Designer
 -------------------
 ![Qt Designer](qdesigner.png)
 
-A graphical user interface can be developed either by writing one source code line
-after the other or a WYSIWYG editor like qt designer can be used to add and
+A graphical user interface can be developed either by writing source 
+or a WYSIWYG editor like qt designer can be used to add and
 arrange all widgets.  To support the developer in the best possible way there
-is no need to convert the ui in an other format it can be directly loaded by
+is no need to convert the ui to another format it can be directly loaded by
 Vizkit. After the ui file is loaded all widgets can be accessed by their object
 name and all available slots and signals can be called on them. 
 
@@ -219,7 +219,7 @@ name my_text_filed.
 Available Widgets
 -------------------
 All standard qt and qwt widgets can be used from ruby. Furthermore rock is
-shipped with a collection of widgets for some basic data analyses.
+shipped with a collection of widgets for some basic data analysis.
 
 **ImageView:**
 Widget for displaying camera images (base/frame/frame, base/frame/FramePair)
@@ -255,17 +255,17 @@ Widget for visualizing a rigid body state
 
 Writing Custom ruby Widgets {#custom_widgets}
 -------------------
-Vizkit can easily extended with custom ruby widgets. To do so follow the steps below:
+Vizkit can easily be extended with custom ruby widgets. To do so follow the steps below:
 
-  * write a new ruby class which is implementing the custom behavior
+  * write a new ruby class which is implementing the custom behaviour
   * register the widget so that Vizkit can find it 
 
 For registering a new ruby widget call: Vizkit::UiLoader.register_ruby_widget
-"name_of_widgte", factory_method
+"name_of_widget", factory_method
 
 Parameters:
 
-  * name_of_widgte = any name which is used to access the widget 
+  * name_of_widget = any name which is used to access the widget 
   * factory_method = method which shall be used to create a new instance 
   
 For registering a new widget for a specific data type call: 
@@ -277,15 +277,15 @@ Parameters:
   * data_type = typlib data type for example "/base/samples/frame/Frame"
   * callback = function which shall be called on the widget to display the sample
 
-After the widget is registered for a specific data type a port which is of that
+After the widget is registered for a specific data type, a port which is of that
 data type can be displayed by calling Vizkit.display port
 
 Writing Custom C++ Widgets 
 -------------------
-Vizkit can easily extended with custom c++ qt widgets. To do so follow the steps below:
+Vizkit can easily be extended with custom c++ qt widgets. To do so follow the steps below:
 
  * write the custom qt c++ widget
- * all setter and getter must be implemented as slots or signals with qt data types as parameters
+ * all setter and getter methods must be implemented as slots or signals with qt data types as parameters
  * implement the QDesignerCustomWidgetInterface for the widget
  * install the widget as shared library (install/lib/qt/designer/)
  * write a ruby script to make the widget usable for Vizkit and require it after Vizkit is loaded
