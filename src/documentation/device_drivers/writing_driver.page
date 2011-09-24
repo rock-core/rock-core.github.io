@@ -95,7 +95,7 @@ as argument
 
 {coderay:: cpp}
 double speed = getSpeedMeasurement();
-void getSpeedMeasurement(double);
+void setSpeedMeasurement(double);
 {coderay}
 
 Type 2
