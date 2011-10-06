@@ -6,16 +6,16 @@ sort_info: 600
 In robotics log files are very valuable. To secure that all log files can be
 accessed even if the logged sample types were modified or no longer exist in the
 current software stack all log files created by the generic orogen logger are
-self contained and all samples can be read field by field. But they can not be replayed to
+selfcontained and all samples can be read field by field. However they cannot be replayed to
 orocos ports if the sample type does not exactly match the port type.  This
 happens for example if a type was modified by adding a new field after samples
-of that type were logged because from the computer point of view the old type and the
+of that type were logged because from the computer's point of view the old type and the
 modified type are two different types. To replay these samples to a port the samples
 have to be updated . 
 
 Updating base-type samples
 ---------
-The conversion between the different type versions is usually specified by the rock maintainer
+The conversion between the different type versions is usually specified by the rock maintainer,
 and samples whose type is part of the rock base-types can be updated by calling the command line tool
 rock-convert.
 
@@ -43,7 +43,7 @@ registry = Orocos.registry
 #create a new converter
 converter = Converter.new
 
-#register a bunch of conversions which will be
+#register a set of conversions which will be
 #applied if the sample is older than time
 time = Time.new(2011,6,21, 13,30,0, "+09:00")
 converter.register "description",time,registry do 
@@ -67,8 +67,8 @@ end
 converter.convert("logfile.0.log")
 {coderay}
 
-So far it is only possible to register one bunch of conversions. Later on it will be possible
-to use n bunches of conversions to specify intermediate changes between types which will be automatically
+So far it is only possible to register one set of conversions. Later on it will be possible
+to use n sets of conversions to specify intermediate changes between types which will be automatically
 chained to convert all possible intermediate versions to the current version.
 {: .warning}
 
