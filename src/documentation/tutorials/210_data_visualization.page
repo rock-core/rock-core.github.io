@@ -6,25 +6,25 @@ sort_info: 210
 Abstract
 -----------
 In this tutorial you will learn how to display live and logged data with the help of Vizkit and how to 
-write a custom gui to display the data of your orocos task.
+write a custom GUI to display the data of your orocos task.
 
-To understand this tutorial you must have done the basic tutorials and the data
+To understand this tutorial you must have competed the basic tutorials and the data
 logging tutorial. Basic knowledge about Qt, Qt Designer and qtruby is also
-neccessary.
+necessary.
 
-This tutorial directly continues from the last tutorials, additionally you have
+This tutorial directly continues from the last tutorials, additionally, you have
 to have the rock packages gui/vizkit and gui/rock_widget_collection installed.
 
 Displaying Data with Vizkit
 -----------
-Vizkit is a ruby framework build around qtruby to support the developer with functionality of displaying his
+Vizkit is a ruby framework build around qtruby to support the developer with functionality to display his
 custom data in a convenient way. It is shipped with some Qt Widgets to display some basic types. 
 But its real strength lies in the ability to be customized.
 
-**Displaying Camera Samples** For some baes types like the camera frame Vizkit has a special display widget.
+**Displaying Camera Samples** For some base types like the camera frame Vizkit has a special display widget.
 To create an instance of a widget specialised to display camera frames you can use the Vizkit ruby 
-method *display* and a Orocos port which is producing camera frame as argument. In the case below the camera is 
-substituted by a log file called "camera_sample.0.log" but you can use the same syntax for orocos tasks as well.
+method *display* and an Orocos port which is producing camera frames as argument. In the case below the camera is 
+substituted by a log file called "camera_sample.0.log" but you can use the same syntax for Orocos tasks as well.
 
 {coderay:: ruby}
 require 'orocos'
@@ -44,7 +44,7 @@ For testing purposes a camera log file can be found HERE.
 
 Designing a custom GUI 
 -----------
-Vizkit is able to load ui files creates with the QDesigner. In this case a small GUI is loaded those ui file is 
+Vizkit is able to load ui files creates with the QDesigner. In this case a small GUI is loaded whose ui file is 
 printed below. If you want to create your own ui file, use the *Qt
 Designer*, e.g. by calling *designer* on the command line.
 
@@ -135,7 +135,7 @@ Designer*, e.g. by calling *designer* on the command line.
 </ui>
 {coderay}
 
-This ui basically creates a window with two dedicated labels for writing stuff
+This ui basically creates a window with two dedicated labels for writing strings 
 (named *Time* and *Message*) and a push button (named *Button*) to trigger
 actions. Further on this file is referred to as *test_gui.ui*.
 
@@ -148,9 +148,9 @@ require 'vizkit'
 gui = Vizkit.load 'test_gui.ui'
 
 #do something if someone is clicking on the 
-#button names Button
+#button named Button
 gui.Button.connect(SIGNAL('clicked()')) do
-    puts 'someone presses on the button'
+    puts 'someone presses the button'
     gui.Time.setText(Time::now.to_s)
 end
 
@@ -163,7 +163,7 @@ Vizkit.exec
 {coderay}
 
 As you can see, this small script displays the current time and some standard
-message. Each time the button is pressed, a text is displayed on the command
+message. Each time the button is pressed, a message is displayed on the command
 line and the time label is updated.
 
 Connecting a custom GUI with an orocos task
@@ -225,19 +225,19 @@ We do several things here which require some explanation:
  * As the action of the button we want to switch the configuration of the
    message producer. To do this we have to stop our current task and clean up
    the configuration. Then we change the config, configure the task again and
-   start it. This scheme is neccessary since it is currently the only save way
+   start it. This scheme is necessary since it is currently the only safe way
    to change the configuration of a task. You will notice a slight pause in the
    time display when pressing the button, which results from this sequence.
  
  * We connect our two labels with the output port of the message producer. Here
    it is very important (as alread shown in the [previous
-   tutorial](200_logging_and_replay.html)), that you return the data strucutre
+   tutorial](200_logging_and_replay.html)), that you return the data structure
    in the connect_to block. Otherwise the call won't work. For more information
    about that look at the documentation of ruby code blocks.
 
 Connecting a custom GUI with log files
 -----------
-If you want to connect your GUI with a log file you can use use the same method
+If you want to connect your GUI with a log file you can use the same method
 like for an orocos task. The following scripts connects test_gui.ui to a
 component, which uses the log from the [previuos
 tutorial](200_logging_and_replay.html). Since we only dislay data, the button is

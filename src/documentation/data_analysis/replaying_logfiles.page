@@ -19,7 +19,7 @@ The Replay class provides a range of features:
   * user-specific log data filtering
   * log file abstraction, i.e. in Ruby scripts, log files behave like instances of Orocos::TaskContext
 
-This functionality needs the orocos.rb package to be installed, which is
+This functionality requires the orocos.rb package to be installed, which is
 contained in the Rock toolchain.
 {: .warning}
 
@@ -65,7 +65,7 @@ output_port = replay.camera.frame
 {coderay}
 
 They are accessed through a reader or directly via the method read. 
-The only difference between the two ways is the method 'read' will always returns the last replayed 
+The only difference between the two ways is the method 'read' will always return the last replayed 
 data sample, while the behavior of the reader depends on the applied connection policy.
 
 {coderay:: ruby}
@@ -121,7 +121,7 @@ Once the replay network is properly set up, you start replaying by calling #run#
 
 {coderay:: ruby}
 replay.run         # replay all logged data as fast as possible
-replay.run(true,1) # replay as fast as the date were recorded
+replay.run(true,1) # replay as fast as the data were recorded
 replay.step        # replay one data sample
 {coderay}
 

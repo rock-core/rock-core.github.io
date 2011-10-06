@@ -13,7 +13,7 @@ can easily be added by implementing the QDesignerCustomWidgetInterface.
 
 Developing a Simple GUI
 ----------------
-To show how to create a simple GUI a small example is used which consists of
+To show how to create a simple GUI, a small example is used which consists of
 three elements.  A window, a button and a text field. The text field displays
 the status of the robot and if someone clicks on the button the GUI is
 sending a command to the robot.
