@@ -26,10 +26,10 @@ This should give us an folder containing the following files :
 CMakeLists.txt  INSTALL  LICENSE  manifest.xml  README  src
 {coderay}
 
-Make sure you add the required dependencies to the mainfest.xml, i.e. here 'base/types' and 'gui/vizkit'.
+Make sure you add the required dependencies to the manifest.xml, i.e. here 'base/types' and 'gui/vizkit'.
 {coderay:: sh}
-<depend package="/base/types" />
-<depend package="/gui/vizkit" />
+<depend package="base/types" />
+<depend package="gui/vizkit" />
 {coderay}
 
 Afterwards, create a new class in the src folder named 'RockControl'.
