@@ -2,9 +2,9 @@
 title: Rock Website Updated 
 template: news.template
 in_menu: true
-sort_info: 2011-08-04
-created_at: 2011-08-04 18:25:35 +02:00
-modified_at: 2011-08-04 18:25:35 +02:00
+news:
+    - title: Website update !
+      when: 2011-08-04 18:25:35 +02:00
 ---
 <webgen:block name='notes' />
 

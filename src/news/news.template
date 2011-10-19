@@ -1,6 +1,5 @@
-<h2>{title: }</h2>
-<div class="news-date">
-  Published on <%= context.content_node['created_at'].strftime("%A, %d %B %Y") %>
-</div>
-
+<% if context.node.node_info[:page].blocks.has_key?('news_item') %>
+<webgen:block name="news_item" />
+<% else %>
 <webgen:block name="content" />
+<% end %>

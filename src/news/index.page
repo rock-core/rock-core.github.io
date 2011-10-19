@@ -9,7 +9,7 @@ link:
 ---
 # Latest news
 
-<webgen:block name='content' chain='news.template; website_update.html' />
+{ticker: }
 
 # News listing
 

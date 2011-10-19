@@ -670,3 +670,9 @@ background-color: rgb(219,230,241);
 padding-left: 1em;
 background-color: rgb(219,230,241);
 }
+
+.news_publication_date {
+font-size: 80%;
+font-style: italic;
+}
+
