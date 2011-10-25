@@ -41,8 +41,7 @@ In order to install the package to your installation, either do
 autoproj build drivers/orogen/controldev
 {coderay}
 which will install the current version of the package, but not update / build it later,
-or edit the manifest.xml in your autoproj directory to add it permanent.
-
+or edit the manifest file in your autoproj directory to add it permanently.
 
 Integration of the task
 ----------
