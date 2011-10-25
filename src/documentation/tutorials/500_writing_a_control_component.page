@@ -282,8 +282,6 @@ include Orocos
 ## Initialize orocos ##
 Orocos.initialize
 
-Orocos.load_typekit('base')
-
 ## create a widget for 3d display
 view3d = 
   Vizkit.default_loader.create_widget('vizkit::Vizkit3DWidget')
