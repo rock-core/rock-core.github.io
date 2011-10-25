@@ -271,7 +271,8 @@ void RockTutorialControl::updateHook()
 Run it
 -----------
 
-Now we should run it to see if it works. You can execute the following lines in a separate Ruby file or just in the irb (Interactive Ruby Shell).
+Now we should run it to see if it works. Create a scripts/ folder and create a
+new <tt>rockTutorial1.rb</tt> script containing:
 
 {coderay:: ruby}
 require 'orocos'
@@ -297,11 +298,7 @@ Orocos.run 'rock_tutorial' do
 
   ## Connect port to vizkit plugin
   con = Vizkit.connect_port_to 'rock_tutorial_control', 
-				'pose', 
-				:auto_reconnect => true, 
-				:pull => false, 
-				:update_frequency => 33 
-				do |sample, name|
+          'pose', :update_frequency => 33 do |sample, name|
     ##pass every pose sample to our visualizer plugin
     vizkit_rock.updatePose(sample)
     sample
@@ -325,6 +322,11 @@ Orocos.run 'rock_tutorial' do
   Vizkit.exec
 end
 {coderay}
+
+and run it with
+
+ruby rockTutorial1.rb
+{: .commandline}
 
 At first we create a widget for 3D-display and display it.
 In the next step we load and register our self-written visualizer on the widget by calling  
