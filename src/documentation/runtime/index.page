@@ -24,3 +24,7 @@ The next page is a step-by-step on the basics of how to start modules, set them
 up, build the communication network and stop everything. Then, the rest of the
 guide will present all the available functionality in more details.
 
+Tutorials
+---------
+The main Rock tutorials are a great introduction to the subject of running
+components using Ruby. [Check them out !](../tutorials/index.html)
