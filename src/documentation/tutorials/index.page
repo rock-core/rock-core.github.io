@@ -70,7 +70,7 @@ browse and find components in the Rock component collection.
  * [Interfacing a 3D visualization plugin with Ruby
    scripts](610_vizkit_ruby_plugin.html)
 
-Installing the tutorial results
+Installing the tutorial results {#installing}
 -------------------------------
 In case you don't want to write all the package yourself, the Rock tutorials have been packaged so that you can easily retrieve them.
 If you want to add the tutorials to your installation add the package set to

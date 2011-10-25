@@ -21,7 +21,8 @@ Now that we found the widget we want to use, we need to integrate it.
 Again we therefore modify the runscript from the first tutorial in this
 section. 
 
-We start by adding the VirtualJoystick widget:
+We start by adding the VirtualJoystick widget before the Orocos.run block:
+
 {coderay:: ruby}
 ## create a widget that emulates a joystick
 joystickGui = Vizkit.default_loader.create_widget('VirtualJoystick')
@@ -32,21 +33,32 @@ joystickGui.show
 
 This will open the desired widget and give us a handle to it.
 Using the handle we can register a code block in the run-loop that get's
-executed whenever the widget emits a QT-Signal:
+executed whenever the widget emits a QT-Signal. Since this code needs a handle
+to the rockControl task, it must be inserted after the TaskContext.get line that
+initializes rockControl.
 
 {coderay:: ruby}
-    ## Create a sample writer for a port ##
-    sampleWriter = rockControl.motion_command.writer
+rockControl = Orocos::TaskContext.get 'rock_control'
+{coderay}
 
-    # get a base::MotionCommand2D sample
-    sample = sampleWriter.new_sample
+The "Orocos.run do .. end" block can then be modified with:
 
-    ## glue the widget to the task writer
-    joystickGui.connect(SIGNAL('axisChanged(double, double)')) do |x, y|
-	sample.translation = x
-	sample.rotation = - y.abs() * Math::atan2(y, x.abs())
-	sampleWriter.write(sample)
-    end	
+{coderay:: ruby}
+  ## Create a sample writer for a port ##
+  sampleWriter = rockControl.motion_command.writer
+  
+  # get a sample that can be written to the port
+  # If you know the sample type (here, base::MotionCommand2D),
+  # an alternative syntax is
+  #   sample = Types::Base::MotionCommand2D.new
+  sample = sampleWriter.new_sample
+  
+  ## glue the widget to the task writer
+  joystickGui.connect(SIGNAL('axisChanged(double, double)')) do |x, y|
+    sample.translation = x
+    sample.rotation = - y.abs() * Math::atan2(y, x.abs())
+    sampleWriter.write(sample)
+  end	
 {coderay}
 
 So, what does this do ? Whenever the signal 'axisChanged' is emitted by the widget the
