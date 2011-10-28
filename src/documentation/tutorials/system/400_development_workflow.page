@@ -43,8 +43,6 @@ amake tut_deployment
 
 Then, in the rock-roby shell we just created, type
 
-TODO: create orocos.restart_deployments
-
 orocos.restart_deployments RockTutorial::RockTutorialControl
 {: .cmdline}
 
@@ -59,8 +57,11 @@ Defining modalities
 -------------------
 Right now, we have two ways to control our rock (so-called _modalities_):
 
- * by using a joystick
  * by using a random motion generator
+ * by using a joystick
+
+(Note if you don't have a joystick: you can do most of the tutorials without one
+!)
 
 Let's reflect that by _defining_, i.e. by giving a name to both the ways. Copy
 the scripts/rockRoby2.rb to scripts/rockRoby3.rb and edit the latter: (1) remove the
@@ -83,7 +84,7 @@ rock-roby run scripts/rockRoby3.rb
 
 In the shell, type
 
-joystick!
+random!
 {: .cmdline}
 
 It requests that the supervision starts the joystick-based control, as you can
@@ -110,13 +111,36 @@ job(1).stop!
 
 Or
 
-t = joystick!
+t = random!
 t.stop!
 {: .cmdline}
 
 OK, now, let's try to start both the joystick and random control _at the same
 time_.
 
-joystick!
 random!
+joystick!
 {: .cmdline}
+
+Ouch ... A lot of criptic information there ... Let's try to decode what
+happened.
+
+TODO: video or sequence of images
+
+Stop the controller with CTRL+C and the shell with "exit", and pass on to the
+next tutorial.
+
+Summary
+-------
+
+In this tutorial you learned:
+
+ * how to _define_ some ready-to-deploy networks, and how to use the shell to
+   start them
+ * how to manage the tasks started through the shell, in particular to support
+   development of components
+ * what happens if you try to deploy multiple tasks that can't be deployed at
+   the same time
+
+The _next tutorial_ will introduce you to config file management
+

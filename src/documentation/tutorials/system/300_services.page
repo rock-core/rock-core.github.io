@@ -60,13 +60,13 @@ joystick. Modify the composition definition:
 {coderay:: ruby}
 # Declare our composition
 composition 'RockControl' do
-    # Any command generator
-    add Srv::CommandGenerator, :as => "cmd"
-    # And one rock
-    add RockTutorial::RockTutorialControl, :as => "rock"
-    # Create any unique possible connection. If ambiguities
-    # exist, an error is generated
-    autoconnect
+  # Any command generator
+  add Srv::CommandGenerator, :as => "cmd"
+  # And one rock
+  add RockTutorial::RockTutorialControl, :as => "rock"
+  # Create any unique possible connection. If ambiguities
+  # exist, an error is generated
+  autoconnect
 end
 {coderay}
 
