@@ -78,7 +78,7 @@ your autoproj/manifest.
 
 autoproj/manifest should look like:
 
-{coderay:: sh}
+{coderay:: text}
 package_sets:
    - gitorious: rock-toolchain/package_set
    - gitorious: rock/package_set

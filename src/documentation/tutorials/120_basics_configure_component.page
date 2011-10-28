@@ -114,7 +114,7 @@ MessageDriver::MessageDriver(const Config& config)
 
 ### Update the build configuration 
 
-{coderay:: sh}
+{coderay:: text}
 rock_library(message_driver
     SOURCES MessageDriver.cpp
     HEADERS MessageDriver.hpp Message.hpp Config.hpp
@@ -255,7 +255,7 @@ ruby configure.rb
 
 Again, you should see something similar to the following. You can switch
 between uppercase and mixed case printing by using your newly defined configuration options. With the script above you should see something like the following:
-{coderay:: sh}
+{coderay:: text}
 Wed Aug 03 09:40:28 +0200 2011 MESSAGE FROM MESSAGEDRIVER
 Wed Aug 03 09:40:29 +0200 2011 MESSAGE FROM MESSAGEDRIVER
 {coderay}

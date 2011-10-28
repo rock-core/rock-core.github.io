@@ -37,7 +37,7 @@ Create the bundle
 Create a new directory bundles/tutorial from the root of the rock
 installation by going in bundles/ and doing
 
-{coderay:: sh}
+{coderay:: text}
 cd ~/dev/bundles
 rock-create-bundle tutorial
 {coderay}

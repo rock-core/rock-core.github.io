@@ -36,7 +36,7 @@ It also searches in the directories listed in the <tt>PKG_CONFIG_PATH</tt>
 environment variable. If you install your orogen projects in a non standard
 location, you must add this location to <tt>PKG_CONFIG_PATH</tt>. In a bash-like
 shell, this is done with:
-{coderay:: sh}
+{coderay:: text}
 export PKG_CONFIG_PATH=/my/installed/prefix/lib/pkgconfig:$PKG_CONFIG_PATH
 {coderay}
 

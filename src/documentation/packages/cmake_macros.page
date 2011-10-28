@@ -9,7 +9,7 @@ Initialization
 Initialization must be done at the top of the toplevel CMakeLists.txt file. It
 is done with:
 
-{coderay:: cmake}
+{coderay:: text}
 cmake_minimum_required(VERSION 2.6)
 include($ENV{ROCK_CMAKE_MACROS}/Rock.cmake)
 rock_init(dummyproject 0.1)

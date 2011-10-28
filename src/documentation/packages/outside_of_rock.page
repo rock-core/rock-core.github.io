@@ -27,13 +27,13 @@ Additionally, some packages will require autotools / automake to build
 The first thing you will need to do is install the base/types package. Check it
 out
 
-{coderay:: sh}
+{coderay:: text}
 git clone git://gitorious.org/rock-base/types.git
 {coderay}
 
 and install it
 
-{coderay:: sh}
+{coderay:: text}
 cd types
 mkdir build
 cd build
@@ -49,7 +49,7 @@ you need the Spline class, install the external/sisl package beforehand.
 Once you have installed this package, you will also need to set a few important
 environment variables:
 
-{coderay:: sh}
+{coderay:: text}
 export ROCK_CMAKE_MACROS=$HOME/dev/types/cmake
 export PKG_CONFIG_PATH=$HOME/dev/install/lib/pkgconfig:$HOME/dev/install/share/pkgconfig:$HOME/dev/install/lib64/pkgconfig:$PKG_CONFIG_PATH
 export LD_LIBRARY_PATH=$HOME/dev/install/lib:$HOME/dev/install/lib64:$PKG_CONFIG_PATH
@@ -59,7 +59,7 @@ export PATH=$HOME/dev/install/bin:$PATH
 Usually, it is best practice to put this line in an env.sh line and source it
 automatically in e.g. your $HOME/.bashrc:
 
-{coderay:: sh}
+{coderay:: text}
 source $HOME/dev/env.sh
 {coderay}
 
@@ -83,12 +83,16 @@ for base/types, namely:
  * checkout the package. The URL is listed in the package directory page about
    the package you have to install
  * configure it by doing the following inside the package source:
-   {coderay:: sh}
+
+   {coderay:: text}
    mkdir build
    cd build
    cmake -DCMAKE_INSTALL_PREFIX=$HOME/dev/install ..
    {coderay}
+
  * finally, build and install
-   {coderay:: sh}
+
+   {coderay:: text}
    make install
    {coderay}
+
