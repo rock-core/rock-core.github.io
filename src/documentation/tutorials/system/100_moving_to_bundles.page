@@ -63,7 +63,7 @@ view3d.show
 ## load and add a 3d plugin for the rock
 vizkit_rock = view3d.createPlugin('rock_tutorial', 'RockVisualization')
 
-Vizkit.connect_port_to 'rock_tutorial_control', 'pose_samples',
+Vizkit.connect_port_to 'rock_tutorial_control', 'pose',
     :auto_reconnect => true, :pull => false,
     :update_frequency => 33 do |sample, name|
 

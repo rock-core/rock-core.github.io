@@ -82,7 +82,12 @@ Start the rock-roby controller:
 rock-roby run scripts/rockRoby3.rb
 {: .cmdline}
 
-In the shell, type
+If you did not already do it, start a rock-roby shell in a separate terminal:
+
+rock-roby shell
+{: .cmdline}
+
+In this shell, type:
 
 random!
 {: .cmdline}
@@ -111,16 +116,18 @@ job(1).stop!
 
 Or
 
+{coderay:: text}
 t = random!
 t.stop!
-{: .cmdline}
+{coderay}
 
 OK, now, let's try to start both the joystick and random control _at the same
 time_.
 
+{coderay:: text}
 random!
 joystick!
-{: .cmdline}
+{coderay}
 
 Ouch ... A lot of criptic information there ... Let's try to decode what
 happened.

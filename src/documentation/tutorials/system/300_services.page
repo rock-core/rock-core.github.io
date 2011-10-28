@@ -48,6 +48,9 @@ scripts/rockRoby1.rb to scripts/rockRoby2.rb and add the following before the
 composition definition:
 
 {coderay:: ruby}
+# Defines a data service model, that can be accessed with
+# DataServices::CommandGenerator or the shorter
+# Srv::CommandGenerator
 data_service_type 'CommandGenerator' do
   output_port 'cmd', '/base/MotionCommand2D'
 end
@@ -58,7 +61,8 @@ Srv::CommandGenerator) data service model that can be used in place of the
 joystick. Modify the composition definition:
 
 {coderay:: ruby}
-# Declare our composition
+# Declare our composition. The new model can be accessed with either
+# Compositions::RockControl or Cmp::RockControl
 composition 'RockControl' do
   # Any command generator
   add Srv::CommandGenerator, :as => "cmd"
@@ -70,7 +74,7 @@ composition 'RockControl' do
 end
 {coderay}
 
-and let's now try to instanciate it:
+and let's make the instanciation fail:
 
 rock-roby instanciate scripts/rockRoby2.rb
 {: .cmdline}
@@ -131,28 +135,31 @@ adding manually to autoproj/manifest or [by building the whole rock.tutorials
 package set once and for all](../index.html#installing)
 
 You now can integrate the random motion generator. Change the using_task_library
-and using_deployment lines to match the following:
+lines to match:
 
 {coderay:: ruby}
-# Make the needed oroGen projects available
 using_task_library 'controldev'
 using_task_library 'rock_tutorial'
 using_task_library 'tut_brownian'
-
-# Tell the system which deployments to use
-use_deployment 'rock_tutorial'
-use_deployment 'joystick'
-use_deployment 'tut_brownian'
 {coderay}
 
-and declare that the random motion generator does provide the CommandGenerator
-service. Add the following after the data service declaration:
+And change the use_deployment lines to match:
+
+{coderay:: ruby}
+use_deployment 'rock_tutorial'
+use_deployment 'joystick'
+use_deployment 'brownian'
+{coderay}
+
+Now, you also need to declare that the random motion generator does provide the
+CommandGenerator service. Add the following after the data service declaration
+from JoystickTask:
 
 {coderay:: ruby}
 TutBrownian::Task.provides Srv::CommandGenerator
 {coderay}
 
-and try to instanciate
+and let's make the instanciation fail again:
 
 rock-roby instanciate scripts/rockRoby2.rb
 {: .cmdline}
