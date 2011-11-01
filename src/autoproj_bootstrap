@@ -116,8 +116,10 @@ module Autoproj
             attr_reader :aliases
             attr_accessor :force_osdeps
             attr_accessor :gem_with_prerelease
+            attr_accessor :gem_doc
         end
         @aliases = Hash.new
+        @gem_doc = false
 
         attr_writer :silent
         def silent?; @silent end
@@ -254,17 +256,29 @@ module Autoproj
         # one.
         #
         # Examples: ['debian', ['sid', 'unstable']] or ['ubuntu', ['lucid lynx', '10.04']]
-        def self.operating_system
-            if !@operating_system.nil?
-                return @operating_system
-            elsif Autoproj.has_config_key?('operating_system')
-                os = Autoproj.user_config('operating_system')
-		if os.respond_to?(:to_ary)
-		    if os[0].respond_to?(:to_ary) && os[0].all? { |s| s.respond_to?(:to_str) } &&
-		       os[1].respond_to?(:to_ary) && os[1].all? { |s| s.respond_to?(:to_str) }
-		       @operating_system = os
-                       return os
-		    end
+        def self.operating_system(options = Hash.new)
+            # Validate the options. We check on the availability of
+            # validate_options as to not break autoproj_bootstrap (in which
+            # validate_options is not available)
+            options =
+                if Kernel.respond_to?(:validate_options)
+                    Kernel.validate_options options, :force => false
+                else
+                    options.dup
+                end
+
+            if !options[:force]
+                if !@operating_system.nil?
+                    return @operating_system
+                elsif Autoproj.has_config_key?('operating_system')
+                    os = Autoproj.user_config('operating_system')
+                    if os.respond_to?(:to_ary)
+                        if os[0].respond_to?(:to_ary) && os[0].all? { |s| s.respond_to?(:to_str) } &&
+                           os[1].respond_to?(:to_ary) && os[1].all? { |s| s.respond_to?(:to_str) }
+                           @operating_system = os
+                           return os
+                        end
+                    end
                 end
             end
 
@@ -432,13 +446,11 @@ fi
             dep_def = definitions[name]
             if !dep_def
                 return NO_PACKAGE
-            end
-
-            if dep_def == 'ignore'
+            elsif dep_def == 'ignore'
                 return IGNORE
-            end
-
-            if !os_names
+            elsif dep_def == 'nonexistent'
+                return WRONG_OS_VERSION
+            elsif !os_names
                 return UNKNOWN_OS
             end
 
@@ -464,18 +476,40 @@ fi
 
 	    # If data is a hash, it means we have to check the OS version as well
             if data.kind_of?(Hash)
-                version_entry = data.find do |version_list, _|
-                    version_list.to_s.split(',').
-                        map(&:downcase).
-                        any? do |v|
-                            os_versions.any? { |osv| Regexp.new(v) =~ osv }
+                # Look in +data+ for specific version. We look, in order, in the
+                # os_versions field (detected OS versions), and return the first
+                # matching entry
+                version_entry = nil
+                # First, look for an exact match
+                found = os_versions.find do |os_ver|
+                    version_entry = data.find do |version_list, _|
+                        version_list.to_s.split(',').
+                            map(&:downcase).
+                            any? { |v| v == os_ver }
+                    end
+                end
+                if !found
+                    # Then relax the matching ...
+                    found = os_versions.find do |os_ver|
+                        version_entry = data.find do |version_list, _|
+                            version_list.to_s.split(',').
+                                map(&:downcase).
+                                any? { |v| Regexp.new(v) =~ os_ver }
                         end
+                    end
+                end
+                if Autoproj.verbose
+                    Autoproj.progress "selected OS version #{found} for osdep #{name}: #{version_entry.inspect}"
                 end
 
                 if !version_entry
                     return WRONG_OS_VERSION
                 end
                 data = version_entry.last
+            end
+
+            if data.respond_to?(:to_str) && data.to_str == 'nonexistent'
+                return WRONG_OS_VERSION
             end
 
             if data.respond_to?(:to_ary)
@@ -485,7 +519,7 @@ fi
 		# Single package
                 return [PACKAGES, [data.to_str]]
             else
-                raise ConfigError.new, "invalid package specificiation #{data} in #{source_of(name)}"
+                raise ConfigError.new, "invalid package specification #{data} in #{source_of(name)}"
             end
         end
 
@@ -582,7 +616,7 @@ fi
         #
         # Raises ConfigError if an error exists in the osdeps files, and returns
         # empty sets if the package can't be found
-        def partition_packages(package_set, package_osdeps = Hash.new)
+        def partition_packages(package_set)
             package_set = package_set.
                 map { |name| OSDependencies.aliases[name] || name }.
                 to_set
@@ -602,6 +636,7 @@ fi
                 if pkg_def.respond_to?(:to_str)
                     case(pkg_def.to_str)
                     when "ignore" then
+                        osdeps << name
                     when "gem" then
                         gems << name
                     else
@@ -671,7 +706,16 @@ fi
             gems = gems.dup
             gems.delete_if do |name, version|
                 version_requirements = Gem::Requirement.new(version || '>= 0')
-                installed = Gem.source_index.find_name(name, version_requirements)
+                installed =
+                    if Gem::Specification.respond_to?(:find_by_name)
+                        begin
+                            [Gem::Specification.find_by_name(name, version_requirements)]
+                        rescue Gem::LoadError
+                            []
+                        end
+                    else
+                        Gem.source_index.find_name(name, version_requirements)
+                    end
                 if !installed.empty? && Autobuild.do_update
                     # Look if we can update the package ...
                     dep = Gem::Dependency.new(name, version_requirements)
@@ -959,7 +1003,7 @@ So, what do you want ? (all, ruby, os or none)
             packages -= installed_packages
             return if packages.empty?
 
-            osdeps, gems = partition_packages(packages, package_osdeps)
+            osdeps, gems = partition_packages(packages)
             if handled_os
                 os_names, _ = OSDependencies.operating_system
                 os_packages = resolve_os_dependencies(osdeps)
@@ -1002,6 +1046,10 @@ So, what do you want ? (all, ruby, os or none)
                 guess_gem_program
 
                 base_cmdline = [Autobuild.tool('gem'), 'install']
+                if !OSDependencies.gem_doc
+                    base_cmdline << '--no-rdoc' << '--no-ri'
+                end
+
                 if Autoproj::OSDependencies.gem_with_prerelease
                     base_cmdline << "--prerelease"
                 end
@@ -1210,6 +1258,10 @@ module Autoproj
         config_file = File.join(Autoproj.config_dir, "config.yml")
         if File.exists?(config_file)
             config = YAML.load(File.read(config_file))
+            if !config
+                return
+            end
+
             config.each do |key, value|
                 @user_config[key] = [value, false]
             end
@@ -1351,37 +1403,22 @@ module Autoproj
                        File.join(Autoproj.root_dir, "env.sh")
                    end
 
-        File.open(filename, "w") do |io|
-            variables = []
-            Autobuild.environment.each do |name, value|
-                variables << name
-                shell_line = "#{name}=#{value.join(":")}"
-                if Autoproj.env_inherit?(name)
-                    if value.empty?
-                        next
-                    else
-                        shell_line << ":$#{name}"
-                    end
+        shell_dir = File.expand_path(File.join("..", "..", "shell"), File.dirname(__FILE__))
+        if Autoproj.shell_helpers? && shell = ENV['SHELL']
+            shell_kind = File.basename(shell)
+            if shell_kind =~ /^\w+$/
+                shell_file = File.join(shell_dir, "autoproj_#{shell_kind}")
+                if File.exists?(shell_file)
+                    Autoproj.progress
+                    Autoproj.progress "autodetected the shell to be #{shell_kind}, sourcing autoproj shell helpers"
+                    Autoproj.progress "add \"Autoproj.shell_helpers = false\" in autoproj/init.rb to disable"
+                    Autobuild.env_source_file(shell_file)
                 end
-                io.puts shell_line
             end
-            variables.each do |var|
-                io.puts "export #{var}"
-            end
+        end
 
-            shell_dir = File.expand_path(File.join("..", "..", "shell"), File.dirname(__FILE__))
-            if Autoproj.shell_helpers? && shell = ENV['SHELL']
-                shell_kind = File.basename(shell)
-                if shell_kind =~ /^\w+$/
-                    shell_file = File.join(shell_dir, "autoproj_#{shell_kind}")
-                    if File.exists?(shell_file)
-                        Autoproj.progress
-                        Autoproj.progress "autodetected the shell to be #{shell_kind}, sourcing autoproj shell helpers"
-                        Autoproj.progress "add \"Autoproj.shell_helpers = false\" in autoproj/init.rb to disable"
-                        io.puts "source \"#{shell_file}\""
-                    end
-                end
-            end
+        File.open(filename, "w") do |io|
+            Autobuild.export_env_sh(io)
         end
     end
 
@@ -1391,20 +1428,26 @@ module Autoproj
     # If any error is detected, the backtrace will be filtered so that it is
     # easier to understand by the user. Moreover, if +source+ is non-nil, the
     # package set name will be mentionned.
-    def self.load(source, *path)
+    def self.load(package_set, *path)
         path = File.join(*path)
-        Kernel.load path
-    rescue Interrupt
-        raise
-    rescue Exception => e
-        Autoproj.filter_load_exception(e, source, path)
+        in_package_set(package_set, File.expand_path(path).gsub(/^#{Regexp.quote(Autoproj.root_dir)}\//, '')) do
+            begin
+                Kernel.load path
+            rescue Interrupt
+                raise
+            rescue ConfigError => e
+                raise
+            rescue Exception => e
+                filter_load_exception(e, package_set, path)
+            end
+        end
     end
 
     # Same as #load, but runs only if the file exists.
-    def self.load_if_present(source, *path)
+    def self.load_if_present(package_set, *path)
         path = File.join(*path)
         if File.file?(path)
-            self.load(source, *path)
+            self.load(package_set, *path)
         end
     end
 
@@ -1435,6 +1478,8 @@ end
 
 DEFS = <<EODEFS
 --- 
+cvs: 
+  debian,ubuntu: cvs
 svn: 
   arch: subversion
   gentoo: dev-util/subversion
@@ -1513,7 +1558,6 @@ libxslt:
   arch: libxslt
   gentoo: dev-libs/libxslt
   debian,ubuntu: libxslt1-dev
-rdoc: gem
 
 EODEFS
 
@@ -1544,7 +1588,7 @@ rescue Autoproj::ConfigError => e
 end
 
 # Now try to find out the name of the gem binary
-PACKAGES      = %w{rdoc autobuild libxml2 libxslt zlib build-essential lsb_release}
+PACKAGES      = %w{libxml2 libxslt zlib build-essential lsb_release}
 
 ENV['RUBYOPT']  = "-rubygems"
 require 'rubygems'
@@ -1576,6 +1620,7 @@ if ARGV.first != "localdev"
         ARGV.shift
     end
     begin
+        osdeps_management.install(['autobuild'])
         osdeps_management.install(['autoproj'])
     rescue Autoproj::ConfigError => e
         STDERR.puts "failed: #{e.message}"
