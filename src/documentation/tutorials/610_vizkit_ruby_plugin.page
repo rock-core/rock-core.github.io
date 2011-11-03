@@ -85,7 +85,7 @@ If you execute it you should see the sphere flying in circles slowly away from t
 Further Extensions
 -----------
 
-If you want to access other methods on ruby side, for configuration purposes for instance, then you can use the VizPluginRubyConfig macro.
+If you want to access other methods on ruby side, for configuration purposes for instance, then you can use the VizPluginRubyConfig macro or the Q_PROPERTY macro to add QObject properties. Those Properties will be accessible in a property tree on the Vizkit3DWidget GUI and also on the ruby side in the common QT way. A detailed description can be found [here](../data_analysis/data_visualization.html).
 
 You have to add it to the constructor of the class, like the VizPluginRubyAdapter macro. 
 {coderay:: c++}

@@ -181,3 +181,33 @@ rock_vizkit_plugin(trajectory-viz
     HEADERS TrajectoryVisualization.hpp)
 {coderay}
 
+
+Adding Properties
+-----------
+There is the possibility to add QT-Properties to each Vizkit plugin. The properties will be accessible in a property tree on the Vizkit3DWidget GUI and also in ruby.
+For doing this you have to add the following qt macros to your plugin:
+{coderay:: cpp}
+Q_OBJECT
+Q_PROPERTY(double current_depth READ getCurrentDepth WRITE setCurrentDepth)
+{coderay}
+Documentation about the Qt Property System can be found [here](http://doc.qt.nokia.com/stable/properties.html).
+
+If the value of the property changes, in particular by calling setCurrentDepth, you have to emit the SIGNAL 'propertyChanged' with the name of the property that has changed. So the property tree on the Vizkit3DWidget GUI takes notice about the change.
+{coderay:: cpp}
+emit propertyChanged("current_depth");
+{coderay}
+
+Because of the Qt macros in the visualization class the meta-object compiler has to handle the header file. When using the 'rock_vizkit_plugin' cmake macro, this can be done by adding the line 'MOC YourVisualization.hpp':
+{coderay:: cmake}
+rock_vizkit_plugin(trajectory-viz
+    TrajectoryVisualization.cpp 
+    HEADERS TrajectoryVisualization.hpp
+    MOC TrajectoryVisualization.hpp)
+{coderay}
+
+In ruby you can access the properties just by the name of the property:
+{coderay:: ruby}
+instance_of_the_vizkit_plugin.current_depth
+=> 1,0
+instance_of_the_vizkit_plugin.current_depth = 5.0
+{coderay}
