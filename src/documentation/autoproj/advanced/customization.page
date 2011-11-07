@@ -172,7 +172,7 @@ each tool needed during the build. These commands can be used in
 <tt>autoproj/init.rb</tt> to tune the build system. Example:
 
 {coderay:: ruby}
-Autobuild.commands['make'] = '/path/to/ccmake'
+Autobuild.programs['make'] = '/path/to/ccmake'
 Autobuild.parallel_build_level = 10 # build with -j10
 {coderay}
 
