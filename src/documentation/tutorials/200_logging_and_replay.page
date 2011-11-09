@@ -31,7 +31,7 @@ logging purposes.
 
 **Activating logging:** Now you can activate the logging by calling the ruby
 method *log_all* from your ruby start script. If you only want to log the
-ports or the properties of the tasks you can also calling the methods
+ports or the properties of the tasks you can also call the methods
 *log_all_ports* or *log_all_configuration* instead.
 
 {coderay:: ruby}
