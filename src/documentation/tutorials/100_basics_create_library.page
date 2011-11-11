@@ -25,13 +25,13 @@ Note, that Rock strongly suggests to encapsulate your main functionality in libr
 
 Rock allows you to create a C++-library from an existing template - this template has been defined by Rock maintainers and can be found in base/templates). Calling the command 'rock-create-lib' starts a command line dialog to create a library called 'basics_tutorial/message_driver'. Remember: ~/dev is here the path to the Rock installation. It might differ on your machine.
 
-{coderay:: sh}
+{coderay:: text}
 ~/dev$ rock-create-lib basics_tutorial/message_driver
 {coderay}
 
 Once called the create script a command line dialog is started, that will request basic information to configure the template for you. The following output is the output of the script AND the expected answers. Do not copy/paste the whole block at once !
 
-{coderay:: sh}
+{coderay:: text}
 Initialized empty Git repository 
 in ~/dev/basics_tutorial/message_driver/.git/
 Do you want to start the configuration of
@@ -73,11 +73,11 @@ Done.
 {coderay}
 
 The newly created package comes in a ready to run after a fashion: you can build and install it right away using the build tool [autoproj](/documentation/autoproj/basic_usage.html)
-{coderay:: sh}
+{coderay:: text}
 amake basics_tutorial/message_driver
 {coderay}
 or 
-{coderay:: sh}
+{coderay:: text}
 autoproj build basics_tutorial/message_driver
 {coderay}
 
@@ -99,11 +99,11 @@ dependency of your library, if you haven't done it already. Check the manifest.x
 {coderay}
 
 ***NOTE***: Dependencies are added to the manifest.xml of a package, and you should add operating system dependencies using 
-{coderay:: sh}
+{coderay:: text}
 <rosdep name="osg" />
 {coderay}
 and dependencies to 'custom' packages using
-{coderay:: sh}
+{coderay:: text}
 <depend package="base/types" />
 {coderay}
 
@@ -215,7 +215,7 @@ void MessageDriver::printMessage(const Message& msg)
 
 Once you created a library in Rock integrate it into the build system autoproj. The first step towards integration into the build system is adding the newly created files to the src/CMakeLists.txt file, since Rock default C++ libraries use [CMake](http://www.cmake.org/cmake/help/documentation.html) for the build process. Rock also comes with some CMake macros that facilitate setting up libraries, and resolving any required dependencies. 
 
-{coderay:: sh}
+{coderay:: text}
 rock_library(message_driver
     SOURCES MessageDriver.cpp
     HEADERS MessageDriver.hpp Message.hpp
@@ -230,7 +230,7 @@ After adapting the CMakeLists.txt add the package to the build configuration, so
 ***NOTE***: When adding the package, make sure you use the same indentation as the previous line, here '- rock.toolchain'. The manifest file is parsed as .yaml, and thus relies on proper indentation.
 {: .warning}
 
-{coderay:: sh}
+{coderay:: text}
 package_sets:
   - gitorious: rock-toolchain/package_set
 
@@ -245,7 +245,7 @@ layout:
 
 ### Build it
 Just verify that your component builds and you finished your first Rock tutorial.
-{coderay:: sh}
+{coderay:: text}
 amake basics_tutorial/message_driver
 {coderay}
 

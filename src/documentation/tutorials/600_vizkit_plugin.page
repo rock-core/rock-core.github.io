@@ -29,7 +29,7 @@ In the manifest.xml we have to add some dependencies:
 Vizkit is the 3d-data visualization part of Rock and it depends on OpenSceneGraph (osg). And we are going to use some base types of Rock.
 
 The next step is to create the viskit plugin inside the folder of this library using the following command:
-{coderay:: sh}
+{coderay:: text}
 rock-add-vizkit
 {coderay}
 You will be asked for the name and type of the plugin. The name should be a simple name as 'PathVisualization'; it has to be without namespaces. The type is the type of data we want to display, e.g. base::Time (with namespace). In our case we create a plugin named 'SphereVisualization' which will visualize data of type base::Vector3d.

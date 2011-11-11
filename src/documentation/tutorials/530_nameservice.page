@@ -15,7 +15,7 @@ The goal of this tutorial is thus:
 More details on this topic you find in the [general documentation](../runtime/setup.html).
 
 For this tutorial you will reuse the components that you created during the [basics tutorials](index.html#tutorials-outline).
-You can also retrieve them directly by [installing the tutorial package set](index.html#installing-the-tutorial-results)
+You can also retrieve them directly by [installing the tutorial package set](index.html#installing)
 
 ***IMPORTANT***:
 For this tutorial to work you need to have an +active+ network device, otherwise Avahi will not publish any information. 
@@ -45,7 +45,7 @@ end
 {coderay}
 
 If the task cannot be found, an exception will be raised, e.g. if you misspelled the task name and used 'message_producr' instead of the correct name: 
-{coderay:: sh}
+{coderay:: text}
 Orocos.rb: killing running task contexts and deployments
 	 because of unhandled exception
 Orocos.rb:   /home/rockuser/dev/tools/orocos.rb/
@@ -130,7 +130,7 @@ end
 ### Run it
 First start the message producer, then the message consumer. The message consumer will output the message in 
 the same way a before, however, this time both component found each other using the Avahi naming service. 
-{coderay:: sh}
+{coderay:: text}
 ruby message_producer/scripts/start.rb &
 ruby message_consumer/scripts/start.rb
 {coderay}
@@ -139,7 +139,7 @@ ruby message_consumer/scripts/start.rb
 Enabling IPv6 for the daemon in /etc/avahi/avahi-daemon.conf will help to make service discovery more robust.
 {: .warning}
 
-{coderay:: sh}
+{coderay:: text}
 [server]
 ...
 use-ipv6=yes

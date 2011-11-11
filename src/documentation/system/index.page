@@ -21,3 +21,9 @@ In practice, what does this plugin offers ?
    deploy medium-sized component networks, it is even harder to modify the
    networks while still being sure that you don't break anything.
 
+
+Tutorials
+---------
+
+[The tutorials](../tutorials/system/index.html) are a great introduction to the
+plugin's concepts and development workflow.

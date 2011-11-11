@@ -175,7 +175,7 @@ To the manifest:
 In the viz subdirectory an additional shared library needs to be created, that is
 called the same way as the project, with the -viz suffix. So the CMakeLists.txt
 file in the viz subdirectory should contain something like this:
-{coderay:: cmake}
+{coderay:: text}
 rock_vizkit_plugin(trajectory-viz
     TrajectoryVisualization.cpp 
     HEADERS TrajectoryVisualization.hpp)
