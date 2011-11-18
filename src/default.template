@@ -80,6 +80,12 @@
                   </div>
                   <% end %>
                   <% end %>
+                  <% if flavors = context.node.node_info[:page].meta_info['only_on'] %>
+                  <div class="warning">
+                  The information present on this page is only valid on the <b><%= flavors %></b> flavors of Rock
+                  </div>
+                  <% end %>
+                  <%= context.node.node_info[:page].meta_info['page_title'] %>
                   <webgen:block name="content" />
               </div>
           </div>

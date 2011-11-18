@@ -1,7 +1,7 @@
 ---
 title: Going abstract - Data Services
 sort_info: 300
-flavors: master
+only_on: master
 ---
 
 Abstract

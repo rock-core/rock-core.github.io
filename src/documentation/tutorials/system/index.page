@@ -1,7 +1,7 @@
 ---
 title: System Management
 sort_info: 0
-flavors: master
+only_on: master
 ---
 Rock's system mamagement layer is a _model based layer_. I.e., instead of
 writing down instructions on how to bind components together, as we did so far
