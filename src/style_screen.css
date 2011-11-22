@@ -90,7 +90,7 @@ body {margin: 0px auto; padding: 0px; background: url(img/background_body_grey.g
 .nav3 {min-height: 500px; margin: 0px; padding: 0px; color: rgb(75,75,75); font-size: 90%; font-family: arial, sans serif; }
 .nav3 ul {width: 250px; margin: 0px 0px 20px 0px; padding: 0px; border-bottom: solid 1px rgb(216,206,159); background-color: rgb(219,230,241);}	
 .nav3 li {list-style: none; margin: 0px; padding: 0px; font-size: 100%;}
-.nav3 li.title {margin: 0px 0px 0px 0px; padding: 3px 5px 2px 15px; background-color: rgb(156,186,214); color: rgb(255,255,255); text-transform: uppercase; font-weight: bold; font-size: 100%;}
+.nav3 .title {margin: 0px 0px 0px 0px; padding: 3px 5px 2px 15px; background-color: rgb(156,186,214); color: rgb(255,255,255); text-transform: uppercase; font-weight: bold; font-size: 100%;}
 
 .nav3 a, .nav3 span {display: block; min-height: 1.7em; height: auto !important; height: 1.7em; line-height: 1.7em; margin: 0px; color: rgb(75,75,75); bold; font-size: 100%; text-decoration: none; border-left: solid 7px rgb(219,230,241); padding: 0px 7px 0px 0px; }
 .nav3 li.webgen-menu-level1 a, .nav3 li.webgen-menu-level1 span {
