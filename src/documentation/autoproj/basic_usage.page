@@ -88,7 +88,7 @@ For now, only the "acd" command is available.
     acd drivers/orogen/xsens_imu
 
 will go in the directory where the "drivers/orogen/xsens_imu" package source is.
-Package names can be shortened as long as there are no ambiguity. You can only
+Package names can be shortened as long as there is no ambiguity. You can only
 keep the prefixes at each directory level. For instance:
 
      acd xsens_imu
