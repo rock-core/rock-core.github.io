@@ -8,7 +8,7 @@ oroGen-handled on your system: types, task contexts, deployments.
 
 Call it with
 
-{coderay:: shell}
+{coderay:: text}
 oroinspect <pattern>
 {coderay}
 
@@ -17,7 +17,7 @@ regular expression)
 
 For instance, on a Rock installation
 
-{coderay:: sh}
+{coderay:: text}
 oroinspect hokuyo
 {coderay}
 

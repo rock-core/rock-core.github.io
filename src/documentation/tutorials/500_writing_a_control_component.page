@@ -16,18 +16,18 @@ Implementation
 
 ### Create a new library
 We start by entering the tutorials folder and creating a library named 'rock-tutorial' by using the 'rock-create-lib' command. 
-{coderay:: sh}
+{coderay:: text}
 cd tutorials
 rock-create-lib rock_tutorial
 {coderay}
 
 This should give us an folder containing the following files :
-{coderay:: sh}
+{coderay:: text}
 CMakeLists.txt  INSTALL  LICENSE  manifest.xml  README  src
 {coderay}
 
 Make sure you add the required dependencies to the manifest.xml, i.e. here 'base/types' and 'gui/vizkit'.
-{coderay:: sh}
+{coderay:: text}
 <depend package="base/types" />
 <depend package="gui/vizkit" />
 {coderay}
@@ -190,7 +190,7 @@ explain it in detail here.
 So, now that we are equipped with our library, we can go to the second step and wrap the code into an orocos task.
 As the visualization is already wrapped, we only need to wrap the 'simulation' part. Therefore we create a new orocos
 component we use the command 'rock-create-orogen'. 
-{coderay:: sh}
+{coderay:: text}
 cd tutorials/orogen/
 rock-create-orogen rock_tutorial
 {coderay}

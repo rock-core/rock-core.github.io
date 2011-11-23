@@ -16,7 +16,7 @@ pocolog _logfile_
 
 will list the streams that are present in _logfile_, along with how many samples they have, and their start and end time. Example:
 
-{coderay:: sh}
+{coderay:: text}
 [....1_ImageAcquisition]% pocolog lowlevel.log
 File data is in little endian byte order
 loading file info from ./lowlevel.idx... invalid index file
@@ -39,7 +39,7 @@ can.stats [/can/Statistics]
 
 The format of each stream description is:
 
-{coderay:: sh}
+{coderay:: text}
 Stream stream_name [type_name]
 sample_count samples from start_time to end_time [duration]
 {coderay}

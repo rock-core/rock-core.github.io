@@ -55,13 +55,14 @@ body {margin: 0px auto; padding: 0px; background: url(img/background_body_grey.g
 /*----------------------------*/
 /* 2.3 - Navigation - Level 1 */
 /*----------------------------*/
-.nav1-container {width: 770px; top: 35px; position: absolute; z-index: 3; background: transparent;}
+.nav1-container {width: 770px; top: 15px; position: absolute; z-index: 3; background: transparent;}
 .nav1 {margin: 0px; padding: 0px; font-family: verdana, arial, sans serif; font-size: 1.0em;}
 .nav1 ul {float: right; margin: 0px; padding: 0px 20px 0px 0px; border-left: solid 1px rgb(115,162,182); background-color: rgb(255,255,255); font-weight: bold;}	
 .nav1 li {display: inline; list-style: none; margin: 0px; padding: 0px;}
 .nav1 li a {display: block; float: left; margin: 0px; padding: 2px 5px 2px 5px; border-right: solid 1px rgb(115,162,182); color: rgb(115,162,182); text-decoration: none; font-size: 10px; text-decoration: none;}
 .nav1 li span {display: block; float: left; margin: 0px; padding: 2px 5px 2px 5px; border-right: solid 1px rgb(115,162,182); color: rgb(115,162,182); text-decoration: none; font-size: 10px; text-decoration: none;}
 .nav1 a:hover, .nav2 a.selected {color: rgb(50,50,50); text-decoration: none;}
+.nav1-container .search { width: 50%; float: right; margin-right: 20px;margin-top: .3em;}
 
 /*----------------------------*/
 /* 2.4 - Navigation - Level 2 */
@@ -90,7 +91,7 @@ body {margin: 0px auto; padding: 0px; background: url(img/background_body_grey.g
 .nav3 {min-height: 500px; margin: 0px; padding: 0px; color: rgb(75,75,75); font-size: 90%; font-family: arial, sans serif; }
 .nav3 ul {width: 250px; margin: 0px 0px 20px 0px; padding: 0px; border-bottom: solid 1px rgb(216,206,159); background-color: rgb(219,230,241);}	
 .nav3 li {list-style: none; margin: 0px; padding: 0px; font-size: 100%;}
-.nav3 li.title {margin: 0px 0px 0px 0px; padding: 3px 5px 2px 15px; background-color: rgb(156,186,214); color: rgb(255,255,255); text-transform: uppercase; font-weight: bold; font-size: 100%;}
+.nav3 .title {margin: 0px 0px 0px 0px; padding: 3px 5px 2px 15px; background-color: rgb(156,186,214); color: rgb(255,255,255); text-transform: uppercase; font-weight: bold; font-size: 100%;}
 
 .nav3 a, .nav3 span {display: block; min-height: 1.7em; height: auto !important; height: 1.7em; line-height: 1.7em; margin: 0px; color: rgb(75,75,75); bold; font-size: 100%; text-decoration: none; border-left: solid 7px rgb(219,230,241); padding: 0px 7px 0px 0px; }
 .nav3 li.webgen-menu-level1 a, .nav3 li.webgen-menu-level1 span {
