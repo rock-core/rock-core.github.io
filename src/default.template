@@ -67,12 +67,12 @@
           </div>
       </div>
 
-      <div class="site-name" onclick="location.href='{relocatable: /}';" style="cursor: pointer;">
+      <div class="site-name" onclick="location.href='{relocatable: /}';" style="cursor: pointer; z-index: 10;">
           <p class="title">Rock</p>
           <p class="subtitle">the Robot Construction Kit</p>
       </div>
 
-      <div class="buffer"></div>
+      <div class="title_buffer"></div>
 
       <div class="nav2">			
           <ul>

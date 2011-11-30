@@ -26,7 +26,7 @@ body {margin: 0px auto; padding: 0px; background: url(img/background_body_grey.g
 /*-----------------------------------*/
 /* 2.1 - Sitename, slogan and banner */
 /*-----------------------------------*/
-.site-name {height: 45px; top: 12px; z-index: 4; margin: 0px; padding-left: 75px; color: rgb(69,140,204);}
+.site-name {position: absolute; height: 45px; top: 12px; z-index: 4; margin: 0px; padding-left: 75px; color: rgb(69,140,204);}
 .site-name p.title  {margin: 0px; padding: 0px; font-family: "trebuchet ms", arial, sans serif; font-weight: bold; font-size: 36px;}
 .site-name p.subtitle  {clear: both; width: 300px; margin: -2px 0px 0px -2em; padding: 0px; background-color: transparent; font-family: "trebuchet ms", arial, sans serif; font-size: 22px;}
 .site-name a {margin: 0px; padding: 0px; text-decoration: none; color: rgb(88,144,168);}
@@ -74,6 +74,7 @@ body {margin: 0px auto; padding: 0px; background: url(img/background_body_grey.g
 .nav2 li span {display: block; float: left; margin: 0px 0px 0px 0px; padding: 5px 10px 5px 10px; border-right: solid 1px rgb(54,83,151); color: rgb(255,255,255); text-transform: uppercase; text-decoration: none; font-size: 100%;}
 .nav2 li span.empty { border: none; }
 .nav2 a:hover, .nav2 a.selected {color: rgb(50,50,50); text-decoration: none;}
+.title_buffer {clear: both; width: 770px; height: 30px; margin: 0px; margin-top: 50px; padding: 0px; background-color: rgb(255,255,255);}
 .buffer {clear: both; width: 770px; height: 30px; margin: 0px; padding: 0px; background-color: rgb(255,255,255);}
 
 .nav2 .main {font-size: 130%; }
