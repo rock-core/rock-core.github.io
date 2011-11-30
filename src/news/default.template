@@ -4,7 +4,7 @@
 --- name:leftbar 
 <div class="nav3">
   <ul><li class="title">News</li>
-      {menu: {start_level: 2, max_levels: 4, used_nodes: files, range_start: 1000}}
+      {menu: {start_level: 2, max_levels: 4, used_nodes: files, range_start: 0, range_end: 1000}}
   </ul>
 </div>
 
