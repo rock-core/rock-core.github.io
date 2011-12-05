@@ -10,17 +10,25 @@ installation.page:
     sort_info: 50
     title: Installation
 
-tutorials:
-    sort_info: 70
-    title: Tutorials
-
 packages:
-    sort_info: 80
+    sort_info: 60
     title: Managing Packages
+
+tutorials:
+    sort_info: 80
+    title: Basics
+
+system_management_tutorials:
+    sort_info: 85
+    title: System Management
+
+additional_tutorials:
+    sort_info: 90
+    title: Additional Functionality
 
 autoproj:
     title: Build System
-    sort_info: 100
+    sort_info: 110
 
 orogen:
     title: Developing Components

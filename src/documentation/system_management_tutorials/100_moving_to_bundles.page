@@ -8,7 +8,7 @@ Abstract
 --------
 
 The following three tutorials will implement the same "rock controlled by a joystick" than
-[previous tutorials](../510_joystick.html), but using the model-based approach.
+[previous tutorials](../basic_tutorials/510_joystick.html), but using the model-based approach.
 
 First of all, we'll introduce the concept of bundles.
 
@@ -51,6 +51,8 @@ display the rock position.
 In the bundle, edit scripts/display and add:
 
 {coderay:: ruby}
+#! /usr/bin/env ruby
+
 require 'orocos'
 require 'vizkit'
 include Orocos

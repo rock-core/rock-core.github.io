@@ -33,7 +33,7 @@ For instance, a very common data service is the Pose service:
 
  * as its name implies, it generates poses
  * as its definition requires (not show here), it has a
-   [base::samples::RigidBodyState](../../base_types.html) output port
+   [base::samples::RigidBodyState](../base_types.html) output port
 
 Other services (i.e. an Orientation service) would have the same output port,
 but its name would reflect the fact that it does something different.
@@ -132,7 +132,7 @@ project" that creates all the deployments that your system needs. In the case of
 these tutorials, it is the tutorials/orogen/tut_deployment oroGen project. Have
 a look at it, and make sure that it is built in your installation by either
 adding manually to autoproj/manifest or [by building the whole rock.tutorials
-package set once and for all](../index.html#installing)
+package set once and for all](../basic_tutorials/index.html#installing)
 
 You now can integrate the random motion generator. Change the using_task_library
 lines to match:

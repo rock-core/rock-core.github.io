@@ -26,9 +26,9 @@ running systems this way. Among those:
 
 This series of tutorials will introduce you to Rock's advanced system management
 tools. This tutorial builds upon the results of the previous tutorials, and in
-particular [Writing a control component](../500_writing_a_control_component.html) and
-[Integrating a joystick](../510_joystick.html), or that you at least installed
-the tutorial results. See the bottom of [this page](../index.html) for
+particular [Writing a control component](../basic_tutorials/500_writing_a_control_component.html) and
+[Integrating a joystick](../basic_tutorials/510_joystick.html), or that you at least installed
+the tutorial results. See the bottom of [this page](../basic_tutorials/index.html) for
 instructions on how to do so.
 
 The tutorial itself will use Rock's system management layer to perform the
