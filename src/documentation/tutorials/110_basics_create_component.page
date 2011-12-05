@@ -200,11 +200,18 @@ void Task::updateHook()
 }
 {coderay}
 
-To build you first component call:
+To build your first component call:
+
 {coderay:: text}
 amake basics_tutorial/orogen/message_producer
 {coderay}
 
+Or, assuming that you are in the message_producer folder or in one of its
+subfolders, you can use
+
+{coderay:: text}
+amake
+{coderay}
 
 Run it
 -----------
@@ -249,6 +256,9 @@ The script prints only new messages that the producer provides. Since you set th
 Tue Aug 02 16:43:48 +0200 2011 Message from MessageDriver
 Tue Aug 02 16:43:49 +0200 2011 Message from MessageDriver
 {coderay}
+
+Stop the script with CTRL+C. The script will stop the component process by
+itself, which would happen also if you had an error in the script itself.
 
 Summary
 ----------------------------

@@ -24,13 +24,17 @@ Create a consumer component
 
 Your first task in this tutorial is to apply the acquired knowleged from the previous tutorials, and prepare a consumer component named 'message_consumer' and place in 'basics_tutorial/orogen/'. Perform all step up to the point where you can edit the orogen specification, i.e.:
 
- * use rock-create-orogen to create your component
+ * use rock-create-orogen to create your component (note: you will need a
+   dependency on both message\_driver and message\_producer)
  * check for any required dependencies and verify the manifest.xml
  * add your component to the build configuration, i.e. to autoproj/manifest
 
 The next step will be to adapt the orogen specification. The component should allow to receive messages on an input port, and call the updateHook only when it receives a message. The specification should looks as follows: 
 
 {coderay:: ruby}
+using_library "message_driver"
+import_types_from "message_producer"
+
 task_context "Task" do
    input_port "messages", "message_driver/Message"
 
@@ -73,19 +77,23 @@ Orocos.initialize
 
 
 Orocos.run 'message_producer_deployment', 'message_consumer_deployment' do  
-
-     message_producer = TaskContext.get 'message_producer'
-     message_consumer = TaskContext.get 'message_consumer'
-
-     message_producer.configure
-     message_producer.start
-
-     message_consumer.start
-
-     message_producer.messages.connect_to message_consumer.messages
-
-     Readline::readline("Press ENTER to exit\n") do
-     end 
+  message_producer = TaskContext.get 'message_producer'
+  message_consumer = TaskContext.get 'message_consumer'
+  
+  # Never assume that a component supports being reconnected
+  # at runtime, it might not be the case
+  #
+  # If you have the choice, connect before the component is
+  # even configured
+  message_producer.messages.connect_to message_consumer.messages
+  
+  message_producer.configure
+  message_producer.start
+  
+  message_consumer.start
+  
+  Readline::readline("Press ENTER to exit\n") do
+  end 
 end
 {coderay}
 
@@ -106,6 +114,8 @@ If everything has been done correctly, you will eventually see the consumer prin
 [20110803-10:59:57:068] Message from MessageDriver
 [20110803-10:59:58:068] Message from MessageDriver
 {coderay}
+
+As usual, shut it down with CTRL+C. The script does the cleanup itself.
 
 Summary
 ---------------------

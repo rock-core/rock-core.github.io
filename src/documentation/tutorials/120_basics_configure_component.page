@@ -20,12 +20,17 @@ At the end of this tutorial, the component will look like:
 ![Component Interface](120_producer_config.png)
 {: .align-center}
 
+Let's go back inside the message driver library
+
+acd message_driver
+{: .cmdline}
+
 Configure a component 
 ---------------------------------
 Some libraries will require configuration before you can use them, e.g. add a the following property to the MessageDriver library.
-Therefore, create Config.hpp in the message driver library and add the configuration object to allow for configuration. 
+Therefore, add the configuration object code to src/Config.hpp in the message
+driver library:
 
-The configuration object: 
 {coderay:: c++}
 #ifndef _MESSAGE_DRIVER_CONFIG_HPP_
 #define _MESSAGE_DRIVER_CONFIG_HPP_
@@ -57,20 +62,18 @@ struct Config
 #endif // _MESSAGE_DRIVER_CONFIG_HPP_
 {coderay}
 
-Adapted message_driver's header and source files: 
+Then adapt the message driver class (in src/MessageDriver.cpp and
+src/MessageDriver.hpp)
 {coderay:: c++}
+#include <message_driver/Message.hpp>
+#include <message_driver/Config.hpp>
 	...
-
-        /**
-        * MessageDriver configuration
-        */
-        MessageDriver();
 
         /**
         * MessageDriver configuration
         * \param config Configuration object
         */
-        MessageDriver(const Config& config);
+        MessageDriver(const Config& config = Config());
 
 	...
 private:
@@ -98,12 +101,6 @@ Message MessageDriver::createMessage()
 
 ...
 
-MessageDriver::MessageDriver()
-        : mConfig()
-{
-
-}
-
 MessageDriver::MessageDriver(const Config& config)
         : mConfig(config)
 {
@@ -124,10 +121,24 @@ rock_library(message_driver
 
 ### Embed the configuration property into the oroGen component
 
-In order to embed the configuration property into the oroGen component, 
-first add a property of the configuration type as follows (see also [Task Interface](../orogen/task_interface.html). 
-The new task should not be started without configuration, which can be set by adding the statement 'need_configuration' 
-to the task_context specification, stored in the message_producer.orogen file.
+In order to embed the configuration property into the oroGen component, we will
+have to do the following steps:
+
+ 1. __declare__ the property in message_producer.orogen specification file
+ 2. __enable__ the PRE\_OPERATIONAL state. This is done by adding
+    needs\_configuration in the task description in the orogen file and by
+    uncommenting both configureHook and cleanupHook in tasks/Task.hpp and
+    tasks/Task.cpp
+ 3. __move__ the construction/destruction of the driver from the task's
+    constructor and destructor into configureHook / cleanupHook
+
+
+
+__(1)__ we modify the task description in the message_producer.orogen file.
+We add a property of the configuration type as follows (see also [Task
+Interface](../orogen/task_interface.html)). __(2)__ Since we want a specific configuration step, the new
+task should not be started without configuration, which can be set by adding the
+statement 'need_configuration'.
 
 {coderay:: ruby}
 import_types_from "message_driver/Config.hpp"
@@ -141,21 +152,14 @@ task_context "Task" do
 end
 {coderay}
 
-Edit the task/Task.hpp and add the configuration member and activate the configureHook and the cleanupHook: 
+__(2)__ we edit task/Task.hpp and activate the configureHook and the cleanupHook by
+uncommenting them:
 {coderay:: c++}
-        // Configuration object for the task
-        message_driver::Config mConfig;
-
-	...
-
-        bool configureHook();
-
-        bool cleanupHook();
-        
-        ...
+bool configureHook();
+void cleanupHook();
 {coderay}
 
-Also remove the allocation and deallocation from the constructor and deconstrutor, since it will be moved into the configureHook and the cleanupHook:
+__(3)__ Finally, we remove the allocation and deallocation from the constructor and destructor, since it will be moved into the configureHook and the cleanupHook:
 {coderay:: c++}
 bool Task::configureHook()
 {
@@ -182,8 +186,11 @@ void Task::cleanupHook()
 ### Build the task
 Now, build the task, and be aware: it will fail!
 
+Assuming that you are in the message_producer folder or in one of its
+subfolders,
+
 {coderay:: c++}
-amake basics_tutorial/orogen/message_producer
+amake
 {coderay}
 
 Building the task fails, since some of the constructors need to be adapted to account for the configuration requirement. However, oroGen supports you with this tasks, since it always generates the latest task template *.hpp and *.cpp files into the templates folder. 
@@ -207,7 +214,7 @@ Task::Task(std::string const& name, RTT::ExecutionEngine* engine)
 }
 {coderay}
 
-### Embeding configuration into the ruby script
+### Embedding configuration into the ruby script
 
 Now, copy 'start.rb' to a new file 'configure.rb' -
 you will reuse 'start.rb' at a later stage. 
