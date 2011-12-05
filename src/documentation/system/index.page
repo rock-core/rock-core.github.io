@@ -9,7 +9,7 @@ Advanced System Deployment
 Roby is a plan management / supervision system. The Rock toolchain offers
 a Roby plugin that allows to manage Orocos component networks in Roby, thus
 leveraging its supervision capabilities. See [the Roby user's
-guide](http://doudou.github.com/roby) for details.
+guide](/api/tools/roby) for details.
 
 In practice, what does this plugin offers ?
 
@@ -25,5 +25,5 @@ In practice, what does this plugin offers ?
 Tutorials
 ---------
 
-[The tutorials](../tutorials/system/index.html) are a great introduction to the
+[The tutorials](../system_management_tutorials/index.html) are a great introduction to the
 plugin's concepts and development workflow.

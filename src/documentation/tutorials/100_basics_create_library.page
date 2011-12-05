@@ -11,7 +11,7 @@ This tutorial will give you some handson experience on:
  * how to create libraries in Rock
  * how to embed them into the build system of Rock
 
-If you don't want to execute the following steps by yourself, the result can also be found in the package 'basics_tutorial/' after you [installed the tutorial package set](/documentation/tutorials/index.html#installing-the-tutorial-results).
+If you don't want to execute the following steps by yourself, the result can also be found in the package 'basics_tutorial/' after you [installed the tutorial package set](/documentation/tutorials/index.html#installing).
 
 For this tutorial it is assumed that your autoproj installation can be found in ~/dev.
 

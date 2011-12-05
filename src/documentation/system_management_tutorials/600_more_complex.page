@@ -24,7 +24,7 @@ This tutorial will deploy a network in which:
  * another rock is following the first rock
 
 The motion generator component for the follower is tut_follower::Task, included
-in [Rock's rock.tutorial package set](../basic_tutorials/index.html#installing)
+in [Rock's rock.tutorial package set](../tutorials/index.html#installing)
 
 The goal will be to reuse the same base model (Cmp::RockControl) for both
 deployments. The idea behind reusing in this case is:

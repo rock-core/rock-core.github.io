@@ -38,7 +38,7 @@ If you are starting up your system using orocos.rb, the
 simplest way to start logging is to add
 
 {coderay:: ruby}
-Orocos.log_all_ports
+Orocos.log_all
 {coderay}
 
 after all the deployments have been started. It will setup each deployment's
@@ -52,7 +52,7 @@ test_imu deployment above would be
 # Start the test_imu deployment
 Orocos.run "test_imu" do |p|
   # Set up logging
-  Orocos.log_all_ports
+  Orocos.log_all
 
   # Start the IMU task
   task = p.task 'imu'
@@ -69,7 +69,7 @@ option takes a regular expression, all ports whose type matches that regex will
 not be logged. For instance:
 
 {coderay:: ruby}
-Orocos.log_all_ports :exclude_types => /can\/Message/
+Orocos.log_all :exclude_types => /can\/Message/
 {coderay}
 
 will log all ports whose typename does not contain "can/Message"
