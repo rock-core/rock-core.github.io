@@ -43,6 +43,7 @@ We have 5 properties that configure our component. Let's use a non-default value
 First, let's use a tool to generate a file filled with default values:
 
 mkdir -p config/orogen
+{: .cmdline}
 oroconf extract tut_brownian::Task --save config/orogen/
 {: .cmdline}
 

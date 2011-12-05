@@ -18,26 +18,29 @@ inside the widget.
 As all of this is pretty confusing here the naming in short form :
 
   * VitzkitWidget : 2D Widget 
-  * Vizkit3dWidget : A VizkitWidget that displays 3D data
+  * Vizkit3dWidget : The Vizkit-provided Vizkit that allows you to display 3D data
   * Vizkit3dPlugin : A plugin which is registered on the Vizkit3dWidget
 
 How to use it
 -----------
-First we need to create the Vizkit3dWidget. We do this in the same way as we create any other VizkitWidget. 
-
+First we need to create the Vizkit3dWidget. We could do this in the same way as
+we create any other VizkitWidget (i.e. by using default_loader.create_widget),
+but Vizkit provides a shortcut:
 
 {coderay:: ruby}
 require 'vizkit'
 Orocos.initialize
 
 ## Create a widget for 3d display
-view3d = Vizkit.default_loader.create_widget('vizkit::Vizkit3DWidget')
+view3d = Vizkit.vizkit3d_widget
 
 # Show it
 view3d.show
+# And listen to GUI events
+Vizkit.exec
 {coderay}
 
-A list of available 'standard' Vizkit3DPlugins can be found TODO
+The list of available Vizkit3DPlugins can be found TODO
 
 For this tutorial, we pick a plugin, that will show an simple 3D representation of an Pose
 in space. Note that you can add multiple Vizkit3DPlugins to the Vizkit3DWidget
@@ -45,9 +48,8 @@ to create complex 3D visualizations.
 
 {coderay:: ruby}
 ## load and add the 3d plugin for the rock
+# Add before show
 rbs_plugin = view3d.createPlugin('RigidBodyStateVisualization')
-
-Vizkit.exec
 {coderay}
 
 If you execute your script now, you should see a window with a sphere that is 'spiked' with three cylinders. 
