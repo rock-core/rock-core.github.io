@@ -77,8 +77,15 @@ bool Task::configureHook()
 {
   Driver* driver = new Driver();
   if (!_io_port.get().empty())
-    driver->open(_io_port.get());
+    driver->openURI(_io_port.get());
   setDriver(driver);
+
+  // This is MANDATORY and MUST be called after the setDriver but before you do
+  // anything with the driver
+  TaskBase::configureHook();
+
+  // If some device configuration was needed, it must be done after the
+  // setDriver and call to configureHook on TaskBase (i.e., here)
 }
 {coderay}
 
@@ -99,21 +106,6 @@ will have a full stop/cleanup/configure/start cycle if reconfiguration is
 needed. You should therefore not care about dynamic reconfiguration in first
 implementations.
 
-Finally, it is required that you call your base task's updateHook at the
-beginning of your updateHook, and the pushAllData() method at the end of it:
-
-{coderay:: cpp}
-void Task::updateHook()
-{
-  TaskBase::updateHook(); // FIRST THING
-  [... do stuff with the device driver ...]
-  pushAllData(); // LAST THING
-}
-{coderay}
-
-If you do forget to call pushAllData(), a warning will be output by the
-component at runtime.
-
 Details about the iodrivers_base::Task interface
 ------------------------------------------------
 This interface provides two means of communication between the device and the
@@ -124,8 +116,7 @@ driver.
    are listed in the property's documentation.
  * port-based access. In this mode, the data is flowing through the io_raw_in
    and io_raw_out ports. The transfer of data between the ports and the Driver
-   object is made by the iodrivers_base::Task class (which is why it is
-   important to not forget calling TaskBase::updateHook and pushAllData)
+   object is made by the iodrivers_base::Task class.
 
 Other properties control the behaviour of the system in both modes (read
 timeout) and write statistics about the I/O. Some properties are specific to one
