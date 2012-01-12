@@ -62,6 +62,12 @@ Cmp::RockControl.specialize 'cmd' => TutFollower::Task do
 end
 {coderay}
 
+Naturally, we have to make the TutFollower task's orogen project available. Add the following line to the includes at the top of the file:
+
+{coderay:: ruby}
+using_task_library 'tut_follower'
+{coderay}
+
 Once such a specialization is added, the following happens:
 
 {coderay:: ruby}
