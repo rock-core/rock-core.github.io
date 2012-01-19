@@ -27,3 +27,37 @@ Tutorials
 
 [The tutorials](../system_management_tutorials/index.html) are a great introduction to the
 plugin's concepts and development workflow.
+
+Naming conventions {#naming_convertion}
+------------------
+In Ruby, the language in which both oroGen and Rock's system management layer is
+implemented, the norm is to use CamelCase to write class names. An actual
+constraint that is part of the language is that the class names __must__ start
+with an uppercase letter.
+
+To match this convention, the system management layer, when needed, converts
+snake_case names to CamelCase. For instance:
+
+    xsens_imu > XsensImu
+    iodrivers_base > IodriversBase
+
+When applicable, this convertion rule will be noted in the documentation
+
+Models, classes and instances
+-----------------------------
+In the Roby system, models and instance of the models are mapped to Ruby's
+classes and objects in a very straightforward manner: a model is represented as
+a class or module (depending of what kind of thing this model describes), and an
+instance of a model is an object of the corresponding class.
+
+This has one side effect, for those that know Ruby: model hierarchies can only
+be represented in trees, not graphs, as Ruby does not support multiple
+inheritance. However, this proved to have no effect in practice.
+
+For instance, the Roby model that represents a xsens_imu::Task task context is
+a XsensImu::Task class. The list of ports defined on all xsens_imu::Task task
+contexts can then be obtained with XsensImu::Task.each_input_port for instance.
+At runtime, running xsens_imu::Task task contexts are then represented by
+objects of class XsensImu::Task, i.e. running_xsens_imu_task.class ==
+XsensImu::Task.
+

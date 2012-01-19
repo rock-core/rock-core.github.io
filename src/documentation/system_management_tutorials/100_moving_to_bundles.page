@@ -25,7 +25,8 @@ In practice, bundles are Rock packages that contain a set of "things":
  * datasets needed to run the system (as e.g. location information, maps, ...)
  * ...
 
-TODO: reference page on bundles
+See [this page](http://rock.opendfki.de/wiki/WikiStart/Standards/RG7) for more
+information on bundles.
 
 In this tutorial, we will create a new bundle and start developing in it.
 
@@ -42,47 +43,13 @@ cd ~/dev/bundles
 rock-create-bundle tutorial
 {coderay}
 
-Create a display script
-----------------------------
-Unlike with normal Ruby scripts, one cannot run Vizkit from within the system
-management layer. We therefore need to prepare a separated script that will
-display the rock position.
-
-In the bundle, edit scripts/display and add:
-
-{coderay:: ruby}
-#! /usr/bin/env ruby
-
-require 'orocos'
-require 'vizkit'
-include Orocos
-## Initialize orocos
-Orocos.initialize
-## Create a widget for 3d display and show it
-view3d = Vizkit.vizkit3d_widget
-view3d.show
-
-## load and add a 3d plugin for the rock
-vizkit_rock = view3d.createPlugin('rock_tutorial', 'RockVisualization')
-
-Vizkit.connect_port_to 'rock_tutorial_control', 'pose',
-    :auto_reconnect => true, :pull => false,
-    :update_frequency => 33 do |sample, name|
-
-    ## Finally, pass every pose sample to our visualizer plugin
-    vizkit_rock.updatePose(sample)
-    sample
-end 
-Vizkit.exec
-{coderay}
-
 Logs in bundles
 ---------------
 When working with bundles, the component output, data logs and system management
 logs are always saved in the logs/ folder, using a subfolder which matches the
 time at which the process that generated the logs _started_ (for example:
 20111025-1105 for 25/10/2011 11:05). The directory containing the latest logs
-(or the logs that are curently being generated) are symlinked from logs/current.
+(or the logs that are currently being generated) are symlinked from logs/current.
 
 Move on to the next tutorial
 ------------

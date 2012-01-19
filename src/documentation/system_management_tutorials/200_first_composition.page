@@ -78,11 +78,9 @@ If you're happy with it, you can then run it with:
 rock-roby run scripts/rockRoby1.rb
 {coderay}
 
-In another shell, run the display script
+In another shell, display the task's output:
 
-{coderay:: text}
-ruby scripts/display
-{coderay}
+TODO: rock-display video
 
 <div class="note">
 __Note for advanced users__: instead of always having to type "ruby

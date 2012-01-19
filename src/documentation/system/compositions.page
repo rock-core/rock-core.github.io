@@ -1,0 +1,41 @@
+---
+title: Compositions
+sort_info: 300
+---
+
+In the system modelling, compositions are what bind components together: they
+define, for a specific task, behaviour or subsystem (depending from which side
+of robotics you come from), what components are needed and how these components
+should be connected together to perform the required function.
+
+In the above description -- as within the rest of this documentation --
+"component" refers to a data service, task context or composition.
+
+Compositions are defined with
+
+{coderay:: ruby}
+composition "ModelName" do
+  ...
+end
+{coderay}
+
+The main definition statements being 'add' and 'connect'
+
+{coderay:: ruby}
+composition "ModelName" do
+  add Srv::Pose
+end
+{coderay}
+
+The "add" line adds a child to the composition, i.e. declares that a component
+of that type needs to run to perform the function of this composition. For
+instance, the rock_rover_nav bundle defines the composition with:
+
+{coderay:: ruby}
+composition "Odometry" do
+
+end
+{coderay}
+
+
+
