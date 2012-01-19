@@ -71,7 +71,7 @@ In this definition, the name mapping on the "provides" stanza specifies that teh
 "orientation_samples" port of the provided service (Srv::Orientation) should be
 replaced by the "pose_samples" port of the new service.
 
-Linking to concrete components
+Linking to concrete components {#provides}
 ------------------------------
 Concrete components (compositions and task contexts) can also provide data
 services. However, since they are concrete and not abstract, their list of ports
