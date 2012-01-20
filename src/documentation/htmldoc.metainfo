@@ -62,3 +62,7 @@ envire:
     title: Envire 
     sort_info: 1100
 
+debugging:
+    title: Debugging Techniques
+    sort_info: 1200
+
