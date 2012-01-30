@@ -74,7 +74,7 @@ basics_tutorial/message_driver
 
 All oroGen components should be created inside a separated folder called 'orogen' placed in the same folder as the libraries. In your case the libraries and the 'orogen' folder are placed in the 'basics_tutorials' folder. Moreover, when an oroGen component is created to integrate a library, it is highly recommended to use the same name than the library (here: message_producer).
 
-### Define tasks and deployments
+### Define tasks
 
 The previous command creates a new folder 'basics_tutorial/orogen/message_producer'. Inside you find two files: manifest.xml and message_producer.orogen.
 The manifest.xml will have been filled with the information you provided already, but when you need to add additional dependencies to libraries or oroGen components you will have to edit manifest.xml directly. Since you want to use your newly created library, check that your library has been added as dependency.
@@ -82,7 +82,7 @@ The manifest.xml will have been filled with the information you provided already
 <depend package="basics_tutorial/message_driver" />
 {coderay}
 
-The message_producer.orogen is the specification file of the your new oroGen component, and allows you to define Orocos tasks and deployments. 
+The message_producer.orogen is the specification file of the your new oroGen component, and allows you to define Orocos tasks. 
 The goal is to create a component which produces messages at a rate of 1 Hz, so the component only requires an output port for messages. 
 {coderay:: ruby}
 name "message_producer"
@@ -92,11 +92,7 @@ import_types_from "message_driver/Message.hpp"
 
 task_context "Task" do
   output_port "messages", "message_driver/Message"
-end
-
-deployment "message_producer_deployment" do
-  task("message_producer", "Task").
-      periodic(1)
+  periodic(1.0)
 end
 {coderay}
 
@@ -105,8 +101,7 @@ The specification contains a number of statement with the following meaning:
  * name: defines the name of the component, which is required for identification of the component
  * using_library: tells oroGen that this component requires, i.e. needs to link against the 'message_driver' library
  * import_types_from: tells oroGen that use a certain type, that is specified in the file following this statement
- * task_context: everything within this block defines an Orocos task context model, including what input and output ports are required
- * deployment: using the task_context model specified in the previous block, a deployment is generated using the model, here: a task named 'message_producer' is created based on the "Task" model, additional properties can be specified, such as the periodicity of calling the so-called updateHook of the task, here: 1 second
+ * task_context: everything within this block defines an Orocos task context model, including what input and output ports are required and a default value for the runtime execution schema (every 1.0 second in this case)
 
 The Task has an output port called 'messages' of type basics_tutorial/message. This type is initially unknown to the component, but it can be found in the 'Message.hpp' header of the 'message_driver' library. the using_library statement tells oroGen only to look for a library of the given name and link it to any deployment. 
 In order to make types known to your component so that you can use them in the specification, you have to do this explicitly with the 'import_types_from' statement.
@@ -226,9 +221,9 @@ include Orocos
 ## Initialize orocos ##
 Orocos.initialize
 
-## Execute the deployment 'message_producer_deployment' ##
-Orocos.run 'message_producer_deployment' do
-  ## Get the task context that is started with this deployment ##
+## Execute the task 'message_producer::Task' ##
+Orocos.run 'message_producer::Task' => 'message_producer' do
+  ## Get the task context##
   message_producer = TaskContext.get 'message_producer'
   
   ## Start the tasks ##
@@ -246,7 +241,7 @@ Orocos.run 'message_producer_deployment' do
 end
 {coderay}
 
-This scripts starts a process for the deployment 'message_producer_deployment'. Once the message_producer_deployment has been created, the task can be accessed using 'TaskContext.get'. Having the reference to the task context allows you to explicitly start the task. Run it using ruby. 
+This scripts starts a process for the task 'message_producer' (The second argument behind Orocos.run gives the name to access it in the Orocos.run body). Once the message_producer has been created, the task can be accessed using 'TaskContext.get'. Having the reference to the task context allows you to explicitly start the task. Run it using ruby. 
 {coderay:: text}
 ruby start.rb
 {coderay}
