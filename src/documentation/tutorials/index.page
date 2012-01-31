@@ -8,12 +8,11 @@ Rock Tutorials
 Welcome to the Rock tutorials. The tutorials are intended to allow practitioners and developers in the robotics field to start working with the Robot Construction Kit. 
 To get the most out of the tutorials, you should be familiar with basic software development in C++. The tutorials will not teach you C++ or software development in general, but they provide you with a guideline for developing components within Rock. 
 
-What to expect from the tutorials
+What to expect from the basic tutorials
 ----------------------------
 The tutorials are structured as follows.
 The first set of tutorials covers the basics for working with Rock, and will teach you on how to create a library, embed into an Orocos component using orogen, and finally deploy it, i.e. build and run. 
-Further, the tutorials will teach you how to log data from your running components and feed it back into components.
-Another tutorial, will enable you to visualize and eventually analyze your data with the Rock toolchain.
+Further, the tutorials will teach you how to examine your data, how to log data from your running components and view them afterwards.
 The complete set is wrapped up by a holistic example 'Rolling Rock'
 
 
@@ -33,7 +32,6 @@ The typical workflow starts with implementing functionality in a library, allowi
 
 The showcase example allows you to repeat a more complex example to deepen your knowledge of how to use Rock, while you can still pick dedicated topics from the advanced tutorials. 
 
-
 **Basics**
 
 The basic tutorials cover how to get started: create new code, integrate it in
@@ -44,31 +42,23 @@ the build system and then in components.
  * [Configure your components](120_basics_configure_component.html)
  * [Run the components together](130_basics_connect_components.html)
 
-**Logging**
+How to access the componenten and the data is shown here:
 
-The logging tutorials cover the usage of the data logger, and the different ways
-you can use the logged data.
+ * [Displaying data, logging and replay](200_display_logging_and_replay.html)
 
- * [Logging and replay](200_logging_and_replay.html)
- * [Data visualization](210_data_visualization.html)
+If you want to know how to install packages have a look at the following:
+ 
+ * [Installing packages](190_installing_packages.html)
 
 **Showcase Example**
 
 This example covers, in principle, the same subjects as the basic tutorials,
-but with a more complex (and more realistic) example. You will also learn how to
+but with a more complex (and more realistic) example. You will learn how to
 browse and find components in the Rock component collection.
-
- * [Writing a control component](500_writing_a_control_component.html)
+ 
  * [Integrating a Joystick](510_joystick.html)
  * [Integrating a Virtual Joystick (for those that don't have a physical
    one)](520_virtual_joystick.html)
-
-**Advanced Development Tutorials**
-
- * [Using Avahi to find the tasks](530_nameservice.html)
- * [Writing a 3D visualization plugin](600_vizkit_plugin.html)
- * [Interfacing a 3D visualization plugin with Ruby
-   scripts](610_vizkit_ruby_plugin.html)
 
 Installing the tutorial results {#installing}
 -------------------------------

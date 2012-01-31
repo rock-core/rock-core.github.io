@@ -18,6 +18,10 @@ tutorials:
     sort_info: 80
     title: Basics
 
+advanced_tutorials:
+    sort_info: 83
+    title: Advanced
+
 system_management_tutorials:
     sort_info: 85
     title: System Management

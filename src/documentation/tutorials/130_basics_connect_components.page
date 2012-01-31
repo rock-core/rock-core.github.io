@@ -40,10 +40,6 @@ task_context "Task" do
 
    port_driven "messages"
 end
-
-deployment "message_consumer_deployment" do
-    task("message_consumer", "Task")
-end
 {coderay}
 
 The 'port_driven' statement allows you to specify ports, where incoming data triggers a call to the updateHook of the task (more details in the [documentation](../orogen/triggering/ports.html)).
@@ -76,7 +72,9 @@ include Orocos
 Orocos.initialize
 
 
-Orocos.run 'message_producer_deployment', 'message_consumer_deployment' do  
+Orocos.run 'message_producer::Task' => 'message_producer', 
+    'message_consumer::Task' => 'message_consumer' do  
+  
   message_producer = TaskContext.get 'message_producer'
   message_consumer = TaskContext.get 'message_consumer'
   
