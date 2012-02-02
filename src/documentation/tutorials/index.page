@@ -55,7 +55,8 @@ If you want to know how to install packages have a look at the following:
 This example covers, in principle, the same subjects as the basic tutorials,
 but with a more complex (and more realistic) example. You will learn how to
 browse and find components in the Rock component collection.
- 
+
+ * [Simple simulation of a robot](500_simulate_a_robot.html) 
  * [Integrating a Joystick](510_joystick.html)
  * [Integrating a Virtual Joystick (for those that don't have a physical
    one)](520_virtual_joystick.html)
