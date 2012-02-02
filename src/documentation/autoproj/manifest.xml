@@ -5,10 +5,24 @@
   </description>
   <author>Alice/alice@somewhere.bar, Bob/bob@nowhere.foo</author>
   <license>BSD</license>
-  <url>http://sites.google.com/site/rubyinmotion</url>
-  <logo>http://sites.google.com/site/rubyinmotion</logo>
+  <url>http://rock-robotics.org</url>
+  <logo>http://rock-robotics.org</logo>
 
-  <depend package="pkgname"/> <!-- add dependency on another autoproj-built package -->
+  <!-- add dependency on either another
+       autoproj-built package, or a
+       package from the operating system -->
+  <depend package="pkgname"/>
   <depend package="common"/>
-  <rosdep name="python" /> <!-- add dependency on a prepackaged operating system package -->
+  <!-- add an optional dependency. Optional
+       dependencies will be ignored if unknown or
+       disabled in autoproj/manifest -->
+  <depend package="common" optional="1"/>
+  <!-- add dependency on a prepackaged operating
+       system package. Use for compatibility with
+       ROSbuild, autoproj does not need that -->
+  <rosdep name="python" />
+  <!-- add tags to the package. Used for documentation
+       generation -->
+  <tags>tag1,tag2</tags>
+  <tags>tag3</tags>
 </package>
