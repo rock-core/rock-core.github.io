@@ -1,5 +1,5 @@
 ---
-title: Writing a Control Component
+title: Simulate a Robot
 sort_info: 500
 ---
 Abstract
@@ -141,13 +141,12 @@ cd tutorials/orogen/
 rock-create-orogen rock_tutorial
 {coderay}
 
-### Define tasks and deployments
+### Define task
 
 Again we start by adding the build dependencies in the mainfest.xml. In this case we only depend on 'rock_tutorial', as 
 rock_tutorial already depends on 'base/types' and the dependencies are resolved recursive.
 
-In the rock_tutorial.orogen we will define the orocos tasks and the deployments. In the orogen file is already a demo task
-and a demo deployment defined. For this tutorial it is recommend to replace them by our definitions:
+In the rock_tutorial.orogen we will define the orocos task. For this tutorial we replace the existing entries by our definitions:
 {coderay:: ruby}
 name "rock_tutorial"
 version "0.1"
@@ -250,7 +249,7 @@ and run it with
 ruby rockTutorial1.rb
 {: .commandline}
 
-As in the basics tutorial, the following Ruby commands lead to a start of the task, i.e. calling the 
+As in the basics tutorial, the Ruby commands lead to a start of the task, i.e. calling the 
 startHook() of the task. 
 Afterwards we use a port writer to write a motion command to the 'motion_command' port.
 
@@ -259,7 +258,7 @@ In another console start the task inspector with
 rock-display rock_tutorial_control
 {: .commandline}
 
-Right-klicking the output port pose with gives you the option to use *RigidBodyStateVisualization*
+Right-klicking the output port *pose* gives you the option to use *RigidBodyStateVisualization*
 to show the rock's state. It will be presented by coordinate axes showing position and orientation of
 the rock.
 
