@@ -76,6 +76,7 @@ package_sets:
    - gitorious: rock-tutorials/package_set
 
 layout:
+   - rock.base
    - rock.toolchain
    - rock.tutorials
 {coderay}
