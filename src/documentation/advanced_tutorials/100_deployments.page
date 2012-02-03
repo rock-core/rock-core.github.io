@@ -1,0 +1,66 @@
+---
+title: Deployments
+sort_info: 100
+---
+
+Deployments
+------------
+Deployments define how tasks are executed. For now you have used deployments implicitly as for each
+task a default deployment is created. The default deployments execution schema is given in the task description by statements like [periodic(1.0)](/documentation/tutorials/110_basics_create_component.html) or [port_driven "messages"](/documentation/tutorials/130_basics_connect_components.html). Furthermore the default deployments add a logging component by default and each task is ran in its own process. Deployments can be specified explicitly, that allows a more flexible definition of the execution schema and putting multiple tasks into one process. The definition of deployments is subject of the following sections. For further information, also have a look on the documentation page [here](/documentation/orogen/deployment.html).
+
+Deployments are specified in an orogen project like tasks are. 
+Actually you can define a deployment in the same orogen file as the task. 
+But that is not recommended - best pratice is to have an own orogen project for your deployments.
+
+**Changing the periodicity**
+Let's get back to the inital [messenger example](/documentation/tutorials/110_basics_create_component). 
+The periodicity was set to 1.0 seconds for the default deployment.Now the task 
+should be executed at a higher rate. Therefor create a new orogen-project (e.g. in basic_tutorials/orogen):
+{coderay:: text}
+rock-create-orogen messenger_deployments
+end{coderay}
+
+When asked for dependencies give the messager producer and consumer task projects, e.g.:
+{coderay:: text}
+basics_tutorial/orogen/message_producer, basics_tutorial/orogen/message_consumer
+end{coderay}
+
+In the file *messenger_deployments.orogen* delete the content and add the following:
+
+{coderay:: ruby}
+name "messenger_deployments"
+
+using_task_library "message_producer"
+
+deployment "faster_message_producer" do 
+    task("producer","message_producer::Task").periodic(0.1)
+end
+end{coderay}
+
+Now do 
+{coderay:: text}
+amake
+end{coderay}
+
+**Adding a default logger:** 
+To log data produced by an orocos task you have to add a logger to a deployment. This 
+is done by the ruby method *add_default_logger*. In this case a logger is added to the message_producer_deployment.
+
+{coderay:: ruby}
+name "messenger_deployments"
+
+using_task_library "message_producer"
+
+deployment "faster_message_producer" do 
+    task("producer","message_producer::Task").periodic(0.1)
+    add_default_logger
+end
+end{coderay}
+
+**Advanced Tip** This adds [a logger
+component](../../package_directory/orogen_tasks/logger__Logger.html) to the
+deployment. This deployment has a standard name of _deployment\_name_\_Logger
+that can then be picked up by orocos.rb. Adding a logger per process, this way
+ensures that you are not wasting CPU time marshalling / demarshalling data for
+logging purposes.
+{: .note}
