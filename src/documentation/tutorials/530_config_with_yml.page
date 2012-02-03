@@ -1,0 +1,11 @@
+---
+title: How to load a configuration from a file
+sort_info: 530
+---
+Tutorial Info
+-----------
+
+Instead of set the properties of a task in the ruby script one can load a yaml file. This
+tutorial shows how to do it.
+
+TODO Do it!

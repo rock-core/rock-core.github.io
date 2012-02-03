@@ -1,0 +1,57 @@
+
+Replaying Data
+-----------
+Replaying data into the framework is very convenient if you want to test your
+algorithm with a specific data set or if the message producer is not available all the
+time. In this case the message producer of the basics tutorial is substituted by a
+log file which was recorded in the section above.
+
+{coderay:: ruby}
+#library for displaying data
+require 'vizkit'
+
+#load log file 
+log = Orocos::Log::Replay.open("message_producer_deployment.0.log")
+
+#now you can access all logged data by 
+#addressing them by their task and port name
+#log.task_name.port_name
+
+#start deployment
+Orocos.run "message_consumer_deployment" do 
+    consumer = Orocos::TaskContext.get "message_consumer"
+    log.message_producer.messages.connect_to consumer.messages
+    consumer.start
+
+    #open control widget and start replay
+    Vizkit.control log
+    Vizkit.exec
+end
+{coderay}
+
+You can also redirect all log data to code blocks if you want to process the data in the ruby script.
+
+{coderay:: ruby}
+require 'vizkit'
+
+log = Orocos::Log::Replay.open("message_producer_deployment.0.log")
+Orocos.run "message_consumer_deployment" do 
+    consumer = Orocos::TaskContext.get "message_consumer"
+    log.message_producer.messages.connect_to consumer.messages
+    consumer.start
+
+    #redirect data to a code block
+    log.message_producer.messages.connect_to |sample,_| do 
+        puts sample.time
+        sample             #you have to return the sample here
+    end
+
+    Vizkit.control log
+    Vizkit.exec
+end
+{coderay}
+
+The dataflow of the replay mechanism looks like:
+
+![Log Replay Dataflow](200_log_replay.png)
+{: .align-center}

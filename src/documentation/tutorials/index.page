@@ -60,6 +60,7 @@ browse and find components in the Rock component collection.
  * [Integrating a Joystick](510_joystick.html)
  * [Integrating a Virtual Joystick (for those that don't have a physical
    one)](520_virtual_joystick.html)
+ * [Configure a task with a file](530_config_with_yml.html)
 
 Installing the tutorial results {#installing}
 -------------------------------
