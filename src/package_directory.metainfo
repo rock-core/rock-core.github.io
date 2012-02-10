@@ -1,0 +1,8 @@
+tasks/:
+    template: package_directory.template
+types/:
+    template: package_directory.template
+pkg/:
+    template: package_directory.template
+sets/:
+    template: package_directory.template
