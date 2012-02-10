@@ -61,9 +61,9 @@ There is two things left to do:
    provided in the io_port property. Note that it is legal for this property to
    be empty (see the next section for explanations).
 
-   {coderay:: cpp}
-   setDriver(driver)
-   {coderay}
+{coderay:: cpp}
+setDriver(driver)
+{coderay}
 
  * __cleanupHook__: the device's close() method is going to be called
    automatically by the base class. The pointer is *not* going to be deleted

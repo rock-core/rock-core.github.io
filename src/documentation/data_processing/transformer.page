@@ -2,7 +2,7 @@
 title: Handling Geometry - the Transformer
 sort_info: 200
 ---
-In the example used [for the stream aligner](stream_aligner.page), we introduced
+In the example used [for the stream aligner](stream_aligner.html), we introduced
 the (very common) use case of having a sensor giving some geometrical
 information in some (usually moving) frame, but the need to have this data in
 another frame:

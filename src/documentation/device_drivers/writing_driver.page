@@ -18,7 +18,7 @@ Guidelines
  * error notification should in general be exception-based
  * reported measurements should be timestamped, either through a device-specific
    mean or by using base::Time::now(). As stated
-   [here](../data_processing/using_timestampestimator.html), the TimestampEstimator
+   [here](../data_processing/timestamp_estimator_usage.html), the TimestampEstimator
    class should not be used at the library level.
  * multi-threading is in general not useful (and harmful as it adds a lot of
    complexity). See the type 2 device/driver interaction below.

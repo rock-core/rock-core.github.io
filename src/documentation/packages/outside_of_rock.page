@@ -84,15 +84,15 @@ for base/types, namely:
    the package you have to install
  * configure it by doing the following inside the package source:
 
-   {coderay:: text}
-   mkdir build
-   cd build
-   cmake -DCMAKE_INSTALL_PREFIX=$HOME/dev/install ..
-   {coderay}
+{coderay:: text}
+mkdir build
+cd build
+cmake -DCMAKE_INSTALL_PREFIX=$HOME/dev/install ..
+{coderay}
 
  * finally, build and install
 
-   {coderay:: text}
-   make install
-   {coderay}
+{coderay:: text}
+make install
+{coderay}
 
