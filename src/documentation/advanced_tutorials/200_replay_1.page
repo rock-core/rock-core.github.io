@@ -1,10 +1,18 @@
+---
+title: Replaying data in scripts
+sort_info: 200
+---
 
-Replaying Data
------------
-Replaying data into the framework is very convenient if you want to test your
-algorithm with a specific data set or if the message producer is not available all the
-time. In this case the message producer of the basics tutorial is substituted by a
-log file which was recorded in the section above.
+_Data replay_ is the ability to take data from log files and write it back into
+live components. This is a very convenient ability if you want to test your
+algorithm with a specific data set, to test on synthetic data sets, or if the
+message producer is not available all the time. 
+
+In this tutorial, we subsistute the message producer of the basics tutorial by a
+log file which was previously on the "live" system.
+
+The basic workflow is to get a logfile context using Orocos::Log::Replay and
+then access the log streams as if they were tasks and ports:
 
 {coderay:: ruby}
 #library for displaying data
@@ -29,7 +37,8 @@ Orocos.run "message_consumer_deployment" do
 end
 {coderay}
 
-You can also redirect all log data to code blocks if you want to process the data in the ruby script.
+If, instead of pushing the data to a component, you want to process it in Ruby,
+you can redirect it to code blocks:
 
 {coderay:: ruby}
 require 'vizkit'
@@ -40,10 +49,9 @@ Orocos.run "message_consumer_deployment" do
     log.message_producer.messages.connect_to consumer.messages
     consumer.start
 
-    #redirect data to a code block
+    # Redirect data to a code block
     log.message_producer.messages.connect_to |sample,_| do 
         puts sample.time
-        sample             #you have to return the sample here
     end
 
     Vizkit.control log
