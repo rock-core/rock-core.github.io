@@ -1,0 +1,27 @@
+---
+title: The Transformer in Roby
+sort_info: 240
+---
+
+So far, we have seen the following bits about the transformer:
+
+ * the declaration, in oroGen, of the transformations required to process the data
+ * the transformer configuration file
+ * the runtime component configuration
+ * finally, additional frame information that can be provided at runtime to
+   allow proper display
+
+This page will deal with the usage of the transformer in Roby, Rock's system
+management layer. We will first see what Roby can do for you when using the
+transformer, then how to extend the transformer models to allow full automatic
+configuration and how to provide the runtime configuration.
+
+The challenge here is to be able to configure __and reconfigure__ a complete
+system by providing the minimal amount of information, as always in Roby.
+
+The need for more
+-----------------
+Let's take the same example than before: our laser filter (and, for now, only
+the laser filter). Conceptually, the processing chain for that filter is:
+
+

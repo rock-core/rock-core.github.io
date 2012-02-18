@@ -68,9 +68,17 @@ Where _producer_task_name_ and _port_name_ refer to the data stream that defines
 the required transformation. If the task has only one RigidBodyState output
 port, the port name can be left empty.
 
-See [this file]({rock_source:
-rock-tests/orogen/transformer/test/runtime_tests/config/transforms.rb}) for a
-complete example.
+For our laser filter example, a possible configuration file would look like:
+
+{coderay:: ruby}
+# The frame names in this file are arbitrary !
+static_transform "Body", "ServoFrom",
+    Eigen::Translation(0.3, 0, 0)
+static_transform "ServoTo", "Lidar",
+    Eigen::Translation(0, 0, 0.1)
+dynamic_transform "ServoFrom", "ServoTo",
+    "servo.transform_samples"
+{coderay}
 
 Ruby scripting
 --------------
@@ -80,21 +88,67 @@ achieved.
 Three bits are needed to configure the system properly:
 
 1. the transformation declaration file (see above)
-2. declarations that tell in which frame the data produced by the tasks is
-   expressed in
-3. proper configuration of the _frame_name_name properties on the components.
+2. proper configuration of the _frame_name_name properties on the components.
+   These properties are required for every frame that is required during
+   computation, and for the components that generate frame transformations (as
+   e.g. the servo driver compontn). In our example, we therefore need to setup
+   the laser filter and the servo.
+3. declarations that tell in which frame the data produced by the tasks is
+   expressed in. This is not strictly required, but allows proper configuration
+   of the 3D display (video below).
 
-First of all, in addition to the transformation description file, you will have
-to declare in which frames the data on your ports are expressed. This is done in
-ruby scripting by setting Port#frame:
+Finally:
 
 {coderay:: ruby}
+Orocos.transformer.load('config/transforms.rb')
 Orocos.run ... do
-  task = Orocos::TaskContext.get 'lidar'
-  task.lidar_samples.frame = 'laser'
+  lidar = Orocos::TaskContext.get 'lidar'
+  filter = Orocos::TaskContext.get 'lidar_filter'
+  servo = Orocos::TaskContext.get 'servo'
 
-  ...
+  # Tell in which frames is the data expressed. These are not
+  # arbitrary anymore: they MUST match the frame names listed
+  # in the transformer's
+  lidar.lidar_samples.frame = 'Laser'
+  filter.filtered_samples.frame = 'Laser'
+
+  # Properly setup frame names. These are not arbitrary anymore:
+  # they MUST match the frame names listed in the transformer's
+  # configuration files
+  filter.body_frame = "Body"
+  filter.input_frame = "Laser"
+  servo.source_frame = "ServoFrom"
+  servo.target_frame = "ServoTo"
+
+  lidar.lidar_samples.connect_to(filter.lidar_samples)
+
+  # Finalize transformer configuration (see below for explanations)
+  Orocos.transformer.setup(lidar, filter, servo)
+
+  lidar.configure
+  lidar.start
+  filter.configure
+  filter.start
+  servo.configure
+  servo.start
+
+  # Wait for ENTER on input
+  STDIN.readline
 end
 {coderay}
 
+The Orocos.transformer.setup call provides the following additional features:
+
+ * it verifies that all required xxx_frame properties are set with frames that
+   exist in the transformer configuration files,
+ * it connects the necessary frame producers to the dynamic_transformations
+   ports of the tasks that require it. In this example, it means that the
+   servo's transform_samples output is connected to the filter's
+   dynamic_transformations input,
+ * it provides the necessary static transformations in the corresponding task
+   properties,
+ * finally, it saves and broadcasts the system transformation configuration so
+   that it can be picked up by e.g. the 3D display
+
+TODO: video
 
