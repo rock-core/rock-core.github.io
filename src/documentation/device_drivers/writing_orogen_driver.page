@@ -65,6 +65,9 @@ There is two things left to do:
 setDriver(driver)
 {coderay}
 
+ * process the incoming data in a "void processIO()" method that is going to be
+   called by the base class from updateHook().
+
  * __cleanupHook__: the device's close() method is going to be called
    automatically by the base class. The pointer is *not* going to be deleted
    though, so you should take care of it if you want to recreate the object in
