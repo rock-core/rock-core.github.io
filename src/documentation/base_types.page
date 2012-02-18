@@ -87,7 +87,7 @@ needsRad( base::Angle::deg2Rad( 180.0 ) );
 
 ### Matrix / Vector ###
 
-The base types use the [Eigen3](http:://eigen.tuxfamily.org) library for
+The base types use the [Eigen3](http://eigen.tuxfamily.org) library for
 handling and representing matrices and vectors. Eigen types have special
 constraints regarding alignment, which require special template parameters to be
 used for using Eigen types as interface types. To simplify this, `base` declares
