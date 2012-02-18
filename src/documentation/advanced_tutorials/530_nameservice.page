@@ -72,8 +72,7 @@ The minimal Rock installation already provides this package for you, so you can 
 After being sure service_discovery has been installed an you component has been build with service discovery support you enable the nameservice AVAHI in your Ruby script. 
 You enable Avahi for a specific domain, where you can use a pattern of 'name'.'suffix', where the suffix must be either '._tcp' or '._udp'. Here, use '_robot._tcp'.
 
-{rdoc_class: {base_url: /api/tools/orocos.rb, name:
-Nameservice::enable}}
+{rdoc_class: {base_url: /api/tools/orocos.rb, name: Nameservice}}
 _before_ you call Orocos.initialize:
 
 {coderay:: ruby}
