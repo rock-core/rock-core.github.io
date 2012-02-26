@@ -34,7 +34,7 @@
               <ul>
                   <li><a href="{relocatable: /documentation/installation.html}">Installation</a></li>
                   <li><a href="{relocatable: /documentation}">Documentation</a></li>
-                  <li><a href="{relocatable: /package_directory}">Browse Packages</a></li>
+                  <li><a href="{relocatable: /package_directory.html}">Browse Packages</a></li>
                   <li><a href="{relocatable: /news}">News</a></li>
                   <li><a href="{relocatable: /documentation/about/contributing.html}">Community</a></li>
               </ul>
