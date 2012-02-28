@@ -12,3 +12,6 @@ pkg/**/*:
 sets/**/*:
     template: /package_directory.template
     in_menu: false
+osdeps/**/*:
+    template: /package_directory.template
+    in_menu: false
