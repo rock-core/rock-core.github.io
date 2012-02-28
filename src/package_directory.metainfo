@@ -15,3 +15,5 @@ sets/**/*:
 osdeps/**/*:
     template: /package_directory.template
     in_menu: false
+status*:
+    template: /package_directory.template

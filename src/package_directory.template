@@ -35,4 +35,7 @@ $(document).ready(function () {
       <li class="separator"></li>
       <li class="webgen-menu-level1"><a href="{relocatable: /osdeps}">OS Dependencies</a></li>
   </ul>
+  <ul><li class="title">Status</li>
+      {menu: {start_level: 1, filter: /status_.*\.html}}
+  </ul>
 </div>
