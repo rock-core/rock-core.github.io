@@ -77,7 +77,8 @@
           <webgen:block name="leftbar" notfound="ignore"/>
       </div>
 
-      <div class="content2" <% if context.node.alcn == "/index.html" %>style="margin-left: 110px;"<% end %>>
+    
+      <div class="content2" <%= 'style="margin-left: 110px;"' if context.node.meta_info['rock_page_style'] == 'centered' %>>
           <% if context.node.node_info[:page].meta_info.has_key?('page_title') %>
           <div class="content2-pagetitle"><%= context.node.node_info[:page].meta_info['page_title'] %></div>
           <% else %>
