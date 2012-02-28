@@ -1,0 +1,4 @@
+--- name:content pipeline:blocks
+<div style="margin: 110px;">
+<webgen:block name='content' />
+</div>
