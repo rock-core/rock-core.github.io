@@ -64,7 +64,7 @@ vizkit 3D Plugins
 --------------
 vizkit 3D Plugin packages are C++ library packages that define plugins usable by
 vizkit's Vizkit3DWidget, allowing to display data in a 3D view using
-OpenSceneGraph. See [this tutorial](../tutorials/600_vizkit_plugin.html) for more information.
+OpenSceneGraph. See [this tutorial](../advanced_tutorials/600_vizkit_plugin.html) for more information.
 
 oroGen projects
 ----------------

@@ -13,7 +13,7 @@ Actually you can define a deployment in the same orogen file as the task.
 But that is not recommended - best pratice is to have an own orogen project for your deployments.
 
 **Changing the periodicity**
-Let's get back to the inital [messenger example](/documentation/tutorials/110_basics_create_component). 
+Let's get back to the inital [messenger example](/documentation/tutorials/110_basics_create_component.html). 
 The periodicity was set to 1.0 seconds for the default deployment.Now the task 
 should be executed at a higher rate. Therefor create a new orogen-project (e.g. in basic_tutorials/orogen):
 {coderay:: text}
@@ -58,7 +58,7 @@ end
 {coderay}
 
 **Advanced Tip** This adds [a logger
-component](../../package_directory/orogen_tasks/logger__Logger.html) to the
+component]({rock_task: logger::Logger}) to the
 deployment. This deployment has a standard name of _deployment\_name_\_Logger
 that can then be picked up by orocos.rb. Adding a logger per process, this way
 ensures that you are not wasting CPU time marshalling / demarshalling data for
