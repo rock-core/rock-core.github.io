@@ -1,8 +1,14 @@
-tasks/:
-    template: package_directory.template
-types/:
-    template: package_directory.template
-pkg/:
-    template: package_directory.template
-sets/:
-    template: package_directory.template
+package_directory.page:
+    template: /package_directory.template
+tasks/**/*:
+    template: /package_directory.template
+    in_menu: false
+types/**/*:
+    template: /package_directory.template
+    in_menu: false
+pkg/**/*:
+    template: /package_directory.template
+    in_menu: false
+sets/**/*:
+    template: /package_directory.template
+    in_menu: false
