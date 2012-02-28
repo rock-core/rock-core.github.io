@@ -5,15 +5,6 @@
 <!-- Recommended XHTML-Editor: HTML-Kit 292 (Freeware) -->
 <!-- http://www.chami.com/html-kit/download/ -->
 
-<% # Get the root for this node %>
-<% root_page = context.node %>
-<% page_is_root = (root_page.parent == root_page.tree.root) %>
-<% if root_page.parent != root_page.tree.root %>
-<%   while root_page.parent != root_page.tree.root %>
-<%     root_page = root_page.parent %>
-<%   end %>
-<% end %>
-
 <head>
   <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
   <meta name="description" content="The Robot Construction Kit - a robot software development environment" />
@@ -86,7 +77,7 @@
           <webgen:block name="leftbar" notfound="ignore"/>
       </div>
 
-      <div class="content2" <% if page_is_root %>style="margin-left: 110px;"<% end %>>
+      <div class="content2" <% if context.node.alcn == "/index.html" %>style="margin-left: 110px;"<% end %>>
           <% if context.node.node_info[:page].meta_info.has_key?('page_title') %>
           <div class="content2-pagetitle"><%= context.node.node_info[:page].meta_info['page_title'] %></div>
           <% else %>
