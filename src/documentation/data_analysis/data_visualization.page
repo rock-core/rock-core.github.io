@@ -30,7 +30,7 @@ the QT-Widgets. By default Rock provides a set of QT-Widgets that may be used ou
 the box for visualizing 2D data. These widgets are called VizkitWidgets. Besides 
 their C++ functionality these widgets provide a Ruby binding.
 
-A full list of these widgets can be found in the [package directory](../../package_directory/). 
+A full list of these widgets can be found in the [package directory](/package_directory.html)
 
 
 3D Visualization 
@@ -57,7 +57,7 @@ but does not have an visualization abilities. These come in the form of plugins.
 These plugins are called Vizkit3DPlugins. 
 All plugins need to be derived from vizkit::Vizkit3DPlugin<>. 
 As with the VizkitWidgets, Rock provides a set of
-standard Vizkit3DPlugins that may be found in the [package directory](../../package_directory/).  
+standard Vizkit3DPlugins that may be found in the [package directory](/package_directory.html)
 
 Using Vizkit
 -------------------
