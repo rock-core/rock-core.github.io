@@ -5,9 +5,9 @@ sort_info: 95
 
 Autoproj offers two ways to install software.
 
-The primary reason why autoproj is autoproj is that it allows you to easily
+The primary intend of autoproj is to allow you to easily
 install software that needs to be compiled. However, there are also ways to
-install standard software packages, that are offered by your operating system.
+install standard software packages that are offered by your operating system.
 
 Autoproj's osdeps facility is there for that: handle dependencies between the
 source packages that it needs to build and packages that are offered by the OS.
@@ -49,7 +49,7 @@ autoproj should install them. If the configuration or compilation of one of the
 package fails, it will most probably be because the build configuration is
 missing the relevant OS dependency.
 
-**In the 'os' mode**, only OS packages will automatically be installed during.
+**In the 'os' mode**, only OS packages will automatically be installed.
 autoproj will *completely ignore* the RubyGem dependencies, so the build may
 fail because some of them are not installed.
 
@@ -97,4 +97,4 @@ the --all, --ruby and --os options:
 autoproj osdeps --all
 {: .cmdline}
 
-will install all required packages, /regardless of the "global" osdeps mode/
+will install all required packages, regardless of the "global" osdeps mode.

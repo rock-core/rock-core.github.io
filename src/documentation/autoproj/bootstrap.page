@@ -21,7 +21,7 @@ The canonical way is the following:
    ruby autoproj\_bootstrap
    {: .cmdline}
 
- * follow the instructions printed by the script<tt>manifest</tt>.
+ * follow the instructions printed by the script
 
 Additionally, if you are given a reference to a source code repository in which
 an autoproj configuration is stored (i.e. a directory in which a manifest is

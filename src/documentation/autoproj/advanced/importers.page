@@ -39,7 +39,7 @@ package_sets:
     - rock.toolchain
 {coderay}
 
-Now, it so happens that the rock.toolchain package uses its own repository for
+The rock.toolchain package uses its own repository for
 the typelib library. So, while the orocos.toolchain has the following source.yml:
 
 {coderay:: yaml}
@@ -57,7 +57,7 @@ overrides:
         url: git://gitorious.com/orocos-toolchain/rock-$PACKAGE.git
 {coderay}
 
-Another common use for the overrides is to change the branch, for instance:
+Another common use for overrides is to change the branch, for instance:
 
 {coderay:: yaml}
 overrides:
@@ -104,8 +104,8 @@ version_control:
         url: repository_url_or_path
 {coderay}
 
-Note that the repository *must* be accessible without any password, and the
-import will fail if a password was needed.
+Note that the repository *must* be accessible without any password - the
+import will fail if a password is needed.
 {: .warning}
 
 CVS
@@ -121,11 +121,11 @@ version_control:
         module: modulename
 {coderay}
 
-Note that the repository *must* be accessible without any password, and the
-import will fail if a password was needed.
+Note that the repository *must* be accessible without any password - the
+import will fail if a password is needed.
 {: .warning}
 
-In case a :pserver: is used, it must be quoted as YAML would interpret it
+In case a :pserver: is used, it must be quoted - YAML would interpret it
 the wrong way otherwise:
 
 {coderay:: yaml}
@@ -171,9 +171,9 @@ Patching the source once it is checked out/updated
 --------------------------------------------------
 
 It is possible to apply patches after a given package (imported by any of the
-importer types) has been checked out/updated. To do so, simply add a
-<tt>patches:</tt> option in the importer configuration, that lists the patches
-to apply:
+importer types) has been checked out/updated. To do so, simply add the option
+<tt>patches:</tt> to the importer configuration and list the patches which should
+be applied:
 
 {coderay:: yaml}
 version_control:

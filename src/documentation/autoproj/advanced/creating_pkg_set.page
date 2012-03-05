@@ -118,11 +118,10 @@ import_package "external/sisl"
 ruby_package "orocos/orocos.rb"
 {coderay}
 
-The above snippet defines two packages. The first one uses CMake as a build
+The above snippet lists the kind of packages autoproj currently supports. The first one uses CMake as a build
 system and will be installed in the <tt>orocos/rtt</tt> subdirectory of the
-autoproj installation. The second one is an autotools package. There is, for
-now, only support for these two build systems, and for Ruby packages. Package
-definitions can be tweaked quite a lot, including the ability to generate
+autoproj installation. The second one is an autotools package. Additionally, there is support for
+orogen packages (i.e. Orocos components generated with orogen), packages that should be just imported but not build, and for Ruby packages. Package definitions can be tweaked quite a lot, including the ability to generate
 documentation. See [the next page](autobuild.html) for more information on how to write autobuild
 scripts.
 
@@ -140,7 +139,7 @@ constants:
 version_control:
   - "modules/.*":
       type: git
-      url: $ROOT_DIR/$PACKAGE.git
+      url: $ROOT_DIR/$PACKAGE_BASENAME.git
   - "drivers/.*":
       type: svn
       url: svn+ssh://rlbsvn.informatik.uni-bremen.de/trunk/$PACKAGE.git
@@ -150,11 +149,16 @@ The name field gives a name for the set. It is arbitrary, but the guideline
 is to give a name that is java-like for namespaces, i.e. origin.name.
 
 The <tt>constants:</tt> section lists values that can be reused for different
-packages. Autoproj defines two constants:
+packages. Autoproj defines muliple constants:
  
  * HOME is the user's home directory,
- * PACKAGE is the actual package name, useful when using wildcards in package
+ * PACKAGE is the expansion of the (complete) regular expression given as package name, i.e. here it might be
+   'modules/yourpackage'
+ * PACKAGE_BASENAME is the actual package name, useful when using wildcards in package
    names (see below)
+ * AUTOPROJ_SOURCE_DIR path to the directory of the file which contains this constant
+ * AUTOPROJ_ROOT path to the main installation folder
+ * AUTOPROJ_CONFIG path to the autoproj configuration directory
 
 It is also possible to use configuration variables, that get asked to the user
 during the build (see below).
