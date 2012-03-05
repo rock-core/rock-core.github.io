@@ -6,7 +6,7 @@ sort_info: 100
 Introduction
 ----------------
 
-ROCK provides a logger that facilitates and unifies debugging of system libraries. 
+Rock provides a logger that facilitates and unifies debugging of system libraries. 
 The following section describes the functionality of the base logger and how to use it. 
 
 Adding the base logger to a library
