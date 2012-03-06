@@ -3,7 +3,7 @@ title: Task Inheritance
 sort_info: 130
 ---
 
-oroGen understands inheritance between tasks. I.e. it is possible to make the
+oroGen understands inheritance between tasks. That means, it is possible to make the
 task context inherit from each other, and have the other oroGen features play
 well. It also works in a [cross project fashion](cross_project.html).
 
