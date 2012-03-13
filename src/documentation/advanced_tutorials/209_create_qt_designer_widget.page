@@ -136,4 +136,8 @@ Running test.rb opens our user interface:
 
 Summary
 -----------
+You are now able to create Qt widgets which you can use in Qt Designer. Your 
+widgets are able to handle Typelib types which saves you the time you would need
+for writing wrappers.
+
 To get the example code used for this tutorial, clone git://gitorious.org/rock-tutorials/designer_widget_example.git .
