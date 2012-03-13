@@ -1,0 +1,139 @@
+---
+title: Qt Designer Widget
+sort_info: 209
+---
+
+Abstract
+-----------
+In this tutorial you will learn how to create a Qt widget ready to use with the 
+Qt Designer. This widget supports slots with Typelib types as parameters. In addition
+to that, we will show you how to access your widget from the Ruby side.
+
+To understand this tutorial, basic knowledge about Qt, Qt Designer and qtruby is
+required.
+
+Create Qt Designer Widget
+-----------
+As a starting point, rock-create-qt-designer-widget generates the basic folder 
+layout for you. That contains a sample widget with a ready-to-use Qt Designer plugin.
+This enables you to access your widget in Qt Designer's toolbox in order to use
+it in other widgets.
+
+All you have to do is call rock-create-qt-designer-widget with the widget name as
+argument and follow the instructions.
+
+{coderay:: bash}
+$ rock-create-qt-designer-widget MyWidget
+{coderay}
+
+This will create a new folder in the current directory named like your widget.
+As always: Do not forget to fill the manifest.xml with useful information.
+
+The folder layout looks much like a Rock library. The relevant code has been 
+generated into src/. You can compile and install this project with *autoproj build* and it works
+out of the box. However, you might want to customize the plugin source file 
+(in our case: MyWidgetPlugin.cc) first, e.g. change the widget group, domXml 
+specification, etc.
+
+To test your widget, simply call 
+{coderay:: bash}
+$ ./build/src/mywidgetTest
+{coderay}
+
+Without changes, the generated sample widget should look like this:
+
+![Sample Widget](209_sample_widget.png)
+{: .align-center}
+
+The widget and the designer plugin will be installed as a library into Rock's 
+designer plugin path: install/lib/qt/designer/ .
+If you encounter problems with the designer, it might help to delete the installed
+library (which is actually done by *autoproj rebuild*, too) and possibly existing 
+old libraries conflicting with your library (i.e. libraries with the same name as
+your widget).
+{: .warning}
+
+***NOTE***:
+There might be a src.old/ folder in your widget's folder. This is the case if
+there already exists a src/ folder at generation time. Then, the content is 
+backed up in src.old/ instead of automatically deleted. Just have a look at it 
+and delete it, if it contains no valuable files for you.
+{: .block}
+
+Access widget from Ruby
+-----------
+Now that we know how to create a widget, we want to use it. We want to create a user interface
+with Qt Designer containing our widget. To make it interesting, we use this interface from Ruby.
+For simplicity, we create a subdirectory scripts/ in the widget's main folder
+and put our code there. Normally, you would prefer creating a new project and import your widget.
+
+Since the default widget simply is an adapted "Hello World!", we implemented something
+more useful: A simple position display showing the three values of a 3D vector:
+
+![Simple widget displaying position values](209_position_widget.png)
+{: .align-center}
+
+Now we want to create the user interface.
+In order to start Qt Designer, run *designer* from a sourced shell. This way,
+Rock's designer plugin path is loaded and you can use your widget in the toolbox.
+
+Our user interface shows our position display widget and some control fields to
+update the position. We save it to scripts/testwidget.ui .
+
+Now we write a simple Qt Ruby widget using our user interface and name it test.rb. 
+The cool part is that we can send Typelib types over Qt Slots. This only works if
+we extend our position widget as done in *change_position*.
+
+{coderay:: ruby}
+#! /usr/bin/env ruby
+
+require 'vizkit'
+
+Orocos.initialize
+Orocos.load_typekit "base"
+
+class TestWidget < Qt::Widget
+    
+    def initialize
+        super
+        @window = Vizkit.load(File.join(File.dirname(__FILE__),'testwidget.ui'))
+        @window.but_set_pos.connect(SIGNAL('clicked()')) {change_position}
+        show     
+    end
+    
+    def change_position
+        if(!@window.x_edit.text.empty? && !@window.y_edit.text.empty? && !@window.z_edit.text.empty?)
+            # Generate typelib type from user input
+            rbs = Types::Base::Samples::RigidBodyState.new
+            rbs.position[0] = Float(@window.x_edit.text)
+            rbs.position[1] = Float(@window.y_edit.text)
+            rbs.position[2] = Float(@window.z_edit.text)
+
+            # Enable Qt slots with Typelib types as arguments
+            @window.mywidget.extend QtTyplelibExtension
+            
+            # Send Typelib type :)
+            @window.mywidget.setPose(rbs)
+        end
+        
+    end
+    
+    def show
+        @window.show
+    end
+    
+end
+
+tw = TestWidget.new
+
+Vizkit.exec
+{coderay}
+
+Running test.rb opens our user interface:
+
+![User interface using our position widget](209_user_interface.png)
+{: .align-center}
+
+Summary
+-----------
+To get the example code used for this tutorial, clone git://gitorious.org/rock-tutorials/designer_widget_example.git .

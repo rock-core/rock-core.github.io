@@ -8,3 +8,4 @@ src/sets/*
 src/tasks/*
 src/types/*
 src/osdeps/*
+/nbproject/private/
