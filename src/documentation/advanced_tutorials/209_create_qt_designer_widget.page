@@ -9,6 +9,9 @@ In this tutorial you will learn how to create a Qt widget ready to use with the
 Qt Designer. This widget supports slots with Typelib types as parameters. In addition
 to that, we will show you how to access your widget from the Ruby side.
 
+For more general information about graphical user interface programming in Rock,
+see [here](../gui.html).
+
 To understand this tutorial, basic knowledge about Qt, Qt Designer and qtruby is
 required.
 
@@ -58,7 +61,6 @@ There might be a src.old/ folder in your widget's folder. This is the case if
 there already exists a src/ folder at generation time. Then, the content is 
 backed up in src.old/ instead of automatically deleted. Just have a look at it 
 and delete it, if it contains no valuable files for you.
-{: .block}
 
 Access widget from Ruby
 -----------
