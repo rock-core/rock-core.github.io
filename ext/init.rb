@@ -13,6 +13,7 @@ config['sourcehandler.patterns']['Webgen::SourceHandler::Copy'] << '**/manifest.
 config['sourcehandler.patterns']['Webgen::SourceHandler::Copy'] << '**/*.svg'
 config['sourcehandler.patterns']['Webgen::SourceHandler::Copy'] << '**/*.pdf'
 config['sourcehandler.patterns']['Webgen::SourceHandler::Copy'] << '**/*.rb'
+config['sourcehandler.patterns']['Webgen::SourceHandler::Copy'] << '**/*.bib'
 
 $LOAD_PATH.unshift File.expand_path('..', File.dirname(__FILE__))
 require 'ext/rdoc_links'
