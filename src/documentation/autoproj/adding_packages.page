@@ -3,9 +3,9 @@ title: Adding packages
 sort_info: 50
 ---
 
-This is a summary of the ways you can ask autoproj to build a package for you
+This is a summary of the ways you can ask autoproj to build a package for you.
 
-The first two are for **local** packages, i.e. packages that you don't share
+The first two ways described are for **local** packages, i.e. packages that you don't share
 with the rest of the world. The third one tells you how to share it efficiently
 with other people
 
@@ -22,12 +22,13 @@ then I would edit autoproj/manifest and add
 
   - drivers/orogen/new_driver
 
-to the layout: section. The next time one calls 
+to the layout: section. 
+The next time one calls 
 
 autoproj build
 {: .commandline}
 
-,autoproj will announce that the new
+autoproj will announce that the new
 package has been picked up with a message looking like
 
     auto-adding drivers/orogen/new_driver as an oroGen package
@@ -38,7 +39,7 @@ The method above only works with packages that are already checked out. To add a
 new package and have autoproj check it out for you, you need to basically do two
 things:
 
- * declare it in an autobuild file
+ * declare it in an autobuild file (*.autobuild)
  * add VCS information for it (i.e. "where to get it")
 
 A first step, if you don't want to share that package to a wide audience, is to

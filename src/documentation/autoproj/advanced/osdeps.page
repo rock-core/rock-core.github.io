@@ -24,7 +24,7 @@ dependencies files defined below.
 
 During the build, autoproj looks first for OS dependencies. If no dependency is
 available for that particular platform, it will then look for a source package
-definition and build it. If none of the two exist, an error is returned.
+definition and build it. If none of the two exists, an error is returned.
 
 OS packages
 -----------

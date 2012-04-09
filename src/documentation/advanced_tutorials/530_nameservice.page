@@ -14,8 +14,10 @@ The goal of this tutorial is thus:
 
 More details on this topic you find in the [general documentation](../runtime/setup.html).
 
-For this tutorial you will reuse the components that you created during the [basics tutorials](index.html#tutorials-outline).
-You can also retrieve them directly by [installing the tutorial package set](index.html#installing)
+For this tutorial you will reuse the components that you created during the
+[basics tutorials](../tutorials/index.html#tutorials-outline).
+You can also retrieve them directly by [installing the tutorial package
+set](../tutorials/index.html#installing)
 
 ***IMPORTANT***:
 For this tutorial to work you need to have an +active+ network device, otherwise Avahi will not publish any information. 

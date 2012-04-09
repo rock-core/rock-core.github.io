@@ -32,7 +32,7 @@ Selects the current directory if none is given
 
 **Updating and maintaining your installation:**
 
-In order to update your 
+In order to update your packages:
 
 autoproj update
 {: .commandline}
@@ -108,7 +108,7 @@ the questions you already answered. So if you want to change your configuration,
 autoproj build --reconfigure
 {: .commandline}
 
-Alternatively, you can edit the autoproj/config.yml file directly.
+Alternatively, you can edit autoproj/config.yml directly.
 
 By default, autoproj does not automatically update the package after an reconfiguration. To do
 that, you have to explicitly update your packages by calling. 

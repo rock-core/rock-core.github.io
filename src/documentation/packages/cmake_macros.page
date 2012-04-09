@@ -60,8 +60,11 @@ necessary link and compilation flags are added
 that the library depends upon. It is assumed that the Find*.cmake scripts
 follow the CMake accepted standard for variable naming
 
-**MOC**: if the library is Qt-based, a list of headers that should be processed by
-moc. The resulting implementation files are built into the library
+**MOC**: if the library is Qt-based, this is a list of either source or header
+files of classes that need to be passed through Qt's moc compiler.  If headers
+are listed, these headers should be processed by moc, with the resulting
+implementation files are built into the library. If they are source files, they
+get added to the library and the corresponding header file is passed to moc.
 
 Library Targets (<tt>rock_library</tt>)
 ---------------------------------------
@@ -102,8 +105,11 @@ follow the CMake accepted standard for variable naming
 **HEADERS**: a list of headers that should be installed with the library. They get
 installed in include/project_name
 
-**MOC**: if the library is Qt-based, a list of headers that should be processed by
-moc. The resulting implementation files are built into the library
+**MOC**: if the library is Qt-based, this is a list of either source or header
+files of classes that need to be passed through Qt's moc compiler.  If headers
+are listed, these headers should be processed by moc, with the resulting
+implementation files are built into the library. If they are source files, they
+get added to the library and the corresponding header file is passed to moc.
 
 **NOINSTALL**: by default, the library gets installed on 'make install'. If this
 argument is given, this is turned off
@@ -149,8 +155,11 @@ follow the CMake accepted standard for variable naming
 **HEADERS**: a list of headers that should be installed with the library. They get
 installed in include/project_name
 
-**MOC**: if the library is Qt-based, a list of headers that should be processed by
-moc. The resulting implementation files are built into the library
+**MOC**: if the library is Qt-based, this is a list of either source or header
+files of classes that need to be passed through Qt's moc compiler.  If headers
+are listed, these headers should be processed by moc, with the resulting
+implementation files are built into the library. If they are source files, they
+get added to the library and the corresponding header file is passed to moc.
 
 **NOINSTALL**: by default, the library gets installed on 'make install'. If this
 argument is given, this is turned off
@@ -185,8 +194,12 @@ library, the headers get installed in include/package_name
 The following arguments are mandatory:
 
 **SOURCES**: list of the C++ sources that should be built into that library
-**MOC**:     a list of headers that should be processed by moc. The resulting 
-         implementation files are built into the library
+
+**MOC**: if the library is Qt-based, this is a list of either source or header
+files of classes that need to be passed through Qt's moc compiler.  If headers
+are listed, these headers should be processed by moc, with the resulting
+implementation files are built into the library. If they are source files, they
+get added to the library and the corresponding header file is passed to moc.
 
 The following optional arguments are available:
 
@@ -236,6 +249,9 @@ necessary link and compilation flags are added
 that the library depends upon. It is assumed that the Find*.cmake scripts
 follow the CMake accepted standard for variable naming
 
-**MOC**: if the library is Qt-based, a list of headers that should be processed by
-moc. The resulting implementation files are built into the library
+**MOC**: if the library is Qt-based, this is a list of either source or header
+files of classes that need to be passed through Qt's moc compiler.  If headers
+are listed, these headers should be processed by moc, with the resulting
+implementation files are built into the library. If they are source files, they
+get added to the library and the corresponding header file is passed to moc.
 

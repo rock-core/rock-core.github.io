@@ -3,4 +3,9 @@ MultiFlex21b
 *.sw?
 webgen.cache
 src/api/*
-src/package_directory/*
+src/pkg/*
+src/sets/*
+src/tasks/*
+src/types/*
+src/osdeps/*
+/nbproject/private/

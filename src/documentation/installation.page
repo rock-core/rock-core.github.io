@@ -53,7 +53,7 @@ Other bootstrapping options
  * **to build all of Rock**, use [this bootstrap.sh](http://gitorious.com/rock/buildconf-all/blobs/raw/master/bootstrap.sh)
    instead of the one listed above
  * you can also bootstrap the base system and then cherry-pick the packages you want. Have a look in [the package
-   directory](/package_directory/index.html), and add the package names to the
+   directory](/package_directory.html), and add the package names to the
    layout section in autoproj/manifest. For instance,  if you want to
    get the [Xsens IMU component](http://rock-robotics.org/package_directory/packages/drivers_orogen_xsens_imu/index.html),
    the layout section should look like:

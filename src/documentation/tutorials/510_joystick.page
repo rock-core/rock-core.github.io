@@ -19,7 +19,7 @@ We are using here an existing task of the rock-robotics framework and the task f
 tutorial, so we don't have to implement anything.
 
 In order to get our control we need a task that supplies us with 'base::MotionCommand2D'. 
-For that it is recommended to take a look into the [package directory](../../package_directory/).
+For that it is recommended to take a look into the [package directory](/package_directory.html).
 You will have two options there:
 
  * look for a specific orogen package in the Packages section. For instance, you can search for

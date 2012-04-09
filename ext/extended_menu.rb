@@ -6,7 +6,14 @@ module Webgen::Tag
             tree = __specific_menu_tree_for__(content_node)
             return if !tree
 
+            if filter = param('tag.menu.filter')
+                filter = Regexp.new(filter)
+            end
             tree.children.delete_if do |menu_info|
+                if filter && menu_info.node.alcn !~ filter
+                    next(true)
+                end
+
                 si = menu_info.node['sort_info']
                 next if !si
 
@@ -26,4 +33,5 @@ end
 config = Webgen::WebsiteAccess.website.config
 config.tag.menu.range_start nil, :mandatory => false
 config.tag.menu.range_end   nil, :mandatory => false
+config.tag.menu.filter   nil, :mandatory => false
 

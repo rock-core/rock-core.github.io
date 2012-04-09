@@ -13,17 +13,17 @@ Actually you can define a deployment in the same orogen file as the task.
 But that is not recommended - best pratice is to have an own orogen project for your deployments.
 
 **Changing the periodicity**
-Let's get back to the inital [messenger example](/documentation/tutorials/110_basics_create_component). 
+Let's get back to the inital [messenger example](/documentation/tutorials/110_basics_create_component.html). 
 The periodicity was set to 1.0 seconds for the default deployment.Now the task 
 should be executed at a higher rate. Therefor create a new orogen-project (e.g. in basic_tutorials/orogen):
 {coderay:: text}
 rock-create-orogen messenger_deployments
-end{coderay}
+{coderay}
 
 When asked for dependencies give the messager producer and consumer task projects, e.g.:
 {coderay:: text}
 basics_tutorial/orogen/message_producer, basics_tutorial/orogen/message_consumer
-end{coderay}
+{coderay}
 
 In the file *messenger_deployments.orogen* delete the content and add the following:
 
@@ -35,12 +35,12 @@ using_task_library "message_producer"
 deployment "faster_message_producer" do 
     task("producer","message_producer::Task").periodic(0.1)
 end
-end{coderay}
+{coderay}
 
 Now do 
 {coderay:: text}
 amake
-end{coderay}
+{coderay}
 
 **Adding a default logger:** 
 To log data produced by an orocos task you have to add a logger to a deployment. This 
@@ -55,10 +55,10 @@ deployment "faster_message_producer" do
     task("producer","message_producer::Task").periodic(0.1)
     add_default_logger
 end
-end{coderay}
+{coderay}
 
 **Advanced Tip** This adds [a logger
-component](../../package_directory/orogen_tasks/logger__Logger.html) to the
+component]({rock_task: logger::Logger}) to the
 deployment. This deployment has a standard name of _deployment\_name_\_Logger
 that can then be picked up by orocos.rb. Adding a logger per process, this way
 ensures that you are not wasting CPU time marshalling / demarshalling data for

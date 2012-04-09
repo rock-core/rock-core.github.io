@@ -25,12 +25,17 @@ $(document).ready(function () {
 --- name:leftbar 
 <div class="nav3">
   <ul><li class="title">Package Directory</li>
-      {menu: {start_level: 2, max_levels: 4, show_current_subtree_only: true, nested: true, used_nodes: files, range_end: 99}}
+      <li class="webgen-menu-level1"><a href="{relocatable: /pkg}">Packages</a></li>
       <li class="separator"></li>
-      {menu: {start_level: 2, max_levels: 4, show_current_subtree_only: true, nested: true, used_nodes: files, range_start: 100, range_end: 999}}
+      <li class="webgen-menu-level1"><a href="{relocatable: /tasks}">oroGen tasks</a></li>
       <li class="separator"></li>
-      {menu: {start_level: 2, max_levels: 4, show_current_subtree_only: true, nested: true, used_nodes: files, range_start: 1000, range_end: 1999}}
+      <li class="webgen-menu-level1"><a href="{relocatable: /types}">oroGen types</a></li>
       <li class="separator"></li>
-      {menu: {start_level: 2, max_levels: 4, show_current_subtree_only: true, nested: true, used_nodes: files, range_start: 2000, range_end: 2999}}
+      <li class="webgen-menu-level1"><a href="{relocatable: /sets}">Package Sets</a></li>
+      <li class="separator"></li>
+      <li class="webgen-menu-level1"><a href="{relocatable: /osdeps}">OS Dependencies</a></li>
+  </ul>
+  <ul><li class="title">Status</li>
+      {menu: {start_level: 1, filter: /status_.*\.html}}
   </ul>
 </div>
