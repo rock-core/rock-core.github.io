@@ -1,5 +1,5 @@
 ---
-title: Writing a 3D Vizkit Visualizer
+title: Writing a 3D Vizkit plugin
 sort_info: 600
 ---
 Abstract
@@ -112,34 +112,130 @@ Now you are done with your first Vizkit plugin. There are two different ways to 
 How you start it using a ruby script is part of the Advanced Vizkit-Plugin Tutorial.
 
 
-More than one Type
------------
+Displaying more than one type with a single plugin
+--------------------------------------------------
 
 If you want to have more than one type to represent the internal state of your plugin you can inherit additionally from VizPluginAddType< SecondType >.
 {coderay:: c++}
 namespace vizkit
 {
-    class SphereVisualization
-        : public vizkit::VizPlugin<base::Vector3d>
-        , public vizkit::VizPluginAddType<int>
-        , boost::noncopyable
-    {
-    public:
-        SphereVisualization();
-        ~SphereVisualization();
-
-    protected:
-        virtual osg::ref_ptr<osg::Node> createMainNode();
-        virtual void updateMainNode(osg::Node* node);
-        virtual void updateDataIntern(base::Vector3d const& value);
-        virtual void updateDataIntern(int const& value);
-        
-    private:
-        struct Data;
-        Data* p;
-    };
+  class SphereVisualization
+    : public vizkit::VizPlugin<base::Vector3d>
+    , public vizkit::VizPluginAddType<int>
+    , boost::noncopyable
+  {
+  public:
+    SphereVisualization();
+    ~SphereVisualization();
+  
+  protected:
+    virtual osg::ref_ptr<osg::Node> createMainNode();
+    virtual void updateMainNode(osg::Node* node);
+    virtual void updateDataIntern(base::Vector3d const& value);
+    virtual void updateDataIntern(int const& value);
+      
+  private:
+    struct Data;
+    Data* p;
+  };
 }
 {coderay}
+
 Then of course you have to add the method updateDataIntern with the new type as parameter too.
 
-This way you can add various more types.
+Configuration Interface
+-----------------------
+To add configuration parameters, one should use [the Qt Property
+system](http://qt-project.org/doc/qt-4.8/properties.html). This makes sure that
+the properties are accessible on the left configuration pane of the Vizkit3D
+main window. For instance, to make the color configurable:
+
+{coderay:: c++}
+namespace vizkit
+{
+  class SphereVisualization
+  {
+  [...]
+    Q_PROPERTY(QColor color READ getColor WRITE setColor);
+  public:
+    void setColor(QColor const& color);
+    QColor getColor() const;
+  }
+}
+{coderay}
+
+Interfacing with Ruby scripts
+-----------------------------
+There is the need for slightly more work to make this new plugin available on
+the Ruby side. This is done by using Qt's dynamic invocation system (the same
+one that is used for Qt signals/slots).
+
+To make your plugin available in Ruby, one has to do two things:
+
+ * export the methods that one wants to have accessible on the Ruby side using
+   the Q_INVOKABLE Qt macro.
+ * register the plugin on the Vizkit ruby side
+
+The following limitations apply:
+
+ * the method cannot have a return value
+ * the method can have only up to 10 arguments
+
+**Exporting C++ methods** In the SphereVisualization vizkit plugin above, the
+updateData method would be exported by doing:
+
+{coderay:: c++}
+namespace vizkit
+{
+  class SphereVisualization
+  {
+  [...]
+    // This is required manually as Qt does not know about templates and
+    // updateData is a templated method
+    Q_INVOKABLE void updateData(base::Vector3d const& v)
+    { vizkit::VizPluginBase::updateData(v) }
+  };
+}
+{coderay}
+
+Any method can be exported this way. It is for instance customary to mark the
+setters and getters for configuration parameters with Q_INVOKABLE.
+
+**Registering the plugin on the vizkit side**. When using the Rock CMake macros,
+one would edit a file called viz/vizkit_plugin.rb in the package and add
+
+{coderay:: ruby}
+# The first argument is arbitrary. It is used in the next calls
+#    to refer to the plugin
+# The second argument is the name of the shared object (without the
+#    -viz suffix). With Rock CMake macros, this is the base name of
+#    your package (e.g. corridor_planner for planning/corridor_planner)
+# The third argument is the name of the class, without namespaces
+Vizkit::UiLoader.register_3d_plugin 'SphereVisualization',
+    'mypackage', 'SphereVisualization'
+
+# The first argument is the same as the first argument
+#    to register_3d_plugin
+# The second argument is the typelib type name of the type you want to
+#    visualize. It is usually the same as the C++ type name, only with
+#    a leading slash and :: replaced by /
+# The third argument is the name of the method that should be called to
+#   display the requested samples
+Vizkit::UiLoader.register_3d_plugin_for 'SphereVisualization',
+    '/base/Vector3d', :updateData
+{coderay}
+
+**Using the plugin**. Once you've successfully completed these steps, your new
+plugin will be automatically be made available on the rock-replay and
+rock-display GUIs. Moreover, it can be accessed in Ruby scripts directly:
+
+{coderay:: ruby}
+require 'vizkit'
+
+# NOTE: the need for plugins['SphereVisualization'] is a workaround for a
+# NOTE: bug that is currently present in vizkit. One will be able, later to
+# NOTE: remove it (we'll keep backward compatibility)
+viz = Vizkit.default_loader.
+    SphereVisualization.plugins['SphereVisualization']
+{coderay}
+
