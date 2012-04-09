@@ -23,7 +23,9 @@ That means that, once a log file has been generated, it can be read and analyzed
 
 Making oroGen deployments logging-ready
 ---------------------------------------
-The only step needed to make an oroGen deployment "ready to log" is to add an add_default_logger statement to your deployment specification. For instance:
+If you are using manually created deployments, the only step needed to make an
+oroGen deployment "ready to log" is to add an add_default_logger statement to
+your deployment specification. For instance:
 
 {coderay:: ruby}
 deployment "test_imu" do
@@ -31,6 +33,16 @@ deployment "test_imu" do
   add_default_logger
 end
 {coderay}
+
+If you are using the model_name => task_name syntax in orocos.rb, as for
+instance
+
+{coderay:: ruby}
+Orocos.run 'xsens_imu::Task' => 'imu' do
+end
+{coderay}
+
+then logging is already available.
 
 Logging all output ports using Orocos.rb
 ----------------------------------------
@@ -42,25 +54,32 @@ Orocos.log_all
 {coderay}
 
 after all the deployments have been started. It will setup each deployment's
-logger to log all output ports of the deployment. Logging data is generated in a
-"name._index_.log" file, where name is the deployment's name and _index_ is
-incremented to avoid overwriting old log files (i.e. name.0.log by default, but
-if name.0.log exists, then name.1.log and so on). A complete example with the
-test_imu deployment above would be
+logger to log all output ports of the deployment. Additionally, it will setup a
+log file storing the task's property values and their changes, for the
+properties that are accessed from the Ruby process.
+
+Port logs are stored in a "name._index_.log" file, where name is the
+deployment's name and _index_ is incremented to avoid overwriting old log files
+(i.e. name.0.log by default, but if name.0.log exists, then name.1.log and so
+on). A complete example would be:
+
+Property logs are all stored in a single file called "properties._index_.log".
+
+How to extract data from the log files is the subject of the following
+documentation pages.
 
 {coderay:: ruby}
 # Start the test_imu deployment
-Orocos.run "test_imu" do |p|
+Orocos.run 'xsens_imu::Task' => 'imu' do
   # Set up logging
   Orocos.log_all
 
   # Start the IMU task
-  task = p.task 'imu'
+  task = Orocos::TaskContext.get 'imu'
   task.start
 
-  # Poll the task's states every 100 ms 
-  # and report if one of them stops
-  Orocos.survey(0.1)
+  # Poll the task's states every 100 ms and report state changes.
+  Orocos.watch(task)
 end
 {coderay}
 
@@ -90,15 +109,21 @@ So, to log a port, you basically need to
 With orocos.rb, this is done with:
 
 {coderay:: ruby}
-logger = p.task 'Logger'
-imu     = p.task 'imu'
+Orocos.run 'xsens_imu::Task' => 'imu' do
+  logger = Orocos::TaskContext.get 'imu_Logger'
+  imu    = Orocos::TaskContext.get 'imu'
 
-logger.file = "logfile.log"
+  logger.file = "logfile.log"
 
-# Add a stream in the log file named "orientations".
-# This also creates a port with the same name.
-logger.createPort 'orientations', '/base/Orientation3D'
-# And log the IMU output
-imu.orientations.connect_to(logger.orientations)
+  # Add a stream in the log file named "imu.orientation_samples", and connect
+  # the imu port to it with a buffer of size 200
+  logger.log(imu.orientation_samples, 200)
+
+  # Another way is to use the raw API on the logger task. createLoggingPort
+  # creates the stream on the log file as well ass the logger input. You just
+  # have to connect the output port to the logger's input
+  logger.createLoggingPort('orientations', '/base/samples/RigidBodyState', [])
+  imu.orientation_samples.connect_to(logger.orientations, :type => :buffer, :size => 200)
+end
 {coderay}
 
