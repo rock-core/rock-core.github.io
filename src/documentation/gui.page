@@ -240,12 +240,22 @@ Widget for plotting sensor data
 {coderay:: ruby}
   require 'vizkit'
   orocos.run 'my_sensor' do
-    widget = Vizkit.default_loader.PlotWidget
+    widget = Vizkit.default_loader.Plot2d
     sensor = Orocos::TaskContext.get 'sensor'
+    sensor.configure
     sensor.start 
+
+    #first way to plot data 
     sensor.data.connect_to |sample,_|
-      widget.addData sample.time.to_f,sample.data.to_f
+      widget.update sample.field2.to_f,"sample1"
+      widget.update sample.field2.to_f,"sample2"
     end
+
+    #second way to plot data
+    Vizkit.display sensor.data,:widget => widget,:subfield => [:field1]
+    Vizkit.display sensor.data,:widget => widget,:subfield => [:field2]
+
+    widget.show
     Vizkit.exec
   end
 {coderay}

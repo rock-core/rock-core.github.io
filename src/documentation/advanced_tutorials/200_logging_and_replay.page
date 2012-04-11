@@ -42,6 +42,9 @@ message_producer.0.log. There is also a file message_consumer.0.log which
 holds no data since the task has no output port. The digit in the end
 increases automatically.
 
+The logs of the properties and of the changes to them are stored in a file
+called *properties.x.log* in the current working directory.
+
 rock-replay
 -----------
 Rock is shipped with a command line tool for displaying the content of log
@@ -54,6 +57,34 @@ sample. To display the log file recorded above call:
   
 *rock-replay message_producer.0.log*
 
+oroconf
+-------
+The property logs (e.g. properties.0.log) allow to know for sure what was the
+configuration of the task at each point during the execution. One can visualize
+them also using rock-replay, or can also display as a YAML configuration file
+using the oroconf tool.
+
+For instance, to display the configuration as it was at 1333968549.2281 (you
+usually obtain the time by copy/pasting it from a rock-replay window when
+something notable happens), one would do:
+
+{coderay:: text}
+oroconf logextract properties.0.log message_producer 1333968549.2281
+{coderay}
+
+A common use-case is to display the configuration that aborted an experiment
+(i.e. the last configuration). The @last keyword can be used in place of time to
+do that:
+
+{coderay:: text}
+oroconf logextract properties.0.log message_producer @last
+{coderay}
+
+Finally, once can save the configuration in a file to use with runscripts later:
+
+{coderay:: text}
+oroconf logextract properties.0.log message_producer @last --save=file.yml
+{coderay}
 
 Summary
 -----------
