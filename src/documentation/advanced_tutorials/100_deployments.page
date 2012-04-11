@@ -3,26 +3,47 @@ title: Deployments
 sort_info: 100
 ---
 
-Deployments
-------------
-Deployments define how tasks are executed. For now you have used deployments implicitly as for each
-task a default deployment is created. The default deployments execution schema is given in the task description by statements like [periodic(1.0)](/documentation/tutorials/110_basics_create_component.html) or [port_driven "messages"](/documentation/tutorials/130_basics_connect_components.html). Furthermore the default deployments add a logging component by default and each task is ran in its own process. Deployments can be specified explicitly, that allows a more flexible definition of the execution schema and putting multiple tasks into one process. The definition of deployments is subject of the following sections. For further information, also have a look on the documentation page [here](/documentation/orogen/deployment.html).
+Conceptually, the execution of Orocos tasks is split into two parts. First, the
+task encapsulates the so-called "computation" part of the component. It is
+declared and developped, but _how_ it should be executed is left out. Second, it
+is __deployed__: the task is associated with a _trigger mechanism_ that defines
+when the task's computation should be executed.
 
-Deployments are specified in an orogen project like tasks are. 
-Actually you can define a deployment in the same orogen file as the task. 
-But that is not recommended - best pratice is to have an own orogen project for your deployments.
+Until now, you have used deployments implicitly as, for each task, oroGen
+defines a default deployment for convenience reasons. The default deployments
+execution schema is given in the task description by statements like
+[periodic(1.0)](/documentation/tutorials/110_basics_create_component.html) or
+[port_driven "messages"](/documentation/tutorials/130_basics_connect_components.html).
+Furthermore the default deployments add a logging component by default and each
+task is ran in its own process.
 
-**Changing the periodicity**
+In order to allow a more flexible definition of the execution schema and putting multiple
+tasks into one process, explicit deployments can also be specified. They
+override the default deployment of the task. For further information, also have a look on the
+documentation page [here](/documentation/orogen/deployment.html).
+
+Deployments are specified in an orogen project, the same way than tasks are.
+Even though it is possible to define deployments in the same orogen file as the
+tasks, that is not recommended. Best pratice is to create a separate oroGen
+project for all your deployments, in order to keep an overview of how all the
+tasks on your system are defined.
+
+Defining deployments
+--------------------
+
 Let's get back to the inital [messenger example](/documentation/tutorials/110_basics_create_component.html). 
-The periodicity was set to 1.0 seconds for the default deployment.Now the task 
-should be executed at a higher rate. Therefor create a new orogen-project (e.g. in basic_tutorials/orogen):
+The periodicity was set to 1.0 seconds for the default deployment. Let's assume
+now that the task should be executed at a higher rate. Create a new oroGen
+project (for instance in tutorials/orogen):
+
 {coderay:: text}
 rock-create-orogen messenger_deployments
 {coderay}
 
 When asked for dependencies give the messager producer and consumer task projects, e.g.:
+
 {coderay:: text}
-basics_tutorial/orogen/message_producer, basics_tutorial/orogen/message_consumer
+tutorials/orogen/message_producer, tutorials/orogen/message_consumer
 {coderay}
 
 In the file *messenger_deployments.orogen* delete the content and add the following:
@@ -37,30 +58,52 @@ deployment "faster_message_producer" do
 end
 {coderay}
 
-Now do 
+And, as usual, run in the same directory as the oroGen file
+
 {coderay:: text}
 amake
 {coderay}
 
-**Adding a default logger:** 
-To log data produced by an orocos task you have to add a logger to a deployment. This 
-is done by the ruby method *add_default_logger*. In this case a logger is added to the message_producer_deployment.
+Usage in Ruby scripts
+---------------------
+The defined deployments are used in Ruby scripts by replacing the model_name =>
+task_name syntax with the deployment name. Moreover, the TaskContext.get stanzas
+must use the task names declared in the specific deployments (first argument to
+the "task" statement, as e.g. producer above). Using the explicit deployment above
+for the [messenger example
+script](tutorials/130_basics_connect_components.html), while keeping the default
+deployment for the consumer would be done with:
 
 {coderay:: ruby}
-name "messenger_deployments"
+require 'orocos'
+require 'readline'
 
-using_task_library "message_producer"
+include Orocos
+Orocos.initialize
 
-deployment "faster_message_producer" do 
-    task("producer","message_producer::Task").periodic(0.1)
-    add_default_logger
+Orocos.run 'faster_message_producer',
+    'message_consumer::Task' => 'message_consumer' do  
+  
+  # When using explicit deployments, the name that should be used in
+  # TaskContext.get must be the same name than given as first argument of the
+  # "task" statement in the deployment definition
+  message_producer = TaskContext.get 'producer'
+  message_consumer = TaskContext.get 'message_consumer'
+  
+  # Never assume that a component supports being reconnected
+  # at runtime, it might not be the case
+  #
+  # If you have the choice, connect before the component is
+  # even configured
+  message_producer.messages.connect_to message_consumer.messages
+  
+  message_producer.configure
+  message_producer.start
+  
+  message_consumer.start
+  
+  Readline::readline("Press ENTER to exit\n") do
+  end 
 end
 {coderay}
 
-**Advanced Tip** This adds [a logger
-component]({rock_task: logger::Logger}) to the
-deployment. This deployment has a standard name of _deployment\_name_\_Logger
-that can then be picked up by orocos.rb. Adding a logger per process, this way
-ensures that you are not wasting CPU time marshalling / demarshalling data for
-logging purposes.
-{: .note}
