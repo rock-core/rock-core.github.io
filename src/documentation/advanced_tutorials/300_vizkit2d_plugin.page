@@ -1,6 +1,6 @@
 ---
-title: Create Qt Designer Widgets
-sort_info: 209
+title: Writing a Vizkit Plugin 
+sort_info: 300
 ---
 
 Abstract
@@ -45,7 +45,7 @@ $ ./build/src/mywidgetTest
 
 Without changes, the generated sample widget should look like this:
 
-![Sample Widget](209_sample_widget.png)
+![Sample Widget](300_sample_widget.png)
 {: .align-center}
 
 The widget and the designer plugin will be installed as a library into Rock's 
@@ -72,7 +72,7 @@ and put our code there. Normally, you would prefer creating a new project and im
 Since the default widget simply is an adapted "Hello World!", we implemented something
 more useful: A simple position display showing the three values of a 3D vector:
 
-![Simple widget displaying position values](209_position_widget.png)
+![Simple widget displaying position values](300_position_widget.png)
 {: .align-center}
 
 Now we want to create the user interface.
@@ -133,7 +133,7 @@ Vizkit.exec
 
 Running test.rb opens our user interface:
 
-![User interface using our position widget](209_user_interface.png)
+![User interface using our position widget](300_user_interface.png)
 {: .align-center}
 
 Summary
