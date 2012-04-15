@@ -50,6 +50,10 @@ data_analysis:
     title: Data Analysis
     sort_info: 250
 
+graphical_user_interface:
+    title: Graphical User Interface
+    sort_info: 300
+
 package_directory:
     title: Package Directory
     sort_info: 500

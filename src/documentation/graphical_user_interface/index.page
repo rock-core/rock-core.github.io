@@ -1,0 +1,14 @@
+---
+title: Overview
+sort_info: 0
+---
+
+Robots can be very different and so are their user interfaces. To support the
+programmer in a flexible way, a ruby library was introduced which brings Rock and
+Qt together.
+
+Based on this library there are a number of widgets which can be used to develop
+a custom GUI in only a few minutes. For more complicated GUIs custom widgets
+can easily be added by implementing the QDesignerCustomWidgetInterface.
+
+![Overview](0_overview.png)
