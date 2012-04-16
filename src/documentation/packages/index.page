@@ -39,8 +39,7 @@ This is not a hard requirement. Using the CMake macros and the CMake provided by
 Rock only ensures that you are following the [Rock guidelines on C++ library
 packages](http://rock.opendfki.de/wiki/WikiStart/Standards/RG4)
 
-C++ library packages can quickly be created using <tt>rock-create-lib</tt>. See
-[this tutorial](../tutorials/100_basics_create_library.html) for detailed information.
+C++ library packages can quickly be created using <tt>rock-create-lib</tt>. See [this tutorial](../tutorials/100_basics_create_library.html) for detailed information.
 
 Information about the package (including dependencies w.r.t. other packages) is
 added to the [manifest.xml](../autoproj/advanced/manifest-xml.html) file in the
@@ -57,18 +56,23 @@ top directory of the package.
 
 vizkit Widgets
 --------------
-vizkit widget packages are C++ library packages that define Qt widgets usable by
-vizkit. The tutorial for vizkit Widgets is a TODO and has still to be written.
+vizkit widget packages are C++ library packages that define Qt widgets, and export
+these widgets in a way that make them usable by vizkit, the Rock visualization
+library. Have a look at the
+[tutorials](../advanced_tutorials/210_data_visualization.html) and the [associated
+documentation](../graphical_user_interface)
 
 vizkit 3D Plugins
 --------------
 vizkit 3D Plugin packages are C++ library packages that define plugins usable by
 vizkit's Vizkit3DWidget, allowing to display data in a 3D view using
-OpenSceneGraph. See [this tutorial](../advanced_tutorials/600_vizkit_plugin.html) for more information.
+OpenSceneGraph. Have a look at the
+[tutorials](../advanced_tutorials/600_vizkit_plugin.html) and the [associated
+documentation](../graphical_user_interface)
 
 oroGen projects
 ----------------
 oroGen projects are packages which contain a toplevel <tt>.orogen</tt> file
 which contain description of components. See [this
-tutorial](../tutorials/110_basics_create_component.html) for more
+tutorial](../tutorials/110_basics_create_component.html) and [the associated documentation](../orogen) for more
 information.
