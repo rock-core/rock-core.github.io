@@ -13,7 +13,6 @@ Further we will wrap it into an orocos task and fire it up.
 Implementation
 -----------
 
-
 ### Create a new library
 We start by entering the tutorials folder and creating a library named 'rock-tutorial' by using the 'rock-create-lib' command. 
 {coderay:: text}

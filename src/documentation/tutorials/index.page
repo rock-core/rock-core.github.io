@@ -42,13 +42,13 @@ the build system and then in components.
  * [Configure your components](120_basics_configure_component.html)
  * [Run the components together](130_basics_connect_components.html)
 
-How to access the componenten and the data is shown here:
-
- * [Displaying data, logging and replay](200_display_logging_and_replay.html)
-
-If you want to know how to install packages have a look at the following:
+If you want to know how to find and install packages have a look at the following:
  
  * [Installing packages](190_installing_packages.html)
+
+How to use logging:
+
+ * [Displaying data, logging and replay](200_display_logging_and_replay.html)
 
 **Showcase Example**
 

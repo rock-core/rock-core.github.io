@@ -74,5 +74,11 @@ To display the log file recorded above call:
 
 Summary
 -----------
-In this tutorial you learned how to examine your task with the task inspector, how to activate logging and how to replay the logged data.
+In this tutorial you have learned to: 
+
+ * examine a live task with rock-display
+ * activate logging
+ * visualize the logged data using rock-replay
+
+Progress to the [next tutorial](500_simulate_a_robot.html).
 

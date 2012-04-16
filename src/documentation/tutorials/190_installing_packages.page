@@ -8,6 +8,13 @@ Abstract
 In this tutorial you will learn how to install the rock widget collection 
 and Vizkit which are libraries for displaying online and log data.
 
+Finding available packages and oroGen tasks
+-------------
+Rock's [package directory](/package_directory.html) gives you a general
+overview of available 'standard' packages, oroGen tasks and types that are used
+on oroGen tasks. It also gives you links to the API documentation for packages
+that provide one.  Go have a look.
+
 Package / Packages Sets
 -----------
 Every repository which contains libraries, widgets, plugins, orogen tasks or orogen deployments 
@@ -29,7 +36,7 @@ section [Installing Packages](#installing-packages).
 
 If autoporj reports that it cannot find a match for the packages go to section [Adding Package Sets](#adding-package-sets)
 
-Adding Package Sets
+Adding Package Sets {#adding-package-sets}
 -----------
 Here it is assumed that autoproj does not know the desired packages at all. In this
 case you have to tell autoproj where it can find the package sets which contains
@@ -61,7 +68,7 @@ package_sets:
 Now autoproj nows about all packages which are part of the package sets. If you want to install one of them
 go to to the next section.
 
-Installing Packages 
+Installing Packages {#installing-packages}
 -----------
 Here it is assumed that autoproj nows the desired packages and *autoproj list-config package_name* reports
 that they are not checkout. If autoproj does not find a match for your desired package go to the section above.
@@ -92,4 +99,15 @@ command line tool, otherwise vizkit was not installed.
     
     source env.sh
     rock-replay
+
+Summary
+---------------------
+In this tutorial you have learned to: 
+
+ * browse packages in the Rock package directory
+ * find an oroGen task that provides or consumes a given datatype
+ * install the package
+
+Progress to the [next tutorial](200_display_logging_and_replay.html).
+
 
