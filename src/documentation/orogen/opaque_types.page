@@ -57,7 +57,7 @@ opaque_type '/Eigen/Vector3d", "/wrappers/Vector3d"
 where wrappers::Vector3d is defined in the my_opaque_wrapper.h header. Moreover,
 if getting the definition of the opaque type requires new include directories
 that are not yet added to the typekit through the [using_library
-mechanism]({relocatable: cross_project.html#using_library}), you will have to detect them in
+mechanism](cross_project.html#using_library), you will have to detect them in
 the Ruby code and add them with the :include option
 
 {coderay:: ruby}

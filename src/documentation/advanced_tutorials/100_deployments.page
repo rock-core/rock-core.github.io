@@ -12,8 +12,8 @@ when the task's computation should be executed.
 Until now, you have used deployments implicitly as, for each task, oroGen
 defines a default deployment for convenience reasons. The default deployments
 execution schema is given in the task description by statements like
-[periodic(1.0)](/documentation/tutorials/110_basics_create_component.html) or
-[port_driven "messages"](/documentation/tutorials/130_basics_connect_components.html).
+[periodic(1.0)](../tutorials/110_basics_create_component.html) or
+[port_driven "messages"](../tutorials/130_basics_connect_components.html).
 Furthermore the default deployments add a logging component by default and each
 task is ran in its own process.
 
@@ -31,7 +31,7 @@ tasks on your system are defined.
 Defining deployments
 --------------------
 
-Let's get back to the inital [messenger example](/documentation/tutorials/110_basics_create_component.html). 
+Let's get back to the inital [messenger example](../tutorials/110_basics_create_component.html). 
 The periodicity was set to 1.0 seconds for the default deployment. Let's assume
 now that the task should be executed at a higher rate. Create a new oroGen
 project (for instance in tutorials/orogen):
@@ -71,7 +71,7 @@ task_name syntax with the deployment name. Moreover, the TaskContext.get stanzas
 must use the task names declared in the specific deployments (first argument to
 the "task" statement, as e.g. producer above). Using the explicit deployment above
 for the [messenger example
-script](tutorials/130_basics_connect_components.html), while keeping the default
+script](../tutorials/130_basics_connect_components.html), while keeping the default
 deployment for the consumer would be done with:
 
 {coderay:: ruby}

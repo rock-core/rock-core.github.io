@@ -153,7 +153,7 @@ Connecting a custom GUI with log files
 If you want to connect your GUI with a log file you can use the same method
 like for an orocos task. The following scripts connects test_gui.ui to a
 component, which uses the log from the [previous
-tutorial](200_logging_and_replay.html). Since we only display data, the button is
+tutorial](200_replay_1.html). Since we only display data, the button is
 not connected.
 
 {coderay:: ruby}
@@ -179,4 +179,4 @@ Summary
 In this tutorial you learned how to write a simple GUI and how to
 connect its object with log files and orocos tasks. 
 
-Progress to the [next tutorial](500_writing_a_control_component.html).
+Progress to the [next tutorial](220_3d_data_visualization.html).

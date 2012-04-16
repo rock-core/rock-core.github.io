@@ -9,7 +9,7 @@ In this tutorial you will learn how to create a C++ vizkit widget for displaying
 2D data like images, numbers and text.
 
 For more general information about graphical user interface programming in Rock,
-see [here](../gui.html).
+see [here](../graphical_user_interface).
 
 Create Qt Designer Widget
 -----------
@@ -53,12 +53,19 @@ Now that we know how to create a widget, we want to use it. Therefore we want to
 create an user interface with the Qt Designer containing our widget.
 
 Since the default widget is an adapted "Hello World!", we implemented something
-more useful: A simple position display showing the three values of a vector and a slot 
-called setPose with a Typelib type as argument which can be transparently transported 
-between ruby and c++ by a ruby extension 
+more useful: a simple position display showing the three values of a vector and a slot 
+called setPose with takes a base::samples:RigidBodyState as argument.
 
-So far no return values are supported for slots with Typelib types.
-{: .warning}
+<div markdown="1" class="warning">
+**Limitations** The standard Qt/Ruby bindings do not support arbitrary types as arguments. Currently, the following limitations apply in Rock when calling C++ slots from Ruby.
+
+ * if all arguments and return values are standard C++ or Qt types, the only
+   limitation is a maximum of 10 arguments
+ * if any argument is a type registered on oroGen (i.e. a type that is used in
+   a property, port or operation), that would show up with rock-inspect, then
+   Qt types are not allowed in the call and there should be no return value. The
+   limitation of max. 10 arguments still apply since it is a Qt limitation.
+</div>
 
 ![Simple widget displaying position values](300_position_widget.png)
 {: .align-center}
@@ -96,7 +103,7 @@ class TestWidget < Qt::Widget
     @window.but_set_pos.connect(SIGNAL('clicked()'),self,
                                 :change_position)
     
-    #activate Typelib transport via qt slots
+    #activate calling Qt slots with oroGen types
     @window.mywidget.extend QtTypelibExtension
   end
   
@@ -104,7 +111,7 @@ class TestWidget < Qt::Widget
     if(!@window.x_edit.text.empty? && 
       !@window.y_edit.text.empty? && 
       !@window.z_edit.text.empty?)
-      # Generate typelib type from user input
+      # Generate type from user input
       rbs = Types::Base::Samples::RigidBodyState.new
       rbs.position[0] = Float(@window.x_edit.text)
       rbs.position[1] = Float(@window.y_edit.text)
@@ -142,7 +149,7 @@ Vizkit::UiLoader::extend_cplusplus_widget_class "MyWidget" do
 
   #called when the widget is created
   def initialize_vizkit_extension
-    #activate Typelib transport via qt slots
+    #activate calling Qt slots with oroGen types
     extend QtTypelibExtension
   end
 
@@ -160,7 +167,7 @@ Vizkit::UiLoader::extend_cplusplus_widget_class "MyWidget" do
   end
 end
 
-# register widget for a specific Typelib type to be 
+# register widget for a specific oroGen type to be 
 # accessible via rock tooling (rock-replay,...)
 # multiple register_widget_for are allowed for each widget
 Vizkit::UiLoader.register_widget_for("MyWidget",

@@ -83,7 +83,7 @@ Vizkit.exec
 If a specific port shall be replayed Vizkit can be used to automatically find 
 a display widget which can handle the type of sample. This behavior can easily
 be extended by registering custom widgets with the method 
-Vizkit.register_widget_for (see [writing custom widgets](#custom_widgets)).
+Vizkit.register_widget_for (see [this page](600_writing_vizkit_widget.html)).
 
 {coderay:: ruby}
   require 'vizkit'

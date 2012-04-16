@@ -69,11 +69,11 @@ used or the update frequency can be changed.
 In the next example Vizkit is used to display the images taken by a camera.  If
 Vizkit cannot find a specialised widget to visualize a message a tree view
 widget is used to display all data fields. This mechanism can easily be extended
-by custom widgets (see [writing custom widgets](#custom_widgets)).
+by custom widgets (see [this page](600_writing_vizkit_widget.html))
 
 {coderay:: ruby}
   require 'vizkit'
-  orocos.run 'my_camera' do
+  Orocos.run 'my_camera' do
     camera = Orocos::TaskContext.get 'camera'
     camera.start 
     Vizkit.display camera.frame

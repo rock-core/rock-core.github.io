@@ -3,7 +3,12 @@ title: Writing Vizkit Widgets
 sort_info: 600
 ---
 
-Writing Custom ruby Widgets {#custom_widgets}
+This page deals with creating C++ widgets and registering them on the Ruby side to make
+them available to Rock tooling (rock-replay, rock-display, ...)
+
+You might also want to follow the [related tutorials](../advanced_tutorials/300_vizkit_widget.html).
+
+Writing Custom ruby Widgets
 -------------------
 Vizkit can easily be extended with custom ruby widgets. To do so follow the steps below:
 
@@ -87,4 +92,4 @@ Vizkit::UiLoader.register_widget_for(name,
 For convenience, you can use the script *rock-create-qt-designer-widget* which 
 basically does the steps listed above. Moreover, it generates all the necessary
 code and build files for you and registers your widget with Qt Designer. 
-See [here](advanced_tutorials/209_create_qt_designer_widget.html) for a detailed example.
+See [here](../advanced_tutorials/300_vizkit_widget.html) for a detailed example.
