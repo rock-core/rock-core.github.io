@@ -9,6 +9,7 @@
 # website.
 config = Webgen::WebsiteAccess.website.config
 config['sourcehandler.patterns']['Webgen::SourceHandler::Copy'] << '**/autoproj_bootstrap'
+config['sourcehandler.patterns']['Webgen::SourceHandler::Copy'] << '**/autoproj_bootstrap-dev'
 config['sourcehandler.patterns']['Webgen::SourceHandler::Copy'] << '**/manifest.xml'
 config['sourcehandler.patterns']['Webgen::SourceHandler::Copy'] << '**/*.svg'
 config['sourcehandler.patterns']['Webgen::SourceHandler::Copy'] << '**/*.pdf'
