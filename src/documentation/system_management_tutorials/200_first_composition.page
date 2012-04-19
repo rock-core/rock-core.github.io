@@ -7,14 +7,14 @@ only_on: master
 Abstract
 ------------
 In this tutorial, you will learn how to write a simple model-based application,
-and the most important tools that exist to run / debug it.
+and the most important tools that exist to run and debug it.
 
 Note that this tutorial does require a (physical) joystick. The virtual joystick
 won't work. However, if you don't have one, you can do everything in this
 tutorial except running the generated component network. Moreover, the follow-up
 tutorials will not need the joystick anymore, so if you don't have one we
 suggest that you go through this tutorial anyway (just reading the running part)
-and go on with the followup tutorials.
+and go on with the follow-up tutorials.
 {: .warning}
 
 A first model-based script
@@ -32,7 +32,7 @@ scripts/rockRoby1.rb file and add the following code:
 using_task_library 'controldev'
 using_task_library 'rock_tutorial'
 
-# Declare our composition. The new model can be accessed with either
+# Declare the composition. The new model can be accessed with either
 # Compositions::RockControl or Cmp::RockControl
 composition 'RockControl' do
   # With one joystick. Note that the oroGen project names are converted from
@@ -41,8 +41,8 @@ composition 'RockControl' do
   add Controldev::JoystickTask, :as => "joystick"
   # And one rock
   add RockTutorial::RockTutorialControl, :as => "rock"
-  # Create any unique possible connection. If ambiguities
-  # exist, an error is generated
+  # Create any unique connection possible, by matching input and output ports
+  # of the same data type. If ambiguities exist, an error is generated
   autoconnect
 end
 
@@ -50,7 +50,7 @@ end
 # This part specifies what should actually run
 #
 # Tell the system which deployments to use. The names are deployment names, i.e.
-# the name given to the deployment "deployment_name" blocks in orogen projects
+# the name given to the deployment "deployment_name" blocks in oroGen projects
 use_deployment 'rock_tutorial'
 use_deployment 'joystick'
 
@@ -61,16 +61,38 @@ add Cmp::RockControl
 Checking the script and running the network
 -------------------
 As this _defines_ a composition, it is possible to visualize it without
-running anything. Just do
+running anything. Without additional adaptation though you will hit an error when doing:
 
 {coderay:: text}
 rock-roby instanciate scripts/rockRoby1.rb
 {coderay}
 
-You should see a graphical representation of the system that would be executed
-by this script, looking like:
+![Instanciation with error](200_instanciate_error_output.png)
 
-TODO: add instanciate output
+This error tells you that there is only a default deployment created for the oroGen component
+rock_tutorial. Since using default deployments is currently not supported you have to first adapt the oroGen specification for 'rock_tutorial'. 
+
+Add the following lines to tutorials/orogen/rock_tutorial/rock_tutorial.orogen (which you created in the tutorial 
+[Simulate a Robot](../tutorials/500_simulate_a_robot.html) ):
+{coderay:: ruby}
+deployment 'rock_tutorial' do
+    task('rock_tutorial', "rock_tutorial::RockTutorialControl")
+end
+{coderay}
+
+Now, you need to rebuild build the oroGen component with:
+{coderay:: sh}
+amake tutorials/orogen/rock_tutorial
+{coderay}
+
+Call again the instanciation with
+{coderay:: text}
+rock-roby instanciate scripts/rockRoby1.rb
+{coderay}
+
+You should see a graphical representation of the system that would be executed by this script:
+
+![Component network after instanciation](200_instanciate_output.png)
 
 If you're happy with it, you can then run it with:
 
@@ -78,9 +100,12 @@ If you're happy with it, you can then run it with:
 rock-roby run scripts/rockRoby1.rb
 {coderay}
 
-In another shell, display the task's output:
+In another shell, display the task using rock-display: 
+{coderay:: sh}
+rock-display rock_tutorial
+{coderay}
 
-TODO: rock-display video
+[![Rock display](200_rock_display_thumb.png)](200_rock_display.png)
 
 <div class="note">
 __Note for advanced users__: instead of always having to type "ruby
@@ -116,7 +141,7 @@ procedure:
 18:33:13.183 (Roby)   Orocos::RobyPlugin::Logger::Logger:0x7f9eba6d36d8{conf => [default], orocos_name => joystick_Logger}[]
 18:33:13.183 (Roby)   Orocos::RobyPlugin::Controldev::JoystickTask:0x7f9eba73d088{conf => [default], orocos_name => joystick}[]
 18:33:13.183 (Roby)   Orocos::RobyPlugin::Deployments::Joystick:0x7f9eba7488e8{log => true, on => localhost}[]
-18:33:13.183 (Roby)   Orocos::RobyPlugin::RockTutorial::RockTutorialControl:0x7f9eba75c168{conf => [default], orocos_name => rock_tutorial_control}[]
+18:33:13.183 (Roby)   Orocos::RobyPlugin::RockTutorial::RockTutorialControl:0x7f9eba75c168{conf => [default], orocos_name => rock_tutorial}[]
 18:33:13.184 (Roby)   Orocos::RobyPlugin::Deployments::RockTutorial:0x7f9eba7687b0{log => true, on => localhost}[]
 18:33:13.185 (Roby)   Orocos::RobyPlugin::Compositions::RockControl:0x7f9eba7cfde8{conf => [default]}[]
 18:33:13.188 (Robot) interrupting Orocos::RobyPlugin::Logger::Logger:0x7f9eba6d36d8
@@ -126,11 +151,11 @@ procedure:
 18:33:13.283 (Roby)   Orocos::RobyPlugin::Logger::Logger:0x7f9eba6d36d8{conf => [default], orocos_name => joystick_Logger}[]
 18:33:13.283 (Roby)   Orocos::RobyPlugin::Controldev::JoystickTask:0x7f9eba73d088{conf => [default], orocos_name => joystick}[]
 18:33:13.283 (Roby)   Orocos::RobyPlugin::Deployments::Joystick:0x7f9eba7488e8{log => true, on => localhost}[]
-18:33:13.283 (Roby)   Orocos::RobyPlugin::RockTutorial::RockTutorialControl:0x7f9eba75c168{conf => [default], orocos_name => rock_tutorial_control}[]
+18:33:13.283 (Roby)   Orocos::RobyPlugin::RockTutorial::RockTutorialControl:0x7f9eba75c168{conf => [default], orocos_name => rock_tutorial}[]
 18:33:13.284 (Roby)   Orocos::RobyPlugin::Deployments::RockTutorial:0x7f9eba7687b0{log => true, on => localhost}[]
 18:33:13.286 (Robot) stopped Orocos::RobyPlugin::Logger::Logger:0x7f9eba6d36d8{conf => [default], orocos_name => joystick_Logger}[]
 18:33:13.288 (Robot) stopped Orocos::RobyPlugin::Controldev::JoystickTask:0x7f9eba73d088{conf => [default], orocos_name => joystick}[]
-18:33:13.290 (Robot) stopped Orocos::RobyPlugin::RockTutorial::RockTutorialControl:0x7f9eba75c168{conf => [default], orocos_name => rock_tutorial_control}[]
+18:33:13.290 (Robot) stopped Orocos::RobyPlugin::RockTutorial::RockTutorialControl:0x7f9eba75c168{conf => [default], orocos_name => rock_tutorial}[]
 18:33:13.518 (Roby) waiting for 2 tasks to finish (2 tasks still in plan)
 18:33:13.518 (Roby)   Orocos::RobyPlugin::Deployments::Joystick:0x7f9eba7488e8{log => true, on => localhost}[]
 18:33:13.518 (Roby)   Orocos::RobyPlugin::Deployments::RockTutorial:0x7f9eba7687b0{log => true, on => localhost}[]
@@ -138,11 +163,14 @@ procedure:
 
 What happened ?
 ---------------
-Let's now have a look at what happened ... But graphically.
+Let's now have a look at what happened by visualizing the event log:
 
-TODO: video
+rock-roby display ./logs/current/common-events.log
+{: .cmdline}
 
-The same display can be used at runtime, started with
+[![Roby display](200_roby_display_thumb.png)](200_roby_display.png)
+
+The same display can be used at runtime, i.e. in parallel to the composition start the display with:
 
 rock-roby display
 {: .cmdline}

@@ -6,15 +6,15 @@ only_on: master
 
 Abstract
 --------
-In this tutorial, you will learn how to do _dependency injection_ in Rock's
-system management layer. The goal of this feature is the ability to specify
+In this tutorial, you will learn how to deal with _dependency injection_ in Rock's
+system management layer. This feature allows you to specify
 abstract compositions, where some (or all) of the parts are not actual
-components but just representations of classes of components.
+component instances but just component models (classes of components).
 
 In a more concrete manner, this tutorial will show you:
 
  * how to change the RockControl composition so that any MotionCommand2D generator
-   can be used, instead of simply a joystick
+   can be used, instead of just a joystick
  * how to select which command source should be used
 
 The next tutorial will then deal with the _development workflow_ when using the
@@ -23,11 +23,11 @@ restart components that crashed, ...
 
 Data Services
 -------------
-Data services are the component-based equivalent of interfaces. They define two
+A data services allows to describe the interface a component. Thus, a data service describes 
 things:
 
- * an expected interface (input and output ports)
- * an expected functionality (informally defined through the service name)
+ * the (minimal) expected interface, i.e. what input and output ports a component has in order to support a given service
+ * the expected functionality, i.e. currently only a meaningful service name informs about the functionality to be expected
 
 For instance, a very common data service is the Pose service:
 
@@ -45,7 +45,7 @@ selection of the command generator.
 
 The first step is to define a generic CommandGenerator data service. Copy the
 scripts/rockRoby1.rb to scripts/rockRoby2.rb and add the following before the
-composition definition:
+composition definition, but after the 'using_task_library' statements:
 
 {coderay:: ruby}
 # Defines a data service model, that can be accessed with
@@ -56,20 +56,20 @@ data_service_type 'CommandGenerator' do
 end
 {coderay}
 
-This defines an DataService::CommandGenerator (or in short
+This defines a DataService::CommandGenerator (or in short
 Srv::CommandGenerator) data service model that can be used in place of the
-joystick. Modify the composition definition:
+joystick. Modify the composition definition as illustrated in the following:
 
 {coderay:: ruby}
-# Declare our composition. The new model can be accessed with either
+# Declare the composition. The new model can be accessed with either
 # Compositions::RockControl or Cmp::RockControl
 composition 'RockControl' do
   # Any command generator
   add Srv::CommandGenerator, :as => "cmd"
   # And one rock
   add RockTutorial::RockTutorialControl, :as => "rock"
-  # Create any unique possible connection. If ambiguities
-  # exist, an error is generated
+  # Create any unique connection possible, by matching input and output ports
+  # of the same data type. If ambiguities exist, an error is generated
   autoconnect
 end
 {coderay}
@@ -79,7 +79,7 @@ and let's make the instanciation fail:
 rock-roby instanciate scripts/rockRoby2.rb
 {: .cmdline}
 
-You'll get an error that looks like
+You'll get an error: 
 
 {coderay:: text}
 = cannot find a concrete implementation for 1 task(s)
@@ -88,9 +88,11 @@ You'll get an error that looks like
 |   child cmd of Compositions::RockControl:0x7fc2ff5df470{conf => [default]}[]
 {coderay}
 
-What rock-roby tries to tell you there is that it could not find an
+[![Instanciation error](300_instanciate_error_output_thumb.png)](300_instanciate_error_output.png)
+
+What rock-roby tries to tell you with this error messages is the following: it could not find an
 implementation for the DataServices::CommandGenerator service. That's because
-you never told the models which tasks _provides_ the service. Let's do that now.
+you never specified which tasks _provides_ can provide this service. Let's do that now.
 
 Add the following after the data service declaration:
 
@@ -98,16 +100,15 @@ Add the following after the data service declaration:
 Controldev::JoystickTask.provides Srv::CommandGenerator
 {coderay}
 
-What this does is tell the system that the controldev::JoystickTask components
-provide the required service. The models will verify that the task _does_
+The statement above tells the system that an instance of controldev::JoystickTask
+provides the service 'CommandGenerator'. The supervision will verify that the task _does_
 provide the required ports.
 
-Note that the port names do not necessarily need to match between the service
+Note that the port type are important for matching connections and port names do not necessarily need to match between the service
 and the task. The system management layer will map the names automatically _if
-the mapping is unambiguous_. If multiple ports could be used, it will check if
+the mapping by type is unambiguous_. If multiple ports could be used, it will check if
 there is one with the same name. If it is not the case, an error is generated
-and you will have to specify the mapping manually. TODO: link to reference
-documentation
+and you will have to specify the mapping manually [see also the API docs](http://rock-robotics.org/api/tools/orocos.rb/Orocos/RobyPlugin/CompositionModel.html#method-i-autoconnect)
 {: .info}
 
 and try again
@@ -115,18 +116,20 @@ and try again
 rock-roby instanciate scripts/rockRoby2.rb
 {: .cmdline}
 
+[![Instanciation error](300_instanciate_output_thumb.png)](300_instanciate_output.png)
+
 OK, now everything's fine. The system management layer knows only one component
 that provides the CommandGenerator service, so it picked it up automatically and
 generated the right network
 
-Adding a random motion generator
+Adding a random-motion generator
 --------------------------------
-The rock.tutorials package set contains a random motion generator
-(tutorials/orogen/tut_brownian) that we will now use an an alternative to the
+The rock.tutorials package set contains a random-motion generator
+(tutorials/orogen/tut_brownian) that we will now use as an alternative to the
 joystick. 
 
-First and foremost, when multiple orogen projects start to be involved,
-deployments becomes quickly hard to manage. The accepted workflow when you are
+First and foremost, when multiple oroGen projects start to be involved,
+deployments quickly become hard to manage. The accepted workflow when you are
 starting to build a complete system is to create a dedicated "deployment
 project" that creates all the deployments that your system needs. In the case of
 these tutorials, it is the tutorials/orogen/tut_deployment oroGen project. Have
@@ -153,7 +156,7 @@ use_deployment 'brownian'
 
 Now, you also need to declare that the random motion generator does provide the
 CommandGenerator service. Add the following after the data service declaration
-from JoystickTask:
+from JoystickTask and after the 'use_deployment' statements:
 
 {coderay:: ruby}
 TutBrownian::Task.provides Srv::CommandGenerator
@@ -164,24 +167,25 @@ and let's make the instanciation fail again:
 rock-roby instanciate scripts/rockRoby2.rb
 {: .cmdline}
 
-This time, we get another error:
+This time, there is another error:
 
 {coderay:: text}
 = cannot find a concrete implementation for 1 task(s)
-| placeholder for DataServices::CommandGenerator
+| placeholder for Srv::CommandGenerator
 |   2 candidates
 |     Controldev::JoystickTask,
 |     TutBrownian::Task
 |   child cmd of Compositions::RockControl:0x7f6ff64c0780{conf => [default]}[]
 {coderay}
 
-The issue now is that there are two possibilities to get a
+Now, we are warned about two possibilities to get a
 CommandGenerator service: the joystick and the random motion generator. Because
-the selection is ambiguous, the system management layer refuses to choose and
+the selection is ambiguous, the system management layer refuses to proceed and
 bails out.
 
-We therefore need to select it. In order to do that, we need to change the 'add'
-line at the end of the file to tell him what to use:
+We therefore need to select it before the component network can be generated. In order to do that, we need to give more details when adding
+the composition, i.e. due to the two existing options for the CommandGenerator service, the 'add' line at the end of the file is not specific enough anymore. 
+We additionally have to tell which task should be used in specific for the given composition: 
 
 {coderay:: ruby}
 # Read this as: deploy a RockControl composition, using
@@ -189,10 +193,12 @@ line at the end of the file to tell him what to use:
 add(Cmp::RockControl).use(TutBrownian::Task)
 {coderay}
 
-Instanciating it will now work just fine:
+The ambiguity is now resolved and instanciating the component network will work just fine:
 
 rock-roby instanciate scripts/rockRoby2.rb
 {: .cmdline}
+
+[![Composition using TutBrownian](300_instanciate_brownian_thumb.png)](300_instanciate_brownian.png)
 
 Running the final network
 -------------------------
@@ -200,12 +206,10 @@ Running the final network
 rock-roby run scripts/rockRoby2.rb
 {: .cmdline}
 
-TODO: video
-
 Conclusion
 ----------
-In this tutorial, you got a glimpse into the data services, i.e. description of
-abstract components, and how to use them to select different data sources at
+In this tutorial, you got started with using data services, i.e. description of
+abstract components, and how to resolve ambiguities of different data sources at
 requirement time (when calling 'add') instead of doing it at modelling time
 (when creating the compositions)
 
