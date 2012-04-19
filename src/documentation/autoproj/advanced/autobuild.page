@@ -161,6 +161,9 @@ import_package "package_name" do |pkg|
 end
 {coderay}
 
+See [this page](writing_package_handlers.html) about some __very important__ issues when writing such command
+blocks.
+
 Declaring documentation targets
 -------------------------------
 Both autotools and CMake packages use <tt>make</tt> as the low-level build tool.
