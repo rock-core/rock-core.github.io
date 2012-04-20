@@ -38,7 +38,7 @@ rock_tutorial::RockTutorialControl task and would like to restart the
 deployment. You would have to compile and install your changed task, for
 instance by doing
 
-amake tut_deployment
+amake tutorials/orogen/rock_tutorial
 {: .cmdline}
 
 Then, in the rock-roby shell we just created, type
@@ -155,7 +155,12 @@ Ouch, a lot of criptic information there:
 happened:
 [![Parallel execution error](400_parallel_execution_error_thumb.png)](400_parallel_execution_error.png)
 
-TODO: Let's try to decode what
+The error message tells you that there is no deployment of type RockTutorial::RockTutorialControl available for the composition 'Cmp::RockControl'. Well, in the current setup, we have a deployment defined and said to use it - it is 'rock_tutorial':
+
+use_deployment 'rock_tutorial'
+{: .cmdline}
+
+But this is only one deployment and is being used for the composition 'Cmp::RockControl' which has been started first by 'random!'. Since the deployment cannot be used for more than one composition at the same time and error is generated. 
 
 Stop the controller with CTRL+C and the shell with "exit", and pass on to the
 next tutorial.
