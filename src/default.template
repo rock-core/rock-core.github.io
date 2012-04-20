@@ -80,7 +80,9 @@
     
       <div class="content2" <%= 'style="margin-left: 110px;"' if context.node.meta_info['rock_page_style'] == 'centered' %>>
           <% if context.node.node_info[:page].meta_info.has_key?('page_title') %>
+          <% if context.node.node_info[:page].meta_info['page_title'] %>
           <div class="content2-pagetitle"><%= context.node.node_info[:page].meta_info['page_title'] %></div>
+          <% end %>
           <% else %>
           <div class="content2-pagetitle">{title: }</div>
           <% end %>
@@ -103,7 +105,6 @@
                   The information present on this page is only valid on the <b><%= flavors %></b> flavors of Rock
                   </div>
                   <% end %>
-                  <%= context.node.node_info[:page].meta_info['page_title'] %>
                   <webgen:block name="content" />
               </div>
           </div>
