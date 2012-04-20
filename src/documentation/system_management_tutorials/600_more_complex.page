@@ -26,7 +26,7 @@ This tutorial will deploy a network in which:
 The motion generator component for the follower is tut_follower::Task, included
 in [Rock's rock.tutorial package set](../tutorials/index.html#installing)
 
-The goal will be to reuse the same base model (Cmp::RockControl) for both
+The goal will be to reuse the same base model 'Cmp::RockControl' for both
 deployments. The idea behind reusing in this case is:
 
  * you might have a diagnostics routine that is able to monitor the movement of
@@ -34,8 +34,8 @@ deployments. The idea behind reusing in this case is:
    the RockControl composition will be sufficient, as it will apply to all
    refinements of this model.
  * it simplifies the usage of the compositions, as one only has to remember the
-   name of a composition (Cmp::RockControl) and give an intent (run the control
-   with X or Y) instead of having to remember N composition names.
+   name of a composition (Cmp::RockControl) and give an intent ('run the composition
+   with X or Y') instead of having to remember N composition names.
 
 Specializations
 ---------------
@@ -46,29 +46,38 @@ application of changes on compositions.
 For instance, the following specialization specifies that when using
 Cmp::RockControl, in cases where the command generator is a TutFollower::Task,
 one child and two connections must be added to the composition. Copy
-scripts/rockRoby3.rb to scripts/rockRoby4.rb and add the code after the
-declaration of the Cmp::RockControl composition.
+scripts/rockRoby3.rb to scripts/rockRoby4.rb, declare the TutFollower::Task to 
+provide the CommandGenerator service and add the code for the 
+specialization after the declaration of the Cmp::RockControl composition.
 
 {coderay:: ruby}
-data_service_type 'Pose' do
-  output_port 'pose_samples', '/base/samples/RigidBodyState'
-end
 TutFollower::Task.provides Srv::CommandGenerator
-
+...
 Cmp::RockControl.specialize 'cmd' => TutFollower::Task do
+  # needs some other task/composition to provide a pose
   add Srv::Pose, :as => "target_pose"
   connect target_pose.pose_samples => cmd.target_position
   connect rock.pose_samples => cmd.current_position
 end
 {coderay}
 
-Naturally, we have to make the TutFollower task's orogen project available. Add the following line to the includes at the top of the file:
+As you can see, for this specialization we also introduce an additional service 'Pose'. We define it just 
+after the previous service definition:
+{coderay:: ruby}
+data_service_type 'Pose' do
+  output_port 'pose_samples', '/base/samples/RigidBodyState'
+end
+{coderay}
+
+
+We have to make the TutFollower task's oroGen project available, and thus add the following line to the includes at the top of the file:
 
 {coderay:: ruby}
 using_task_library 'tut_follower'
 {coderay}
 
-Once such a specialization is added, the following happens:
+Once such a specialization is added, it allows you to use the same composition for the random controller 
+'TutBrownian::Task' and the the follower controller 'TutFollower::Task':
 
 {coderay:: ruby}
 # Selects the "standard" composition
@@ -77,18 +86,18 @@ Cmp::RockControl.use(TutBrownian::Task)
 Cmp::RockControl.use(TutFollower::Task)
 {coderay}
 
-However, for the second one to be valid, we now need to be able to give it a
-pose. This pose will be provided by our leader, i.e. by a Cmp::RockControl
-composition itself. However, for that to be possible, we need this composition
-to provide the Srv::Pose service, and therefore have an output port of type
-base/samples/RigidBodyState.
+However, for the second one to be valid, we need a 'Pose' service. This service will be provided by our leader, i.e. by a Cmp::RockControl
+composition itself. For that to be possible, we need this composition
+to provide the Srv::Pose service, and therefore will add an output port of type
+base/samples/RigidBodyState to the composition. The following section describes how to add this port. 
+
 
 Adding ports to compositions
 ----------------------------
 In this system, compositions can't have their own ports. They can only _export_
-ports from their children. In our case, the rock pose is provided by the
-RockTutorialControl task's pose_samples port. Let's change original composition
-model to export this port to the outside of the composition, and declare it as
+ports from their children. In our case, the rock's pose is provided by the
+RockTutorialControl task's pose_samples port. Let's change the original composition
+model to export this port and declare the composition as
 providing a Srv::Pose (you'll need to move the definition of the Pose service
 before the composition block)
 
@@ -105,7 +114,12 @@ It is now possible to define our leader-follower system:
 {coderay:: ruby}
 define('leader', Cmp::RockControl.use(TutBrownian::Task))
 define('system', Cmp::RockControl.use(TutFollower::Task, 'leader'))
+
+add 'leader'
+add 'system'
 {coderay}
+
+Only the definition of the 'follower' requires a pose.
 
 and look at the result
 
@@ -133,12 +147,22 @@ use_deployments_from 'tut_deployment'
 
 and re-run the instanciate. Everything should be OK and the network is what we expect.
 
-Finally, modify scripts/display to display both rocks. Copy it to scripts/display_system
+[![Leader follower network](600_leader_follower_thumb.png)](600_leader_follower.png)
+
+
+You can also check the connections between the components by displaying the dataflow feature: 
+
+[![Leader follower dataflow button](600_leader_follower_dataflow_button_thumb.png)](600_leader_follower_dataflow_button.png)
+
+
+[![Leader follower dataflow](600_leader_follower_dataflow_thumb.png)](600_leader_follower_dataflow.png)
+
+Finally, you can use a Vizkit script to display both rocks. If you have an existing one from previous tutorial copy it to scripts/display_system
 and modify it so that it
  * adds two rock display plugins to the 3D view
  * connects to the two deployments from tut_deployment (rock-inspect tut_deployment)
 
-A solution would be:
+The final script should look as follows:
 
 {coderay:: ruby}
 #! /usr/bin/env ruby
@@ -156,15 +180,14 @@ view3d.show
   ## load and add a 3d plugin for the rock
   vizkit_rock = view3d.createPlugin('rock_tutorial', 'RockVisualization')
 
-  Vizkit.connect_port_to deployment_name, 'pose_samples',
-    :auto_reconnect => true, :pull => false,
-    :update_frequency => 33 do |sample, name|
-
+  Vizkit.connect_port_to deployment_name, 'pose_samples' do |sample, name|
     ## Finally, pass every pose sample to our visualizer plugin
-    vizkit_rock.updatePose(sample)
+    vizkit_rock.updateData(sample)
     sample
   end
 end
+
+Vizkit.exec
 {coderay}
 
 Let's now run it and see our randomly moving rock being followed by the other one ...

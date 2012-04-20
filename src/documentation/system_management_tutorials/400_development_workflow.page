@@ -72,9 +72,10 @@ define('joystick', Cmp::RockControl).use(Controldev::JoystickTask)
 define('random', Cmp::RockControl).use(TutBrownian::Task)
 {coderay}
 
-It would be now possible to use the names instead of the complete definition in
-the 'add' lines, or in other definition's 'use()' statements. However, that's
-not what we're going to do. Instead, we're going to use the shell to start
+Using 'define' allows you to map a composition to a name and reference it lateron using this name lateron. It is 
+then possible to use the name instead of the complete definition in
+the 'add' lines, or in other definition's 'use()' statements. However, using 'add' or 'use' is 
+not what we're going to do right now. Instead, we are going to use the shell to start these
 modalities and switch between them.
 
 Start the rock-roby controller:
@@ -89,25 +90,46 @@ rock-roby shell
 
 In this shell, type:
 
-random!
+joystick!
 {: .cmdline}
 
 It requests that the supervision starts the joystick-based control, as you can
-see in the live display:
+see in the log or in the live display (if you start that in parallel):
 
-TODO: add video
 
-To inspect the set of running jobs, just do
+{coderay:: text}
+localhost:48902 > joystick!
+=> #<service Roby::Task:0x7fedaea11a00{}[]>
+localhost:48902 >
+[1] joystick! started to plan
+[1] joystick!: Roby::Task:0x7fedaea11a00{}[] has been replaced by Orocos::RobyPlugin::Compositions::RockControl:0x7fedae9f08f0{}[]
+[1] joystick!: Orocos::RobyPlugin::Compositions::RockControl:0x7fedae9f08f0{}[] has been replaced by Orocos::RobyPlugin::Compositions::RockControl:0x7fedaead30b0{conf => [default]}[] 
+[1] joystick!: task Orocos::RobyPlugin::Compositions::RockControl:0x7fedaead30b0{conf => [default]}[] started
+{coderay}
 
-TODO: implement jobs support
+
+To inspect the set of running jobs, just do:
 
 jobs
 {: .cmdline}
 
+localhost:48902> jobs
+1 joystick! #<DRb::DRbObject:0x7f35780b5fe0 @uri="druby://127.0.1.1:48902", @ref=70329407281240>
+=> 
+{:.cmdline}
+
+
 The joystick-based control can now be stopped with
 
-kill_job 1
-{: .cmdline}
+{coderay:: text}
+localhost:48902> kill_job 1
+[1] joystick!: task Orocos::RobyPlugin::Compositions::RockControl:0x7fedaead30b0{conf => [default]}[] failed
+= fatal exception 1: mission failed: Orocos::RobyPlugin::Compositions::RockControl:0x7fedaead30b0{conf => [default]}[]
+| [09:45:47.355 @7] Orocos::RobyPlugin::Compositions::RockControl:0x7fedaead30b0{conf => [default]}[]/failed
+| The following tasks have been killed:
+| #<Compositions::RockControl < Composition < Transformer::CompositionExtension>:0x7fedaead30b0
+[1] joystick!: task Orocos::RobyPlugin::Compositions::RockControl:0x7fedaead30b0{conf => [default]}[] has been removed
+{coderay}
 
 Alternatively, one can get the task object and stop it:
 
@@ -117,7 +139,7 @@ job(1).stop!
 Or
 
 {coderay:: text}
-t = random!
+t = joystick!
 t.stop!
 {coderay}
 
@@ -129,10 +151,11 @@ random!
 joystick!
 {coderay}
 
-Ouch ... A lot of criptic information there ... Let's try to decode what
-happened.
+Ouch, a lot of criptic information there: 
+happened:
+[![Parallel execution error](400_parallel_execution_error_thumb.png)](400_parallel_execution_error.png)
 
-TODO: video or sequence of images
+TODO: Let's try to decode what
 
 Stop the controller with CTRL+C and the shell with "exit", and pass on to the
 next tutorial.
