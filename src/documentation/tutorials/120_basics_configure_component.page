@@ -132,7 +132,7 @@ have to do the following steps:
  3. __move__ the construction/destruction of the driver from the task's
     constructor and destructor into configureHook / cleanupHook
 
-
+The final version of the component's code is in branch 'with_config' of basic_tutorials/orogen/message_producer (_git checkout with_config_). 
 
 __(1)__ we modify the task description in the message_producer.orogen file.
 We add a property of the configuration type as follows (see also [Task
@@ -267,8 +267,93 @@ Wed Aug 03 09:40:28 +0200 2011 MESSAGE FROM MESSAGEDRIVER
 Wed Aug 03 09:40:29 +0200 2011 MESSAGE FROM MESSAGEDRIVER
 {coderay}
 
-You can also try running the start.rb script. You will see, however, that the component will fail to start. Since you specified 'needs_configuration' in the component specification, it cannot be started without being configured beforehand. 
+You can also try running the start.rb script. You will see, however, that the component will fail to start. Since you specified 'needs_configuration' in the component specification, it cannot be started without being configured beforehand.
 
+### Use a configuration file
+Property values can be read from a file, what is especially handy in case of more properties to set. The configuration file is a yaml-file which organises the properties in a structured way. For the present example create a file e.g. _message_producer_config.yml_ with the
+following content:
+
+{coderay:: yaml}
+config:
+    uppercase: True
+{coderay}
+
+Note that yaml uses intention for organizing the data. The script can now be changed to use this file. Instead of 
+
+{coderay:: ruby}
+    # 'config' is the name of the property
+    message_producer.config do |p|
+        p.uppercase = true
+    end
+{coderay}
+
+put
+
+{coderay:: ruby}
+    # load property from configuration file
+    message_producer.apply_conf_file("message_producer_config.yml")
+{coderay}
+
+The result when running the script should be the same as above. It is possible to
+have one configuration file per task context and then load the properties for each task
+from the corresponding file. Of course the properties in the file have to match the
+properties given in the orogen definition. A good way to create a proper configuration
+file is to generate such a file from the task model definition. To do so run the 
+following command from the shell:
+
+{coderay:: sh}
+oroconf extract message_producer::Task --save message_producer.yml
+{coderay}
+
+_oroconf_ is the command to access the configuration of tasks. It can do more then 
+extracting configruation files (_--help_) but we will stick to the command _extract_
+for now. The first argument after extract gives the task model which is the orogen
+name plus double colon plus task name. Behind _--save_ the file is given to which the
+data should be written. You might note that there are some variations to the hand 
+written file:
+
+{coderay:: yaml}
+\--- name:default
+# no documentation available for this property
+config: 
+  uppercase: 0
+{coderay}
+
+In this file __uppercase__ is 0 which of course is _False_ which is the default
+setting of the property (see configuration constructor). The comment in the second line
+would be the documentation string if the property would have one e.g. (brackets
+are necessary here since the doc is attached with a dot)
+
+{coderay:: ruby}
+    property("config","message_driver/Config")
+        .doc("Configuration for the message driver.")
+{coderay}
+
+The first line is the name for the configuration. It is possible to have multiple 
+configurations in one file which can be distinguished by their name. Think of a
+file called 'message_producer_multi.yml':
+
+{coderay:: yaml}
+\--- name:default
+# no documentation available for this property
+config: 
+  uppercase: 0
+
+\--- name:uppercase
+# no documentation available for this property
+config: 
+  uppercase: 1
+{coderay}
+
+Then one can apply the uppercase configuration with
+    
+{coderay:: ruby}
+    # load property from configuration file
+    message_producer.apply_conf_file("message_producer_multi.yml", 
+        ["uppercase"])
+{coderay}
+
+For more information on configuration files have a look [here](../runtime/configuration.html).
 
 Summary
 ----------------
@@ -277,6 +362,7 @@ In this tutorial you have learned to:
  * how to embed configuration into an oroGen component
  * how to use the templates/ subfolder of an oroGen component
  * how to set configuration properties for your component in a ruby script
+ * how to generate and use configuration files
 
 In the next tutorial you will learn how to create a data driven component and how to connect it
 with an existing component.
