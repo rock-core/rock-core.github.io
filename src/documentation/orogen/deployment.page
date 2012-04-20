@@ -8,7 +8,7 @@ certain number of tasks have been _instanciated_. In other words, certain task
 contexts classes are tied to a thread and one or multiple triggering mechanisms.
 
 This page will deal with the generics of deployment. The different triggering
-mechanisms are developped later in this guide.
+mechanisms are developed later in this guide.
 
 The deployment block
 --------------------
@@ -113,7 +113,7 @@ my_task.property = new_value
 
 where <tt>new_value</tt> is compatible with the property's type. It works only
 for simple types (like numbers or strings), where new_value is the corresponding
-ruby litteral.
+ruby literal.
 
 Logger integration
 ------------------

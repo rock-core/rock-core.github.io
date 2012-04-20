@@ -85,7 +85,7 @@ if(_parameters.read(parameters) == RTT::NewData)
 
 Deployment
 ----------
-As we mentionned at the beginning of this page, the port-triggering mechanism
+As we mentioned at the beginning of this page, the port-triggering mechanism
 can be overlaid on top of the other mechanisms.
 
 If one uses the default task declaration

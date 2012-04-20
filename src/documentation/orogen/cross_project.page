@@ -98,16 +98,16 @@ where base/pose.h is a header installed by the library.
 
 Using external libraries which do not use pkg-config
 ----------------------------------------------------
-It is unfortunately obviously not possible to provide support in oroGen for this
-type of library.
+oroGen provides only support for libraries that use pkg-config. 
 
-If you do **not** want to use types provided by this library in your task
+Hence, if you do **not** want to use pkg-config but use types provided by a library in your task
 interface, you will have to modify CMakeLists.txt to look for that library, add
 the include and library dirs. Moreover, if needed, you will also have to modify
 tasks/CMakeLists.txt to link to that library.
 
 If you do want to use the type provided by this library in your task interface,
 you will have to:
+
  * first, modify the cmake code as described above
  * second, in the oroGen file, add the relevant include dirs. For instance,
 

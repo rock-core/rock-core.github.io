@@ -16,11 +16,13 @@ between a normal RTT component and an oroGen component.
    This is implemented so that orocos.rb is able to automatically load oroGen
    specification files when contacting a task context, regardless of how this
    task context has been deployed and/or started.
+
 2. a 'state' port with type 'int' is defined, in which all the state
    transitions are exported. The allowed values in this port are defined by an
    oroGen-generated enumeration called orogen_project::task_name_STATES. (e.g.
    hokuyo::Task_STATES). The management of it is done transparently by
    orocos.rb.
+
 3. all known input ports are automatically cleared in startHook()
 
 

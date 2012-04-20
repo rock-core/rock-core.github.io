@@ -12,11 +12,11 @@ The following three tutorials will implement the same "rock controlled by a joys
 
 First of all, we'll introduce the concept of bundles.
 
-In Rock, bundles offer a "functional" view to the available functionality. I.e.,
-instead of viewing only single components, bundles gather the scripts,
-configuration files and tools neede to run (sub)systems.
+In Rock, bundles offer a "functional" view to the available functionality, i.e.
+instead of viewing only single components, bundles gather scripts,
+configuration files and tools which are needed to run (sub)systems.
 
-In practice, bundles are Rock packages that contain a set of "things":
+In practice, bundles are Rock packages that can contain the following:
 
  * ruby scripts (to run sets of components)
  * models (including, but not limited to, for the system management layer)
@@ -25,10 +25,12 @@ In practice, bundles are Rock packages that contain a set of "things":
  * datasets needed to run the system (as e.g. location information, maps, ...)
  * ...
 
+This list is incomplete, since bundles can contain arbitrary content and tools which support (sub)systems.
+
 See [this page](http://rock.opendfki.de/wiki/WikiStart/Standards/RG7) for more
 information on bundles.
 
-In this tutorial, we will create a new bundle and start developing in it.
+In this tutorial, we will create a new bundle 'tutorial' and start developing in it.
 
 It is assumed that your autoproj installation can be found in ~/dev.
 

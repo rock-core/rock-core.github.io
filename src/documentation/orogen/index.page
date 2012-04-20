@@ -6,12 +6,11 @@ sort_info: 0
 What are oroGen and typeGen
 ---------------------------
 
-oroGen is a specification language and code generator for the Orocos Realtime
-Toolkit (RTT). The Orocos/Real Time Toolkit is a C++ library allowing to build
-component-based systems (http://www.orocos.org/rtt). The orogen tool allows to
-create new components easily.
+oroGen is a specification language and code generator for the [Orocos Realtime
+Toolkit (RTT)](http://www.orocos.org/rtt). Orocos RTT is a C++ library allowing to build
+component-based systems. The orogen tool allows to create new components easily.
 
-In oroGen, one write a specification that describes the components you want to
+In oroGen, one writes a specification that describes the component you want to
 develop. Then, orogen generates the corresponding C++ code and CMake build
 system so that you -- the component developer -- has only to care about
 implementing the actual functionality.
