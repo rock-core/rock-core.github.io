@@ -4,6 +4,16 @@ title: "Rock: the Robot Construction Kit"
 rock_page_style: centered
 ---
 
+<h1>What is Rock ?</h1>
+
+Rock is a software framework for the development of robotic systems. The
+underlying component model is based on the Orocos RTT (Real Time Toolkit). Rock
+provides all the tools required to set up and run high-performance and reliable
+robotic systems for wide variety of applications in research and industry. It
+contains a rich collection of ready to use drivers and modules for use in your
+own system, and can easily be extended by adding new components. 
+[more...]({relocatable: documentation/about/index.html}) 
+
 <div markdown="1" class="content2-container bg-blue01 align-center" style="padding: .4em;">
 <div markdown="1" class="content2-container-3col-left">
 Get it
@@ -36,13 +46,6 @@ and report bugs [on the Rock trac](http://rock.opendfki.de)
 </div>
 
 
-What is Rock ?
---------------
+<h1 markdown="1">News [from the blog](http://blog.rock-robotics.org)</h1>
 
-Rock is a software framework for the development of robotic systems. The
-underlying component model is based on the Orocos RTT (Real Time Toolkit). Rock
-provides all the tools required to set up and run high-performance and reliable
-robotic systems for wide variety of applications in research and industry. It
-contains a rich collection of ready to use drivers and modules for use in your
-own system, and can easily be extended by adding new components. 
-[more...]({relocatable: documentation/about/index.html}) 
+<script type="text/javascript" src="http://rock-robotics.tumblr.com/js"></script>
