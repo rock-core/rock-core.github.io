@@ -11,7 +11,7 @@ This tutorial will give you some hands-on experience on:
  * how to model an oroGen component and embed a library
  * how to run a component
 
-If you don't want to execute the following steps by yourself, the result can also be found in 'tutorials/basics_tutorial'.
+If you don't want to execute the following steps by yourself, the result can also be found in '~dev/basics_tutorial'.
 For this tutorial it is assumed that your autoproj installation can be found in ~/dev.
 
 The component we want to create will **integrate** the functionality of the
@@ -103,7 +103,7 @@ The specification contains a number of statement with the following meaning:
  * import_types_from: tells oroGen that use a certain type, that is specified in the file following this statement
  * task_context: everything within this block defines an Orocos task context model, including what input and output ports are required and a default value for the runtime execution schema (every 1.0 second in this case)
 
-The Task has an output port called 'messages' of type basics_tutorial/message. This type is initially unknown to the component, but it can be found in the 'Message.hpp' header of the 'message_driver' library. the using_library statement tells oroGen only to look for a library of the given name and link it to any deployment. 
+The Task has an output port called 'messages' of type 'message_driver/Message'. This type is initially unknown to the component, but it can be found in the 'Message.hpp' header of the 'message_driver' library. the using_library statement tells oroGen only to look for a library of the given name and link it to any deployment. 
 In order to make types known to your component so that you can use them in the specification, you have to do this explicitly with the 'import_types_from' statement.
 
 ### 
@@ -137,7 +137,7 @@ Now, that you have created the oroGen component you still have to embedd the fun
 
 Calling 'rock-create-orogen' created several new files. For now, you only need to care about the files in the tasks/ subfolder and can safely ignore the templates folder for the moment. 
 
-Within the subfolder 'tasks' of the created component you will find two files: 'Task.hpp' and 'Task.cpp'. They contain the skeleton for the Orocos component that has been created. Within 'Task.hpp' you will find several commented so-called hook methods, and you have to uncomment the methods you want to define in your task. For this tutorial you uncomment updateHook, startHook and cleanupHook.
+Within the subfolder 'tasks' of the created component you will find two files: 'Task.hpp' and 'Task.cpp'. They contain the skeleton for the Orocos component that has been created. Within 'Task.hpp' you will find several commented so-called hook methods, and you have to uncomment the methods you want to define in your task. For this tutorial you uncomment the updateHook.
 (More information about this methods could be found [here](../orogen/task_states.html))
 
 To add the message_driver functionality, add a forward declaration for message_driver and add a message_driver::MessageDriver member to the Task.hpp:
