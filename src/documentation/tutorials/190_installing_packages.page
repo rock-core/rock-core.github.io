@@ -28,13 +28,15 @@ call on the command line (do not forget to source env.sh first):
     autoproj list-config rock_widget_collection
     autoproj list-config vizkit
 
-If both packages are already installed autoproj will report that it found gui/vizkit and gui/rock_widget_collection.
+
 
 If the packages are known to autoproj but not installed, autoproj will tell you this in the *warn the following
 packages are not installed:* section on the bottom. In this case you can jump to the 
 section [Installing Packages](#installing-packages).
 
 If autoporj reports that it cannot find a match for the packages go to section [Adding Package Sets](#adding-package-sets)
+
+If both packages are already installed autoproj will show a list of packages and dependencies for gui/vizkit and gui/rock_widget_collection. And of course there is nothing left to do.
 
 Adding Package Sets {#adding-package-sets}
 -----------
@@ -70,7 +72,7 @@ go to to the next section.
 
 Installing Packages {#installing-packages}
 -----------
-Here it is assumed that autoproj nows the desired packages and *autoproj list-config package_name* reports
+Here it is assumed that autoproj knows the desired packages and *autoproj list-config package_name* reports
 that they are not checkout. If autoproj does not find a match for your desired package go to the section above.
 
 To tell autoproj to install known packages which are not part of the current autoproj installation you have
