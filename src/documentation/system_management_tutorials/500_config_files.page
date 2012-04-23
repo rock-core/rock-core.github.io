@@ -5,8 +5,8 @@ sort_info: 500
 
 Abstract
 --------
-From the bundle from [the last tutorial](400_development_workflow.html) we will
-now introduce the usage of configuration files.
+This tutorial will show you how to use configuration files within bundles and how to apply configurations
+to compositions and components.
 
 Presentation
 ------------
@@ -140,4 +140,6 @@ In this tutorial you learned:
  * how to generate configuration files
  * how they are used by the system management layer (in particular, how the "default"
    section is picked up automatically)
+
+The [next tutorial](600_more_complex.html) will introduce you to handling some more complex setups.
 

@@ -177,5 +177,5 @@ In this tutorial you learned:
  * what happens if you try to deploy multiple tasks that can't be deployed at
    the same time
 
-The _next tutorial_ will introduce you to config file management
+The [next tutorial](500_config_files.html) will introduce you to the configuration file management.
 
