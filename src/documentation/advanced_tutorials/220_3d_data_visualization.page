@@ -47,9 +47,7 @@ in space. Note that you can add multiple Vizkit3DPlugins to the Vizkit3DWidget
 to create complex 3D visualizations.
 
 {coderay:: ruby}
-## load and add the 3d plugin for the rock
-# Add before show
-rbs_plugin = view3d.createPlugin('RigidBodyStateVisualization')
+rbs_plugin = Vizkit.default_loader.RigidBodyStateVisualization
 {coderay}
 
 If you execute your script now, you should see a window with a sphere that is 'spiked' with three cylinders. 
@@ -58,7 +56,7 @@ By clicking inside the window and dragging you should be able to change the view
 Feeding data to your plugin
 -----------
 So, how do we pass new data to our visualizer. Quite simple, we just call
-'updateData' on it, before you call Vizkit.exec
+'updateRigidBodyState' on it, before you call Vizkit.exec
 
 {coderay:: ruby}
 rbs = Types::Base::Samples::RigidBodyState.new
@@ -66,6 +64,6 @@ rbs = Types::Base::Samples::RigidBodyState.new
 rbs.position = Eigen::Vector3.new(0, 5.0, 0)
 rbs.orientation = Eigen::Quaternion.new(0, 0, 0, 1)
 
-rbs_plugin.updateData(rbs)
+rbs_plugin.updateRigidBodyState(rbs)
 {coderay}
 
