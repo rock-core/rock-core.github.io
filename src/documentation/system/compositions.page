@@ -86,12 +86,23 @@ odometry in a system requires, for instance, a properly configured instance of
 Skid4Odometry::Task to run. The default dependency setup therefore defines that
 there is a dependency constraint failure if the child task stops while the
 composition is running. In other words, [Roby's dependency
-relation](http://rock-robotics.org/api//tools/roby/relations/dependency.html) is
+relation](http://rock-robotics.org/api/tools/roby/task_relations/dependency.html) is
 used with:
 
 {coderay:: ruby}
 composition.depends_on(child, :failed => [:stop])
 {coderay}
+
+The :as option on the #add line is used as the dependency role. It means that,
+at runtime, one can access a particular child of the composition by its name:
+
+{coderay:: ruby}
+composition.odometry_child
+{coderay}
+
+__There are some caveats__ in doing so. See [this page](runtime.html) for more
+information.
+{: .warning}
 
 This can be changed at definition time by giving additional parameters to the
 add statement. Such a special case is used to change the composition from a
@@ -109,11 +120,3 @@ end
 where reached_the_end is one of the runtime states reported by the
 TrajectoryFollower::Task component
 
-Customizing compositions
-------------------------
-At the end of the day, much more can be done using Roby's runtime code execution
-features. For instance, due to the limitations of the composition definition
-implementation, one cannot currently use the complete range of event
-constraints in the composition definition itself. This has to be done at runtime
-[using either poll, an event handler or an event
-command](http://rock-robotics.org/api//tools/roby/runtime_code.html)
