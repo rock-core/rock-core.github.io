@@ -54,7 +54,8 @@ end
 {coderay}
 
 __Note__ the concept of doing "class X .. end" like this to add something to an
-_already existing_ class is called class reopening and is a standard feature of
+_already existing_ class is called class reopening and is [a standard
+feature](http://www.ruby-lang.org/en/documentation/quickstart/3/) of
 the Ruby programming language.
 {: .note}
 

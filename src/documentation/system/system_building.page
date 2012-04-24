@@ -1,0 +1,75 @@
+---
+title: System Building
+sort_info: 500
+draft: true
+---
+What we saw so far is the ability to __model__ how things should run together.
+Data Services allow to represent abstract components. Compositions, to bind
+components together to create some functionality.
+
+However, there is still the problem of telling the system what should __actually
+run__. This step is called _system deployment_.
+
+At the root of everything are the __instance requirements__. They describe a
+subsystem so that the rock-roby engine can create the network associated with
+it.
+
+Then, these requirements are used in various places to either predefine some
+subsystems by giving them a name or directly require that the 
+
+Instance Requirements
+---------------------
+The instance requirements describe a subsystem that you require to run. The
+simplest of all is a single component model (either task or composition). For
+instance:
+
+{coderay:: ruby}
+CorridorNavigation::FollowingTask
+{coderay}
+
+tells the system that you require a component of type
+CorridorNavigation::FollowingTask to be running, not giving any other
+constraints.
+
+Compositions need a bit more information, as you might need to specify
+composition children. For instance, the composition that handles the
+CorridorNavigation::FollowingTask above requires a full robot pose, provided by
+a Srv::Pose data service.
+
+TODO: image
+
+Instanciating it therefore requires to tell the system what should be used to
+provide this pose. This is done by the #use statement:
+
+{coderay:: ruby}
+Cmp::CorridorFollowing.
+  use(Srv::Pose => Cmp::PoseEstimation)
+{coderay}
+
+assuming that Cmp::PoseEstimation is a composition that can be instanciated "by
+itself" (i.e. needs no other information to be instanciated). If it was needing
+some more specification, you would specify it the same way (don't worry, there
+are better ways to write that down)
+
+{coderay:: ruby}
+Cmp::CorridorFollowing.
+  use(Srv::Pose => Cmp::PoseEstimation.
+    use(Srv::Orientation => XsensImu::Task)
+  )
+{coderay}
+
+The other thing that can be specified in an instance requirement are the task
+arguments (as in [Roby task
+arguments](http://rock-robotics.org/api/tools/roby/building_plans/configuration.html)).
+This is simply done with #with_arguments:
+
+{coderay:: ruby}
+Cmp::CorridorServoing.
+  with_arguments(:target_point => Eigen::Vector3.new(10, 12, 0)).
+  use(Srv::Pose => Cmp::PoseEstimation.
+    use(Srv::Orientation => XsensImu::Task)
+  )
+{coderay}
+
+Orocos Deployments
+------------------
