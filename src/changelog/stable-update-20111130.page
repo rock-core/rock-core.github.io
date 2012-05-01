@@ -1,16 +1,6 @@
 ---
-title: Stable Update 2011-11-30
-sort_info: 998
-in_menu: true
-news:
-    - title: Stable Updated
-      when: 2011-11-30 16:01:00 +02:00
-
---- name:news_item
-Stable has been updated with 8 new packages and 485 commits in 35 packages.
-
---- name:content
-
+title: "2011-11-30"
+---
 <script type="text/javascript">
 $(document).ready(function () {
     $("tr.from_commits").hide()
