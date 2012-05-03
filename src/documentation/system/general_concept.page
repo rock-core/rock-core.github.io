@@ -20,9 +20,10 @@ can be:
 
  * a _task context_, i.e. an actual component that is implemented in C++ using
    oroGen
- * a _composition_
  * a _data service_, which is an abstract placeholder for "concrete" components
    (compositions or task contexts). More on that later
+ * a _composition_, which represents a way to bind components together to form
+   a new component
 
 The set of available component models in a system form the so-called system
 model. In the system model:
@@ -32,7 +33,7 @@ model. In the system model:
    the Roby model that represents the oroGen task context xsens_imu::Task is
    called XsensImu::Task.
  * compositions are defined using the following code block. This block defines a
-   Compositions::CompositionModelName __class__ that represents the composition
+   Compositions::CompositionModelName __Ruby class__ that represents the composition
    model, which can (and usually is) shortened into Cmp::CompositionModelName
 
 {coderay:: ruby}
@@ -42,7 +43,7 @@ end
 {coderay}
 
  * data services are defined using the following code block. This block defines
-   a DataServices::ServiceModelName __module__ that represents the service
+   a DataServices::ServiceModelName __Ruby module__ that represents the service
    model. It can (and usually is) shortened into Srv::ServiceModelName.
 
 {coderay:: ruby}

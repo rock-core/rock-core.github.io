@@ -63,7 +63,8 @@ In order to be able to use compositions to provide e.g.  services, or in other
 compositions, one has to give _ports_ to compositions.
 
 Since compositions are only aggregations of other components, they don't have
-ports on themselves. They "get" ports by exporting ports from their children:
+ports on themselves. They "get" ports by exporting ports from their children
+(one can export both input and output ports this way):
 
 {coderay:: ruby}
 composition "Skid4Odometry" do
