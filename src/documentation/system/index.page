@@ -3,6 +3,15 @@ title: Introduction
 sort_info: 0
 ---
 
+While one can use the Rock system management layer without knowing the
+underlying execution framework, Roby, it becomes quickly beneficial to have at
+least read the
+[concept](http://rock-robotics.org/api/tools/roby/concepts/index.html) section
+of the Roby user's guide, and followed the
+[tutorial](http://rock-robotics.org/api/tools/roby/tutorial/index.html) in the
+same guide.
+{: .note}
+
 Advanced System Deployment
 --------------------------
 
