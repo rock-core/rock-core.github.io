@@ -78,6 +78,34 @@ the [provides statement](data_services.html#provides) to declare that the
 composition provides a service and therefore be able to use it whenever said
 service is needed.
 
+Configuration
+-------------
+In the rock-roby layer, all configurations are handled through [the configuration
+files](../runtime/configuration.html). The specific configurations are specified
+using the names of the sections in the configuration files (e.g. "default",
+"high_speed").
+
+In the same way than compositions do not really have ports, but only "export"
+the ports of its children, compositions do not have configurations by
+themselves. Instead, configurations are defined as a list of configurations for
+the children.
+
+For instance:
+
+{coderay:: ruby}
+composition "Skid4Odometry" do
+  ...
+  conf 'high_speed',
+    'pose_provider' => ['default', 'high_sampling_rate']
+end
+{coderay}
+
+Unlike what is possible with task contexts, one cannot "merge" configurations on
+top of each other. Moreover, the configuration names are not verified at
+declaration time (in the example above, 'pose_provider' might be a service and
+therefore has no notion of configuration files). They are instead verified at
+instanciation time.
+
 Dependency specification: tasks and behaviours
 ----------------------------------------------
 When one adds a child to a composition, he also declares that, at runtime, the
@@ -113,10 +141,27 @@ could be defined with:
 
 {coderay:: ruby}
 composition "Goto" do
-  add TrajectoryFollower::Task, :success => [:reached_the_end]
+  add TrajectoryFollower::Task,
+     :success => [:reached_the_end],
+     :as => 'follower'
 end
 {coderay}
 
 where reached_the_end is one of the runtime states reported by the
 TrajectoryFollower::Task component
+
+Extending the plan
+------------------
+There is currently no way to extend the plan in the composition model directly,
+to for instance forward events from the children to the composition. This should
+usually be done in the command of the start event:
+
+{coderay:: ruby}
+composition "Goto" do
+  event :start do |context|
+    follower_child.reached_the_end_event.forward_to success_event
+    super
+  end
+end
+{coderay}
 

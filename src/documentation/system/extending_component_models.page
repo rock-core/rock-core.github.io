@@ -8,7 +8,8 @@ each oroGen task context model it finds. Moreover, composition models are also
 This generated model is a subclass of Orocos::RobyPlugin::Composition which is
 itself the grandchild of Roby::Task).
 
-As such, much more can be done using Roby's runtime code execution features.
+As such, much more can be done using the runtime code execution features of
+Roby.
 
 For instance, due to the limitations of the composition definition
 implementation, one cannot currently use the complete range of event constraints
