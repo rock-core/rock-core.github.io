@@ -1,10 +1,17 @@
 ---
-title: Defining Data Services
-sort_info: 200
+title: Data Services
+sort_info: 140
 ---
 
 Data services represent both an _interface_ (i.e. a set of inputs and outputs)
-and a _functionality_ (i.e. what happens to the data).
+and a _functionality_ (i.e. what happens to the data). This page will describe
+how to define them, and how to represent the links between the data services
+(e.g. how to represent that a Pose service can be used in place of an
+Orientations service since a pose provides an orientation).
+
+The relationship with other component models (task contexts and compositions)
+is described on the respective pages: [compositions](compositions.html) and
+[task contexts](task_contexts.html).
 
 A data service is defined in a system model file (i.e. in a ruby file stored in
 models/blueprints or in one of the orogen-extension files in models/orogen) with
@@ -67,9 +74,11 @@ data_service_type "Pose" do
 end
 {coderay}
 
-In this definition, the name mapping on the "provides" stanza specifies that teh
+In this definition, the name mapping on the "provides" stanza specifies that the
 "orientation_samples" port of the provided service (Srv::Orientation) should be
 replaced by the "pose_samples" port of the new service.
+
+
 
 Linking to concrete components {#provides}
 ------------------------------

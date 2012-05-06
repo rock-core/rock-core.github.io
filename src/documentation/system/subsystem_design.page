@@ -1,7 +1,6 @@
 ---
-title: System Building
+title: Subsystem Design
 sort_info: 500
-draft: true
 ---
 What we saw so far is the ability to __model__ how things should run together.
 Data Services allow to represent abstract components. Compositions, to bind

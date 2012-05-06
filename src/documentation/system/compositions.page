@@ -57,7 +57,7 @@ between ports of the same type. motors => odometry will therefore create
 connections between output ports of the Srv::ActuatorControlledSystem service
 and input ports of the same type on the Skid4Odometry::Task class.
 
-Composition Ports
+Providing Services
 -----------------
 In order to be able to use compositions to provide e.g.  services, or in other
 compositions, one has to give _ports_ to compositions.
@@ -150,11 +150,19 @@ end
 where reached_the_end is one of the runtime states reported by the
 TrajectoryFollower::Task component
 
-Extending the plan
-------------------
-There is currently no way to extend the plan in the composition model directly,
-to for instance forward events from the children to the composition. This should
-usually be done in the command of the start event:
+Extending the Composition Models
+--------------------------------
+Composition models are subclasses of Orocos::RobyPlugin::Composition which is
+itself the grandchild of Roby::Task).
+
+As such, much more can be done using the runtime code execution features of
+Roby.
+
+For instance, due to the limitations of the composition definition
+implementation, one cannot currently use the complete range of event constraints
+in the composition definition itself. This has to be done at runtime using one of the means, in Roby, to
+[hook code blocks in task
+execution](http://rock-robotics.org/api/tools/roby/building_plans/tasks.html).
 
 {coderay:: ruby}
 composition "Goto" do
@@ -165,3 +173,20 @@ composition "Goto" do
 end
 {coderay}
 
+See [Roby's own documentation](http://rock-robotics.org/api/tools/roby) for more
+information. In general, one would extend compositions with new events, scripts
+or poll blocks directly in the block given to composition. For instance:
+
+{coderay:: ruby}
+composition "Localization" do
+  event :lost
+  forward :lost => :failed
+end
+{coderay}
+
+To do it later, one would reopen the composition class with
+
+{coderay:: ruby}
+class Cmp::Localization
+end
+{coderay}
