@@ -42,7 +42,7 @@ functions. Two things are at work there:
    pattern](http://en.wikipedia.org/wiki/Dependency_injection). In the same
    idea, specific component configurations can be chosen at that point.
 2. deployment choices have to be made, such as on which machine will a component
-   / subsystem run, which [orocos deployments](../orogen/deployment.page) should
+   / subsystem run, which [orocos deployments](../orogen/deployment.html) should
    be used and so on.
 
 TODO: composer video
