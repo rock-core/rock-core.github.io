@@ -80,7 +80,7 @@
             <span><em>Go to</em> 
             <% Rock.flavors.each do |flavor|
               if flavor != Rock.current_flavor %>
-              <a href="<%= to_root %>/../<%= flavor %>/<%= context.node.acn %>"><%= flavor %></a>
+              <a href="<%= to_root %>../<%= flavor %>/<%= context.node.acn %>"><%= flavor %></a>
               <% end %>
             <% end %>
             </span>
