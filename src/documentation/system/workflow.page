@@ -31,6 +31,12 @@ Existing models can be browsed graphically using
 rock-roby system_model
 {: .cmdline}
 
+![System Model](system_model.png)
+{: .align-center}
+
+**System Model**
+Example showing the dataflow in the OrientationEstimator Composition from the AVALON AUV student project.
+
 Step 2: Subsystem Design
 ------------------------
 The second step is to use these composition models to create high-level
