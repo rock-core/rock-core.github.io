@@ -33,8 +33,8 @@ The widget is automatically being installed as normal qt designer widget into Ro
 designer widget path: install/lib/qt/designer/ and can be used by the qt designer like every other
 widget to design custom ui files.
 
-If you encounter problems with the qt designer, it might help to delete old widgets 
-(which is also done by *autoproj rebuild*) 
+If you encounter problems with the qt designer, it might help to delete old widgets from the install location
+(which is also done by *autoproj rebuild*. But as your project grows, you should realize that this command starts a complete rebuild of your project which can result in hours of compilation. Stick to the local version, then: *autoproj rebuild .* .) 
 {: .warning}
 
 To test your widget after it was built and installed, call the following command on the command line: 
