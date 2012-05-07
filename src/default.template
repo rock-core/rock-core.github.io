@@ -71,7 +71,20 @@
           </ul>
       </div>
     
-      <div class="buffer"></div>
+      <div class="buffer">
+          <% if !Rock.flavors.empty? %>
+          <div class="flavor_nav">
+            <span><em>Go to</em> 
+            <% Rock.flavors.each do |flavor|
+              if flavor != Rock.current_flavor %>
+              <a href="<%= Rock.root_url %>/<%= flavor %>/<%= context.node.acn %>"><%= flavor %></a>
+              <% end %>
+            <% end %>
+            </span>
+            <span><em>Flavor</em> <%= Rock.current_flavor %></span>
+          </div>
+          <% end %>
+      </div>
 
       <div class="leftnav">
           <webgen:block name="leftbar" notfound="ignore"/>
@@ -123,6 +136,6 @@
 </html>
 
 <!--
-vim:set ts=2:
+vim:tw=0:ft=eruby
 -->
 

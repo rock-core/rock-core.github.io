@@ -83,6 +83,15 @@ class RockAPI
     end
 end
 
+module Rock
+    if ENV['ROCK_DOC_FLAVORED']
+        @root_url, @current_flavor, *@flavors = ENV['ROCK_DOC_FLAVORED'].split(',')
+    end
+    def self.root_url; @root_url end
+    def self.current_flavor; @current_flavor end
+    def self.flavors; @flavors end
+end
+
 config = Webgen::WebsiteAccess.website.config
 config.rocktype.name nil, :mandatory => 'default'
 config['contentprocessor.tags.map']['rock_type'] = 'RockType'
