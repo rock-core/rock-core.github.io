@@ -40,7 +40,7 @@ Vizkit.control log
 Vizkit.exec
 {coderay}
 
-For testing purposes a small camera log file can be found [here](https://gitorious.org/rock-tutorials/advanced_data_visualization/blobs/raw/5ab9c7688e4b16980c05e5a3c1f0c7a24f3b21df/logfiles/bottom_camera.0.log). It shows an underwater test pipeline used during a student combetition in Italy [Sauc-E](http://www.sauc-europe.org/).
+For testing purposes a small camera log file can be found [here](https://gitorious.org/rock-tutorials/advanced_data_visualization/blobs/raw/5ab9c7688e4b16980c05e5a3c1f0c7a24f3b21df/logfiles/bottom_camera.0.log). It shows an underwater test pipeline used during a student competition in Italy [Sauc-E](http://www.sauc-europe.org/).
 
 ![ImageView Widget](210_image_viewer.png)
 {: .align-center}
