@@ -76,6 +76,7 @@
             to_root = "../" * context.node.level
             %>
           <div class="flavor_nav">
+            <% if Rock.flavors.size > 1 %>
             <span><em>Go to</em> 
             <% Rock.flavors.each do |flavor|
               if flavor != Rock.current_flavor %>
@@ -83,6 +84,7 @@
               <% end %>
             <% end %>
             </span>
+            <% end %>
             <span><em>Flavor</em> <%= Rock.current_flavor %></span>
           </div>
           <% end %>
