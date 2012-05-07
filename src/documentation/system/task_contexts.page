@@ -73,7 +73,7 @@ default section and override these values by the fast_sampling section. The way
 this selection should be done is detailed in the [subsystem
 design](subsystem_design.html) section.
 
-Extending the Model
+Extending the Model {#extend}
 -------------------
 If a file in models/orogen/ exists, that has the same name than the oroGen
 project but with a .rb extension, this file is going to be loaded after the
