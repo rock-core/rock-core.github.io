@@ -13,7 +13,7 @@ While running a task you can examine the task with the *Task Inspector*.
 
 * Open another console (don't forget to do '. env.sh# there)
 * Start your message_consumer script from the previous tutorial
-* In the other console start the task inspector with *rock_display message_producer*
+* In the other console start the task inspector with *rock-display message_producer*
 
 You will see the task inspector showing the message producer task. When you click it the entry expands and shows a property section, input port section and an output port section. The output port section also shows the port called message. If clicked on an output port the data are being displayed send by the port allowing to examine them. 
 
