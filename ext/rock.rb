@@ -86,6 +86,8 @@ end
 module Rock
     if ENV['ROCK_DOC_FLAVORED']
         @root_url, @current_flavor, *@flavors = ENV['ROCK_DOC_FLAVORED'].split(',')
+    else
+        @flavors = []
     end
     def self.root_url; @root_url end
     def self.current_flavor; @current_flavor end
