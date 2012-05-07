@@ -1,7 +1,6 @@
 ---
 title: System Management
 sort_info: 0
-only_on: master
 ---
 Until now you have been writing down detailled instructions on how to bind 
 components together using a Ruby script. 
