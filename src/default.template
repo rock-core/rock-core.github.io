@@ -73,14 +73,14 @@
     
       <div class="buffer">
           <% if !Rock.flavors.empty?
-            to_root = "../" * context.node.level
+            to_root = "../" * (context.node.level - 1)
             %>
           <div class="flavor_nav">
             <% if Rock.flavors.size > 1 %>
             <span><em>Go to</em> 
             <% Rock.flavors.each do |flavor|
               if flavor != Rock.current_flavor %>
-              <a href="<%= to_root %>../<%= flavor %>/<%= context.node.acn %>"><%= flavor %></a>
+              <a href="<%= to_root %>../<%= flavor %><%= context.node.acn %>"><%= flavor %></a>
               <% end %>
             <% end %>
             </span>
