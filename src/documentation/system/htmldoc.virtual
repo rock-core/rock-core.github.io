@@ -11,7 +11,7 @@
     sort_info: 99998
     url: /api/tools/roby/index.html
 
-- roby_api.html
+- roby_api.html:
     routed_title: Roby API
     in_menu: false
     sort_info: 99999
