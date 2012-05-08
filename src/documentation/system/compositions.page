@@ -57,7 +57,7 @@ between ports of the same type. motors => odometry will therefore create
 connections between output ports of the Srv::ActuatorControlledSystem service
 and input ports of the same type on the Skid4Odometry::Task class.
 
-Composition Ports
+Providing Services
 -----------------
 In order to be able to use compositions to provide e.g.  services, or in other
 compositions, one has to give _ports_ to compositions.
@@ -79,6 +79,34 @@ the [provides statement](data_services.html#provides) to declare that the
 composition provides a service and therefore be able to use it whenever said
 service is needed.
 
+Configuration
+-------------
+In the rock-roby layer, all configurations are handled through [the configuration
+files](../runtime/configuration.html). The specific configurations are specified
+using the names of the sections in the configuration files (e.g. "default",
+"high_speed").
+
+In the same way than compositions do not really have ports, but only "export"
+the ports of its children, compositions do not have configurations by
+themselves. Instead, configurations are defined as a list of configurations for
+the children.
+
+For instance:
+
+{coderay:: ruby}
+composition "Skid4Odometry" do
+  ...
+  conf 'high_speed',
+    'pose_provider' => ['default', 'high_sampling_rate']
+end
+{coderay}
+
+Unlike what is possible with task contexts, one cannot "merge" configurations on
+top of each other. Moreover, the configuration names are not verified at
+declaration time (in the example above, 'pose_provider' might be a service and
+therefore has no notion of configuration files). They are instead verified at
+instanciation time.
+
 Dependency specification: tasks and behaviours
 ----------------------------------------------
 When one adds a child to a composition, he also declares that, at runtime, the
@@ -87,12 +115,23 @@ odometry in a system requires, for instance, a properly configured instance of
 Skid4Odometry::Task to run. The default dependency setup therefore defines that
 there is a dependency constraint failure if the child task stops while the
 composition is running. In other words, [Roby's dependency
-relation](http://rock-robotics.org/api//tools/roby/relations/dependency.html) is
+relation](http://rock-robotics.org/api/tools/roby/task_relations/dependency.html) is
 used with:
 
 {coderay:: ruby}
 composition.depends_on(child, :failed => [:stop])
 {coderay}
+
+The :as option on the #add line is used as the dependency role. It means that,
+at runtime, one can access a particular child of the composition by its name:
+
+{coderay:: ruby}
+composition.odometry_child
+{coderay}
+
+__There are some caveats__ in doing so. See [this page](runtime.html) for more
+information.
+{: .warning}
 
 This can be changed at definition time by giving additional parameters to the
 add statement. Such a special case is used to change the composition from a
@@ -103,18 +142,52 @@ could be defined with:
 
 {coderay:: ruby}
 composition "Goto" do
-  add TrajectoryFollower::Task, :success => [:reached_the_end]
+  add TrajectoryFollower::Task,
+     :success => [:reached_the_end],
+     :as => 'follower'
 end
 {coderay}
 
 where reached_the_end is one of the runtime states reported by the
 TrajectoryFollower::Task component
 
-Customizing compositions
-------------------------
-At the end of the day, much more can be done using Roby's runtime code execution
-features. For instance, due to the limitations of the composition definition
-implementation, one cannot currently use the complete range of event
-constraints in the composition definition itself. This has to be done at runtime
-[using either poll, an event handler or an event
-command](http://rock-robotics.org/api//tools/roby/runtime_code.html)
+Extending the Composition Models
+--------------------------------
+Composition models are subclasses of Orocos::RobyPlugin::Composition which is
+itself the grandchild of Roby::Task).
+
+As such, much more can be done using the runtime code execution features of
+Roby.
+
+For instance, due to the limitations of the composition definition
+implementation, one cannot currently use the complete range of event constraints
+in the composition definition itself. This has to be done at runtime using one of the means, in Roby, to
+[hook code blocks in task
+execution](http://rock-robotics.org/api/tools/roby/building_plans/tasks.html).
+
+{coderay:: ruby}
+composition "Goto" do
+  event :start do |context|
+    follower_child.reached_the_end_event.forward_to success_event
+    super
+  end
+end
+{coderay}
+
+See [Roby's own documentation](http://rock-robotics.org/api/tools/roby) for more
+information. In general, one would extend compositions with new events, scripts
+or poll blocks directly in the block given to composition. For instance:
+
+{coderay:: ruby}
+composition "Localization" do
+  event :lost
+  forward :lost => :failed
+end
+{coderay}
+
+To do it later, one would reopen the composition class with
+
+{coderay:: ruby}
+class Cmp::Localization
+end
+{coderay}

@@ -239,3 +239,23 @@ if you use [the fd_driven statement](triggering/fd.html).
 Finally, one can force the deployment to use an activity by replacing
 "default_activity" by "required_activity".
 
+Dynamic Ports {#dynamic-ports}
+-------------
+Some components (e.g. the logger or the canbus components) may create new ports
+at runtime when one of their operations is called. While not strictly necessary
+in day-to-day operations, some of the model-based tooling (namely, rock-roby)
+may require hints that this creation is possible. This is done with the
+dynamic_input_port and dynamic_output_port declarations, possibly using a
+regular expression as name pattern and either a message type or nil for "type
+unknown". For instance
+
+{coderay:: ruby}
+dynamic_output_port /.*/, "canbus/Message"
+{coderay}
+
+declares, in the [canbus::Task]({rock_task: canbus::Task}), that ports with
+arbitrary names might be added to the task interface, and that these ports will
+have the /canbus/Message type.
+
+
+

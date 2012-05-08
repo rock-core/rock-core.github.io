@@ -81,11 +81,13 @@ end
 
 or, in models/orogen/laser_filter.rb
 
+{coderay:: ruby}
 class LaserFilter::Task
   transformer do
     <declarations>
   end
 end
+{coderay}
 
 __When should you do one or the other ?__. One thing to consider, when adding
 these declarations, is that by adding it to an oroGen project, you make this
