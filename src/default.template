@@ -21,14 +21,7 @@
   <div class="page-container-2">
       <div class="nav1-container">
           <div class="nav1">
-              <webgen:block name="navbar" notfound="ignore"/>
-              <ul>
-                  <li><a href="{relocatable: /documentation/installation.html}">Installation</a></li>
-                  <li><a href="{relocatable: /documentation}">Documentation</a></li>
-                  <li><a href="{relocatable: /package_directory.html}">Browse Packages</a></li>
-                  <li><a href="http://blog.rock-robotics.org">News</a></li>
-                  <li><a href="{relocatable: /documentation/about/contributing.html}">Community</a></li>
-              </ul>
+              <webgen:block name="navbar" notfound="ignore"/><a href="{relocatable: /documentation/installation.html}">Installation</a><a href="{relocatable: /documentation}">Documentation</a><a href="{relocatable: /package_directory.html}">Browse Packages</a><a href="http://blog.rock-robotics.org">News</a><a href="{relocatable: /documentation/about/contributing.html}">Community</a>
           </div>
           <div class="search">
               <div id="cse-search-form" style="width: 100%;">Loading</div>
