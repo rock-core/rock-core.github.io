@@ -12,7 +12,7 @@ name and all available slots and signals can be called on them.
 
 ![Qt Designer](400_qdesigner.png)
 
-Example for loading an ui file which defines a text field with the object
+Example for loading a ui file which defines a text field with the object
 name my_text_filed.
 {coderay:: ruby}
   require 'vizkit'

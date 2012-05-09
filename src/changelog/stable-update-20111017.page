@@ -1,17 +1,6 @@
 ---
-title: First Rock preview (Stable Update 2011.1)
-sort_info: 999
-in_menu: true
-news:
-    - title: First Rock preview
-      when: 2011-10-19 09:46:00 +02:00
-
---- name:news_item
-Stable has been updated with 9 new packages and 1619 commits in 40 packages.
-
-This update is the first Rock preview.
-
---- name:content
+title: "2011-10-19 - Preview"
+---
 
 <script type="text/javascript">
 $(document).ready(function () {

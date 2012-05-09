@@ -1,16 +1,6 @@
 ---
-title: Stable Update 2012.1 - Rock RC1
-sort_info: 999
-in_menu: true
-news:
-    - title: Stable Updated
-      when: 2012-02-22 16:01:00 +02:00
-
---- name:news_item
-Stable has been updated with 6 new packages and 435 commits in 28 packages.
-
---- name:content
-
+title: "2012-02-22 - RC1"
+---
 <script type="text/javascript">
 $(document).ready(function () {
     $("tr.from_commits").hide()

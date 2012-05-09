@@ -1,0 +1,132 @@
+---
+title: Task Contexts
+sort_info: 150
+---
+
+This page describes how the task contexts are represented in the rock-roby
+layer.
+
+Modelling
+---------
+Only task contexts that have been developped using oroGen (i.e. all task
+contexts coming from Rock) can currently be integrated in Rock. The general
+issue here is that, for the system management layer to work, a model of the
+components needs to be available __and__ deployed instances of these components
+should be described as well.
+
+The rock-roby layer then generates a Ruby class that is a subclass of Roby::Task
+for each of the oroGen components it finds. Throught his class, one has access
+to all the runtime code execution features of Roby itself. See [Roby's own
+documentation](http://rock-robotics.org/api/tools/roby) for more information
+
+All task contexts get the following task arguments:
+
+ * __conf__ is the configuration that should be applied to the task (see below)
+ * __orocos_name__ is the name of the deployed orocos task that is used to run
+   this task context. This is used in order to be able to do this association
+   when reading log files.
+
+The Roby task models use events to represent state transitions in the task
+context. Transitions to and from PRE_OPERATIONAL are an exception: they are not
+represented using events.  How this is managed is going to be detailed in the
+[runtime](runtime.html) section of this guide. Always available events are:
+
+ * __success__: transition to STOPPED
+ * __exception__: transition to EXCEPTION
+ * __fatal_error__: transition to FATAL_ERROR
+ * __start__: transition to RUNNING
+ * __runtime_error__: transition to RUNTIME_ERROR
+
+__fatal_error__ and __exception__ are both forwarded to __failed__.
+__runtime_error__ is not by default.
+
+Additionally, events are created for each of the [custom task
+state](../orogen/task_states.html), with their names converted to
+lower_snake_case. If substates are defined (i.e. a custom exception state
+defined with exception_states), the corresponding event is forwarded to the
+corresponding main state event.
+
+For instance, a task defined with
+
+{coderay:: ruby}
+name "xsens_imu"
+task_context "Task" do
+  exception_states :IO_ERROR
+end
+{coderay}
+
+will have an _io_error_ event that is forwarded to the _exception_ event.
+
+Configurations {#configuration}
+--------------
+Task context configurations, in rock-roby, are all managed through [the
+configuration directory
+mechanisms](../runtime/configuration.html#configuration-directories). The
+configuration files are looked for in config/orogen/ and must follow the
+model_name.yml convention. For instance, configurations for xsens_imu::Task are
+stored in config/orogen/xsens_imu::Task.yml).
+
+The configurations are then selected at the time of [subsystem
+design](workflow.html) by listing the configuration sections that should be
+applied, i.e. the "default, fast_sampling" configuration will apply the values stored in the
+default section and override these values by the fast_sampling section. The way
+this selection should be done is detailed in the [subsystem
+design](subsystem_design.html) section.
+
+Extending the Model {#extend}
+-------------------
+If a file in models/orogen/ exists, that has the same name than the oroGen
+project but with a .rb extension, this file is going to be loaded after the
+corresponding oroGen project is loaded and after the subclasses of Roby::Task
+have been created. This is commonly used to declare that the task context
+provides some service, but can also be used to extend these classes with custom
+events, event handlers, ...
+
+To declare that the xsens_imu::Task provides the Orientation service, one would
+create a models/orogen/xsens_imu.rb file and add:
+
+{coderay:: ruby}
+class XsensImu::Task
+  provides Srv::Orientation
+end
+{coderay}
+
+To add a poll handler to the same task context, one would add the following
+code:
+
+{coderay:: ruby}
+class XsensImu::Task
+  poll do
+    # Do some polling
+  end
+end
+{coderay}
+
+__Note__ the concept of doing "class X .. end" like this to add something to an
+_already existing_ class is called class reopening and is [a standard
+feature](http://www.ruby-lang.org/en/documentation/quickstart/3/) of
+the Ruby programming language.
+{: .note}
+
+Moreover, one can add, at the Roby level, a method that is going to be called at
+component's configuration time before the component's own configureHook gets
+called. This feature is commonly used to add task arguments to the model, and
+use it to configure the task in cases where a configuration parameter depends on
+the general context (i.e. cannot be statically written in a configuration
+file). Do not forget to call super there, as the
+application of the task's configuration files is done in #configure as well.
+For instance:
+
+{coderay:: ruby}
+class CorridorPlanner::Task
+  argument :start_point
+  argument :target_point
+
+  def configure
+    orogen_task.start_point = self.start_point
+    orogen_task.target_point = self.target_point
+    super
+  end
+end
+{coderay}
+
