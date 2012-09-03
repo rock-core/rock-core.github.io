@@ -26,7 +26,10 @@ section.
 We start by adding the VirtualJoystick widget before the Orocos.run block:
 
 {coderay:: ruby}
-## create a widget that emulates a joystick
+# load vizkit package
+require 'vizkit'
+
+# create a widget that emulates a joystick
 joystickGui = Vizkit.default_loader.create_widget('VirtualJoystick')
 
 #show it
