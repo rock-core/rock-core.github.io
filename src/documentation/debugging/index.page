@@ -47,7 +47,7 @@ The logger allows you to log either in a printf-style or stream-style.
 For that purpose include it where needed and preferably in the .cpp files to avoid warnings about an undefined namespace for the logging.
 
 {coderay:: cpp}
-#include<base/logging>
+#include<base/logging.h>
 
 ...
 // printf-style logging
