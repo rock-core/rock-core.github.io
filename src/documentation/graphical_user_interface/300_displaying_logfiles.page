@@ -24,6 +24,11 @@ rock-replay logfile1, logfile2, logfile3
 ![Rock-Replay](300_replay.png)
 {: .align-center}
 
+As your usage of logging and Rock advances, it might be important to read [this
+note](../data_analysis/replaying_logfiles.html#time) about what time does
+rock-replay use to order the samples.
+{: .warning}
+
 All the mechanisms which rock-replay uses to visualizes a log file can be easily
 used or extended by custom ruby scripts to display live data or log data.
 
