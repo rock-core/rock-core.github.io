@@ -151,28 +151,10 @@ the trick. However, it won't be the case if the computer on the robot is
 overloaded (either because the disk is too slow or the CPU load too high).
 
 In the future, the logical time will be the sample time. However, the current
-implementation of Rock's logger component does not allow that, so one needs to
-use some options on Rock's log replay tooling.
-
-The following methods are limited for data types that have a 'time' field of
-type /base/Time. The replay algorithm will fall back to the logical time for
-streams do not fit this.
-
-On the command line, one can use the --time-source option to rock-replay:
-
-{coderay:: ruby}
-rock-replay --time-source=use_sample_time
-{coderay}
-
-In Ruby scripts, one can use the time_source attribute on the Replay class
-
-{coderay:: ruby}
-replay = Log::Replay.open(file0,folder0,...)
-replay.time_source = :use_sample_time
-{coderay}
-
-Finally, one can process log files offline to store the sample time in place of the
-logical time [using rock-convert](converting_logfiles.html):
+implementation of Rock's logger component does not allow that, so there is the
+need to run one step before analyzing the logs: one can process log files
+offline to store the sample time in place of the logical time [using
+rock-convert](converting_logfiles.html):
 
 {coderay:: ruby}
 rock-convert --use-sample-time LOGFILE
