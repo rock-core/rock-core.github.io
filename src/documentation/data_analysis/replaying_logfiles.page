@@ -171,6 +171,13 @@ replay = Log::Replay.open(file0,folder0,...)
 replay.time_source = :use_sample_time
 {coderay}
 
+Finally, one can process log files offline to store the sample time in place of the
+logical time [using rock-convert](converting_logfiles.html):
+
+{coderay:: ruby}
+rock-convert --use-sample-time LOGFILE
+{coderay}
+
 Example: Loading and accessing log data:
 ---------------------------------------
 {coderay:: ruby}
