@@ -138,6 +138,39 @@ replay.camera.frame.tracked = true
 {coderay}
 </div>
 
+Understanding time in log files {#time}
+-------------------------------
+Rock's log file format embeds two times per sample one _logical time_ and one _real
+time_. Currently, these two times correspond to the time at which the logger
+received a sample (logical time) and the time it wrote it to disk (real time).
+
+However, when visualizing or replaying data, one usually wants to consider the
+time of the sample as the replay time (i.e. the time stored in the sample's
+timestamp field, if there is one). In most cases, the logical time will do
+the trick. However, it won't be the case if the computer on the robot is
+overloaded (either because the disk is too slow or the CPU load too high).
+
+In the future, the logical time will be the sample time. However, the current
+implementation of Rock's logger component does not allow that, so one needs to
+use some options on Rock's log replay tooling.
+
+The following methods are limited for data types that have a 'time' field of
+type /base/Time. The replay algorithm will fall back to the logical time for
+streams do not fit this.
+
+On the command line, one can use the --time-source option to rock-replay:
+
+{coderay:: ruby}
+rock-replay --time-source=use_sample_time
+{coderay}
+
+In Ruby scripts, one can use the time_source attribute on the Replay class
+
+{coderay:: ruby}
+replay = Log::Replay.open(file0,folder0,...)
+replay.time_source = :use_sample_time
+{coderay}
+
 Example: Loading and accessing log data:
 ---------------------------------------
 {coderay:: ruby}
