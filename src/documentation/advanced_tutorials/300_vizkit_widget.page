@@ -38,6 +38,7 @@ If you encounter problems with the qt designer, it might help to delete old widg
 {: .warning}
 
 To test your widget after it was built and installed, call the following command on the command line: 
+
 {coderay:: bash}
 $ ruby scripts/test.rb
 {coderay}
@@ -82,6 +83,7 @@ the position called x_edit, y_edit, z_edit and but_set_pos. We save it to script
 Now we write a simple Qt Ruby widget using our user interface and name it test2.rb. All 
 widgets contained in testwidget.ui are accessible via their object name on the top level
 of the main widget.
+
 {coderay:: ruby}
 #! /usr/bin/env ruby
 
@@ -144,6 +146,7 @@ this can be found in the src folder of your widget called vizkit_widget.rb which
 automatically being installed at the right location.
 
 This code registers our widget for the type /base/samples/RigidBodyState
+
 {coderay:: ruby}
 Vizkit::UiLoader::extend_cplusplus_widget_class "MyWidget" do
 
