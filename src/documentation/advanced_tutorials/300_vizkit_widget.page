@@ -106,7 +106,7 @@ class TestWidget < Qt::Widget
                                 :change_position)
     
     #activate calling Qt slots with oroGen types
-    @window.mywidget.extend QtTypelibExtension
+    @window.mywidget.extend Vizkit::QtTypelibExtension
   end
   
   def change_position
