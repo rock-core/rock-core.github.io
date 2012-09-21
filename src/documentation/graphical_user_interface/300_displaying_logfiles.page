@@ -67,6 +67,7 @@ does to replay a log file to a custom qt widget.
 {coderay}
 
 The next example is pretty much the start script of rock-replay
+
 {coderay:: ruby}
 require 'vizkit'
 if ARGV.empty?

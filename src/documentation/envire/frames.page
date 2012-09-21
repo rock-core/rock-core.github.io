@@ -11,6 +11,7 @@ available in the environment. Every environment has a root frame, which can be
 retrieved from an environment object using the `getRootNode()` method. 
 
 Additional frames can be added to the frame tree using one of the two methods
+
 {coderay:: cpp}
 FrameNode *childFrame = new FrameNode(
     Eigen::Transform3d( Eigen::Translation3d( 0, 0, 1.0 ) ) );

@@ -47,6 +47,7 @@ end
 {coderay}
 
 If the task cannot be found, an exception will be raised, e.g. if you misspelled the task name and used 'message_producr' instead of the correct name: 
+
 {coderay:: text}
 Orocos.rb: killing running task contexts and deployments
 	 because of unhandled exception
@@ -131,6 +132,7 @@ end
 ### Run it
 First start the message producer, then the message consumer. The message consumer will output the message in 
 the same way a before, however, this time both component found each other using the Avahi naming service. 
+
 {coderay:: text}
 ruby message_producer/scripts/start.rb &
 ruby message_consumer/scripts/start.rb

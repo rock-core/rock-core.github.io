@@ -46,6 +46,7 @@ Vizkit can easily be extended with custom c++ qt widgets. To do so follow the st
  * write a ruby script to make the widget usable for Vizkit and require it after Vizkit is loaded
 
 Example: ruby script which integrates a c++ widget into vizkit
+
 {coderay:: ruby}
 require 'eigen'
 

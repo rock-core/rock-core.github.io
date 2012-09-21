@@ -73,10 +73,12 @@ Done.
 {coderay}
 
 The newly created package comes in a ready to run after a fashion: you can build and install it right away using the build tool [autoproj](/documentation/autoproj/basic_usage.html)
+
 {coderay:: text}
 amake basics_tutorial/message_driver
 {coderay}
 or 
+
 {coderay:: text}
 autoproj build basics_tutorial/message_driver
 {coderay}
@@ -94,15 +96,18 @@ The library does not contain message handling capabilities yet. So, we create th
 
 First, create the message type for timestamped messages. Since base/types already provides a timestamp, include 'base/time.h' and make 'base/types' a
 dependency of your library, if you haven't done it already. Check the manifest.xml and make sure it contains the 'base/types' dependency.
+
 {coderay:: xml}
 <depend package="base/types" />
 {coderay}
 
 ***NOTE***: Dependencies are added to the manifest.xml of a package, and you should add operating system dependencies using 
+
 {coderay:: text}
 <rosdep name="osg" />
 {coderay}
 and dependencies to 'custom' packages using
+
 {coderay:: text}
 <depend package="base/types" />
 {coderay}
@@ -245,6 +250,7 @@ layout:
 
 ### Build it
 Just verify that your component builds and you finished your first Rock tutorial.
+
 {coderay:: text}
 amake basics_tutorial/message_driver
 {coderay}

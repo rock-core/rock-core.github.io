@@ -165,6 +165,7 @@ during the build (see below).
 
 Finally, the <tt>version_control:</tt> section describes how to import each
 software package. Its general format is:
+
 {coderay:: yaml}
 package_name:
   type: version_control_type # git, svn, cvs, darcs
@@ -177,6 +178,7 @@ whose name starts with 'drivers'). The package name is the one given to the
 <tt>blabla_package</tt> stanza in the autobuild file.
 
 For the git importer, one of 'branch' or 'tag' options can be provided as well:
+
 {coderay:: yaml}
 package_name:
   branch: branch_to_track
@@ -232,6 +234,7 @@ Then, you can use the option\_name as an expansion in the source.yml file.
 
 For instance, at my lab we are using an share filesystem to store the git
 repositories. Our project's init.rb file has the following option definition:
+
 {coderay:: ruby}
 configuration_option "MOUNT_POINT", "string",
     :default => "$HOME/nfs",

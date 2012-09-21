@@ -56,6 +56,7 @@ The AVAHI nameservice allows distributed name resolution, i.e.
 it does not require a centralized server.
 For the name resolution via Avahi to work, deployments have to be started
 with a service discovery domain set:
+
 {coderay:: ruby}
 Orocos.run 'deployment', 'cmdline_args' => { 'sd-domain' => '_robot._tcp' } do |p|
 end
