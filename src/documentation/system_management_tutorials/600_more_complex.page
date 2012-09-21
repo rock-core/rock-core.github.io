@@ -63,6 +63,7 @@ end
 
 As you can see, for this specialization we also introduce an additional service 'Pose'. We define it just 
 after the previous service definition:
+
 {coderay:: ruby}
 data_service_type 'Pose' do
   output_port 'pose_samples', '/base/samples/RigidBodyState'

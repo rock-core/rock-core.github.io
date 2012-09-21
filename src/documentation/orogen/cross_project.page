@@ -36,6 +36,7 @@ It also searches in the directories listed in the <tt>PKG_CONFIG_PATH</tt>
 environment variable. If you install your orogen projects in a non standard
 location, you must add this location to <tt>PKG_CONFIG_PATH</tt>. In a bash-like
 shell, this is done with:
+
 {coderay:: text}
 export PKG_CONFIG_PATH=/my/installed/prefix/lib/pkgconfig:$PKG_CONFIG_PATH
 {coderay}
@@ -51,6 +52,7 @@ Importing types
 
 To import and define the types defined by another project, just add the
 following at toplevel:
+
 {coderay:: ruby}
 import_types_from "project_name"
 {coderay}
@@ -63,6 +65,7 @@ Importing task context definitions
 
 To import task contexts defined by another project, just add the following at
 toplevel:
+
 {coderay:: ruby}
 using_task_library "project_name"
 {coderay}

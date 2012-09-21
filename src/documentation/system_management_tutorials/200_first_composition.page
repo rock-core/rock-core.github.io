@@ -73,6 +73,7 @@ rock_tutorial. Since using default deployments is currently not supported you ha
 
 Add the following lines to tutorials/orogen/rock_tutorial/rock_tutorial.orogen (which you created in the tutorial 
 [Simulate a Robot](../tutorials/500_simulate_a_robot.html) ):
+
 {coderay:: ruby}
 deployment 'rock_tutorial' do
     task('rock_tutorial', "rock_tutorial::RockTutorialControl")
@@ -80,11 +81,13 @@ end
 {coderay}
 
 Now, you need to rebuild build the oroGen component with:
+
 {coderay:: sh}
 amake tutorials/orogen/rock_tutorial
 {coderay}
 
 Call again the instanciation with
+
 {coderay:: text}
 rock-roby instanciate scripts/rockRoby1.rb
 {coderay}
@@ -100,6 +103,7 @@ rock-roby run scripts/rockRoby1.rb
 {coderay}
 
 In another shell, display the task using rock-display: 
+
 {coderay:: sh}
 rock-display rock_tutorial
 {coderay}

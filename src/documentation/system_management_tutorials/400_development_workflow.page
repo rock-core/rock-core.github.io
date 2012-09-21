@@ -96,7 +96,6 @@ joystick!
 It requests that the supervision starts the joystick-based control, as you can
 see in the log or in the live display (if you start that in parallel):
 
-
 {coderay:: text}
 localhost:48902 > joystick!
 => #<service Roby::Task:0x7fedaea11a00{}[]>

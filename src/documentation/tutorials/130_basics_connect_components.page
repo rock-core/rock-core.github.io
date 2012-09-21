@@ -44,6 +44,7 @@ end
 
 The 'port_driven' statement allows you to specify ports, where incoming data triggers a call to the updateHook of the task (more details in the [documentation](../orogen/triggering/ports.html)).
 Implement the updateHook, so that every incoming message is printed to stdout, using the existing printMessage function of your 'message_driver' library.
+
 {coderay:: c++}
 void Task::updateHook()
 {
@@ -100,6 +101,7 @@ The call to 'connect_to' for an output port allows you to connect it with an inp
 ### Run it
 
 Run your ruby script
+
 {coderay:: c++}
 ruby start.rb
 {coderay}

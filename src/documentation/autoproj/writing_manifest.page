@@ -79,6 +79,7 @@ general format is:
 {coderay}
 
 For the git importer, one of 'branch' or 'tag' options can be provided as well:
+
 {coderay:: yaml}
   - type: version_control_type # git, svn, cvs, darcs
     url: repository_url

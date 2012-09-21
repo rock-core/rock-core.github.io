@@ -18,6 +18,7 @@ Layers itself do not contain any spatial information, so they can in principle
 store both cartesian as well as non-cartesian (topological) maps. The derived
 class `CartesianMap` does provide the ability to associate a layer with a frame.
 This is done through either 
+
 {coderay:: cpp}
 env->setFrameNode( map, frameNode );
 {coderay}
@@ -59,6 +60,7 @@ different permutations of available data.
 Some maps may provide additional features for metadata, like e.g. in a
 `Pointcloud`. Here vertices are stored as a vector of `Vector3` objects. However,
 these vertices may also have associated normals. 
+
 {coderay:: cpp}
 if( pc->hasData( Pointcloud::VERTEX_NORMALS ) )
 {

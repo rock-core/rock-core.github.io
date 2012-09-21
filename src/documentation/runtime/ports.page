@@ -44,16 +44,19 @@ Disconnecting
 There are different ways to disconnect ports
 
  * one can specify a specific connection to remove:
+
 {coderay:: ruby}
 output_port.disconnect_from input_port
 {coderay}
 
  * one can completely disconnect an input port
+
 {coderay:: ruby}
 input_port.disconnect_all
 {coderay}
 
  * one can completely disconnect an output port
+
 {coderay:: ruby}
 output_port.disconnect_all
 {coderay}

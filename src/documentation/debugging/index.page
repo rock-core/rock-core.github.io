@@ -67,6 +67,7 @@ LOG_FATAL << information;
 {coderay}
 
 The default output format of a log message looks like the following (without linebreak):
+
 {coderay:: sh}
 [20120120-11:58:00:577] [FATAL] - test_logger::A fatal error 
 occurred (/tmp/test_logger/src/Main.cpp:10 - int main(int, char**))
@@ -99,17 +100,20 @@ The following ***enviroment variables*** can be used to control the behaviour of
 **BASE_LOG_FORMAT** Select from a set of predefined logging formats: DEFAULT, MULTILINE, SHORT, example outputs are given below:
 
 The DEFAULT format contains no linebreaks (here only due to fit the narrow presentation):
+
 {coderay:: sh}
 [20120120-11:58:00:577] [FATAL] - test_logger::A fatal error 
 occurred (/tmp/test_logger/src/Main.cpp:10 - int main(int, char**))
 {coderay}
     
 The SHORT format reduces information to the log priority and the message:
+
 {coderay:: sh}
 [FATAL] - test_logger::A fatal error occurred
 {coderay}
     
 The MULTILINE format split each individual log message across a minimum of three lines:
+
 {coderay:: sh}
 [20120120-11:58:59:976] in int main(int, char**)
         /tmp/test_logger/src/Main.cpp:10
