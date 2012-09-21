@@ -20,6 +20,7 @@ the said tasks (since people will know that they may be used as IO-driven).
 
 To declare a task context as IO-driven, one adds the following statement to the
 task context definition block:
+
 {coderay:: ruby}
 fd_driven
 {coderay}

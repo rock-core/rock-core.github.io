@@ -78,12 +78,14 @@ All oroGen components should be created inside a separated folder called 'orogen
 
 The previous command creates a new folder 'basics_tutorial/orogen/message_producer'. Inside you find two files: manifest.xml and message_producer.orogen.
 The manifest.xml will have been filled with the information you provided already, but when you need to add additional dependencies to libraries or oroGen components you will have to edit manifest.xml directly. Since you want to use your newly created library, check that your library has been added as dependency.
+
 {coderay:: xml}
 <depend package="basics_tutorial/message_driver" />
 {coderay}
 
 The message_producer.orogen is the specification file of the your new oroGen component, and allows you to define Orocos tasks. 
 The goal is to create a component which produces messages at a rate of 1 Hz, so the component only requires an output port for messages. 
+
 {coderay:: ruby}
 name "message_producer"
 
@@ -110,6 +112,7 @@ In order to make types known to your component so that you can use them in the s
 
 ### Integration into the build system
 Again, you should add you component to the build system by adding the package to autproj/manifest's layout section:
+
 {coderay:: text}
 package_sets:
   - gitorious: rock-toolchain/package_set
@@ -141,6 +144,7 @@ Within the subfolder 'tasks' of the created component you will find two files: '
 (More information about this methods could be found [here](../orogen/task_states.html))
 
 To add the message_driver functionality, add a forward declaration for message_driver and add a message_driver::MessageDriver member to the Task.hpp:
+
 {coderay:: c++}
 namespace message_driver {
     class MessageDriver;
@@ -156,6 +160,7 @@ namespace message_producer {
 {coderay}
 
 Add the the message driver creation to the task's constructor and deallocation to the destructor.
+
 {coderay:: c++}
 #include <message_driver/MessageDriver.hpp>
 ...
@@ -242,11 +247,13 @@ end
 {coderay}
 
 This scripts starts a process for the task 'message_producer' (The second argument behind Orocos.run gives the name to access it in the Orocos.run body). Once the message_producer has been created, the task can be accessed using 'TaskContext.get'. Having the reference to the task context allows you to explicitly start the task. Run it using ruby. 
+
 {coderay:: text}
 ruby start.rb
 {coderay}
 
 The script prints only new messages that the producer provides. Since you set the periodicity to 1 second,  messages should show only every 1s. 
+
 {coderay:: text}
 Tue Aug 02 16:43:48 +0200 2011 Message from MessageDriver
 Tue Aug 02 16:43:49 +0200 2011 Message from MessageDriver

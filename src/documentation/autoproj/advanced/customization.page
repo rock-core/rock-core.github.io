@@ -49,6 +49,7 @@ are sensible to indentation. The snippet above should be read as: in the layout,
 {: .warning}
 
 Alternatively, the example above could be written:
+
 {coderay:: yaml}
 layout:
   - lib: [typelib, utilmm, utilrb]
@@ -192,6 +193,7 @@ Some examples:
    then you can fix it by adding the following in <tt>autoproj/overrides.rb</tt>
 
 <div class="indent">
+
 {coderay:: ruby}
 a = Autobuild::Package['a_package']
 a.depends_on "other_package"
@@ -201,6 +203,7 @@ a.depends_on "other_package"
  * changing the configuration of some cmake package:
 
 <div class="indent">
+
 {coderay:: ruby}
 a = Autobuild::Package['a_package']
 a.define "CONFIG_VAR", "CONFIG_VALUE"

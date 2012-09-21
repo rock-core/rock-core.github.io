@@ -177,6 +177,7 @@ end
 {coderay}
 
 To allow convertion between a Ruby class and an oroGen-registered type, one does
+
 {coderay:: ruby}
 # If we get a /base/Time, convert it to Ruby's Time class
 Typelib.convert_to_ruby '/base/Time' do |value|

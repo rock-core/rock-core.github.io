@@ -110,6 +110,7 @@ there is a data provider that will send data to input ports
 samples written on output ports.
 
 For instance,
+
 {coderay:: cpp}
 if (_out.connected())
 {
@@ -123,6 +124,7 @@ if (_out.connected())
 Properties
 ----------
 Properties are defined with
+
 {coderay:: ruby}
 property('name', 'configuration_type').
     doc 'what this property is about'
@@ -148,6 +150,7 @@ operation('commandName').
 {coderay}
 
 Additionally, a return type can be added with
+
 {coderay:: ruby}
 operation('operationName').
     returns('int').
@@ -159,6 +162,7 @@ Note the dot at the end of all but the last line. This dot is important and,
 if omitted, will lead to syntax errors.
 
 In the generated task class, the operation simply maps to a C++ method:
+
 {coderay:: cpp}
 return_type operationName(arg::type const& arg0, example::other_arg const& arg1);
 {coderay}
@@ -189,6 +193,7 @@ For each element of the interface, Orogen declares the corresponding RTT C++
 object as an attribute of the task implementation. The attribute's name is the
 object name with an underscore prepended. For instance, the operation declared
 with
+
 {coderay:: ruby}
 operation('operationName')
 {coderay}

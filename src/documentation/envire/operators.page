@@ -9,6 +9,7 @@ Operators
 Operators provide the logic to transform map information, taking frame relations
 into account. Every operator has input and output layers. The basic usage of an
 operator would be the following
+
 {coderay:: cpp}
 // create a new Merge operator that combines the given maps and
 // fills an output map with the merged information

@@ -37,6 +37,7 @@ producing 'base::MotionCommand2D'. As we want to integrate a joystick, we pick c
 from the list, which is defined in 'drivers/orogen/controldev'.  
 
 In order to install the package to your installation, either do 
+
 {coderay:: text}
 autoproj build drivers/orogen/controldev
 {coderay}
@@ -136,10 +137,12 @@ task by issuing the command 'joystick.configure'. At last we will start all the 
 Run it
 ----------
 You can now simply run it by executing
+
 {coderay:: text}
     ruby rockTutorial2.rb
 {coderay}
 And in another console:
+
 {coderay:: text}
     rock-display rock_tutorial_control
 {coderay}

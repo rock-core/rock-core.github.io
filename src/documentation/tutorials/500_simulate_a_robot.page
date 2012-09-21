@@ -15,17 +15,20 @@ Implementation
 
 ### Create a new library
 We start by entering the tutorials folder and creating a library named 'rock-tutorial' by using the 'rock-create-lib' command. 
+
 {coderay:: text}
 cd tutorials
 rock-create-lib rock_tutorial
 {coderay}
 
 This should give us an folder containing the following files :
+
 {coderay:: text}
 CMakeLists.txt  INSTALL  LICENSE  manifest.xml  README  src
 {coderay}
 
 Make sure you add the required dependencies to the manifest.xml, i.e. here 'base/types' and 'gui/vizkit'.
+
 {coderay:: text}
 <depend package="base/types" />
 {coderay}
@@ -135,6 +138,7 @@ base::samples:RigidBodyState RockControl::computeNextPose(
 ## Wrapping it up
 So, now that we are equipped with our library, we can go to the second step and wrap the code into an orocos task.
 Therefore we create a new orocos component we use the command 'rock-create-orogen'. 
+
 {coderay:: text}
 cd tutorials/orogen/
 rock-create-orogen rock_tutorial
@@ -146,6 +150,7 @@ Again we start by adding the build dependencies in the mainfest.xml. In this cas
 rock_tutorial already depends on 'base/types' and the dependencies are resolved recursive.
 
 In the rock_tutorial.orogen we will define the orocos task. For this tutorial we replace the existing entries by our definitions:
+
 {coderay:: ruby}
 name "rock_tutorial"
 version "0.1"
