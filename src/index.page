@@ -46,6 +46,9 @@ and report bugs [on the Rock trac](http://rock.opendfki.de)
 </div>
 
 
-<h1 markdown="1">News [from the blog](http://blog.rock-robotics.org)</h1>
+<h1 markdown="1">News [from the blog](http://blog.rock-robotics.org)
+    <div style="float: right; font-size: 60%;"><em><a href="http://feedburner.google.com/fb/a/mailverify?uri=rock-robotics/MMgF&amp;loc=en_US">subscribe</a></em></div>
+</h1>
+
 
 <script type="text/javascript" src="http://rock-robotics.tumblr.com/js"></script>
