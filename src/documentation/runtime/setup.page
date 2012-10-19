@@ -21,8 +21,7 @@ will raise if the name server can't be found.
 If you want to use another name server, for instance because you have a system
 spread on multiple machines and you want to manipulate modules on the various
 machines, you have to enable the nameservice of your choice using
-{rdoc_class: {base_url: /api/tools/orocos.rb, name:
-Nameservice::enable}}
+{rdoc_class: {base_url: /api/tools/orocos.rb, name: Nameservice}}.enable
 _before_ you call Orocos.initialize:
 
 {coderay:: ruby}
