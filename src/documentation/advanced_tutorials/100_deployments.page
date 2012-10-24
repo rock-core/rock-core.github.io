@@ -67,7 +67,7 @@ amake
 Usage in Ruby scripts
 ---------------------
 The defined deployments are used in Ruby scripts by replacing the model_name =>
-task_name syntax with the deployment name. Moreover, the TaskContext.get stanzas
+task_name syntax with the deployment name. Moreover, the Orocos.name_service.get stanzas
 must use the task names declared in the specific deployments (first argument to
 the "task" statement, as e.g. producer above). Using the explicit deployment above
 for the [messenger example
@@ -85,10 +85,10 @@ Orocos.run 'faster_message_producer',
     'message_consumer::Task' => 'message_consumer' do  
   
   # When using explicit deployments, the name that should be used in
-  # TaskContext.get must be the same name than given as first argument of the
+  # Orocos.name_service.get must be the same name than given as first argument of the
   # "task" statement in the deployment definition
-  message_producer = TaskContext.get 'producer'
-  message_consumer = TaskContext.get 'message_consumer'
+  message_producer = Orocos.name_service.get 'producer'
+  message_consumer = Orocos.name_service.get 'message_consumer'
   
   # Never assume that a component supports being reconnected
   # at runtime, it might not be the case

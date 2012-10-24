@@ -6,9 +6,9 @@ sort_info: 100
 Getting a hold on task contexts
 -------------------------------
 
-There are two ways to get a TaskContext instance that represents a task context:
-using its name or using its type. Both ways are accessed using the
-TaskContext.get call.
+There are three ways to get a TaskContext instance that represents a task context:
+using its IOR, name or type. The latter two are accessed using the
+Orocos.name_service.
 
 _Note:_ the task type can be used only for oroGen-generated tasks. If oroGen is
 not used, only the name can be used
@@ -23,13 +23,16 @@ deployment "lowlevel" do
 end
 {coderay}
 
-The following code snippet will get a handle on the hbridge task in the two
+The following code snippet will get a handle on the hbridge task in the three
 different ways:
 
 {coderay:: ruby}
 Orocos.run 'lowlevel' do
-  hbridge = TaskContext.get 'hbridge'
-  hbridge = TaskContext.get :provides => 'hbridge::Task'
+  hbridge = Orocos.name_service.get 'hbridge'
+  hbridge = Orocos.name_service.get_provides 'hbridge::Task'
+  
+  ior = Orocos.name_service.ior 'hbridge'
+  hbridge = Orocos::TaskContext.new ior 
 end
 {coderay}
 
@@ -40,7 +43,7 @@ IMU driver model that is subclassed by <tt>imu::XsensTask</tt> and
 <tt>dfkiimu::Task</tt>, then a startup script that does
 
 {coderay:: ruby}
-imu = TaskContext.get :provides => 'base::IMU'
+imu = Orocos.name_service.get_provides 'base::IMU'
 {coderay}
 
 Will get an IMU task regardless of its name and exact type.

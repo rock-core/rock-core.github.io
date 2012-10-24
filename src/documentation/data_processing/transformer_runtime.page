@@ -102,9 +102,9 @@ Finally:
 {coderay:: ruby}
 Orocos.transformer.load('config/transforms.rb')
 Orocos.run ... do
-  lidar = Orocos::TaskContext.get 'lidar'
-  filter = Orocos::TaskContext.get 'lidar_filter'
-  servo = Orocos::TaskContext.get 'servo'
+  lidar = Orocos.name_service.get 'lidar'
+  filter = Orocos.name_service.get 'lidar_filter'
+  servo = Orocos.name_service.get 'servo'
 
   # Tell in which frames is the data expressed. These are not
   # arbitrary anymore: they MUST match the frame names listed

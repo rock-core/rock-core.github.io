@@ -57,7 +57,7 @@ task1 = replay.camera
 task2 = replay.task('camera')
 {coderay}
 
-The equivalent call for live components is Orocos::TaskContext.get
+The equivalent call for live components is Orocos.name_service.get
 
 Then, each log stream is mapped to a port-like object:
 
@@ -211,7 +211,7 @@ include Orocos
 replay = Log::Replay.open('camera.0.log')
 
 Orocos.run 'deployment_x' do
-  task_x = TaskContext.get('task_x')
+  task_x = Orocos.name_service.get('task_x')
 
   #auto connect
   replay.connect_to task_x 
@@ -232,7 +232,7 @@ include Orocos
 replay = Log::Replay.open('camera.0.log')
 
 Orocos.run 'deployment_x' do
-  task_x = TaskContext.get('task_x')
+  task_x = Orocos.name_service.get('task_x')
   replay.connect_to task_x 
 
   #the filter is applied on each frame
@@ -260,8 +260,8 @@ include Orocos
 replay = Log::Replay.open('camera.0.log','sonar.0.log')
 
 Orocos.run 'deployment_x','deployment_y' do
-  task_x = TaskContext.get('task_x')
-  task_y = TaskContext.get('task_y')
+  task_x = Orocos.name_service.get('task_x')
+  task_y = Orocos.name_service.get('task_y')
   replay.connect_to task_x 
   #port mapping
   replay.connect_to task_y, "sonar.frame" => "iframe"

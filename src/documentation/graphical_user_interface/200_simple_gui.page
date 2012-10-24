@@ -25,7 +25,7 @@ informations about how to use the Qt ruby binding.
 
   #start deployment
   orocos.run 'my_deployment' do
-    task = Orocos::TaskContext.get 'mytask'
+    task = Orocos.name_service.get 'mytask'
     task.start
   
     #connect an output port to a code block
@@ -74,7 +74,7 @@ by custom widgets (see [this page](600_writing_vizkit_widget.html))
 {coderay:: ruby}
   require 'vizkit'
   Orocos.run 'my_camera' do
-    camera = Orocos::TaskContext.get 'camera'
+    camera = Orocos.name_service.get 'camera'
     camera.start 
     Vizkit.display camera.frame
     Vizkit.exec

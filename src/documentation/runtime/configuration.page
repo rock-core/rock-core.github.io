@@ -52,7 +52,7 @@ applied.
 For instance,
 
 {coderay:: ruby}
-task = Orocos::TaskContext.get 'hokuyo'
+task = Orocos.name_service.get 'hokuyo'
 Orocos.apply_conf_file(task, 'hokuyo.yml', ['default', 'with_remission'])
 {coderay}
 
@@ -87,7 +87,7 @@ them more easily:
 {coderay:: ruby}
 Orocos.conf.load_dir('/path/to/configuration/directory')
 
-task = Orocos::TaskContext.get 'hokuyo'
+task = Orocos.name_service.get 'hokuyo'
 Orocos.conf.apply(task, ['default', 'with_remission'])
 {coderay}
 

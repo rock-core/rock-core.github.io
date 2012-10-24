@@ -233,7 +233,7 @@ Orocos.initialize
 
 Orocos.run 'message_producer::Task' => 'message_producer' do  
 
-    message_producer = TaskContext.get 'message_producer'
+    message_producer = Orocos.name_service.get 'message_producer'
 
     # 'config' is the name of the property
     message_producer.config do |p|

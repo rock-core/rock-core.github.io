@@ -103,7 +103,7 @@ Orocos.initialize
 gui = Vizkit.load 'test_gui.ui'
 
 Orocos.run 'message_producer_deployment' do 
-    producer = Orocos::TaskContext.get 'message_producer'
+    producer = Orocos.name_service.get 'message_producer'
     producer.configure
 
     #change a property when the button is pressed

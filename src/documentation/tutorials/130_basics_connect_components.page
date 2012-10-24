@@ -76,8 +76,8 @@ Orocos.initialize
 Orocos.run 'message_producer::Task' => 'message_producer', 
     'message_consumer::Task' => 'message_consumer' do  
   
-  message_producer = TaskContext.get 'message_producer'
-  message_consumer = TaskContext.get 'message_consumer'
+  message_producer = Orocos.name_service.get 'message_producer'
+  message_consumer = Orocos.name_service.get 'message_consumer'
   
   # Never assume that a component supports being reconnected
   # at runtime, it might not be the case

@@ -39,11 +39,11 @@ joystickGui.show
 This will open the desired widget and give us a handle to it.
 Using the handle we can register a code block in the run-loop that get's
 executed whenever the widget emits a QT-Signal. Since this code needs a handle
-to the rockControl task, it must be inserted after the TaskContext.get line that
+to the rockControl task, it must be inserted after the Orocos.name_service.get line that
 initializes rockControl.
 
 {coderay:: ruby}
-rockControl = Orocos::TaskContext.get 'rock_control'
+rockControl = Orocos.name_service.get 'rock_control'
 {coderay}
 
 The "Orocos.run do .. end" block can then be modified with:
