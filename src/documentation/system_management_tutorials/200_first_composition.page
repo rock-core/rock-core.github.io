@@ -110,28 +110,6 @@ rock-display rock_tutorial
 
 [![Rock display](200_rock_display_thumb.png)](200_rock_display.png)
 
-<div class="note">
-__Note for advanced users__: instead of always having to type "ruby
-path/to/script", one can add the following so-called she-bang line to the top of
-the script:
-
-{coderay:: text}
-#! /usr/bin/env ruby
-{coderay}
-
-You can then set the script's executable flag with
-
-{coderay:: text}
-chmod +x path/to/script
-{coderay}
-
-and do
-
-{coderay:: text}
-path/to/script
-{coderay}
-</div>
-
 and move your joystick
 
 Stopping the script
