@@ -90,7 +90,7 @@ Vizkit::UiLoader.register_widget_for(name,
 {coderay}
 
 ***NOTE***:
-For convenience, you can use the script *rock-create-qt-designer-widget* which 
+For convenience, you can use the script *rock-create-vizkit-widget* which 
 basically does the steps listed above. Moreover, it generates all the necessary
 code and build files for you and registers your widget with Qt Designer. 
 See [here](../advanced_tutorials/300_vizkit_widget.html) for a detailed example.
