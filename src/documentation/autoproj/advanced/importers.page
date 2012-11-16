@@ -70,6 +70,20 @@ overrides:
 The remaining of this page will detail the various options that exist to import
 a source package.
 
+Common Importer Options
+-----------------------
+All importers support the following options:
+
+{coderay:: yaml}
+version_control:
+    - .*:
+        retry_count: 2
+{coderay}
+
+It specifies the number of time the importer should retry before giving up. This
+is useful for remote servers (svn, git) that are not as reliable as one would
+like.
+
 Git {#all_importers}
 \--- 
 
