@@ -3,10 +3,6 @@ title: oroGen Integration
 sort_info: 50
 ---
 
-__At this point in time, this page defines the _wanted_ interface for the oroGen
-integration. The actual code is untested and will most likely not work__
-{: .warning}
-
 Once you [have written a driver based on
 iodrivers_base::Driver](writing_driver.html), you can think about integrating it
 in an oroGen component.
@@ -89,6 +85,11 @@ bool Task::configureHook()
 
   // If some device configuration was needed, it must be done after the
   // setDriver and call to configureHook on TaskBase (i.e., here)
+}
+void Task::processIO()
+{
+  mDriver->processSamples();
+  _samples.write(mDriver->getOrientationSample());
 }
 {coderay}
 
