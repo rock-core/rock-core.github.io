@@ -30,7 +30,7 @@ end
 The above snippet being equivalent to calling <tt>cmake -DVAR=VALUE</tt>
 
 The "pkg" variable in the example above is an instance of {rdoc_class:
-{base_url: /api/autobuild, name: Autobuild::CMake}}
+{base_url: /api/autobuild, name: "Autobuild::CMake"}}
 {: .block}
 
 Defining autotools packages {#autotools}
@@ -45,7 +45,7 @@ end
 {coderay}
 
 The 'pkg' variable in the example above is an instance of
-{rdoc_class: {base_url: /api/autobuild, name: Autobuild::Autotools}}
+{rdoc_class: {base_url: /api/autobuild, name: "Autobuild::Autotools"}}
 {: .block}
 
 Defining Ruby packages
@@ -90,9 +90,9 @@ end
 {coderay}
 
 The 'pkg' variable in the example above is an instance of
-{rdoc_class: {base_url: /api/autobuild, name: Autobuild::ImporterPackage}}
+{rdoc_class: {base_url: /api/autobuild, name: "Autobuild::ImporterPackage"}}
 with additional methods coming from
-{rdoc_class: {base_url: /api/autoproj, name: RubyPackage}}
+{rdoc_class: {base_url: /api/autoproj, name: "RubyPackage"}}
 {: .block}
 
 Defining oroGen packages
@@ -109,7 +109,7 @@ oroGen is a module generator for the Orocos component framework. See [the oroGen
 documentation]({relocatable: ../../orogen}) for more information.
 
 The 'pkg' variable in the example above is an instance of
-{rdoc_class: {base_url: /api/autobuild, name: Autobuild::Orogen}}
+{rdoc_class: {base_url: /api/autobuild, name: "Autobuild::Orogen"}}
 {: .block}
 
 OS-specific bits (<tt>not_on</tt> and <tt>only_on</tt>) {#not_on_and_only_on}
