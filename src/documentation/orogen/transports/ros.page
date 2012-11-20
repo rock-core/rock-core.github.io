@@ -1,0 +1,53 @@
+---
+title: ROS
+sort_info: 100
+---
+
+The ROS transport provides two main functionality:
+
+ * the ability to generate ROS messages for every oroGen types that can be
+   represented in ROS. See "Automatic ROS Message Convertions" below.
+ * the ability to reuse existing ROS messages as a way to transport oroGen
+   types. This is important to interface with a ROS system, as one should use
+   ROS common messages. See "Reusing Existing ROS Messages" below.
+
+Automatic ROS Message Convertion
+--------------------------------
+
+There are two issues to consider when using the automatic ROS message convertion
+feature of oroGen:
+
+ * *naming*: ROS messages is much more limited than oroGen in how they can be
+   namespaced, so oroGen has to work around it.
+ * *limitations of the ROS types*. The following types cannot be represented
+   within ROS:
+   * arrays-of-arrays and vectors-of-vectors
+   * toplevel types that are not structures
+
+*Naming of ROS messages*. For a_type/within_a_namespace/Type oroGen type which
+is imported into an oroGen project called "my_project", a ROS
+message is generated which is named 
+
+    my_project_msgs/ATypeWithinANamespaceType
+
+*Limitations* The types that contain vectors-of-vectors or arrays-of-arrays are
+not exported to ROS. Moreover, ports using types that are not structures (e.g.
+std::vector<MyStruct>) can't be subscribed / published at runtime (i.e. oroGen
+does not generate a corresponding boxed type).
+
+Reusing Existing ROS Messages
+-----------------------------
+Existing ROS messages can be reused by specifying ros mappings in the oroGen
+specification:
+
+{coderay:: ruby}
+typekit.ros_mappings '/a_type/within_a_namespace/Type' => 'sensor_msgs/Image'
+{coderay}
+
+The ros_mappings statement must be added after the oroGen type got registered
+(i.e. after the relevant import_types_from). It can only be added for types that
+are wrapped within this project. In other words, one cannot do an
+import_types_from "another_orogen_project" and then add the mapping for a type
+in this other project.
+
+
