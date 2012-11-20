@@ -286,6 +286,39 @@ fi
             end
         end
 
+        # Package manager interface for systems that use yum
+        class YumManager < ShellScriptManager
+            def initialize
+                super(['yum'], true,
+                      "yum install '%s'",
+                      "yum install -y '%s'")
+            end
+
+            def filter_uptodate_packages(packages)
+                result = `LANG=C rpm -q --queryformat "%{NAME}\n" '#{packages.join("' '")}'`
+
+                installed_packages = []
+		new_packages = []
+                result.split("\n").each_with_index do |line, index|
+		    line = line.strip
+                    if line =~ /package (.*) is not installed/
+			package_name = $1
+			if !packages.include?(package_name) # something is wrong, fallback to installing everything
+			    return packages
+			end
+                        new_packages << package_name
+		    else 
+			package_name = line.strip
+			if !packages.include?(package_name) # something is wrong, fallback to installing everything
+			    return packages
+			end
+		        installed_packages << package_name
+                    end
+                end
+                new_packages
+            end
+        end
+
         # Package manager interface for systems that use APT and dpkg for
         # package management
         class AptDpkgManager < ShellScriptManager
@@ -332,6 +365,14 @@ fi
                 end
             end
             
+            def install(packages)
+                if super
+                    # Invalidate caching of installed packages, as we just
+                    # installed new packages !
+                    @installed_packages = nil
+                end
+            end
+            
             def filter_uptodate_packages(packages)
                 packages.find_all do |package_name|
                     !installed?(package_name)
@@ -350,11 +391,15 @@ fi
 
             def initialize
                 super(['gem'])
+                @installed_gems = Set.new
             end
 
             # Used to override the Gem::SpecFetcher object used by this gem
             # manager. Useful mainly for testing
             attr_writer :gem_fetcher
+
+            # The set of gems installed during this autoproj session
+            attr_reader :installed_gems
 
             def gem_fetcher
                 if !@gem_fetcher
@@ -404,6 +449,9 @@ fi
                     cmdlines.each do |c|
                         Autobuild::Subprocess.run 'autoproj', 'osdeps', *c
                     end
+                    gems.each do |name, v|
+                        installed_gems << name
+                    end
                     did_something = true
                 end
             end
@@ -414,6 +462,8 @@ fi
                 # Don't install gems that are already there ...
                 gems = gems.dup
                 gems.delete_if do |name, version|
+                    next(true) if installed_gems.include?(name)
+
                     version_requirements = Gem::Requirement.new(version || '>= 0')
                     installed =
                         if Gem::Specification.respond_to?(:find_by_name)
@@ -574,11 +624,13 @@ fi
         PACKAGE_HANDLERS = [PackageManagers::AptDpkgManager,
             PackageManagers::GemManager,
             PackageManagers::EmergeManager,
-            PackageManagers::PacmanManager]
+            PackageManagers::PacmanManager,
+            PackageManagers::YumManager]
         OS_PACKAGE_HANDLERS = {
             'debian' => 'apt-dpkg',
             'gentoo' => 'emerge',
-            'arch' => 'pacman'
+            'arch' => 'pacman',
+            'fedora' => 'yum'
         }
 
         # The information contained in the OSdeps files, as a hash
@@ -742,7 +794,7 @@ fi
             else
                 if !@operating_system.nil?
                     return @operating_system
-                elsif Autoproj.has_config_key?('operating_system')
+                elsif Autoproj.has_config_key?('operating_system') && !(user_os = ENV['AUTOPROJ_OS'])
                     os = Autoproj.user_config('operating_system')
                     if os.respond_to?(:to_ary)
                         if os[0].respond_to?(:to_ary) && os[0].all? { |s| s.respond_to?(:to_str) } &&
@@ -784,6 +836,11 @@ fi
                             versions = codenames + ["unstable", "sid"]
                         end
                         [['debian'], versions]
+                    elsif File.exists?('/etc/fedora-release')
+                        release_string = File.read('/etc/fedora-release').strip
+                        release_string =~ /Fedora release (\d+)/
+                        version = $1
+                        [['fedora'], [version]]
                     elsif File.exists?('/etc/gentoo-release')
                         release_string = File.read('/etc/gentoo-release').strip
                         release_string =~ /^.*([^\s]+)$/
@@ -948,10 +1005,11 @@ fi
         #
         def partition_osdep_entry(osdep_name, dep_def, handler_names, excluded, *keys)
             keys, *additional_keys = *keys
+            keys ||= []
             found = false
             nonexistent = false
             result = []
-            found_keys = []
+            found_keys = Hash.new
             Array(dep_def).each do |names, values|
                 if !values
                     # Raw array of packages. Possible only if we are not at toplevel
@@ -979,7 +1037,7 @@ fi
                         end
                         result.concat(rec_result)
                     end
-                elsif keys
+                else
                     if names.respond_to?(:to_str) # names could be an array already
                         names = names.split(',')
                     end
@@ -997,9 +1055,15 @@ fi
                     matching_name = keys.find { |k| names.any? { |name_tag| k == name_tag.downcase } }
                     if matching_name
                         rec_found, rec_result = partition_osdep_entry(osdep_name, values, handler_names, excluded, *additional_keys)
-
-                        if rec_found
-                            idx = keys.index(matching_name)
+                        # We only consider the first highest-priority entry,
+                        # regardless of whether it has some packages for us or
+                        # not
+                        idx = keys.index(matching_name)
+                        if !rec_found
+                            if !found_keys.has_key?(idx)
+                                found_keys[idx] = nil
+                            end
+                        else
                             found_keys[idx] ||= [0, []]
                             found_keys[idx][0] += rec_found
                             found_keys[idx][1].concat(rec_result)
@@ -1007,7 +1071,9 @@ fi
                     end
                 end
             end
-            if found_keys = found_keys.compact.first
+            first_entry = found_keys.keys.sort.first
+            found_keys = found_keys[first_entry]
+            if found_keys
                 if found_keys[0] > 0
                     nonexistent = true
                 else
@@ -1025,6 +1091,8 @@ fi
             return found, result
         end
 
+        class MissingOSDep < ConfigError; end
+
         # Resolves the given OS dependencies into the actual packages that need
         # to be installed on this particular OS.
         #
@@ -1035,14 +1103,14 @@ fi
             dependencies.each do |name|
                 result = resolve_package(name)
                 if !result
-                    raise ConfigError.new, "there is no osdeps definition for #{name}"
+                    raise MissingOSDep.new, "there is no osdeps definition for #{name}"
                 elsif result.empty?
                     os_names, os_versions = OSDependencies.operating_system
-                    raise ConfigError.new, "there is an osdeps definition for #{name}, but not for this operating system and version (resp. #{os_names.join(", ")} and #{os_versions.join(", ")})"
+                    raise MissingOSDep.new, "there is an osdeps definition for #{name}, but not for this operating system and version (resp. #{os_names.join(", ")} and #{os_versions.join(", ")})"
                 else
                     result.each do |handler, status, packages|
                         if status == FOUND_NONEXISTENT
-                            raise ConfigError.new, "there is an osdep definition for #{name}, and it explicitely states that this package does not exist on your OS"
+                            raise MissingOSDep.new, "there is an osdep definition for #{name}, and it explicitely states that this package does not exist on your OS"
                         end
                         if entry = all_packages.find { |h, _| h == handler }
                             entry[1].concat(packages)
@@ -1327,9 +1395,14 @@ So, what do you want ? (all, ruby, os or none)
             end.compact
             return false if packages.empty?
 
-            packages.each do |handler, list|
-                handler.install(list)
-                @installed_packages |= list.to_set
+            # Install OS packages first, as the other package handlers might
+            # depend on OS packages
+            os_packages, other_packages = packages.partition { |handler, list| handler == os_package_handler }
+            [os_packages, other_packages].each do |packages|
+                packages.each do |handler, list|
+                    handler.install(list)
+                    @installed_packages |= list.to_set
+                end
             end
             true
         end
@@ -1549,6 +1622,10 @@ module Autoproj
     # If the current directory is not in an autoproj installation,
     # raises UserError.
     def self.root_dir(dir = Dir.pwd)
+        if @root_dir
+            return @root_dir
+        end
+
         while dir != "/" && !File.directory?(File.join(dir, "autoproj"))
             dir = File.dirname(dir)
         end
@@ -1641,6 +1718,7 @@ module Autoproj
     def self.set_initial_env
         Autoproj.env_set 'RUBYOPT', "-rubygems"
         Autoproj.env_set 'GEM_HOME', Autoproj.gem_home
+        Autoproj.env_add_path 'GEM_PATH', Autoproj.gem_home
         Autoproj.env_set_path 'PATH', "#{Autoproj.gem_home}/bin", "/usr/local/bin", "/usr/bin", "/bin"
         Autoproj.env_set 'PKG_CONFIG_PATH'
         Autoproj.env_set 'RUBYLIB'
@@ -1670,7 +1748,7 @@ module Autoproj
                     Autoproj.message
                     Autoproj.message "autodetected the shell to be #{shell_kind}, sourcing autoproj shell helpers"
                     Autoproj.message "add \"Autoproj.shell_helpers = false\" in autoproj/init.rb to disable"
-                    Autobuild.env_source_file(shell_file)
+                    Autobuild.env_source_after(shell_file)
                 end
             end
         end
@@ -1735,93 +1813,106 @@ module Autoproj
 end
 
 DEFS = <<EODEFS
---- 
-git: 
-  gentoo: dev-vcs/git
-  debian: 
-    default: git-core
-    lenny: git
-  arch: git
-  ubuntu: git-core
-cmake: 
-  gentoo: dev-util/cmake
-  debian,ubuntu: cmake
-  arch: cmake
-autoproj: gem
-autobuild: gem
-build-essential: 
-  gentoo: ignore
-  debian,ubuntu: build-essential
-  arch: ignore
-cvs: 
-  debian,ubuntu: cvs
-lsb_release: 
-  gentoo: sys-apps/lsb-release
-  debian,ubuntu: lsb-release
-  arch: ignore
-libxml2: 
-  gentoo: dev-libs/libxml2
-  debian,ubuntu: libxml2-dev
-  arch: libxml2
+---
 none: ignore
-zlib: 
-  debian,ubuntu: zlib1g-dev
-libxslt: 
-  gentoo: dev-libs/libxslt
-  debian,ubuntu: libxslt1-dev
-  arch: libxslt
-ruby19: 
-  gentoo: 
-  - dev-lang/ruby:1.9
-  - rake
-  debian: 
-  - ruby1.9.1
-  - ruby1.9.1-dev
-  - rubygems1.9.1
-  - rake
-  arch: 
-  - ruby
-  - rake
-  ubuntu: 
-  - ruby1.9.1
-  - ruby1.9.1-dev
-  - rubygems1.9.1
-  - ri1.9.1
-  - libopenssl-ruby1.9.1
-  - rake
-ruby18: 
-  gentoo: 
-  - dev-lang/ruby:1.8
-  - rake
-  debian,ubuntu: 
+ruby18:
+  debian,ubuntu:
   - ruby1.8-dev
   - ruby1.8
   - rubygems1.8
   - ri1.8
   - libopenssl-ruby1.8
   - rake
-archive: 
-  gentoo: 
-  - app-arch/tar
-  - app-arch/unzip
-  debian,ubuntu: 
-  - tar
-  - unzip
-  arch: 
-  - tar
-  - unzip
-autotools: 
-  gentoo: 
-  - sys-devel/automake:1.9
-  - sys-devel/autoconf
-  debian,ubuntu: 
+  gentoo:
+  - dev-lang/ruby:1.8
+  - rake
+  fedora:
+    '15,16':
+    - ruby
+    - rubygems
+    default: nonexistent
+ruby19:
+  debian:
+  - ruby1.9.1
+  - ruby1.9.1-dev
+  - rubygems1.9.1
+  - rake
+  - rubygems-integration
+  ubuntu:
+  - ruby1.9.1
+  - ruby1.9.1-dev
+  - rubygems1.9.1
+  - ri1.9.1
+  - libopenssl-ruby1.9.1
+  - rake
+  gentoo:
+  - dev-lang/ruby:1.9
+  - rake
+  arch:
+  - ruby
+  - rake
+  fedora:
+    '17':
+    - ruby
+    - rubygems
+    default: nonexistent
+build-essential:
+  debian,ubuntu: build-essential
+  gentoo: ignore
+  arch: ignore
+  fedora: ignore
+autobuild: gem
+autoproj: gem
+git:
+  debian:
+    lenny: git
+    default: git-core
+  ubuntu: git-core
+  gentoo: dev-vcs/git
+  arch: git
+  fedora: git
+svn:
+  debian,ubuntu: subversion
+  gentoo: dev-util/subversion
+  arch: subversion
+  fedora: subversion
+cmake:
+  debian,ubuntu: cmake
+  gentoo: dev-util/cmake
+  arch: cmake
+  fedora: cmake
+autotools:
+  debian,ubuntu:
   - automake1.9
   - autoconf
+  gentoo:
+  - sys-devel/automake:1.9
+  - sys-devel/autoconf
   arch: automake autoconf
-svn: 
-  gentoo: dev-util/subversion
-  debian,ubuntu: subversion
-  arch: subversion
+  fedora:
+  - automake
+  - autoconf
+lsb_release:
+  debian,ubuntu: lsb-release
+  gentoo: sys-apps/lsb-release
+  arch: ignore
+  fedora: redhat-lsb
+archive:
+  debian,ubuntu:
+  - tar
+  - unzip
+  gentoo:
+  - app-arch/tar
+  - app-arch/unzip
+  arch:
+  - tar
+  - unzip
+  fedora:
+  - tar
+  - unzip
+cvs:
+  debian,ubuntu: cvs
+  fedora: cvs
 
 EODEFS
 
@@ -1884,6 +1975,7 @@ if ARGV.first != "localdev"
         ARGV.shift
     end
     begin
+        osdeps_management.install(['build-essential'])
         osdeps_management.install(['autobuild'])
         osdeps_management.install(['autoproj'])
     rescue Autoproj::ConfigError => e
