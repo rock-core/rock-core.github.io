@@ -48,6 +48,8 @@ task_context "Task" do
 end
 {coderay}
 
+Edit .orogen/tasks/TaskBase.hpp to see the new attribute.
+
 Adding methods to task contexts
 -------------------------------
 
