@@ -8,7 +8,7 @@ certain number of tasks have been _instanciated_. In other words, certain task
 contexts classes are tied to a thread and one or multiple triggering mechanisms.
 
 This page will deal with the generics of deployment. The different triggering
-mechanisms are developed later in this guide.
+mechanisms are developed [later in this guide](triggering/index.html).
 
 The deployment block
 --------------------
