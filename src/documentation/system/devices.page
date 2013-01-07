@@ -117,7 +117,7 @@ device Dev::CameraProsilica, :using => AlternativeDriver::Task
 
 We will see later on that the device model can hold important information about
 the device, such as the expected update rate. This information can be accessed
-from [the task context's configure method](task_context.html#extend) with:
+from [the task context's configure method](task_contexts.html#extend) with:
 
 {coderay:: ruby}
 class CameraProsilica::Task
@@ -148,7 +148,7 @@ The convention that the combus driver __must__ follow for dynamic ports is that
 the ports should be created at configuration time, and should be named
 wdevice_name and device_name, where 'device_name' is the name of the attached
 device. This configuration is usually done in the [combus configure
-method](task_context.html#extend)
+method](task_contexts.html#extend)
 
 For instance, let's consider the combus declaration from above
 
