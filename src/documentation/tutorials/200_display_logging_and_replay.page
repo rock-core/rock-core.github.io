@@ -11,7 +11,7 @@ Task Inspector
 ---------------
 While running a task you can examine the task with the *Task Inspector*.
 
-* Open another console (don't forget to do '. env.sh# there)
+* Open another console (don't forget to do '. env.sh' there)
 * Start your message_consumer script from the previous tutorial
 * In the other console start the task inspector with *rock-display message_producer*
 
