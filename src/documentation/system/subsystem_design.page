@@ -10,11 +10,11 @@ However, there is still the problem of telling the system what should __actually
 run__. This step is called _system deployment_.
 
 At the root of everything are the __instance requirements__. They describe a
-subsystem so that the rock-roby engine can create the network associated with
+subsystem so that the syskit engine can create the network associated with
 it.
 
-Then, these requirements are used in various places to either predefine some
-subsystems by giving them a name or directly inject them in the running system.
+Then, these requirements are used in Roby's action interface to allow to start
+and stop complete subsystems dynamically.
 
 Instance Requirements
 ---------------------
@@ -22,9 +22,9 @@ The instance requirements describe a subsystem that you require to run. The
 simplest of all is a single component model (either task or composition). For
 instance:
 
-{coderay:: ruby}
+~~~ ruby
 CorridorNavigation::FollowingTask
-{coderay}
+~~~
 
 tells the system that you require a component of type
 CorridorNavigation::FollowingTask to be running, not giving any other
@@ -33,104 +33,113 @@ constraints.
 Compositions need a bit more information, as you might need to specify
 composition children. For instance, the composition that handles the
 CorridorNavigation::FollowingTask above requires a full robot pose, provided by
-a Srv::Pose data service.
+a Base::PoseSrv data service.
 
 TODO: image
 
 Instanciating it therefore requires to tell the system what should be used to
 provide this pose. This is done by the #use statement:
 
-{coderay:: ruby}
-Cmp::CorridorFollowing.
-  use(Srv::Pose => Cmp::PoseEstimation)
-{coderay}
+~~~ ruby
+CorridorFollowing.
+  use(Base::PoseSrv => Cmp::PoseEstimation)
+~~~
 
 assuming that Cmp::PoseEstimation is a composition that can be instanciated "by
 itself" (i.e. needs no other information to be instanciated). If it was needing
 some more specification, you would specify it the same way (don't worry, there
 are better ways to write that down)
 
-{coderay:: ruby}
-Cmp::CorridorFollowing.
-  use(Srv::Pose => Cmp::PoseEstimation.
-    use(Srv::Orientation => XsensImu::Task)
+~~~ ruby
+CorridorFollowing.
+  use(Base::PoseSrv => PoseEstimation.
+    use(Base::OrientationSrv => XsensImu::Task)
   )
-{coderay}
+~~~
 
 The other thing that can be specified in an instance requirement are the task
 arguments (as in [Roby task
 arguments](http://rock-robotics.org/api/tools/roby/building_plans/configuration.html)).
 This is simply done with #with_arguments:
 
-{coderay:: ruby}
-Cmp::CorridorServoing.
+~~~ ruby
+CorridorServoing.
   with_arguments(:target_point => Eigen::Vector3.new(10, 12, 0)).
-  use(Srv::Pose => Cmp::PoseEstimation.
-    use(Srv::Orientation => XsensImu::Task)
+  use(Base::PoseSrv => Cmp::PoseEstimation.
+    use(Base::OrientationSrv => XsensImu::Task)
   )
-{coderay}
+~~~
 
 Finally, a special case of task arguments is the handling of the Orocos task
 context configuration. One specifies it with #with_conf:
 
-{coderay:: ruby}
+~~~ ruby
 Cmp::CorridorServoing.
   with_arguments(:target_point => Eigen::Vector3.new(10, 12, 0)).
-  use(Srv::Pose => Cmp::PoseEstimation.
-    use(Srv::Orientation => XsensImu::Task.with_conf('default', 'high_sampling_rate'))
+  use(Base::PoseSrv => Cmp::PoseEstimation.
+    use(Base::OrientationSrv => XsensImu::Task.with_conf('default', 'high_sampling_rate'))
   )
-{coderay}
+~~~
 
-Deployment Files
-----------------
+
+Profiles
+--------
+At some point, one has to bind everything togethr :xa
+
 Requirements can be given names by using #define in a deployment definition
 file. These files are located in config/deployments/ and must be loaded
 explicitely in either the robot config files or in its controller. To load a
 config/deployments/main.rb file, one would do:
 
-{coderay:: ruby}
+~~~ ruby
 Roby.app.apply_orocos_deployment 'main'
-{coderay}
+~~~
+
 
 One can do three things in these files:
 
 __1. Give names to specific requirements.__ This is done by calling
 #define(name, requirement), as e.g.
 
-{coderay:: ruby}
+~~~ ruby
 define('pose_estimator' Cmp::PoseEstimation.
-    use(Srv::Orientation => XsensImu::Task))
-{coderay}
+    use(Base::OrientationSrv => XsensImu::Task))
+~~~
+
 
 Once that is done, the name can be used in other specifications:
 
-{coderay:: ruby}
+~~~ ruby
 Cmp::CorridorServoing.
   with_arguments(:target_point => Eigen::Vector3.new(10, 12, 0)).
-  use(Srv::Pose => 'pose_estimator')
-{coderay}
+  use(Base::PoseSrv => 'pose_estimator')
+~~~
+
 
 __2. Define global use flags__ It is common that some "general" use flags can be
-defined for a given system (i.e. define that Srv::Pose should always be resolved
+defined for a given system (i.e. define that Base::PoseSrv should always be resolved
 with the same subsystem). It can be done in deployment files with:
 
-{coderay:: ruby}
-use Srv::Pose => Cmp::PoseEstimation.
-    use(Srv::Orientation => XsensImu::Task)
-{coderay}
+~~~ ruby
+use Base::PoseSrv => Cmp::PoseEstimation.
+    use(Base::OrientationSrv => XsensImu::Task)
+~~~
+
 
 Names can be used there as well
 
-{coderay:: ruby}
-use Srv::Pose => 'pose_estimator'
-{coderay}
+~~~ ruby
+use Base::PoseSrv => 'pose_estimator'
+~~~
+
 
 __3. Require that some things run.__ Finally, the #add_mission call can be used
 to ask the engine to permanently run a specific subsystem, e.g.:
 
-{coderay:: ruby}
+~~~ ruby
 add_mission('pose_estimator')
-{coderay}
+~~~
+
 
 Orocos Deployments
 ------------------
@@ -145,16 +154,18 @@ which you put __all__ the deployments that you will need.
 You can then made all these deployments available in config/ROBOT.rb (where
 ROBOT is the Roby robot name) with
 
-{coderay:: ruby}
+~~~ ruby
 Roby.app.use_deployments_from "my_orogen_project"
-{coderay}
+~~~
+
 
 If, instead of loading all deployments from a project, one wants to register a
 single deployment, he does so with
 
-{coderay:: ruby}
+~~~ ruby
 Roby.app.use_deployment "a_single_orogen_deployment"
-{coderay}
+~~~
+
 
 (__Note__ Of course, more than one of project / deployment can be registered)
 
@@ -178,9 +189,10 @@ error) is not yet the default for backward compatibility reasons, but that can
 be changed by adding the following line at the end of config/init.rb (or in your
 robot-specific config file)
 
-{coderay:: ruby}
+~~~ ruby
 Roby.app.reject_ambiguous_processor_deployments = true
-{coderay}
+~~~
+
 
 In any case, one chooses the deployments by providing "deployment hints". A hint
 is a regular expression that is used to match the task names. It is recursive,
@@ -191,12 +203,13 @@ For instance, let's imagine that you have two sensor sets, one at the front and
 one at the back of a vehicle. To instanciate the pose estimation processing for
 both sets of sensors, one would require:
 
-{coderay:: ruby}
+~~~ ruby
 Cmp::PoseEstimator.use_deployments(/front/).
   use(...)
 Cmp::PoseEstimator.use_deployments(/back/).
   use(...)
-{coderay}
+~~~
+
 
 where the dots are filled to select the required sensors (i.e. the list of
 sensors on the front in the first case and the list of sensors on the back in

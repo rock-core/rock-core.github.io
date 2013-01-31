@@ -16,34 +16,50 @@ is described on the respective pages: [compositions](compositions.html) and
 A data service is defined in a system model file (i.e. in a ruby file stored in
 models/blueprints or in one of the orogen-extension files in models/orogen) with
 
-{coderay:: ruby}
-data_service_type "Orientation" do
+~~~ ruby
+data_service_type "OrientationSrv" do
     output_port "orientation_samples",
         "base/samples/RigidBodyState"
 end
-{coderay}
+~~~
 
-This defines a Ruby module that can be accessed as DataServices::DataServiceName
-(or in short Srv::DataServiceName). The syntax for the input and output ports is
-the same [than in oroGen files](../orogen/task_interface.html#ports).
+This defines a Ruby module whose name is given as a string. It is defined in the
+local namespace, so one can (and should) organize the data service definitions
+using modules:
+
+~~~ ruby
+module Base
+  data_service_type 'OrientationSrv' do
+    ...
+  end
+end
+~~~
+
+which is then referred to as Base::OrientationSrv. The syntax for the input and
+output ports is the same [than in oroGen
+files](../orogen/task_interface.html#ports).
+
+Additionally, it is good practice to suffix the service names with "Srv", so
+that they can be recognized from compositions and task contexts.
+{: .block}
 
 The data types that are referred to in the data service definition must already
-be defined. Their definition should be loaded from an oroGen component with
+be defined. Their definition should be loaded from an oroGen project with
 
-{coderay:: ruby}
+~~~ ruby
 import_types_from "base"
-{coderay}
+~~~
 
 where "base" is the name of the oroGen project that defines the type. Use
 either the package directory or rock-inspect to find out who provides what:
 
-{coderay:: sh}
+~~~
 [...dev]% rock-inspect -T base/samples/RigidBodyState --show-types
 ==========================================================
 Typelib name:  /base/samples/RigidBodyState
 defined in base
 ----------------------------------------------------------
-{coderay}
+~~~
 
 Model Hierarchy
 ---------------
@@ -51,34 +67,33 @@ When a data service Y can be used instead of another one X (for instance, a Pose
 data service that also provides an Orientation), it is said that Y provides X.
 In the data service definition, it is reflected with a "provides X" stanza:
 
-{coderay:: ruby}
-data_service_type "Pose" do
+~~~ ruby
+data_service_type "PoseSrv" do
     output_port "pose_samples", "base/samples/RigidBodyState"
-    provides Srv::Orientation
+    provides OrientationSrv
 end
-{coderay}
+~~~
 
 When a data service Y provides another data service, the two interfaces are
 merged together by considering that Y provides all the ports of X as well as its
-own ports. For instance, in the definition of Pose above, the
-resulting data service name will have both orientation_samples and
-pose_samples ports. This is unfortunate in this case, as the pose_samples port
-provides the orientation information that was provided by orientation_samples in
-the Orientation service. One must give that information through _port mappings
-specification_:
+own ports. For instance, in the definition of PoseSrv above, the resulting data
+service name will have both orientation_samples and pose_samples ports. This is
+unfortunate in this case, as the pose_samples port provides the orientation
+information that was provided by orientation_samples in the Orientation service
+(i.e. when using a pose provider instead of an orientation provider, the
+connection should be moved to the pose_samples port). One must give that
+information through _port mappings specification_:
 
-{coderay:: ruby}
-data_service_type "Pose" do
+~~~ ruby
+data_service_type "PoseSrv" do
     output_port "pose_samples", "base/samples/RigidBodyState"
-    provides Srv::Orientation, 'orientation_samples' => 'pose_samples'
+    provides OrientationSrv, 'orientation_samples' => 'pose_samples'
 end
-{coderay}
+~~~
 
 In this definition, the name mapping on the "provides" stanza specifies that the
-"orientation_samples" port of the provided service (Srv::Orientation) should be
+"orientation_samples" port of the provided service (OrientationSrv) should be
 replaced by the "pose_samples" port of the new service.
-
-
 
 Linking to concrete components {#provides}
 ------------------------------
@@ -87,31 +102,32 @@ services. However, since they are concrete and not abstract, their list of ports
 is predetermined (or almost, we'll see that later), and therefore the way the
 "provides" stanza works is different.
 
-When a concrete component C is declared to provide a service S, then it is
-required that C provides the ports that S has in its interface. For instance,
-for a task context defined in oroGen with:
+Therefore, when a concrete composition provides a service, it is required that
+that the component _already_ has all the ports listed in the service. For
+instance, for a task context defined in oroGen with:
 
-{coderay:: ruby}
+~~~ ruby
 name "xsens_imu"
 task_context "Task" do
   output_port "orientation_samples", "base/samples/RigidBodyState"
-{coderay}
+  ...
+end
+~~~
 
 then,
 
-{coderay:: ruby}
-XsensImu::Task.provides Srv::Orientation
-{coderay}
+~~~ ruby
+XsensImu::Task.provides Base::OrientationSrv
+~~~
 
 will work fine. Errors are generated if no such ports exists __or__ if multiple
-ports match the specification.
+ports match the specification. If multiple ports match the required port type,
+then the system model code tries to match the port name. If an exact match is
+found, the ambiguity is considered to be resolved. Otherwise, one has to provide
+an explicit port mapping:
 
-If multiple ports match the required port type, then the system model code tries
-to match the port name. If an exact match is found, the ambiguity is considered
-to be resolved. Otherwise, one has to provide an explicit port mapping:
-
-{coderay:: ruby}
-XsensImu::Task.provides Srv::Orientation,
+~~~ ruby
+XsensImu::Task.provides Srv::OrientationSrv,
   "orientation_samples" => "port_name_on_the_task"
-{coderay}
+~~~
 

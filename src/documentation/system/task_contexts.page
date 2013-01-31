@@ -48,12 +48,12 @@ corresponding main state event.
 
 For instance, a task defined with
 
-{coderay:: ruby}
+~~~ ruby
 name "xsens_imu"
 task_context "Task" do
   exception_states :IO_ERROR
 end
-{coderay}
+~~~
 
 will have an _io_error_ event that is forwarded to the _exception_ event.
 
@@ -85,22 +85,24 @@ events, event handlers, ...
 To declare that the xsens_imu::Task provides the Orientation service, one would
 create a models/orogen/xsens_imu.rb file and add:
 
-{coderay:: ruby}
+~~~ ruby
 class XsensImu::Task
   provides Srv::Orientation
 end
-{coderay}
+~~~
+
 
 To add a poll handler to the same task context, one would add the following
 code:
 
-{coderay:: ruby}
+~~~ ruby
 class XsensImu::Task
   poll do
     # Do some polling
   end
 end
-{coderay}
+~~~
+
 
 __Note__ the concept of doing "class X .. end" like this to add something to an
 _already existing_ class is called class reopening and is [a standard
@@ -117,7 +119,7 @@ file). Do not forget to call super there, as the
 application of the task's configuration files is done in #configure as well.
 For instance:
 
-{coderay:: ruby}
+~~~ ruby
 class CorridorPlanner::Task
   argument :start_point
   argument :target_point
@@ -128,5 +130,6 @@ class CorridorPlanner::Task
     super
   end
 end
-{coderay}
+~~~
+
 
