@@ -5,6 +5,11 @@ if RUBY_VERSION < "1.8.7"
     exit 1
 end
 
+if defined? Encoding # This is a 1.9-only thing
+    Encoding.default_internal = Encoding::UTF_8
+    Encoding.default_external = Encoding::UTF_8
+end
+
 require 'set'
 curdir_entries = Dir.entries('.').to_set - [".", "..", "autoproj_bootstrap", ".gems", 'env.sh'].to_set
 if !curdir_entries.empty? && ENV['AUTOPROJ_BOOTSTRAP_IGNORE_NONEMPTY_DIR'] != '1'
@@ -128,12 +133,17 @@ module Autoproj
         # Dummy package manager used for unknown OSes. It simply displays a
         # message to the user when packages are needed
         class UnknownOSManager < Manager
+            def initialize
+                super(['unknown'])
+                @installed_osdeps = Set.new
+            end
+
             def osdeps_interaction_unknown_os(osdeps)
                 puts <<-EOMSG
-                #{Autoproj.color("The build process requires some other software packages to be installed on our operating system", :bold)}
-                #{Autoproj.color("If they are already installed, simply ignore this message", :red)}
+  #{Autoproj.color("The build process requires some other software packages to be installed on our operating system", :bold)}
+  #{Autoproj.color("If they are already installed, simply ignore this message", :red)}
 
-                #{osdeps.join("\n    ")}
+    #{osdeps.to_a.sort.join("\n    ")}
 
                 EOMSG
                 print Autoproj.color("Press ENTER to continue", :bold)
@@ -143,12 +153,17 @@ module Autoproj
                 nil
             end
 
-
             def install(osdeps)
                 if silent?
                     return false
                 else
-                    return osdeps_interaction_unknown_os(osdeps)
+                    osdeps = osdeps.to_set
+                    osdeps -= @installed_osdeps
+                    if !osdeps.empty?
+                        result = osdeps_interaction_unknown_os(osdeps)
+                    end
+                    @installed_osdeps |= osdeps
+                    return result
                 end
             end
         end
@@ -266,6 +281,16 @@ fi
             end
         end
 
+        # Package manager interface for systems that use port (i.e. MacPorts/Darwin) as
+        # their package manager
+        class PortManager < ShellScriptManager
+            def initialize
+                super(['port'], true,
+                        "port '%s'",
+                        "port '%s'")
+            end
+        end
+
         # Package manager interface for systems that use pacman (i.e. arch) as
         # their package manager
         class PacmanManager < ShellScriptManager
@@ -322,7 +347,10 @@ fi
         # Package manager interface for systems that use APT and dpkg for
         # package management
         class AptDpkgManager < ShellScriptManager
-            def initialize
+            attr_accessor :status_file
+
+            def initialize(status_file = "/var/lib/dpkg/status")
+                @status_file = status_file
                 super(['apt-dpkg'], true,
                       "apt-get install '%s'",
                       "export DEBIAN_FRONTEND=noninteractive; apt-get install -y '%s'")
@@ -333,7 +361,8 @@ fi
             def installed?(package_name)
                 if !@installed_packages
                     @installed_packages = Set.new
-                    dpkg_status = File.readlines('/var/lib/dpkg/status')
+                    dpkg_status = File.readlines(status_file)
+                    dpkg_status << ""
 
                     current_packages = []
                     is_installed = false
@@ -344,9 +373,9 @@ fi
                                 current_packages.each do |pkg|
                                     @installed_packages << pkg
                                 end
-                                current_packages.clear
                                 is_installed = false
                             end
+                            current_packages.clear
                         elsif line =~ /Package: (.*)$/
                             current_packages << $1
                         elsif line =~ /Provides: (.*)$/
@@ -625,12 +654,14 @@ fi
             PackageManagers::GemManager,
             PackageManagers::EmergeManager,
             PackageManagers::PacmanManager,
-            PackageManagers::YumManager]
+            PackageManagers::YumManager,
+            PackageManagers::PortManager]
         OS_PACKAGE_HANDLERS = {
             'debian' => 'apt-dpkg',
             'gentoo' => 'emerge',
             'arch' => 'pacman',
-            'fedora' => 'yum'
+            'fedora' => 'yum',
+            'darwin' => 'port'
         }
 
         # The information contained in the OSdeps files, as a hash
@@ -831,9 +862,9 @@ fi
                 # Need to do some heuristics unfortunately
                 @operating_system =
                     if File.exists?('/etc/debian_version')
-                        codenames = [File.read('/etc/debian_version').strip]
-                        if codenames.first =~ /sid/
-                            versions = codenames + ["unstable", "sid"]
+                        versions = [File.read('/etc/debian_version').strip]
+                        if versions.first =~ /sid/
+                            versions = ["unstable", "sid"]
                         end
                         [['debian'], versions]
                     elsif File.exists?('/etc/fedora-release')
@@ -848,6 +879,11 @@ fi
                         [['gentoo'], [version]]
                     elsif File.exists?('/etc/arch-release')
                         [['arch'], []]
+                    elsif Autobuild.macos? 
+                        version=`sw_vers | head -2 | tail -1`.split(":")[1]
+                        [['darwin'], [version.strip]]
+                    elsif Autobuild.windows?
+                        [['windows'], []]
                     end
             end
 
@@ -869,8 +905,14 @@ fi
         end
 
         def self.os_from_lsb
-            has_lsb_release = `which lsb_release`
-            return unless $?.success?
+            has_lsb_release = nil
+            begin
+                has_lsb_release = `which lsb_release`
+                return unless $?.success?
+            rescue Exception => e
+                #seems which is not installes (e.g. on windows)
+                return
+            end
 
             distributor = `lsb_release -i -s`
             distributor = distributor.strip.downcase
@@ -933,6 +975,14 @@ fi
                 found, pkg = partition_osdep_entry(name, dep_def, handler.names, [], os_names, os_versions)
                 if found
                     result << [handler, found, pkg]
+                end
+            end
+
+            # Recursive resolutions
+            found, pkg = partition_osdep_entry(name, dep_def, ['osdep'], [], os_names, os_versions)
+            if found
+                pkg.each do |pkg_name|
+                    result.concat(resolve_package(pkg_name))
                 end
             end
 
@@ -1104,19 +1154,24 @@ fi
                 result = resolve_package(name)
                 if !result
                     raise MissingOSDep.new, "there is no osdeps definition for #{name}"
-                elsif result.empty?
-                    os_names, os_versions = OSDependencies.operating_system
-                    raise MissingOSDep.new, "there is an osdeps definition for #{name}, but not for this operating system and version (resp. #{os_names.join(", ")} and #{os_versions.join(", ")})"
-                else
-                    result.each do |handler, status, packages|
-                        if status == FOUND_NONEXISTENT
-                            raise MissingOSDep.new, "there is an osdep definition for #{name}, and it explicitely states that this package does not exist on your OS"
-                        end
-                        if entry = all_packages.find { |h, _| h == handler }
-                            entry[1].concat(packages)
-                        else
-                            all_packages << [handler, packages]
-                        end
+                end
+
+                if result.empty?
+                    if OSDependencies.supported_operating_system?
+                        os_names, os_versions = OSDependencies.operating_system
+                        raise MissingOSDep.new, "there is an osdeps definition for #{name}, but not for this operating system and version (resp. #{os_names.join(", ")} and #{os_versions.join(", ")})"
+                    end
+                    result = [[os_package_handler, FOUND_PACKAGES, [name]]]
+                end
+
+                result.each do |handler, status, packages|
+                    if status == FOUND_NONEXISTENT
+                        raise MissingOSDep.new, "there is an osdep definition for #{name}, and it explicitely states that this package does not exist on your OS"
+                    end
+                    if entry = all_packages.find { |h, _| h == handler }
+                        entry[1].concat(packages)
+                    else
+                        all_packages << [handler, packages]
                     end
                 end
             end
@@ -1174,8 +1229,9 @@ fi
             if resolved.empty?
                 if !OSDependencies.operating_system
                     return UNKNOWN_OS
-                else
-                    return WRONG_OS
+                elsif !OSDependencies.supported_operating_system?
+                    return AVAILABLE
+                else return WRONG_OS
                 end
             end
 
@@ -1287,7 +1343,7 @@ So, what do you want ? (all, ruby, os or none)
         end
 
         def self.osdeps_mode_string_to_value(string)
-            string = string.downcase
+            string = string.to_s.downcase
             case string
             when 'all'  then HANDLE_ALL
             when 'ruby' then HANDLE_RUBY
@@ -1374,6 +1430,7 @@ So, what do you want ? (all, ruby, os or none)
         # Requests the installation of the given set of packages
         def install(packages, package_osdeps = Hash.new)
             os_package_handler.enabled = installs_os_packages?
+            os_package_handler.silent = self.silent?
             package_handlers['gem'].enabled = installs_ruby_packages?
             package_handlers.each_value do |v|
                 v.silent = self.silent?
@@ -1459,7 +1516,7 @@ module Autoproj
 
         def ask(current_value, doc = nil)
             default_value =
-		if current_value then current_value.to_s
+		if !current_value.nil? then current_value.to_s
 		elsif options[:default] then options[:default].to_str
 		else ''
 		end
@@ -1609,6 +1666,16 @@ end
 module Autoproj
     class UserError < RuntimeError; end
 
+    # OS-independent creation of symbolic links. Note that on windows, it only
+    # works for directories
+    def create_symlink(from, to)
+        if Autobuild.windows?
+            Dir.create_junction(to, from)
+        else
+            FileUtils.ln_sf from, to
+        end
+    end
+
     # Returns true if +path+ is part of an autoproj installation
     def self.in_autoproj_installation?(path)
         root_dir(File.expand_path(path))
@@ -1626,11 +1693,21 @@ module Autoproj
             return @root_dir
         end
 
-        while dir != "/" && !File.directory?(File.join(dir, "autoproj"))
+        root_dir_rx =
+            if Autobuild.windows? then /^[a-zA-Z]:\\\\$/
+            else /^\/$/
+            end
+
+        while root_dir_rx !~ dir && !File.directory?(File.join(dir, "autoproj"))
             dir = File.dirname(dir)
         end
-        if dir == "/"
+        if root_dir_rx =~ dir
             raise UserError, "not in a Autoproj installation"
+        end
+
+        #Preventing backslashed in path, that might be confusing on some path compares
+        if Autobuild.windows?
+            dir = dir.gsub(/\\/,'/')
         end
         dir
     end
@@ -1701,12 +1778,16 @@ module Autoproj
         ENV['AUTOPROJ_GEM_HOME'] || File.join(root_dir, ".gems")
     end
 
+    def self.env_inherit(*names)
+        Autobuild.env_inherit(*names)
+    end
+
     # Find the given program in PATH. It raises ArgumentError if the program
     # can't be found
     def self.find_in_path(name)
         result = ENV['PATH'].split(':').find { |dir| File.file?(File.join(dir, name)) }
         if !result
-            raise ArgumentError, "#{name} can not be found in PATH"
+            raise ArgumentError, "#{name} can not be found in PATH (#{ENV['PATH']})"
         end
         File.join(result, name)
     end
@@ -1716,13 +1797,10 @@ module Autoproj
     # Use this in autoproj/init.rb to make sure that the environment will not
     # get polluted during the build.
     def self.set_initial_env
+        Autobuild.env_inherit = false
         Autoproj.env_set 'RUBYOPT', "-rubygems"
-        Autoproj.env_set 'GEM_HOME', Autoproj.gem_home
-        Autoproj.env_add_path 'GEM_PATH', Autoproj.gem_home
-        Autoproj.env_set_path 'PATH', "#{Autoproj.gem_home}/bin", "/usr/local/bin", "/usr/bin", "/bin"
-        Autoproj.env_set 'PKG_CONFIG_PATH'
-        Autoproj.env_set 'RUBYLIB'
-        Autoproj.env_set 'LD_LIBRARY_PATH'
+        Autobuild.env_push_path 'GEM_PATH', Autoproj.gem_home
+        Autobuild.env_push_path 'PATH', "#{Autoproj.gem_home}/bin", "/usr/local/bin", "/usr/bin", "/bin"
     end
 
     class << self
@@ -1733,11 +1811,18 @@ module Autoproj
 
     # Create the env.sh script in +subdir+. In general, +subdir+ should be nil.
     def self.export_env_sh(subdir = nil)
+        # Make sure that we have the environment of all selected packages
+        if Autoproj.manifest # we don't have a manifest if we are bootstrapping
+            Autoproj.manifest.all_selected_packages(false).each do |pkg_name|
+                Autobuild::Package[pkg_name].update_environment
+            end
+        end
+
         filename = if subdir
-                       File.join(Autoproj.root_dir, subdir, "env.sh")
-                   else
-                       File.join(Autoproj.root_dir, "env.sh")
-                   end
+               File.join(Autoproj.root_dir, subdir, ENV_FILENAME)
+           else
+               File.join(Autoproj.root_dir, ENV_FILENAME)
+           end
 
         shell_dir = File.expand_path(File.join("..", "..", "shell"), File.dirname(__FILE__))
         if Autoproj.shell_helpers? && shell = ENV['SHELL']
@@ -1755,6 +1840,9 @@ module Autoproj
 
         File.open(filename, "w") do |io|
             Autobuild.export_env_sh(io)
+            if Autobuild.environment.has_key?('GEM_PATH')
+                io.puts "export GEM_PATH=$GEM_PATH:#{Gem.default_path.join(":")}"
+            end
         end
     end
 
@@ -1830,7 +1918,10 @@ ruby18:
     '15,16':
     - ruby
     - rubygems
-    default: nonexistent
+  darwin:
+  - ruby
+  - rb-rake
+  default: nonexistent
 ruby19:
   debian:
   - ruby1.9.1
@@ -1855,12 +1946,16 @@ ruby19:
     '17':
     - ruby
     - rubygems
-    default: nonexistent
+  darwin:
+  - ruby19
+  - rake
+  default: nonexistent
 build-essential:
   debian,ubuntu: build-essential
   gentoo: ignore
   arch: ignore
   fedora: ignore
+  darwin: ignore
 autobuild: gem
 autoproj: gem
 git:
@@ -1871,16 +1966,19 @@ git:
   gentoo: dev-vcs/git
   arch: git
   fedora: git
+  darwin: git-core
 svn:
   debian,ubuntu: subversion
   gentoo: dev-util/subversion
   arch: subversion
   fedora: subversion
+  darwin: subversion
 cmake:
   debian,ubuntu: cmake
   gentoo: dev-util/cmake
   arch: cmake
   fedora: cmake
+  darwin: cmake
 autotools:
   debian,ubuntu:
   - automake1.9
@@ -1892,11 +1990,15 @@ autotools:
   fedora:
   - automake
   - autoconf
+  darwin:
+  - automake
+  - autoconf
 lsb_release:
   debian,ubuntu: lsb-release
   gentoo: sys-apps/lsb-release
   arch: ignore
   fedora: redhat-lsb
+  darwin: ignore
 archive:
   debian,ubuntu:
   - tar
@@ -1910,9 +2012,13 @@ archive:
   fedora:
   - tar
   - unzip
+  darwin:
+  - gnutar
+  - unzip
 cvs:
   debian,ubuntu: cvs
   fedora: cvs
+  darwin: cvs
 
 EODEFS
 
@@ -1961,6 +2067,7 @@ end
 File.open('env.sh', 'w') do |io|
     io.write <<-EOSHELL
 export RUBYOPT=-rubygems
+export GEM_PATH=#{needed_gem_home}:$GEM_PATH
 export GEM_HOME=#{needed_gem_home}
 export PATH=$GEM_HOME/bin:$PATH
     EOSHELL
