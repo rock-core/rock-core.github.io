@@ -33,14 +33,12 @@ Rock should work, but we have had no known report of its success or failure.
 Installation: the easy way
 --------------------------
 
- 1. Make sure that the Ruby interpreter is installed on your machine
+ 1. Make sure that the Ruby interpreter is installed on your machine. Rock
+    requires ruby 1.9.2 or higher, which on Debian and Ubuntu are provided by
+    the ruby1.9.1 package.
 
     ruby --version
     {: .commandline}
-
-    Important: Rock requires ruby either 1.8.7 or higher, or 1.9.2 or higher. On
-    Debian and Ubuntu, The ruby 1.9.1 packages and the ruby1.9.1 binary are
-    actually Ruby 1.9.2 and 1.9.3
 
  2. Create and "cd" into the directory in which you want to install the toolchain
  3. To build the base system (base packages + toolchain, but no
