@@ -10,6 +10,19 @@ if defined? Encoding # This is a 1.9-only thing
     Encoding.default_external = Encoding::UTF_8
 end
 
+require 'rbconfig'
+module Autobuild
+    @windows = RbConfig::CONFIG["host_os"] =~%r!(msdos|mswin|djgpp|mingw|[Ww]indows)!
+    def self.windows?
+        @windows
+    end
+
+    @macos =  RbConfig::CONFIG["host_os"] = ~%r!([Dd]arwin)!
+    def self.macos?
+        @macos
+    end
+end
+
 require 'set'
 curdir_entries = Dir.entries('.').to_set - [".", "..", "autoproj_bootstrap", ".gems", 'env.sh'].to_set
 if !curdir_entries.empty? && ENV['AUTOPROJ_BOOTSTRAP_IGNORE_NONEMPTY_DIR'] != '1'
@@ -846,13 +859,13 @@ fi
                 end
             else
                 Autoproj.message "  autodetecting the operating system"
-                name, versions = os_from_lsb
-                if name
-                    if name != "debian"
+                lsb_name, lsb_versions = os_from_lsb
+                if lsb_name
+                    if lsb_name != "debian"
                         if File.exists?("/etc/debian_version")
-                            @operating_system = [[name, "debian"], versions]
+                            @operating_system = [[lsb_name, "debian"], lsb_versions]
                         else
-                            @operating_system = [[name], versions]
+                            @operating_system = [[lsb_name], lsb_versions]
                         end
                     end
                 end
@@ -865,6 +878,9 @@ fi
                         versions = [File.read('/etc/debian_version').strip]
                         if versions.first =~ /sid/
                             versions = ["unstable", "sid"]
+                        end
+                        if lsb_versions
+                            lsb_versions.each { |v| versions << v if !versions.include?(v) }
                         end
                         [['debian'], versions]
                     elsif File.exists?('/etc/fedora-release')
@@ -1813,9 +1829,7 @@ module Autoproj
     def self.export_env_sh(subdir = nil)
         # Make sure that we have the environment of all selected packages
         if Autoproj.manifest # we don't have a manifest if we are bootstrapping
-            Autoproj.manifest.all_selected_packages(false).each do |pkg_name|
-                Autobuild::Package[pkg_name].update_environment
-            end
+            Autoproj::CmdLine.update_environment
         end
 
         filename = if subdir
