@@ -1,0 +1,59 @@
+---
+title: Profiles
+sort_info: 510
+---
+
+Profiles
+--------
+At some point, one has to bind everything together. We have so far a bunch of
+models, and a way to specify our actual needs. What we are now looking for is a
+way to provide a consistent set of predefined component networks that will be
+the actual robot function.
+
+This consistent set of definitions is called a profile. Profiles are defined
+using:
+
+~~~ ruby
+module MyProject
+  profile "ProfileName" do
+  end
+end
+~~~
+
+__Filesystem__ Profiles are defined in models/profiles/. The file
+names should be the snake_case version of the profile name (e.g.
+models/profiles/my_project.rb for the profile defined above). Any task context,
+composition or data service used in the profile file should be required first
+with either the using_task_library statement (for task contexts) or a simple
+require of the relevant file. Use [syskit browse](general_concept.html#browsing)
+to find out what is defined where.
+{: .block}
+
+in any namespace. The profile object is then referred by (in this case)
+MyProject::ProfileName.
+
+The first thing one can do in a profile is to give names to instance
+requirements. For instance, following the example above, one would probably
+create a pose estimation definition:
+
+~~~ ruby
+profile "Base" do
+  define "pose_estimation", PoseEstimation.
+    use('orientation' => XsensImu::Task.with_conf('default', 'high_sampling_rate'))
+end
+~~~
+
+Once this definition is created, it can be referred to by using the _def suffix.
+For instance, one would add the corridor servoing definition from the previous
+examples with:
+
+~~~ ruby
+profile "Base" do
+  define "pose_estimation", PoseEstimation.
+    use('orientation' => XsensImu::Task.with_conf('default', 'high_sampling_rate'))
+  define "servoing", Rock::CorridorNavigation::CorridorServoing.
+    use('pose' => pose_estimation_def)
+end
+~~~
+
+

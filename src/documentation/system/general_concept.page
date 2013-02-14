@@ -19,10 +19,10 @@ In Syskit, a _component_ designates a black box
 that has inputs and outputs, and can report about its execution. In practice, it
 can be:
 
- * a _task context_, i.e. an actual component that is implemented in C++ using
-   oroGen
+ * a _task context_, i.e. an actual component that is [defined in oroGen and
+   implemented in C++](../orogen)
  * a _data service_, which is an abstract placeholder for "concrete" components
-   (compositions or task contexts). More on that later
+   (compositions or task contexts).
  * a _composition_, which represents a way to bind components together to form
    a new component
 
@@ -30,7 +30,7 @@ The set of available component models in a system form the so-called system
 model. In the system model:
 
  * [task contexts](task_contexts.html) are automatically imported from oroGen descriptions.
-   Because of the [naming convertion rules](index.html#naming_convertion), an
+   Because of the [naming convertion rules](index.html#naming_convertion),
    the Roby model that represents the oroGen task context xsens_imu::Task is
    called XsensImu::Task.
  * [compositions](compositions.html) are defined as subclasses of Syskit::Composition.
@@ -40,7 +40,6 @@ class CompositionModelName < Syskit::Composition
   <definitions>
 end
 ~~~
-
 
  * [data services](data_services.html) are defined using the following code block. This block defines
    a ServiceModelName __Ruby module__ in the current module that represents the
@@ -52,7 +51,19 @@ data_service_type "ServiceModelName" do
 end
 ~~~
 
-System model files vs. deployment files
----------------------------------------
-The files that define system model elements (data services, compositions and
-task contexts) are stored in models/blueprints/ and models/orogen/.
+Browsing {#browsing}
+--------
+
+All models defined in Syskit can be browsed using the syskit command. It gives
+all the information about the task contexts and types that are currently
+installed in your rock environment, as well as about compositions and
+components. Additionally, it shows where (file and line) a particular model is
+defined and shows syntax or modelling errors. When you are developping new
+models, simply press the "reload" button until you fixed all errors that showed up.
+
+To run this tool, simply go into the bundle you are working on and run
+
+~~~
+syskit browse
+~~~
+

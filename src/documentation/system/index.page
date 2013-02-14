@@ -4,12 +4,11 @@ sort_info: 0
 ---
 
 While one can use Syskit, Rock's system management layer, without knowing the
-underlying execution framework, Roby, it becomes quickly beneficial to have at
-least read the
+underlying execution framework, Roby, reading both the
 [concept](http://rock-robotics.org/api/tools/roby/concepts/index.html) section
 of the Roby user's guide, and followed the
 [tutorial](http://rock-robotics.org/api/tools/roby/tutorial/index.html) in the
-same guide.
+same guide become beneficial when the complexity of your application grows.
 {: .note}
 
 Advanced System Deployment
@@ -59,10 +58,6 @@ In the Roby system, models and instance of the models are mapped to Ruby's
 classes and objects in a very straightforward manner: a model is represented as
 a class or module (depending of what kind of thing this model describes), and an
 instance of a model is an object of the corresponding class.
-
-This has one side effect, for those that know Ruby: model hierarchies can only
-be represented in trees, not graphs, as Ruby does not support multiple
-inheritance. However, this proved to have no effect in practice.
 
 For instance, the Roby model that represents a xsens_imu::Task task context is a
 XsensImu::Task class, which is a subclass of Syskit::TaskContext. The list of

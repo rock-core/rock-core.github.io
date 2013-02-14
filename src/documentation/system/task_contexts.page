@@ -82,17 +82,68 @@ have been created. This is commonly used to declare that the task context
 provides some service, but can also be used to extend these classes with custom
 events, event handlers, ...
 
-To declare that the xsens_imu::Task provides the Orientation service, one would
-create a models/orogen/xsens_imu.rb file and add:
+The general idea is to "reopen" the task context class to add some information
+to it:
 
 ~~~ ruby
 class XsensImu::Task
-  provides Srv::Orientation
+  # Do some declarations there
 end
 ~~~
 
+__Note__ the concept of doing "class X .. end" like this to add something to an
+_already existing_ class is called class reopening and is [a standard
+feature](http://www.ruby-lang.org/en/documentation/quickstart/3/) of
+the Ruby programming language.
+{: .note}
 
-To add a poll handler to the same task context, one would add the following
+We'll now see some use for this: how to link [data services](data_services.html)
+to task contexts and how to add code that is going to be executed at runtime
+when the task context is running.
+
+Linking to concrete components {#provides}
+------------------------------
+Concrete components (compositions and task contexts) can also provide data
+services. However, since they are concrete and not abstract, their list of ports
+is predetermined (or almost, we'll see that later), and therefore the way the
+"provides" stanza works is different.
+
+Therefore, when a concrete composition provides a service, it is required that
+that the component _already_ has all the ports listed in the service. For
+instance, for a task context defined in oroGen with:
+
+~~~ ruby
+name "xsens_imu"
+task_context "Task" do
+  output_port "orientation_samples", "base/samples/RigidBodyState"
+  ...
+end
+~~~
+
+then,
+
+~~~ ruby
+XsensImu::Task.provides Base::OrientationSrv
+~~~
+
+will work fine. Errors are generated if no such ports exists __or__ if multiple
+ports match the specification. If multiple ports match the required port type,
+then the system model code tries to match the port name. If an exact match is
+found, the ambiguity is considered to be resolved. Otherwise, one has to provide
+an explicit port mapping:
+
+~~~ ruby
+XsensImu::Task.provides Srv::OrientationSrv,
+  "orientation_samples" => "port_name_on_the_task"
+~~~
+
+Extending with standard Roby execution features
+-----------------------------------------------
+Composition models are subclasses of Syskit::TaskContext which is itself a
+grandchild of Roby::Task. As such, much more can be done using the [runtime code
+execution features of Roby](/api/tools/roby/building_plans/tasks.html).
+
+For instance, to add a poll handler to the same task context, one would add the following
 code:
 
 ~~~ ruby
@@ -102,13 +153,6 @@ class XsensImu::Task
   end
 end
 ~~~
-
-
-__Note__ the concept of doing "class X .. end" like this to add something to an
-_already existing_ class is called class reopening and is [a standard
-feature](http://www.ruby-lang.org/en/documentation/quickstart/3/) of
-the Ruby programming language.
-{: .note}
 
 Moreover, one can add, at the Roby level, a method that is going to be called at
 component's configuration time before the component's own configureHook gets
@@ -125,8 +169,8 @@ class CorridorPlanner::Task
   argument :target_point
 
   def configure
-    orogen_task.start_point = self.start_point
-    orogen_task.target_point = self.target_point
+    orocos_task.start_point = self.start_point
+    orocos_task.target_point = self.target_point
     super
   end
 end

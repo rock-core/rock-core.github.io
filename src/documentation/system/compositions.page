@@ -30,6 +30,15 @@ module MyProject
 end
 ~~~
 
+__Filesystem__ Compositions are defined in models/compositions/. The file
+names should be the snake_case version of the composition name (e.g.
+models/composition/model_name.rb for the composition defined above). Any task context,
+composition or data service used in the composition file should be required first
+with either the using_task_library statement (for task contexts) or a simple
+require of the relevant file. Use [syskit browse](general_concept.html#browsing)
+to find out what is defined where.
+{: .block}
+
 The main definition statements in a composition are 'add' and 'connect'
 
 ~~~ ruby
@@ -102,11 +111,28 @@ odometry_child.orientation_samples_port
 Just as for the child, the ports are referred to as (port_name)_port, i.e.
 orientation_samples_port is a port named "orientation_samples".
 
+These models can be checked graphically using the syskit tool. If you have not
+yet installed the rock_ugv_nav bundle, do it by calling
+
+~~~
+aup rock_ugv_nav
+~~~
+
+then go in bundles/rock_ugv_nav and run
+
+~~~
+syskit browse
+~~~
+
+On the left side, select the Rock::SLAM::Odometry model. The right pane will
+show you the following graphical representation of the composition:
+
+TODO: add figure.
+
 Providing Services
 -----------------
-In order to be able to use compositions to provide e.g.  services, or so that we
-are able to connect it to other components in some other compositions, one has
-to give it ports.
+In order to be able to use compositions in lieu of services, for instance so
+that we can use them in other compositions, we have to give them ports.
 
 Since compositions are only aggregations of other components, they don't have
 ports on themselves. They "get" ports by exporting ports from their children
@@ -131,11 +157,6 @@ service is needed.
 
 Configuration
 -------------
-In syskit, all configurations are handled through [the configuration
-files](../runtime/configuration.html). The specific configurations are specified
-using the names of the sections in the configuration files (e.g. "default",
-"high_speed").
-
 In the same way than compositions do not really have ports, but only "export"
 the ports of its children, compositions do not have configurations by
 themselves. Instead, configurations are defined as a list of configurations for
@@ -159,9 +180,9 @@ Unlike what is possible with task contexts, one cannot "merge" configurations on
 top of each other (i.e. only one configuration can be selected at a time).
 Moreover, the configuration names are not verified at declaration time (in the
 example above, 'pose_provider' might be a service and therefore has no notion of
-configuration files). They are instead verified at instanciation time.
+configuration files).
 
-Dependency specification: tasks and behaviours
+Dependency specification: tasks and behaviours (advanced)
 ----------------------------------------------
 When one adds a child to a composition, he also declares that, at runtime, the
 composition will need an instance of this child to run. Having a __working__
@@ -182,10 +203,6 @@ at runtime, one can access a particular child of the composition by its name:
 ~~~ ruby
 composition.odometry_child
 ~~~
-
-__There are some caveats__ in doing so. See [this page](runtime.html) for more
-information.
-{: .warning}
 
 This can be changed at definition time by giving additional parameters to the
 add statement. Such a special case is used to change the composition from a
@@ -208,20 +225,21 @@ TrajectoryFollower::Task component
 Extending the Composition Models
 --------------------------------
 Composition models are subclasses of Syskit::Composition which is itself a
-grandchild of Roby::Task.  As such, much more can be done using the runtime code
+grandchild of Roby::Task. As such, much more can be done using the runtime code
 execution features of Roby.
 
 For instance, due to the limitations of the composition definition
 implementation, one cannot currently use the complete range of event constraints
-in the composition definition itself. This has to be done at runtime using one
-of the means, in Roby, to [hook code blocks in task
-execution](http://rock-robotics.org/api/tools/roby/building_plans/tasks.html).
+in the composition definition itself. This has to be done at instanciation time
+by overriding Composition.instanciate:
 
 ~~~ ruby
 class Goto < Syskit::Composition
-  event :start do |context|
-    follower_child.reached_the_end_event.forward_to success_event
-    super
+  def self.instanciate(plan, *args)
+    composition = super
+    composition.follower_child.reached_the_end_event.
+      forward_to composition.success_event
+    composition
   end
 end
 ~~~

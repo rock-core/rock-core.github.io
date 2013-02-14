@@ -79,6 +79,15 @@ class CameraProsilica::Task
 end
 ~~~
 
+It is customary to define all device models in your own bundle's
+models/blueprints/devices.rb. To import the device definitions from other
+bundles, one has to do:
+
+~~~ ruby
+require 'rock/models/blueprints/devices'
+~~~
+
+i.e. prefix the device file path with the bundle's name.
 
 Robot Definitions
 -----------------
@@ -122,7 +131,7 @@ from [the task context's configure method](task_contexts.html#extend) with:
 class CameraProsilica::Task
   def configure
     super
-    robot_device # => the Syskit::MasterDeviceInstance
+    robot_device # => the Syskit::Robot::MasterDeviceInstance
                  #    that describes the device this component
                  #    is interfaced with.
   end
@@ -131,8 +140,7 @@ end
 
 Combus Support __(Advanced)__
 --------------
-For the communication bus support to be used, the following conventions must be
-followed:
+Communication bus support in syskit relies on the following conventions:
 
  * the device driver must have at least one input or output of the combus
    message type (it can obviously have both, but having none is an error)
