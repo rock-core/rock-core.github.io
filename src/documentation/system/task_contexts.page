@@ -3,33 +3,36 @@ title: Task Contexts
 sort_info: 150
 ---
 
-This page describes how the task contexts are represented in the rock-roby
-layer.
-
-Modelling
----------
+When using Syskit, task contexts are directly imported from their oroGen models.
 Only task contexts that have been developped using oroGen (i.e. all task
 contexts coming from Rock) can currently be integrated in Rock. The general
 issue here is that, for the system management layer to work, a model of the
 components needs to be available __and__ deployed instances of these components
 should be described as well.
 
-The rock-roby layer then generates a Ruby class that is a subclass of Roby::Task
-for each of the oroGen components it finds. Throught his class, one has access
+This page is first going to describe the mapping from oroGen models to Syskit
+models. It will then go on with ways in which you can extend these models to add
+runtime code, custom configuration code and additional modelling (such as data
+services) to existing task contexts.
+
+Modelling
+---------
+The syskit layer then generates a Ruby class that is a subclass of
+{rdoc_class: Syskit::TaskContext} for each of the oroGen components it finds.
+Throught this class, one has access
 to all the runtime code execution features of Roby itself. See [Roby's own
 documentation](http://rock-robotics.org/api/tools/roby) for more information
 
 All task contexts get the following task arguments:
 
- * __conf__ is the configuration that should be applied to the task (see below)
+ * __conf__ is the configuration that should be applied to the task
  * __orocos_name__ is the name of the deployed orocos task that is used to run
-   this task context. This is used in order to be able to do this association
-   when reading log files.
+   this task context.
 
-The Roby task models use events to represent state transitions in the task
-context. Transitions to and from PRE_OPERATIONAL are an exception: they are not
-represented using events.  How this is managed is going to be detailed in the
-[runtime](runtime.html) section of this guide. Always available events are:
+At runtime, Roby events are used to represent all state transitions except the
+one to and from PRE_OPERATIONAL. The case of configuration will be detailed
+later on in the [runtime](runtime.html) section of this guide. The RTT
+TaskContext state transitions are mapped to the following events:
 
  * __success__: transition to STOPPED
  * __exception__: transition to EXCEPTION
@@ -59,15 +62,14 @@ will have an _io_error_ event that is forwarded to the _exception_ event.
 
 Configurations {#configuration}
 --------------
-Task context configurations, in rock-roby, are all managed through [the
+Task context configurations, in syskit, are all managed through [the
 configuration directory
 mechanisms](../runtime/configuration.html#configuration-directories). The
 configuration files are looked for in config/orogen/ and must follow the
 model_name.yml convention. For instance, configurations for xsens_imu::Task are
-stored in config/orogen/xsens_imu::Task.yml).
+stored in config/orogen/xsens_imu::Task.yml.
 
-The configurations are then selected at the time of [subsystem
-design](workflow.html) by listing the configuration sections that should be
+The configurations are then selected [when designing subsystems](workflow.html) by listing the configuration sections that should be
 applied, i.e. the "default, fast_sampling" configuration will apply the values stored in the
 default section and override these values by the fast_sampling section. The way
 this selection should be done is detailed in the [subsystem
@@ -101,14 +103,13 @@ We'll now see some use for this: how to link [data services](data_services.html)
 to task contexts and how to add code that is going to be executed at runtime
 when the task context is running.
 
-Linking to concrete components {#provides}
-------------------------------
-Concrete components (compositions and task contexts) can also provide data
-services. However, since they are concrete and not abstract, their list of ports
-is predetermined (or almost, we'll see that later), and therefore the way the
-"provides" stanza works is different.
+Providing Data Services {#provides}
+-----------------------
+Task contexts can provide data services. However, since they are concrete and
+not abstract, their list of ports is predetermined (or almost, we'll see that
+later), and therefore the way the "provides" stanza works is different.
 
-Therefore, when a concrete composition provides a service, it is required that
+Therefore, when a task context provides a service, it is required that
 that the component _already_ has all the ports listed in the service. For
 instance, for a task context defined in oroGen with:
 
@@ -139,7 +140,7 @@ XsensImu::Task.provides Srv::OrientationSrv,
 
 Extending with standard Roby execution features
 -----------------------------------------------
-Composition models are subclasses of Syskit::TaskContext which is itself a
+Composition models are subclasses of {rdoc_class: Syskit::TaskContext} which is itself a
 grandchild of Roby::Task. As such, much more can be done using the [runtime code
 execution features of Roby](/api/tools/roby/building_plans/tasks.html).
 
@@ -175,5 +176,4 @@ class CorridorPlanner::Task
   end
 end
 ~~~
-
 

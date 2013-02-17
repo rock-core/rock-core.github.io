@@ -41,24 +41,24 @@ end
 which is then referred to as Base::OrientationSrv. The syntax for the input and
 output ports is the same [than in oroGen files](../orogen/task_interface.html#ports).
 
-Additionally, it is good practice to suffix the service names with "Srv", so
+__Naming__ it is good practice to suffix the service names with "Srv", so
 that they can be recognized from compositions and task contexts.
 {: .block}
 
 __Filesystem__ Data services are defined in models/blueprints/. It is customary
 to group them in topic groups (e.g. in the rock bundle,
-models/blueprints/pose.rb regroups all pose-related services). Any othe data
-service in the file should be required first with a simple require of the
-relevant file. Types must be loaded using import_types_from "project", where
-"project" is the oroGen project that defines the type. Use [syskit
+models/blueprints/pose.rb regroups all pose-related services). Whenever a data
+service is used in a syskit file, the file that defines it should be required
+first. Types must be loaded using import_types_from "project", where "project"
+is the oroGen project that defines the type. Use [syskit
 browse](general_concept.html#browsing) to find out what is defined where.
 {: .block}
 
 Model Hierarchy
 ---------------
-When a data service Y can be used instead of another one X (for instance, a Pose
-data service that also provides an Orientation), it is said that Y provides X.
-In the data service definition, it is reflected with a "provides X" stanza:
+The fact that a data service Y can be used instead of another one X (for instance, a Pose
+data service that also provides an Orientation), is reflected by telling syskit
+that "Y provides X"
 
 ~~~ ruby
 data_service_type "PoseSrv" do
@@ -67,15 +67,12 @@ data_service_type "PoseSrv" do
 end
 ~~~
 
-When a data service Y provides another data service, the two interfaces are
-merged together by considering that Y provides all the ports of X as well as its
-own ports. For instance, in the definition of PoseSrv above, the resulting data
-service name will have both orientation_samples and pose_samples ports. This is
-unfortunate in this case, as the pose_samples port provides the orientation
-information that was provided by orientation_samples in the Orientation service
-(i.e. when using a pose provider instead of an orientation provider, the
-connection should be moved to the pose_samples port). One must give that
-information through _port mappings specification_:
+The resulting data service will have __both__ the ports of Y (here,
+pose_samples) and the ports of X (orientation_samples) This is clearly not what
+is needed here: whenever a Pose service is used in place of an Orientation
+service, one would want the pose_samples port to __replace__
+orientation_samples. This information must be given explicitly through _port
+mappings_:
 
 ~~~ ruby
 data_service_type "PoseSrv" do

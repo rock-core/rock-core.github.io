@@ -50,7 +50,7 @@ Rock::CorridorNavigation::Servoing.
 ~~~
 
 where 'pose' is the name of the child that is being selected. This name is given
-[in the child declaration](compositios.html) with the :as option.
+[in the child declaration](compositions.html) with the :as option.
 
 This is assuming that PoseEstimation is a composition that can be instanciated
 "by itself" (i.e. needs no other information to be instanciated). If it was
@@ -90,3 +90,6 @@ Rock::CorridorNavigation::Servoing.
   )
 ~~~
 
+In general, have a look at the {rdoc: Syskit::InstanceRequirements} API
+documentation to get all the available specifications that can be added to an
+instance requirement object.

@@ -1,0 +1,33 @@
+---
+title: Running and interacting with a Roby/Syskit system
+sort_info: 600
+---
+
+Syskit bundles are first and foremost Roby applications. As such, the tools and
+methods to interact with a Roby application also apply to the ones that are
+using syskit. You should therefore have first a look at what can be done with a
+Roby application. In particular, you should look at the [Roby action
+interface]({rock_api: roby}/building/actions.html) and the ways [one can interact
+with a running Roby application]({rock_api: roby}/interacting/index.html)
+
+What this page is going to be about is how syskit fits inside these concepts:
+how [profiles](profiles.html) are mapped to Roby [actions]({rock_api:
+roby}/building/actions.html), and what it means to deploy subsystems through
+the action interface.
+
+Using profiles as Roby actions
+------------------------------
+_In fine_, when using syskit, one designs a "master" profile in which all the
+behaviours / needed subsystems are defined. This master profile can then be
+injected in an action interface class (usually the main interface in
+models/actions/main.rb) with
+
+~~~ ruby
+class Main < Roby::Actions::Interface
+  use_profile MyProject::MyMasterProfile
+end
+~~~
+
+Deploying subsystems through the action interface
+-------------------------------------------------
+

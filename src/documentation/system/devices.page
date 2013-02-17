@@ -1,9 +1,7 @@
 ---
 title: Devices
-sort_info: 490
+sort_info: 520
 ---
-
-In Syskit, __devices__ are defined as a special kind of data service.
 
 In robot software, devices are very specific things. All the devices form the
 interface of the software with the external world. Moreover, in a
@@ -18,6 +16,9 @@ is because:
  * devices are the __source__ of all data. Therefore, they have a
    special place when looking at the dataflow (more on that [in a later
    section](dataflow_dynamics.html).
+
+In Syskit, __devices__ are defined as a special kind of [data
+service](data_services.html). You need to know about data services first.
 
 We will start about how these things are modelled. Note that some of the
 sections on this page are marked as advanced. It is fine to skip them on a first
@@ -40,6 +41,9 @@ device_type "ProsilicaCamera" do
   provides Srv::ImageProvider
 end
 ~~~
+
+In Rock, all devices are categorized within the Dev namespace. See
+models/blueprints/devices.rb in the rock bundle for more information.
 
 Communication Busses
 --------------------
