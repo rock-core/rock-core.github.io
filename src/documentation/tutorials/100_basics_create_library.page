@@ -94,21 +94,18 @@ The library does not contain message handling capabilities yet. So, we create th
 ***NOTE***: Rock recommends to stick to use CamelCase for new structures, and to name the files after the class it defines (i.e. Message.hpp defines the Message structure, MessageDriver.hpp declares the MessageDriver class and MessageDriver.cpp defines it). However, due to historic reasons not all packages of Rock conform to this style. 
 {: .warning}
 
-First, create the message type for timestamped messages. Since base/types already provides a timestamp, include 'base/time.h' and make 'base/types' a
-dependency of your library, if you haven't done it already. Check the manifest.xml and make sure it contains the 'base/types' dependency.
+In Rock, common C++ types are defined [in the base/types package](rock_pkg:
+base/types). If some type you need is defined here, it is __highly recommended__
+to use the common type. In our case, we want to timestamp the message that our
+library will manipulate.  If we have a look at the base/types API documentation
+(follow the API documentation link from the package page above), we can see that
+it defines a base::Time type that suits our needs.
+
+First things first, we need to declare the dependency on the base/types package.
+Edit manifest.xml and make sure that the following line is there (it should
+already be):
 
 {coderay:: xml}
-<depend package="base/types" />
-{coderay}
-
-***NOTE***: Dependencies are added to the manifest.xml of a package, and you should add operating system dependencies using 
-
-{coderay:: text}
-<rosdep name="osg" />
-{coderay}
-and dependencies to 'custom' packages using
-
-{coderay:: text}
 <depend package="base/types" />
 {coderay}
 
@@ -151,7 +148,9 @@ namespace message_driver
 #endif // _MESSAGE_DRIVER_MESSAGE_HPP_
 {coderay}
 
-***NOTE***: There are some constraints on designing custom types, so that they can be used in an oroGen component. Check the [general documentation](../orogen/task_interface.html) for details.
+There are some constraints on designing custom types that will be used on
+component interfaces. Check the [general
+documentation](../orogen/task_interface.html) for details.
 {: .warning}
 
 To follow the Rock guidelines, the MessageDriver class should be declared in
@@ -216,9 +215,13 @@ void MessageDriver::printMessage(const Message& msg)
 {coderay}
 
 
-### Integration into the build system
+### Build
 
-Once you created a library in Rock integrate it into the build system autoproj. The first step towards integration into the build system is adding the newly created files to the src/CMakeLists.txt file, since Rock default C++ libraries use [CMake](http://www.cmake.org/cmake/help/documentation.html) for the build process. Rock also comes with some CMake macros that facilitate setting up libraries, and resolving any required dependencies ( have a look [here](../packages/cmake_macros.html) for details).
+In Rock, two in charge
+
+To build our library, we first need to define it in src/CMakeLists.txt [CMake](http://www.cmake.org/cmake/help/documentation.html), the 
+
+Once you created a library in Rock integrate it into the build system autoproj. The first step towards integration into the build system is adding the newly created files to the src/CMakeLists.txt file, since Rock default C++ libraries use  for the build process. Rock also comes with some CMake macros that facilitate setting up libraries, and resolving any required dependencies ( have a look [here](../packages/cmake_macros.html) for details).
 
 {coderay:: text}
 rock_library(message_driver
