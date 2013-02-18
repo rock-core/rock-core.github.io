@@ -33,7 +33,7 @@ Orocos.initialize
 
 Finally, the CORBA.call\_timeout and CORBA.connect\_timeout
 specify timeouts at the CORBA level. See the {rdoc_class: {base_url:
-/api/tools/orocos.rb, name: Orocos::CORBA}} documentation
+/api/tools/orocos.rb, name: "Orocos::CORBA"}} documentation
 for more information.
 
 Nameservices
@@ -135,7 +135,7 @@ end
 where <tt>deployment1</tt> and <tt>deployment2</tt> are the names of the
 deployments. In the above code snippet, the <tt>p1</tt> and <tt>p2</tt>
 variables are the instances of {rdoc_class: {base_url: /api/tools/orocos.rb, name:
-Orocos::Process}} that represent the
+"Orocos::Process"}} that represent the
 processes.
 
 Orocos.run waits for all the processes to be up and running, and will raise an
