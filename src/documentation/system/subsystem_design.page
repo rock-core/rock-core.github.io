@@ -90,6 +90,5 @@ Rock::CorridorNavigation::Servoing.
   )
 ~~~
 
-In general, have a look at the {rdoc: Syskit::InstanceRequirements} API
-documentation to get all the available specifications that can be added to an
+In general, have a look at the documentation for [Syskit::InstanceRequirements]({rock_api: tools/syskit}/{rdoc_path: Syskit::InstanceRequirements}) to get all the available specifications that can be added to an
 instance requirement object.
