@@ -30,9 +30,9 @@ module MyProject
 end
 ~~~
 
-__Filesystem__ Compositions are defined in models/compositions/. The file
+__Filesystem__ Compositions are defined in models/blueprints/. The file
 names should be the snake_case version of the composition name (e.g.
-models/composition/model_name.rb for the composition defined above). Any task context,
+models/blueprints/model_name.rb for the composition defined above). Any task context,
 composition or data service used in the composition file should be required first
 with either the using_task_library statement (for task contexts) or a simple
 require of the relevant file. Use [syskit browse](general_concept.html#browsing)
