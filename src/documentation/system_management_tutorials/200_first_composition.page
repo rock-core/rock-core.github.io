@@ -23,7 +23,7 @@ composition is a group of component that, once bound together, do something
 useful. In our case, it would be moving the rock with a joystick. Create a new
 scripts/rockRoby1.rb file and add the following code:
 
-{coderay:: ruby}
+~~~ ruby
 #### MODELLING
 # This part does not need any running components
 #
@@ -31,9 +31,8 @@ scripts/rockRoby1.rb file and add the following code:
 using_task_library 'controldev'
 using_task_library 'rock_tutorial'
 
-# Declare the composition. The new model can be accessed with either
-# Compositions::RockControl or Cmp::RockControl
-composition 'RockControl' do
+# Declare the composition
+class RockControl < Syskit::Composition
   # With one joystick. Note that the oroGen project names are converted from
   # snake_case to CamelCase (controldev => Controldev, rock_tutorial =>
   # RockTutorial). This is done consistently in the system management layer
@@ -42,7 +41,7 @@ composition 'RockControl' do
   add RockTutorial::RockTutorialControl, :as => "rock"
   # Create any unique connection possible, by matching input and output ports
   # of the same data type. If ambiguities exist, an error is generated
-  autoconnect
+  connect joystick_child => rock_child
 end
 
 #### SYSTEM REQUIREMENTS
@@ -54,7 +53,7 @@ use_deployment 'rock_tutorial'
 use_deployment 'joystick'
 
 # Finally, ask the system to run such a composition
-add Cmp::RockControl
+add_mission RockControl
 {coderay}
 
 Checking the script and running the network
@@ -63,7 +62,7 @@ As this _defines_ a composition, it is possible to visualize it without
 running anything. Without additional adaptation though you will hit an error when doing:
 
 {coderay:: text}
-rock-roby instanciate scripts/rockRoby1.rb
+syskit instanciate scripts/rockRoby1.rb
 {coderay}
 
 ![Instanciation with error](200_instanciate_error_output.png)
@@ -89,7 +88,7 @@ amake tutorials/orogen/rock_tutorial
 Call again the instanciation with
 
 {coderay:: text}
-rock-roby instanciate scripts/rockRoby1.rb
+syskit instanciate scripts/rockRoby1.rb
 {coderay}
 
 You should see a graphical representation of the system that would be executed by this script:
