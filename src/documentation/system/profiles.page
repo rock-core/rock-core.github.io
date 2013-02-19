@@ -85,6 +85,9 @@ Reusing Profiles
 Profiles are often an extension of existing "generic" profiles. For instance,
 Rock's rock_ugv_nav bundle defines the Rock::UGVNav::Skid4 profile that gives
 common definitions for any system that is a four-wheeled, skid-steered system.
+This is a great way to provide pre-integrated functionality for some classes of
+systems, leaving only the "binding to the specific platform" to the system's
+integrator.
 
 All definitions from a profile can be imported from another one with the
 use_profile statement:
