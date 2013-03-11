@@ -37,10 +37,9 @@ does to replay a log file to a custom qt widget.
 
 {coderay:: ruby}
   require 'vizkit'
-  require 'orocos/log'
 
   #open the log file
-  replay = Orocos::Log::Replay.open("my.log") 
+  replay = Orocos::Log::Replay.open("my.log")
 
   #create window,button and text field
   window = Qt::Widget.new
@@ -56,7 +55,6 @@ does to replay a log file to a custom qt widget.
   #connect the logged output port with the text field
   task.mystatus.connect_to do |data,port_name|
     text_field.setText data.status.to_s
-    data
   end
 
   #show the control widget for the log file
@@ -92,11 +90,11 @@ be extended by registering custom widgets with the method
 Vizkit.register_widget_for (see [this page](600_writing_vizkit_widget.html)).
 
 {coderay:: ruby}
-  require 'vizkit'
-  replay = Orocos::Log::Replay.open('my.log')
-  Vizkit.display replay.mytask.myport
-  Vizkit.control replay          
-  Vizkit.exec
+require 'vizkit'
+replay = Orocos::Log::Replay.open('my.log')
+Vizkit.display replay.mytask.myport
+Vizkit.control replay
+Vizkit.exec
 {coderay}
 
 To specify the widget which shall be used to display the samples of the port,
@@ -105,12 +103,38 @@ available widgets can be displayed by using the command line tool
 rock-list-widgets.
 
 {coderay:: ruby}
-  require 'vizkit'
-  replay = Orocos::Log::Replay.open('my.log')
-  #create a new struct_viewer widget
-  widget = Vizkit.default_loader.StructViewer
-  replay.mytask.myport.connect_to widget
-  widget.show
-  Vizkit.exec 
+require 'vizkit'
+replay = Orocos::Log::Replay.open('my.log')
+#create a new struct_viewer widget
+widget = Vizkit.default_loader.StructViewer
+replay.mytask.myport.connect_to widget
+widget.show
+Vizkit.control replay
+Vizkit.exec 
+{coderay}
+
+If the same script shall be used to display remote tasks and later on log files 
+the Orocos name service can be used to find the right task.
+
+{coderay:: ruby}
+require 'vizkit'
+Orocos.initialize
+# load log files and add the loaded tasks to the Orocos name service
+replay = Orocos::Log::Replay.open(ARGV) unless ARGV.empty?
+
+# create a task proxy trying to connect
+# to a task called "camera" with the help
+# of the orocos name service
+task = Orocos::Async.proxy "camera"
+widget = Vizkit.default_loader.ImageView
+widget.show
+
+#connect port to the widget when reachable
+task.port("frame_raw").once_on_reachable do
+    Vizkit.display task.port("frame_raw"),:widget => widget
+end
+
+Vizkit.control replay unless ARGV.empty?
+Vizkit.exec
 {coderay}
 

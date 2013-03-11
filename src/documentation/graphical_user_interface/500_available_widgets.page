@@ -33,15 +33,10 @@ Widget for plotting sensor data
     sensor.configure
     sensor.start 
 
-    #first way to plot data 
     sensor.data.connect_to |sample,_|
       widget.update sample.field2.to_f,"sample1"
       widget.update sample.field2.to_f,"sample2"
     end
-
-    #second way to plot data
-    Vizkit.display sensor.data,:widget => widget,:subfield => [:field1]
-    Vizkit.display sensor.data,:widget => widget,:subfield => [:field2]
 
     widget.show
     Vizkit.exec
