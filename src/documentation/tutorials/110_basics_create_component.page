@@ -72,7 +72,12 @@ Press ENTER when finished:
 basics_tutorial/message_driver
 {coderay}
 
-All oroGen components should be created inside a separated folder called 'orogen' placed in the same folder as the libraries. In your case the libraries and the 'orogen' folder are placed in the 'basics_tutorials' folder. Moreover, when an oroGen component is created to integrate a library, it is highly recommended to use the same name than the library (here: message_producer).
+As a convention, all oroGen components are created inside an orogen/ subfolder
+of the corresponding library category. In this tutorial, the library and oroGen
+packages are placed respectively in the tutorials/ and tutorials/orogen folders.
+Moreover, when an oroGen component is created to integrate a library, it is
+highly recommended to use the same name than the library (here:
+tutorials/message_producer and tutorials/orogen/message_producer).
 
 ### Define tasks
 
@@ -100,18 +105,29 @@ end
 
 The specification contains a number of statement with the following meaning:
 
- * name: defines the name of the component, which is required for identification of the component
+ * name: defines the name of the component
  * using_library: tells oroGen that this component requires, i.e. needs to link against the 'message_driver' library
- * import_types_from: tells oroGen that use a certain type, that is specified in the file following this statement
- * task_context: everything within this block defines an Orocos task context model, including what input and output ports are required and a default value for the runtime execution schema (every 1.0 second in this case)
+ * import_types_from: tells oroGen to import all types in the given file
+ * task_context: everything within this block defines an Orocos task context
+   model, including what input and output ports are required and a default value
+   for the runtime execution schema (every 1.0 second in this case)
 
-The Task has an output port called 'messages' of type 'message_driver/Message'. This type is initially unknown to the component, but it can be found in the 'Message.hpp' header of the 'message_driver' library. the using_library statement tells oroGen only to look for a library of the given name and link it to any deployment. 
-In order to make types known to your component so that you can use them in the specification, you have to do this explicitly with the 'import_types_from' statement.
+The task has an output port called 'messages' of type 'message_driver/Message'.
+This type is initially unknown to the component, but it can be found in the
+'Message.hpp' header of the 'message_driver' library. the using_library
+statement tells oroGen only to look for a library of the given name and link it
+to any deployment.  In order to make types known to your component so that you
+can use them in the specification, you have to do this explicitly with the
+'import_types_from' statement.
 
 ### 
 
 ### Integration into the build system
-Again, you should add you component to the build system by adding the package to autproj/manifest's layout section:
+To finalize the package creation, one has to run rock-create-orogen again, but
+this time without arguments and in the folder that contains the oroGen file.
+
+Then, you should add you component to the build system by adding the package to
+autproj/manifest's layout section:
 
 {coderay:: text}
 package_sets:
@@ -127,13 +143,14 @@ layout:
   - basics_tutorial/orogen/message_producer
 {coderay}
 
-After adding it to the build system you can call amake for build the current package.
+And then call amake in the package's folder.
 
 {coderay:: text}
 amake
 {coderay}
 
-If you get an error here, you most likely have a syntax error, then please compare your files against the files in the tutorial package set.
+If you get an error here, you most likely have a syntax error, then please
+compare your files against the files in the tutorial package set.
 
 ### Writing the task
 Now, that you have created the oroGen component you still have to embedd the functionality that message_driver provides, in order to achieve a proper message producing component. 

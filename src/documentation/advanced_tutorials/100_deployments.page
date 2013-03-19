@@ -58,7 +58,13 @@ deployment "faster_message_producer" do
 end
 {coderay}
 
-And, as usual, run in the same directory as the oroGen file
+Finalize the package creation with (in the same directory than the oroGen file)
+
+{coderay}
+rock-create-orogen
+{coderay}
+
+And, finally, the usual
 
 {coderay:: text}
 amake

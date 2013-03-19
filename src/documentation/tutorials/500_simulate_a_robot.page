@@ -173,6 +173,10 @@ of type base::samples::RigidBodyState. This task will compute a new position and
 the translation and rotation speed it receives on its input port. The latest motion command will be used if there is no new one.
 The update hook of this task will triggered periodically.
 
+[As with all oroGen packages](110_basics_create_component.page), we call
+rock-create-orogen to finalize the package creation, and can then write the
+component implementation in tasks/RockTutorialControl.cpp.
+
 The implementation is simple, as the task only calls the library and passes on the result.
 
 {coderay:: c++}
