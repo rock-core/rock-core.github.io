@@ -97,15 +97,16 @@ end
 {coderay}
 
 then the deployed task instance will only be triggered when new data is received
-on its input ports. But if another triggering mechanism is also specified:
+on its input ports. It is however possible to use [FD-based](fd.html) and
+port-based triggering at the same time.
 
 {coderay:: ruby}
 deployment "test" do
     t = task('Task').
-        periodic(0.1)
+        fd_driven
 end
 {coderay}
 
-then the deployed task instance will be triggered in both cases. This can be
-used, for instance, for timeout purposes.
+However, deploying with the [periodic triggering](periodic.html) will override
+(i.e. disable) the port-triggering.
 
