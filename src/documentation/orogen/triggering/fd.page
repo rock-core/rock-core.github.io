@@ -32,6 +32,9 @@ is required, then do
 required_activity :fd_driven
 {coderay}
 
+Note that deploying a task with [a periodic activity](periodic.html) will
+disable the fd-driven behaviour. However, the fd-driven activity can be overlaid
+on top of the [port-driven triggering](ports.html)
 
 Mandatory setup in the C++ task
 -----------------------------

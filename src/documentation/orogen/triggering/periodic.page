@@ -22,7 +22,8 @@ deployment "example" do
 end
 {coderay}
 
-The periodic is given in seconds.
+The period is given in seconds. Deploying with a periodic triggering disables
+[port-based triggers](ports.html) as well as [fd-based triggers](fd.html)
 
 C++ task implementation
 -----------------------
