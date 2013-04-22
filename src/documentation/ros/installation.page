@@ -1,0 +1,32 @@
+---
+title: Installation
+sort_info: 50
+---
+
+All the code needed to bridge ROS and Rock is included in a separate package
+set. To enable it, you will need to:
+
+ - have a working ROS installation. The only supported distributions are
+   groovy and later. Unfortunately, the catkin build system changed too much
+   between fuerte and groovy to allow us to support fuerte.
+ - be in an autoproj-based Rock installation
+
+In your autoproj manifest (autoproj/manifest), add
+
+~~~
+ - gitorious: rock-ros/package_set
+~~~
+
+in the package_sets section and 
+
+~~~
+ - rock.ros
+~~~
+
+in the layout section. Update and build. If you added this is an existing Rock
+installation, you will have to force-build all orogen-based packages with
+
+~~~
+autoproj build --force orogen/
+~~~
+

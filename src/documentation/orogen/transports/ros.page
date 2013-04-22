@@ -50,4 +50,10 @@ are wrapped within this project. In other words, one cannot do an
 import_types_from "another_orogen_project" and then add the mapping for a type
 in this other project.
 
+Since the convertion between the oroGen type and the ROS message is custom, you
+will have to provide the relevant code yourself. This code is located in the
+typekit/ROSConvertions.hpp and typekit/ROSConvertions.cpp files from the oroGen
+project's toplevel directory. If these files did not exist before, they are
+created. Otherwise, as usual, you will have to copy the relevant declarations
+from the templates/typekit/ROSConvertions.* files.
 
