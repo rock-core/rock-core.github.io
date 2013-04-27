@@ -21,7 +21,49 @@ require 'orocos/ros'
 Orocos::ROS.initialize
 ~~~
 
-For this to work, you will need to have setup the ROS_MASTER_URI environment
+At the top. For this to work, you will need to have setup the ROS_MASTER_URI environment
 variable properly (note: the rock.ros package setup sets it up to the default
 local master URI).
+
+Once this is done, the ROS nodes can be resolved by the name service from their
+ROS name:
+
+~~~ ruby
+ros_node = Orocos.name_service.get '/prosilica_camera'
+~~~
+
+The topics to which this node are subscribed are listed as input ports and the
+ones it publishes at output ports:
+
+~~~ ruby
+ros_node.find_output_port('/prosilica/raw')
+~~~
+
+Alternatively, one can get a handle on a topic, and then publish or subscribe a
+component port to it:
+
+~~~ ruby
+ros_topic = Orocos::ROS.topic('/prosilica/raw')
+ros_topic.connect_to task.an_input_port
+task.an_output_port.connect_to ros_topic
+~~~
+
+This will fail if the topic does not already exist. To create a topic by
+publishing / subscribing a port, use #publish_on_ros and #subscribe_to_ros. Note
+that these two methods work in case the topics do exist as well. What the method
+above provides is protection against typos: it will fail if the topic does not
+already exist.
+
+~~~ ruby
+task.an_input_port.subscribe_to_ros('/topic/name', connection_policy)
+task.an_output_port.publish_on_ros('/topic/name', connection_policy)
+~~~
+
+In both cases, a default topic name of task_name/port_name can be used by not
+specifying the topic name at all:
+
+~~~ ruby
+task.an_input_port.subscribe_to_ros(connection_policy)
+task.an_input_port.publish_on_ros(connection_policy)
+~~~
 
