@@ -74,3 +74,6 @@ debugging:
     title: Debugging Techniques
     sort_info: 1200
 
+ros:
+    title: ROS/Rock bridge
+    sort_info: 1300
