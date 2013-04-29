@@ -3,13 +3,13 @@ title: ROS
 sort_info: 100
 ---
 
-The ROS transport provides two main functionality:
+The ROS transport provides two main functionalities:
 
  * the ability to generate ROS messages for every oroGen types that can be
-   represented in ROS. See "Automatic ROS Message Convertions" below.
+   represented in ROS (see "Automatic ROS Message Convertions" below).
  * the ability to reuse existing ROS messages as a way to transport oroGen
    types. This is important to interface with a ROS system, as one should use
-   ROS common messages. See "Reusing Existing ROS Messages" below.
+   ROS common messages (see "Reusing Existing ROS Messages" below).
 
 Automatic ROS Message Convertion
 --------------------------------

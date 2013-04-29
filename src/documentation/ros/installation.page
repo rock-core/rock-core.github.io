@@ -11,22 +11,34 @@ set. To enable it, you will need to:
    between fuerte and groovy to allow us to support fuerte.
  - be in an autoproj-based Rock installation
 
-In your autoproj manifest (autoproj/manifest), add
+In your autoproj manifest (autoproj/manifest) the package_sets section should
+contain (at least) the following: 
 
 ~~~
+ - gitorious: rock/package_set
+ - gitorious: rock-toolchain/package_set
  - gitorious: rock-ros/package_set
 ~~~
 
-in the package_sets section and 
+For the syntax above (gitorious: <package_set-short-name>) to work, your init.rb (autoproj/init.rb) has to contain: 
+
+~~~
+require 'autoproj/gitorious'
+Autoproj.gitorious_server_configuration('GITORIOUS', 'gitorious.org')
+~~~
+
+Back in the autoproj manifest (autoproj/manifest) add the following to the 
+layout section: 
 
 ~~~
  - rock.ros
 ~~~
 
-in the layout section. Update and build. If you added this is an existing Rock
-installation, you will have to force-build all orogen-based packages with
+Now, update and build. If you added this configuration to an existing Rock
+installation, you will have to force building all orogen-based packages with
 
 ~~~
 autoproj build --force orogen/
 ~~~
+
 
