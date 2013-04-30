@@ -52,11 +52,11 @@ Since autotools (and specifically, automake) environments are unfortunately
 not so reusable, autoproj tries to regenerate the autotools scripts forcefully.
 This can be disabled by setting the some flags on the package:
 
- * using[:aclocal]: set to false if aclocal should not be run
- * using[:autoconf]: set to false if the configure script should not be touched
- * using[:automake]: set to false if the automake part of the configuration
+ * using\[:aclocal]: set to false if aclocal should not be run
+ * using\[:autoconf]: set to false if the configure script should not be touched
+ * using\[:automake]: set to false if the automake part of the configuration
    should not be touched
- * using[:libtool]: set to false if the libtool part of the configuration should
+ * using\[:libtool]: set to false if the libtool part of the configuration should
    not be touched
 
 For instance, one would add

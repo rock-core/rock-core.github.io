@@ -18,12 +18,12 @@ and go on with the follow-up tutorials.
 
 A first model-based script
 ------------
-The root concept in our system management layer is the _composition_. A
+The root concept in syskit is the _composition_. A
 composition is a group of component that, once bound together, do something
 useful. In our case, it would be moving the rock with a joystick. Create a new
-scripts/rockRoby1.rb file and add the following code:
+scripts/syskit1.rb file and add the following code:
 
-{coderay:: ruby}
+~~~ ruby
 #### MODELLING
 # This part does not need any running components
 #
@@ -31,18 +31,19 @@ scripts/rockRoby1.rb file and add the following code:
 using_task_library 'controldev'
 using_task_library 'rock_tutorial'
 
-# Declare the composition. The new model can be accessed with either
-# Compositions::RockControl or Cmp::RockControl
-composition 'RockControl' do
-  # With one joystick. Note that the oroGen project names are converted from
-  # snake_case to CamelCase (controldev => Controldev, rock_tutorial =>
-  # RockTutorial). This is done consistently in the system management layer
-  add Controldev::JoystickTask, :as => "joystick"
-  # And one rock
-  add RockTutorial::RockTutorialControl, :as => "rock"
-  # Create any unique connection possible, by matching input and output ports
-  # of the same data type. If ambiguities exist, an error is generated
-  autoconnect
+module Tutorials
+  # Declare the composition
+  class RockControl < Syskit::Composition
+    # With one joystick. Note that the oroGen project names are converted from
+    # snake_case to CamelCase (controldev => Controldev, rock_tutorial =>
+    # RockTutorial). This is done consistently in the system management layer
+    add Controldev::JoystickTask, :as => "joystick"
+    # And one rock
+    add RockTutorial::RockTutorialControl, :as => "rock"
+    # Create any unique connection possible, by matching input and output ports
+    # of the same data type. If ambiguities exist, an error is generated
+    connect joystick_child => rock_child
+  end
 end
 
 #### SYSTEM REQUIREMENTS
@@ -50,65 +51,85 @@ end
 #
 # Tell the system which deployments to use. The names are deployment names, i.e.
 # the name given to the deployment "deployment_name" blocks in oroGen projects
-use_deployment 'rock_tutorial'
-use_deployment 'joystick'
+Syskit.conf.use_deployment 'joystick'
 
 # Finally, ask the system to run such a composition
-add Cmp::RockControl
-{coderay}
+add_mission Tutorials::RockControl
+~~~
 
 Checking the script and running the network
 -------------------
 As this _defines_ a composition, it is possible to visualize it without
 running anything. Without additional adaptation though you will hit an error when doing:
 
-{coderay:: text}
-rock-roby instanciate scripts/rockRoby1.rb
-{coderay}
+~~~
+syskit instanciate scripts/syskit1.rb
+~~~
 
-![Instanciation with error](200_instanciate_error_output.png)
+[![Instanciation with error](200_instanciate_error_output_thumb.png)](200_instanciate_error_output.png)
+{: .align-center}
+__(Click to enlarge)__
+{: .caption}
 
-This error tells you that there is only a default deployment created for the oroGen component
-rock_tutorial. Since using default deployments is currently not supported you have to first adapt the oroGen specification for 'rock_tutorial'. 
+This error tells you that there are no deployments available for the oroGen component
+rock_tutorial::RockTutorialControl. 
 
 Add the following lines to tutorials/orogen/rock_tutorial/rock_tutorial.orogen (which you created in the tutorial 
 [Simulate a Robot](../tutorials/500_simulate_a_robot.html) ):
 
-{coderay:: ruby}
+~~~ ruby
 deployment 'rock_tutorial' do
     task('rock_tutorial', "rock_tutorial::RockTutorialControl")
 end
-{coderay}
+~~~
 
 Now, you need to rebuild build the oroGen component with:
 
-{coderay:: sh}
+~~~
 amake tutorials/orogen/rock_tutorial
-{coderay}
+~~~
+
+The new deployment can then be used in the script by adding, just after the
+other use_deployment line.
+
+~~~ ruby
+Syskit.conf.use_deployment 'rock_tutorial'
+~~~
 
 Call again the instanciation with
 
 {coderay:: text}
-rock-roby instanciate scripts/rockRoby1.rb
+syskit instanciate scripts/syskit1.rb
 {coderay}
 
 You should see a graphical representation of the system that would be executed by this script:
 
-![Component network after instanciation](200_instanciate_output.png)
+[![Component network after instanciation](200_instanciate_output_thumb.png)](200_instanciate_output.png)
+{: .align-center}
+__(Click to enlarge)__
+{: .caption}
 
 If you're happy with it, you can then run it with:
 
-{coderay:: text}
-rock-roby run scripts/rockRoby1.rb
-{coderay}
+~~~
+syskit run scripts/syskit1.rb
+~~~
+
+The only difference between "roby run" and "syskit run" is the ability to pass a
+file to syskit run. When you start using the bundle directory layout to store
+the various syskit models, you will be able to use roby run directly.
+{: .warning}
 
 In another shell, display the task using rock-display: 
 
-{coderay:: sh}
+~~~
 rock-display rock_tutorial
-{coderay}
+~~~
 
 [![Rock display](200_rock_display_thumb.png)](200_rock_display.png)
+{: .align-center}
+__(Click to enlarge)__
+{: .caption}
 
 and move your joystick
 
@@ -117,7 +138,7 @@ Stopping the script
 The script can be stopped using CTRL+C. It shows a progression of the shutdown
 procedure:
 
-{coderay:: text}
+~~~
 18:33:13.182 (Roby) control quitting. Waiting for 6 tasks to finish (6 tasks still in plan)
 18:33:13.183 (Roby)   Orocos::RobyPlugin::Logger::Logger:0x7f9eba6d36d8{conf => [default], orocos_name => joystick_Logger}[]
 18:33:13.183 (Roby)   Orocos::RobyPlugin::Controldev::JoystickTask:0x7f9eba73d088{conf => [default], orocos_name => joystick}[]
@@ -140,20 +161,29 @@ procedure:
 18:33:13.518 (Roby) waiting for 2 tasks to finish (2 tasks still in plan)
 18:33:13.518 (Roby)   Orocos::RobyPlugin::Deployments::Joystick:0x7f9eba7488e8{log => true, on => localhost}[]
 18:33:13.518 (Roby)   Orocos::RobyPlugin::Deployments::RockTutorial:0x7f9eba7687b0{log => true, on => localhost}[]
-{coderay}
+~~~
 
 What happened ?
 ---------------
 Let's now have a look at what happened by visualizing the event log:
 
-rock-roby display ./logs/current/common-events.log
+roby display ./logs/current/common-events.log
 {: .cmdline}
 
 [![Roby display](200_roby_display_thumb.png)](200_roby_display.png)
+{: .align-center}
+__(Click to enlarge)__
+{: .caption}
 
 The same display can be used at runtime, i.e. in parallel to the composition start the display with:
 
-rock-roby display
+roby display
+{: .cmdline}
+
+Including when the controller is running on another host, with the --host
+parameter:
+
+roby display --host=remote_host
 {: .cmdline}
 
 Summary

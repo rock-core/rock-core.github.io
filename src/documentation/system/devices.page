@@ -1,24 +1,24 @@
 ---
 title: Devices
-sort_info: 490
+sort_info: 520
 ---
-
-In the rock-roby management layer, __devices__ are defined as a special kind of
-data service.
 
 In robot software, devices are very specific things. All the devices form the
 interface of the software with the external world. Moreover, in a
-component-oriented system like the one we are manipulating in rock-roby, devices
+component-oriented system like the one we are manipulating in Syskit, devices
 are __unique__: while it is possible to instanciate multiple image processing
 components, a robot cannot arbitrarily spawn a new camera.
 
-For these reasons, devices have a specialized place in rock-roby as well. This
+For these reasons, devices have a specialized place in syskit as well. This
 is because:
 
  * devices are __unique__, for the reason above
- * devices are the __source__ of all data. Therefore, they have a special place
-   when looking at the dataflow (more on that [in a later
+ * devices are the __source__ of all data. Therefore, they have a
+   special place when looking at the dataflow (more on that [in a later
    section](dataflow_dynamics.html).
+
+In Syskit, __devices__ are defined as a special kind of [data
+service](data_services.html). You need to know about data services first.
 
 We will start about how these things are modelled. Note that some of the
 sections on this page are marked as advanced. It is fine to skip them on a first
@@ -28,70 +28,46 @@ Declaring devices
 -----------------
 Device models are specialized forms of data services. They are declared in the
 same way than data services, but instead using the device_type stanza instead of
-the data_service_type one. Moreover, the device model is declared in Dev
-instead of Srv.
+the data_service_type one. It is customary to define all device models under the
+Dev module (see models/blueprints/devices.rb in the rock bundle for a common
+hierarchy)
 
 The goal, when declaring devices, is to refer to the device as precisely as
 possible. I.e. one would never declare a Camera device. Instead, it would
 declare a FirewireCamera or a ProsilicaCamera. For instance:
 
-{coderay:: ruby}
+~~~ ruby
 device_type "ProsilicaCamera" do
   provides Srv::ImageProvider
 end
-{coderay}
+~~~
 
-Describing the Robot Hardware
------------------------------
-All devices available on a given robot are declared in the robot's config file
-(config/ROBOT_NAME), in a Robot.devices block.
-
-{coderay:: ruby}
-Robot.devices do
-  device(Dev::CameraProsilica, :as => 'left_camera')
-  device(Dev::CameraProsilica, :as => 'right_camera')
-end
-{coderay}
-
-The name given to the device allows to refer to it specifically in the subsystem
-design stage, that is described later.
+In Rock, all devices are categorized within the Dev namespace. See
+models/blueprints/devices.rb in the rock bundle for more information.
 
 Communication Busses
 --------------------
 A special type of device is a __communication bus__. The busses are meant to
 provide multiplexing/demultiplexing for other devices. They are handled directly
-by rock-roby, which has major advantages:
+by syskit, which has major advantages:
 
  * it avoids the need to create a composition per device that is attached to the
    bus (the solution one would have so far).
  * once support for a given type of communication bus is written, any device
-   conforming to the rock-roby combus conventions can use it.
+   conforming to the syskit combus conventions can use it.
  * the combus-to-driver relationship is setup in a meaningful way (i.e. com bus
    is started before the driver and stopped afterwards).
 
 A communication bus type is declared with
 
-{coderay:: ruby}
+~~~ ruby
 com_bus_type('Canbus', :message_type => '/canbus/Message')
-{coderay}
+~~~
 
 where the message type is the type of the input/output ports that are used to
-communicate with that type of communication bus.
-
-Then, in the robot device block, one does:
-
-{coderay:: ruby}
-com_bus(Dev::Canbus, :as => 'can0')
-through 'can0' do
-  ... add device definitions for devices that are
-      using the bus ...
-end
-# Alternative if the through block cannot be used
-device(Dev::Hbridge, :as => 'actuators').
-  attach_to 'can0'
-{coderay}
-
-The implications of this declaration will be discussed later on this page
+communicate with that type of communication bus. It is customary to define the
+busses under the Dev::Bus namespace (see models/blueprints/devices.rb in the
+rock bundle for a common hierarchy).
 
 Declaring Device Drivers
 ------------------------
@@ -101,38 +77,74 @@ is a task context that is declared as being able to interface with that device.
 This relationship is declared with the driver_for stanza. For instance, in
 models/orogen/camera_prosilica.rb, one writes:
 
-{coderay:: ruby}
+~~~ ruby
 class CameraProsilica::Task
   driver_for Dev::CameraProsilica
 end
-{coderay}
+~~~
 
-If multiple drivers are available for a given device, you will have to pick one
-explicitely in the device declaration with the using option. Otherwise, the only
-solution is automatically selected.
+It is customary to define all device models in your own bundle's
+models/blueprints/devices.rb. To import the device definitions from other
+bundles, one has to do:
 
-{coderay:: ruby}
+~~~ ruby
+require 'rock/models/blueprints/devices'
+~~~
+
+i.e. prefix the device file path with the bundle's name.
+
+Robot Definitions
+-----------------
+Device and combus models are used to describe the interface to the robot
+hardware. This is done in profiles using a robot block:
+
+~~~ ruby
+syskit_profile 'MyRobot' do
+  robot do
+    device(Dev::CameraProsilica, :as => 'left_camera')
+    device(Dev::CameraProsilica, :as => 'right_camera')
+  end
+end
+~~~
+
+Once defined, the devices can be referred to in the rest of the profile with the
+devicename_dev form (e.g. left_camera_dev above). For instance:
+
+~~~ ruby
+syskit_profile 'MyRobot' do
+  robot do
+    device(Dev::CameraProsilica, :as => 'left_camera')
+    device(Dev::CameraProsilica, :as => 'right_camera')
+  end
+  define 'left_image', ImageProcessingPipeline.use(left_camera_dev)
+end
+~~~
+
+If only one device driver is available for a given device, is is automatically
+selected. Otherwise, one has to select it explicitly in the device declaration:
+
+~~~ ruby
 device Dev::CameraProsilica, :using => AlternativeDriver::Task
-{coderay}
+~~~
 
 We will see later on that the device model can hold important information about
 the device, such as the expected update rate. This information can be accessed
 from [the task context's configure method](task_contexts.html#extend) with:
 
-{coderay:: ruby}
+~~~ ruby
 class CameraProsilica::Task
   def configure
     super
-    robot_device # => the Orocos::RobyPlugin::MasterDeviceInstance
-                 #    that describes the device
+    robot_device # => the Syskit::Robot::MasterDeviceInstance
+                 #    that describes the device this component
+                 #    is interfaced with.
   end
 end
-{coderay}
+~~~
 
 Combus Support __(Advanced)__
 --------------
-For the communication bus support to be used, the following conventions must be
-followed:
+Communication bus support in syskit relies on the following conventions:
 
  * the device driver must have at least one input or output of the combus
    message type (it can obviously have both, but having none is an error)
@@ -152,13 +164,12 @@ method](task_contexts.html#extend)
 
 For instance, let's consider the combus declaration from above
 
-{coderay:: ruby}
-com_bus_type('Canbus', :message_type => '/canbus/Message')
-com_bus(Dev::Canbus, :as => 'can0')
+~~~ ruby
+com_bus(Dev::Bus::Canbus, :as => 'can0')
 through 'can0' do
-  device(Dev::Hbridge, :as => 'actuators').
+  device(Dev::Actuators::Hbridge, :as => 'actuators').
 end
-{coderay}
+~~~
 
 The actuator device driver need both input and output through the communication
 bus. The driver therefore declares an input port and an output port of the
@@ -169,21 +180,21 @@ of the /canbus/Message type. This is going to be used for all data that should
 be sent to the bus. For the bus-to-driver part, it declares a dynamic output
 port with
 
-{coderay:: ruby}
+~~~ ruby
 dynamic_output_port /.*/, "canbus/Message"
-{coderay}
+~~~
 
 The usage of the hbridge driver attached to the can combus is therefore
-__valid__ from rock-roby's point of view, and the network generation will
+__valid__ from syskit's point of view, and the network generation will
 succeed. 
 
-__At runtime__, rock-roby will require the combus component to create, at the
-configuration stage, an output port of the same name than the device (i.e.
+__At runtime__, syskit will require the combus component to create, during
+configuration, an output port of the same name than the device (i.e.
 "actuators"). This creation is done in the combus configure method. For instance
 (forget about the can_id thing for now, this is a quite advanced topic that will
 be explained later).
 
-{coderay:: ruby}
+~~~ ruby
 class Combus::Task
   def configure
     super
@@ -195,5 +206,5 @@ class Combus::Task
     end
   end
 end
-{coderay}
+~~~
 

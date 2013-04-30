@@ -32,7 +32,7 @@ message is generated which is named
 
 *Limitations* The types that contain vectors-of-vectors or arrays-of-arrays are
 not exported to ROS. Moreover, ports using types that are not structures (e.g.
-std::vector<MyStruct>) can't be subscribed / published at runtime (i.e. oroGen
+std::vector\<MyStruct>) can't be subscribed / published at runtime (i.e. oroGen
 does not generate a corresponding boxed type).
 
 Reusing Existing ROS Messages

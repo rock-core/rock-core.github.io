@@ -1,9 +1,9 @@
 \--- !omap
-- orocos_rb_api.html:
+- syskit.html:
     in_menu: true
-    routed_title: Orocos.rb Roby Plugin
+    routed_title: Syskit API
     sort_info: 99997
-    url: /api/tools/orocos.rb/Orocos/RobyPlugin.html
+    url: /api/tools/syskit
 
 - roby_guide.html:
     in_menu: true

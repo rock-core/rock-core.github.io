@@ -692,3 +692,10 @@ ol.tumblr_posts li {
     list-style-type: none;
 }
 .tumblr_title {margin: 1.0em 0px 0em 0px; font-weight: bold; font-size: 130%;}
+.caption {
+    margin-left: 50px;
+    margin-right: 50px;
+    font-size: 90%;
+    font-style: italic;
+}
+

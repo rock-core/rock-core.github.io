@@ -3,13 +3,12 @@ title: Introduction
 sort_info: 0
 ---
 
-While one can use the Rock system management layer without knowing the
-underlying execution framework, Roby, it becomes quickly beneficial to have at
-least read the
+While one can use Syskit, Rock's system management layer, without knowing the
+underlying execution framework, Roby, reading both the
 [concept](http://rock-robotics.org/api/tools/roby/concepts/index.html) section
 of the Roby user's guide, and followed the
 [tutorial](http://rock-robotics.org/api/tools/roby/tutorial/index.html) in the
-same guide.
+same guide become beneficial when the complexity of your application grows.
 {: .note}
 
 Advanced System Deployment
@@ -39,7 +38,7 @@ plugin's concepts and development workflow.
 
 Naming conventions {#naming_convertion}
 ------------------
-In Ruby, the language in which both oroGen and Rock's system management layer is
+In Ruby, the language in which both oroGen and Syskit are
 implemented, the norm is to use CamelCase to write class names. An actual
 constraint that is part of the language is that the class names __must__ start
 with an uppercase letter.
@@ -50,7 +49,8 @@ snake_case names to CamelCase. For instance:
     xsens_imu > XsensImu
     iodrivers_base > IodriversBase
 
-When applicable, this convertion rule will be noted in the documentation
+A reminder about this convertion will be present in the documentation whenever
+it applies.
 
 Models, classes and instances
 -----------------------------
@@ -59,14 +59,10 @@ classes and objects in a very straightforward manner: a model is represented as
 a class or module (depending of what kind of thing this model describes), and an
 instance of a model is an object of the corresponding class.
 
-This has one side effect, for those that know Ruby: model hierarchies can only
-be represented in trees, not graphs, as Ruby does not support multiple
-inheritance. However, this proved to have no effect in practice.
-
-For instance, the Roby model that represents a xsens_imu::Task task context is
-a XsensImu::Task class. The list of ports defined on all xsens_imu::Task task
-contexts can then be obtained with XsensImu::Task.each_input_port for instance.
-At runtime, running xsens_imu::Task task contexts are then represented by
-objects of class XsensImu::Task, i.e. running_xsens_imu_task.class ==
-XsensImu::Task.
+For instance, the Roby model that represents a xsens_imu::Task task context is a
+XsensImu::Task class, which is a subclass of Syskit::TaskContext. The list of
+ports defined on all xsens_imu::Task task contexts can then be obtained with
+XsensImu::Task.each_input_port for instance.  At runtime, running
+xsens_imu::Task task contexts are then represented by objects of class
+XsensImu::Task, i.e. running_xsens_imu_task.class == XsensImu::Task.
 
