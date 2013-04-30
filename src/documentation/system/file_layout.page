@@ -18,6 +18,7 @@ The bundles created in Rock are already syskit-enabled, i.e. if you do
 
 ~~~
 rock-create-bundle mybundle
+cd mybundle
 roby init
 ~~~
 
