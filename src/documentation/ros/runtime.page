@@ -36,7 +36,7 @@ Once this is done, the ROS nodes can be resolved by the name service using their
 ROS name:
 
 ~~~ ruby
-ros_node = Orocos.name_service.get '/prosilica_camera'
+ros_node = Orocos.name_service.get '/prosilica_driver'
 ~~~
 
 The topics to which this node are subscribed are listed as input ports and the
@@ -50,7 +50,7 @@ Alternatively, one can get a handle on a topic, and then publish or subscribe a
 component port to it:
 
 ~~~ ruby
-ros_topic = Orocos::ROS.topic('/prosilica/raw')
+ros_topic = Orocos::ROS.topic('/prosilica/image_raw')
 ros_topic.connect_to task.an_input_port
 task.an_output_port.connect_to ros_topic
 ~~~
