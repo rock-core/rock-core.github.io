@@ -129,11 +129,13 @@ require 'orocos'
 Orocos.initialize
 
 Orocos.run 'camera_prosilica::Task' => 'right_camera', 'stereo::Task' => 'stereo' do
-  left_camera  = Orocos::ROS.topic '/prosilica/image_raw'
+  left_camera  = Orocos.name_service.get '/prosilica_driver'
   right_camera = Orocos.name_service.get 'right_camera'
   stereo       = Orocos.name_service.get 'stereo'
+
+  left_camera_frame = left_camera.find_output_port('/prosilica/image_raw')
   right_camera.frame.connect_to stereo.right_frame
-  left_camera.connect_to stereo.left_frame
+  left_camera_frame.connect_to stereo.left_frame
 
   right_camera.configure
   stereo.configure

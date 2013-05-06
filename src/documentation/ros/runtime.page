@@ -43,7 +43,7 @@ The topics to which this node are subscribed are listed as input ports and the
 ones it publishes at output ports:
 
 ~~~ ruby
-ros_node.find_output_port('/prosilica/raw')
+ros_node.find_output_port('/prosilica/image_raw')
 ~~~
 
 Alternatively, one can get a handle on a topic, and then publish or subscribe a
