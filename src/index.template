@@ -1,4 +1,10 @@
+--- name:header pipeline:blocks
+<script type="text/javascript" language="javascript" src="http://assets.tumblr.com/assets/scripts/tumblelog.js?b32c40067ef5fa460dd9a1eda92ee368"></script>
+<style type="text/css">
+.content2 {
+   margin-left: 110px;
+}
+</style>
 --- name:content pipeline:blocks
-<div style="margin: 110px;">
-<webgen:block name='content' />
-</div>
+<webgen:block name="content" />
+
