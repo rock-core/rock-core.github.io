@@ -19,8 +19,6 @@
 default_meta_info:
     Webgen::SourceHandler::Page:
         in_menu: true
-        link:
-            css: /style_screen.css
 
 #default_processing_pipeline:
 #  Page: erb,tags,kramdown,erb,blocks
@@ -35,3 +33,4 @@ tag.coderay.lang: ruby
 
 contentprocessor.kramdown.options:
     :entity_output: :symbolic
+    :coderay_line_numbers: ~
