@@ -21,7 +21,8 @@ set](../tutorials/index.html#installing)
 
 ***IMPORTANT***:
 For this tutorial to work you need to have an +active+ network device,
-otherwise Avahi will not publish any information.{.warning}
+otherwise Avahi will not publish any information.
+{: .warning}
 
 Ruby scripts
 ----------------
@@ -136,6 +137,7 @@ ruby message_consumer/scripts/start.rb
 
 ***NOTE***: You need to have a proper configuration of Avahi, and there are some known issue with using IPv4. 
 Enabling IPv6 for the daemon in /etc/avahi/avahi-daemon.conf will help to make service discovery more robust.
+
 {: .warning}
 
 {coderay:: text}
