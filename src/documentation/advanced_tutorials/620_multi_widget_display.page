@@ -1,0 +1,28 @@
+---
+title: Multi Widget Display
+sort_info: 620
+---
+
+Abstract
+-----------
+
+In this tutorial you will learn how to display multiple widgets in a configurable grid using the CompoundDisplay widget. 
+
+Introduction
+-----------
+
+The "CompoundDisplay" widget enables you to display multiple Rock widgets in one container. This container is designed as a two-dimensional grid. Each element of the grid holds one widget and is identified by its 'position'. This is a running index beginning at 0 going row-by-row from left to right. The grid dimensions (amount of rows and columns) are configurable from the script.
+
+The benefit of the CompoundDisplay is its ability to backup and restore your widget configuration. That means you assign the widgets of your choice to specific grid coordinates and export this configuration to a YAML file. The configuration also includes information about the specific data sources, i.e. the task and port and the sender host. The configurations can be either loaded upon startup or during runtime.
+
+Besides configuring the grid in your script or YAML file, you can drag and drop output ports directly from the TaskInspector to the grid elements. A context menu lets you choose a suitable display widget. After you picked one, the widget will be displayed and automatically connected to the sender. This also works with rock-replay.
+
+***IMPORTANT***:
+To use the Drag&Drop feature, both the source and destination widget, i.e. TaskInspector and CompoundDisplay, have to be in the same procecss. Simply start the TaskInspector in your script, as well, instead of using rock-display.
+{: .warning}
+
+The following script shows a basic use case of the CompoundDisplay.
+
+{coderay:: ruby}
+
+{coderay}
