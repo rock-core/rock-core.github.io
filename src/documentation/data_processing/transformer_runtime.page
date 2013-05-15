@@ -102,7 +102,7 @@ Finally:
 {coderay:: ruby}
 # You need to initialize before you can use the transformer
 Orocos.initialize
-Orocos.transformer.load('config/transforms.rb')
+Orocos.transformer.load_conf('config/transforms.rb')
 Orocos.run ... do
   lidar = Orocos.name_service.get 'lidar'
   filter = Orocos.name_service.get 'lidar_filter'
