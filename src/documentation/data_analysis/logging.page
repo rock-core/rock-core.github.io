@@ -4,7 +4,7 @@ sort_info: 100
 ---
 
 This page presents the most essential step for data analyis, which is showing how to save the data from ports into log files. The [next
-page](reading_logfiles.page) will present how to read that data to analyze it.
+page](reading_logfiles.html) will present how to read that data to analyze it.
 
 The setup
 ---------
