@@ -100,7 +100,9 @@ Three bits are needed to configure the system properly:
 Finally:
 
 {coderay:: ruby}
-Orocos.transformer.load('config/transforms.rb')
+# You need to initialize before you can use the transformer
+Orocos.initialize
+Orocos.transformer.load_conf('config/transforms.rb')
 Orocos.run ... do
   lidar = Orocos.name_service.get 'lidar'
   filter = Orocos.name_service.get 'lidar_filter'
@@ -123,6 +125,7 @@ Orocos.run ... do
   lidar.lidar_samples.connect_to(filter.lidar_samples)
 
   # Finalize transformer configuration (see below for explanations)
+  # For static transformations the task should not not yet be configured
   Orocos.transformer.setup(lidar, filter, servo)
 
   lidar.configure
