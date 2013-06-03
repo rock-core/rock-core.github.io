@@ -155,5 +155,5 @@ This layout can either list packages one by one, but complete package sets can
 also be selected (as e.g. rock.base above)
 
 More advanced mechanisms are available to customize this list. These mechanisms
-are [detailed here](advanced/customization.html)
+are [detailed here](customization.html)
 

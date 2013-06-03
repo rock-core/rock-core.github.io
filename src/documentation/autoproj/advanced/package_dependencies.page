@@ -12,7 +12,7 @@ There are two ways to specify dependencies between packages. In order of
 Moreover, a dependency can either be mandatory or optional.
 
 In the first case, autoproj will always refuse to build a package if one of its
-dependencies is either not defined or [excluded from the build](customization.html#exclude_packages)
+dependencies is either not defined or [excluded from the build](../customization.html#exclude_packages)
 
 In the second case, autoproj will only take into account the dependency
 information for building, and simply ignore the dependency if the depended-upon

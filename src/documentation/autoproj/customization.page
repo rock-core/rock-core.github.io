@@ -1,6 +1,6 @@
 ---
 title: Customizing the installation
-sort_info: 50
+sort_info: 48
 --- name:content
 
 Changing the installation's layout
@@ -109,7 +109,7 @@ Local overrides of version control information
 
 The <tt>autoproj/overrides.yml</tt> allows you to override version control information
 for specific packages. It has the same format than the source.yml file of
-package sets, so [check that page out](importers.html) for more information.
+package sets, so [check that page out](advanced/importers.html) for more information.
 
 This file can in particular be used to avoid further updates to a given software
 package. Simply do:
@@ -163,7 +163,7 @@ Building local packages
 
 You can list local packages that are not in an imported package set by placing
 the definitions in autoproj/, in a file ending with <tt>.autobuild</tt>. See [this
-page](autobuild.html) for information on how to write autobuild files.
+page](advanced/autobuild.html) for information on how to write autobuild files.
 
 Setting up the path to specific commands (make, parallel builds)
 ----------------------------------------------------------------
