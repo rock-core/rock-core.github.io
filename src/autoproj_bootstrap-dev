@@ -5,6 +5,24 @@ if RUBY_VERSION < "1.8.7"
     exit 1
 end
 
+if defined? Encoding # This is a 1.9-only thing
+    Encoding.default_internal = Encoding::UTF_8
+    Encoding.default_external = Encoding::UTF_8
+end
+
+require 'rbconfig'
+module Autobuild
+    @windows = RbConfig::CONFIG["host_os"] =~%r!(msdos|mswin|djgpp|mingw|[Ww]indows)!
+    def self.windows?
+        @windows
+    end
+
+    @macos =  RbConfig::CONFIG["host_os"] = ~%r!([Dd]arwin)!
+    def self.macos?
+        @macos
+    end
+end
+
 require 'set'
 curdir_entries = Dir.entries('.').to_set - [".", "..", "autoproj_bootstrap", ".gems", 'env.sh'].to_set
 if !curdir_entries.empty? && ENV['AUTOPROJ_BOOTSTRAP_IGNORE_NONEMPTY_DIR'] != '1'
@@ -36,6 +54,7 @@ if $LOADED_FEATURES.find { |str| str =~ /bygems/ }
         RUBY = RbConfig::CONFIG['RUBY_INSTALL_NAME']
 
         ENV['GEM_HOME'] = needed_gem_home
+        ENV.delete 'GEM_PATH'
         exec RUBY, __FILE__, *ARGV
     end
 end
@@ -281,8 +300,8 @@ fi
         class PortManager < ShellScriptManager
             def initialize
                 super(['port'], true,
-                        "port '%s'",
-                        "port '%s'")
+                        "port install '%s'",
+                        "port install '%s'")
             end
         end
 
@@ -503,9 +522,20 @@ fi
                     if !installed.empty? && Autobuild.do_update
                         # Look if we can update the package ...
                         dep = Gem::Dependency.new(name, version_requirements)
-                        available = gem_fetcher.find_matching(dep, true, true, GemManager.with_prerelease)
+                        available =
+                            if gem_fetcher.respond_to?(:find_matching)
+                                gem_fetcher.find_matching(dep, true, true, GemManager.with_prerelease).map(&:first)
+                            else # Post RubyGems-2.0
+                                type = if GemManager.with_prerelease then :prerelease
+                                       else :complete
+                                       end
+
+                                gem_fetcher.detect(type) do |tuple|
+                                    tuple.name == name && dep.match?(tuple)
+                                end.map { |tuple, _| [tuple.name, tuple.version] }
+                            end
                         installed_version = installed.map(&:version).max
-                        available_version = available.map { |(name, v), source| v }.max
+                        available_version = available.map { |name, v| v }.max
                         if !available_version
                             if version
                                 raise ConfigError.new, "cannot find any gem with the name '#{name}' and version #{version}"
@@ -624,9 +654,7 @@ fi
         end
 
 	def self.ruby_version_keyword
-            if RUBY_VERSION < "1.9.0" then "ruby18"
-            else "ruby19"
-            end
+            "ruby#{RUBY_VERSION.split('.')[0, 2].join("")}"
         end
 
         def self.autodetect_ruby
@@ -841,13 +869,13 @@ fi
                 end
             else
                 Autoproj.message "  autodetecting the operating system"
-                name, versions = os_from_lsb
-                if name
-                    if name != "debian"
+                lsb_name, lsb_versions = os_from_lsb
+                if lsb_name
+                    if lsb_name != "debian"
                         if File.exists?("/etc/debian_version")
-                            @operating_system = [[name, "debian"], versions]
+                            @operating_system = [[lsb_name, "debian"], lsb_versions]
                         else
-                            @operating_system = [[name], versions]
+                            @operating_system = [[lsb_name], lsb_versions]
                         end
                     end
                 end
@@ -857,9 +885,12 @@ fi
                 # Need to do some heuristics unfortunately
                 @operating_system =
                     if File.exists?('/etc/debian_version')
-                        codenames = [File.read('/etc/debian_version').strip]
-                        if codenames.first =~ /sid/
-                            versions = codenames + ["unstable", "sid"]
+                        versions = [File.read('/etc/debian_version').strip]
+                        if versions.first =~ /sid/
+                            versions = ["unstable", "sid"]
+                        end
+                        if lsb_versions
+                            lsb_versions.each { |v| versions << v if !versions.include?(v) }
                         end
                         [['debian'], versions]
                     elsif File.exists?('/etc/fedora-release')
@@ -940,6 +971,8 @@ fi
             end
 
             os_names, os_versions = OSDependencies.operating_system
+            os_names = os_names.dup
+            os_names << 'default'
 
             dep_def = definitions[name]
             if !dep_def
@@ -1424,12 +1457,6 @@ So, what do you want ? (all, ruby, os or none)
 
         # Requests the installation of the given set of packages
         def install(packages, package_osdeps = Hash.new)
-            #not sure here, simply show that it is installed even we dont install anything,
-            #because this functions seems to called sometimes even --no-osdeps is given or the installs_os_packages? return false
-            #it seems its not checked everywhere, so add this sainty check here
-            return true if not installs_os_packages?
-			
-			
             os_package_handler.enabled = installs_os_packages?
             os_package_handler.silent = self.silent?
             package_handlers['gem'].enabled = installs_ruby_packages?
@@ -1517,7 +1544,7 @@ module Autoproj
 
         def ask(current_value, doc = nil)
             default_value =
-		if current_value then current_value.to_s
+		if !current_value.nil? then current_value.to_s
 		elsif options[:default] then options[:default].to_str
 		else ''
 		end
@@ -1685,6 +1712,14 @@ module Autoproj
         false
     end
 
+    # Forcefully sets the root directory
+    #
+    # This is mostly useful during bootstrapping (i.e. when the search would
+    # fail)
+    def self.root_dir=(dir)
+        @root_dir = dir
+    end
+
     # Returns the root directory of the current autoproj installation.
     #
     # If the current directory is not in an autoproj installation,
@@ -1813,8 +1848,8 @@ module Autoproj
     # Create the env.sh script in +subdir+. In general, +subdir+ should be nil.
     def self.export_env_sh(subdir = nil)
         # Make sure that we have the environment of all selected packages
-        Autoproj.manifest.all_selected_packages.each do |pkg_name|
-            Autobuild::Package[pkg_name].update_environment
+        if Autoproj.manifest # we don't have a manifest if we are bootstrapping
+            Autoproj::CmdLine.update_environment
         end
 
         filename = if subdir
@@ -1839,6 +1874,9 @@ module Autoproj
 
         File.open(filename, "w") do |io|
             Autobuild.export_env_sh(io)
+            if Autobuild.environment.has_key?('GEM_PATH')
+                io.puts "export GEM_PATH=$GEM_PATH:#{Gem.default_path.join(":")}"
+            end
         end
     end
 
@@ -1946,6 +1984,7 @@ ruby19:
   - ruby19
   - rake
   default: nonexistent
+ruby20: ignore
 build-essential:
   debian,ubuntu: build-essential
   gentoo: ignore
