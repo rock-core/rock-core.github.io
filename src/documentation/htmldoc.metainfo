@@ -14,6 +14,10 @@ packages:
     sort_info: 60
     title: Managing Packages
 
+contributing:
+    sort_info: 65 
+    title: Contributing
+
 tutorials:
     sort_info: 80
     title: Basics
