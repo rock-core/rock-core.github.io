@@ -45,6 +45,11 @@ rake
 
 This will generate the HTML code in the base/doc/out/ directory. Simply open
 base/doc/out/index.html with a web browser to see the generated website. Once
-you are happy with your changes, commit them to git. You then will [propose your
-changes to the Rock developers](gitorious.html) ... and get their thanks !
+you are happy with your changes, commit them to git.
 
+You then will [propose your changes to the Rock developers](gitorious.html) ...
+and get their thanks !
+
+Finally, we are keen on improving the Rock documentation. Getting commit rights
+on the Rock documentation repository is as easy as dropping an email to
+the [rock-dev mailing list](http://www.dfki.de/mailman/cgi-bin/listinfo/rock-dev).
