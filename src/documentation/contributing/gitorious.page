@@ -4,8 +4,14 @@ sort_info: 900
 ---
 
 This page covers how to send modifications to code and documentation to the Rock
-developers. The other pages in this Contributing section cover the other
-aspects: how the documentation is done, how to create new packages, ...
+developers, assuming that you did not get a direct commit access to the
+packages you modify. If you do feel that you contribute regularly enough to a
+given package, drop a note to the package maintainer (whose email is stored in
+the package's manifest.xml file) or to the [rock-dev mailing
+list](http://www.dfki.de/mailman/cgi-bin/listinfo/rock-dev).
+
+The other pages in this Contributing section cover the other aspects: how the
+documentation is done, how to create new packages, ...
 
 The main part of this page will deal with how to use gitorious to submit changes
 to the Rock codebase and documentation. However, this workflow is only meant for
