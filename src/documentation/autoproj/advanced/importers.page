@@ -206,3 +206,17 @@ Note that if the patch list changes (i.e. the *names* change), autoproj will
 automatically unpatch and repatch as required. It is therefore highly required
 to change the patch name if the patch changes.
 
+The provided patches are by default applied with a patch level of 0 (passed to
+patch through the -p option). This can be overriden on a patch-per-patch basis
+by making the patch name an array as well:
+
+{coderay:: yaml}
+version_control:
+    package_name:
+        type: archive
+        url: http://sourceforge.net/blablabla
+        patches:
+            - [$AUTOPROJ_SOURCE_DIR/blablabla-01.patch, 1]
+            - $AUTOPROJ_SOURCE_DIR/blablabla-02.patch
+{coderay}
+

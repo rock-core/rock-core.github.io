@@ -229,7 +229,7 @@ Orocos.initialize
 Orocos.run 'rock_tutorial::RockTutorialControl' => 'rock_tutorial_control' do
 
 
-  rockControl = TaskContext.get 'rock_tutorial_control'    
+  rockControl = Orocos.name_service.get 'rock_tutorial_control'    
 
   ## Create a sample writer for a port ##
   sampleWriter = rockControl.motion_command.writer

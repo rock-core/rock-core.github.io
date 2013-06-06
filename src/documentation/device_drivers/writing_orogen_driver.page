@@ -86,6 +86,11 @@ bool Task::configureHook()
   // If some device configuration was needed, it must be done after the
   // setDriver and call to configureHook on TaskBase (i.e., here)
 }
+void Task::processIO()
+{
+  mDriver->processSamples();
+  _samples.write(mDriver->getOrientationSample());
+}
 {coderay}
 
 In addition, you might want to start data acquisition in the startHook and stop

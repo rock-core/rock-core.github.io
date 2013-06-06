@@ -8,14 +8,14 @@ task#property_name=. For instance, the "port" property of the hokuyo task is
 read with
 
 {coderay:: ruby}
-task = TaskContext.get 'hokuyo'
+task = Orocos.name_service.get 'hokuyo'
 puts task.port
 {coderay}
 
 and written with
 
 {coderay:: ruby}
-task = TaskContext.get 'hokuyo'
+task = Orocos.name_service.get 'hokuyo'
 task.port = "/dev/ttyACM0"
 {coderay}
 

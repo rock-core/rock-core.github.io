@@ -3,7 +3,7 @@ include Orocos
 
 Orocos.initialize
 Orocos.run 'imu' do
-  imu = TaskContext.get 'imu'
+  imu = Orocos.name_service.get 'imu'
   imu.port = '/dev/ttyS1' # sets a new value for the port
   imu.configure
   imu.start

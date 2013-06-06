@@ -75,7 +75,7 @@ Orocos.run 'xsens_imu::Task' => 'imu' do
   Orocos.log_all
 
   # Start the IMU task
-  task = Orocos::TaskContext.get 'imu'
+  task = Orocos.name_service.get 'imu'
   task.start
 
   # Poll the task's states every 100 ms and report state changes.
@@ -110,8 +110,8 @@ With orocos.rb, this is done with:
 
 {coderay:: ruby}
 Orocos.run 'xsens_imu::Task' => 'imu' do
-  logger = Orocos::TaskContext.get 'imu_Logger'
-  imu    = Orocos::TaskContext.get 'imu'
+  logger = Orocos.name_service.get 'imu_Logger'
+  imu    = Orocos.name_service.get 'imu'
 
   logger.file = "logfile.log"
 

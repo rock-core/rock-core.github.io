@@ -229,7 +229,7 @@ Orocos.initialize
 ## Execute the task 'message_producer::Task' ##
 Orocos.run 'message_producer::Task' => 'message_producer' do
   ## Get the task context##
-  message_producer = TaskContext.get 'message_producer'
+  message_producer = Orocos.name_service.get 'message_producer'
   
   ## Start the tasks ##
   message_producer.start
@@ -246,7 +246,7 @@ Orocos.run 'message_producer::Task' => 'message_producer' do
 end
 {coderay}
 
-This scripts starts a process for the task 'message_producer' (The second argument behind Orocos.run gives the name to access it in the Orocos.run body). Once the message_producer has been created, the task can be accessed using 'TaskContext.get'. Having the reference to the task context allows you to explicitly start the task. Run it using ruby. 
+This scripts starts a process for the task 'message_producer' (The second argument behind Orocos.run gives the name to access it in the Orocos.run body). Once the message_producer has been created, the task can be accessed using 'Orocos.name_service.get'. Having the reference to the task context allows you to explicitly start the task. Run it using ruby. 
 
 {coderay:: text}
 ruby start.rb

@@ -35,8 +35,8 @@ ports or the properties of the tasks you can also call the methods
 Orocos.run "message_producer::Task" => "message_producer",
 			"message_consumer::Task" => "message_consumer" do 
     Orocos.log_all
-    producer = Orocos::TaskContext.get "message_producer"
-    consumer = Orocos::TaskContext.get "message_consumer"
+    producer = Orocos.name_service.get "message_producer"
+    consumer = Orocos.name_service.get "message_consumer"
 
     producer.messages.connect_to consumer.messages
 

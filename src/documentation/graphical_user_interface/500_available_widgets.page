@@ -12,7 +12,7 @@ Widget for displaying camera images (base/frame/frame, base/frame/FramePair)
 {coderay:: ruby}
   require 'vizkit'
   orocos.run 'my_camera' do
-    camera = Orocos::TaskContext.get 'camera'
+    camera = Orocos.name_service.get 'camera'
     camera.start 
     Vizkit.display camera.frame
     Vizkit.exec
@@ -29,7 +29,7 @@ Widget for plotting sensor data
   require 'vizkit'
   orocos.run 'my_sensor' do
     widget = Vizkit.default_loader.Plot2d
-    sensor = Orocos::TaskContext.get 'sensor'
+    sensor = Orocos.name_service.get 'sensor'
     sensor.configure
     sensor.start 
 

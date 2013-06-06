@@ -27,7 +27,7 @@ log = Orocos::Log::Replay.open("message_producer_deployment.0.log")
 
 #start deployment
 Orocos.run "message_consumer_deployment" do 
-    consumer = Orocos::TaskContext.get "message_consumer"
+    consumer = Orocos.name_service.get "message_consumer"
     log.message_producer.messages.connect_to consumer.messages
     consumer.start
 
@@ -45,7 +45,7 @@ require 'vizkit'
 
 log = Orocos::Log::Replay.open("message_producer_deployment.0.log")
 Orocos.run "message_consumer_deployment" do 
-    consumer = Orocos::TaskContext.get "message_consumer"
+    consumer = Orocos.name_service.get "message_consumer"
     log.message_producer.messages.connect_to consumer.messages
     consumer.start
 

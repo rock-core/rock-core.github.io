@@ -103,8 +103,8 @@ Orocos.run 'rock_tutorial::RockControlTutorial' => 'rock_tutorial_control',
      'controldev::JoytickTask' => 'joystick' do
   
     ## Get the specific task context ##
-    rockControl = TaskContext.get 'rock_tutorial_control'
-    joystick = TaskContext.get 'joystick'
+    rockControl = Orocos.name_service.get 'rock_tutorial_control'
+    joystick = Orocos.name_service.get 'joystick'
 
     ## Connect the ports ##
     joystick.motion_command.connect_to rockControl.motion_command
