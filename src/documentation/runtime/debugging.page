@@ -8,7 +8,8 @@ some ways to use common debugging tools like gdb or valgrind to debug your
 components.
 
 GDB
----
+-------
+
 Orocos.run can be told to start the processes / deployments under gdb using the
 :gdb option
 
