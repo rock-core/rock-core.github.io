@@ -64,8 +64,6 @@ The following script shows a basic example of how to use CompoundDisplay with mu
 {coderay:: ruby}
 require 'vizkit'
 
-include Orocos
-
 Orocos.initialize
 
 # Add as many (remote) hosts as necessary.
