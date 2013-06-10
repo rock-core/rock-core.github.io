@@ -51,7 +51,7 @@ Without changes, the generated sample widget should look like this:
 Access widget from Ruby
 -----------
 Now that we know how to create a widget, we want to use it. Therefore we want to
-create an user interface with the Qt Designer containing our widget.
+create a user interface with the Qt Designer containing our widget.
 
 Since the default widget is an adapted "Hello World!", we implemented something
 more useful: a simple position display showing the three values of a vector and a slot 
@@ -71,7 +71,7 @@ called setPose with takes a base::samples:RigidBodyState as argument.
 ![Simple widget displaying position values](300_position_widget.png)
 {: .align-center}
 
-In order to create an custom user interface specification start the Qt
+In order to create a custom user interface specification start the Qt
 Designer, run _designer_ from a sourced shell. This way, Rock's designer widget
 path is loaded and you can select your widget from the toolbox.  Our user
 interface shows our position display widget and some control fields to update
