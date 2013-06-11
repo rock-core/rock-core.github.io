@@ -124,6 +124,12 @@ Orocos.run 'xsens_imu::Task' => 'imu' do
   # have to connect the output port to the logger's input
   logger.createLoggingPort('orientations', '/base/samples/RigidBodyState', [])
   imu.orientation_samples.connect_to(logger.orientations, :type => :buffer, :size => 200)
+
+  imu.configure
+  imu.start
+
+  # Don't forget to start your logger
+  logger.start
 end
 {coderay}
 
