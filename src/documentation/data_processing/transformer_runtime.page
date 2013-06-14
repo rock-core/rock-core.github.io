@@ -48,8 +48,8 @@ config/transforms.rb file.
 Static transformations are declared with
 
 {coderay:: ruby}
-static_transform "source_frame_name", "target_frame_name",
-    translation, rotation
+static_transform translation, rotation,
+  "source_frame_name" => "target_frame_name"
 {coderay}
 
 Translation and rotations are resp. specified with Eigen::Vector3d and
@@ -60,8 +60,8 @@ are identities.
 Dynamic transformations are declared with
 
 {coderay:: ruby}
-dynamic_transform "source_frame_name", "target_frame_name",
-    "producer_task_name.port_name"
+dynamic_transform "producer_task_name.port_name",
+  "source_frame_name" => "target_frame_name",
 {coderay}
 
 Where _producer_task_name_ and _port_name_ refer to the data stream that defines
@@ -72,12 +72,12 @@ For our laser filter example, a possible configuration file would look like:
 
 {coderay:: ruby}
 # The frame names in this file are arbitrary !
-static_transform "Body", "ServoFrom",
-    Eigen::Translation(0.3, 0, 0)
-static_transform "ServoTo", "Lidar",
-    Eigen::Translation(0, 0, 0.1)
-dynamic_transform "ServoFrom", "ServoTo",
-    "servo.transform_samples"
+static_transform Eigen::Translation(0.3, 0, 0),
+  "Body" => "ServoFrom"
+static_transform Eigen::Translation(0, 0, 0.1),
+  "ServoTo" => "Lidar",
+dynamic_transform "servo.transform_samples",
+  "ServoFrom" => "ServoTo",
 {coderay}
 
 Ruby scripting
