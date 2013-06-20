@@ -49,7 +49,7 @@ stores.
    relating it to other frames are valid. Further, each CartesianMap can be
    assigned to be associated with one FrameNode. 
 
- - The **LayerTree** provides structure within maps. Like the FrameNode structure
+ - The **LayerTree** provides structure within maps. Like the FrameNode structure,
    this is a tree. However, there is no single tree root, so multiple trees are
    allowed here. A root node is a layer that does not have a parent. This structure
    is used to store relationships within maps, e.g. level of detail or other types
@@ -71,7 +71,7 @@ The Environment provides a number of operations to modify the listed structures.
 All operations, where it makes sense, also have the feature that they will
 automatically attach an item to the environment if this has not yet happened.
 
-The following is an example which is taken from the test/unit/core.hpp
+The following is an example which is taken from the envire/test/unit/core.hpp
 unit tests and the resulting structure visualised with the GraphViz file
 generation class.
 
@@ -175,7 +175,7 @@ boost::scoped_ptr<Environment> env( new Environment() );
 so.serialize(env.get(), "build/test/");
 {coderay}
 
-loading the environment is equally simple. The unserialize method will take a
+Loading the environment is equally simple. The unserialize method will take a
 file name and return a pointer to the newly created environment. Object
 ownership is passed to the caller, who is expected to delete the object after
 use (using a scoped_ptr in this example).
@@ -189,7 +189,7 @@ boost::scoped_ptr<Environment>
 The way envire writes the files to disk is fairly simple. The file name provided
 is the name of a directory. Envire will use the full directory for its own use.
 It will generate a scene.yml file, which stores the structure of the environment
-in a yaml file format. This file can easily adapted for small changes. The
+in a yaml file format. This file can be easily adapted for small changes. The
 scene.yml may also contain parameters relevant to the particular
 EnvironmentItem, like e.g. a frame transformation for a FrameNode, or flags for
 an operator.

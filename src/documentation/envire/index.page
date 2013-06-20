@@ -21,7 +21,7 @@ The envire package is mainly made up of three types of objects:
  
  - **Maps** representing information in a given reference frame. Maps can be 2d or
    3d, sparse or dense. In principle envire also supports non-cartesian maps,
-   although not much has been done so for in this area.
+   although not much has been done so far in this area.
 
  - **Frames** provide the spatial context for the maps. Each map can have a
    reference frame associated. All frames are organized in a tree structure. In
@@ -30,7 +30,7 @@ The envire package is mainly made up of three types of objects:
 
  - **Operators** perform operations on maps and take the frame association of the
    maps into account. Operators are stored in a graph structure, and can be
-   chained to produce something like processing pipelines for sensory input and
+   chained to produce something like a processing pipelines for sensory input and
    post-processing of map data.
 
 Envire also provides common services. All objects are stored in an environment,
