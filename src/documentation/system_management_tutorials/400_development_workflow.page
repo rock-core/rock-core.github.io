@@ -20,17 +20,17 @@ system management layer:
 Starting and restarting processes
 ---------------------------------
 When developing components, one wants the specific processes to be restarted so
-that the changes get picked up. In Rock's system management layer, it is done by
-using the rock-roby shell.
+that the changes get picked up. In Syskit, it is done by
+using the roby shell.
 
-In a terminal, run the script
+In a terminal, run the syskit3 script
 
-rock-roby run scripts/rockRoby2.rb
+syskit run scripts/script3.rb
 {: .cmdline}
 
 In another terminal, start the shell
 
-rock-roby shell
+syskit shell
 {: .cmdline}
 
 Let's now assume that you changed some code in the
@@ -41,17 +41,17 @@ instance by doing
 amake tutorials/orogen/rock_tutorial
 {: .cmdline}
 
-Then, in the rock-roby shell we just created, type
+Then, in the syskit shell we just created, type
 
-orocos.restart_deployments RockTutorial::RockTutorialControl
+syskit.restart_deployments RockTutorial::RockTutorialControl
 {: .cmdline}
 
 To restart all deployments, don't provide any argument
 
-orocos.restart_deployments
+syskit.restart_deployments
 {: .cmdline}
 
-And, finally, CTRL+C the "rock-roby run" script. No need to stop the shell.
+And, finally, CTRL+C the "syskit run" script. No need to stop the shell.
 
 Defining modalities
 -------------------
@@ -64,48 +64,48 @@ Right now, we have two ways (so-called _modalities_) to control our rock:
 !)
 
 Let's reflect that by _defining_, i.e. by giving a name to both the ways. Copy
-the scripts/rockRoby2.rb to scripts/rockRoby3.rb and edit the latter: (1) remove the
-'add' line at the bottom and (2) add the following lines:
+the scripts/syskit3.rb script to scripts/syskit4.rb and edit the latter by: (1)
+removing the 'add' line at the bottom and (2) adding the following lines:
 
-{coderay:: ruby}
-define('joystick', Cmp::RockControl).use(Controldev::JoystickTask)
-define('random', Cmp::RockControl).use(TutBrownian::Task)
-{coderay}
+~~~ ruby
+define('joystick', Tutorials::RockControl).use(Controldev::JoystickTask)
+define('random', Tutorials::RockControl).use(TutBrownian::Task)
+~~~
 
-Using 'define' allows you to map a composition to a name and reference it lateron using this name lateron. It is 
+Using 'define' allows you to map a composition to a name and reference it later
+on using this name. It is 
 then possible to use the name instead of the complete definition in
 the 'add' lines, or in other definition's 'use()' statements. However, using 'add' or 'use' is 
 not what we're going to do right now. Instead, we are going to use the shell to start these
 modalities and switch between them.
 
-Start the rock-roby controller:
+Start the application:
 
-rock-roby run scripts/rockRoby3.rb
+syskit run scripts/syskit4.rb
 {: .cmdline}
 
-If you did not already do it, start a rock-roby shell in a separate terminal:
+If you did not already do it, start a shell in a separate terminal:
 
-rock-roby shell
+syskit shell
 {: .cmdline}
 
 In this shell, type:
 
-joystick!
+joystick_def!
 {: .cmdline}
 
 It requests that the supervision starts the joystick-based control, as you can
 see in the log or in the live display (if you start that in parallel):
 
-{coderay:: text}
-localhost:48902 > joystick!
+~~~
+localhost:48902 > joystick_def!
 => #<service Roby::Task:0x7fedaea11a00{}[]>
 localhost:48902 >
 [1] joystick! started to plan
-[1] joystick!: Roby::Task:0x7fedaea11a00{}[] has been replaced by Orocos::RobyPlugin::Compositions::RockControl:0x7fedae9f08f0{}[]
-[1] joystick!: Orocos::RobyPlugin::Compositions::RockControl:0x7fedae9f08f0{}[] has been replaced by Orocos::RobyPlugin::Compositions::RockControl:0x7fedaead30b0{conf => [default]}[] 
-[1] joystick!: task Orocos::RobyPlugin::Compositions::RockControl:0x7fedaead30b0{conf => [default]}[] started
-{coderay}
-
+[1] joystick!: Roby::Task:0x7fedaea11a00{}[] has been replaced by Tutorials::RockControl:0x7fedae9f08f0{}[]
+[1] joystick!: Tutorials::RockControl:0x7fedae9f08f0{}[] has been replaced by Tutorials::RockControl:0x7fedaead30b0{conf => [default]}[] 
+[1] joystick!: task Tutorials::RockControl:0x7fedaead30b0{conf => [default]}[] started
+~~~
 
 To inspect the set of running jobs, just do:
 
@@ -122,44 +122,38 @@ The joystick-based control can now be stopped with
 
 {coderay:: text}
 localhost:48902> kill_job 1
-[1] joystick!: task Orocos::RobyPlugin::Compositions::RockControl:0x7fedaead30b0{conf => [default]}[] failed
-= fatal exception 1: mission failed: Orocos::RobyPlugin::Compositions::RockControl:0x7fedaead30b0{conf => [default]}[]
-| [09:45:47.355 @7] Orocos::RobyPlugin::Compositions::RockControl:0x7fedaead30b0{conf => [default]}[]/failed
+[1] joystick!: task Tutorials::RockControl:0x7fedaead30b0{conf => [default]}[] failed
+= fatal exception 1: mission failed: Tutorials::RockControl:0x7fedaead30b0{conf => [default]}[]
+| [09:45:47.355 @7] Tutorials::RockControl:0x7fedaead30b0{conf => [default]}[]/failed
 | The following tasks have been killed:
-| #<Compositions::RockControl < Composition < Transformer::CompositionExtension>:0x7fedaead30b0
-[1] joystick!: task Orocos::RobyPlugin::Compositions::RockControl:0x7fedaead30b0{conf => [default]}[] has been removed
-{coderay}
-
-Alternatively, one can get the task object and stop it:
-
-job(1).stop!
-{: .cmdline}
-
-Or
-
-{coderay:: text}
-t = joystick!
-t.stop!
+| #<Tutorials::RockControl < Composition < Transformer::CompositionExtension>:0x7fedaead30b0
+[1] joystick!: task Tutorials::RockControl:0x7fedaead30b0{conf => [default]}[] has been removed
 {coderay}
 
 OK, now, let's try to start both the joystick and random control _at the same
 time_.
 
-{coderay:: text}
-random!
-joystick!
-{coderay}
+~~~
+random_def!
+joystick_def!
+~~~
 
-Ouch, a lot of criptic information there: 
+Ouch, a lot of cryptic information there: 
 happened:
 [![Parallel execution error](400_parallel_execution_error_thumb.png)](400_parallel_execution_error.png)
 
-The error message tells you that there is no deployment of type RockTutorial::RockTutorialControl available for the composition 'Cmp::RockControl'. Well, in the current setup, we have a deployment defined and said to use it - it is 'rock_tutorial':
+The error message tells you that there is no deployment of type
+RockTutorial::RockTutorialControl available for the 'rock' child of the composition
+'Tutorials::RockControl'. Well, in the current setup, we have a deployment
+defined and said to use it - it is 'rock_tutorial'. We added:
 
-use_deployment 'rock_tutorial'
+Syskit.conf.use_deployment 'rock_tutorial'
 {: .cmdline}
 
-But this is only one deployment and is being used for the composition 'Cmp::RockControl' which has been started first by 'random!'. Since the deployment cannot be used for more than one composition at the same time and error is generated. 
+But this is only one deployment and is being used for the composition
+'Tutorials::RockControl' which has been started first by 'random!'. Since the
+deployment cannot be used for more than one composition at the same time and
+error is generated. 
 
 Stop the controller with CTRL+C and the shell with "exit", and pass on to the
 next tutorial.

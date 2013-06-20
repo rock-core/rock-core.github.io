@@ -42,7 +42,7 @@ module Tutorials
     add RockTutorial::RockTutorialControl, :as => "rock"
     # Create any unique connection possible, by matching input and output ports
     # of the same data type. If ambiguities exist, an error is generated
-    connect joystick_child => rock_child
+    joystick_child.connect_to rock_child
   end
 end
 
@@ -83,7 +83,7 @@ deployment 'rock_tutorial' do
 end
 ~~~
 
-Now, you need to rebuild build the oroGen component with:
+Rebuild the oroGen component with:
 
 ~~~
 amake tutorials/orogen/rock_tutorial
@@ -140,27 +140,27 @@ procedure:
 
 ~~~
 18:33:13.182 (Roby) control quitting. Waiting for 6 tasks to finish (6 tasks still in plan)
-18:33:13.183 (Roby)   Orocos::RobyPlugin::Logger::Logger:0x7f9eba6d36d8{conf => [default], orocos_name => joystick_Logger}[]
-18:33:13.183 (Roby)   Orocos::RobyPlugin::Controldev::JoystickTask:0x7f9eba73d088{conf => [default], orocos_name => joystick}[]
-18:33:13.183 (Roby)   Orocos::RobyPlugin::Deployments::Joystick:0x7f9eba7488e8{log => true, on => localhost}[]
-18:33:13.183 (Roby)   Orocos::RobyPlugin::RockTutorial::RockTutorialControl:0x7f9eba75c168{conf => [default], orocos_name => rock_tutorial}[]
-18:33:13.184 (Roby)   Orocos::RobyPlugin::Deployments::RockTutorial:0x7f9eba7687b0{log => true, on => localhost}[]
-18:33:13.185 (Roby)   Orocos::RobyPlugin::Compositions::RockControl:0x7f9eba7cfde8{conf => [default]}[]
-18:33:13.188 (Robot) interrupting Orocos::RobyPlugin::Logger::Logger:0x7f9eba6d36d8
-18:33:13.193 (Robot) interrupting Orocos::RobyPlugin::Controldev::JoystickTask:0x7f9eba73d088
-18:33:13.194 (Robot) interrupting Orocos::RobyPlugin::RockTutorial::RockTutorialControl:0x7f9eba75c168
+18:33:13.183 (Roby)   Logger::Logger:0x7f9eba6d36d8{conf => [default], orocos_name => joystick_Logger}[]
+18:33:13.183 (Roby)   Controldev::JoystickTask:0x7f9eba73d088{conf => [default], orocos_name => joystick}[]
+18:33:13.183 (Roby)   Deployments::Joystick:0x7f9eba7488e8{log => true, on => localhost}[]
+18:33:13.183 (Roby)   RockTutorial::RockTutorialControl:0x7f9eba75c168{conf => [default], orocos_name => rock_tutorial}[]
+18:33:13.184 (Roby)   Deployments::RockTutorial:0x7f9eba7687b0{log => true, on => localhost}[]
+18:33:13.185 (Roby)   Tutorials::RockControl:0x7f9eba7cfde8{conf => [default]}[]
+18:33:13.188 (Robot) interrupting Logger::Logger:0x7f9eba6d36d8
+18:33:13.193 (Robot) interrupting Controldev::JoystickTask:0x7f9eba73d088
+18:33:13.194 (Robot) interrupting RockTutorial::RockTutorialControl:0x7f9eba75c168
 18:33:13.282 (Roby) waiting for 5 tasks to finish (5 tasks still in plan)
-18:33:13.283 (Roby)   Orocos::RobyPlugin::Logger::Logger:0x7f9eba6d36d8{conf => [default], orocos_name => joystick_Logger}[]
-18:33:13.283 (Roby)   Orocos::RobyPlugin::Controldev::JoystickTask:0x7f9eba73d088{conf => [default], orocos_name => joystick}[]
-18:33:13.283 (Roby)   Orocos::RobyPlugin::Deployments::Joystick:0x7f9eba7488e8{log => true, on => localhost}[]
-18:33:13.283 (Roby)   Orocos::RobyPlugin::RockTutorial::RockTutorialControl:0x7f9eba75c168{conf => [default], orocos_name => rock_tutorial}[]
-18:33:13.284 (Roby)   Orocos::RobyPlugin::Deployments::RockTutorial:0x7f9eba7687b0{log => true, on => localhost}[]
-18:33:13.286 (Robot) stopped Orocos::RobyPlugin::Logger::Logger:0x7f9eba6d36d8{conf => [default], orocos_name => joystick_Logger}[]
-18:33:13.288 (Robot) stopped Orocos::RobyPlugin::Controldev::JoystickTask:0x7f9eba73d088{conf => [default], orocos_name => joystick}[]
-18:33:13.290 (Robot) stopped Orocos::RobyPlugin::RockTutorial::RockTutorialControl:0x7f9eba75c168{conf => [default], orocos_name => rock_tutorial}[]
+18:33:13.283 (Roby)   Logger::Logger:0x7f9eba6d36d8{conf => [default], orocos_name => joystick_Logger}[]
+18:33:13.283 (Roby)   Controldev::JoystickTask:0x7f9eba73d088{conf => [default], orocos_name => joystick}[]
+18:33:13.283 (Roby)   Deployments::Joystick:0x7f9eba7488e8{log => true, on => localhost}[]
+18:33:13.283 (Roby)   RockTutorial::RockTutorialControl:0x7f9eba75c168{conf => [default], orocos_name => rock_tutorial}[]
+18:33:13.284 (Roby)   Deployments::RockTutorial:0x7f9eba7687b0{log => true, on => localhost}[]
+18:33:13.286 (Robot) stopped Logger::Logger:0x7f9eba6d36d8{conf => [default], orocos_name => joystick_Logger}[]
+18:33:13.288 (Robot) stopped Controldev::JoystickTask:0x7f9eba73d088{conf => [default], orocos_name => joystick}[]
+18:33:13.290 (Robot) stopped RockTutorial::RockTutorialControl:0x7f9eba75c168{conf => [default], orocos_name => rock_tutorial}[]
 18:33:13.518 (Roby) waiting for 2 tasks to finish (2 tasks still in plan)
-18:33:13.518 (Roby)   Orocos::RobyPlugin::Deployments::Joystick:0x7f9eba7488e8{log => true, on => localhost}[]
-18:33:13.518 (Roby)   Orocos::RobyPlugin::Deployments::RockTutorial:0x7f9eba7687b0{log => true, on => localhost}[]
+18:33:13.518 (Roby)   Deployments::Joystick:0x7f9eba7488e8{log => true, on => localhost}[]
+18:33:13.518 (Roby)   Deployments::RockTutorial:0x7f9eba7687b0{log => true, on => localhost}[]
 ~~~
 
 What happened ?

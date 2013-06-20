@@ -56,8 +56,9 @@ end
 ~~~
 
 This defines a data service model that can be accessed with
-Tutorials::CommandGeneratorSrv. We will now modify the composition definition to
-use it:
+Tutorials::CommandGeneratorSrv. These data services can be used in place of
+actual task contexts to signify that a composition needs (in this case) "some
+component that generated a command". Let's use it in the composition:
 
 ~~~ ruby
 module Tutorials
@@ -71,12 +72,12 @@ module Tutorials
     add RockTutorial::RockTutorialControl, :as => "rock"
     # Create any unique connection possible, by matching input and output ports
     # of the same data type. If ambiguities exist, an error is generated
-    connect cmd_child => rock_child
+    cmd_child.connect_to rock_child
   end
 end
 ~~~
 
-and let's make the instanciation fail:
+and let's make the instanciation _fail_:
 
 syskit instanciate scripts/rockRoby2.rb
 {: .cmdline}
@@ -96,12 +97,14 @@ boxes) are still present in the graphical representation of the network:
 Snapshot of __syskit instanciate__ (Click to zoom in)
 {: .caption}
 
-What syskit tries to tell you with this error messages is the following: it
-could not find an actual implementation (a task context or a composition) for
-the CommandGeneratorSrv service. That's because you never specified which tasks
-_provides_ this service. Let's do that now.
+Remember: data services are _abstractions_ of components. They can therefore not
+be executed (they are not actual components), and actual components must be
+selected in their place.
 
-Add the following after the data service declaration:
+The first part is to declare which components _provide_ the required component,
+i.e. are valid choices for the data service. One must, for that, declare that
+task contexts _provide_ the data service. Add the following after the data
+service declaration:
 
 {coderay:: ruby}
 Controldev::JoystickTask.provides Tutorials::CommandGeneratorSrv, :as => 'cmd'
@@ -109,8 +112,8 @@ Controldev::JoystickTask.provides Tutorials::CommandGeneratorSrv, :as => 'cmd'
 
 The statement above tells the system that an instance of controldev::JoystickTask
 provides the service 'Tutorials::CommandGeneratorSrv'. The service thus declared
-must be given a name through the :as option. Syskit will verify that the task _does_
-provide the required ports.
+must be given a name through the :as option. Syskit will verify that there are
+ports on the task that match the ports of the data service.
 
 Note that the port type are important for matching connections and port names do
 not necessarily need to match between the service and the task. Syskit will map
@@ -127,9 +130,8 @@ syskit instanciate scripts/rockRoby2.rb
 
 [![Instanciation error](300_instanciate_output_thumb.png)](300_instanciate_output.png)
 
-OK, now everything's fine. Syskit knows only one component
-that provides the CommandGeneratorSrv service, so it picked it up automatically and
-generated the right network
+Syskit knows only one component that provides the CommandGeneratorSrv service,
+so it picked it up automatically and generated the right network
 
 Adding a random-motion generator
 --------------------------------
@@ -146,7 +148,7 @@ a look at it, and make sure that it is built in your installation by either
 adding manually to autoproj/manifest or [by building the whole rock.tutorials
 package set once and for all](../tutorials/index.html#installing)
 
-You now can integrate the random motion generator. Let's copy the syskit2.rb
+Let's now integrate the random motion generator. Copy the syskit2.rb
 script into syskit3.rb and change the using_task_library lines to match:
 
 {coderay:: ruby}
@@ -163,7 +165,7 @@ Syskit.conf.use_deployment 'joystick'
 Syskit.conf.use_deployment 'brownian'
 {coderay}
 
-Now, you also need to declare that the random motion generator does provide the
+We also have to declare that the random motion generator does provide the
 CommandGeneratorSrv service. Add the following after the data service declaration
 from JoystickTask and after the 'use_deployment' statements:
 
@@ -187,7 +189,7 @@ This time, there is another error:
 |   child cmd of Tutorials::RockControl:0x7f6ff64c0780{conf => [default]}[]
 {coderay}
 
-The error is now that two possible concrete tasks provide the
+There are now two concrete tasks providing the
 CommandGeneratorSrv service: the joystick and the random motion generator. Because
 the selection is ambiguous, Syskit refuses to proceed and
 bails out.
@@ -202,7 +204,7 @@ composition:
 ~~~ ruby
 # Read this as: deploy a RockControl composition, using
 # the TutBrownian::Task in places where it makes sense
-add_mission(Cmp::RockControl.use(TutBrownian::Task))
+add_mission(Tutorials::RockControl.use(TutBrownian::Task))
 ~~~
 
 The ambiguity is now resolved and instanciating the component network will work just fine:

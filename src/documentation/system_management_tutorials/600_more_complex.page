@@ -26,7 +26,7 @@ This tutorial will deploy a network in which:
 The motion generator component for the follower is tut_follower::Task, included
 in [Rock's rock.tutorial package set](../tutorials/index.html#installing)
 
-The goal will be to reuse the same base model 'Cmp::RockControl' for both
+The goal will be to reuse the same base model 'Tutorials::RockControl' for both
 deployments. The idea behind reusing in this case is:
 
  * you might have a diagnostics routine that is able to monitor the movement of
@@ -34,42 +34,35 @@ deployments. The idea behind reusing in this case is:
    the RockControl composition will be sufficient, as it will apply to all
    refinements of this model.
  * it simplifies the usage of the compositions, as one only has to remember the
-   name of a composition (Cmp::RockControl) and give an intent ('run the composition
+   name of a composition (Tutorials::RockControl) and give an intent ('run the composition
    with X or Y') instead of having to remember N composition names.
 
 Specializations
 ---------------
-In Rock's system deployment layer, refinements of a composition model can be
+In Syskit, refinements of a composition model can be
 created with _specializations_. Specializations can be seen as conditional
 application of changes on compositions.
 
 For instance, the following specialization specifies that when using
-Cmp::RockControl, in cases where the command generator is a TutFollower::Task,
+Tutorials::RockControl, in cases where the command generator is a TutFollower::Task,
 one child and two connections must be added to the composition. Copy
-scripts/rockRoby3.rb to scripts/rockRoby4.rb, declare the TutFollower::Task to 
-provide the CommandGenerator service and add the code for the 
-specialization after the declaration of the Cmp::RockControl composition.
+scripts/syskit4.rb to scripts/syskit5.rb, declare the TutFollower::Task to 
+provide the CommandGeneratorSrv service and add the code for the 
+specialization after the declaration of the Tutorials::RockControl composition.
 
 {coderay:: ruby}
-TutFollower::Task.provides Srv::CommandGenerator
+# Load common data services from the Rock bundle
+require 'rock/models/blueprints/pose'
+
+TutFollower::Task.provides CommandGeneratorSrv
 ...
-Cmp::RockControl.specialize 'cmd' => TutFollower::Task do
+Tutorials::RockControl.specialize Tutorials::RockControl.cmd_child => TutFollower::Task do
   # needs some other task/composition to provide a pose
-  add Srv::Pose, :as => "target_pose"
-  connect target_pose.pose_samples => cmd.target_position
-  connect rock.pose_samples => cmd.current_position
+  add Base::PoseSrv, :as => "target_pose"
+  target_pose.pose_samples.connect_to cmd.target_position
+  rock.pose_samples.connect_to cmd.current_position
 end
 {coderay}
-
-As you can see, for this specialization we also introduce an additional service 'Pose'. We define it just 
-after the previous service definition:
-
-{coderay:: ruby}
-data_service_type 'Pose' do
-  output_port 'pose_samples', '/base/samples/RigidBodyState'
-end
-{coderay}
-
 
 We have to make the TutFollower task's oroGen project available, and thus add the following line to the includes at the top of the file:
 
@@ -82,16 +75,20 @@ Once such a specialization is added, it allows you to use the same composition f
 
 {coderay:: ruby}
 # Selects the "standard" composition
-Cmp::RockControl.use(TutBrownian::Task)
+Tutorials::RockControl.use(TutBrownian::Task)
 # Selects the "specialized" composition
-Cmp::RockControl.use(TutFollower::Task)
+Tutorials::RockControl.use(TutFollower::Task)
 {coderay}
 
-However, for the second one to be valid, we need a provider for the 'Pose' service: our 'leader' composition- which is a Cmp::RockControl
+However, for the second one to be valid, we need a provider for the
+Base::PoseSrv service: our 'leader' composition- which is a Tutorials::RockControl
 composition itself. For that to be possible, we need the 'leader' composition
-to provide the 'Pose' service. To fulfill the requirements for the 'Pose' service, the composition needs an output port of type
-base/samples/RigidBodyState. The following section describes how to add this port. 
+to provide the Base::PoseSrv service.
 
+We therefore need:
+
+ - the composition to have an output port of type base/samples/RigidBodyState
+ - a declaration of the fact that the composition does provide the data service
 
 Adding ports to compositions
 ----------------------------
@@ -99,13 +96,15 @@ Compositions cannot have their own ports. They can only _export_
 ports from their children. In our case, the rock's pose is provided by the
 RockTutorialControl task's pose_samples port. We will now change the original composition
 model so that it exports this port and we declare the composition as
-providing a Srv::Pose (make sure the 'Pose' service is defined before the composition block)
+providing a Base::PoseSrv
 
 {coderay:: ruby}
-composition 'RockControl' do
-  ...
-  export rock.pose_samples
-  provides Srv::Pose
+module Tutorials
+  class RockControl < Syskit::Composition
+    ...
+    export rock_child.pose_samples_port
+    provides Base::PoseSrv
+  end
 end
 {coderay}
 
@@ -113,24 +112,24 @@ It is now possible to define our leader-follower system:
 
 {coderay:: ruby}
 define('leader', Cmp::RockControl.use(TutBrownian::Task))
-define('system', Cmp::RockControl.use(TutFollower::Task, 'leader'))
+define('system', Cmp::RockControl.use(TutFollower::Task, leader_def))
 {coderay}
 
 Recheck the final system:
 
-rock-roby instanciate scripts/rockRoby4.rb system
+syskit instanciate scripts/syskit5.rb system
 {: .cmdline}
 
 Ouch
 
 {coderay:: text}
 = cannot deploy the following tasks
-| Orocos::RobyPlugin::RockTutorial::RockTutorialControl:0x7fd637315370{conf => [default]}[]
-|   child rock of Orocos::RobyPlugin::Compositions::RockControl:0x7fd637329fc8{conf => [default]}[]
-| Orocos::RobyPlugin::TutFollower::Task:0x7fd6372ff318{conf => [default]}[]
-|   child cmd of Compositions::RockControl/[cmd.is_a?(TutFollower::Task)]:0x7fd63734a700{conf => [default]}[]
-| Orocos::RobyPlugin::RockTutorial::RockTutorialControl:0x7fd637315370{conf => [default]}[]: no deployments available
-| Orocos::RobyPlugin::TutFollower::Task:0x7fd6372ff318{conf => [default]}[]: no deployments available
+| RockTutorial::RockTutorialControl:0x7fd637315370{conf => [default]}[]
+|   child rock of Tutorials::RockControl:0x7fd637329fc8{conf => [default]}[]
+| TutFollower::Task:0x7fd6372ff318{conf => [default]}[]
+|   child cmd of Tutorials::RockControl/[cmd.is_a?(TutFollower::Task)]:0x7fd63734a700{conf => [default]}[]
+| RockTutorial::RockTutorialControl:0x7fd637315370{conf => [default]}[]: no deployments available
+| TutFollower::Task:0x7fd6372ff318{conf => [default]}[]: no deployments available
 {coderay}
 
 Ah ... yes, we need to add some deployments. The tut_deployment project contains all we
@@ -144,11 +143,9 @@ and re-run the instanciate. Everything should be OK and the network is what we e
 
 [![Leader follower network](600_leader_follower_thumb.png)](600_leader_follower.png)
 
-
 You can also check the connections between the components by displaying the dataflow feature: 
 
 [![Leader follower dataflow button](600_leader_follower_dataflow_button_thumb.png)](600_leader_follower_dataflow_button.png)
-
 
 [![Leader follower dataflow](600_leader_follower_dataflow_thumb.png)](600_leader_follower_dataflow.png)
 
@@ -157,9 +154,9 @@ and modify it so that it
  * adds two rock display plugins to the 3D view
  * connects to the two deployments from tut_deployment (rock-inspect tut_deployment)
 
-The final script should look as follows:
+The display script should look as follows:
 
-{coderay:: ruby}
+~~~ ruby
 #! /usr/bin/env ruby
 
 require 'orocos'
@@ -183,7 +180,7 @@ view3d.show
 end
 
 Vizkit.exec
-{coderay}
+~~~
 
 Let's now run it and see our randomly moving rock being followed by the other one ...
 

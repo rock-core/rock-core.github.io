@@ -44,11 +44,10 @@ First, let's use a tool to generate a file filled with default values. To do thi
 create configuration directory for our oroGen components in bundles/tutorials and then use the
 tool _oroconf_ to generate default configuration files with the option:
 
-mkdir -p config/orogen
+oroconf extract tut_brownian::Task
 {: .cmdline}
 
-oroconf extract tut_brownian::Task \-\-save config/orogen/
-{: .cmdline}
+The new template file is generated in the config/orogen subfolder of the bundle.
 
 The YAML files in config/orogen/ **must** follow the modelname.yml template to be
 picked up by the system. In this case, the generated file has automatically be
@@ -58,21 +57,21 @@ called tut_brownian::Task.yml
 Have a look at the freshly created config/orogen/tut_brownian::Task.yml, and
 compare it to the values reported by rock-inspect.
 
-Start a controller with 'random' deployed by default
+Let's now start a controller and start the 'random' definition.
 
-rock-roby run scripts/rockRoby3.rb random
+syskit run scripts/syskit4.rb random_def!
 {: .cmdline}
 
 Have a look at the configuration values:
 
-rock-display brownian
+rock-display
 {: .cmdline}
 
 Defining multiple configurations
 --------------------------------
-In the configuration files, one can define multiple configuration blocks by giving them
-names. Let's add two new configurations. Change config/orogen/tut_brownian::Task.yml to
-look like:
+The configuration files can contain multiple blocks by giving them names. Let's
+add two new configurations. Change config/orogen/tut_brownian::Task.yml to look
+like:
 
 {coderay:: yaml}
  --- name:default
@@ -102,28 +101,29 @@ configuration.
 
 When defining a deployable task or adding it, a configuration is selected with
 
-{coderay:: ruby}
-define('random', Cmp::RockControl).use(TutBrownian::Task.use_conf('default', 'slow'))
-{coderay}
+~~~ ruby
+define('random', Tutorials::RockControl).use(TutBrownian::Task.use_conf('default', 'slow'))
+~~~
 
 One can also define configurations on compositions. Composition configurations _forward_
 configurations to children. For instance, the following declaration announces that
-Cmp::RockControl has a 'slow' configuration, in which the 'cmd' child (the
+Tutorials::RockControl has a 'slow' configuration, in which the 'cmd' child (the
 Srv::CommandGenerator) should be configured with 'default,slow'. The configuration of
 the RockTutorialControl task is left open.
 
 {coderay:: ruby}
-composition 'RockControl' do
-  # Any command generator
-  add Srv::CommandGenerator, :as => "cmd"
-  # And one rock
-  add RockTutorial::RockTutorialControl, :as => "rock"
-  # Create any unique possible connection. If ambiguities
-  # exist, an error is generated
-  autoconnect
-
-  conf 'slow', 'cmd' => ['default', 'slow']
-end
+module Tutorials
+  class RockControl < Syskit::Composition
+    # Any command generator
+    add CommandGeneratorSrv, :as => "cmd"
+    # And one rock
+    add RockTutorial::RockTutorialControl, :as => "rock"
+    # Create any unique connection possible, by matching input and output ports
+    # of the same data type. If ambiguities exist, an error is generated
+    cmd_child.connect_to rock_child
+  
+    conf 'slow', 'cmd' => ['default', 'slow']
+  end
 {coderay}
 
 __Advanced__ The configurations are part of the deployment constraints. This means, in
