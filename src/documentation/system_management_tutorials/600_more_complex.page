@@ -244,3 +244,7 @@ In this tutorial, you:
  * learned how to use specializations to refine the compositon models
  * learned how to "create" ports on a composition
 
+What's left is to describe how all the bits and pieces are organized within a
+bundle folder structure. This is the subject of the [next and
+last](700_file_structure.html) tutorial.
+
