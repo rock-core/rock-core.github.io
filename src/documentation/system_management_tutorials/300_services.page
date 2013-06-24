@@ -16,17 +16,16 @@ In a more concrete manner, this tutorial will show you:
    able to output a /base/MotionCommand2D type, instead of just a joystick
  * how to select which command source should be used
 
-The next tutorial will then deal with the _development workflow_ when using
+The next tutorial will then deal with the _runtime workflow_ when using
 syskit: how to switch between different modalities / sources, how to
 restart components that crashed, ...
 
 Data Services
 -------------
-A data services allows to describe the interface a component. Thus, a data service describes 
-things:
+Data service describe two things:
 
- * the (minimal) expected interface, i.e. what input and output ports a component has in order to support a given service
- * the expected functionality, i.e. currently only a meaningful service name informs about the functionality to be expected
+ * the (minimal) expected interface, i.e. what input and output ports a component needs to have in order to support the service
+ * the expected functionality, what the component does with this data. This particular information is contained in the data service name
 
 For instance, a very common data service is the Base::PoseSrv service:
 
@@ -35,18 +34,19 @@ For instance, a very common data service is the Base::PoseSrv service:
    [base::samples::RigidBodyState](../base_types.html) output port
 
 Other services (i.e. the Base::OrientationSrv service) would have the same output port,
-but its name would reflect the fact that it does something different.
+but their names would reflect the fact that they do something different.
 
 Abstracting the command generator
 ---------------------------------
 In our case, we want to modify the result of the previous tutorial to allow the
-selection of the command generator.
+selection of the command generator, i.e. being able to use different generators.
 
-The first step is to define a generic CommandGenerator data service. Copy the
-scripts/rockRoby1.rb to scripts/rockRoby2.rb and add the following before the
-composition definition, but after the 'using_task_library' statements:
+The first step is to define a generic CommandGeneratorSrv data service. Copy the
+scripts/01_joystick.rb to scripts/02_services.rb and add the following at the top:
 
 ~~~ ruby
+# Load the types the data service requires
+import_types_from 'base'
 # Defines a data service model
 module Tutorials
   data_service_type 'CommandGeneratorSrv' do
@@ -54,7 +54,6 @@ module Tutorials
   end
 end
 ~~~
-
 This defines a data service model that can be accessed with
 Tutorials::CommandGeneratorSrv. These data services can be used in place of
 actual task contexts to signify that a composition needs (in this case) "some
@@ -79,7 +78,7 @@ end
 
 and let's make the instanciation _fail_:
 
-syskit instanciate scripts/rockRoby2.rb
+syskit instanciate scripts/02_services.rb
 {: .cmdline}
 
 You'll get the following error, and you can see that some data services (red
@@ -101,16 +100,15 @@ Remember: data services are _abstractions_ of components. They can therefore not
 be executed (they are not actual components), and actual components must be
 selected in their place.
 
-The first part is to declare which components _provide_ the required component,
-i.e. are valid choices for the data service. One must, for that, declare that
-task contexts _provide_ the data service. Add the following after the data
-service declaration:
+The first part is to declare which components __provide__ the service,
+i.e. are valid choices for the data service. Add the following after the
+using_task_library 'controldev' statement:
 
 {coderay:: ruby}
 Controldev::JoystickTask.provides Tutorials::CommandGeneratorSrv, :as => 'cmd'
 {coderay}
 
-The statement above tells the system that an instance of controldev::JoystickTask
+This tells the system that an instance of controldev::JoystickTask
 provides the service 'Tutorials::CommandGeneratorSrv'. The service thus declared
 must be given a name through the :as option. Syskit will verify that there are
 ports on the task that match the ports of the data service.
@@ -121,17 +119,17 @@ the names automatically _if the mapping by type is unambiguous_. If multiple
 ports could be used, it will check if there is one with the same name. If it is
 not the case, an error is generated and you will have to specify the mapping
 manually.
-{: .info}
+{: .note}
 
 and try again
 
-syskit instanciate scripts/rockRoby2.rb
+syskit instanciate scripts/02_services.rb
 {: .cmdline}
 
 [![Instanciation error](300_instanciate_output_thumb.png)](300_instanciate_output.png)
 
 Syskit knows only one component that provides the CommandGeneratorSrv service,
-so it picked it up automatically and generated the right network
+so it picked it up automatically and generated the expected network
 
 Adding a random-motion generator
 --------------------------------
@@ -148,30 +146,30 @@ a look at it, and make sure that it is built in your installation by either
 adding manually to autoproj/manifest or [by building the whole rock.tutorials
 package set once and for all](../tutorials/index.html#installing)
 
-Let's now integrate the random motion generator. Copy the syskit2.rb
-script into syskit3.rb and change the using_task_library lines to match:
+Let's now integrate the random motion generator. Modify scripts/02_services.rb
+to get this new random movement generator task:
 
-{coderay:: ruby}
+~~~ ruby
 using_task_library 'controldev'
 using_task_library 'rock_tutorial'
 using_task_library 'tut_brownian'
-{coderay}
+~~~
 
 And change the use_deployment lines to match:
 
-{coderay:: ruby}
+~~~ ruby
 Syskit.conf.use_deployment 'rock_tutorial'
 Syskit.conf.use_deployment 'joystick'
 Syskit.conf.use_deployment 'brownian'
-{coderay}
+~~~
 
 We also have to declare that the random motion generator does provide the
-CommandGeneratorSrv service. Add the following after the data service declaration
-from JoystickTask and after the 'use_deployment' statements:
+CommandGeneratorSrv service. Add the following after the using_task_library
+statements:
 
-{coderay:: ruby}
+~~~ ruby
 TutBrownian::Task.provides Tutorials::CommandGeneratorSrv, :as => 'cmd'
-{coderay}
+~~~
 
 and let's make the instanciation fail again:
 
@@ -204,12 +202,12 @@ composition:
 ~~~ ruby
 # Read this as: deploy a RockControl composition, using
 # the TutBrownian::Task in places where it makes sense
-add_mission(Tutorials::RockControl.use(TutBrownian::Task))
+add_mission Tutorials::RockControl.use(TutBrownian::Task)
 ~~~
 
 The ambiguity is now resolved and instanciating the component network will work just fine:
 
-syskit instanciate scripts/syskit3.rb
+syskit instanciate scripts/02_services.rb
 {: .cmdline}
 
 [![Composition using TutBrownian](300_instanciate_brownian_thumb.png)](300_instanciate_brownian.png)
@@ -217,7 +215,7 @@ syskit instanciate scripts/syskit3.rb
 Running the final network
 -------------------------
 
-syskit run scripts/syskit3.rb
+syskit run scripts/02_services.rb
 {: .cmdline}
 
 Conclusion
@@ -227,7 +225,7 @@ abstract components, and how to resolve ambiguities of different data sources at
 requirement time (when calling 'add') instead of doing it at modelling time
 (when creating the compositions)
 
-The [next tutorial](400_development_workflow.html) deals with the _development workflow_ when using the
+The [next tutorial](400_runtime_workflow.html) deals with the _runtime workflow_ when using the
 supervision: how to switch between different modalities / sources, how to
 restart components that crashed, ...
 

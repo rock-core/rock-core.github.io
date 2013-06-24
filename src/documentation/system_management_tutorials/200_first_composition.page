@@ -21,36 +21,40 @@ A first model-based script
 The root concept in syskit is the _composition_. A
 composition is a group of component that, once bound together, do something
 useful. In our case, it would be moving the rock with a joystick. Create a new
-scripts/syskit1.rb file and add the following code:
+file scripts/01_joystick.rb and add the following code:
 
 ~~~ ruby
 #### MODELLING
 # This part does not need any running components
 #
-# Make the needed oroGen projects available. The names are oroGen project names.
+# Make the needed oroGen projects available. The names are
+# oroGen project names.
 using_task_library 'controldev'
 using_task_library 'rock_tutorial'
 
 module Tutorials
   # Declare the composition
   class RockControl < Syskit::Composition
-    # With one joystick. Note that the oroGen project names are converted from
-    # snake_case to CamelCase (controldev => Controldev, rock_tutorial =>
-    # RockTutorial). This is done consistently in the system management layer
-    add Controldev::JoystickTask, :as => "joystick"
+    # With one joystick. Note that the oroGen project names
+    # are converted from snake_case to CamelCase (controldev
+    # => Controldev, rock_tutorial => RockTutorial). This is
+    # done consistently in the system management layer
+    add Controldev::JoystickTask, :as => "cmd"
     # And one rock
     add RockTutorial::RockTutorialControl, :as => "rock"
-    # Create any unique connection possible, by matching input and output ports
-    # of the same data type. If ambiguities exist, an error is generated
-    joystick_child.connect_to rock_child
+    # Create any unique connection possible, by matching input
+    # and output ports of the same data type. If ambiguities
+    # exist, an error is generated
+    cmd_child.connect_to rock_child
   end
 end
 
 #### SYSTEM REQUIREMENTS
 # This part specifies what should actually run
 #
-# Tell the system which deployments to use. The names are deployment names, i.e.
-# the name given to the deployment "deployment_name" blocks in oroGen projects
+# Tell the system which deployments to use. The names are
+# deployment names, i.e.  the name given to the deployment
+# "deployment_name" blocks in oroGen projects
 Syskit.conf.use_deployment 'joystick'
 
 # Finally, ask the system to run such a composition
@@ -63,7 +67,7 @@ As this _defines_ a composition, it is possible to visualize it without
 running anything. Without additional adaptation though you will hit an error when doing:
 
 ~~~
-syskit instanciate scripts/syskit1.rb
+syskit instanciate scripts/01_joystick.rb
 ~~~
 
 [![Instanciation with error](200_instanciate_error_output_thumb.png)](200_instanciate_error_output.png)
@@ -71,22 +75,36 @@ syskit instanciate scripts/syskit1.rb
 __(Click to enlarge)__
 {: .caption}
 
-This error tells you that there are no deployments available for the oroGen component
-rock_tutorial::RockTutorialControl. 
+This error tells you that there are [no
+deployments](../advanced_tutorials/100_deployments.html) available for the
+oroGen component rock_tutorial::RockTutorialControl. There actually *are*
+available deployments, but you need to tell syskit which ones to use.
 
-Add the following lines to tutorials/orogen/rock_tutorial/rock_tutorial.orogen (which you created in the tutorial 
-[Simulate a Robot](../tutorials/500_simulate_a_robot.html) ):
+Make sure they are installed with
 
 ~~~ ruby
-deployment 'rock_tutorial' do
-    task('rock_tutorial', "rock_tutorial::RockTutorialControl")
-end
+amake tutorial/orogen/tut_deployment
 ~~~
 
-Rebuild the oroGen component with:
+You can then verify that they is indeed a deployment called 'rock_tutorial' that
+is available:
 
 ~~~
-amake tutorials/orogen/rock_tutorial
+rock-inspect rock_tutorial::RockTutorialControl --show-deployments
+
+==========================================================
+Deployment name:  rock_tutorial
+defined in tut_deployment
+----------------------------------------------------------
+
+  ------- rock_tutorial ------
+  Tasks
+    rock_tutorial[rock_tutorial::RockTutorialControl]
+      activity: Periodic, prio=lowest
+      scheduler: non realtime,
+    rock_tutorial_Logger[logger::Logger]
+      activity: Triggered, prio=lowest
+      scheduler: non realtime
 ~~~
 
 The new deployment can then be used in the script by adding, just after the
@@ -98,9 +116,9 @@ Syskit.conf.use_deployment 'rock_tutorial'
 
 Call again the instanciation with
 
-{coderay:: text}
-syskit instanciate scripts/syskit1.rb
-{coderay}
+~~~
+syskit instanciate scripts/01_joystick.rb
+~~~
 
 You should see a graphical representation of the system that would be executed by this script:
 
@@ -112,18 +130,17 @@ __(Click to enlarge)__
 If you're happy with it, you can then run it with:
 
 ~~~
-syskit run scripts/syskit1.rb
+syskit run scripts/01_joystick.rb
 ~~~
 
-The only difference between "roby run" and "syskit run" is the ability to pass a
-file to syskit run. When you start using the bundle directory layout to store
-the various syskit models, you will be able to use roby run directly.
+__For people knowing Roby__ There is actually no difference between "roby run"
+and "syskit run".
 {: .warning}
 
 In another shell, display the task using rock-display: 
 
 ~~~
-rock-display rock_tutorial
+rock-display
 ~~~
 
 [![Rock display](200_rock_display_thumb.png)](200_rock_display.png)

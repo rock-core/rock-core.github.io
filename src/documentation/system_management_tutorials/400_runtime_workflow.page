@@ -1,5 +1,5 @@
 ---
-title: Basic workflow
+title: Runtime Workflow
 sort_info: 400
 ---
 
@@ -23,12 +23,12 @@ When developing components, one wants the specific processes to be restarted so
 that the changes get picked up. In Syskit, it is done by
 using the roby shell.
 
-In a terminal, run the syskit3 script
+In a terminal, run scripts/02_services.rb
 
-syskit run scripts/script3.rb
+syskit run scripts/02_services.rb
 {: .cmdline}
 
-In another terminal, start the shell
+Then, in another terminal, start the shell
 
 syskit shell
 {: .cmdline}
@@ -63,13 +63,13 @@ Right now, we have two ways (so-called _modalities_) to control our rock:
 (Note if you don't have a joystick: you can do most of the tutorials without one
 !)
 
-Let's reflect that by _defining_, i.e. by giving a name to both the ways. Copy
-the scripts/syskit3.rb script to scripts/syskit4.rb and edit the latter by: (1)
-removing the 'add' line at the bottom and (2) adding the following lines:
+Let's reflect that by _defining_, i.e. by giving a name to both ways. Copy
+scripts/02_services.rb to scripts/03_defines.rb and edit the latter by: (1)
+removing the 'add_mission' line at the bottom and (2) adding the following lines:
 
 ~~~ ruby
-define('joystick', Tutorials::RockControl).use(Controldev::JoystickTask)
-define('random', Tutorials::RockControl).use(TutBrownian::Task)
+define 'joystick', Tutorials::RockControl.use(Controldev::JoystickTask)
+define 'random', Tutorials::RockControl.use(TutBrownian::Task)
 ~~~
 
 Using 'define' allows you to map a composition to a name and reference it later
@@ -81,46 +81,59 @@ modalities and switch between them.
 
 Start the application:
 
-syskit run scripts/syskit4.rb
-{: .cmdline}
+~~~
+syskit run scripts/03_defines.rb
+~~~
 
 If you did not already do it, start a shell in a separate terminal:
 
+~~~
 syskit shell
-{: .cmdline}
+~~~
 
-In this shell, type:
+The definitions are available as actions in the shell. Run the following command
+and look at the top of the output
 
-joystick_def!
-{: .cmdline}
+~~~
+localhost:48902 > help
+Available Actions
+=================
 
-It requests that the supervision starts the joystick-based control, as you can
-see in the log or in the live display (if you start that in parallel):
+Name          | Description                   
+----------------------------------------------
+joystick_def! | definition from profile Script
+random_def!   | definition from profile Script
+~~~
+
+Then run the joystick definition:
+
+~~~
+localhost:48902 > joystick_def!
+~~~
+
+It requests that syskit starts the joystick-based control, as you can
+see in the log or in the live display (if you started it):
 
 ~~~
 localhost:48902 > joystick_def!
 => #<service Roby::Task:0x7fedaea11a00{}[]>
 localhost:48902 >
-[1] joystick! started to plan
-[1] joystick!: Roby::Task:0x7fedaea11a00{}[] has been replaced by Tutorials::RockControl:0x7fedae9f08f0{}[]
-[1] joystick!: Tutorials::RockControl:0x7fedae9f08f0{}[] has been replaced by Tutorials::RockControl:0x7fedaead30b0{conf => [default]}[] 
-[1] joystick!: task Tutorials::RockControl:0x7fedaead30b0{conf => [default]}[] started
+[1] joystick_def! started to plan
+[1] joystick_def!: Tutorials::RockControl:0x7fedae9f08f0{}[] has been replaced by Tutorials::RockControl:0x7fedaead30b0{conf => [default]}[] 
+[1] joystick_def!: task Tutorials::RockControl:0x7fedaead30b0{conf => [default]}[] started
 ~~~
 
-To inspect the set of running jobs, just do:
+To inspect the set of running actions, just do:
 
-jobs
-{: .cmdline}
-
+~~~
 localhost:48902> jobs
-1 joystick! #<DRb::DRbObject:0x7f35780b5fe0 @uri="druby://127.0.1.1:48902", @ref=70329407281240>
+1 joystick_def! Tutorials::RockControl:0x54b4a60{conf => [default]}[]
 => 
-{:.cmdline}
-
+~~~
 
 The joystick-based control can now be stopped with
 
-{coderay:: text}
+~~~
 localhost:48902> kill_job 1
 [1] joystick!: task Tutorials::RockControl:0x7fedaead30b0{conf => [default]}[] failed
 = fatal exception 1: mission failed: Tutorials::RockControl:0x7fedaead30b0{conf => [default]}[]
@@ -128,7 +141,7 @@ localhost:48902> kill_job 1
 | The following tasks have been killed:
 | #<Tutorials::RockControl < Composition < Transformer::CompositionExtension>:0x7fedaead30b0
 [1] joystick!: task Tutorials::RockControl:0x7fedaead30b0{conf => [default]}[] has been removed
-{coderay}
+~~~
 
 OK, now, let's try to start both the joystick and random control _at the same
 time_.
@@ -138,22 +151,27 @@ random_def!
 joystick_def!
 ~~~
 
-Ouch, a lot of cryptic information there: 
-happened:
-[![Parallel execution error](400_parallel_execution_error_thumb.png)](400_parallel_execution_error.png)
+Ouch, a lot of cryptic information there. The most interesting bit is at the
+top:
 
-The error message tells you that there is no deployment of type
-RockTutorial::RockTutorialControl available for the 'rock' child of the composition
-'Tutorials::RockControl'. Well, in the current setup, we have a deployment
-defined and said to use it - it is 'rock_tutorial'. We added:
+~~~
+= planning joystick_def failed with
+| cannot deploy the following tasks
+| RockTutorial::RockTutorialControl:0x4714400{conf => [default]}[]
+|   child rock of Tutorials::RockControl:0x46f7120{conf => [default]}[]
+| RockTutorial::RockTutorialControl:0x4714400{conf => [default]}[]: some deployments exist, but they are already used in this network
+|   task rock_tutorial from deployment Deployments::RockTutorial on localhost
+|     already used by RockTutorial::RockTutorialControl:0x334ba68{orocos_name => rock_tutorial, conf => [default]}[]: child rock of Tutorials::RockControl:0x47432f0{conf => [default]}[]
+~~~
 
-Syskit.conf.use_deployment 'rock_tutorial'
-{: .cmdline}
+The other error messages are just consequences of this one. This error message
+tells you that there actually *are* some deployments declared for
+RockTutorial::RockTutorialControl, but that they are already used.
 
-But this is only one deployment and is being used for the composition
-'Tutorials::RockControl' which has been started first by 'random!'. Since the
-deployment cannot be used for more than one composition at the same time and
-error is generated. 
+Indeed, both the random and joystick definitions need a
+RockTutorial::RockTutorialControl component. Since they use it in a different
+way (the command port gets its data from different sources), syskit requires
+more than one deployment and it fails.
 
 Stop the controller with CTRL+C and the shell with "exit", and pass on to the
 next tutorial.
