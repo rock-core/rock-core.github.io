@@ -55,7 +55,7 @@ value:
 
 {coderay:: cpp}
 namespace dvl_rdi {
-class Driver : iodrivers_base::Driver {
+class Driver : public iodrivers_base::Driver {
 public:
   Driver();
 };
