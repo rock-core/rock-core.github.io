@@ -94,8 +94,9 @@ The library does not contain message handling capabilities yet. So, we create th
 ***NOTE***: Rock recommends to stick to use CamelCase for new structures, and to name the files after the class it defines (i.e. Message.hpp defines the Message structure, MessageDriver.hpp declares the MessageDriver class and MessageDriver.cpp defines it). However, due to historic reasons not all packages of Rock conform to this style. 
 {: .warning}
 
-In Rock, common C++ types are defined [in the base/types package](rock_pkg:
-base/types). If some type you need is defined here, it is __highly recommended__
+In Rock, common C++ types are defined [in the base/types package]({rock_pkg:
+base/types}).
+If some type you need is defined here, it is __highly recommended__
 to use the common type. In our case, we want to timestamp the message that our
 library will manipulate.  If we have a look at the base/types API documentation
 (follow the API documentation link from the package page above), we can see that
