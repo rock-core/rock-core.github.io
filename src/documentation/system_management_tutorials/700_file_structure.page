@@ -25,18 +25,27 @@ contained on a separate branch in bundles/tutorials, called "file-structure".
 You can check it out with
 
 ~~~
-git checkout autobuild/file-structure
+git checkout -b file-structure autobuild/file-structure
 ~~~
 
 Blueprints
 ----------
 [Data services](../system/data_services.html) and
 [compositions](../system/compositions.html) are defined in models/blueprints.
-They must require any other file they need, and either use import_types_from
-'typekit' to get the required types or using_task_library 'project' for the task
-contexts. The file name should by convention be the name of the model defined
-and the namespace the same than the bundle name (the rock bundle is an exception
-here).
+They must:
+ - require any other bundle file they need (as e.g. to get definitions for other
+   compositions and/or data services)
+ - use import_types_from 'typekit' to get the type definitions for the types it
+   needs (in data service definitions). The name of the typekit can be obtained
+   with rock-inspect (the "defined in XXX" line), or on the website / in
+   rock-browse on the type page.
+ - use using_task_library 'project ' for the task contexts. The project name is
+   in oroGen the same than the task context namespace (e.g. 'motor_controller'
+   for 'motor_controller::Task')
+ 
+The file name should by convention be the name of the model defined and the
+namespace the same than the bundle name (the rock bundle is an exception here,
+as it defines common models for all packages in Rock).
 
 For instance, the scripts/04_leader_follower.rb script would be split into:
 
@@ -54,6 +63,7 @@ end
 __models/blueprints/rock_control.rb__
 
 ~~~ ruby
+require 'rock/models/blueprints/pose'
 require 'models/blueprints/command_generator_srv'
 using_task_library 'rock_tutorial'
 module Tutorials
@@ -137,6 +147,15 @@ module Tutorials
 end
 ~~~
 
+Since this specialization refers to TutFollower::Task and TutSensor::Task, you will also have to add
+
+~~~ ruby
+using_task_library 'tut_follower'
+using_task_library 'tut_sensor'
+~~~
+
+at the top of the file
+
 Definitions
 -----------
 
@@ -145,11 +164,15 @@ set of predefined actions that can be injected in relevant Syskit applications
 by 'using' them in an action interface.
 
 The profile is defined within a namespace that matches the bundle name, in
-models/profiles/. The file name should be the name of the profile:
+models/profiles/. The file name should be the name of the profile.
 
 __models/profiles/rocks.rb__
 
 ~~~ ruby
+require 'models/blueprints/rock_control'
+using_task_library 'controldev'
+using_task_library 'tut_brownian'
+using_task_library 'tut_follower'
 module Tutorials
   profile 'Rocks' do
     define 'joystick',    Tutorials::RockControl.use(Controldev::JoystickTask)
@@ -194,7 +217,7 @@ And edit its main configuration file:
 __config/tut.rb__
 
 ~~~ ruby
-Syskit.conf.use_deploments_from 'tut_deployment'
+Syskit.conf.use_deployments_from 'tut_deployment'
 ~~~
 
 Finally
