@@ -3,6 +3,10 @@ title: Going abstract - Data Services
 sort_info: 300
 ---
 
+The result of this tutorial can be found in bundles/tutorials_scripts if you
+followed the instructions at the bottom of [this page](../tutorials/index.html)
+{: .note}
+
 Abstract
 --------
 In this tutorial, you will learn how to deal with _dependency injection_ in Rock's

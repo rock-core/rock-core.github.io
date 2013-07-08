@@ -3,6 +3,10 @@ title: Bundle File Structure
 sort_info: 700
 ---
 
+The result of this tutorial can be found in bundles/tutorials if you
+followed the instructions at the bottom of [this page](../tutorials/index.html)
+{: .note}
+
 All these tutorials were dealing with "everything in a file". We felt that it
 was a better way to understand how everything fits together.
 
