@@ -711,3 +711,6 @@ margin-left: 1em;
 margin-right: .1em;
 font-size: 80%;
 }
+
+.doc-above { margin-bottom: -.3em; padding-bottom: 0em; font-style: italic; }
+.doc-above p { margin-top: .1em; margin-bottom: .1em; }
