@@ -44,10 +44,24 @@ the command line with:
 roby run -rmyrobot left_camera_dev!
 ~~~
 
-In the same idea, the shell interface allows to start and stop specific
-subsystems using the action interface and job systems. Finally, one can add
-actions-as-missions in the code (for instance in the controller file to start
-some services "by default") with
+Alternatively, the shell interface allows to start and stop specific
+subsystems using the action interface and job systems. Start a shell to connect
+to a running syskit/roby controller with
+
+~~~
+roby shell
+~~~
+
+and then:
+
+~~~
+left_camera_dev!
+jobs
+kill_job 1
+~~~
+
+Finally, one can add actions-as-missions in the code (for instance in the
+controller file to start some services "by default") with
 
 ~~~ ruby
 Robot.left_camera_dev!
@@ -61,12 +75,10 @@ to explain this process:
 
 TODO: video
 
-What is important to understand here is how things look like if the new
-subsystems you are trying to start __cannot__ be merged with the running
-network. This happens for instance if the two networks are trying to use the
-same device in different configurations. Or if they have incompatible [frame
-transformation configurations](../data_processing/transformer_roby.html).
-
+What happens if you try to start a new new subsystem that __cannot__ be merged with the
+running network ? This happens for instance if the two networks are trying to use
+the same device in different configurations, or if they have incompatible [frame
+transformation configurations](../data_processing/transformer_roby.html)
 When this happens, the __newly started__ network will not be deployed, and the
 rest will stay the same. The error message will try to give you __some__
 insights as to why the deployment is not possible, but we have to admit that,
