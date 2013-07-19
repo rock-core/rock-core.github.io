@@ -34,11 +34,10 @@ layout section:
  - rock.ros
 ~~~
 
-Now, update and build. If you added this configuration to an existing Rock
-installation, you will have to force building all orogen-based packages with
+Now, update and build. This is going to rebuild the oroGen packages as needed
 
 ~~~
-autoproj build --force orogen/
+amake --all
 ~~~
 
 
