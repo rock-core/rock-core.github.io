@@ -22,15 +22,10 @@ When starting from a given bundle, the syskit application will __automatically__
 load all model files contained in said bundle. Therefore, when creating scripts
 in scripts/, all the models defined in models/ __are__ available. The
 modifications described in this page will therefore break the scripts (there
-will be duplicate definitions).
-
-For this reason, the result of the modifications described on this page are
-contained on a separate branch in bundles/tutorials, called "file-structure".
-You can check it out with
-
-~~~
-git checkout -b file-structure autobuild/file-structure
-~~~
+will be duplicate definitions). For this reason, the result of the modifications
+described on this page are contained on a different package than the one in
+which the script-based tutorials we just did is stored. Go into
+bundles/tutorials (instead of bundles/tutorials_scripts)
 
 Blueprints
 ----------
@@ -235,3 +230,55 @@ be loaded:
 ~~~
 syskit run -rtut follower!
 ~~~
+
+Reusing other Bundles
+---------------------
+In order to not have to re-model everything each time you create a new
+application, models can be shared across bundles. This is done by adding a
+_dependency_ from a bundle to another.
+
+In our case, we will reuse the models that come with Rock's core bundle,
+bundles/rock. Edit config/bundle.yml (the file [we previously
+deleted](100_moving_to_bundles.html#create-the-bundle) and add
+
+~~~ yaml
+bundle:
+    dependencies:
+        - rock
+~~~
+
+(note, this is the default content in all new bundles)
+
+Run syskit browse (and ignore the error in skid4_control.rb, we'll fix that in
+the next tutorial). If you look into the producers of
+Types::Base::MotionCommand2D, you will find Base::Motion2DControllerSrv. Which
+fits our components (we generate control commands of type Motion2D).
+We should therefore reuse this service instead of defining our own.
+
+Delete models/blueprints/command_generator_srv.rb, and replace all occurences of
+
+~~~ ruby
+require 'models/blueprints/command_generator_srv'
+~~~
+
+by (as reported by syskit browse)
+
+~~~ ruby
+require 'rock/models/blueprints/control'
+~~~
+
+as well as all occurences of
+
+~~~ ruby
+Tutorials::CommandGeneratorSrv (or plain CommandGeneratorSrv, depending)
+~~~
+
+by
+
+~~~ ruby
+Base::Motion2DControllerSrv
+~~~
+
+The next necessary step, in order to have a new completely functional bundle
+again, is to have a look at devices. This is the subject [of the next
+tutorial](800_devices.page)
