@@ -67,18 +67,17 @@ __local__ to the component. One needs to provide a mapping between the names of
 these local frames and the corresponding actual names on the system. Outside
 Syskit, this is done by assigning the corresponding properties. When using
 syskit, this is done by specifying the frame selection in the instance
-requirements, e.g.
+requirements. For instance, in the RocksWithTransformer profile in
+models/profiles/rocks.rb:
 
 ~~~ ruby
 define 'follower', follower_def.
-    use(TutSensor::TransformerTask).
-    use_frames('target' => 'leader',
-               'ref' => 'follower',
-               'world' => 'world')
+  use(TutSensor::TransformerTask).
+  use_frames('target' => 'leader', 'ref' => 'follower', 'world' => 'world')
 ~~~
 
 The actual frames also need to be specified in a transformer configuration
-block, in the profile:
+block, in the same profile, but before the define:
 
 ~~~ ruby
 transformer do
@@ -93,7 +92,7 @@ __We are not there yet__, but let's instanciate it:
 cannot find a production chain for leader => follower
   in TutSensor::TransformerTask:0x3c83fe0{}[]
   (task-local: target => ref)
-...: max seek depth reached seeking Transform from 'leader' to 'follower' (ArgumentError)
+...: no transformation from 'leader' to 'follower' available (Transformer::TransformationNotFound)
 ~~~
 
 Declaring Frame Transforms
@@ -106,12 +105,12 @@ When configuring the transformer, one has to provide the necessary
 transformation chains, with a mix of static and dynamic transformations. Static
 transformations are directly provided in the transformer configuration, while
 dynamic transformations are provided at runtime by a component, or even a set of
-components. See [../data_processing/transformer_runtime.html] for the static
+components. See [../data_processing/transformer_runtime.html](this page) for the static
 transforms syntax, which is common between ruby scripts and Syskit.
 
-the dynamic transformations, however, are different in the mean to specify a
-producer. In Ruby scripts, it is a task_name.port_name string. In syskit, it can
-be any instance requirement -- compositions, definitions, devices, ...
+Specifying dynamic transformations is however different: in Ruby scripts, it is
+a task_name.port_name string. In Syskit, it can be any instance requirement --
+compositions, definitions, devices, ...
 
 In our case, the leader->world transformation is provided by the rock1 device,
 the follower->world transformation by the rock2 device. Let's tell syskit
@@ -122,18 +121,15 @@ profile 'RocksWithTransformer' do
   use_profile BaseRocks
   transformer do
     frames 'leader', 'follower', 'world'
-    dynamic_transform rock1_dev,
+    dynamic_transform rock1_dev.use_deployments(/target/),
       'leader' => 'world'
-    dynamic_transform rock2_dev,
+    dynamic_transform rock2_dev.use_deployments(/follower/),
       'follower' => 'world'
   end 
 
   define 'follower', follower_def.
     use(TutSensor::TransformerTask).
-    use_frames('target' => 'leader',
-               'ref' => 'follower',
-               'world' => 'world')
-  end
+    use_frames('target' => 'leader', 'ref' => 'follower', 'world' => 'world')
 end
 ~~~
 
@@ -157,7 +153,7 @@ If you actually want the leader to move, just tell syskit so by also deploying
 the random definition:
 
 ~~~
-syskit run -rtut-transformer follower_def! random_def!
+syskit instanciate -rtut-transformer follower_def! random_def!
 ~~~
 
 Frame Consistency
@@ -180,7 +176,7 @@ device(Dev::Platforms::Rock, :as => 'rock2').
   frame_transform('follower' => 'world')
 ~~~
 
-The first step, since we use the rock devices as producers, would be to model
+Then, since we use the rock devices as producers, we should model
 the transformation configuration on the corresponding tasks. Edit
 models/orogen/rock_tutorial.rb and make the RockTutorialControl class definition
 look like:
@@ -189,16 +185,16 @@ look like:
 class RockTutorial::RockTutorialControl
   driver_for Dev::Platforms::Rock, :as => 'driver'
   transformer do
-    # Note: the local names have to match the names of the properties used to
-    # configure the source/target frames in the orogen file (body_frame and
-    # world_frame)
+    # Note: the local names have to match the names of the properties
+    # used to configure the source/target frames in the orogen file
+    # (body_frame and world_frame)
     transform_output 'pose_samples', 'body' => 'world'
   end
 end
 ~~~
 
 __Adding this does not require the task to actually use the transformer__ (it
-does not), it does not even depend on it at the package level. This is
+does not even depend on it at the package level). This is
 declarative-only, and is used only to check for consistency among frames.
 
 If we now instanciate the network and have a look at the frames, we see that the
@@ -208,7 +204,8 @@ corresponding devices have been declared as producers (syskit can therefore
 deduce the local-to-global frame mapping).
 
 Let's now add a bit more, and express that the RockTutorialControl
-'motion_command' input has to be expressed in the body frame as well.
+'motion_command' input has to be expressed in the body frame as well. Still in
+models/orogen/rock_tutorial:
 
 ~~~ ruby
 transformer do
@@ -284,8 +281,9 @@ profiles, in which the file is loaded with
 
 ~~~ ruby
 transformer do
-  load 'config/tut-transformer-transformer.rb'
-  # Add dynamic transformations here
+  load 'config/tut-transformer-transformer'
+  # Add dynamic transformations here, or in
+  # other profiles that 'use' this one
 end
 ~~~
 
@@ -307,3 +305,4 @@ integrating your system in syskit. Syskit's reference documentation is
      constraining transformations, not frames, and therefore the 'world' frame could
      be propagated as well. This is a limitation in the current
      syskit-transformer plugin.
+
