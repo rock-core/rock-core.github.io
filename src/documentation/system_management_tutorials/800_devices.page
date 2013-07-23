@@ -227,6 +227,40 @@ data sources and sinks -- which are very commonly hardware devices in actual
 robots. That's what the brownian generator is as well, so we would need to also
 define a device for this one (this exercise is left to the reader ;-))
 
+Let's also make the follower definition fail:
+
+~~~
+$ syskit instanciate -rtut follower_def!
+Cannot find a concrete implementation for 1 task(s)
+Syskit::TaskContext placeholder for Base::PoseSrv
+  4 candidates
+    Tutorials::RockControl/[cmd.is_a?(TutFollower::Task)],
+    Tutorials::RockControl,
+    Tutorials::RockControl/[cmd.is_a?(TutFollower::Task)],
+    RockTutorial::RockTutorialControl
+  child target_pose of Tutorials::RockControl/[cmd.is_a?(TutFollower::Task)]:0x48ce390{conf => [default]}[]
+~~~
+
+This time, the main issue is that Syskit cannot pick something for the
+target_pose child of the RockControl composition. Weird ... We did give him
+the leader_def definition in the use() statement.
+
+Actually, not so weird: rock2_dev is also a provider for Pose, and there is
+therefore conflict. As a general rule of thumb, if a data service is left
+unallocated, it means that you have to explicitly state which child the model
+you provided should replace, in our case, target_pose
+
+__Important__: the explicit selections MUST go at the end of the use()
+statement. This is required by the Ruby syntax. If you find this ordering
+constraint confusing, you can also add multiple use() statements.
+{: .warning}
+
+~~~ ruby
+define 'follower', Tutorials::RockControl.
+  use(TutFollower::Task, rock2_dev, 'target_pose' => leader_def).
+  use_deployments(/follower/)
+~~~
+
 Summary
 -------
 This tutorial led through the reason why the concept of devices is needed when
