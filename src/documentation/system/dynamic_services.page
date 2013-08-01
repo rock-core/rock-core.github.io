@@ -126,9 +126,9 @@ class Examples::TaskWithDynamicInterface
       #
       # srv is an instance of Syskit::BoundDataService
       # srv.model is an instance of Syskit::Models::BoundDataService
-      if srv.model.model.kind_of?(Examples::InputMonitorSrv)
+      if srv.fullfills?(Examples::InputMonitorSrv)
         orocos_task.create_input_monitor srv.name
-      elsif srv.model.model.kind_of?(Examples::OutputMonitorSrv)
+      elsif srv.fullfills?(Examples::OutputMonitorSrv)
         orocos_task.create_output_monitor srv.name
       end
     end
@@ -167,6 +167,12 @@ module Merger
     #
     # dynamic_input_port nil, 'base/samples/Joints'
     dynamic_service Base::JointsConsumerSrv, :as => 'merged_inputs' do
+      # Create an argument on the final task to give the priority for this
+      # service. It will be retrieved later in the configure method using the
+      # service name, i.e.
+      #
+      #   priority = arguments["#{srv.name}_priority"]
+      #
       component_model.argument "#{name}_priority",
         :default => options[:priority]
       # This service's port will be mapped to a
@@ -177,6 +183,10 @@ module Merger
       provides Base::JointsConsumerSrv, 'in' => "in_#{name}"
     end
 
+    # This method is overloaded so that we can autoconfigure the task
+    # based on the dynamic services that got instanciated. Part of the
+    # configuration is stored in task arguments, such as the _priority arguments
+    # that are added in the dynamic_service block above
     def configure
       super
       # On this task, the list of inputs is given
@@ -184,7 +194,7 @@ module Merger
       # and save it
       merging_conf = []
       each_data_service do |srv|
-        if srv.model.model.kind_of?(Base::JointsConsumerSrv)
+        if srv.fullfills?(Base::JointsConsumerSrv)
           merging_conf << [srv.name, arguments["#{srv.name}_priority"]]
         end
       end
@@ -211,6 +221,10 @@ module Merger
   def self.merge(providers = Hash.new)
     # Allocate the services
     task = Merger::Task.specialize
+    # Define one dynamic service per required provider. The
+    # providers are given as a mapping of a name to a
+    # provider service (the data service that will
+    # give us the data) and a priority.
     providers.each do |name, (provider, priority)|
       task.require_dynamic_service 'merged_inputs',
         :as => name,
