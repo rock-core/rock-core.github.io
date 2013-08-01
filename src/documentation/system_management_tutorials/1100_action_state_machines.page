@@ -1,0 +1,190 @@
+---
+title: Action State Machines
+sort_info: 1100
+draft: true
+---
+So far, we have seen how to define and compose network of components. The rest
+of the tutorials will guide through the process of _coordinating_ them, i.e. how
+to make the system switch between them when some conditions are reached, thus
+creating temporal combinations of behaviours.
+
+This tutorial will guide you through:
+ * how to combine the network configurations created in profiles into more
+   complex behaviours by using state machines
+ * how these state machines can then be combined with each other
+
+The action state machines presented in this tutorial are not specific to syskit,
+but are available to any Roby action. You may want to also read the [Roby
+documentation]{pkg_api: Roby} for more information about them. However, Syskit
+does extend these state machines to give some syskit-specific functionality.
+
+Defining State Machines
+-----------------------
+In the previous tutorials, we have mainly built two behaviours for our rocks:
+ * one random movement behaviour
+ * one target-following behaviour
+
+Let's now assume that we want a rock to move randomly, but stay confined in a
+certain area around the origin. This can be achieved with what we currently
+have:
+ * if within the area, move randomly
+ * if on the border, go back to origin
+
+The 'go back to origin' behaviour being obviously 'follow the origin frame'.
+Let's define it first generically:
+
+~~~ ruby
+define 'to_origin', Tutorials::RockFollower.
+  use(TutFollower::Task, TutSensor::TransformerTask).
+  use_frames('target' => 'world', 'world' => 'world')
+~~~
+
+Let's write now our state machine. Action state machines are defined on [action
+interfaces](), which is in our case models/actions/tut-transformer/main.rb. 
+
+~~~ ruby
+class Main < Actions::Interface
+  use_profile Tutorials::RockWithTransformer
+  describe 'move randomly as long as in a 10 meter square \
+  around origin, move back to origin when passing the border'
+  action_state_machine 'fenced_random_move' do
+    # We need to call #state to transform an action / definition
+    # into a proper state
+    random = state random_def
+    origin = state to_origin_def.use(rock1_dev)
+  
+    # We start by moving randomly
+    start random
+    # We transition each time the rock passes the fence
+    transition ???, origin
+    # And transition back when we reach the origin
+    transition ???, random
+  end
+end
+~~~
+
+Since we are under Roby, the transitions are obviously going to be caused by
+Roby events. However, there is still the issue of defining them.
+
+Since we do not want the behaviours to be modified to account for this very
+particular combination of them (we want them to be reusable, therefore free of
+this very specific use case), we'll define two monitoring networks. One will
+check whether the rock passes the fence and the other whether it is within its
+target pose.
+
+Let's create the fence monitor first in models/blueprints/fence_monitor.rb
+
+~~~ ruby
+require 'rock/models/blueprints/pose'
+module Tutorials
+  class FenceMonitor < Syskit::Composition
+    terminates
+
+    # The size of the allowed square
+    argument :fence_size, :default => 10
+    # Emitted when the tracked pose passes the required fence towards the
+    # outside
+    event :passed_fence_outwards
+
+    add Base::PositionSrv, :as => 'position'
+
+    # Tests if the given position is within the fence
+    def in_fence?(p)
+      p.x.abs < fence_size && p.y.abs < fence_size
+    end
+
+    # This script context allows us to have a proper access to ports in
+    # children. A raw Roby poll block would be possible, but would require that
+    # we know the type of the final position component.
+    script do
+      position_r = position_child.position_samples_port.reader
+      poll do
+        if p = position_r.read
+          if !@last_p
+            @last_p = p
+          end
+          if in_fence?(@last_p) && !in_fence?(p)
+            passed_fence_outwards_event.emit
+          end
+          @last_p = p
+        end
+      end
+    end
+  end
+end
+~~~
+
+Then, the target reached monitor:
+
+~~~ ruby
+require 'rock/models/blueprints/pose'
+module Tutorials
+  class PositionWithinThresholdMonitor < Syskit::Composition
+    terminates
+
+    # The target pose
+    argument :target
+    # The target threshold
+    argument :threshold, :default => 1
+    # Emitted when the tracked pose passes the required fence towards the
+    # outside.
+    event :reached
+
+    add Base::PositionSrv, :as => 'position'
+
+    # Tests if the given position is within the fence
+    def in_threshold?(p)
+      (p - target).norm < threshold
+    end
+
+    # A script context. This allows us to have a proper access to ports in
+    # children. A raw Roby poll block would be possible, but would require that
+    # we know the type of the final position component.
+    script do
+      position_r = position_child.position_samples_port.reader
+      poll do
+        if (p = position_r.read) && in_threshold?(p.position)
+          reached_event.emit
+        end
+      end
+    end
+  end
+end
+~~~
+
+Let's now integrate the monitors in our state machine:
+
+~~~
+describe('move randomly as long as in a 10 meter square around origin, move back
+to origin when passing the border')
+action_state_machine 'fenced_random_move' do
+  # We need to call #state to transform an action / definition into a proper
+  # state
+  random = state random_def
+  # 'task' is used for tasks that are not used as states
+  fence_monitor = task Tutorials::FenceMonitor.use(rock1_dev)
+  # We need this monitor only in the random state
+  random.depends_on fence_monitor
+
+  origin = state to_origin_def.use(rock1_dev)
+  # 'task' is used for tasks that are not used as states
+  target_monitor = task Tutorials::PositionWithinThresholdMonitor.
+    use(rock1_dev).with_arguments('target' => Types::Base::Position.new(0, 0, 0))
+  # We need this monitor only in the origin state
+  origin.depends_on target_monitor
+
+  # We start by moving randomly
+  start random
+  # We transition each time the rock passes the fence
+  transition fence_monitor.passed_fence_outwards_event, origin
+  # And transition back when we reach the origin
+  transition target_monitor.reached_event, random
+end
+~~~
+
+Runtime Behaviour
+-----------------
+
+Combining State Machines
+------------------------
+
