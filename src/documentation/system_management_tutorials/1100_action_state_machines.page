@@ -100,9 +100,10 @@ module Tutorials
       position_r = position_child.position_samples_port.reader
       poll do
         if p = position_r.read
-          if !@last_p
-            @last_p = p
-          end
+          # p is a RigidBodyState, we only need the position part of it
+          p = p.position
+          # Initialize @last_p if it is not initialized yet
+          @last_p ||= p
           if in_fence?(@last_p) && !in_fence?(p)
             passed_fence_outwards_event.emit
           end
@@ -176,9 +177,9 @@ action_state_machine 'fenced_random_move' do
   # We start by moving randomly
   start random
   # We transition each time the rock passes the fence
-  transition fence_monitor.passed_fence_outwards_event, origin
+  transition random, fence_monitor.passed_fence_outwards_event, origin
   # And transition back when we reach the origin
-  transition target_monitor.reached_event, random
+  transition origin, target_monitor.reached_event, random
 end
 ~~~
 
