@@ -1,7 +1,6 @@
 ---
 title: Action State Machines
 sort_info: 1100
-draft: true
 ---
 So far, we have seen how to define and compose network of components. The rest
 of the tutorials will guide through the process of _coordinating_ them, i.e. how
@@ -155,7 +154,7 @@ end
 
 Let's now integrate the monitors in our state machine:
 
-~~~
+~~~ ruby
 describe('move randomly as long as in a 10 meter square around origin, move back
 to origin when passing the border')
 action_state_machine 'fenced_random_move' do
@@ -186,6 +185,45 @@ end
 Runtime Behaviour
 -----------------
 
+TODO: video
+
 Combining State Machines
 ------------------------
+When one creates a state machine, it becomes an action. It can therefore be used
+in another state machine (and so on, and so forth), as for instance:
 
+~~~ ruby
+describe "combining state machines"
+action_state_machine 'main' do
+  movement = state fenced_random_move
+  # Use a hypothetical go_and_recharge action which can be any Roby action
+  # (syskit network, state machine, ...)
+  recharge = state go_and_recharge
+  # And monitor the battery using a syskit definition
+  battery_monitor = state battery_monitor_def
+
+  start movement
+  movement.depends_on battery_monitor
+  transition movement, battery_monitor.battery_low_event, recharge
+  transition recharge, recharge.success_event, movement
+end
+~~~
+
+Summary
+-------
+
+This tutorial has shown you how:
+ - combine the networks defined in the syskit profiles as states in a state
+   machine, thus allowing to combine them in a temporal way
+ - define separate monitoring networks, and use them to trigger the transition
+ - how state machines can then become part of bigger state machines
+
+These action state machines are great to define the nominal operations of a
+robot, i.e. its mission (or parts of it). However, they would become very
+cumbersome to handle errors, or thing that can happen from any state. One cannot
+add transitions from any state to the error handlers.
+
+The next tutorial will deal with a refinement of the monitors we have manually
+defined here, introducing data monitors that allow to generate errors when
+patterns are found in the data. Then, we will see how to handle these errors in
+a graceful way.
