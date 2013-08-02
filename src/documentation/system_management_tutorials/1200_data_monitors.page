@@ -1,7 +1,6 @@
 ---
 title: Data Monitors
 sort_info: 1200
-draft: true
 ---
 
 To build the state machine [in the previous
@@ -16,7 +15,8 @@ same:
 
 This tutorial will show you how to define such monitors in a much more compact
 and reusable way, and how these 'new' monitors differ from the manually created
-ones.
+ones. We will then see in the next tutorial how lists of such monitors can be
+defined in order to design fault detection and response tables
 
 Defining Data Monitors
 ----------------------
@@ -41,7 +41,7 @@ action_state_machine 'fenced_random_move_with_monitors' do
   #
   # The 'arguments' option passes arguments from the action state machine to the
   # monitor
-  random.monitor('fence', random.rock_child.pose_samples_port, :arguments => 'fence_size').
+  random.monitor('fence', random.rock_child.pose_samples_port, :fence_size => fence_size).
     trigger_on do |pose|
       pose.x.abs > fence_size || pose.y.abs > fence_size
     end.
@@ -50,7 +50,8 @@ action_state_machine 'fenced_random_move_with_monitors' do
   # The move-to-origin state
   origin = state to_origin_def.use(rock1_dev)
   # Monitor that waits for us to be close enough to the center
-  origin.monitor('reached_center', origin.rock_child.pose_samples_port, :arguments => 'threshold').
+  origin.monitor('reached_center', origin.rock_child.pose_samples_port,
+:threshold => threshold).
     trigger_on do |pose|
       pose.position.x.abs < threshold && pose.position.y.abs < threshold
     end.
@@ -95,5 +96,13 @@ The resulting behaviour can be started and tested with
 syskit run -rtut-transformer fenced_random_move_with_monitors!
 ~~~
 
-Reusing Monitors
-----------------
+Summary
+-------
+
+The data monitors as used in the state machines are compact ways to make the
+state machines transition based on information in the data. They allow to easily
+transform data triggers into Roby events.
+
+The [next tutorial](1300_fault_response_tables.html) will show you how they can
+also be used in conjunction with fault response tables to define fault detection
+/ fault response systems

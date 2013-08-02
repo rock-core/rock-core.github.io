@@ -105,7 +105,7 @@ When configuring the transformer, one has to provide the necessary
 transformation chains, with a mix of static and dynamic transformations. Static
 transformations are directly provided in the transformer configuration, while
 dynamic transformations are provided at runtime by a component, or even a set of
-components. See [../data_processing/transformer_runtime.html](this page) for the static
+components. See [this page](../data_processing/transformer_runtime.html) for the static
 transforms syntax, which is common between ruby scripts and Syskit.
 
 Specifying dynamic transformations is however different: in Ruby scripts, it is
@@ -267,6 +267,11 @@ which frame is selected as a target. Changing which device / system the follower
 controls is done by adding it to the use() statement. No need to modify anything
 else.
 
+[^1]: in principle, the motion commands and distance-bearing samples are
+      constraining transformations, not frames, and therefore the 'world' frame could
+      be propagated as well. This is a limitation in the current
+      syskit-transformer plugin.
+
 Sharing configuration between Ruby scripts and Syskit
 -----------------------------------------------------
 When mixing ruby scripts and syskit, it is customary to create a root
@@ -300,9 +305,4 @@ of frames, transformations and transformation producers.
 This is the last tutorial about syskit ... You should now be able to start
 integrating your system in syskit. Syskit's reference documentation is
 [here](../system/workflow.html)
-
-[^1] in principle, the motion commands and distance-bearing samples are
-     constraining transformations, not frames, and therefore the 'world' frame could
-     be propagated as well. This is a limitation in the current
-     syskit-transformer plugin.
 
