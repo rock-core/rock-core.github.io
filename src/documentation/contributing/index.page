@@ -16,7 +16,9 @@ One thing that is always in need of contribution is documentation: create new
 pages [on the Rock trac](http://rock.opendfki.de) or [update the Rock reference
 documentation](documentation.html) on the Rock website.
 
-More advanced users can contribute [bugfixes and enhancements](bugfixes.html) to
-the main Rock codebase, or even [publish packages and tell us about
-them](packages.html) so that they become part of the Rock package directory.
+More advanced users can contribute bugfixes and enhancements to the main Rock
+codebase, by either sending patches to the rock-dev mailing list or using
+gitorious cloning and merge request functionality. We also welcome you to
+[publish packages and tell us about them](packages.html) so that they become
+part of the Rock package directory.
 
