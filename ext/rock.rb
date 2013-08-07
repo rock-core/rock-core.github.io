@@ -17,6 +17,23 @@ class Vimeo
     end
 end
 
+class YouTube
+    include Webgen::Tag::Base
+
+    def call(tag, body, context)
+        id = param('youtube.video_id')
+        width = param('youtube.width')
+        height = param('youtube.height')
+        embed = param('youtube.embed')
+        iframe = %{<iframe src="http://www.youtube.com/embed/#{id}" width="#{width}" height="#{height}" frameborder="0">Youtube Video</iframe>}
+        if embed
+            %{\n<p class="embed" style="width: #{width}px;" markdown="0">\n#{iframe}\n</p>\n}
+        else
+            iframe
+        end
+    end
+end
+
 
 class RockType
     include Webgen::Tag::Base
@@ -111,3 +128,8 @@ config.vimeo.width 250
 config.vimeo.height 180
 config.vimeo.embed true
 config['contentprocessor.tags.map']['vimeo'] = 'Vimeo'
+config.youtube.video_id 0, :mandatory => 'default'
+config.youtube.width 480
+config.youtube.height 360
+config.youtube.embed true
+config['contentprocessor.tags.map']['youtube'] = 'YouTube'
