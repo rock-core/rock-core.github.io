@@ -3,6 +3,17 @@ title: Devices
 sort_info: 800
 ---
 
+<div class="note" markdown="1">
+The result of this tutorial can be found in bundles/tutorials if you
+followed the instructions at the bottom of [this page](../tutorials/index.html).
+While the tip of the master branch contains the accumulated result of all the
+tutorials, you can get the specific result of this one by checking out the
+devices tag with
+~~~
+git checkout devices
+~~~
+</div>
+
 So far, all components we have are equal, in the sense that they are seen by
 syskit as _transforming data_. From the point of view of syskit, if three
 components are needed in your network, everything is OK as long as you provide
@@ -53,6 +64,7 @@ class Controldev::JoystickTask
 ~~~
 
 So far, this is the main difference between devices and data services:
+
  - devices are defined using device_type instead of data_service_type
  - one uses driver_for to declare that a task is a device driver instead of
    provides to declare that it provides a data service
@@ -184,31 +196,26 @@ models/profiles/rocks.rb, the whole profile definition would look like
 profile 'Rocks' do
   robot do
     device Dev::Controldev::Joystick, :as => 'joystick'
-    device Dev::Platforms::Rock, :as => 'rock1'
-    device Dev::Platforms::Rock, :as => 'rock2'
+    device(Dev::Platforms::Rock, :as => 'rock1').
+      use_deployments(/target/)
+    device(Dev::Platforms::Rock, :as => 'rock2').
+      use_deployments(/follower/)
   end
 
   define 'joystick',    Tutorials::RockControl.
-    use(joystick_dev, rock1_dev).
-    use_deployments(/target/)
+    use(joystick_dev, rock1_dev)
   define 'random',      Tutorials::RockControl.
-    use(TutBrownian::Task, rock1_dev).
-    use_deployments(/target/)
+    use(TutBrownian::Task, rock1_dev)
   define 'random2',      Tutorials::RockControl.
-    use(TutBrownian::Task, rock2_dev).
-    use_deployments(/follower/)
+    use(TutBrownian::Task, rock2_dev)
   define 'random_slow', Tutorials::RockControl.
-    use(TutBrownian::Task.with_conf('default', 'slow'), rock1_dev).
-    use_deployments(/target/)
+    use(TutBrownian::Task.with_conf('default', 'slow'), rock1_dev)
   define 'random_slow2', Tutorials::RockControl.
-    use(TutBrownian::Task, rock1_dev).with_conf('slow').
-    use_deployments(/target/)
+    use(TutBrownian::Task, rock1_dev).with_conf('slow')
   define 'leader', Tutorials::RockControl.
-    use(TutBrownian::Task, rock1_dev).
-    use_deployments(/target/)
+    use(TutBrownian::Task, rock1_dev)
   define 'follower', Tutorials::RockControl.
-    use(TutFollower::Task, leader_def, rock2_dev).
-    use_deployments(/follower/)
+    use(TutFollower::Task, leader_def, rock2_dev)
 end
 ~~~
 

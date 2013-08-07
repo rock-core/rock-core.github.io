@@ -3,6 +3,17 @@ title: Reusing Profiles
 sort_info: 900
 ---
 
+<div class="note" markdown="1">
+The result of this tutorial can be found in bundles/tutorials if you
+followed the instructions at the bottom of [this page](../tutorials/index.html).
+While the tip of the master branch contains the accumulated result of all the
+tutorials, you can get the specific result of this one by checking out the
+reusing-profiles tag with
+~~~
+git checkout reusing-profiles
+~~~
+</div>
+
 While we have already seen [how to reuse other
 bundles](700_file_structure.html#reusing-other-bundles), we have yet to see how
 to reuse profiles. Indeed, one of the major ideas behind the profile concept is that one can design
@@ -28,6 +39,7 @@ Tutorials::Rocks bundle into one profile that handles the current way (without
 the transformer) and one that uses the transformer-enabled component. 
 
 Two main concepts are going to be used for this:
+
  - subclassing (in the Ruby-as-a-programming-language sense of the term)
    compositions to create more specific versions of them,
  - separating files into robot categories in a bundle,
@@ -108,17 +120,19 @@ Let's make the result fail with
 ~~~
 
 The issue this time is the following:
- - we specify target_pose as a connection key, which is meant to be a child name
+
+ - we give a selection for 'target_pose', which is meant to be a child of
+   RockFollower
  - the target_pose child is only defined in the specialization of RockFollower
  - nothing in the use() specification allows syskit to determine that it should
    specialize.
 
-The solution is therefore to give the sensor component explicitly:
+The solution is therefore to give the sensor component explicitly, so that the
+specialization is indeed selected:
 
 ~~~ ruby
 define 'follower', Tutorials::RockFollower.
-  use(TutFollower::Task, TutSensor::Task, rock2_dev, 'target_pose' => leader_def).
-  use_deployments(/follower/)
+  use(TutFollower::Task, TutSensor::Task, rock2_dev, 'target_pose' => leader_def)
 ~~~
 
 Reusing Profiles
@@ -151,8 +165,7 @@ independent of the sensor type.
 profile 'BaseRocks' do
   ...
   define 'follower', Tutorials::RockFollower.
-    use(TutFollower::Task, rock2_dev).
-    use_deployments(/follower/)
+    use(TutFollower::Task, rock2_dev)
   end
 ~~~
 

@@ -24,7 +24,8 @@ The leader-follower system
 --------------------------
 This tutorial will deploy a network in which:
 
- * one rock, controlled by the random motion generator, is a leader * another rock is following the first rock
+ * one rock, controlled by the random motion generator, is a leader
+ * another rock is following the first rock
 
 The motion generator component for the follower is tut_follower::Task, included
 in [Rock's rock.tutorial package set](../tutorials/index.html#installing). It

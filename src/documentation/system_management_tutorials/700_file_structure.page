@@ -3,9 +3,16 @@ title: Bundle File Structure
 sort_info: 700
 ---
 
+<div class="note" markdown="1">
 The result of this tutorial can be found in bundles/tutorials if you
-followed the instructions at the bottom of [this page](../tutorials/index.html)
-{: .note}
+followed the instructions at the bottom of [this page](../tutorials/index.html).
+While the tip of the master branch contains the accumulated result of all the
+tutorials, you can get the specific result of this one by checking out the
+bundle-file-structure tag with
+~~~
+git checkout bundle-file-structure
+~~~
+</div>
 
 All these tutorials were dealing with "everything in a file". We felt that it
 was a better way to understand how everything fits together.
@@ -32,6 +39,7 @@ Blueprints
 [Data services](../system/data_services.html) and
 [compositions](../system/compositions.html) are defined in models/blueprints.
 They must:
+
  - require any other bundle file they need (as e.g. to get definitions for other
    compositions and/or data services)
  - use import_types_from 'typekit' to get the type definitions for the types it

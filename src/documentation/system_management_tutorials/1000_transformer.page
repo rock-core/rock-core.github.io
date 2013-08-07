@@ -3,6 +3,17 @@ title: Transformer
 sort_info: 1000
 ---
 
+<div class="note" markdown="1">
+The result of this tutorial can be found in bundles/tutorials if you
+followed the instructions at the bottom of [this page](../tutorials/index.html).
+While the tip of the master branch contains the accumulated result of all the
+tutorials, you can get the specific result of this one by checking out the
+transformer tag with
+~~~
+git checkout transformer
+~~~
+</div>
+
 In a nutshell, Rock's transformer is a mean to handle computation of forward
 kinematic chains in a component network. It allows each component to declare
 that it needs a given transformation between two declared frames and _get it_,
@@ -302,7 +313,7 @@ system configuration, automated code making the transition between the syskit
 description of components, ports and dataflow and the transformer's description
 of frames, transformations and transformation producers.
 
-This is the last tutorial about syskit ... You should now be able to start
-integrating your system in syskit. Syskit's reference documentation is
-[here](../system/workflow.html)
+The next tutorials will show you how to sequence different behaviours into state
+machines, monitor data streams and handle system faults. It starts with
+[combining behaviours into state machines](1100_action_state_machines.html).
 
