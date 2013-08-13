@@ -78,7 +78,7 @@ what is available. Open the syskit model browser
 And look into the 'Base' entry. You will find there a Base::PoseSrv service that
 fits:
 
-TODO: PoseSrv
+[![Sykit browse](600_syskit_browse_pose_service_thumb.png)](600_syskit_browse_pose_service.png)
 
 At the top of the service's description, note the
 
@@ -107,7 +107,7 @@ specialization after the declaration of the Tutorials::RockControl composition.
 require 'rock/models/blueprints/pose'
 using_task_library 'tut_follower'
 using_task_library 'tut_sensor'
-TutFollower::Task.provides CommandGeneratorSrv
+TutFollower::Task.provides Tutorials::CommandGeneratorSrv, :as => 'cmd'
 ...
 
 # This is the syntax to add specializations to existing composition models (i.e.
@@ -123,15 +123,20 @@ Tutorials::RockControl.specialize Tutorials::RockControl.cmd_child => TutFollowe
   #
   # The rock child is already defined in the 'base' Tutorials::RockControl
   # composition
-  target_pose_child.connect_to sensor_child.target_position_port
-  rock_child.connect_to sensor_child.current_position_port
-  sensor_child.connect_to rock_child
+  target_pose_child.connect_to sensor_child.target_frame_port
+  rock_child.connect_to sensor_child.local_frame_port
+  sensor_child.connect_to cmd_child
 end
 ~~~
 
-We have to make the TutFollower task's oroGen project available, and thus add the following line to the includes at the top of the file:
+We have to make the TutFollower and the TutSensor tasks' oroGen projects available, and thus added the following lines to the includes at the top of the file:
 
-Once such a specialization is added, it allows you to use the same composition for the random controller 
+~~~ ruby
+using_task_library 'tut_follower'
+using_task_library 'tut_sensor'
+~~~
+
+Once the specialization hase been added, it allows you to use the same composition for the random controller 
 'TutBrownian::Task' and the follower controller 'TutFollower::Task', without
 having to care about the details (or at least, not yet)
 
@@ -198,7 +203,15 @@ RockTutorial::RockTutorialControl:0x5d36d28{conf => [default]}[]: some deploymen
 ~~~
 
 Ah ... yes, we need some extra deployments. The tut_deployment project contains all we
-need so let's simply replace all the use_deployment lines by
+need so let's simply replace all the use_deployment lines:
+
+~~~ ruby
+Syskit.conf.use_deployment 'joystick'
+Syskit.conf.use_deployment 'rock_tutorial'
+Syskit.conf.use_deployment 'brownian'
+~~~
+
+by
 
 ~~~ ruby
 Syskit.conf.use_deployments_from 'tut_deployment'
@@ -229,17 +242,13 @@ deployment names that are _preferred_ for a particular subsystem. Let's do this:
 
 ~~~ ruby
 define 'joystick',    Tutorials::RockControl.
-    use(Controldev::JoystickTask).
-    use_deployments(/target/)
+    use(Controldev::JoystickTask)
 define 'random',      Tutorials::RockControl.
-    use(TutBrownian::Task).
-    use_deployments(/target/)
+    use(TutBrownian::Task)
 define 'random_slow', Tutorials::RockControl.
-    use(TutBrownian::Task.with_conf('default', 'slow')).
-    use_deployments(/target/)
+    use(TutBrownian::Task.with_conf('default', 'slow'))
 define 'random_slow2', Tutorials::RockControl.
-    use(TutBrownian::Task).with_conf('slow').
-    use_deployments(/target/)
+    use(TutBrownian::Task).with_conf('slow')
 define 'leader', Tutorials::RockControl.
     use(TutBrownian::Task).
     use_deployments(/target/)
@@ -248,7 +257,9 @@ define 'follower', Tutorials::RockControl.
     use_deployments(/follower/)
 ~~~
 
-And finally run, and display the rocks using rock-display:
+
+
+Finally you can run and display the rocks using rock-display:
 
 ~~~
 # syskit run scripts/04_leader_follower.rb follower_def!

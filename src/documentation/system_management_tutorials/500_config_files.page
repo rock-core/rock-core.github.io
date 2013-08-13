@@ -69,7 +69,7 @@ at the configuration values using rock-display. They should match the values in
 the configuration file.
 
 ~~~
-syskit run scripts/01_defines.rb random_def!
+syskit run scripts/03_defines.rb random_def!
 ~~~
 
 As you see here, it is possible to specify definitions on the command line of
@@ -122,7 +122,7 @@ task you are interested in to see its arguments). Finally, you can see it in the
 console output of syskit run (only the relevant output lines are shown below).
 
 ~~~
-# syskit run 01_defines.rb random_slow_def!
+# syskit run 03_defines.rb random_slow_def!
 Bundles[INFO]: Active bundles: tutorial
 /media/Data/dev/rock/master-full/tools/syskit/lib/syskit/models/deployment.rb:83: warning: already initialized constant Joystick
 20:19:20.540 (Robot) applied configuration [default, slow] to /brownian

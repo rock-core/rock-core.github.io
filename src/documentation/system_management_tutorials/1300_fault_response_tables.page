@@ -34,7 +34,7 @@ For such usage, Syskit offers a different mechanism: the __fault response
 table__. Fault response tables define reactions to faults, with the possibility
 -- at the end of the reaction -- to restart whatever action was being performed.
 
-This tutorial will guid you through the process of defining such faults using
+This tutorial will guide you through the process of defining such faults using
 data monitors, defining the corresponding reaction, and use them in state
 machines and/or action interfaces.
 
@@ -43,9 +43,9 @@ Data Monitoring Tables
 The first step, when you want to use data monitors in combination with fault
 response tables, is to create a data monitoring table. This data monitoring
 table is a separate list of named monitors that the fault response table will be
-able to use as fault sources. There are other type of fault generators that the
+able to use as fault sources. There are other types of fault generators that the
 fault response can use, but we won't detail them in this tutorial (look instead
-[in the documentation](../system/fault_response_tables.html).
+[in the documentation](../system/fault_response_tables.html) ).
 
 Let's create the fencing data monitoring table. Edit
 models/actions/fence_monitor.rb and

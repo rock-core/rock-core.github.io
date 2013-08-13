@@ -74,6 +74,8 @@ running anything. Without additional adaptation though you will hit an error whe
 syskit instanciate scripts/01_joystick.rb
 ~~~
 
+This error might be visible in syskit GUI or in console. 
+
 [![Instanciation with error](200_instanciate_error_output_thumb.png)](200_instanciate_error_output.png)
 {: .align-center}
 __(Click to enlarge)__
@@ -188,7 +190,7 @@ What happened ?
 ---------------
 Let's now have a look at what happened by visualizing the event log:
 
-roby display ./logs/current/common-events.log
+roby-display ./logs/current/common-events.log
 {: .cmdline}
 
 [![Roby display](200_roby_display_thumb.png)](200_roby_display.png)
@@ -198,13 +200,13 @@ __(Click to enlarge)__
 
 The same display can be used at runtime, i.e. in parallel to the composition start the display with:
 
-roby display
+roby-display
 {: .cmdline}
 
 Including when the controller is running on another host, with the --host
 parameter:
 
-roby display --host=remote_host
+roby-display --host=remote_host
 {: .cmdline}
 
 Summary

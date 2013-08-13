@@ -21,12 +21,12 @@ In a more concrete manner, this tutorial will show you:
  * how to select which command source should be used
 
 The next tutorial will then deal with the _runtime workflow_ when using
-syskit: how to switch between different modalities / sources, how to
-restart components that crashed, ...
+syskit, e.g., how to switch between different modalities / sources and how to
+restart components that crashed.
 
 Data Services
 -------------
-Data service describe two things:
+A data service describes two things:
 
  * the (minimal) expected interface, i.e. what input and output ports a component needs to have in order to support the service
  * the expected functionality, what the component does with this data. This particular information is contained in the data service name
@@ -45,7 +45,7 @@ Abstracting the command generator
 In our case, we want to modify the result of the previous tutorial to allow the
 selection of the command generator, i.e. being able to use different generators.
 
-The first step is to define a generic CommandGeneratorSrv data service. Copy the
+The first step is to define a generic data service and naming it 'CommandGeneratorSrv'. Copy the
 scripts/01_joystick.rb to scripts/02_services.rb and add the following at the top:
 
 ~~~ ruby

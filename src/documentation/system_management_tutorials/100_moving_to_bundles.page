@@ -43,7 +43,7 @@ installation by going in bundles/ and doing
 cd ~/dev/bundles
 rock-create-bundle tutorial
 cd tutorial
-roby init
+syskit init
 # ONLY FOR THIS TUTORIAL
 # This normally not something you want to do
 mv config/bundle.yml config/bundle-yml.bak
