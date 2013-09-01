@@ -30,9 +30,8 @@ All task contexts get the following task arguments:
    this task context.
 
 At runtime, Roby events are used to represent all state transitions except the
-one to and from PRE_OPERATIONAL. The case of configuration will be detailed
-later on in the [runtime](runtime.html) section of this guide. The RTT
-TaskContext state transitions are mapped to the following events:
+one to and from PRE_OPERATIONAL. The RTT TaskContext state transitions are
+mapped to the following events:
 
  * __success__: transition to STOPPED
  * __exception__: transition to EXCEPTION
@@ -142,7 +141,7 @@ Extending with standard Roby execution features {#extend-with-code}
 -----------------------------------------------
 Composition models are subclasses of {rdoc_class: Syskit::TaskContext} which is itself a
 grandchild of Roby::Task. As such, much more can be done using the [runtime code
-execution features of Roby](/api/tools/roby/building_plans/tasks.html).
+execution features of Roby](/api/tools/roby/building/tasks.html).
 
 For instance, to add a poll handler to the same task context, one would add the following
 code:
