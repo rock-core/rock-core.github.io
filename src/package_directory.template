@@ -24,7 +24,8 @@ $(document).ready(function () {
 
 --- name:leftbar 
 <div class="nav3">
-  <ul><li class="title">Package Directory</li>
+  <div class="title">Package Directory</div>
+  <ul>
       <li class="webgen-menu-level1"><a href="{relocatable: /pkg}">Packages</a></li>
       <li class="separator"></li>
       <li class="webgen-menu-level1"><a href="{relocatable: /tasks}">oroGen tasks</a></li>
@@ -35,7 +36,6 @@ $(document).ready(function () {
       <li class="separator"></li>
       <li class="webgen-menu-level1"><a href="{relocatable: /osdeps}">OS Dependencies</a></li>
   </ul>
-  <ul><li class="title">Status</li>
-      {menu: {start_level: 1, filter: /status_.*\.html}}
-  </ul>
+  <div class="title">Status</div>
+  {menu: {start_level: 1, filter: /status_.*\.html}}
 </div>
