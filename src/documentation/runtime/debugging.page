@@ -74,4 +74,5 @@ end
 
 in which case the valgrind output is redirected to a separate process logfile,
 which is the process' log file name with .valgrind appended (in the example
-above, task-<pid>.log.valgrind and my_deployment-<pid>.log.valgrind)
+above, task-PID.log.valgrind and my_deployment-PID.log.valgrind, where PID is
+the process ID of the started deployment)
