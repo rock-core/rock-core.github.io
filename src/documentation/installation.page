@@ -43,7 +43,7 @@ Installation: the easy way
  2. Create and "cd" into the directory in which you want to install the toolchain
  3. To build the base system (base packages + toolchain, but no
     libraries/components), use this
-    [bootstrap.sh](http://gitorious.org/rock/buildconf/blobs/raw/master/bootstrap.sh)
+    [bootstrap.sh](https://gitorious.org/rock/buildconf/raw/a05ea84e6cccf505554268f954bc259d30c15b99:bootstrap.sh)
     script. Save it  in the folder you just created. For other options, see
     below.
 
@@ -74,7 +74,7 @@ Installation: the easy way
 Other bootstrapping options
 ---------------------------
 
- * **to build all of Rock**, use [this bootstrap.sh](http://gitorious.org/rock/buildconf-all/blobs/raw/master/bootstrap.sh)
+ * **to build all of Rock**, use [this bootstrap.sh](https://gitorious.org/rock/buildconf-all/raw/a6f93c3323f3956808dd35cbbf787a7ecfee1762:bootstrap.sh)
    instead of the one listed above. '''This is really meant for continuous
    integration servers'''. It is going to build all the packages that are
    defined within Rock, which is probably not what you want.
