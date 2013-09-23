@@ -33,7 +33,7 @@ Widget for plotting sensor data
     sensor.configure
     sensor.start 
 
-    sensor.data.connect_to |sample,_|
+    sensor.data.connect_to do |sample,_|
       widget.update sample.field2.to_f,"sample1"
       widget.update sample.field2.to_f,"sample2"
     end

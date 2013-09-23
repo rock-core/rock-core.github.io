@@ -88,7 +88,7 @@ The manifest.xml will have been filled with the information you provided already
 <depend package="basics_tutorial/message_driver" />
 {coderay}
 
-The message_producer.orogen is the specification file of the your new oroGen component, and allows you to define Orocos tasks. 
+The message_producer.orogen is the specification file of your new oroGen component, and allows you to define Orocos tasks. 
 The goal is to create a component which produces messages at a rate of 1 Hz, so the component only requires an output port for messages. 
 
 {coderay:: ruby}
