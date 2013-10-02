@@ -24,7 +24,7 @@ tracker gives the pose of the body in the reference frame.
 
 To add a bit more interesting effects, the lidar and cameras are mounted on a
 tilt unit with a single servo motor. The position of these sensors w.r.t. the
-body is therefore 
+body is therefore changing during operation. 
 
 If the robot moves during acquisition, it is obviously critical that the "right"
 association is made between the different channels. However, the different data
