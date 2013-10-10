@@ -46,14 +46,14 @@ the command line from the library folder to add a ready to run dummy visualizati
 {: .note}
 
 For writing a custom Vizkit3DPlugin one needs to derive from the template 
-class vizkit::Vizkit3DPlugin&lt;T&gt;, where the template argument T is the data type
+class vizkit3d::Vizkit3DPlugin&lt;T&gt;, where the template argument T is the data type
 that should be visualized. 
 
 {coderay:: cpp}
 #include <Eigen/Geometry>
-#include <vizkit/Vizkit3DPlugin.hpp>
+#include <vizkit3d/Vizkit3DPlugin.hpp>
 
-namespace vizkit 
+namespace vizkit3d 
 {
 
 class TrajectoryVisualisation 
@@ -103,14 +103,14 @@ called from within the visualization thread, when it is safe to access both your
 internal model (e.g. the path vector) and the osg::Node that represents your
 visualization. In this method, you need to modify the osg::Node to reflect the
 internal state of the visualization (e.g. create the osg structures to visualize
-the path). See the TrajectoryVisualization class in the vizkit package for an
+the path). See the TrajectoryVisualization class in the base/types package for an
 actual implementation.
 
 When writing plugins that don't visualize data types that are base data
-types, they do not go into the vizkit package, but usually into the package
+types, they do not go into the base/type package, but usually into the package
 that defines the datatype to be visualized. Follow the convention and
  add a directory in that package with the name viz, that builds
-optionally depending on weather gui/vizkit is available or not.
+optionally depending on weather gui/vizkit3d is available or not.
 
 Therefore, the following needs to added to the package:
 To the manifest:
@@ -118,7 +118,7 @@ To the manifest:
 {coderay:: xml}
 <package>
     ...
-    <depend package="gui/vizkit" optional="1" />
+    <depend package="gui/vizkit3d" optional="1" />
 </package>
 {coderay}
 
@@ -174,9 +174,9 @@ You also have to add an invokable qt method to your plugin calling the updateDat
 
 {coderay:: cpp}
 #include <Eigen/Geometry>
-#include <vizkit/Vizkit3DPlugin.hpp>
+#include <vizkit3d/Vizkit3DPlugin.hpp>
 
-namespace vizkit 
+namespace vizkit3d
 {
 
 class TrajectoryVisualisation 
