@@ -11,7 +11,8 @@ This tutorial will give you some handson experience on:
  * how to create libraries in Rock
  * how to embed them into the build system of Rock
 
-If you don't want to execute the following steps by yourself, the result can also be found in the package 'basics_tutorial/' after you [installed the tutorial package set](/documentation/tutorials/index.html#installing).
+If you don't want to execute the following steps by yourself, the result can
+also be found in the package 'tutorials/' after you [installed the tutorial package set](/documentation/tutorials/index.html#installing).
 
 For this tutorial it is assumed that your autoproj installation can be found in ~/dev.
 
@@ -23,17 +24,19 @@ For the message producer and the consumer we will create a message library to pr
 Now, that it is clear what functionality is needed you can start writing the library. 
 Note, that Rock strongly suggests to encapsulate your main functionality in libraries. Thus, your library code remains independent of the actual framework in use, and can be easily reused and maintained separately from any framework that wraps this functionality.
 
-Rock allows you to create a C++ library from an existing template. Calling the command 'rock-create-lib' starts a command line dialog to create a library called 'basics_tutorial/message_driver'. Remember: ~/dev is here the path to the Rock installation. It might differ on your machine.
+Rock allows you to create a C++ library from an existing template. Calling the
+command 'rock-create-lib' starts a command line dialog to create a library
+called 'tutorials/message_driver'. Remember: ~/dev is here the path to the Rock installation. It might differ on your machine.
 
 {coderay:: text}
-~/dev$ rock-create-lib basics_tutorial/message_driver
+~/dev$ rock-create-lib tutorials/message_driver
 {coderay}
 
 Once called the create script a command line dialog is started, that will request basic information to configure the template for you. The following output is the output of the script AND the expected answers. Do not copy/paste the whole block at once !
 
 {coderay:: text}
 Initialized empty Git repository 
-in ~/dev/basics_tutorial/message_driver/.git/
+in ~/dev/tutorials/message_driver/.git/
 Do you want to start the configuration of
 the cmake project: message_driver
 Proceed [y|n]
@@ -56,7 +59,7 @@ Enter your dependencies as a comma separated list.
 Press ENTER when finished:
 base/types
 Initialized empty shared Git repository 
-in ~/dev/basics_tutorial/message_driver/.git/
+in ~/dev/tutorials/message_driver/.git/
 [master (root-commit) 37aa552] Initial commit
 8 files changed, 108 insertions(+), 0 deletions(-)
 create mode 100644 CMakeLists.txt
@@ -75,7 +78,7 @@ Done.
 The newly created package comes in a ready to run after a fashion: you can build and install it right away using the build tool [autoproj](/documentation/autoproj/basic_usage.html)
 
 ~~~
-amake basics_tutorial/message_driver
+amake tutorials/message_driver
 ~~~
 
 ***NOTE***: The template project will generate several file for you in the src/ and
@@ -258,7 +261,7 @@ package_sets:
 layout:
    - rock.base
    - rock.toolchain
-   - basics_tutorial/message_driver
+   - tutorials/message_driver
 ~~~
 
 ### Build it
