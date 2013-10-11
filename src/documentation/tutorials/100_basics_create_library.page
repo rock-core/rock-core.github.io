@@ -23,7 +23,7 @@ For the message producer and the consumer we will create a message library to pr
 Now, that it is clear what functionality is needed you can start writing the library. 
 Note, that Rock strongly suggests to encapsulate your main functionality in libraries. Thus, your library code remains independent of the actual framework in use, and can be easily reused and maintained separately from any framework that wraps this functionality.
 
-Rock allows you to create a C++-library from an existing template - this template has been defined by Rock maintainers and can be found in base/templates). Calling the command 'rock-create-lib' starts a command line dialog to create a library called 'basics_tutorial/message_driver'. Remember: ~/dev is here the path to the Rock installation. It might differ on your machine.
+Rock allows you to create a C++ library from an existing template. Calling the command 'rock-create-lib' starts a command line dialog to create a library called 'basics_tutorial/message_driver'. Remember: ~/dev is here the path to the Rock installation. It might differ on your machine.
 
 {coderay:: text}
 ~/dev$ rock-create-lib basics_tutorial/message_driver
@@ -78,15 +78,26 @@ The newly created package comes in a ready to run after a fashion: you can build
 amake basics_tutorial/message_driver
 ~~~
 
-When calling amake in a package folder, it is the same as calling 'autoproj build .'. In the following tutorials 'amake' will be used. However, feel free to choose [more ...](/documentation/autoproj/basic_usage.html)
-
-***NOTE***: The template project will generate several file for you: Dummy.cpp, Dummy.hpp, and Main.cpp. This should facilitate the initial modification of the CMakeLists.txt file, once you get started with your own libraries. You can choose to either reuse the dummy files by renaming and adapting them, or you just remove them and put your own files in place.
+***NOTE***: The template project will generate several file for you in the src/ and
+test/ directories. This is meant to give you an example, but these files are
+usually deleted as soon as you start developing the library. Don't forget to
+remove the corresponding references from src/CMakeLists.txt and
+test/CMakeLists.txt as well.
 {: .warning}
 
 ### Adding the required functionality
-The library does not contain message handling capabilities yet. So, we create three new files, i.e. a header file Messages.hpp which will contain the message type that is used to transport message between components, and a header and source file for the MessageDriver. Put all files into the src/ folder of the newly created package.
+The library does not contain message handling capabilities yet. So, we create
+three new files, i.e. a header file Messages.hpp which will contain the message
+type that is used to transport message between components, and a header and
+source file for the MessageDriver. Put all files into the src/ folder of the
+newly created package.
 
-***NOTE***: Rock recommends to stick to use CamelCase for new structures, and to name the files after the class it defines (i.e. Message.hpp defines the Message structure, MessageDriver.hpp declares the MessageDriver class and MessageDriver.cpp defines it). However, due to historic reasons not all packages of Rock conform to this style. 
+***NOTE***: Rock recommends to stick to use CamelCase for new structures, and to
+name the files after the class it defines (i.e. Message.hpp defines the Message
+structure, MessageDriver.hpp declares the MessageDriver class and
+MessageDriver.cpp defines it). However, due to historic reasons not all packages
+of Rock conform to this style. See [these guidelines](http://rock.opendfki.de/wiki/WikiStart/Standards/RG4)
+for more information
 {: .warning}
 
 In Rock, common C++ types are defined [in the base/types package]({rock_pkg:
@@ -142,11 +153,6 @@ namespace message_driver
 }
 #endif // _MESSAGE_DRIVER_MESSAGE_HPP_
 ~~~
-
-There are some constraints on designing custom types that will be used on
-component interfaces. Check the [general
-documentation](../orogen/task_interface.html) for details.
-{: .warning}
 
 To follow the Rock guidelines, the MessageDriver class should be declared in
 src/MessageDriver.hpp and defined in src/MessageDriver.cpp.
@@ -212,11 +218,12 @@ void MessageDriver::printMessage(const Message& msg)
 
 ### Build
 
-In Rock, two in charge
-
-To build our library, we first need to define it in src/CMakeLists.txt [CMake](http://www.cmake.org/cmake/help/documentation.html), the 
-
-Once you created a library in Rock integrate it into the build system autoproj. The first step towards integration into the build system is adding the newly created files to the src/CMakeLists.txt file, since Rock default C++ libraries use  for the build process. Rock also comes with some CMake macros that facilitate setting up libraries, and resolving any required dependencies ( have a look [here](../packages/cmake_macros.html) for details).
+Once you created a library in Rock integrate it into the build system autoproj.
+The first step towards integration into the build system is adding the newly
+created files to the src/CMakeLists.txt file, since Rock default C++ libraries
+use CMake for the build process. Rock also comes with some CMake macros that
+facilitate setting up libraries, and resolving any required dependencies (have
+a look [here](../packages/cmake_macros.html) for details).
 
 ~~~
 rock_library(message_driver
@@ -228,9 +235,17 @@ rock_library(message_driver
 # compiles Main.cpp, as it is not used anymore
 ~~~
 
-After adapting the CMakeLists.txt add the package to the build configuration, so that eventually you can embedded the library into oroGen components. The easiest way to adapt the build configuration is by adding the package to the manifest's layout section. Thus, edit ~/dev/autoproj/manifest and add the package to the layout section. Package management in detail is discussed in [Adding packages](/documentation/autoproj/adding_packages.html)
+After adapting the CMakeLists.txt add the package to the build configuration, so
+that eventually you can embedded the library into oroGen components. The easiest
+way to adapt the build configuration is by adding the package to the manifest's
+layout section. Thus, edit ~/dev/autoproj/manifest and add the package to the
+layout section. Package management in detail is discussed in [Adding
+packages](/documentation/autoproj/adding_packages.html)
+{: #add-to-manifest}
 
-***NOTE***: When adding the package, make sure you use the same indentation as the previous line, here '- rock.toolchain'. The manifest file is parsed as .yaml, and thus relies on proper indentation.
+***NOTE***: When adding the package, make sure you use the same indentation as
+the previous line, here '- rock.toolchain'. The manifest file is parsed as
+.yaml, and thus relies on proper indentation.
 {: .warning}
 
 ~~~
@@ -250,14 +265,14 @@ layout:
 Just verify that your component builds and you finished your first Rock tutorial.
 
 ~~~
-amake basics_tutorial/message_driver
+amake
 ~~~
 
 Summary
 ----------------------------
 In this tutorial you have learned to: 
 
- * create a C++-library from the Rock template
+ * create a C++ library from the Rock template
  * embed new packages into the build system
 
 In the next tutorial you will learn how to create an oroGen component and embed you library into it.
