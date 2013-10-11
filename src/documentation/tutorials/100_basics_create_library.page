@@ -77,11 +77,6 @@ The newly created package comes in a ready to run after a fashion: you can build
 {coderay:: text}
 amake basics_tutorial/message_driver
 {coderay}
-or 
-
-{coderay:: text}
-autoproj build basics_tutorial/message_driver
-{coderay}
 
 When calling amake in a package folder, it is the same as calling 'autoproj build .'. In the following tutorials 'amake' will be used. However, feel free to choose [more ...](/documentation/autoproj/basic_usage.html)
 

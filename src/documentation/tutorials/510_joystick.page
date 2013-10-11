@@ -39,10 +39,12 @@ from the list, which is defined in 'drivers/orogen/controldev'.
 In order to install the package to your installation, either do 
 
 {coderay:: text}
-autoproj build drivers/orogen/controldev
+amake drivers/orogen/controldev
 {coderay}
-which will install the current version of the package, but not update / build it later,
-or edit the manifest file in your autoproj directory to add it permanently.
+
+which will install the current version of the package, but not update / build it
+later. To permanently integrate it into your whole installation, you have to [edit the
+manifest file](100_basics_create_library.html#add-to-manifest).
 
 Integration of the task
 ----------
