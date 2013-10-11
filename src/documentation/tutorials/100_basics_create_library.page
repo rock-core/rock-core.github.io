@@ -74,9 +74,9 @@ Done.
 
 The newly created package comes in a ready to run after a fashion: you can build and install it right away using the build tool [autoproj](/documentation/autoproj/basic_usage.html)
 
-{coderay:: text}
+~~~
 amake basics_tutorial/message_driver
-{coderay}
+~~~
 
 When calling amake in a package folder, it is the same as calling 'autoproj build .'. In the following tutorials 'amake' will be used. However, feel free to choose [more ...](/documentation/autoproj/basic_usage.html)
 
@@ -100,15 +100,15 @@ First things first, we need to declare the dependency on the base/types package.
 Edit manifest.xml and make sure that the following line is there (it should
 already be):
 
-{coderay:: xml}
+~~~ xml
 <depend package="base/types" />
-{coderay}
+~~~
 
 The message class definition will be contained in a header called
 src/Message.hpp, to follow Rock naming guidelines (a Message class should be
 declared in the src/Message.hpp header). It should contain the following code:
 
-{coderay:: c++}
+~~~ cpp
 #ifndef _MESSAGE_DRIVER_MESSAGE_HPP_
 #define _MESSAGE_DRIVER_MESSAGE_HPP_
 
@@ -141,7 +141,7 @@ namespace message_driver
 
 }
 #endif // _MESSAGE_DRIVER_MESSAGE_HPP_
-{coderay}
+~~~
 
 There are some constraints on designing custom types that will be used on
 component interfaces. Check the [general
@@ -152,7 +152,7 @@ To follow the Rock guidelines, the MessageDriver class should be declared in
 src/MessageDriver.hpp and defined in src/MessageDriver.cpp.
 src/MessageDriver.hpp should therefore contain:
 
-{coderay:: c++}
+~~~ cpp
 #ifndef _MESSAGE_DRIVER_HPP_
 #define _MESSAGE_DRIVER_HPP_
 
@@ -181,12 +181,12 @@ public:
 }
 
 #endif // _MESSAGE_DRIVER_HPP_
-{coderay}
+~~~
 
 And, finally, the driver implementation creates the timestamped message, and is
 in src/MessageDriver.cpp:
 
-{coderay:: c++}
+~~~ cpp
 #include "MessageDriver.hpp"
 #include <iostream>
 
@@ -207,7 +207,7 @@ void MessageDriver::printMessage(const Message& msg)
 }
 
 }
-{coderay}
+~~~
 
 
 ### Build
@@ -218,7 +218,7 @@ To build our library, we first need to define it in src/CMakeLists.txt [CMake](h
 
 Once you created a library in Rock integrate it into the build system autoproj. The first step towards integration into the build system is adding the newly created files to the src/CMakeLists.txt file, since Rock default C++ libraries use  for the build process. Rock also comes with some CMake macros that facilitate setting up libraries, and resolving any required dependencies ( have a look [here](../packages/cmake_macros.html) for details).
 
-{coderay:: text}
+~~~
 rock_library(message_driver
     SOURCES MessageDriver.cpp
     HEADERS MessageDriver.hpp Message.hpp
@@ -226,14 +226,14 @@ rock_library(message_driver
 
 # Do not forget to remove the rock_executable line that 
 # compiles Main.cpp, as it is not used anymore
-{coderay}
+~~~
 
 After adapting the CMakeLists.txt add the package to the build configuration, so that eventually you can embedded the library into oroGen components. The easiest way to adapt the build configuration is by adding the package to the manifest's layout section. Thus, edit ~/dev/autoproj/manifest and add the package to the layout section. Package management in detail is discussed in [Adding packages](/documentation/autoproj/adding_packages.html)
 
 ***NOTE***: When adding the package, make sure you use the same indentation as the previous line, here '- rock.toolchain'. The manifest file is parsed as .yaml, and thus relies on proper indentation.
 {: .warning}
 
-{coderay:: text}
+~~~
 package_sets:
   - gitorious: rock-toolchain/package_set
 
@@ -244,15 +244,14 @@ layout:
    - rock.base
    - rock.toolchain
    - basics_tutorial/message_driver
-{coderay}
+~~~
 
 ### Build it
 Just verify that your component builds and you finished your first Rock tutorial.
 
-{coderay:: text}
+~~~
 amake basics_tutorial/message_driver
-{coderay}
-
+~~~
 
 Summary
 ----------------------------
