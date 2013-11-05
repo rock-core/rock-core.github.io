@@ -90,5 +90,41 @@ Rock::CorridorNavigation::Servoing.
   )
 ~~~
 
-In general, have a look at the documentation for [Syskit::InstanceRequirements]({rock_api: tools/syskit}/{rdoc_path: Syskit::InstanceRequirements}) to get all the available specifications that can be added to an
-instance requirement object.
+Finally, when selecting a composition child and/or selecting something for a
+service, one might need to select a service explicitly (for instance because the
+selected composition / task provides multiple services of the same kind). This
+is done by providing the service as selection, instead of only the task.
+
+~~~ ruby
+Rock::CorridorNavigation::Servoing.
+  with_arguments(:target_point => Eigen::Vector3.new(10, 12, 0)).
+  use('pose' => PoseEstimation.pose_srv)
+~~~
+
+when done on a full instance requirement object, it has to be done at the end
+(e.g. after the use() and other statements)
+
+~~~ ruby
+Rock::CorridorNavigation::Servoing.
+  with_arguments(:target_point => Eigen::Vector3.new(10, 12, 0)).
+  use('pose' => PoseEstimation.
+    use('orientation' => XsensImu::Task.
+        with_conf('default', 'high_sampling_rate')
+    ).pose_srv
+  )
+~~~
+
+Summary
+-------
+This page explained the general syntax and concepts related to dependency
+injection in syskit. However, you probably noticed how it could become pretty
+tedious for complex systems.
+
+To promote reuse of _configured subsystems_, as well as allowing to _name
+subsystems_, syskit introduces the concept of __profiles__. This is the subject
+of [the next page](profiles.html)
+
+In general, have a look at the documentation for
+[Syskit::InstanceRequirements]({rock_api: tools/syskit}/{rdoc_path:
+Syskit::InstanceRequirements}) to get all the available specifications that can
+be added to an instance requirement object.
