@@ -11,7 +11,7 @@ This tutorial will give you some hands-on experience on:
  * how to model an oroGen component and embed a library
  * how to run a component
 
-If you don't want to execute the following steps by yourself, the result can also be found in '~dev/basics_tutorial'.
+If you don't want to execute the following steps by yourself, the result can also be found in '~dev/tutorials'.
 For this tutorial it is assumed that your autoproj installation can be found in ~/dev.
 
 The component we want to create will **integrate** the functionality of the
@@ -47,7 +47,7 @@ This tutorial does not cover all details of Orocos components but you will find 
 Similar to the creation of a library you start to create an oroGen component using the command 'rock-create-orogen'. 
 
 {coderay:: text}
-~/dev$ rock-create-orogen basics_tutorial/orogen/message_producer
+~/dev$ rock-create-orogen tutorials/orogen/message_producer
 {coderay}
 
 You will see the same configuration dialog as when calling rock-create-lib.
@@ -69,7 +69,7 @@ Url (optional):
 
 Enter your dependencies as a comma separated list. 
 Press ENTER when finished:
-basics_tutorial/message_driver
+tutorials/message_driver
 {coderay}
 
 As a convention, all oroGen components are created inside an orogen/ subfolder
@@ -81,11 +81,11 @@ tutorials/message_producer and tutorials/orogen/message_producer).
 
 ### Define tasks
 
-The previous command creates a new folder 'basics_tutorial/orogen/message_producer'. Inside you find two files: manifest.xml and message_producer.orogen.
+The previous command creates a new folder 'tutorials/orogen/message_producer'. Inside you find two files: manifest.xml and message_producer.orogen.
 The manifest.xml will have been filled with the information you provided already, but when you need to add additional dependencies to libraries or oroGen components you will have to edit manifest.xml directly. Since you want to use your newly created library, check that your library has been added as dependency.
 
 {coderay:: xml}
-<depend package="basics_tutorial/message_driver" />
+<depend package="tutorials/message_driver" />
 {coderay}
 
 The message_producer.orogen is the specification file of your new oroGen component, and allows you to define Orocos tasks. 
@@ -139,8 +139,8 @@ package_sets:
 layout:
   - rock.base
   - rock.toolchain
-  - basics_tutorial/message_driver
-  - basics_tutorial/orogen/message_producer
+  - tutorials/message_driver
+  - tutorials/orogen/message_producer
 {coderay}
 
 And then call amake in the package's folder.
@@ -220,7 +220,7 @@ void Task::updateHook()
 To build your first component call:
 
 {coderay:: text}
-amake basics_tutorial/orogen/message_producer
+amake tutorials/orogen/message_producer
 {coderay}
 
 Or, assuming that you are in the message_producer folder or in one of its
