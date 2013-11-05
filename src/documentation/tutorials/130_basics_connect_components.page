@@ -22,7 +22,7 @@ The final setup will look like:
 Create a consumer component
 -----------------------------
 
-Your first task in this tutorial is to apply the acquired knowleged from the previous tutorials, and prepare a consumer component named 'message_consumer' and place in 'basics_tutorial/orogen/'. Perform all step up to the point where you can edit the orogen specification, i.e.:
+Your first task in this tutorial is to apply the acquired knowleged from the previous tutorials, and prepare a consumer component named 'message_consumer' and place in 'tutorials/orogen/'. Perform all step up to the point where you can edit the orogen specification, i.e.:
 
  * use [rock-create-orogen](110_basics_create_component.html) to create your component (note: you will need a
    dependency on both message\_driver and message\_producer)

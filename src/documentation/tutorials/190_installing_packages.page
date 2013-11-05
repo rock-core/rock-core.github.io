@@ -90,9 +90,9 @@ layout:
   - gui/rock_widget_collection
 {coderay}
 
-Now, if you call *autoproj build* on the command line autoproj is downloading and installing the two libraries. 
+Now, if you call *amake* on the command line autoproj is downloading and installing the two libraries. 
 
-    autoproj build 
+    amake
 
 In this case to check if everything went fine, open a new terminal, go to the
 autoproj installation, source the environment (source env.sh) and call

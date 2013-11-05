@@ -281,4 +281,4 @@ Base::Motion2DControllerSrv
 
 The next necessary step, in order to have a new completely functional bundle
 again, is to have a look at devices. This is the subject [of the next
-tutorial](800_devices.page)
+tutorial](800_devices.html)

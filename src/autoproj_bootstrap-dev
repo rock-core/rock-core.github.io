@@ -12,12 +12,12 @@ end
 
 require 'rbconfig'
 module Autobuild
-    @windows = RbConfig::CONFIG["host_os"] =~%r!(msdos|mswin|djgpp|mingw|[Ww]indows)!
+    @windows = RbConfig::CONFIG["host_os"] =~ %r!(msdos|mswin|djgpp|mingw|[Ww]indows)!
     def self.windows?
         @windows
     end
 
-    @macos =  RbConfig::CONFIG["host_os"] = ~%r!([Dd]arwin)!
+    @macos =  RbConfig::CONFIG["host_os"] =~ %r!([Dd]arwin)!
     def self.macos?
         @macos
     end
@@ -450,11 +450,8 @@ fi
                 Autobuild.env_init_from_env 'GEM_PATH'
 
                 orig_gem_path = Autobuild::ORIGINAL_ENV['GEM_PATH'].split(':')
-                Gem.default_path.each do |p|
-                    if !orig_gem_path.include?(p)
-                        orig_gem_path << ":#{p}"
-                    end
-                end
+                Autobuild::SYSTEM_ENV['GEM_PATH'] = Gem.default_path
+                Autobuild::ORIGINAL_ENV['GEM_PATH'] = orig_gem_path.join(":")
 
                 Autoproj.manifest.each_reused_autoproj_installation do |p|
                     p_gems = File.join(Autoproj.root_dir, '.gems')
@@ -571,8 +568,8 @@ fi
                             if gem_fetcher.respond_to?(:find_matching)
                                 gem_fetcher.find_matching(dep, true, true, GemManager.with_prerelease).map(&:first)
                             else # Post RubyGems-2.0
-                                type = if GemManager.with_prerelease then :prerelease
-                                       else :complete
+                                type = if GemManager.with_prerelease then :complete
+                                       else :released
                                        end
 
                                 gem_fetcher.detect(type) do |tuple|
@@ -808,6 +805,7 @@ fi
             PackageManagers::GemManager,
             PackageManagers::EmergeManager,
             PackageManagers::PacmanManager,
+            PackageManagers::PacmanManager,
             PackageManagers::YumManager,
             PackageManagers::PortManager,
             PackageManagers::PipManager]
@@ -815,6 +813,7 @@ fi
             'debian' => 'apt-dpkg',
             'gentoo' => 'emerge',
             'arch' => 'pacman',
+            'manjarolinux' => 'pacman',
             'fedora' => 'yum',
             'darwin' => 'port'
         }
@@ -1003,12 +1002,14 @@ fi
                 Autoproj.message "  autodetecting the operating system"
                 lsb_name, lsb_versions = os_from_lsb
                 if lsb_name
-                    if lsb_name != "debian"
-                        if File.exists?("/etc/debian_version")
-                            @operating_system = [[lsb_name, "debian"], lsb_versions]
-                        else
-                            @operating_system = [[lsb_name], lsb_versions]
-                        end
+                    if lsb_name != 'debian' && File.exists?("/etc/debian_version")
+                        @operating_system = [[lsb_name, "debian"], lsb_versions]
+                    elsif lsb_name != 'arch' && File.exists?("/etc/arch-release")
+                        @operating_system = [[lsb_name, "arch"], lsb_versions]
+                    elsif lsb_name != 'debian'
+                        # Debian unstable cannot be detected with lsb_release,
+                        # so debian has its own detection logic
+                        @operating_system = [[lsb_name], lsb_versions]
                     end
                 end
             end
@@ -1424,25 +1425,27 @@ usually able to install those automatically, but unfortunately your operating
 system is not (yet) supported by autoproj's osdeps mechanism, it can only offer
 you some limited support.
 
-RubyGem packages are a cross-platform mechanism, and are therefore supported.
-However, you will have to install the kind of OS dependencies (so-called OS
-packages)
+Some package handlers are cross-platform, and are therefore supported.  However,
+you will have to install the kind of OS dependencies (so-called OS packages)
 
 This option is meant to allow you to control autoproj's behaviour while handling
 OS dependencies.
 
+* if you say "all", all OS-independent packages are going to be installed.
 * if you say "gem", the RubyGem packages will be installed.
+* if you say "pip", the Pythin PIP packages will be installed.
 * if you say "none", autoproj will not do anything related to the OS
   dependencies.
 
 As any configuration value, the mode can be changed anytime by calling
   autoproj reconfigure
 
-Finally, the "autoproj osdeps" command will give you the necessary information about the OS packages that you will need to install manually.
+Finally, the "autoproj osdeps" command will give you the necessary information
+about the OS packages that you will need to install manually.
 
-So, what do you want ? (either 'all', 'none', or a comma-separated list of 'gem' and 'pip' -- without the quotes)
+So, what do you want ? (all, none or a comma-separated list of: gem pip)
             EOT
-            message = [ "Which prepackaged software (a.k.a. 'osdeps') should autoproj install automatically ('all', 'none', or a comma-separated list of 'gem' and 'pip' -- without the quotes) ?", long_doc.strip ]
+            message = [ "Which prepackaged software (a.k.a. 'osdeps') should autoproj install automatically (all, none or a comma-separated list of: gem pip) ?", long_doc.strip ]
 
 	    Autoproj.configuration_option 'osdeps_mode', 'string',
 		:default => 'ruby',
@@ -1473,14 +1476,17 @@ while handling OS dependencies.
 * if you say "none", autoproj will not do anything related to the
   OS dependencies.
 
+Finally, you can provide a comma-separated list of pip gem and os.
+
 As any configuration value, the mode can be changed anytime by calling
   autoproj reconfigure
 
-Finally, the "autoproj osdeps" command 
+Finally, the "autoproj osdeps" command will give you the necessary information
+about the OS packages that you will need to install manually.
 
-So, what do you want ? (either 'all', 'none', or a comma-separated list of 'os', 'gem' and 'pip' -- without the quotes)
+So, what do you want ? (all, none or a comma-separated list of: os gem pip)
             EOT
-            message = [ "Which prepackaged software (a.k.a. 'osdeps') should autoproj install automatically ('all', 'none', or a comma-separated list of 'os', 'gem' and 'pip' -- without the quotes) ?", long_doc.strip ]
+            message = [ "Which prepackaged software (a.k.a. 'osdeps') should autoproj install automatically (all, none or a comma-separated list of: os gem pip) ?", long_doc.strip ]
 
 	    Autoproj.configuration_option 'osdeps_mode', 'string',
 		:default => 'all',
@@ -1497,14 +1503,20 @@ So, what do you want ? (either 'all', 'none', or a comma-separated list of 'os',
         end
 
         def self.osdeps_mode_string_to_value(string)
-            string = string.to_s.downcase
-            case string
-            when 'all'  then ['os', 'gem', 'pip']
-            when 'ruby' then ['gem']
-            when 'os'   then ['os']
-            when 'none' then ['none']
-            else string.split(',')
+            string = string.to_s.downcase.split(',')
+            modes = []
+            string.map do |str|
+                case str
+                when 'all'  then modes.concat(['os', 'gem', 'pip'])
+                when 'ruby' then modes << 'gem'
+                when 'gem'  then modes << 'gem'
+                when 'pip'  then modes << 'pip'
+                when 'os'   then modes << 'os'
+                when 'none' then modes << 'none'
+                else raise ArgumentError, "#{str} is not a known package handler"
+                end
             end
+            modes
         end
 
         # If set to true (the default), #install will try to remove the list of
@@ -1584,7 +1596,7 @@ So, what do you want ? (either 'all', 'none', or a comma-separated list of 'os',
             package_handlers.each_value do |handler|
                 handler.enabled = false
             end
-            osdeps_mode.each do |m|
+            options[:osdeps_mode].each do |m|
                 if m == 'os'
                     os_package_handler.enabled = true
                 else
@@ -2081,127 +2093,130 @@ module Autoproj
 end
 
 DEFS = <<EODEFS
---- 
-pip: 
-  debian,ubuntu: python-pip
-cvs: 
-  debian,ubuntu: cvs
-  darwin: cvs
-  fedora: cvs
-archive: 
-  debian,ubuntu: 
-  - tar
-  - unzip
-  darwin: 
-  - gnutar
-  - unzip
-  fedora: 
-  - tar
-  - unzip
-  gentoo: 
-  - app-arch/tar
-  - app-arch/unzip
-  arch: 
-  - tar
-  - unzip
-autobuild: gem
-ruby19: 
-  darwin: 
-  - ruby19
-  - rake
-  ubuntu: 
-  - ruby1.9.1
-  - ruby1.9.1-dev
-  - rubygems1.9.1
-  - ri1.9.1
-  - libopenssl-ruby1.9.1
-  - rake
-  fedora: 
-    "17": 
-    - ruby
-    - rubygems
-  debian: 
-  - ruby1.9.1
-  - ruby1.9.1-dev
-  - rubygems1.9.1
-  - rake
-  - rubygems-integration
-  default: nonexistent
-  gentoo: 
-  - dev-lang/ruby:1.9
-  - rake
-  arch: 
-  - ruby
-  - rake
-ruby18: 
-  debian,ubuntu: 
+---
+none: ignore
+ruby18:
+  debian,ubuntu:
   - ruby1.8-dev
   - ruby1.8
   - rubygems1.8
   - ri1.8
   - libopenssl-ruby1.8
   - rake
-  darwin: 
-  - ruby
-  - rb-rake
-  fedora: 
-    "15,16": 
-    - ruby
-    - rubygems
-  default: nonexistent
-  gentoo: 
+  gentoo:
   - dev-lang/ruby:1.8
   - rake
-autotools: 
-  debian,ubuntu: 
+  fedora:
+    '15,16':
+    - ruby
+    - rubygems
+  darwin:
+  - ruby
+  - rb-rake
+  default: nonexistent
+ruby19:
+  debian:
+  - ruby1.9.1
+  - ruby1.9.1-dev
+  - rubygems1.9.1
+  - rake
+  - rubygems-integration
+  ubuntu:
+  - ruby1.9.1
+  - ruby1.9.1-dev
+  - rubygems1.9.1
+  - ri1.9.1
+  - libopenssl-ruby1.9.1
+  - rake
+  gentoo:
+  - dev-lang/ruby:1.9
+  - rake
+  arch,manjarolinux:
+  - ruby
+  fedora:
+    '17':
+    - ruby
+    - rubygems
+  darwin:
+  - ruby19
+  - rake
+  default: nonexistent
+ruby20: ignore
+build-essential:
+  debian,ubuntu: build-essential
+  gentoo: ignore
+  arch,manjarolinux: base-dev
+  fedora: ignore
+  darwin: ignore
+autobuild: gem
+autoproj: gem
+git:
+  debian:
+    lenny: git
+    default: git-core
+  ubuntu: git-core
+  gentoo: dev-vcs/git
+  arch,manjarolinux: git
+  fedora: git
+  darwin: git-core
+svn:
+  debian,ubuntu: subversion
+  gentoo: dev-util/subversion
+  arch,manjarolinux: subversion
+  fedora: subversion
+  darwin: subversion
+cmake:
+  debian,ubuntu: cmake
+  gentoo: dev-util/cmake
+  arch,manjarolinux: cmake
+  fedora: cmake
+  darwin: cmake
+autotools:
+  debian,ubuntu:
   - automake1.9
   - autoconf
-  darwin: 
-  - automake
-  - autoconf
-  fedora: 
-  - automake
-  - autoconf
-  gentoo: 
+  gentoo:
   - sys-devel/automake:1.9
   - sys-devel/autoconf
-  arch: automake autoconf
-lsb_release: 
+  arch,manjarolinux:
+  - automake
+  - autoconf
+  fedora:
+  - automake
+  - autoconf
+  darwin:
+  - automake
+  - autoconf
+lsb_release:
   debian,ubuntu: lsb-release
-  darwin: ignore
-  fedora: redhat-lsb
   gentoo: sys-apps/lsb-release
-  arch: ignore
-svn: 
-  debian,ubuntu: subversion
-  darwin: subversion
-  fedora: subversion
-  gentoo: dev-util/subversion
-  arch: subversion
-none: ignore
-cmake: 
-  debian,ubuntu: cmake
-  darwin: cmake
-  fedora: cmake
-  gentoo: dev-util/cmake
-  arch: cmake
-build-essential: 
-  debian,ubuntu: build-essential
+  arch,manjarolinux: lsb-release
+  fedora: redhat-lsb
   darwin: ignore
-  fedora: ignore
-  gentoo: ignore
-  arch: ignore
-autoproj: gem
-git: 
-  darwin: git-core
-  ubuntu: git-core
-  fedora: git
-  debian: 
-    default: git-core
-    lenny: git
-  gentoo: dev-vcs/git
-  arch: git
-ruby20: ignore
+archive:
+  debian,ubuntu:
+  - tar
+  - unzip
+  gentoo:
+  - app-arch/tar
+  - app-arch/unzip
+  arch,manjarolinux:
+  - tar
+  - unzip
+  fedora:
+  - tar
+  - unzip
+  darwin:
+  - gnutar
+  - unzip
+cvs:
+  debian,ubuntu: cvs
+  fedora: cvs
+  darwin: cvs
+  arch,manjarolinux: cvs
+pip:
+  debian,ubuntu: python-pip
+  arch,manjarolinux: python2-pip
 
 EODEFS
 
