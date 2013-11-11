@@ -197,7 +197,7 @@ c++ code.
 
 {coderay:: ruby}
 Vizkit::UiLoader.register_3d_plugin('TrajectoryVisualisation',
-        'trajectory-viz', 'TrajectoryVisualisation')
+        'trajectory', 'TrajectoryVisualisation')
 Vizkit::UiLoader.register_3d_plugin_for('TrajectoryVisualisation',
         "/base/Vector3d", :updateData )
 {coderay}
