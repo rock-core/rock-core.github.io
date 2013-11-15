@@ -62,15 +62,15 @@ above provides is protection against typos: it will fail if the topic does not
 already exist.
 
 ~~~ ruby
-task.an_input_port.subscribe_to_ros('/topic/name', connection_policy)
-task.an_output_port.publish_on_ros('/topic/name', connection_policy)
+task.an_input_port.subscribe_to_ros('/topic/name')
+task.an_output_port.publish_on_ros('/topic/name')
 ~~~
 
 In both cases, a default topic name of task_name/port_name can be used by not
 specifying the topic name at all:
 
 ~~~ ruby
-task.an_input_port.subscribe_to_ros(connection_policy)
-task.an_input_port.publish_on_ros(connection_policy)
+task.an_input_port.subscribe_to_ros
+task.an_input_port.publish_on_ros
 ~~~
 
