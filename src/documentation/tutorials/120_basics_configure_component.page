@@ -139,7 +139,7 @@ __(1)__ we modify the task description in the message_producer.orogen file.
 We add a property of the configuration type as follows (see also [Task
 Interface](../orogen/task_interface.html)). __(2)__ Since we want a specific configuration step, the new
 task should not be started without configuration, which can be set by adding the
-statement 'need_configuration'.
+statement 'needs_configuration'.
 
 {coderay:: ruby}
 import_types_from "message_driver/Config.hpp"
@@ -280,11 +280,12 @@ Property values can be read from a file, what is especially handy in case of mor
 following content:
 
 {coderay:: yaml}
+\--- name:default
 config:
     uppercase: True
 {coderay}
 
-Note that yaml uses intention for organizing the data. The script can now be changed to use this file. Instead of 
+Note that yaml uses indentation for organizing the data. The script can now be changed to use this file. Instead of
 
 {coderay:: ruby}
     # 'config' is the name of the property
@@ -297,7 +298,7 @@ put
 
 {coderay:: ruby}
     # load property from configuration file
-    message_producer.apply_conf_file("message_producer_config.yml")
+    message_producer.apply_conf_file("message_producer_config.yml", ["default"])
 {coderay}
 
 The result when running the script should be the same as above. It is possible to

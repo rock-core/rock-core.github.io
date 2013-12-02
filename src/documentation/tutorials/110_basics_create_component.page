@@ -98,8 +98,10 @@ using_library "message_driver"
 import_types_from "message_driver/Message.hpp"
 
 task_context "Task" do
+  needs_configuration
+
   output_port "messages", "message_driver/Message"
-  periodic(1.0)
+  periodic 1.0
 end
 {coderay}
 
@@ -109,7 +111,8 @@ The specification contains a number of statement with the following meaning:
  * using_library: tells oroGen that this component requires, i.e. needs to link against the 'message_driver' library
  * import_types_from: tells oroGen to import all types in the given file
  * task_context: everything within this block defines an Orocos task context
-   model, including what input and output ports are required and a default value
+   model, including that it requires to be configured before startup,
+   what input and output ports are required, and a default value
    for the runtime execution schema (every 1.0 second in this case)
 
 The task has an output port called 'messages' of type 'message_driver/Message'.
@@ -157,8 +160,8 @@ Now, that you have created the oroGen component you still have to embedd the fun
 
 Calling 'rock-create-orogen' created several new files. For now, you only need to care about the files in the tasks/ subfolder and can safely ignore the templates folder for the moment. 
 
-Within the subfolder 'tasks' of the created component you will find two files: 'Task.hpp' and 'Task.cpp'. They contain the skeleton for the Orocos component that has been created. Within 'Task.hpp' you will find several commented so-called hook methods, and you have to uncomment the methods you want to define in your task. For this tutorial you uncomment the updateHook.
-(More information about this methods could be found [here](../orogen/task_states.html))
+Within the subfolder 'tasks' of the created component you will find two files: 'Task.hpp' and 'Task.cpp'. They contain the skeleton for the Orocos component that has been created. Within 'Task.hpp' you will find the declarations of so-called hook methods: configureHook, startHook, stopHook, errorHook and cleanupHook. For this tutorial we will focus on the updateHook.
+(More information about these methods can be found [here](../orogen/task_states.html))
 
 To add the message_driver functionality, add a forward declaration for message_driver and add a message_driver::MessageDriver member to the Task.hpp:
 
@@ -204,7 +207,7 @@ Task::~Task()
 }
 {coderay}
 
-Also implement the updateHook, and make sure it is uncommented in the source and(!) the header file.
+Next, you implement the updateHook.
 Within the update hook the messages port is accessed, which is identified by the name given in the specification and an '_' prefix. Since you specified the type for this port a 'message_driver::Message' can be written to the port. This update port is triggered at the rate that you specified in the the deployment section of the .orogen file.
 
 {coderay:: c++}
@@ -247,8 +250,11 @@ Orocos.initialize
 Orocos.run 'message_producer::Task' => 'message_producer' do
   ## Get the task context##
   message_producer = Orocos.name_service.get 'message_producer'
+
+  ## Configure the task
+  message_producer.configure
   
-  ## Start the tasks ##
+  ## Start the task ##
   message_producer.start
   
   reader = message_producer.messages.reader
@@ -263,7 +269,9 @@ Orocos.run 'message_producer::Task' => 'message_producer' do
 end
 {coderay}
 
-This scripts starts a process for the task 'message_producer' (The second argument behind Orocos.run gives the name to access it in the Orocos.run body). Once the message_producer has been created, the task can be accessed using 'Orocos.name_service.get'. Having the reference to the task context allows you to explicitly start the task. Run it using ruby. 
+This script starts a process for the task 'message_producer' (the second argument behind Orocos.run gives the name to access it in the Orocos.run body). Once the message_producer has been created, the task can be accessed using 'Orocos.name_service.get'. Having the reference to the task context allows you to explicitly configure and then start the task. 
+By convention we require all tasks to be explictly configured before they can be started, and we will go into more detail of configuration in the next tutorial.
+Now, just run the script using Ruby.
 
 {coderay:: text}
 ruby start.rb
@@ -289,6 +297,6 @@ In this tutorial you have learned to:
 
 Now that you have a rough idea of what oroGen is and can do, we recommend that you have a look at the [oroGen cheat sheet](../orogen/orogen_cheat_sheet.pdf).
 
-In the next tutorial you will learn how to add configuration options to your task.
+In the next tutorial you will learn more on configuring your task.
 
 Progress to the [next tutorial](120_basics_configure_component.html).
