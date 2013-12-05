@@ -1518,7 +1518,7 @@ So, what do you want ? (all, none or a comma-separated list of: os gem pip)
                 when 'gem'  then modes << 'gem'
                 when 'pip'  then modes << 'pip'
                 when 'os'   then modes << 'os'
-                when 'none' then modes << 'none'
+                when 'none' then
                 else raise ArgumentError, "#{str} is not a known package handler"
                 end
             end
@@ -1608,8 +1608,10 @@ So, what do you want ? (all, none or a comma-separated list of: os gem pip)
             options[:osdeps_mode].each do |m|
                 if m == 'os'
                     os_package_handler.enabled = true
+                elsif pkg = package_handlers[m]
+                    pkg.enabled = true
                 else
-                    package_handlers[m].enabled = true
+                    Autoproj.warn "osdep handler #{m.inspect} has no handler, available handlers are #{package_handlers.keys.map(&:inspect).sort.join(", ")}"
                 end
             end
             os_package_handler.silent = self.silent?
