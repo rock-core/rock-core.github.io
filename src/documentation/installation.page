@@ -17,9 +17,7 @@ Rock should work, but we have had no known report of its success or failure.
 
 ### Well tested Oses
 
-| ![Ubuntu](install/ubuntu.png) | Latest LTS and later (currently anything
-newer than 12.04). We let 6 months after a LTS release before deprecating the
-previous LTS. |
+| ![Ubuntu](install/ubuntu.png) | Latest LTS and later (currently anything newer than 12.04). We let 6 months after a LTS release before deprecating the previous LTS. |
 | ![Debian](install/debian.png) | testing or unstable |
 
 ### Untested OSes
