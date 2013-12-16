@@ -27,20 +27,20 @@ If you are using manually created deployments, the only step needed to make an
 oroGen deployment "ready to log" is to add an add_default_logger statement to
 your deployment specification. For instance:
 
-{coderay:: ruby}
+~~~ ruby
 deployment "test_imu" do
   task "imu", "imu::Task"
   add_default_logger
 end
-{coderay}
+~~~
 
 If you are using the model_name => task_name syntax in orocos.rb, as for
 instance
 
-{coderay:: ruby}
+~~~ ruby
 Orocos.run 'xsens_imu::Task' => 'imu' do
 end
-{coderay}
+~~~
 
 then logging is already available.
 
@@ -49,9 +49,9 @@ Logging all output ports using Orocos.rb
 If you are starting up your system using orocos.rb, the
 simplest way to start logging is to add
 
-{coderay:: ruby}
+~~~ ruby
 Orocos.log_all
-{coderay}
+~~~
 
 after all the deployments have been started. It will setup each deployment's
 logger to log all output ports of the deployment. Additionally, it will setup a
@@ -68,7 +68,7 @@ Property logs are all stored in a single file called "properties._index_.log".
 How to extract data from the log files is the subject of the following
 documentation pages.
 
-{coderay:: ruby}
+~~~ ruby
 # Start the test_imu deployment
 Orocos.run 'xsens_imu::Task' => 'imu' do
   # Set up logging
@@ -81,15 +81,15 @@ Orocos.run 'xsens_imu::Task' => 'imu' do
   # Poll the task's states every 100 ms and report state changes.
   Orocos.watch(task)
 end
-{coderay}
+~~~
 
 If you don't want to log some types, then use the exclude_types option. That
 option takes a regular expression, all ports whose type matches that regex will
 not be logged. For instance:
 
-{coderay:: ruby}
+~~~ ruby
 Orocos.log_all :exclude_types => /can\/Message/
-{coderay}
+~~~
 
 will log all ports whose typename does not contain "can/Message"
 
@@ -108,7 +108,7 @@ So, to log a port, you basically need to
 
 With orocos.rb, this is done with:
 
-{coderay:: ruby}
+~~~ ruby
 Orocos.run 'xsens_imu::Task' => 'imu' do
   logger = Orocos.name_service.get 'imu_Logger'
   imu    = Orocos.name_service.get 'imu'
@@ -131,5 +131,5 @@ Orocos.run 'xsens_imu::Task' => 'imu' do
   # Don't forget to start your logger
   logger.start
 end
-{coderay}
+~~~
 

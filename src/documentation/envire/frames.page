@@ -12,18 +12,18 @@ retrieved from an environment object using the `getRootNode()` method.
 
 Additional frames can be added to the frame tree using one of the two methods
 
-{coderay:: cpp}
+~~~ cpp
 FrameNode *childFrame = new FrameNode(
     Eigen::Transform3d( Eigen::Translation3d( 0, 0, 1.0 ) ) );
 
 env->addChild( env->getRootNode(), childFrame )
-{coderay}
+~~~
 
 or alternatively
 
-{coderay:: cpp}
+~~~ cpp
 env->getRootNode()->addChild( childFrame );
-{coderay}
+~~~
 
 The second method obviously only works if the parent framenode is already
 attached to the environment.
@@ -43,9 +43,9 @@ In order to obtain the transformation between two arbitrary frames (both of
 which need to be connected to the same frame tree) the `relativeTransform`
 method can be used. 
 
-{coderay:: cpp}
+~~~ cpp
 Transform3d C_a2b = env->relativeTransform( frameA, frameB );
-{coderay}
+~~~
 
 Will return the transform C_a2b, which given a vector v in frame A would provide
 v' = C_a2b * v, the same vector in frame B.
@@ -64,7 +64,7 @@ Chaining of transformations with uncertainty is also available, so you can see
 how the uncertainty propages through the frames. A simple example would be the
 following
 
-{coderay:: cpp}
+~~~ cpp
 // create a point with uncertainty.
 // we provide sigma values of 0.01 m, which have to be squared, 
 // since the class is expecting a covariance
@@ -98,7 +98,7 @@ TransformWithUncertainty t2(
 // The point transformation is the same as without uncertainty, 
 // but the uncertainty information is also propagated
 PointWithUncertainty pp = t2 * t1 * p;
-{coderay}
+~~~
 
 The same works when storing the `TransformationWithUncertainty` in the frame
 tree. Instead of `relativeTransform`, the `relativeTransformWithUncertainty`

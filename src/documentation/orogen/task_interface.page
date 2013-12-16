@@ -6,11 +6,11 @@ We'll cover in this page how to define your task's interface. All statements
 presented in this page are to be included in a task context definition, i.e.
 between 'do' and 'end' in
 
-{coderay:: ruby}
+~~~ ruby
 task_context "ClassName" do
    ...
 end
-{coderay}
+~~~
 
 The only constraint is that the task name *must* be different from the project
 name. This is because, on the generated C++ code, the project name is mapped
@@ -62,12 +62,12 @@ Ports {#ports}
 -----
 Ports are defined with
 
-{coderay:: ruby}
+~~~ ruby
 input_port('in', 'my_type').
   doc('documentation string')
 output_port('out', 'another_type').
   doc('documentation string')
-{coderay}
+~~~
 
 Input ports can be used in the C++ code in two ways, which one you want to use
 depends on what you actually want to do.
@@ -75,34 +75,34 @@ depends on what you actually want to do.
 * if you want to read all new samples that are on the input (since an input port
   can be connected to multiple output ports)
 
-{coderay:: cpp}
+~~~ cpp
 // my_type is the declared type of the port
 my_type sample;
 while (_in.read(sample) == RTT::NewData)
 {
     // got a new sample, do something with it
 }
-{coderay}
+~~~
 
 
 * if you are just interested by having some data
 
-{coderay:: cpp}
+~~~ cpp
 // my_type is the declared type of the port
 my_type sample;
 if (_in.read(sample))
 {
     // got a sample, do something with it
 }
-{coderay}
+~~~
 
 Finally, to write on an output, you use 'write':
 
-{coderay:: cpp}
+~~~ cpp
 // another_type is the declared type of the port
 another_type data = calculateData();
 _out.write(data);
-{coderay}
+~~~
 
 Another operation of interest is the <tt>connected()</tt> predicate. It tests if
 there is a data provider that will send data to input ports
@@ -111,7 +111,7 @@ samples written on output ports.
 
 For instance,
 
-{coderay:: cpp}
+~~~ cpp
 if (_out.connected())
 {
     // generate the data for _out only if somebody may be interested by it. This
@@ -119,53 +119,53 @@ if (_out.connected())
     another_type data = calculateData();
     _out.write(data);
 }
-{coderay}
+~~~
 
 Properties
 ----------
 Properties are defined with
 
-{coderay:: ruby}
+~~~ ruby
 property('name', 'configuration_type').
     doc 'what this property is about'
-{coderay}
+~~~
 
 And can be accessed in the code with
 
-{coderay:: cpp}
+~~~ cpp
 configuration_type configuration_value = _name.get();
 // Validate configuration_type, and change the value
 _name.set(configuration_value)
-{coderay}
+~~~
 
 Operations
 -------
 The operations offer a mechanism from which a task context can expose
 functionality through remote method calls. They are defined with:
 
-{coderay:: ruby}
+~~~ ruby
 operation('commandName').
     argument('arg0', '/arg/type').
     argument('arg1', '/example/other_arg')
-{coderay}
+~~~
 
 Additionally, a return type can be added with
 
-{coderay:: ruby}
+~~~ ruby
 operation('operationName').
     returns('int').
     argument('arg0', '/arg/type').
     argument('arg1', '/example/other_arg')
-{coderay}
+~~~
 
 Note the dot at the end of all but the last line. This dot is important and,
 if omitted, will lead to syntax errors.
 
 In the generated task class, the operation simply maps to a C++ method:
 
-{coderay:: cpp}
+~~~ cpp
 return_type operationName(arg::type const& arg0, example::other_arg const& arg1);
-{coderay}
+~~~
 
 the default return type is 'void'.
 
@@ -179,13 +179,13 @@ If it is desirable, one can design the operation's C++ method to be thread-safe
 and declare it as being executed in the caller thread instead of the callee
 thread. This is done with
 
-{coderay:: ruby}
+~~~ ruby
 operation('operationName').
     returns('int').
     argument('arg0', '/arg/type').
     argument('arg1', '/example/other_arg').
     runs_in_caller_thread
-{coderay}
+~~~
 
 C++ objects representing the interface elements
 -----------------------------------------------
@@ -194,9 +194,9 @@ object as an attribute of the task implementation. The attribute's name is the
 object name with an underscore prepended. For instance, the operation declared
 with
 
-{coderay:: ruby}
+~~~ ruby
 operation('operationName')
-{coderay}
+~~~
 
 is mapped to an attribute named <tt>\_operationName</tt>, of type <tt>RTT::Operation</tt>.
 
@@ -223,19 +223,19 @@ component makes it very hard for people to use such component.
 In order to make life easier, oroGen allows you to propose a default activity
 for your task contexts. This is done with
 
-{coderay:: ruby}
+~~~ ruby
 default_activity "activity_type", activity_parameters
-{coderay}
+~~~
 
 The available triggering mechanisms are detailed [here](triggering/index.html).
 They can be declared as default activities with
 
-{coderay:: ruby}
+~~~ ruby
 default_activity 'periodic', 0.1 # periodic activity wit a period of 100ms
 default_activity 'fd_driven'     # IO-driven activity
 default_activity 'triggered'     # triggered by external events, i.e. explicit
                                  # calls to trigger() or data-driven task
-{coderay}
+~~~
 
 Note that fd_driven and triggered do not usually need to be specified.
 'triggered' is the default activity and 'fd_driven' is set as default activity
@@ -254,9 +254,9 @@ dynamic_input_port and dynamic_output_port declarations, possibly using a
 regular expression as name pattern and either a message type or nil for "type
 unknown". For instance
 
-{coderay:: ruby}
+~~~ ruby
 dynamic_output_port /.*/, "canbus/Message"
-{coderay}
+~~~
 
 declares, in the [canbus::Task]({rock_task: canbus::Task}), that ports with
 arbitrary names might be added to the task interface, and that these ports will

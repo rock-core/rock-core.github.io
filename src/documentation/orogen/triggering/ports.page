@@ -19,7 +19,7 @@ A data-driven task is declared by using the <tt>#port_driven</tt> statement.
 
 Let's look at the following example declaration:
 
-{coderay:: ruby}
+~~~ ruby
 task_context "Task" do
     input_port  'image', '/Camera/Frame'
     input_port  'parameters', '/SIFT/Parameters'
@@ -27,7 +27,7 @@ task_context "Task" do
 
     port_driven 'image'
 end
-{coderay}
+~~~
 
 During runtime, the <tt>updateHook()</tt> method of the corresponding C++ task
 will be called when new data arrives on the listed ports (in this case 'image').
@@ -40,7 +40,7 @@ Finally, if called without arguments, <tt>port_driven</tt> will activate the
 port triggering on all input ports declared before it is called. This means
 that, in
 
-{coderay:: ruby}
+~~~ ruby
 task_context "Task" do
     input_port  'image', '/Camera/Frame'
     input_port  'parameters', '/SIFT/Parameters'
@@ -48,18 +48,18 @@ task_context "Task" do
 
     port_driven
 end
-{coderay}
+~~~
 
 both 'parameters' and 'image' are triggering. Now, in
 
-{coderay:: ruby}
+~~~ ruby
 task_context "Task" do
     input_port  'image', '/Camera/Frame'
     port_driven
     input_port  'parameters', '/SIFT/Parameters'
     output_port 'features' '/SIFT/FeatureSet'
 end
-{coderay}
+~~~
 
 only 'image' is.
 
@@ -70,7 +70,7 @@ version up to RTT 2.X.
 
 In the updateHook(), you will have to read the ports and test if a new data sample arrived. 
 
-{coderay:: cpp}
+~~~ cpp
 Camera::Frame frame;
 if(_image.read(frame) == RTT::NewData)
 {
@@ -80,7 +80,7 @@ SIFT::Parameters parameters;
 if(_parameters.read(parameters) == RTT::NewData)
 {
 }
-{coderay}
+~~~
 
 
 Deployment
@@ -90,22 +90,22 @@ can be overlaid on top of the other mechanisms.
 
 If one uses the default task declaration
 
-{coderay:: ruby}
+~~~ ruby
 deployment "test" do
     t = task('Task')
 end
-{coderay}
+~~~
 
 then the deployed task instance will only be triggered when new data is received
 on its input ports. It is however possible to use [FD-based](fd.html) and
 port-based triggering at the same time.
 
-{coderay:: ruby}
+~~~ ruby
 deployment "test" do
     t = task('Task').
         fd_driven
 end
-{coderay}
+~~~
 
 However, deploying with the [periodic triggering](periodic.html) will override
 (i.e. disable) the port-triggering.

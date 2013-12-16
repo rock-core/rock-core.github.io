@@ -31,16 +31,16 @@ adds the corresponding using_library statement in the orogen file:
 
 The manifest.xml:
 
-{coderay:: xml}
+~~~ xml
 <depends package="drivers/orogen/aggregator" />
-{coderay}
+~~~
 
 The orogen file:
 
-{coderay:: ruby}
+~~~ ruby
 using_library "aggregator"
 import_types_from "aggregator"
-{coderay}
+~~~
 
 Finally, one declares an aggregator::TimestampEstimator instance variable in the
 task's header, initializes it to NULL in the task's constructors.
@@ -68,24 +68,24 @@ the initial estimation quite a lot.
 
 As an example, the setup of the Xsens IMU, when configured at 10Hz, would be:
 
-{coderay:: cpp}
+~~~ cpp
 mTimestamper = aggregator::TimestampEstimator(
     base::Time::fromSeconds(10),
     base::Time::fromMilliseconds(10));
-{coderay}
+~~~
 
 Then, in the updateHook, one gets its best estimate with:
 
-{coderay:: cpp}
+~~~ cpp
   data = mDriver->getSample();
   data.time = mTimestamper->update(data.time);
-{coderay}
+~~~
 
 Do __not__ forget to reset the estimator in the startHook (or stopHook)
 
-{coderay:: cpp}
+~~~ cpp
 mTimestamper->reset();
-{coderay}
+~~~
 
 Handling bursts and lost packages
 ---------------------------------
@@ -115,9 +115,9 @@ sensors count how many samples it generated so far and provides this information
 **inside the data stream itself**. In this case, this index can be explicitely
 provided to the estimator (__you have to be careful about wraparounds__).
 
-{coderay:: cpp}
+~~~ cpp
 data.time = mTimestamper->update(data.time, mDriver->getIndex());
-{coderay}
+~~~
 
 If no index is available, the estimator itself has a threshold-based mechanism
 to choose between the lost sample case or the delayed sample case. The last
@@ -131,9 +131,9 @@ parameter of the constructor provides a loss_limit number of periods:
 Finally, if you have a mean to determine data loss other than the index, you can
 announce lost samples to the estimator:
 
-{coderay:: cpp}
+~~~ cpp
 mTimestamper->updateLoss();
-{coderay}
+~~~
 
 Estimating latency through hardware timestamps
 ------------------------------- 
@@ -142,9 +142,9 @@ announce a precise event in their data acquisition process. If such a source is
 available to you, these (properly timestamped) events can be fed to the
 estimator with
 
-{coderay:: cpp}
+~~~ cpp
 mTimestamper->updateReference(hardware_time);
-{coderay}
+~~~
 
 where hardware_time is a base::Time object;
 
@@ -162,34 +162,34 @@ behaviour).
 
 in the task_context block of your oroGen file:
 
-{coderay:: ruby}
+~~~ ruby
 property("sample_loss_threshold", "int", 2).
     doc "timestamp estimator configuration"
-{coderay}
+~~~
 
 And in the configureHook, add a parameter to the constructor (3rd parameter)
 
-{coderay:: cpp}
+~~~ cpp
 mTimestamper = aggregator::TimestampEstimator(
     base::Time::fromSeconds(10),
     base::Time::fromMilliseconds(10),
     _sample_loss_threshold.get());
-{coderay}
+~~~
 
 Moreover, it is also advised to output the timestamp estimator's status
 structure on a port called "timestamp_estimator_status":
 
 In the oroGen file:
 
-{coderay:: ruby}
+~~~ ruby
 output_port "timestamp_estimator_status", "/aggregator/TimestampEstimatorStatus"
-{coderay}
+~~~
 
 In the updateHook:
 
-{coderay:: cpp}
+~~~ cpp
 _timestamp_estimator_status.write(mTimestamper.getStatus());
-{coderay}
+~~~
 
 Finally, if your device does offer external triggering / hardware pulses, you
 should also add a "hardware_timestamps" input port of type base::Time that will
@@ -197,15 +197,15 @@ be fed to the estimator:
 
 In the oroGen file:
 
-{coderay:: ruby}
+~~~ ruby
 output_port "hardware_timestamps", "/base/Time"
-{coderay}
+~~~
 
 In the updateHook:
 
-{coderay:: cpp}
+~~~ cpp
 base::Time hw_time;
 while (_hardware_timestamps.read(hw_time) == RTT::NewData)
     mTimestamper->updateReference(hw_time);
-{coderay}
+~~~
 

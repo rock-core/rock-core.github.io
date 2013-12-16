@@ -6,7 +6,7 @@ To make life easier while using the stream aligner, an oroGen plug-in was
 created. Using this plugin, the laser filter that we outlined in the previous
 pages would be declared with:
 
-{coderay:: ruby}
+~~~ ruby
 task_context "Task" do
   input_port "lidar_samples", "/base/samples/LaserScan"
   input_port "transformation", "/base/samples/RigidBodyState"
@@ -18,14 +18,14 @@ task_context "Task" do
     align_port "transformation", 0
   end
 end
-{coderay}
+~~~
 
 The usage of this plugin requires the drivers/orogen/aggregator package. The
 project's manifest.xml must therefore contain:
 
-{coderay:: xml}
+~~~ xml
 <depend package="drivers/orogen/aggregator" />
-{coderay}
+~~~
 
 The following statements are available in the task context definition:
 
@@ -49,13 +49,13 @@ align_port(name, period)
 In the C++ task, for each stream declared with align_port, a C++ callback
 method, of the form "void stream_nameCallback(timestamp, sample)" is generated.
 
-{coderay:: c++}
+~~~ cpp
 void lidar_samplesCallback(base::Time const& timestamp,
     base::samples::LaserScan const& sample)
 {
   // process the sample
 }
-{coderay}
+~~~
 
 As usual with oroGen, if you add or remove streams after the first code
 generation, you must update the files in tasks/ yourself, using if needed the

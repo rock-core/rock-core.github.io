@@ -9,11 +9,11 @@ well. It also works in a [cross project fashion](cross_project.html).
 
 A base class is defined with
 
-{coderay:: ruby}
+~~~ ruby
 task_context "SubTask" do
     subclasses "Task"
 end
-{coderay}
+~~~
 
 When inheriting between task contexts, the following constraints will apply:
 
@@ -29,9 +29,9 @@ Finally, "abstract task models", i.e. task models that are used as a base for
 others, but which it would be meaningless to deploy since they don't have any
 functionality can be marked as abstract with
 
-{coderay:: ruby}
+~~~ ruby
 task_context "SubTask" do
     abstract
 end
-{coderay}
+~~~
 

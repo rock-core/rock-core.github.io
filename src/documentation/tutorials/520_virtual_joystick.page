@@ -25,7 +25,7 @@ section.
 
 We start by adding the VirtualJoystick widget before the Orocos.run block:
 
-{coderay:: ruby}
+~~~ ruby
 # load vizkit package
 require 'vizkit'
 
@@ -34,7 +34,7 @@ joystickGui = Vizkit.default_loader.create_widget('VirtualJoystick')
 
 #show it
 joystickGui.show
-{coderay}
+~~~
 
 This will open the desired widget and give us a handle to it.
 Using the handle we can register a code block in the run-loop that get's
@@ -42,13 +42,13 @@ executed whenever the widget emits a QT-Signal. Since this code needs a handle
 to the rockControl task, it must be inserted after the Orocos.name_service.get line that
 initializes rockControl.
 
-{coderay:: ruby}
+~~~ ruby
 rockControl = Orocos.name_service.get 'rock_control'
-{coderay}
+~~~
 
 The "Orocos.run do .. end" block can then be modified with:
 
-{coderay:: ruby}
+~~~ ruby
   ## Create a sample writer for a port ##
   sampleWriter = rockControl.motion_command.writer
   
@@ -64,7 +64,7 @@ The "Orocos.run do .. end" block can then be modified with:
     sample.rotation = - y.abs() * Math::atan2(y, x.abs())
     sampleWriter.write(sample)
   end	
-{coderay}
+~~~
 
 So, what does this do ? Whenever the signal 'axisChanged' is emitted by the widget the
 code inside the 'do / end' is executed. One can think of it like a callback function. We use this 'callback' 
@@ -75,9 +75,9 @@ Run it
 -----------
 If you execute 
 
-{coderay:: text}
+~~~ text
 ruby rockTutorial3.rb
-{coderay}
+~~~
 
 two windows should pop up. One with our virtual joystick the other one should be the well known visualization of the rock. 
 Clicking and dragging the joystick should also make the rock move.

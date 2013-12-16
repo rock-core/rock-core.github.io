@@ -19,17 +19,17 @@ store both cartesian as well as non-cartesian (topological) maps. The derived
 class `CartesianMap` does provide the ability to associate a layer with a frame.
 This is done through either 
 
-{coderay:: cpp}
+~~~ cpp
 env->setFrameNode( map, frameNode );
-{coderay}
+~~~
 
 alternatively you can use the convenience method on the map directly, if it is
 already attached.
 
-{coderay:: cpp}
+~~~ cpp
 env->attachItem( map );
 map->setFrameNode( frameNode );
-{coderay}
+~~~
 
 Each CartesianMap is associated with a frame, and the information it has is
 given in that frame. Further down the inheritance chain, there is the `Map`
@@ -42,14 +42,14 @@ Metadata
 Each Layer can have associated metadata, which may or may not be used by the
 processing algorithms (operators). 
 
-{coderay:: cpp}
+~~~ cpp
 if( map->hasData( key ) )
 {
     DataType &d = map->getData<DataType>( key );
 
     ... // do stuff on d
 }
-{coderay}
+~~~
 
 a call to `getData<Type>` will create the metadata if it is not yet created.
 Metadata on maps is used to specify optional information that can be available
@@ -61,7 +61,7 @@ Some maps may provide additional features for metadata, like e.g. in a
 `Pointcloud`. Here vertices are stored as a vector of `Vector3` objects. However,
 these vertices may also have associated normals. 
 
-{coderay:: cpp}
+~~~ cpp
 if( pc->hasData( Pointcloud::VERTEX_NORMALS ) )
 {
     std::vector<Eigen::Vector3d> normals =
@@ -75,7 +75,7 @@ if( pc->hasData( Pointcloud::VERTEX_NORMALS ) )
     for( size_t n=0; n<pc->vertices.size(); n++ )
 	doCalc( pc->vertices[n], normals[n] );
 }
-{coderay}
+~~~
 
 Examples of Maps
 ------------

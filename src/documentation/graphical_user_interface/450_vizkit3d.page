@@ -15,7 +15,7 @@ one may use the ruby bindings to create applications.
 As the ruby bindings allow greater flexibility in terms of integration into the
 work flow of the rock world it is the preferred way. 
 
-{coderay:: ruby}
+~~~ ruby
 require 'vizkit'
 Orocos.initialize
 
@@ -37,7 +37,7 @@ rbs_plugin.updateRigidBodyState(rbs)
 #execute the main GUI loop
 Vizkit.exec()
 
-{coderay}
+~~~
 
 Writing Vizkit3D Plugins
 ----------------------
@@ -49,7 +49,7 @@ For writing a custom Vizkit3DPlugin one needs to derive from the template
 class vizkit3d::Vizkit3DPlugin&lt;T&gt;, where the template argument T is the data type
 that should be visualized. 
 
-{coderay:: cpp}
+~~~ cpp
 #include <Eigen/Geometry>
 #include <vizkit3d/Vizkit3DPlugin.hpp>
 
@@ -89,7 +89,7 @@ class TrajectoryVisualisation
     private:
 	std::vector<Eigen::Vector3d> path;
 }
-{coderay}
+~~~
 
 Using the Vizkit3DPlugin template class, there is code that prevents that
 updateDataIntern and updateMainNode are called at the same time.  
@@ -115,22 +115,22 @@ optionally depending on weather gui/vizkit3d is available or not.
 Therefore, the following needs to added to the package:
 To the manifest:
 
-{coderay:: xml}
+~~~ xml
 <package>
     ...
     <depend package="gui/vizkit3d" optional="1" />
 </package>
-{coderay}
+~~~
 
 In the viz subdirectory an additional shared library needs to be created, that is
 called the same way as the project, with the -viz suffix. So the CMakeLists.txt
 file in the viz subdirectory should contain something like this:
 
-{coderay:: text}
+~~~ text
 rock_vizkit_plugin(trajectory-viz
     TrajectoryVisualization.cpp 
     HEADERS TrajectoryVisualization.hpp)
-{coderay}
+~~~
 
 
 Adding Properties
@@ -138,41 +138,41 @@ Adding Properties
 There is the possibility to add QT-Properties to each Vizkit plugin. The properties will be accessible in a property tree on the Vizkit3DWidget GUI and also in ruby.
 For doing this you have to add the following qt macros to your plugin:
 
-{coderay:: cpp}
+~~~ cpp
 Q_OBJECT
 Q_PROPERTY(double current_depth READ getCurrentDepth WRITE setCurrentDepth)
-{coderay}
+~~~
 Documentation about the Qt Property System can be found [here](http://doc.qt.nokia.com/stable/properties.html).
 
 If the value of the property changes, in particular by calling setCurrentDepth, you have to emit the SIGNAL 'propertyChanged' with the name of the property that has changed. So the property tree on the Vizkit3DWidget GUI takes notice about the change.
 
-{coderay:: cpp}
+~~~ cpp
 emit propertyChanged("current_depth");
-{coderay}
+~~~
 
 Because of the Qt macros in the visualization class the meta-object compiler has to handle the header file. When using the 'rock_vizkit_plugin' cmake macro, this can be done by adding the line 'MOC YourVisualization.hpp':
 
-{coderay:: cmake}
+~~~ cmake
 rock_vizkit_plugin(trajectory-viz
     TrajectoryVisualization.cpp 
     HEADERS TrajectoryVisualization.hpp
     MOC TrajectoryVisualization.hpp)
-{coderay}
+~~~
 
 Ruby
 -----------
 To make the plugin loadable from Ruby you have to add a macro to the end of your cpp file which 
 adds a factory class to the library and exports it to be accessible from the qt loader.
 
-{coderay:: cpp}
+~~~ cpp
 //Macro that makes this plugin loadable in ruby, this is optional.
 VizkitQtPlugin(TrajectoryVisualisation)
-{coderay}
+~~~
 
 You also have to add an invokable qt method to your plugin calling the updateData method of the base class 
 (do not forget to add the header to the MOC section of the CMakeLists file - see Adding Properties).
 
-{coderay:: cpp}
+~~~ cpp
 #include <Eigen/Geometry>
 #include <vizkit3d/Vizkit3DPlugin.hpp>
 
@@ -188,26 +188,26 @@ class TrajectoryVisualisation
         {Vizkit3DPlugin<Eigen::Vector3d>::updateData(data);}
 	TrajectoryVisualisation();    
 ...
-{coderay}
+~~~
 
 
 Furthermore to integrate the plugin into the Rock tooling you have to register your plugin with 
 a small ruby file called vizkit_plugin.rb which must be located in the same folder like the 
 c++ code.
 
-{coderay:: ruby}
+~~~ ruby
 Vizkit::UiLoader.register_3d_plugin('TrajectoryVisualisation',
         'trajectory', 'TrajectoryVisualisation')
 Vizkit::UiLoader.register_3d_plugin_for('TrajectoryVisualisation',
         "/base/Vector3d", :updateData )
-{coderay}
+~~~
 
 Now you can access the updateData method and all properties from ruby.
 
-{coderay:: ruby}
+~~~ ruby
 require 'vizkit'
 plugin = Vizkit.default_loader.TrajectoryVisualisation
 plugin.current_depth = 5.0
 Vizkit.exec
-{coderay}
+~~~
 

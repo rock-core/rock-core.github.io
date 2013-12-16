@@ -9,13 +9,13 @@ As [we already mentioned](creating_pkg_set.html), the source.yml file contains i
 on where to import the source packages from. This information is included in the
 version\_control field of the source.yml, and is of the general form:
 
-{coderay:: yaml}
+~~~ yaml
 version_control:
     package_name:
         vcs_def
     package_name:
         vcs_def:
-{coderay}
+~~~
 
 Autoproj follows the following rules to find the importer definition for a given
 package:
@@ -32,40 +32,40 @@ ones.
 
 As an example, let's consider the following manifest:
 
-{coderay:: ruby}
+~~~ ruby
 package_sets:
     - tools:
         - orocos.toolchain
     - rock.toolchain
-{coderay}
+~~~
 
 The rock.toolchain package uses its own repository for
 the typelib library. So, while the orocos.toolchain has the following source.yml:
 
-{coderay:: yaml}
+~~~ yaml
 version_control:
     - .*:
         type: git
         url: git://gitorious.com/orocos-toolchain/$PACKAGE.git
-{coderay}
+~~~
 
 rock.toolchain has
 
-{coderay:: yaml}
+~~~ yaml
 overrides:
     - typelib:
         url: git://gitorious.com/orocos-toolchain/rock-$PACKAGE.git
-{coderay}
+~~~
 
 Another common use for overrides is to change the branch, for instance:
 
-{coderay:: yaml}
+~~~ yaml
 overrides:
     - typelib:
         url: git://gitorious.com/orocos-toolchain/rock-$PACKAGE.git
     - rtt:
         branch: experimental
-{coderay}
+~~~
 
 The remaining of this page will detail the various options that exist to import
 a source package.
@@ -74,11 +74,11 @@ Common Importer Options
 -----------------------
 All importers support the following options:
 
-{coderay:: yaml}
+~~~ yaml
 version_control:
     - .*:
         retry_count: 2
-{coderay}
+~~~
 
 It specifies the number of time the importer should retry before giving up. This
 is useful for remote servers (svn, git) that are not as reliable as one would
@@ -89,14 +89,14 @@ Git {#all_importers}
 
 The general setup for git imports is:
 
-{coderay:: yaml}
+~~~ yaml
 version_control:
     package_name:
         type: git
         url: repository_url_or_path
         branch: branch_name
         tag: tag_name # it is branch OR tag
-{coderay}
+~~~
 
 Autoproj will maintain an 'autobuild' remote on the checked out repository:
 i.e., it will make sure that the URL of this remote is always linked to the
@@ -111,12 +111,12 @@ Subversion
 
 The general setup for subversion imports is:
 
-{coderay:: yaml}
+~~~ yaml
 version_control:
     package_name:
         type: svn
         url: repository_url_or_path
-{coderay}
+~~~
 
 Note that the repository *must* be accessible without any password - the
 import will fail if a password is needed.
@@ -127,13 +127,13 @@ CVS
 
 The general setup for CVS imports is:
 
-{coderay:: yaml}
+~~~ yaml
 version_control:
     package_name:
         type: cvs
         url: cvs_root
         module: modulename
-{coderay}
+~~~
 
 Note that the repository *must* be accessible without any password - the
 import will fail if a password is needed.
@@ -142,18 +142,18 @@ import will fail if a password is needed.
 In case a :pserver: is used, it must be quoted - YAML would interpret it
 the wrong way otherwise:
 
-{coderay:: yaml}
+~~~ yaml
 version_control:
     package_name:
         type: cvs
         url: ":pserver:cvs@blabla:/"
         module: modulename
-{coderay}
+~~~
 
 Tar archives
 ------------
 
-{coderay:: yaml}
+~~~ yaml
 version_control:
     package_name:
         type: archive
@@ -161,7 +161,7 @@ version_control:
         filename: blabla.tar.gz # Optional: if the file name cannot be inferred from the URL
         no_subdirectory: false # Optional. Set to true if there is not a leading directory in the archive
         update_cached_file: false # Optional. Set to false to disable automatic updates
-{coderay}
+~~~
 
 The importer expects that there is a leading subdirectory in the archive, under
 which all files. If that is not the case, i.e. if all files are in the root of
@@ -189,7 +189,7 @@ importer types) has been checked out/updated. To do so, simply add the option
 <tt>patches:</tt> to the importer configuration and list the patches which should
 be applied:
 
-{coderay:: yaml}
+~~~ yaml
 version_control:
     package_name:
         type: archive
@@ -197,7 +197,7 @@ version_control:
         patches:
             - $AUTOPROJ_SOURCE_DIR/blablabla-01.patch
             - $AUTOPROJ_SOURCE_DIR/blablabla-02.patch
-{coderay}
+~~~
 
 Note that in the example above, the patch is saved in the package set's folder
 (the value of AUTOPROJ_SOURCE_DIR). This is a highly required practice.
@@ -210,7 +210,7 @@ The provided patches are by default applied with a patch level of 0 (passed to
 patch through the -p option). This can be overriden on a patch-per-patch basis
 by making the patch name an array as well:
 
-{coderay:: yaml}
+~~~ yaml
 version_control:
     package_name:
         type: archive
@@ -218,5 +218,5 @@ version_control:
         patches:
             - [$AUTOPROJ_SOURCE_DIR/blablabla-01.patch, 1]
             - $AUTOPROJ_SOURCE_DIR/blablabla-02.patch
-{coderay}
+~~~
 

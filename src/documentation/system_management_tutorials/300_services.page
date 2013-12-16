@@ -108,9 +108,9 @@ The first part is to declare which components __provide__ the service,
 i.e. are valid choices for the data service. Add the following after the
 using_task_library 'controldev' statement:
 
-{coderay:: ruby}
+~~~ ruby
 Controldev::JoystickTask.provides Tutorials::CommandGeneratorSrv, :as => 'cmd'
-{coderay}
+~~~
 
 This tells the system that an instance of controldev::JoystickTask
 provides the service 'Tutorials::CommandGeneratorSrv'. The service thus declared
@@ -182,14 +182,14 @@ syskit instanciate scripts/syskit3.rb
 
 This time, there is another error:
 
-{coderay:: text}
+~~~ text
 = cannot find a concrete implementation for 1 task(s)
 | placeholder for Tutorials::CommandGeneratorSrv
 |   2 candidates
 |     Controldev::JoystickTask,
 |     TutBrownian::Task
 |   child cmd of Tutorials::RockControl:0x7f6ff64c0780{conf => [default]}[]
-{coderay}
+~~~
 
 There are now two concrete tasks providing the
 CommandGeneratorSrv service: the joystick and the random motion generator. Because

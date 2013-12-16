@@ -29,7 +29,7 @@ First we need to create the Vizkit3dWidget. We could do this in the same way as
 we create any other VizkitWidget (i.e. by using default_loader.create_widget),
 but Vizkit provides a shortcut:
 
-{coderay:: ruby}
+~~~ ruby
 require 'vizkit'
 Orocos.initialize
 
@@ -40,7 +40,7 @@ view3d = Vizkit.vizkit3d_widget
 view3d.show
 # And listen to GUI events
 Vizkit.exec
-{coderay}
+~~~
 
 The list of available Vizkit3DPlugins can be found TODO
 
@@ -48,9 +48,9 @@ For this tutorial, we pick a plugin, that will show an simple 3D representation 
 in space. Note that you can add multiple Vizkit3DPlugins to the Vizkit3DWidget
 to create complex 3D visualizations.
 
-{coderay:: ruby}
+~~~ ruby
 rbs_plugin = Vizkit.default_loader.RigidBodyStateVisualization
-{coderay}
+~~~
 
 If you execute your script now, you should see a window with a sphere that is 'spiked' with three cylinders. 
 By clicking inside the window and dragging you should be able to change the view.
@@ -60,12 +60,12 @@ Feeding data to your plugin
 So, how do we pass new data to our visualizer. Quite simple, we just call
 'updateRigidBodyState' on it, before you call Vizkit.exec
 
-{coderay:: ruby}
+~~~ ruby
 rbs = Types::Base::Samples::RigidBodyState.new
 
 rbs.position = Eigen::Vector3.new(0, 5.0, 0)
 rbs.orientation = Eigen::Quaternion.new(0, 0, 0, 1)
 
 rbs_plugin.updateRigidBodyState(rbs)
-{coderay}
+~~~
 

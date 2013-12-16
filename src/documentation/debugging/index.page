@@ -46,7 +46,7 @@ Using the logger
 The logger allows you to log either in a printf-style or stream-style. 
 For that purpose include it where needed and preferably in the .cpp files to avoid warnings about an undefined namespace for the logging.
 
-{coderay:: cpp}
+~~~ cpp
 #include<base/logging.h>
 
 ...
@@ -64,14 +64,14 @@ LOG_DEBUG_S << information;
 LOG_INFO_S << information;
 ...
 LOG_FATAL << information;
-{coderay}
+~~~
 
 The default output format of a log message looks like the following (without linebreak):
 
-{coderay:: sh}
+~~~ sh
 [20120120-11:58:00:577] [FATAL] - test_logger::A fatal error 
 occurred (/tmp/test_logger/src/Main.cpp:10 - int main(int, char**))
-{coderay}
+~~~
 
 
 Configuring the base logger
@@ -101,22 +101,22 @@ The following ***enviroment variables*** can be used to control the behaviour of
 
 The DEFAULT format contains no linebreaks (here only due to fit the narrow presentation):
 
-{coderay:: sh}
+~~~ sh
 [20120120-11:58:00:577] [FATAL] - test_logger::A fatal error 
 occurred (/tmp/test_logger/src/Main.cpp:10 - int main(int, char**))
-{coderay}
+~~~
     
 The SHORT format reduces information to the log priority and the message:
 
-{coderay:: sh}
+~~~ sh
 [FATAL] - test_logger::A fatal error occurred
-{coderay}
+~~~
     
 The MULTILINE format split each individual log message across a minimum of three lines:
 
-{coderay:: sh}
+~~~ sh
 [20120120-11:58:59:976] in int main(int, char**)
         /tmp/test_logger/src/Main.cpp:10
         [FATAL] - test_logger::A fatal error occurred 
-{coderay}
+~~~
 

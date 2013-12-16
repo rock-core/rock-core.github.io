@@ -16,29 +16,29 @@ Implementation
 ### Create a new library
 We start by entering the tutorials folder and creating a library named 'rock-tutorial' by using the 'rock-create-lib' command. 
 
-{coderay:: text}
+~~~ text
 cd tutorials
 rock-create-lib rock_tutorial
-{coderay}
+~~~
 
 This should give us an folder containing the following files :
 
-{coderay:: text}
+~~~ text
 CMakeLists.txt  INSTALL  LICENSE  manifest.xml  README  src
-{coderay}
+~~~
 
 Make sure you add the required dependencies to the manifest.xml, i.e. here 'base/types' and 'gui/vizkit'.
 
-{coderay:: text}
+~~~ text
 <depend package="base/types" />
-{coderay}
+~~~
 
 Afterwards, create a new class in the src folder named 'RockControl'.
 
 This class will contain the (very basic) simulation logic for our Rock-Robot. Therefore it will calculate new positions
 of our robot given movement commands and a time step. 
 
-{coderay:: c++}
+~~~ cpp
 #ifndef ROCKCONTROL_H
 #define ROCKCONTROL_H
 
@@ -91,7 +91,7 @@ private:
 }
 
 #endif // ROCKCONTROL_H
-{coderay}
+~~~
 
 
 The implementation is rather straight forward and for readability reasons only relevant parts will be explained:
@@ -100,7 +100,7 @@ The type base::MotionCommand2D contains a demanded translation and a rotation sp
 rotation in rad/s. The parameter deltaTime defines, how much time advanced since the last call. The function 
 +computeNextPose+ computes the new position and and rotation of our rock, in respect to the last pose.
 
-{coderay:: c++}
+~~~ cpp
 base::samples:RigidBodyState RockControl::computeNextPose(
   const double &deltaTime, 
   const base::MotionCommand2D &inputCommand)
@@ -132,17 +132,17 @@ base::samples:RigidBodyState RockControl::computeNextPose(
 
   return currentPose;
 }
-{coderay}
+~~~
 
 
 ## Wrapping it up
 So, now that we are equipped with our library, we can go to the second step and wrap the code into an orocos task.
 Therefore we create a new orocos component we use the command 'rock-create-orogen'. 
 
-{coderay:: text}
+~~~ text
 cd tutorials/orogen/
 rock-create-orogen rock_tutorial
-{coderay}
+~~~
 
 ### Define task
 
@@ -151,7 +151,7 @@ rock_tutorial already depends on 'base/types' and the dependencies are resolved 
 
 In the rock_tutorial.orogen we will define the orocos task. For this tutorial we replace the existing entries by our definitions:
 
-{coderay:: ruby}
+~~~ ruby
 name "rock_tutorial"
 version "0.1"
 
@@ -166,7 +166,7 @@ task_context "RockTutorialControl" do
   # Set runtime behaviour
   periodic(0.01)
 end
-{coderay}
+~~~
 
 The task RockTutorialControl has an input port called 'motion_command' of type base::MotionCommand2D and an output port called 'pose' 
 of type base::samples::RigidBodyState. This task will compute a new position and orientation each time the update hook will triggered, given 
@@ -179,7 +179,7 @@ component implementation in tasks/RockTutorialControl.cpp.
 
 The implementation is simple, as the task only calls the library and passes on the result.
 
-{coderay:: c++}
+~~~ cpp
 bool RockTutorialControl::startHook()
 {
   //delete last instance in case we got restarted
@@ -212,7 +212,7 @@ void RockTutorialControl::updateHook()
   if(_pose.connected())
     _pose.write(rbs);
 }
-{coderay}
+~~~
 
 
 Run it
@@ -221,7 +221,7 @@ Run it
 Now we should run it to see if it works. Create a scripts/ folder and create a
 new <tt>rockTutorial1.rb</tt> script containing:
 
-{coderay:: ruby}
+~~~ ruby
 require 'orocos'
 require 'readline'
 include Orocos
@@ -250,7 +250,7 @@ Orocos.run 'rock_tutorial::RockTutorialControl' => 'rock_tutorial_control' do
   Readline::readline("Press Enter to exit\n") do
   end
 end
-{coderay}
+~~~
 
 and run it with
 

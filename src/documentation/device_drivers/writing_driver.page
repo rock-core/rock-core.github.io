@@ -53,20 +53,20 @@ device.
 The first thing to do is therefore to initialize the Driver base class with that
 value:
 
-{coderay:: cpp}
+~~~ cpp
 namespace dvl_rdi {
 class Driver : public iodrivers_base::Driver {
 public:
   Driver();
 };
 }
-{coderay}
+~~~
 
-{coderay:: cpp}
+~~~ cpp
 using namespace dvl_rdi;
 Driver::Driver()
   : iodrivers_base::Driver(10000) {}
-{coderay}
+~~~
 
 The second thing is to overload [the extractPacket
 method](http://rock-robotics.org/api//drivers/iodrivers_base/classIODriver.html#a6574af5fbb06f9c8325933213d2a6a01).
@@ -93,10 +93,10 @@ The call should either return the received data structure or, if memory
 allocation is to be avoided and the data structure contains std::vector, pass it
 as argument
 
-{coderay:: cpp}
+~~~ cpp
 double speed = getSpeedMeasurement();
 void setSpeedMeasurement(double);
-{coderay}
+~~~
 
 Type 2
 ------
@@ -126,7 +126,7 @@ Summary
 
 To summarize, a minimal driver class should look like:
 
-{coderay:: cpp}
+~~~ cpp
 using namespace dvl_rdi;
 Driver::Driver()
   : iodrivers_base::Driver(10000) {}
@@ -165,4 +165,4 @@ int Driver::extractPacket(uint8_t const* buffer, size_t size) const
 
 // Finally, if you have to send commands to the device, always
 // use writePacket (from iodrivers_base::Driver)
-{coderay}
+~~~

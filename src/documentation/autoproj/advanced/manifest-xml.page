@@ -10,7 +10,7 @@ should be installed for that package to be built successfully).
 
 The general form of the file is:
 
-{coderay:: xml}
+~~~ xml
 <package>
   <description brief="one line of text">
     long description goes here, 
@@ -30,5 +30,5 @@ The general form of the file is:
    <!-- add dependency to an OS-provided package -->
    <rosdep name="os-pkgname" />
 </package>
-{coderay}
+~~~
 

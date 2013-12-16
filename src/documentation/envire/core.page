@@ -15,7 +15,7 @@ simplified through the use of the ::Ptr typedef, which is available in all
 classes derived from EnvironmentItem. Creating and attaching an EnvironmentItem
 works like this
 
-{coderay:: cpp}
+~~~ cpp
 #include <envire/Core.hpp>
 using namespace envire;
 
@@ -32,7 +32,7 @@ FrameNode::Ptr frame = new FrameNode;
 
 // This will make the frame known to the environment
 env.attachItem( frame );
-{coderay}
+~~~
 
 Structure
 --------------
@@ -75,7 +75,7 @@ The following is an example which is taken from the envire/test/unit/core.hpp
 unit tests and the resulting structure visualised with the GraphViz file
 generation class.
 
-{coderay:: cpp}
+~~~ cpp
 BOOST_AUTO_TEST_CASE( environment )
 {
     // set up an environment
@@ -149,7 +149,7 @@ BOOST_AUTO_TEST_CASE( environment )
     GraphViz gv;
     gv.writeToFile( env.get(), "build/test/env.dot" );
 }
-{coderay}
+~~~
 
 ![Example Environment Structure](sample_env_struct.png)
 
@@ -160,7 +160,7 @@ Envire provides a system for serialization and deserialization. The
 functionality is capsuled in a serialization class. In order to save an
 environment you can use the following method
 
-{coderay:: cpp}
+~~~ cpp
 #incude <envire/Core.hpp>
 using namespace envire;
 
@@ -173,18 +173,18 @@ boost::scoped_ptr<Environment> env( new Environment() );
 
 // write the environment to disk
 so.serialize(env.get(), "build/test/");
-{coderay}
+~~~
 
 Loading the environment is equally simple. The unserialize method will take a
 file name and return a pointer to the newly created environment. Object
 ownership is passed to the caller, who is expected to delete the object after
 use (using a scoped_ptr in this example).
 
-{coderay:: cpp}
+~~~ cpp
 // load the environment  
 boost::scoped_ptr<Environment> 
     env( so.unserialize( "build/test" ) );
-{coderay}
+~~~
 
 The way envire writes the files to disk is fairly simple. The file name provided
 is the name of a directory. Envire will use the full directory for its own use.

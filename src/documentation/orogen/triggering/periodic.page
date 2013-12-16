@@ -15,12 +15,12 @@ Declaration
 To do this, simply add the <tt>periodic(period)</tt> statement to the task
 declaration in your deployments:
 
-{coderay:: ruby}
+~~~ ruby
 deployment "example" do
   task('Task').
     periodic(0.01)
 end
-{coderay}
+~~~
 
 The period is given in seconds. Deploying with a periodic triggering disables
 [port-based triggers](ports.html) as well as [fd-based triggers](fd.html)

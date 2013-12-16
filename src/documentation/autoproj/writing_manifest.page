@@ -60,12 +60,12 @@ Listing and adding package sets
 Package sets are listed in the <tt>package_sets</tt> section of
 <tt>autoproj/manifest</tt> file. This section looks like this:
 
-{coderay:: yaml}
+~~~ yaml
 package_sets:
   - imoby
   - type: git
     url:  git://gitorious.com/rock.drivers/autoproj.git
-{coderay}
+~~~
 
 It lists both local and remote sets that are available for this installation.
 Local sets are subdirectories of the <tt>autoproj/</tt> directory: for instance,
@@ -73,19 +73,19 @@ in the above example, autoproj will look at the <tt>autoproj/imoby/</tt>
 directory. Remote sets are taken from remote version control systems. Its
 general format is:
 
-{coderay:: yaml}
+~~~ yaml
   - type: version_control_type # git, svn, cvs, darcs
     url: repository_url
-{coderay}
+~~~
 
 For the git importer, one of 'branch' or 'tag' options can be provided as well:
 
-{coderay:: yaml}
+~~~ yaml
   - type: version_control_type # git, svn, cvs, darcs
     url: repository_url
     branch: branch_to_track
     tag: tag_to_stick_to # it is branch OR tag
-{coderay}
+~~~
 
 Imported package sets are saved in the <tt>.remotes</tt> directory of the
 autoproj installation. The importers that are available for configuration are
@@ -145,11 +145,11 @@ wish that), you have to list the desired packages in your manifest file.
 To do so, you will have to create a <tt>layout</tt> section and list the
 desired packages:
 
-{coderay:: yaml}
+~~~ yaml
 layout:
   - rock.base
   - orogen
-{coderay}
+~~~
 
 This layout can either list packages one by one, but complete package sets can
 also be selected (as e.g. rock.base above)

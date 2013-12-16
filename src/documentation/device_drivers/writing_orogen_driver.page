@@ -38,17 +38,17 @@ package.
 
 At the top of the oroGen file, add:
 
-{coderay:: ruby}
+~~~ ruby
 using_task_library "iodrivers_base"
-{coderay}
+~~~
 
 Then, make your task a subclass of the iodrivers_base::Task task context:
 
-{coderay:: ruby}
+~~~ ruby
 task_context "Task" do
   subclasses "iodrivers_base::Task"
 end
-{coderay}
+~~~
 
 There is two things left to do:
 
@@ -57,9 +57,9 @@ There is two things left to do:
    provided in the io_port property. Note that it is legal for this property to
    be empty (see the next section for explanations).
 
-{coderay:: cpp}
+~~~ cpp
 setDriver(driver)
-{coderay}
+~~~
 
  * process the incoming data in a "void processIO()" method that is going to be
    called by the base class from updateHook().
@@ -71,7 +71,7 @@ setDriver(driver)
 
 For instance, one could have a setup looking like:
 
-{coderay:: cpp}
+~~~ cpp
 bool Task::configureHook()
 {
   Driver* driver = new Driver();
@@ -91,7 +91,7 @@ void Task::processIO()
   mDriver->processSamples();
   _samples.write(mDriver->getOrientationSample());
 }
-{coderay}
+~~~
 
 In addition, you might want to start data acquisition in the startHook and stop
 it in the stopHook. Whether the acquisition start/stop should be in

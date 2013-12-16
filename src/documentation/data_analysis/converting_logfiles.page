@@ -28,7 +28,7 @@ To update custom sample types to a new version the ruby class Orocos::Log::Conve
 used to specify the conversion between the old version and the current version. A step 
 by step guide how to write a ruby script for updating log files is given below.
 
-{coderay:: ruby}
+~~~ ruby
 
 #load converter class
 require 'orocos/log/converter'
@@ -65,7 +65,7 @@ end
 
 #convert the given log file 
 converter.convert("logfile.0.log")
-{coderay}
+~~~
 
 So far it is only possible to register one set of conversions. Later on it will be possible
 to use n sets of conversions to specify intermediate changes between types which will be automatically

@@ -14,7 +14,7 @@ log file which was previously on the "live" system.
 The basic workflow is to get a logfile context using Orocos::Log::Replay and
 then access the log streams as if they were tasks and ports:
 
-{coderay:: ruby}
+~~~ ruby
 #library for displaying data
 require 'vizkit'
 
@@ -35,12 +35,12 @@ Orocos.run "message_consumer_deployment" do
     Vizkit.control log
     Vizkit.exec
 end
-{coderay}
+~~~
 
 If, instead of pushing the data to a component, you want to process it in Ruby,
 you can redirect it to code blocks:
 
-{coderay:: ruby}
+~~~ ruby
 require 'vizkit'
 
 log = Orocos::Log::Replay.open("message_producer_deployment.0.log")
@@ -57,7 +57,7 @@ Orocos.run "message_consumer_deployment" do
     Vizkit.control log
     Vizkit.exec
 end
-{coderay}
+~~~
 
 The dataflow of the replay mechanism looks like:
 

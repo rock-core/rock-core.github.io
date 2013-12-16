@@ -9,12 +9,12 @@ Initialization
 Initialization must be done at the top of the toplevel CMakeLists.txt file. It
 is done with:
 
-{coderay:: text}
+~~~ text
 cmake_minimum_required(VERSION 2.6)
 include($ENV{ROCK_CMAKE_MACROS}/Rock.cmake)
 rock_init(dummyproject 0.1)
 rock_standard_layout()
-{coderay}
+~~~
 
 The ROCK_CMAKE_MACROS environment variable must be set externally for the CMake
 code to find the file that defines the macros. Rock's autoproj build

@@ -15,22 +15,22 @@ The deployment block
 
 Each deployment block declares one binary. For instance:
 
-{coderay:: ruby}
+~~~ ruby
 deployment "test" do
   <deployment statements>
 end
-{coderay}
+~~~
 
 will generate a "test" binary. By default, it will be installed by CMake. If
 that is not desired, for instance if it is for testing purposes only, add the
 <tt>do_not_install</tt> statement in the block:
 
-{coderay:: ruby}
+~~~ ruby
 deployment "test" do
   do_not_install
   <other deployment statements>
 end
-{coderay}
+~~~
 
 In the block, the following conditions can be tested:
 
@@ -49,9 +49,9 @@ Instanciating tasks
 The basic thing to be done in a deployment is listing the tasks that should be
 instanciated. It is done by using the 'task' statement:
 
-{coderay:: ruby}
+~~~ ruby
   task 'TaskName', 'orogen_project::TaskClass'
-{coderay}
+~~~
 
 It will create a task with the given name and class. By default, that task will
 have its own thread.
@@ -78,11 +78,11 @@ Nonetheless, the underlying thread can be parametrized with a scheduling class
 with the lowest priority possible. Changing it is done with the following
 statements:
 
-{coderay:: ruby}
+~~~ ruby
   task('TaskName', 'orogen_project::TaskClass').
     realtime.
     priority(<priority value>)
-{coderay}
+~~~
 
 Note the dot at the end of the first two lines. It is important and not adding
 it would lead to a NoMethodError error during generation.
@@ -94,10 +94,10 @@ to be in its own thread.
 
 The second case is called a sequential activity and is declared with:
 
-{coderay:: ruby}
+~~~ ruby
   task('TaskName', 'orogen_project::TaskClass').
     sequential
-{coderay}
+~~~
 
 Initial setup of the generated deployment
 -----------------------------------------
@@ -107,9 +107,9 @@ present in the deployment.
 
 First, it is possible to set simple properties. To do so:
 
-{coderay:: ruby}
+~~~ ruby
 my_task.property = new_value
-{coderay}
+~~~
 
 where <tt>new_value</tt> is compatible with the property's type. It works only
 for simple types (like numbers or strings), where new_value is the corresponding
@@ -129,9 +129,9 @@ implement automated logging setup.
 If this default logger does not suit you, you can also add specific loggers
 with:
 
-{coderay:: ruby}
+~~~ ruby
 logger("file name", "task_name").
     report(other_task.output_port_name).
     report(third_task.another_output_port)
-{coderay}
+~~~
 

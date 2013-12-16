@@ -18,9 +18,9 @@ fully accessible via qt ruby. As a starting point, the command line program
 rock-create-vizkit-widget generates the basic folder layout and 
 a ready-to-use Qt Designer widget example.
 
-{coderay:: bash}
+~~~ bash
 $ rock-create-vizkit-widget MyWidget
-{coderay}
+~~~
 
 This will create a new folder in the current directory named MyWidget.
 The folder layout looks much like a Rock library. The relevant code has been 
@@ -39,9 +39,9 @@ If you encounter problems with the qt designer, it might help to delete old widg
 
 To test your widget after it was built and installed, call the following command on the command line: 
 
-{coderay:: bash}
+~~~ bash
 $ ruby scripts/test.rb
-{coderay}
+~~~
 
 Without changes, the generated sample widget should look like this:
 
@@ -84,7 +84,7 @@ Now we write a simple Qt Ruby widget using our user interface and name it test2.
 widgets contained in testwidget.ui are accessible via their object name on the top level
 of the main widget.
 
-{coderay:: ruby}
+~~~ ruby
 #! /usr/bin/env ruby
 
 require 'vizkit'
@@ -129,7 +129,7 @@ tw = TestWidget.new
 tw.show
 
 Vizkit.exec
-{coderay}
+~~~
 
 Running test2.rb opens our user interface:
 
@@ -147,7 +147,7 @@ automatically being installed at the right location.
 
 This code registers our widget for the type /base/samples/RigidBodyState
 
-{coderay:: ruby}
+~~~ ruby
 Vizkit::UiLoader::extend_cplusplus_widget_class "MyWidget" do
 
   #called when the widget is created
@@ -176,7 +176,7 @@ end
 Vizkit::UiLoader.register_widget_for("MyWidget",
                                      "/base/samples/RigidBodyState",
                                      :update)
-{coderay}
+~~~
 
 After the script is being installed via _autoproj_ _build_ _._  or _amake_ all rock tools are aware of 
 the widget and you could display log files or live data by just selecting your widget 

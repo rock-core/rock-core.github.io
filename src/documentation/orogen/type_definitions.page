@@ -41,7 +41,7 @@ standard classes, so you can use them freely.
 
 Example: defining a Time class
 
-{coderay:: cpp}
+~~~ cpp
 namespace base {
   struct Time
   {
@@ -50,7 +50,7 @@ namespace base {
     Time operator +(Time const& other);
   };
 }
-{coderay}
+~~~
 
 Note that, for now, all types that are defined in the orogen project must be
 defined inline: orogen does not support separating the implementation from the
@@ -84,9 +84,9 @@ Defining types in an oroGen project
 In an oroGen project, one adds one or many following statement to load a C/C++
 file that defines the project's types:
 
-{coderay:: ruby}
+~~~ ruby
 import_types_from "myproject.h"
-{coderay}
+~~~
 
 Be aware that <tt>myproject.h</tt> must be self-consistent, i.e. that it must
 include all the headers that are necessary to define the types that it wants to
@@ -100,17 +100,17 @@ In other words, if <tt>other_header.h</tt> is included in <tt>myproject.h</tt>
 **and** you want the types of <tt>other_header.h</tt> to be exported in the
 typekit, then you need to do
 
-{coderay:: ruby}
+~~~ ruby
 import_types_from "other_header.h"
 import_types_from "myproject.h"
-{coderay}
+~~~
 
 and not
 
-{coderay:: ruby}
+~~~ ruby
 import_types_from "myproject.h"
 import_types_from "other_header.h"
-{coderay}
+~~~
 
 
 Finally, one can directly use types defined in a library, provided that this
@@ -120,10 +120,10 @@ Let's consider a 'drivers/hokuyo' package that would define a hokuyo::Statistics
 structure. Assuming that this package (1) installs a hokuyo.pc file, and (2)
 installs the relevant header as "hokuyo.hpp", it is possible to do
 
-{coderay:: ruby}
+~~~ ruby
 using_library "hokuyo"
 import_types_from "hokuyo.hpp"
-{coderay}
+~~~
 
 The issue of loading types from other oroGen projects is handled [in
 here](cross_project.html)
@@ -142,7 +142,7 @@ interfaces.
 
 For instance, with
 
-{coderay:: cpp}
+~~~ cpp
 template <typename Scalar, int DIM>
 struct Vector {
   Scalar values[DIM];
@@ -152,7 +152,7 @@ struct __orogen_workaround {
   Vector<3> vector3;
   Vector<4> vector4;
 };
-{coderay}
+~~~
 
 one can use Vector&lt;3&gt; in its orogen interface, and in other structures.
 

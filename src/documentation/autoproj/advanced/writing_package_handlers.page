@@ -16,18 +16,18 @@ must use Autobuild's progress methods to report the build progress.
 
 To report progress about a long-running process, use Package#progress_start
 
-{coderay:: ruby}
+~~~ ruby
 progress_start "progress message for package %s" do
   # Long-running process.
   # Call Package#progress to display intermediate messages
 end
-{coderay}
+~~~
 
 To display single-shot messages, use Package#message
 
-{coderay:: ruby}
+~~~ ruby
 message "something that should be noted about package %s"
-{coderay}
+~~~
 
 If what you are doing is not related to a single package, use the same methods
 on Autobuild: Autobuild.progress_start, Autobuild.progress, Autobuild.message
@@ -37,9 +37,9 @@ Running Subcommands
 Always use Autobuild::Subprocess.run to run subcommands. It handles all the
 details of diverting the output to a proper log file, handling errors, ...
 
-{coderay:: ruby}
+~~~ ruby
 Autobuild::Subprocess.run(pkg, 'build', 'command', '--with', '--options', :working_directory => pkg.srcdir)
-{coderay}
+~~~
 
 The first argument is either the package for which the command is built, or a
 string. The second the build phase (standard ones are

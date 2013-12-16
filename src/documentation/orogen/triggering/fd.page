@@ -21,16 +21,16 @@ the said tasks (since people will know that they may be used as IO-driven).
 To declare a task context as IO-driven, one adds the following statement to the
 task context definition block:
 
-{coderay:: ruby}
+~~~ ruby
 fd_driven
-{coderay}
+~~~
 
 In this case, the io-driven triggering mechanism is declared as optional. If it
 is required, then do
 
-{coderay:: ruby}
+~~~ ruby
 required_activity :fd_driven
-{coderay}
+~~~
 
 Note that deploying a task with [a periodic activity](periodic.html) will
 disable the fd-driven behaviour. However, the fd-driven activity can be overlaid
@@ -50,13 +50,13 @@ mandatory**)
 
 First of all, include the header in the task's cpp file:
 
-{coderay:: cpp}
+~~~ cpp
 #include <rtt/extras/FileDescriptorActivity.hpp>
-{coderay}
+~~~
 
 Second, set up the watches in startHook
 
-{coderay:: cpp}
+~~~ cpp
 bool MyTask::startHook()
 {
     // Here, "fd" is the file descriptor of the underlying device
@@ -67,14 +67,14 @@ bool MyTask::startHook()
         activity->watch(fd);
     return true;
 }
-{coderay}
+~~~
 
 This only works *if the activity is required*. Indeed, with another activity,
 the component will crash as getFileDescriptorActivity() returns NULL;
 
 If the use of an io-driven activity is optional, simply test for activity:
 
-{coderay:: cpp}
+~~~ cpp
 bool MyTask::startHook()
 {
     // Here, "fd" is the file descriptor of the underlying device
@@ -85,20 +85,20 @@ bool MyTask::startHook()
         activity->watch(fd);
     return true;
 }
-{coderay}
+~~~
 
 It is possible to list multiple file descriptors by having multiple calls to
 watch(). 
 
 It is possible to set a timeout in milliseconds with
 
-{coderay:: cpp}
+~~~ cpp
     activity->setTimeout(100);
-{coderay}
+~~~
 
 Finally, you **must** clear all watches in stopHook():
 
-{coderay:: cpp}
+~~~ cpp
 void MyTask::stopHook()
 {
     RTT::extras::FileDescriptorActivity* activity =
@@ -106,7 +106,7 @@ void MyTask::stopHook()
     if (activity)
         activity->clearAllWatches();
 }
-{coderay}
+~~~
 
 Runtime use in updateHook()
 ---------------------------
@@ -115,7 +115,7 @@ The FileDescriptorActivity class offers a few ways to get more information
 related to the trigger reason (data availability, timeout, error on a file
 descriptor). These different conditions can be tested with:
 
-{coderay:: cpp}
+~~~ cpp
 RTT::extras::FileDescriptorActivity* fd_activity =
     getActivity<RTT::extras::FileDescriptorActivity>();
 if (fd_activity)
@@ -138,5 +138,5 @@ if (fd_activity)
     }
   }
 }
-{coderay}
+~~~
 

@@ -36,19 +36,19 @@ The periodicity was set to 1.0 seconds for the default deployment. Let's assume
 now that the task should be executed at a higher rate. Create a new oroGen
 project (for instance in tutorials/orogen):
 
-{coderay:: text}
+~~~ text
 rock-create-orogen messenger_deployments
-{coderay}
+~~~
 
 When asked for dependencies give the messager producer and consumer task projects, e.g.:
 
-{coderay:: text}
+~~~ text
 tutorials/orogen/message_producer, tutorials/orogen/message_consumer
-{coderay}
+~~~
 
 In the file *messenger_deployments.orogen* delete the content and add the following:
 
-{coderay:: ruby}
+~~~ ruby
 name "messenger_deployments"
 
 using_task_library "message_producer"
@@ -56,19 +56,19 @@ using_task_library "message_producer"
 deployment "faster_message_producer" do 
     task("producer","message_producer::Task").periodic(0.1)
 end
-{coderay}
+~~~
 
 Finalize the package creation with (in the same directory than the oroGen file)
 
-{coderay}
+~~~
 rock-create-orogen
-{coderay}
+~~~
 
 And, finally, the usual
 
-{coderay:: text}
+~~~ text
 amake
-{coderay}
+~~~
 
 Usage in Ruby scripts
 ---------------------
@@ -80,7 +80,7 @@ for the [messenger example
 script](../tutorials/130_basics_connect_components.html), while keeping the default
 deployment for the consumer would be done with:
 
-{coderay:: ruby}
+~~~ ruby
 require 'orocos'
 require 'readline'
 
@@ -111,5 +111,5 @@ Orocos.run 'faster_message_producer',
   Readline::readline("Press ENTER to exit\n") do
   end 
 end
-{coderay}
+~~~
 

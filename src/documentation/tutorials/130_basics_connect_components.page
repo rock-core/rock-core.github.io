@@ -31,7 +31,7 @@ Your first task in this tutorial is to apply the acquired knowleged from the pre
 
 The next step will be to adapt the orogen specification. The component should allow to receive messages on an input port, and call the updateHook only when it receives a message. The specification should looks as follows: 
 
-{coderay:: ruby}
+~~~ ruby
 using_library "message_driver"
 import_types_from "message_producer"
 
@@ -40,12 +40,12 @@ task_context "Task" do
 
    port_driven "messages"
 end
-{coderay}
+~~~
 
 The 'port_driven' statement allows you to specify ports, where incoming data triggers a call to the updateHook of the task (more details in the [documentation](../orogen/triggering/ports.html)).
 Implement the updateHook, so that every incoming message is printed to stdout, using the existing printMessage function of your 'message_driver' library.
 
-{coderay:: c++}
+~~~ cpp
 void Task::updateHook()
 {
     TaskBase::updateHook();
@@ -55,7 +55,7 @@ void Task::updateHook()
 
     mpMessageDriver->printMessage(message);
 }
-{coderay}
+~~~
 
 Build your component with 'amake'.
 
@@ -65,7 +65,7 @@ Connecting multiple components
 
 You have designed a component that produces messages and a component that consumes messages. To connect them, you will use the Ruby scripting interface. Create a file start.rb in your consumer component's script folder (you will have to create the folder first) with the following content: 
 
-{coderay:: ruby}
+~~~ ruby
 require 'orocos'
 require 'readline'
 
@@ -94,7 +94,7 @@ Orocos.run 'message_producer::Task' => 'message_producer',
   Readline::readline("Press ENTER to exit\n") do
   end 
 end
-{coderay}
+~~~
 
 The call to 'connect_to' for an output port allows you to connect it with an input port. By default a data connection is created, but you can also specify the type of your connection explicitly. Check the [documentation](../runtime/ports.html) for more details on that topic. 
 
@@ -102,18 +102,18 @@ The call to 'connect_to' for an output port allows you to connect it with an inp
 
 Run your ruby script
 
-{coderay:: c++}
+~~~ cpp
 ruby start.rb
-{coderay}
+~~~
 
 If everything has been done correctly, you will eventually see the consumer printing messages to the console, in the periodicity you set on the message producer: 
 
-{coderay:: c++}
+~~~ cpp
 [20110803-10:59:55:068] Message from MessageDriver
 [20110803-10:59:56:068] Message from MessageDriver
 [20110803-10:59:57:068] Message from MessageDriver
 [20110803-10:59:58:068] Message from MessageDriver
-{coderay}
+~~~
 
 As usual, shut it down with CTRL+C. The script does the cleanup itself.
 

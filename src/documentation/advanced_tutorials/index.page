@@ -39,7 +39,7 @@ your autoproj/manifest.
 
 autoproj/manifest should look like:
 
-{coderay:: text}
+~~~ text
 package_sets:
    - gitorious: rock-toolchain/package_set
    - gitorious: rock/package_set
@@ -49,5 +49,5 @@ layout:
    - rock.base
    - rock.toolchain
    - rock.tutorials
-{coderay}
+~~~
 

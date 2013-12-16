@@ -156,14 +156,14 @@ osdeps. For instance, the following code snippet, when added to overrides.rb,
 will cause autoproj to look for external/opencv instead of opencv if the opencv
 osdeps is not available on the current machine.
 
-{coderay:: ruby}
+~~~ ruby
 Autoproj.add_osdeps_overrides 'opencv', :package => 'external/opencv'
-{coderay}
+~~~
 
 One can force the usage of the source package for the local installation
 (completely ignoring the osdeps package)
 
-{coderay:: ruby}
+~~~ ruby
 Autoproj.add_osdeps_overrides 'opencv', :package => 'external/opencv', :force => true
-{coderay}
+~~~
 

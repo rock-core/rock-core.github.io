@@ -79,13 +79,13 @@ If your component needs a configuration step, you will have to tell it to
 oroGen. To do that, add the <tt>default_configuration</tt> statement in the task
 context block:
 
-{coderay:: ruby}
+~~~ ruby
 task_context "Task" do
   needs_configuration
 
   # other definitions
 end
-{coderay}
+~~~
 
 Et voila !
 
@@ -114,7 +114,7 @@ the task context state machine: Running, RunTimeError, Exception and Fatal.
 These sub-states are declared in the <tt>task_context</tt> block of the oroGen
 specification:
 
-{coderay:: ruby}
+~~~ ruby
 task_context "MotionTask" do
   # Sub-states of Running (nominal operations)
   runtime_states 'GOING_FORWARD', 'TURNING_LEFT'
@@ -125,7 +125,7 @@ task_context "MotionTask" do
   # Sub-states of Fatal (not recoverable error)
   fatal_states 'TOTALLY_BROKEN'
 end
-{coderay}
+~~~
 
 On the C++ side, this mechanism is available through two things:
 
@@ -137,7 +137,7 @@ On the C++ side, this mechanism is available through two things:
 For instance, if the updateHook() detects that the system is blocked, it would
 do
 
-{coderay:: cpp}
+~~~ cpp
 void MotionTask::updateHook()
 {
     // code
@@ -148,5 +148,5 @@ void MotionTask::updateHook()
     }
     // code
 }
-{coderay}
+~~~
 

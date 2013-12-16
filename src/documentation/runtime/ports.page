@@ -8,9 +8,9 @@ Port access
 
 Getting a port from a task is as easy as
 
-{coderay:: ruby}
+~~~ ruby
 port_object = my_task.port_name
-{coderay}
+~~~
 
 The returned port object is either an {rdoc_class: {base_url: /api/tools/orocos.rb, name: "Orocos::InputPort"}} or an
 {rdoc_class: {base_url: /api/tools/orocos.rb, name: "Orocos::OutputPort"}}, based on the port type.
@@ -20,16 +20,16 @@ Creating connections
 
 A connection is always created from an output port to an input port:
 
-{coderay:: ruby}
+~~~ ruby
 output_port.connect_to input_port
-{coderay}
+~~~
 
 By default, the created connection is a data connection. To change that, one can
 use the :type option
 
-{coderay:: ruby}
+~~~ ruby
 output_port.connect_to input_port, :type => :buffer, :size => 10
-{coderay}
+~~~
 
 Both ports must have the same type, otherwise a ConnectionFailed exception is
 raised.
@@ -44,21 +44,21 @@ There are different ways to disconnect ports
 
  * one can specify a specific connection to remove:
 
-{coderay:: ruby}
+~~~ ruby
 output_port.disconnect_from input_port
-{coderay}
+~~~
 
  * one can completely disconnect an input port
 
-{coderay:: ruby}
+~~~ ruby
 input_port.disconnect_all
-{coderay}
+~~~
 
  * one can completely disconnect an output port
 
-{coderay:: ruby}
+~~~ ruby
 output_port.disconnect_all
-{coderay}
+~~~
 
 Note that it is fine to use the first method even though the process hosting the
 input port is dead (e.g. has crashed or cannot be contacted). If it is the
@@ -72,24 +72,24 @@ one gets a {rdoc_class: {base_url: /api/tools/orocos.rb, name: "Orocos::OutputRe
 or a {rdoc_class: {base_url: /api/tools/orocos.rb, name: "Orocos::InputWriter"}} object
 (respectively) with:
 
-{coderay:: ruby}
+~~~ ruby
 writer = input_port.writer
 reader = output_port.reader
-{coderay}
+~~~
 
 By default, these port access objects will use a data policy for their
 connection to the port. To specify a buffer policy, simply do
 
-{coderay:: ruby}
+~~~ ruby
 writer = input_port.writer :type => :buffer, :size => 10
 reader = output_port.reader :type => :buffer, :size => 10
-{coderay}
+~~~
 
 Then, the data can be read with
 
-{coderay:: ruby}
+~~~ ruby
 sample = reader.read
-{coderay}
+~~~
 
 the returned value will be nil if there is no data available, and the
 corresponding Typelib::Type object otherwise. It always return a sample if 
@@ -97,38 +97,38 @@ the connection has been written at least once.
 
 To get only new samples (i.e. samples that you never read already), do
 
-{coderay:: ruby}
+~~~ ruby
 sample = reader.read_new
-{coderay}
+~~~
 
 The returned object allows to manipulate
 the C++ data structure as if it was a normal Ruby object. For instance, a data
 sample looking like
 
-{coderay:: cpp}
+~~~ cpp
 struct LaserReadings
 {
     std::string name;
     base::Time time;
     std::vector<double> readings;
 };
-{coderay}
+~~~
 
 One can do
 
-{coderay:: ruby}
+~~~ ruby
 sample.name # returns a Ruby string
 sample.time # returns a Typelib object that has .seconds and .microseconds methods
 sample.readings # returns an Enumerable of floating-point values
-{coderay}
+~~~
 
 and written with
 
-{coderay:: ruby}
+~~~ ruby
 sample = writer.new_sample
 sample.name = "MyReading"
 sample.time.seconds = Time.now.tv_sec
 sample.time.microseconds = Time.now.tv_usec
 output_port.write(sample)
-{coderay}
+~~~
 

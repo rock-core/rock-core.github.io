@@ -33,11 +33,11 @@ separate from dynamic_transforms, it is made possible by manually feeding the
 data to the transformer C++ object. This __must__ be done before the call to
 TaskBase::updateHook
 
-{coderay:: c++}
+~~~ cpp
 base::samples::RigidBodyState rbs;
 while(_my_transform_input.read(rbs, false) == RTT::NewData)
     _transformer.pushDynamicTransform(rbs);
-{coderay}
+~~~
 
 Transformation Specifications
 -----------------------------
@@ -47,10 +47,10 @@ config/transforms.rb file.
 
 Static transformations are declared with
 
-{coderay:: ruby}
+~~~ ruby
 static_transform translation, rotation,
   "source_frame_name" => "target_frame_name"
-{coderay}
+~~~
 
 Translation and rotations are resp. specified with Eigen::Vector3d and
 Eigen::Quaternion. The very useful Eigen::Quaternion.from_axis(angle, axis) call
@@ -59,10 +59,10 @@ are identities.
 
 Dynamic transformations are declared with
 
-{coderay:: ruby}
+~~~ ruby
 dynamic_transform "producer_task_name.port_name",
   "source_frame_name" => "target_frame_name",
-{coderay}
+~~~
 
 Where _producer_task_name_ and _port_name_ refer to the data stream that defines
 the required transformation. If the task has only one RigidBodyState output
@@ -70,7 +70,7 @@ port, the port name can be left empty.
 
 For our laser filter example, a possible configuration file would look like:
 
-{coderay:: ruby}
+~~~ ruby
 # The frame names in this file are arbitrary !
 static_transform Eigen::Vector3d.new(0.3, 0, 0),
   "Body" => "ServoFrom"
@@ -78,7 +78,7 @@ static_transform Eigen::Quaternion.from_angle_axis(1, Eigen::Vector3d::UnitX),
   "ServoTo" => "Lidar",
 dynamic_transform "servo.transform_samples",
   "ServoFrom" => "ServoTo",
-{coderay}
+~~~
 
 Ruby scripting
 --------------
@@ -99,7 +99,7 @@ Three bits are needed to configure the system properly:
 
 Finally:
 
-{coderay:: ruby}
+~~~ ruby
 # You need to initialize before you can use the transformer
 Orocos.initialize
 Orocos.transformer.load_conf('config/transforms.rb')
@@ -138,7 +138,7 @@ Orocos.run ... do
   # Wait for ENTER on input
   STDIN.readline
 end
-{coderay}
+~~~
 
 The Orocos.transformer.setup call provides the following additional features:
 

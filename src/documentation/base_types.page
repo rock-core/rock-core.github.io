@@ -36,7 +36,7 @@ information please refer to the api docs of the `base/types` package.
 microseconds since UNIX epoch. It can be used to represent both absolute and
 relative time. 
 
-{coderay:: cpp}
+~~~ cpp
 #include <base/time.h>
 
 // initialize time to 0
@@ -47,7 +47,7 @@ base::Time tnow = base::Time::now();
 base::Time t1 = base::Time::fromSeconds( 2.5 );
 // tpast would be the time 2.5 seconds ago
 base::Time tpast = tnow - t1;
-{coderay}
+~~~
 
 Use `toString()` to get a human readable form. Also, there is a stream operator
 for the Time class.
@@ -57,7 +57,7 @@ for the Time class.
 Small convenience class to simplify benchmarking. It will record the time on
 generation, and has a simple stream method for the output.
 
-{coderay:: cpp}
+~~~ cpp
 #include <base/timemark.h>
 #include <iostream>
 
@@ -65,7 +65,7 @@ base::TimeMark mark("Complex Stuff");
 // do complex stuff
 ...
 std::cout << mark << std::endl;
-{coderay}
+~~~
 
 ### Angle ###
 
@@ -73,7 +73,7 @@ The `base::Angle` class represents an angle and can be used as a convenience
 class instead of a float. An angle object has a canonical interpretation within
 -M_PI and M_PI. It can also perform converting between radians and degrees.
 
-{coderay:: cpp}
+~~~ cpp
 #include <base/angle.h>
 
 // storing angles and the canonical form
@@ -83,7 +83,7 @@ a.isApprox( b ); // is true
 
 // converting from degree to rad 
 needsRad( base::Angle::deg2Rad( 180.0 ) );
-{coderay}
+~~~
 
 ### Matrix / Vector ###
 

@@ -8,18 +8,18 @@ oroGen-handled on your system: types, task contexts, deployments.
 
 Call it with
 
-{coderay:: text}
+~~~ text
 oroinspect <pattern>
-{coderay}
+~~~
 
 and it will display all objects whose name patch 'pattern' (where 'pattern is a
 regular expression)
 
 For instance, on a Rock installation
 
-{coderay:: text}
+~~~ text
 oroinspect hokuyo
-{coderay}
+~~~
 
 displays
 

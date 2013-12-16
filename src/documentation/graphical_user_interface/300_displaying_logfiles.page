@@ -35,7 +35,7 @@ used or extended by custom ruby scripts to display live data or log data.
 For example, the code block below is using the same user interface as rock-replay
 does to replay a log file to a custom qt widget.
 
-{coderay:: ruby}
+~~~ ruby
   require 'vizkit'
 
   #open the log file
@@ -62,11 +62,11 @@ does to replay a log file to a custom qt widget.
 
   #start gui
   Vizkit.exec
-{coderay}
+~~~
 
 The next example is pretty much the start script of rock-replay
 
-{coderay:: ruby}
+~~~ ruby
 require 'vizkit'
 if ARGV.empty?
   puts
@@ -82,27 +82,27 @@ log = Orocos::Log::Replay.open(ARGV)
 log.track true
 Vizkit.control log
 Vizkit.exec
-{coderay}
+~~~
 
 If a specific port shall be replayed Vizkit can be used to automatically find 
 a display widget which can handle the type of sample. This behavior can easily
 be extended by registering custom widgets with the method 
 Vizkit.register_widget_for (see [this page](600_writing_vizkit_widget.html)).
 
-{coderay:: ruby}
+~~~ ruby
 require 'vizkit'
 replay = Orocos::Log::Replay.open('my.log')
 Vizkit.display replay.mytask.myport
 Vizkit.control replay
 Vizkit.exec
-{coderay}
+~~~
 
 To specify the widget which shall be used to display the samples of the port,
 the UiLoader class can be used to manually load widgets.  A complete list of
 available widgets can be displayed by using the command line tool
 rock-list-widgets.
 
-{coderay:: ruby}
+~~~ ruby
 require 'vizkit'
 replay = Orocos::Log::Replay.open('my.log')
 #create a new struct_viewer widget
@@ -111,12 +111,12 @@ replay.mytask.myport.connect_to widget
 widget.show
 Vizkit.control replay
 Vizkit.exec 
-{coderay}
+~~~
 
 If the same script shall be used to display remote tasks and later on log files 
 the Orocos name service can be used to find the right task.
 
-{coderay:: ruby}
+~~~ ruby
 require 'vizkit'
 Orocos.initialize
 # load log files and add the loaded tasks to the Orocos name service
@@ -136,5 +136,5 @@ end
 
 Vizkit.control replay unless ARGV.empty?
 Vizkit.exec
-{coderay}
+~~~
 

@@ -15,12 +15,12 @@ name and all available slots and signals can be called on them.
 Example for loading a ui file which defines a text field with the object
 name my_text_filed.
 
-{coderay:: ruby}
+~~~ ruby
   require 'vizkit'
   widget = Vizkit.load 'my.ui'
   #call the slot setText on the text field
   widget.my_text_filed.setText 'Hello Rock!'
   widget.show
   Vizkit.exec 
-{coderay}
+~~~
 

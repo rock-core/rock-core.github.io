@@ -20,7 +20,7 @@ Example of the CompoundDisplay in action. You see five display widgets on positi
 
 One benefit of the CompoundDisplay is its ability to backup and restore your display widget configuration. That means you assign the widgets of your choice to specific grid coordinates and export this configuration to a YAML file. This feature is accessible through a slot or the optional toolbar (not shown in the picture). The configuration also includes information about the specific data sources, i.e. the task, port host of the data provider. Configurations can be either loaded upon startup (via script) or at runtime.
 
-{coderay:: ruby}
+~~~ ruby
 \---
 0: !ruby/object:CompoundDisplayConfig
   task: 10.250.8.27/camera1
@@ -48,7 +48,7 @@ One benefit of the CompoundDisplay is its ability to backup and restore your dis
   widget: Plot2d
   connection_policy: {}
 5: 
-{coderay}
+~~~
 
 The corresponding YAML configuration file to the picture above.
 {: .caption}
@@ -61,7 +61,7 @@ To use the Drag&Drop feature, both the source and destination widget, i.e. TaskI
 
 The following script shows a basic example of how to use CompoundDisplay with multiple remote hosts.
 
-{coderay:: ruby}
+~~~ ruby
 require 'vizkit'
 
 Orocos.initialize
@@ -108,4 +108,4 @@ inspector.show
 inspector.add_name_service(Orocos::Async.name_service)
 
 Vizkit.exec
-{coderay}
+~~~

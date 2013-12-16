@@ -16,7 +16,7 @@ pocolog _logfile_
 
 will list the streams that are present in _logfile_, along with how many samples they have, and their start and end time. Example:
 
-{coderay:: text}
+~~~ text
 [....1_ImageAcquisition]% pocolog lowlevel.log
 File data is in little endian byte order
 loading file info from ./lowlevel.idx... invalid index file
@@ -35,14 +35,14 @@ Stream simpleController.cmd_out [/hbridge/SimpleCommand]
 	to Fri 14/08/2009 15:02:59 [0:01:59.998]
 No samples for
 can.stats [/can/Statistics]
-{coderay}
+~~~
 
 The format of each stream description is:
 
-{coderay:: text}
+~~~ text
 Stream stream_name [type_name]
 sample_count samples from start_time to end_time [duration]
-{coderay}
+~~~
 
 As we already mentioned, the generated log files are self-contained. This means that all the information needed to read the data is already contained in the log file. The main information block is a description of each stream's data type.
 
@@ -86,7 +86,7 @@ Reading log files using Ruby scripts
 
 The most flexible way is to read the file directly from Ruby. Example code:
 
-{coderay:: ruby}
+~~~ ruby
 #! /usr/bin/env ruby
 
 require 'pocolog'
@@ -99,7 +99,7 @@ data_stream.samples.each do |realtime, logical, sample|
   # for motor 0
   speed = sample.cur[0].position - sample.last[0].position
 end
-{coderay}
+~~~
 
 See [this page]({relocatable: ../runtime/ruby_and_types.html}) for a description of how the C++
 types look like on the Ruby side.

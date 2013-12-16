@@ -62,10 +62,10 @@ To add this package set to your current autoproj installation copy the string to
 ***NOTE***: The manifest is following the yml syntax where you have to use blanks (no tabs).
 {: .warning}
 
-{coderay:: yml}
+~~~ yml
 package_sets:
   - gitorious: rock/package_set
-{coderay}
+~~~
 
 Now autoproj nows about all packages which are part of the package sets. If you want to install one of them
 go to to the next section.
@@ -84,11 +84,11 @@ two lines to the autoproj/manifest layout section.
 ***NOTE***: The manifest is following the yml syntax where you have to use blanks (no tabs).
 {: .warning}
 
-{coderay:: yml}
+~~~ yml
 layout:
   - gui/vizkit
   - gui/rock_widget_collection
-{coderay}
+~~~
 
 Now, if you call *amake* on the command line autoproj is downloading and installing the two libraries. 
 

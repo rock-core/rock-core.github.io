@@ -40,9 +40,9 @@ Reusing Existing ROS Messages
 Existing ROS messages can be reused by specifying ros mappings in the oroGen
 specification:
 
-{coderay:: ruby}
+~~~ ruby
 typekit.ros_mappings '/a_type/within_a_namespace/Type' => 'sensor_msgs/Image'
-{coderay}
+~~~
 
 The ros_mappings statement must be added after the import_types_from statements
 that defined the relevant Rock type .  It can only be added for types that are

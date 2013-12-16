@@ -37,9 +37,9 @@ environment variable. If you install your orogen projects in a non standard
 location, you must add this location to <tt>PKG_CONFIG_PATH</tt>. In a bash-like
 shell, this is done with:
 
-{coderay:: text}
+~~~ text
 export PKG_CONFIG_PATH=/my/installed/prefix/lib/pkgconfig:$PKG_CONFIG_PATH
-{coderay}
+~~~
 
 What is available on my system ?
 --------------------------------
@@ -53,9 +53,9 @@ Importing types
 To import and define the types defined by another project, just add the
 following at toplevel:
 
-{coderay:: ruby}
+~~~ ruby
 import_types_from "project_name"
-{coderay}
+~~~
 
 This will import the types in the current project, allowing you to use them in
 following task context definitions.
@@ -66,9 +66,9 @@ Importing task context definitions
 To import task contexts defined by another project, just add the following at
 toplevel:
 
-{coderay:: ruby}
+~~~ ruby
 using_task_library "project_name"
-{coderay}
+~~~
 
 Once it is done, you can use the imported task contexts in the local project to:
 
@@ -85,17 +85,17 @@ Using external libraries which use pkg-config {#using_library}
 If you want to use types from a library that provides a pkg-config file, just
 add
 
-{coderay:: ruby}
+~~~ ruby
 using_library 'base-types'
-{coderay}
+~~~
 
 where "base-types" is the name of the installed pkg-config file (see the Rock
 base package). The headers from that library will be made available, so you can
 do
 
-{coderay:: ruby}
+~~~ ruby
 import_types_from "base/pose.h"
-{coderay}
+~~~
 
 where base/pose.h is a header installed by the library.
 
@@ -114,10 +114,10 @@ you will have to:
  * first, modify the cmake code as described above
  * second, in the oroGen file, add the relevant include dirs. For instance,
 
-{coderay:: ruby}
+~~~ ruby
 incdir = Set.new
 # Write code that detects where the library is and gets
 # its include dirs. Add the include dirs in "incdir"
 typekit(true).include_dirs |= incdir
-{coderay}
+~~~
 

@@ -61,19 +61,19 @@ This is simply a matter of calling #depends_on(package_name) or
 
 For instance, when defining a new package
 
-{coderay:: ruby}
+~~~ ruby
 cmake_package 'drivers/orogen/pkgname' do |pkg|
   if user_config('WITH_GUI')
     pkg.depends_on 'gui'
   end
 end
-{coderay}
+~~~
 
 Or later in for instance autoproj/overrides.rb
 
-{coderay:: ruby}
+~~~ ruby
 if user_config('WITH_GUI')
   package('drivers/orogen/pkgname').depends_on 'gui'
 end
-{coderay}
+~~~
 

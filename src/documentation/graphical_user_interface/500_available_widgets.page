@@ -9,7 +9,7 @@ shipped with a collection of widgets for some basic data analysis.
 **ImageView:**
 Widget for displaying camera images (base/frame/frame, base/frame/FramePair)
 
-{coderay:: ruby}
+~~~ ruby
   require 'vizkit'
   orocos.run 'my_camera' do
     camera = Orocos.name_service.get 'camera'
@@ -17,7 +17,7 @@ Widget for displaying camera images (base/frame/frame, base/frame/FramePair)
     Vizkit.display camera.frame
     Vizkit.exec
   end
-{coderay}
+~~~
 
 ![ImageView](500_image_viewer.png)
 {: .align-center}
@@ -25,7 +25,7 @@ Widget for displaying camera images (base/frame/frame, base/frame/FramePair)
 **PlotWidget:**
 Widget for plotting sensor data
 
-{coderay:: ruby}
+~~~ ruby
   require 'vizkit'
   orocos.run 'my_sensor' do
     widget = Vizkit.default_loader.Plot2d
@@ -41,7 +41,7 @@ Widget for plotting sensor data
     widget.show
     Vizkit.exec
   end
-{coderay}
+~~~
 
 ![Plot2d](500_plot2d.png)
 {: .align-center}

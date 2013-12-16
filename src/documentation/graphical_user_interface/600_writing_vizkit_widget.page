@@ -47,7 +47,7 @@ Vizkit can easily be extended with custom c++ qt widgets. To do so follow the st
 
 Example: ruby script which integrates a c++ widget into vizkit
 
-{coderay:: ruby}
+~~~ ruby
 require 'eigen'
 
 #the widget is automatically extended with the 
@@ -87,7 +87,7 @@ Vizkit::UiLoader.register_widget_for(name,
                   '/wrappers/samples/RigidBodyState',:update)
 Vizkit::UiLoader.register_widget_for(name,
                   '/wrappers/Pose',:update)
-{coderay}
+~~~
 
 ***NOTE***:
 For convenience, you can use the script *rock-create-vizkit-widget* which 

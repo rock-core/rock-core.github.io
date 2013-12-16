@@ -15,18 +15,18 @@ not used, only the name can be used
 
 As an example, with the following oroGen deployments:
 
-{coderay:: ruby}
+~~~ ruby
 deployment "lowlevel" do
   task('can', "can::Task").
   task("hbridge", "hbridge::Task")
   add_default_logger
 end
-{coderay}
+~~~
 
 The following code snippet will get a handle on the hbridge task in the three
 different ways:
 
-{coderay:: ruby}
+~~~ ruby
 Orocos.run 'lowlevel' do
   hbridge = Orocos.name_service.get 'hbridge'
   hbridge = Orocos.name_service.get_provides 'hbridge::Task'
@@ -34,7 +34,7 @@ Orocos.run 'lowlevel' do
   ior = Orocos.name_service.ior 'hbridge'
   hbridge = Orocos::TaskContext.new ior 
 end
-{coderay}
+~~~
 
 Note that the type given to the provides option may be a superclass of the
 actual returned task. This access method is meant to make startup scripts more
@@ -42,9 +42,9 @@ generic. For instance, if we assume that there is a generic <tt>base::IMU</tt>
 IMU driver model that is subclassed by <tt>imu::XsensTask</tt> and
 <tt>dfkiimu::Task</tt>, then a startup script that does
 
-{coderay:: ruby}
+~~~ ruby
 imu = Orocos.name_service.get_provides 'base::IMU'
-{coderay}
+~~~
 
 Will get an IMU task regardless of its name and exact type.
 

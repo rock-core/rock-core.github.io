@@ -19,9 +19,9 @@ To create a new value, one has to first get the type definition. Type
 definitions available on the oroGen components are exported in the Types
 namespace:
 
-{coderay:: ruby}
+~~~ ruby
 time = Types::Base::Time.new
-{coderay}
+~~~
 
 Note that this mechanism takes into account custom Ruby-to-Typelib conversions
 (see below). For instance, by default, /base/Time gets converted to and from
@@ -37,15 +37,15 @@ In most cases, accessing the types directly is not necessary:
 One big difference between C++ and Ruby is that, to copy a value on another,
 one **CANNOT** do
 
-{coderay:: ruby}
+~~~ ruby
 value1 = value2 # THIS DOES NOT WORK
-{coderay}
+~~~
 
 due to how variables behave in Ruby. Copying is done with
 
-{coderay:: ruby}
+~~~ ruby
 Typelib.copy(target, source)
-{coderay}
+~~~
 
 Mapping between C++ and Ruby
 ----------------------------
@@ -56,7 +56,7 @@ value will behave "as it should", i.e.:
 
 They are represented as structures. For instance values of the type
 
-{coderay:: cpp}
+~~~ cpp
 namespace base {
     class Time
     {
@@ -64,54 +64,54 @@ namespace base {
         int microseconds
     };
 }
-{coderay}
+~~~
 
 can be accessed naturally with
 
-{coderay:: ruby}
+~~~ ruby
 puts time.seconds + time.microseconds
 time.seconds *= 2
 # and so on, and so forth
-{coderay}
+~~~
 
 A structure can be initialized from a hash:
 
-{coderay:: ruby}
+~~~ ruby
 time_t.new(:seconds => 10, :microseconds => 20)
-{coderay}
+~~~
 
 ### Arrays
 
 They behave like Ruby arrays:
 
-{coderay:: ruby}
+~~~ ruby
 array_of_time[4].seconds = 10
 array_of_time.find { |v| v.seconds > 10 }
-{coderay}
+~~~
 
 Arrays can be initialized from Ruby arrays:
 
-{coderay:: ruby}
+~~~ ruby
 array_of_time_t.new([time1, time2])
-{coderay}
+~~~
 
 ### std::vector
 
 Values based on std::vector are mapped to an enumerable. You cannot access the
 elements randomly, though
 
-{coderay:: ruby}
+~~~ ruby
 vector_of_time.each do |value|
   ...
 end
-{coderay}
+~~~
 
 if you want to access the elements by their index, convert the vector to an
 array first
 
-{coderay:: ruby}
+~~~ ruby
 array = vector_of_time.to_a
-{coderay}
+~~~
 
 Finally, the clear and insert methods allow you to modify the vector. Moreover,
 vectors can be initialized from arrays of compatible types.
@@ -121,7 +121,7 @@ vectors can be initialized from arrays of compatible types.
 They are accessed by the symbol name. The returned value is a symbol, and the
 enum can be assigned from an integer value, a string or a symbol. For instance
 
-{coderay:: cpp}
+~~~ cpp
 namespace base {
     namespace actuators {
         enum DRIVE_MODE {
@@ -136,14 +136,14 @@ namespace base {
         };
     }
 }
-{coderay}
+~~~
 
    can be accessed with
 
-{coderay:: ruby}
+~~~ ruby
 command.mode = 'DM_PWM'
 command.mode => :DM_PWM # beware, this is a Ruby symbol !!!
-{coderay}
+~~~
 
 ### Opaque Types (ADVANCED SUBJECT)
 
@@ -168,17 +168,17 @@ There are two ways to customize the C++ to Ruby mapping:
 
 To add methods to an oroGen-registered type, one does
 
-{coderay:: ruby}
+~~~ ruby
 Typelib.specialize '/base/Time' do
     def +(other_time)
        # add the two times together and return the result
     end
 end
-{coderay}
+~~~
 
 To allow convertion between a Ruby class and an oroGen-registered type, one does
 
-{coderay:: ruby}
+~~~ ruby
 # If we get a /base/Time, convert it to Ruby's Time class
 Typelib.convert_to_ruby '/base/Time' do |value|
     Time.at(value.seconds, value.microseconds)
@@ -190,7 +190,7 @@ Typelib.convert_from_ruby Time, '/base/Time' do |value, typelib_type|
     result.microseconds = value.tv_usec
     result
 end
-{coderay}
+~~~
 
 See [the typelib_plugin.rb](https://gitorious.org/rock-base/types_ruby/blobs/master/lib/base/typelib_plugin.rb)
 file from the base/types_ruby package as an example.
@@ -219,6 +219,6 @@ In orocos.rb, all types loaded for the benefit of accessing oroGen components
 are saved in the singleton Typelib::Registry instance saved in Orocos.registry.
 Therefore, to get the typelib model for type '/base/XXX', one needs to do
 
-{coderay:: ruby}
+~~~ ruby
 Orocos.registry.get("/base/XXX")
-{coderay}
+~~~

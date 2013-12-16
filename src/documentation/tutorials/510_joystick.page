@@ -38,9 +38,9 @@ from the list, which is defined in 'drivers/orogen/controldev'.
 
 In order to install the package to your installation, either do 
 
-{coderay:: text}
+~~~ text
 amake drivers/orogen/controldev
-{coderay}
+~~~
 
 which will install the current version of the package, but not update / build it
 later. To permanently integrate it into your whole installation, you have to [edit the
@@ -54,9 +54,9 @@ our run script. Therefore we modify the last runscript. By adding a joystick dri
 As we know from the package directory, the controldev package provides a tasks for our purpose. To find
 out which exact task we can use we call 
 
-{coderay:: text}
+~~~ text
 oroinspect -t controldev
-{coderay}
+~~~
 
 This returns us an output of every installed task that is defined controldev.
 The interesting part of the output is in our case this :
@@ -92,7 +92,7 @@ So it fits exactly our needs.
 Knowing this, we can now modify the script from the previous tutorial (copy it
 to scripts/rockTutorial2.rb):
 
-{coderay:: ruby}
+~~~ ruby
 require 'orocos'
 require 'readline'
 include Orocos
@@ -125,7 +125,7 @@ Orocos.run 'rock_tutorial::RockControlTutorial' => 'rock_tutorial_control',
     end
 end
 
-{coderay}
+~~~
 
 This script is quite the same as the script from rock tutorial 1, but with some improvements. As you can see
 we execute a second Taskt named 'joystick', besides the 'rock_tutorial' task.
@@ -140,12 +140,12 @@ Run it
 ----------
 You can now simply run it by executing
 
-{coderay:: text}
+~~~ text
     ruby rockTutorial2.rb
-{coderay}
+~~~
 And in another console:
 
-{coderay:: text}
+~~~ text
     rock-display rock_tutorial_control
-{coderay}
+~~~
 Again with a right-click on the *pose* port you can start the visualization and enjoy commanding around the robot with the joystick.

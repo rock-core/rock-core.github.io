@@ -28,13 +28,13 @@ Rock allows you to create a C++ library from an existing template. Calling the
 command 'rock-create-lib' starts a command line dialog to create a library
 called 'tutorials/message_driver'. Remember: ~/dev is here the path to the Rock installation. It might differ on your machine.
 
-{coderay:: text}
+~~~ text
 ~/dev$ rock-create-lib tutorials/message_driver
-{coderay}
+~~~
 
 Once called the create script a command line dialog is started, that will request basic information to configure the template for you. The following output is the output of the script AND the expected answers. Do not copy/paste the whole block at once !
 
-{coderay:: text}
+~~~ text
 Initialized empty Git repository 
 in ~/dev/tutorials/message_driver/.git/
 Do you want to start the configuration of
@@ -73,7 +73,7 @@ create mode 100644 src/Dummy.hpp
 create mode 100644 src/Main.cpp
 create mode 100644 src/dummyproject.pc.in
 Done.
-{coderay}
+~~~
 
 The newly created package comes in a ready to run after a fashion: you can build and install it right away using the build tool [autoproj](/documentation/autoproj/basic_usage.html)
 

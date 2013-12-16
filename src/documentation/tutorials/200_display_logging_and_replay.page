@@ -31,7 +31,7 @@ method *log_all* from your ruby start script. If you only want to log the
 ports or the properties of the tasks you can also call the methods
 *log_all_ports* or *log_all_configuration* instead.
 
-{coderay:: ruby}
+~~~ ruby
 Orocos.run "message_producer::Task" => "message_producer",
 			"message_consumer::Task" => "message_consumer" do 
     Orocos.log_all
@@ -48,7 +48,7 @@ Orocos.run "message_producer::Task" => "message_producer",
         sleep 0.1
     end
 end
-{coderay}
+~~~
 
 All the logged data go by default to log files called *your_task_name.x.log* in
 the current working directory. In this case all the logged data go to  

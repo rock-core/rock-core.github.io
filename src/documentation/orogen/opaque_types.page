@@ -36,7 +36,7 @@ How to use them
 You first have to create a wrapper type (a.k.a. "intermediate type") for the
 opaque. In the case of Eigen::Vector3d, a suitable wrapper would be
 
-{coderay:: cpp}
+~~~ cpp
 namespace wrappers
 {
     struct Vector3d
@@ -44,15 +44,15 @@ namespace wrappers
         double x, y, z;
     };
 }
-{coderay}
+~~~
 
 This wrapper then needs to be loaded with #import_types_from. Finally, one can
 use #opaque_type to declare the opaque.
 
-{coderay:: ruby}
+~~~ ruby
 import_types_from "wrappers/my_opaque_wrapper.h"
 opaque_type '/Eigen/Vector3d", "/wrappers/Vector3d"
-{coderay}
+~~~
 
 where wrappers::Vector3d is defined in the my_opaque_wrapper.h header. Moreover,
 if getting the definition of the opaque type requires new include directories
@@ -60,10 +60,10 @@ that are not yet added to the typekit through the [using_library
 mechanism](cross_project.html#using_library), you will have to detect them in
 the Ruby code and add them with the :include option
 
-{coderay:: ruby}
+~~~ ruby
 import_types_from "wrappers/my_opaque_wrapper.h"
 opaque_type '/Eigen/Vector3d", "/wrappers/Vector3d", :includes => eigen_prefix
-{coderay}
+~~~
 
 Once you have re-generated the project, a typekit/ directory is created with
 Opaques.cpp and Opaques.hpp in it. These files hold the convertion functions
@@ -80,13 +80,13 @@ The m-types: automatically generated intermediate types
 As explained, once you have defined an opaque type, oroGen will take care of
 other types that _use_ this opaque. For instance
 
-{coderay:: cpp}
+~~~ cpp
 struct Position
 {
     base::Time time;
     Eigen::Vector3d position;
 };
-{coderay}
+~~~
 
 can be used in your task interfaces without any modifications. This works for
 structures, std::vector and static-size arrays.

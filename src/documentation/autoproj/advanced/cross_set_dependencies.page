@@ -11,11 +11,11 @@ same syntax that in the 'package_sets' section of the manifest
 
 For instance, the rise.toolchain package set has
 
-{coderay:: yaml}
+~~~ yaml
 imports:
   - type: git
     url: git://gitorious.org/orocos-toolchain/autoproj.git
-{coderay}
+~~~
 
 which means that autoproj will automatically import the orocos toolchain build
 configuration when the main manifest lists rise.toolchain. It tells you so at
@@ -44,16 +44,16 @@ manifest or programmatically
 Imports will be disabled if you add "auto_installs: false" flag in the manifest
 to the package set's definition:
 
-{coderay:: yaml}
+~~~ yaml
 package_sets:
   - type: git
     url: git://gitorious.org/rise-toolchain/autoproj.git
     auto_imports: false
-{coderay}
+~~~
 
 Or by adding the following statement to autoproj/init.rb:
 
-{coderay:: ruby}
+~~~ ruby
 disable_imports_from 'rise.toolchain'
-{coderay}
+~~~
 

@@ -16,9 +16,9 @@ solution is to
  * create a new directory
  * add a source.yml file with just the set name in it:
 
-{coderay:: yaml}
+~~~ yaml
 name: my_package_set_name
-{coderay}
+~~~
 
  * push it to whatever VCS you want. For git and gitorious, you would do
    something like
@@ -55,22 +55,22 @@ Adding a package to a package set involves changing two files:
 
 For the first step, you need to add one of the following lines:
 
-{coderay:: ruby}
+~~~ ruby
 cmake_package "my/package" # for CMake package
 autotools_package "my/package" # for autoconf/automake packages
 orogen_package "my/package" # for orogen packages
 import_package "my/package" # for custom packages
 ruby_package "my/package" # for ruby libraries (optionally with C/C++ extensions)
-{coderay}
+~~~
 
 The package name will be used to refer to this particular package later on --
 especially for version control definition. If subdirectories are used, like "my"
 in the above example, the package source will be checked out and built in the
 corresponding subdirectory. For instance, with
 
-{coderay:: ruby}
+~~~ ruby
 cmake_package "drivers/hokuyo"
-{coderay}
+~~~
 
 the hokuyo driver will _always_ be built in a <tt>drivers/</tt> subdirectory.
 
@@ -78,29 +78,29 @@ Now that the package is declared, we need to add version control information to
 the source.yml file. This needs to be done in the version\_control section of
 the file, as for instance:
 
-{coderay:: yaml}
+~~~ yaml
 version_control:
   - my/package:
       type: git
       url: git://gitorious.com/blabla/my-package.git
-{coderay}
+~~~
 
 The corresponding subversion definition would be:
 
-{coderay:: yaml}
+~~~ yaml
 version_control:
   - my/package:
       type: svn
       url: svn+ssh://svnhosting.com/blabla/trunk/my/package
-{coderay}
+~~~
 
 For testing purposes, it is possible to tell autoproj to *not* take into account
 any VCS information:
 
-{coderay:: yaml}
+~~~ yaml
 version_control:
   - my/package: none
-{coderay}
+~~~
 
 See [this page](importers.html) for details on the import mechanisms.
 
@@ -110,13 +110,13 @@ The autobuild scripts lists all the packages defined by this set. It is a
 Ruby script (but you don't need to know Ruby to write one). In its most simple
 form, it looks like:
 
-{coderay:: ruby}
+~~~ ruby
 cmake_package "orocos/rtt"
 autotools_package "drivers/imu"
 orogen_package "modules/imu"
 import_package "external/sisl"
 ruby_package "orocos/orocos.rb"
-{coderay}
+~~~
 
 The above snippet lists the kind of packages autoproj currently supports. The first one uses CMake as a build
 system and will be installed in the <tt>orocos/rtt</tt> subdirectory of the
@@ -131,7 +131,7 @@ The source.yml file gives generic information on the package set itself (most
 importantly its name), and version control information (i.e. where to get the
 packages). It is a YAML file, and looks like:
 
-{coderay:: yaml}
+~~~ yaml
 name: rock.drivers
 constants:
   ROOT_DIR: $HOME/share
@@ -143,7 +143,7 @@ version_control:
   - "drivers/.*":
       type: svn
       url: svn+ssh://rlbsvn.informatik.uni-bremen.de/trunk/$PACKAGE.git
-{coderay}
+~~~
 
 The name field gives a name for the set. It is arbitrary, but the guideline
 is to give a name that is java-like for namespaces, i.e. origin.name.
@@ -166,11 +166,11 @@ during the build (see below).
 Finally, the <tt>version_control:</tt> section describes how to import each
 software package. Its general format is:
 
-{coderay:: yaml}
+~~~ yaml
 package_name:
   type: version_control_type # git, svn, cvs, darcs
   url: repository_url
-{coderay}
+~~~
 
 Where package\_name is a regular expression that matches the package name (for
 instance, ".\*" will match all packages and "drivers/.\*" will match packages
@@ -179,17 +179,17 @@ whose name starts with 'drivers'). The package name is the one given to the
 
 For the git importer, one of 'branch' or 'tag' options can be provided as well:
 
-{coderay:: yaml}
+~~~ yaml
 package_name:
   branch: branch_to_track
   tag: tag_to_stick_to # it is branch OR tag
-{coderay}
+~~~
 
 The options are applied in order, meaning that the top entries will be overridden
 by the lower ones. In general, one will have a ".\*" entry to give options for
 all packages, and then override for specific packages:
 
-{coderay:: yaml}
+~~~ yaml
 version_control:
   - .*: # common options for all packages
       type: git
@@ -197,7 +197,7 @@ version_control:
 
   - "modules/logger": # we don't follow master on this module
       branch: imoby
-{coderay}
+~~~
 
 Interaction between package sets definition files
 -------------------------------------------
@@ -221,12 +221,12 @@ options (as, for instance, because you want to parametrize the importer URLs),
 then create an init.rb file next to the source.yml file, and add lines looking
 like:
 
-{coderay:: ruby}
+~~~ ruby
 configuration_option "option_name", "option_type",
     :default => "default_value",
     :values => ["set", "of", "possible", "values"],
     :doc => "description of the option"
-{coderay}
+~~~
 
 where the option\_type field can either be "string" or "boolean".
 
@@ -235,18 +235,18 @@ Then, you can use the option\_name as an expansion in the source.yml file.
 For instance, at my lab we are using an share filesystem to store the git
 repositories. Our project's init.rb file has the following option definition:
 
-{coderay:: ruby}
+~~~ ruby
 configuration_option "MOUNT_POINT", "string",
     :default => "$HOME/nfs",
     :doc => "mount point of the NFS server"
-{coderay}
+~~~
 
 And the source.yml uses it with:
 
-{coderay:: yaml}
+~~~ yaml
 version_control:
   ".*":
     url: $MOUNT_POINT/git/$PACKAGE.git
     type: git
-{coderay}
+~~~
 
