@@ -24,13 +24,7 @@ class YouTube
         id = param('youtube.video_id')
         width = param('youtube.width')
         height = param('youtube.height')
-        embed = param('youtube.embed')
-        iframe = %{<iframe src="http://www.youtube.com/embed/#{id}" width="#{width}" height="#{height}" frameborder="0">Youtube Video</iframe>}
-        if embed
-            %{\n<p class="embed" style="width: #{width}px;" markdown="0">\n#{iframe}\n</p>\n}
-        else
-            iframe
-        end
+        %{<iframe src="http://www.youtube.com/embed/#{id}" width="#{width}" height="#{height}" frameborder="0">Youtube Video</iframe>}
     end
 end
 
