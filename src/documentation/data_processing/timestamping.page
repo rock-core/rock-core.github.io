@@ -52,7 +52,7 @@ __Communication layer__ a rough estimate can usually be obtained by looking at t
 amount of data and the communication layer bandwidth.
 
 __Operating system__ is the weak part of the chain if one does not use a
-hard-realtime operating system such as Xenomai or QNX \emph{or} has devices that are
+hard-realtime operating system such as Xenomai or QNX _or_ has devices that are
 not compatible with that realtime operating system. However, some communication layers timestamp
 messages at the driver level (for instance, CAN and firewire stacks on Linux systems). For other layers, no
 information can be obtained directly.
