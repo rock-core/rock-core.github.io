@@ -1,8 +1,6 @@
 ---
 title: FD-driven tasks
 sort_info: 300
---- name:localtoc
-{menu: {max_levels: 3, start_level: 3, show_current_subtree_only: true, nested: true, used_nodes: files}}
 --- name:content
 
 The IO triggering mechanism, if enabled, will make sure that updateHook() is

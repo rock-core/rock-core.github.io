@@ -1,8 +1,6 @@
 ---
 title: Cross-Set Dependencies
 sort_info: 275
---- name:biglocaltoc
-{menu: {start_level: 3}}
 --- name:content
 
 A given package set can tell autoproj to import another one BEFORE it gets
