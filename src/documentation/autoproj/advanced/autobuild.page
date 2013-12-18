@@ -127,7 +127,7 @@ end
 ~~~
 
 oroGen is a module generator for the Orocos component framework. See [the oroGen
-documentation]({relocatable: ../../orogen}) for more information.
+documentation](../../orogen) for more information.
 
 The 'pkg' variable in the example above is an instance of
 {rdoc_class: {base_url: /api/autobuild, name: "Autobuild::Orogen"}}

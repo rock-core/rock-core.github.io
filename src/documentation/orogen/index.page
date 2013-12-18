@@ -51,9 +51,9 @@ _task library_, which is a shared library in which the task context classes are
 defined. Then, you need to put these libraries in _deployments_ (which is also
 done by oroGen). Finally, you can start these deployments, connect the tasks
 together, monitor them using either [the orocos.rb Ruby
-bindings]({relocatable: ../runtime/index.html}) or the [advanced system
-deployment]({relocatable: ../system/index.html}). They can also be used as [targets for log
-replay]({relocatable: ../data_analysis/index.html}).
+bindings](../runtime/index.html) or the [advanced system
+deployment](../system/index.html). They can also be used as [targets for log
+replay](../data_analysis/index.html).
 
 ![Runtime Workflow Diagram](deployment_process.png)
 

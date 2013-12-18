@@ -21,7 +21,7 @@ package](http://gitorious.org/rock/doc) from gitorious and proposing your
 changes through the gitorious interface.
 
 Finally, publish your packages by [creating your own package
-set]({relocatable: ../autoproj/advanced/creating_pkg_set.html}) to publish your
+set](../autoproj/advanced/creating_pkg_set.html) to publish your
 libraries and components. Once you have put this package set and the code on a
 public place (gitorious, github or even a svn-oriented code hosting), drop us a
 line on the [rock-dev] mailing list. We would be glad to include it in a (to be

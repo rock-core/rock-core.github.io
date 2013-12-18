@@ -13,15 +13,14 @@ provides all the tools required to set up and run high-performance and reliable
 robotic systems for wide variety of applications in research and industry. It
 contains a rich collection of ready to use drivers and modules for use in your
 own system, and can easily be extended by adding new components. 
-[more...]({relocatable: documentation/about/index.html}) 
+[more...](documentation/about/index.html) 
 
 <div markdown="1" class="content2-container bg-blue01 align-center" style="padding: .4em;">
 <div markdown="1" class="content2-container-3col-left">
 Get it
 {: .content-title-noshade-size3}
 
-Get started with the [step-by-step installation guide]({relocatable:
-documentation/installation.html}){:.highlight}.
+Get started with the [step-by-step installation guide](documentation/installation.html){:.highlight}.
 </div>
 
 <div markdown="1" class="content2-container-3col-middle">
