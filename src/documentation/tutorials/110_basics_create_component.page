@@ -131,8 +131,14 @@ we will not further touch the file.
 ### Integration into the build system
 To finalize the package creation, one has to run rock-create-orogen again, but
 this time without arguments and in the folder that contains the oroGen file.
+This will create the initial layout of your package and initialize a git repository.
+When your git configuration is incomplete you might be requested to update your git settings via:
+~~~
+    git config --global user.email "you@example.com"
+    git config --global user.name "Your Name"
+~~~
 
-Then, you should add you component to the build system by adding the package to
+Then, you should add your component to the build system by adding the package to
 autproj/manifest's layout section:
 
 ~~~ text
