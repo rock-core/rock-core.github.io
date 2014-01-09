@@ -76,12 +76,14 @@ As a convention, all oroGen components are created inside an orogen/ subfolder
 of the corresponding library category. In this tutorial, the library and oroGen
 packages are placed respectively in the tutorials/ and tutorials/orogen folders.
 Moreover, when an oroGen component is created to integrate a library, it is
-highly recommended to use the same name than the library (here:
-tutorials/message_producer and tutorials/orogen/message_producer).
+recommended to use the same name for the library and the orogen component, e.g., 
+tutorials/driver_name and tutorials/orogen/driver_name. Note, however, that this tutorial
+deviates from the standard practice since we will create multiple orogen components from 
+the driver library over the course of tutorials.
 
 ### Define tasks
 
-The previous command creates a new folder 'tutorials/orogen/message_producer'. Inside you find two files: manifest.xml and message_producer.orogen.
+The previous command creates a new folder 'tutorials/orogen/message_producer'. Inside you find three files: manifest.xml, message_producer.orogen and message_producerTypes.hpp.
 The manifest.xml will have been filled with the information you provided already, but when you need to add additional dependencies to libraries or oroGen components you will have to edit manifest.xml directly. Since you want to use your newly created library, check that your library has been added as dependency.
 
 ~~~ xml
@@ -123,7 +125,8 @@ to any deployment.  In order to make types known to your component so that you
 can use them in the specification, you have to do this explicitly with the
 'import_types_from' statement.
 
-### 
+The message_producerTypes.hpp allows you to define additional C++-types which are required when using this component. In this tutorial
+we will not further touch the file.
 
 ### Integration into the build system
 To finalize the package creation, one has to run rock-create-orogen again, but
