@@ -20,7 +20,9 @@ You will see the task inspector showing the message producer task. When you clic
 ![Task Inspector](200_task_inspector.png)
 {: .align.center}
 
-If started without argument the task inspector shows up all running tasks after some delay (to select a different Corba Name Service than the local one use the option --host). A right-click on any output port or sub type allows to open available plugins able to display the selected data structure (if you wish to add your custom plugins see Writing a Vizkit Plugin).
+If started without argument the task inspector shows up all running tasks after
+some delay (to select a different Corba Name Service than the local one use the
+option \-\-host). A right-click on any output port or sub type allows to open available plugins able to display the selected data structure (if you wish to add your custom plugins see Writing a Vizkit Plugin).
 
 Logging Data
 ------------

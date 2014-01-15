@@ -27,8 +27,9 @@ Adding support in autoproj
 
  1. you will have to find out how your OS is detected by autoproj. To do so, run
     
+      {{{
       autoproj --os-version
-      {: .commandline}
+      }}}
 
       On Debian, the result is:
 

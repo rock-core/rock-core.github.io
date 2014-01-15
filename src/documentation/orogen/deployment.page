@@ -38,7 +38,7 @@ In the block, the following conditions can be tested:
    predicates to enable/disable some parts based on the target OS.
  * the fact that the binary will be interfaced with CORBA or not. Use the
    corba\_enabled? predicate to test this. CORBA is the target if the
-   <tt>--corba</tt> flag is given to orogen during generation, or if the
+   <tt>\-\-corba</tt> flag is given to orogen during generation, or if the
    enable\_corba statement is added in the deployment block. It is also possible
    to forcefully disable it by adding the disable\_corba statement in the
    deployment.

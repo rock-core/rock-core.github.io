@@ -139,10 +139,11 @@ may be that you are generating some files in the source directory that autoproj
 interprets as new files and trigger builds.
 
 If you have the impression that autoproj does too many rebuilds, run the build
-once with the <tt>--list-newest-files</tt> option. For instance,
+once with the <tt>\-\-list-newest-files</tt> option. For instance,
 
+~~~
 autoproj --list-newest-files fast-build
-{: .cmdline}
+~~~
 
 If you find some files that should be ignored, add them either to the package
 sets (i.e. autoproj/remotes/blablab/init.rb) or in autoproj/init.rb with

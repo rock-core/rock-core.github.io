@@ -37,8 +37,9 @@ Installation: the easy way
     requires ruby 1.9.2 or higher, which on Debian and Ubuntu are provided by
     the ruby1.9.1 package.
 
-    ruby --version
-    {: .commandline}
+    ~~~
+    ruby \-\-version
+    ~~~
 
  2. Create and "cd" into the directory in which you want to install the toolchain
  3. To build the base system (base packages + toolchain, but no
