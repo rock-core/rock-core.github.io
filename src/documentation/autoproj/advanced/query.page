@@ -40,7 +40,7 @@ be returned.
 
 Finally, by default, <tt>autoproj query</tt> will only consider packages that
 are selected in the manifest. If you mean to match all defined packages, use the
---search-all option.
+\-\-search-all option.
 
 Query Fields
 ------------
@@ -64,9 +64,9 @@ Some fields have shortcuts:
 Output Formatting
 -----------------
 By default, <tt>autoproj query</tt> will output the package names. This can be
-customized with the --format option.
+customized with the \-\-format option.
 
---format takes a string that can contain a number of $VAR fields. The following
+\-\-format takes a string that can contain a number of $VAR fields. The following
 fields are available for expansion:
 
  * NAME: the package name
@@ -80,14 +80,14 @@ Examples
 
 Running "git gc" on every git package in the autoproj installation:
 
-~~~ text
+~~~
 commands=`autoproj query --format='git --git-dir=$SRCDIR/.git gc' vcs.type=git`
 bash -c "$commands"
 ~~~
 
 Tagging all packages from the imoby package set to a certain tag, and push it:
 
-~~~ text
+~~~
 for dir in `autoproj query '--format=$SRCDIR' vcs.type=git:package_set=imoby`; do
   git --git-dir=$dir/.git tag $NEWTAG
   git --git-dir=$dir/.git push

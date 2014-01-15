@@ -140,5 +140,5 @@ oroconf logextract properties.0.log task_name timespec
 ~~~
 
 where timespec can either be a number of seconds since epoch (as reported by
-pocolog properties.0.log -s stream_name --time) or the keyword @last. If @last
+pocolog properties.0.log -s stream_name \-\-time) or the keyword @last. If @last
 is given, the last sample in each relevant configuration streams is taken.

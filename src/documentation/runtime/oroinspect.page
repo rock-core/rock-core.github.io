@@ -66,5 +66,5 @@ displays
     }
 
 One can also display only the tasks, deployments and types by calling oroinspect
-with --types, --deployments and --tasks
+with \-\-types, \-\-deployments and \-\-tasks
 

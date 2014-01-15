@@ -61,7 +61,7 @@ autoproj force-build
 **Exception**: to avoid long builds, the rebuild and force-build commands apply only
 to the packages given on the command line. E.g., autoproj rebuild orocos/rtt
 will only rebuild the orocos/rtt packages. If you want to rebuild both the
-packages and its dependencies, use the --with-depends options.
+packages and its dependencies, use the \-\-with-depends options.
 {: .warning}
 
 **Generating documentation:**
@@ -105,8 +105,9 @@ will work, as well as d/o/xsens (for instance).
 After having boostrapped your Rock installation, autoproj will *not* ask you again about the configuration, since 
 the questions you already answered. So if you want to change your configuration, i.e. you answers do:
 
+~~~
 autoproj build --reconfigure
-{: .commandline}
+~~~
 
 Alternatively, you can edit autoproj/config.yml directly.
 

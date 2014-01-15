@@ -159,9 +159,9 @@ The following methods are limited for data types that have a 'time' field of
 type /base/Time. The replay algorithm will fall back to the logical time for
 streams do not fit this.
 
-On the command line, one can use the --time-source option to rock-replay:
+On the command line, one can use the \-\-time-source option to rock-replay:
 
-~~~ ruby
+~~~
 rock-replay --use-sample-time mylogfile.0.log
 ~~~
 
@@ -177,7 +177,7 @@ logical time [using rock-convert](converting_logfiles.html). This is very useful
 when the same logfile is going to be processed multiple times, as it will
 remove the need to add the use_sample_time option to the other tools
 
-~~~ ruby
+~~~
 rock-convert --use-sample-time LOGFILE
 ~~~
 

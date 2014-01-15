@@ -18,17 +18,15 @@ and install the Gems it lists.
 Adding support in autoproj
 --------------------------
 
- 0. get the autoproj source code. It is at
-
-    http://github.com/doudou/autoproj
-    {: .commandline}
+ 0. get the autoproj source code. It is [on Gitorious](http://gitorious.org/autoproj/autoproj)
 
     Also, add _autoproj_source_dir_/lib to RUBYLIB
 
  1. you will have to find out how your OS is detected by autoproj. To do so, run
     
+      {{{
       autoproj --os-version
-      {: .commandline}
+      }}}
 
       On Debian, the result is:
 

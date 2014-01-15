@@ -28,7 +28,7 @@ feature of oroGen:
 is imported into an oroGen project called "my_project", a ROS
 message is generated which is named 
 
-    my_project_msgs/ATypeWithinANamespaceType
+    orogen_my_project_msgs/ATypeWithinANamespaceType
 
 *Limitations* The types that contain vectors-of-vectors or arrays-of-arrays are
 not exported to ROS. Moreover, ports using types that are not structures (e.g.

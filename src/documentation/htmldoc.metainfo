@@ -47,7 +47,7 @@ runtime:
     sort_info: 200
 
 system:
-    title: Running Complex Systems
+    title: System Management
     sort_info: 220
 
 data_analysis:

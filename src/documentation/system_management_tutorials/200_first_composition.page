@@ -88,7 +88,7 @@ available deployments, but you need to tell syskit which ones to use.
 
 Make sure they are installed with
 
-~~~ ruby
+~~~
 amake tutorial/orogen/tut_deployment
 ~~~
 
@@ -97,6 +97,7 @@ is available:
 
 ~~~
 rock-inspect rock_tutorial::RockTutorialControl --show-deployments
+~~~
 
 ==========================================================
 Deployment name:  rock_tutorial
@@ -203,11 +204,12 @@ The same display can be used at runtime, i.e. in parallel to the composition sta
 roby-display
 {: .cmdline}
 
-Including when the controller is running on another host, with the --host
+Including when the controller is running on another host, with the \-\-host
 parameter:
 
-roby-display --host=remote_host
-{: .cmdline}
+~~~
+roby display --host=remote_host
+~~~
 
 Summary
 -------
