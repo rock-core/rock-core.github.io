@@ -17,13 +17,13 @@ Rock should work, but we have had no known report of its success or failure.
 
 ### Well tested Oses
 
-| ![Ubuntu](install/ubuntu.png) | Since 10.04 |
+| ![Ubuntu](install/ubuntu.png) | Latest LTS and later (currently anything newer than 12.04). We let 6 months after a LTS release before deprecating the previous LTS. |
 | ![Debian](install/debian.png) | testing or unstable |
 
 ### Untested OSes
 
 | ![Gentoo](install/gentoo.jpg) | Last known working version end of 2011 |
-| ![Arch](install/arch.png) | Last known working version end of 2010 |
+| ![Arch](install/arch.png) | Last known working version end of 2013 |
 
 ### Status for other 
 
@@ -37,8 +37,9 @@ Installation: the easy way
     requires ruby 1.9.2 or higher, which on Debian and Ubuntu are provided by
     the ruby1.9.1 package.
 
-    ruby --version
-    {: .commandline}
+    ~~~
+    ruby \-\-version
+    ~~~
 
  2. Create and "cd" into the directory in which you want to install the toolchain
  3. To build the base system (base packages + toolchain, but no

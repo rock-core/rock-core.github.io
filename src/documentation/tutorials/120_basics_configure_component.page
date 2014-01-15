@@ -312,9 +312,9 @@ oroconf extract message_producer::Task --save message_producer.yml
 {coderay}
 
 _oroconf_ is the command to access the configuration of tasks. It can do more then 
-extracting configruation files (_--help_) but we will stick to the command _extract_
+extracting configruation files (_\-\-help_) but we will stick to the command _extract_
 for now. The first argument after extract gives the task model which is the orogen
-name plus double colon plus task name. Behind _--save_ the file is given to which the
+name plus double colon plus task name. Behind _\-\-save_ the file is given to which the
 data should be written. You might note that there are some variations to the hand 
 written file:
 

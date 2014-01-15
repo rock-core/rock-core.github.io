@@ -27,14 +27,16 @@ to avoid unnecessarily compile software.
 
 To inspect the OS dependencies on your autoproj installation, simply run
 
+{{{
 autoproj osdeps --show
-{: .cmdline}
+}}}
 
 This will show the osdeps that are declared for each source package. The reverse
 is also available with
 
+{{{
 autoproj osdeps --rshow
-{: .cmdline}
+}}}
 
 which will show, for each needed OS package, which source package needs it.
 
@@ -84,7 +86,7 @@ Getting a bit of help from autoproj even in modes different than 'all'
 ----------------------------------------------------------------------
 
 First of all, as presented above, you can inspect osdeps definitions with
-autoproj osdeps --show and autoproj osdeps --rshow
+autoproj osdeps \-\-show and autoproj osdeps \-\-rshow
 
 Another operation of interest is "autoproj osdeps" itself. It will install
 missing the packages that you required (i.e. only RubyGem packages if you have
@@ -92,9 +94,10 @@ selected the 'ruby' mode) *but* will also display the missing packages of the
 other categories, allowing you to install them manually.
 
 Moreover, you can ask autoproj to install packages that you have disabled with
-the --all, --ruby and --os options:
+the \-\-all, \-\-ruby and \-\-os options:
 
+{{{
 autoproj osdeps --all
-{: .cmdline}
+}}}
 
 will install all required packages, regardless of the "global" osdeps mode.

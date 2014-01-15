@@ -252,7 +252,7 @@ user_config("option_name")
 {coderay}
 
 Options are saved in <tt>autoproj/config.yml</tt> after the build. Options that
-are already set won't be asked again unless the <tt>--reconfigure</tt> option is
+are already set won't be asked again unless the <tt>\-\-reconfigure</tt> option is
 given to <tt>autoproj build</tt>.
 
 Do not try to have too many options, that is in general bad policy as
