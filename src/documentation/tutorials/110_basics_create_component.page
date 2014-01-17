@@ -25,14 +25,15 @@ The final component will look like:
 
 This step-by-step tutorial will guide you through the process of:
 
- * creating the oroGen component package
+ * creating the oroGen component
  * declaring the component interface
  * adding the necessary C++ code for the component to pull data from the
    message\_driver library out to its output port.
 
 Creating an oroGen component
 --------------------------------
-While Rock uses the Orocos Realtime Toolkit (Orocos RTT) to build its components upon, and uses the Orocos generation tool 'oroGen' to easily create so-called oroGen components. oroGen requires a component specification to generate a skeleton for you, which you can fill with the functionality you require.
+Rock provides the 'oroGen' tool which allows you to create Orocos Realtime Toolkit (Orocos RTT) based components.
+oroGen requires a simple specification to generate a skeleton, which can be filled with the functionality you require. 
 
 There are multiple advantages for using oroGen:
 
@@ -44,13 +45,16 @@ There are multiple advantages for using oroGen:
 
 This tutorial does not cover all details of Orocos components but you will find further information in the [oroGen documentation](/documentation/orogen/index.html).
 
-Similar to the creation of a library you start to create an oroGen component using the command 'rock-create-orogen'. 
+Similar to the creation of a library you create an oroGen component using the command 'rock-create-orogen'. 
 
 ~~~ text
 ~/dev$ rock-create-orogen tutorials/orogen/message_producer
 ~~~
 
 You will see the same configuration dialog as when calling rock-create-lib.
+When you will be asked for the dependencies specify the library 'tutorials/message_driver' which we have created 
+[in the previous tutorial](100_basics_create_library.html). If you missed this step you can add this 
+dependency to the manifest file of the component manually.
 
 ~~~ text
 ------------------------------------------
@@ -113,26 +117,27 @@ The specification contains a number of statement with the following meaning:
  * using_library: tells oroGen that this component requires, i.e. needs to link against the 'message_driver' library
  * import_types_from: tells oroGen to import all types in the given file
  * task_context: everything within this block defines an Orocos task context
-   model, including that it requires to be configured before startup,
-   what input and output ports are required, and a default value
+   model, including that it needs to be configured before startup,
+   which input and output ports should be created, and a default value
    for the runtime execution schema (every 1.0 second in this case)
 
 The task has an output port called 'messages' of type 'message_driver/Message'.
-This type is initially unknown to the component, but it can be found in the
-'Message.hpp' header of the 'message_driver' library. the using_library
-statement tells oroGen only to look for a library of the given name and link it
-to any deployment.  In order to make types known to your component so that you
+This type is initially unknown to the component, but it can be found in 
+'Message.hpp' of the 'message_driver' library. In order to make types known to your component so that you
 can use them in the specification, you have to do this explicitly with the
-'import_types_from' statement.
+'import_types_from' statement. The using_library statement tells oroGen to 
+look for a library of the given name and link it to any binary (UNIX process) which deploy this task.
+In this context these binaries are called [deployments](../orogen/deployment.html).
 
-The message_producerTypes.hpp allows you to define additional C++-types which are required when using this component. In this tutorial
+The message_producerTypes.hpp allows you to define additional C++-types. In this tutorial
 we will not further touch the file.
 
 ### Integration into the build system
-To finalize the package creation, one has to run rock-create-orogen again, but
+To finalize the package creation, one has to **run rock-create-orogen again**, but
 this time without arguments and in the folder that contains the oroGen file.
 This will create the initial layout of your package and initialize a git repository.
 When your git configuration is incomplete you might be requested to update your git settings via:
+
 ~~~
     git config --global user.email "you@example.com"
     git config --global user.name "Your Name"
@@ -165,12 +170,12 @@ If you get an error here, you most likely have a syntax error, then please
 compare your files against the files in the tutorial package set.
 
 ### Writing the task
-Now, that you have created the oroGen component you still have to embedd the functionality that message_driver provides, in order to achieve a proper message producing component. 
+Now, that you have created the oroGen component you can embed the functionality that the message_driver library provides, in order to achieve a proper message producing component. 
 
-Calling 'rock-create-orogen' created several new files. For now, you only need to care about the files in the tasks/ subfolder and can safely ignore the templates folder for the moment. 
+Calling 'amake' created several new files. For now, you only need to care about the files in the 'tasks' subfolder and you can safely ignore the templates folder for the moment. 
 
-Within the subfolder 'tasks' of the created component you will find two files: 'Task.hpp' and 'Task.cpp'. They contain the skeleton for the Orocos component that has been created. Within 'Task.hpp' you will find the declarations of so-called hook methods: configureHook, startHook, stopHook, errorHook and cleanupHook. For this tutorial we will focus on the updateHook.
-(More information about these methods can be found [here](../orogen/task_states.html))
+Within the subfolder 'tasks' of the created component you will find two files: 'Task.hpp' and 'Task.cpp'. They contain the skeleton for the Orocos component that has been created. Within 'Task.hpp' you will find the declarations of so-called hook methods: configureHook, startHook, stopHook, errorHook and cleanupHook. For this tutorial we will focus on the updateHook
+(more information about these methods can be found [here](../orogen/task_states.html)).
 
 To add the message_driver functionality, add a forward declaration for message_driver and add a message_driver::MessageDriver member to the Task.hpp:
 
@@ -188,23 +193,23 @@ namespace message_producer {
 ...
 ~~~
 
-Add the the message driver creation to the task's constructor and deallocation to the destructor.
+Include the header of the message driver and its allocation/deallocation to the constructor/deconstructor.
 
 ~~~ cpp
+#include "Task.hpp"
+
 #include <message_driver/MessageDriver.hpp>
 ...
 
-Task::Task(std::string const& name,
-		 TaskCore::TaskState initial_state)
-    : TaskBase(name, initial_state)
+Task::Task(std::string const& name)
+    : TaskBase(name)
     , mpMessageDriver(0)
 {
     mpMessageDriver = new message_driver::MessageDriver();
 }
 
-Task::Task(std::string const& name, RTT::ExecutionEngine* engine,
-	 	TaskCore::TaskState initial_state)
-    : TaskBase(name, engine, initial_state)
+Task::Task(std::string const& name, RTT::ExecutionEngine* engine)
+    : TaskBase(name, engine)
     , mpMessageDriver(0)
 {
     mpMessageDriver = new message_driver::MessageDriver();
@@ -216,8 +221,8 @@ Task::~Task()
 }
 ~~~
 
-Next, you implement the updateHook.
-Within the update hook the messages port is accessed, which is identified by the name given in the specification and an '_' prefix. Since you specified the type for this port a 'message_driver::Message' can be written to the port. This update port is triggered at the rate that you specified in the the deployment section of the .orogen file.
+Next, you will implement the updateHook.  
+You will request a new message from the driver and write it to the output port 'messages'. The port is identified by its name and a '_' which is prefixed to all orogen elements. The update port will be triggered at 1Hz. Both, the name of the port and the periodicity, have been specified in the .orogen file.
 
 ~~~ cpp
 void Task::updateHook()
@@ -245,8 +250,8 @@ amake
 Run it
 -----------
 
-Now, that you have a component ready to run, but probably want to see it running. Rock offers a ruby scripting interface for that purpose: [orocos.rb](../runtime/index.html)
-So create a subfolder scripts in the message producer component and create a file start.rb.
+Now, that you have a component ready to run, you probably want to see it running. Rock offers a ruby scripting interface for that purpose: [orocos.rb](../runtime/index.html)
+So, create a subfolder 'scripts' in the message producer component and create a file 'start.rb'.
 
 ~~~ ruby
 require 'orocos'
@@ -268,9 +273,10 @@ Orocos.run 'message_producer::Task' => 'message_producer' do
   
   reader = message_producer.messages.reader
   
+  puts 'Starting to read messages ...'
   while true
       if msg = reader.read_new
-  	puts "#{msg.time} #{msg.content}"
+          puts "#{msg.time} #{msg.content}"
       end
   
       sleep 0.1
@@ -278,23 +284,22 @@ Orocos.run 'message_producer::Task' => 'message_producer' do
 end
 ~~~
 
-This script starts a process for the task 'message_producer' (the second argument behind Orocos.run gives the name to access it in the Orocos.run body). Once the message_producer has been created, the task can be accessed using 'Orocos.name_service.get'. Having the reference to the task context allows you to explicitly configure and then start the task. 
-By convention we require all tasks to be explictly configured before they can be started, and we will go into more detail of configuration in the next tutorial.
-Now, just run the script using Ruby.
+This script starts the default deployment of the 'message_producer' task (the second argument behind Orocos.run gives the name to access it in the Orocos.run body). Once the message_producer has been created, the task can be accessed using 'Orocos.name_service.get'. Having the reference to the task context allows you to access its elements and to configure and start the task. Now, just run the script using Ruby.
 
 ~~~ text
 ruby start.rb
 ~~~
 
-The script prints only new messages that the producer provides. Since you set the periodicity to 1 second,  messages should show only every 1s. 
+The script prints only new messages which are provided by the producer. Since you set the periodicity to 1 second, messages should show only every 1s. 
 
 ~~~ text
+Starting to read messages ...
 Tue Aug 02 16:43:48 +0200 2011 Message from MessageDriver
 Tue Aug 02 16:43:49 +0200 2011 Message from MessageDriver
 ~~~
 
 Stop the script with CTRL+C. The script will stop the component process by
-itself, which would happen also if you had an error in the script itself.
+itself, which would also happen if you had an error in the script itself.
 
 Summary
 ----------------------------
@@ -304,8 +309,9 @@ In this tutorial you have learned to:
  * how to embed a library into an oroGen component
  * how to use Ruby to start oroGen components
 
-Now that you have a rough idea of what oroGen is and can do, we recommend that you have a look at the [oroGen cheat sheet](../orogen/orogen_cheat_sheet.pdf).
+Now that you have a rough idea of what oroGen is and what it can do, 
+we recommend that you have a look at the [oroGen cheat sheet](../orogen/orogen_cheat_sheet.pdf).
 
-In the next tutorial you will learn more on configuring your task.
+In the next tutorial you will learn more about task configuration.
 
 Progress to the [next tutorial](120_basics_configure_component.html).
