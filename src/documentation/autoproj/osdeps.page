@@ -27,16 +27,16 @@ to avoid unnecessarily compile software.
 
 To inspect the OS dependencies on your autoproj installation, simply run
 
-{{{
+~~~
 autoproj osdeps --show
-}}}
+~~~
 
 This will show the osdeps that are declared for each source package. The reverse
 is also available with
 
-{{{
+~~~
 autoproj osdeps --rshow
-}}}
+~~~
 
 which will show, for each needed OS package, which source package needs it.
 
@@ -96,8 +96,8 @@ other categories, allowing you to install them manually.
 Moreover, you can ask autoproj to install packages that you have disabled with
 the \-\-all, \-\-ruby and \-\-os options:
 
-{{{
+~~~
 autoproj osdeps --all
-}}}
+~~~
 
 will install all required packages, regardless of the "global" osdeps mode.
