@@ -281,7 +281,7 @@ layout:
 
 ### Build it
 Just verify that your component builds.
-~~~
+~~~ text
 ~/dev/tutorials/message_driver$ amake
 ~~~
 
