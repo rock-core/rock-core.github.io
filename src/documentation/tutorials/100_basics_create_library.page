@@ -91,7 +91,7 @@ Done.
 
 The newly created package comes in a ready to run after a fashion: you can build and install it right away using the build tool [autoproj](/documentation/autoproj/basic_usage.html)
 
-~~~
+~~~ text
 amake tutorials/message_driver
 ~~~
 
@@ -243,7 +243,7 @@ use CMake for the build process. You can use standard CMake directives but Rock
 also comes with some CMake macros that facilitate setting up libraries, and
 resolving any required dependencies (have a look [here](../packages/cmake_macros.html) for details).
 
-~~~
+~~~ text
 rock_library(message_driver
     SOURCES MessageDriver.cpp
     HEADERS MessageDriver.hpp Message.hpp
@@ -266,7 +266,7 @@ the previous line, here '- rock.toolchain'. The manifest file is parsed as
 .yaml, and thus relies on proper indentation.
 {: .warning}
 
-~~~
+~~~ text
 package_sets:
   - gitorious: rock-toolchain/package_set
 
@@ -308,7 +308,7 @@ BOOST_AUTO_TEST_CASE(it_should_not_crash_when_message_is_created)
 As the same manner that for building the library, the step towards integration into the build system is adding the newly
 created file to the test/CMakeLists.txt file
 
-~~~
+~~~ text
 rock_testsuite(test_suite suite.cpp
     test_MessageDriver.cpp
     DEPS message_driver)
