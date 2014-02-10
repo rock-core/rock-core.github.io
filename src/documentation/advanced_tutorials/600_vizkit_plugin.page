@@ -15,7 +15,7 @@ Implementation
 -----------
 
 Normally you add a Vizkit plugin to an existing library to visualize data of this library.
-For this tutorial we create a new library (using the command 'rock-create-library') and name it vizkit3d_plugin_tutorial.
+For this tutorial we create a new library (using the command 'rock-create-lib') and name it vizkit3d_plugin_tutorial.
 In the manifest.xml we have to add some dependencies:
 
 ~~~ xml
@@ -263,3 +263,4 @@ timer.start(10)
 Vizkit.exec
 ~~~
 
+Progress to the [next tutorial](620_multi_widget_display.html).

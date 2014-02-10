@@ -15,6 +15,8 @@ necessary.
 This tutorial directly continues from the last tutorials, additionally, you have
 to have the rock packages gui/vizkit and gui/rock_widget_collection installed.
 
+In case you are starting here, the required packages are mentioned on the [introduction page](/documentation/advanced_tutorials/index.html)
+
 Displaying Data with Vizkit
 -----------
 Vizkit is a ruby framework build around qtruby to support the developer with functionality to display his
@@ -48,7 +50,7 @@ For testing purposes a small camera log file can be found [here](https://gitorio
 Designing a custom GUI 
 -----------
 Vizkit is able to load ui files created with the Qt Designer. In this case a small GUI is loaded whose ui file
-can be found [here](https://gitorious.org/rock-tutorials/advanced_data_visualization/blobs/master/resources/test_gui.ui). If you want to create your own ui file, use the *Qt
+can be found [here (right click - save as)](https://gitorious.org/rock-tutorials/advanced_data_visualization/raw/5ab9c7688e4b16980c05e5a3c1f0c7a24f3b21df:resources/test_gui.ui). If you want to create your own ui file, use the *Qt
 Designer*, e.g. by calling *designer* on the command line.
 
 This ui basically creates a window with two dedicated labels for writing strings 
@@ -61,7 +63,7 @@ you can access all embedded objects by their object name and their qt signal/slo
 ~~~ ruby
 require 'vizkit'
 #load ui file
-gui = Vizkit.load '210_test_gui.ui'
+gui = Vizkit.load 'test_gui.ui'
 
 #do something if someone is clicking on the 
 #button named Button
@@ -102,8 +104,8 @@ Orocos.initialize
 
 gui = Vizkit.load 'test_gui.ui'
 
-Orocos.run 'message_producer_deployment' do 
-    producer = Orocos.name_service.get 'message_producer'
+Orocos.run 'message_producer::Task' => 'tutorial_message_producer' do 
+    producer = Orocos.name_service.get 'tutorial_message_producer
     producer.configure
 
     #change a property when the button is pressed
@@ -112,10 +114,10 @@ Orocos.run 'message_producer_deployment' do
         producer.stop
         producer.cleanup
 
-        # change the configuration
-        producer.config do |p|
-            p.uppercase = !p.uppercase
-        end
+        # change the configuration (uncomment if your code supports it)
+        #producer.config do |p|
+        #    p.uppercase = !p.uppercase
+        #end
 
         # start the task again
         producer.configure

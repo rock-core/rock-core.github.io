@@ -42,7 +42,7 @@ view3d.show
 Vizkit.exec
 ~~~
 
-The list of available Vizkit3DPlugins can be found TODO
+#The list of available Vizkit3DPlugins can be found TODO
 
 For this tutorial, we pick a plugin, that will show an simple 3D representation of an Pose
 in space. Note that you can add multiple Vizkit3DPlugins to the Vizkit3DWidget
@@ -69,3 +69,4 @@ rbs.orientation = Eigen::Quaternion.new(0, 0, 0, 1)
 rbs_plugin.updateRigidBodyState(rbs)
 ~~~
 
+Progress to the [next tutorial](300_vizkit_widget.html).
