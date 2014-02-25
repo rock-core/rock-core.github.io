@@ -1,0 +1,38 @@
+---
+title: Usage Simulation 
+sort_info: 200 
+---
+
+Setting up the System
+----------------
+To build a simulation of your System you need first the Enviorment for the System and the System itself.
+To crete a Scene please refer the [Mars Documentation](http://rock-robotics.org/stable/api/simulation/mars/doc/d5/dc7/tutorial_basic_modeling.html)
+
+The next step is to figure out which Sensors you need and which tasks are needed for them.
+Refer for this the [mars_core](http://www.rock-robotics.org/master/api/simulation/orogen/mars_core/) package.
+
+Currently Rock Provides support for:
+  * IMU Sensors
+  * AUV Motions (based on the Fossen-Model)
+    Provides movement prediction within the Simulation based on the prediction
+    of a fossen model.
+  * LaserScanner
+  * Motor's (Including Joints)
+  * Cameras (including Depth-Cameras)
+
+You have to Deploy all needed Tasks within one Deployment, because the underlaying access 
+is based on a singleton design pattern. After you colleded and deployed all tasks the base-setup is finished.
+
+
+Configuring Plugins
+----------------
+The simiulation Tasks aim to provide the same functionality than the real sensors. Nevertheless they
+are often limited in their capabilities. The most-imporatand fact to know is that you have to configure
+for nearly every plugin the refferencing node in the Scene-File. Each plugin have to know which is the 
+node that has to be controlled or the sensor sould be attached. The Node-Names are pecified during the scene-building.
+The Second importandt fact is, that each Plugin-Node must be instanciated AFTER the core-simulation task is configured,
+otherwise the configuration will fail. 
+
+The Plugins continiously checking if the core-simulation is still availible, in case of a shutdown 
+each node go to the error_state "CONNECTION_LOST" which means that the whole simulation have to be restarted.
+

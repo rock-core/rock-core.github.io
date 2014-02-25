@@ -1,0 +1,22 @@
+---
+title: Overview
+sort_info: 0
+---
+
+![Overview](mars_avalon.png)
+
+What is Robot Simulation
+----------------
+The core idea of integrating a Simulation into rock is the need to offline
+evaluate/implement Algorithms. The Simulation provides the ability to calculate
+the movement based on actuator targets, and predict (more or less accurate) how
+the sensor data look like given the state on the enviorment and the robot
+itself. 
+
+Background of the Rock Mars Integration
+----------------
+Rock currently provides a direct interface to the Mars Simulation. This
+Simulation is not directly part of rock. Nevertheless the Mars integration into
+rock was done by core-developers to generate a easy was for robot simulation
+with Rock. 
+

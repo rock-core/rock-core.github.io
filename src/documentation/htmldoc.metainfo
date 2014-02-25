@@ -58,6 +58,10 @@ graphical_user_interface:
     title: Graphical User Interface
     sort_info: 300
 
+simulation:
+    title: Simulating a Robot
+    sort_info: 400
+
 package_directory:
     title: Package Directory
     sort_info: 500
