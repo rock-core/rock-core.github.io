@@ -12,13 +12,14 @@ The next step is to figure out which sensors you need and which tasks they requi
 For this, see the [mars_core](http://www.rock-robotics.org/master/api/simulation/orogen/mars_core/) package.
 
 Currently Rock provides support for:
-  * IMU Sensors
-  * AUV Motions (based on the Fossen-Model)
-    Provides movement prediction within the simulation based on the prediction
-    of a fossen model.
-  * laser scanners
-  * motors (including joints)
-  * cameras (including time-of-flight cameras)
+ 
+ * IMU Sensors
+ * AUV Motions (based on the Fossen-Model)
+   Provides movement prediction within the simulation based on the prediction
+   of a fossen model.
+ * laser scanners
+ * motors (including joints)
+ * cameras (including time-of-flight cameras)
 
 You have to Deploy all needed Tasks within one Deployment, because the underlaying access 
 is based on a singleton design pattern. After you colleded and deployed all tasks the base-setup is finished.
