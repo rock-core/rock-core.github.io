@@ -156,7 +156,7 @@ noticed right now, is that as long as you do not introduce a device in the
 brownian motion networks, __they are identical__. Syskit will therefore happily
 run a _single_ brownian motion network, thus moving only one rock. What
 will allow to differentiate them is that we point to a particular __unique__
-device for each networks to control.
+device for each network to control.
 
 The first step is to declare the device. [The
 convention](../system/devices.html) is to declare those in
