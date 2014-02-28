@@ -19,7 +19,7 @@ was a better way to understand how everything fits together.
 
 However, as we saw [in the leader-follower tutorial](600_more_complex.html), we
 want to be able to share and reuse the models and definitions. Moreover, having
-everything in a single file obviously does not scale very well ...
+everything in a single file obviously does not scale very well.
 
 This page will simply introduce where all the bits and pieces are stored in a
 given bundle, as well as additional concepts that were not introduced in the
@@ -27,12 +27,13 @@ tutorials.
 
 When starting from a given bundle, the syskit application will __automatically__
 load all model files contained in said bundle. Therefore, when creating scripts
-in scripts/, all the models defined in models/ __are__ available. The
-modifications described in this page will therefore break the scripts (there
-will be duplicate definitions). For this reason, the result of the modifications
-described on this page are contained on a different package than the one in
-which the script-based tutorials we just did is stored. Go into
-bundles/tutorials (instead of bundles/tutorials_scripts)
+in scripts/, all the models defined in models/ __are__ __available__. The
+modifications described in this page will therefore break the scripts which you
+have developed in the previous tutorial sections (there will be duplicate definitions).
+For this reason, the result of the modifications
+described on this page are contained in a different package than the one in
+which the script-based tutorials ( the ones we just did) are stored.
+You will find them in bundles/tutorials (instead of bundles/tutorials_scripts).
 
 Blueprints
 ----------
@@ -44,12 +45,12 @@ They must:
    compositions and/or data services)
  - use import_types_from 'typekit' to get the type definitions for the types it
    needs (in data service definitions). The name of the typekit can be obtained
-   with rock-inspect (the "defined in XXX" line), or on the website / in
-   rock-browse on the type page.
+   with rock-inspect (the "defined in XXX" line) or on the type page of either
+   the website or in rock-browse.
  - use using_task_library 'project ' for the task contexts. The project name is
    in oroGen the same than the task context namespace (e.g. 'motor_controller'
    for 'motor_controller::Task')
- 
+
 The file name should by convention be the name of the model defined and the
 namespace the same than the bundle name (the rock bundle is an exception here,
 as it defines common models for all packages in Rock).
@@ -207,7 +208,7 @@ class Main < Roby::Actions::Interface
   use_profile Tutorials::Rocks
 end
 ~~~
-    
+
 Deployments
 -----------
 Finally, deployments are 'used' in the robot's config file or in config/init.rb.
@@ -216,7 +217,7 @@ When it is in init.rb, it must be done after the Roby.app.using 'syskit' line.
 First, let's add a 'tut' robot
 
 ~~~
-# roby add-robot tut
+# syskit add-robot tut
 ~~~
 
 And edit its main configuration file:
