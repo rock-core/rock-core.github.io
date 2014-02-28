@@ -15,28 +15,30 @@ This tutorial will give you some handson experience on:
 Finding a standard task that provides a port X.
 -----------
 
-We are using here an existing task of the rock-robotics framework and the task from the previous 
+We are using here an existing task of the rock-robotics framework and the task from the previous
 tutorial, so we don't have to implement anything.
 
-In order to get our control we need a task that supplies us with 'base::MotionCommand2D'. 
+In order to get our control we need a task that supplies us with 'base::commands::Motion2D' (note that this
+type is equivalent to 'base::MotionCommand2D' which you will find in some older components).
 For that it is recommended to take a look into the [package directory](/package_directory.html).
 You will have two options there:
 
  * look for a specific orogen package in the Packages section. For instance, you can search for
    "joystick orogen"
- * look for tasks that produce the type you require (here /base/MotionCommand2D) by going into
-   the oroGen types section, selecting the type and looking at the Produced by section at the
+ * look for tasks that produce the type you require (here /base/commands/Motion2D) by going into
+   the oroGen types section, selecting the type and looking at the 'Produced by' section at the
    top of the page.
 
 The package directory gives you a general overview of available 'standard' packages and types.
 For our purpose we need to look into the subcategory 'oroGen Types'. This category shows all
 available types that are exported by any task in the standard rock packages. As we are interested
-on 'base::MotionCommand2D' we open the page about this type. Apart from the general description of
-the type there is a section 'produced by' and 'consumed by', which gives us the list of all tasks
-producing 'base::MotionCommand2D'. As we want to integrate a joystick, we pick controldev::JoystickTask
-from the list, which is defined in 'drivers/orogen/controldev'.  
+in 'base::commands::Motion2D' we open the page about this type.
 
-In order to install the package to your installation, either do 
+As we want to integrate a joystick, we search for controldev::JoystickTask
+in the subcategory 'oroGen tasks' -- and find it defined in 'drivers/orogen/controldev'.
+This task produces 'base::commands::Motion2D'.
+
+In order to install the package to your installation, either do
 
 ~~~ text
 amake drivers/orogen/controldev
@@ -52,7 +54,7 @@ Integration of the task
 Now that we have found a task, that supplies the needed motion commands we need to integrate it into
 our run script. Therefore we modify the last runscript. By adding a joystick driver to it.
 As we know from the package directory, the controldev package provides a tasks for our purpose. To find
-out which exact task we can use we call 
+out which exact task we can use we call
 
 ~~~ text
 oroinspect -t controldev
@@ -65,13 +67,13 @@ The interesting part of the output is in our case this :
     Task name:  controldev::JoystickTask
     defined in controldev
     ----------------------------------------------------------
-    
+g
     ------- controldev::JoystickTask ------
     A Task that provides a joystick driver
     subclass of controldev::GenericTask (the superclass elements are displayed below)
     Ports
       [out]four_wheel_command:/controldev/FourWheelCommand
-      [out]motion_command:/base/MotionCommand2D
+      [out]motion_command:/base/commands/Motion2D
       [out]raw_command:/controldev/RawCommand
       [out]speed_command:/base/SpeedCommand6D
       [out]state:/int32_t
@@ -86,7 +88,7 @@ The interesting part of the output is in our case this :
     No operations
 
 This output tells us that there is a task controldev::JoystickTask, which has a
-output port with the name 'motion_command' of the type '/base/MotionCommand2D'.
+output port with the name 'motion_command' of the type '/base/commands/Motion2D'.
 So it fits exactly our needs.
 
 Knowing this, we can now modify the script from the previous tutorial (copy it
@@ -103,7 +105,7 @@ Orocos.initialize
 ## Execute the task ##
 Orocos.run 'rock_tutorial::RockControlTutorial' => 'rock_tutorial_control',
      'controldev::JoytickTask' => 'joystick' do
-  
+g
     ## Get the specific task context ##
     rockControl = Orocos.name_service.get 'rock_tutorial_control'
     joystick = Orocos.name_service.get 'joystick'
@@ -131,10 +133,10 @@ This script is quite the same as the script from rock tutorial 1, but with some 
 we execute a second Taskt named 'joystick', besides the 'rock_tutorial' task.
 
 Also we acquire a handle to the JoystickTask. Then we connect the output port 'motion_command'
-of the task 'joystick' with the equal named input port of the task 'rockControl'. The task 'joystick' of course uses the 
-joystick input to generate motion commands. In the next step we could set a property named 'device' of the task 'joystick'. 
-With that we can set a string which is the local device of the joystick on your machine. Next we configure the 'joystick' 
-task by issuing the command 'joystick.configure'. At last we will start all the Tasks. 
+of the task 'joystick' with the equal named input port of the task 'rockControl'. The task 'joystick' of course uses the
+joystick input to generate motion commands. In the next step we could set a property named 'device' of the task 'joystick'.
+With that we can set a string which is the local device of the joystick on your machine. Next we configure the 'joystick'
+task by issuing the command 'joystick.configure'. At last we will start all the Tasks.
 
 Run it
 ----------
