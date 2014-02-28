@@ -142,7 +142,7 @@ declared in the src/Message.hpp header). It should contain the following code:
 #define _MESSAGE_DRIVER_MESSAGE_HPP_
 
 #include <string>
-#include <base/time.h>
+#include <base/Time.hpp>
 
 namespace message_driver
 {
