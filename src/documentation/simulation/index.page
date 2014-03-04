@@ -15,7 +15,9 @@ the sensor data would look like given the state of the environment and the robot
 Background of the Rock Mars Integration
 ----------------
 Rock currently provides a direct interface to the MARS Simulation. This
-simulation is not directly part of rock. Nevertheless the MARS integration into
-rock was done by core-developers to generate an easy way for robot simulation
-within the Rock framework. 
+simulation is not directly part of rock. Nevertheless the MARS simulation was developed within the field 
+of Rock. The MARS Documentation could be found here [here](http://rock-robotics.org/master/api/simulation/mars/doc/).
+MARS was developed as a standalone Simulation which runs on Windows/MacOS/Linux System, but for easier
+use within the ROCK Framework Rock core-developers started to integrate MARS into Rock, for more details 
+visit the [design background](file:///home/goldhoorn/dev-avalon/base/doc/out/documentation/simulation/100_design_background.html) page.
 
