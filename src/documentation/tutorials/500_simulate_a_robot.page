@@ -27,7 +27,7 @@ This should give us an folder containing the following files :
 CMakeLists.txt  INSTALL  LICENSE  manifest.xml  README  src
 ~~~
 
-Make sure you add the required dependencies to the manifest.xml, i.e. here 'base/types' and 'gui/vizkit'.
+Make sure you add the required dependencies to the manifest.xml, i.e. here 'base/types' and 'gui/vizkit3d'.
 
 ~~~ text
 <depend package="base/types" />
@@ -79,8 +79,8 @@ private:
     /**
     * Current heading of the rock
     **/	
-
     double currentHeading;
+
     /**
     * Current speed of the rock
     **/	
@@ -101,7 +101,7 @@ rotation in rad/s. The parameter deltaTime defines, how much time advanced since
 +computeNextPose+ computes the new position and and rotation of our rock, in respect to the last pose.
 
 ~~~ cpp
-base::samples:RigidBodyState RockControl::computeNextPose(
+base::samples::RigidBodyState RockControl::computeNextPose(
   const double &deltaTime, 
   const base::commands::Motion2D &inputCommand)
 {
