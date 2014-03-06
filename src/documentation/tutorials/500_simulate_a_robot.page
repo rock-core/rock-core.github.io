@@ -21,7 +21,9 @@ cd tutorials
 rock-create-lib rock_tutorial
 ~~~
 
-This should give us an folder containing the following files :
+The automatically generated dummy files can be removed as explained in the note of the [creating libraries](100_basics_create_library.html#creating-libraries) section.
+
+This should give us an folder containing the following files:
 
 ~~~ text
 CMakeLists.txt  INSTALL  LICENSE  manifest.xml  README  src
