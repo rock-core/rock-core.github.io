@@ -154,9 +154,11 @@ rock_tutorial already depends on 'base/types' and the dependencies are resolved 
 In the rock_tutorial.orogen we will define the orocos task. For this tutorial we replace the existing entries by our definitions:
 
 ~~~ ruby
+
 name "rock_tutorial"
 version "0.1"
 
+import_types_from "rock_tutorialTypes.hpp"
 import_types_from "base"
 using_library "rock_tutorial"
 
