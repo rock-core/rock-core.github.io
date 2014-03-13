@@ -4,15 +4,15 @@ sort_info: 50
 ---
 
 This page explains how to install Rock and where to look for more
-information (tutorials, ...)
+information (tutorials, ...).
 
 Level of support
 ----------------
-This section lists the operating systems where Rock is _well tested_, is _untested_ and whose status is _unknown_.
+This section lists the operating systems where Rock is _well tested_, is _untested_ and where the status is _unknown_.
 For _well tested_ operating systems, a build server makes sure that Rock builds
 fine, and it is known to be actively used. _Untested_ operating systems have
 had users (so, it did work at some point), but it is unknown whether it is
-still being actively used. Finally, _unknown status_ operating systems are OSes where
+still being actively used. Finally, _unknown status_ operating systems are OSs where
 Rock should work, but we have had no known report of its success or failure.
 
 ### Well tested Oses
