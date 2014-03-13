@@ -20,10 +20,22 @@ Rock should work, but we have had no known report of its success or failure.
 | ![Ubuntu](install/ubuntu.png) | Latest LTS and later (currently anything newer than 12.04). We let 6 months after a LTS release before deprecating the previous LTS. |
 | ![Debian](install/debian.png) | testing or unstable |
 
-### Untested OSes
+### Experimental OSes
 
-| ![Gentoo](install/gentoo.jpg) | Last known working version end of 2011 |
+| ![Gentoo](install/gentoo.gif) | Last known working version end of 2011 |
 | ![Arch](install/arch.png) | Last known working version end of 2013 |
+| ![OpenSuse](install/opensuse.png) | Beta state, started 2014 |
+| ![Fedora](install/fedora.png) | Last known working version 2012 |
+
+Feel free to ask on the mailinglist to ask for support for porting to another System.
+Please let us know any experience if you are using one of the above listed OSes.
+
+#### Legal Comments
+This site is not affiliated with or endorsed by the Fedora Project.
+The Gentoo logo is a trademark of Gentoo Foundation Inc. and the rock-robotic framework is not part
+of the Gentoo project, and is not and is not directed or managed by Gentoo Foundation, Inc. 
+Simliar statements are true for all listes Logos and Systems. The Rock-Robotic framework itself is 
+independand of the Operation Systems and maintained by its own.
 
 ### Status for other 
 
