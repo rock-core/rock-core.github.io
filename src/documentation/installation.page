@@ -15,7 +15,7 @@ had users (so, it did work at some point), but it is unknown whether it is
 still being actively used. Finally, _unknown status_ operating systems are OSs where
 Rock should work, but we have had no known report of its success or failure.
 
-### Well tested Oses
+### Well tested OSs
 
 | ![Ubuntu](install/ubuntu.png) | Latest LTS and later (currently anything newer than 12.04). We let 6 months after a LTS release before deprecating the previous LTS. |
 | ![Debian](install/debian.png) | testing or unstable |
@@ -28,14 +28,14 @@ Rock should work, but we have had no known report of its success or failure.
 | ![Fedora](install/fedora.png) | Last known working version 2012 |
 
 Feel free to ask on the mailinglist to ask for support for porting to another System.
-Please let us know any experience if you are using one of the above listed OSes.
+Please let us know any experience if you are using one of the above listed OSs.
 
 #### Legal Comments
 This site is not affiliated with or endorsed by the Fedora Project.
 The Gentoo logo is a trademark of Gentoo Foundation Inc. and the rock-robotic framework is not part
 of the Gentoo project, and is not and is not directed or managed by Gentoo Foundation, Inc. 
-Simliar statements are true for all listes Logos and Systems. The Rock-Robotic framework itself is 
-independand of the Operation Systems and maintained by its own.
+Simliar statements are true for all listed logos and systems. The Rock-Robotic framework itself is 
+independent from the operation systems and maintained on its own.
 
 ### Status for other 
 
@@ -53,11 +53,11 @@ Installation: the easy way
     ruby \-\-version
     ~~~
 
- 2. Create and "cd" into the directory in which you want to install the toolchain
+ 2. Create and "cd" into the directory in which you want to install the toolchain.
  3. To build the base system (base packages + toolchain, but no
     libraries/components), use this
     [bootstrap.sh](https://gitorious.org/rock/buildconf/raw/a05ea84e6cccf505554268f954bc259d30c15b99:bootstrap.sh)
-    script. Save it  in the folder you just created. For other options, see
+    script. Save it in the folder you just created. For other options, see
     below.
 
     **There is an important note for long-term Orocos users.** See the red box
@@ -80,7 +80,7 @@ Installation: the easy way
       . /path/to/the/directory/env.sh
       {: .commandline}
 
- 6. read [the autoproj guide for basic usage](/documentation/autoproj/basic_usage.html) to know the
+ 6. Read the [autoproj guide for basic usage](/documentation/autoproj/basic_usage.html) to know the
     basic operations of the build system. More bootstrapping documentation is
     also available [at the same place](/documentation/autoproj/bootstrap.html)
 
@@ -91,8 +91,8 @@ Other bootstrapping options
    instead of the one listed above. '''This is really meant for continuous
    integration servers'''. It is going to build all the packages that are
    defined within Rock, which is probably not what you want.
-   You probably want to install base system and then cherry-pick the packages you want. Have a look in [the package
-   directory](/package_directory.html), and add the package names to the
+   You probably want to install the base system and then cherry-pick the packages you want. Have a look at [the package
+   directory](/package_directory.html) and add the package names to the
    layout section in autoproj/manifest. For instance,  if you want to
    get the [Xsens IMU component](http://rock-robotics.org/package_directory/packages/drivers_orogen_xsens_imu/index.html),
    the layout section should look like:
@@ -112,7 +112,7 @@ default, as they are quite expensive on the build times. Select "yes" at the
 Maintaining a Rock installation
 ----------------------------------
 
-Once Rock is installed, you can update your installation by going into the root of the
+Once Rock is installed, you can update your installation by going to the root of the
 installation folder and do
 
 autoproj update <br/>
