@@ -104,7 +104,7 @@ Orocos.initialize
 
 ## Execute the task ##
 Orocos.run 'rock_tutorial::RockControlTutorial' => 'rock_tutorial_control',
-     'controldev::JoytickTask' => 'joystick' do
+     'controldev::JoystickTask' => 'joystick' do
 g
     ## Get the specific task context ##
     rockControl = Orocos.name_service.get 'rock_tutorial_control'
