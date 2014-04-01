@@ -38,7 +38,7 @@ Installation: the easy way
     the ruby1.9.1 package.
 
     ~~~
-    ruby \-\-version
+    ruby --version
     ~~~
 
  2. Create and "cd" into the directory in which you want to install the toolchain
@@ -53,8 +53,19 @@ Installation: the easy way
 
  4. In a console, run
     
+    ~~~
     sh bootstrap.sh
-    {: .commandline}
+    ~~~
+
+    If the command fails (1) report the problem / error to
+    [the rock-dev mailing
+    list](http://www.dfki.de/mailman/cgi-bin/listinfo/rock-dev),
+    (2) whatever you try to fix it, restart the bootstrapping by doing.
+
+    ~~~
+    rm -rf autoproj
+    sh bootstrap.sh
+    ~~~
 
  5. Important: as the build tool tells you, you **must** load the generated env.sh script at the end of the build !!!
     * source it in your current console
