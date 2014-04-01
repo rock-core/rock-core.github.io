@@ -10,9 +10,13 @@
   <meta name="description" content="The Robot Construction Kit - a robot software development environment" />
   <meta name="keywords" content="robotics,toolchain,components,field robotics,underwater robotics" />
   <meta name="author" content="The Rock core team" />
-<!--  <link rel="stylesheet" type="text/css" media="screen,projection" href="" />-->
-<!--  <link rel="stylesheet" type="text/css" media="print" href="css/style_print.css" />-->
-   <title>The Robot Construction Kit</title>
+  <% if context.node.node_info[:page].meta_info.has_key?('page_title') %>
+  <% if context.node.node_info[:page].meta_info['page_title'] %>
+  <title><%= context.node.node_info[:page].meta_info['page_title'] %></title>
+  <% end %>
+  <% else %>
+  <title>{title: }</title>
+  <% end %>
    <script type="text/javascript" language="javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
    <link rel="stylesheet" href="{relocatable: style_screen.css}" type="text/css" />
    <webgen:block name="header" notfound="ignore"/>
