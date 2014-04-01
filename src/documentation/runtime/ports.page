@@ -129,6 +129,6 @@ sample = writer.new_sample
 sample.name = "MyReading"
 sample.time.seconds = Time.now.tv_sec
 sample.time.microseconds = Time.now.tv_usec
-output_port.write(sample)
+writer.write(sample)
 {coderay}
 
