@@ -70,8 +70,8 @@ Installation: the easy way
     ~~~
 
     If the command fails (1) report the problem / error to
-    [the rock-dev mailing
-    list](http://www.dfki.de/mailman/cgi-bin/listinfo/rock-dev),
+    [the rock-users mailing
+    list](http://www.dfki.de/mailman/cgi-bin/listinfo/rock-users),
     (2) whatever you try to fix it, restart the bootstrapping by doing.
 
     ~~~
