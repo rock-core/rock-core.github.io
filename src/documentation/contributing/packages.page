@@ -33,7 +33,7 @@ The process to get a package in Rock is:
  - at this point, there is the option of putting the source code within Rock's
    gitorious projects. While it is not mandatory, it is the preferred option.
    The Rock developers will be in touch with you to discuss this (either through
-   the [rock-dev mailing list](http://www.dfki.de/mailman/cgi-bin/listinfo/rock-dev) or through the merge request / ticket you created)
+   the [rock-users mailing list](http://www.dfki.de/mailman/cgi-bin/listinfo/rock-users) or through the merge request / ticket you created)
 
 Publish your package set in Rock
 --------------------------------
@@ -46,7 +46,7 @@ be integrated in the Rock package directory.
 
 The process to submit a package set is:
 
- - send the link and description of the package set to [rock-dev mailing
-   list](http://www.dfki.de/mailman/cgi-bin/listinfo/rock-dev)
+ - send the link and description of the package set to [rock-users mailing
+   list](http://www.dfki.de/mailman/cgi-bin/listinfo/rock-users)
  - wait for a Rock developer to pick up on that
 

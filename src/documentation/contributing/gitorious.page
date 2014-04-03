@@ -7,8 +7,8 @@ This page covers how to send modifications to code and documentation to the Rock
 developers, assuming that you did not get a direct commit access to the
 packages you modify. If you do feel that you contribute regularly enough to a
 given package, drop a note to the package maintainer (whose email is stored in
-the package's manifest.xml file) or to the [rock-dev mailing
-list](http://www.dfki.de/mailman/cgi-bin/listinfo/rock-dev).
+the package's manifest.xml file) or to the [rock-users mailing
+list](http://www.dfki.de/mailman/cgi-bin/listinfo/rock-users).
 
 The other pages in this Contributing section cover the other aspects: how the
 documentation is done, how to create new packages, ...
