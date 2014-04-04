@@ -25,13 +25,15 @@ Create a consumer component
 Your first task in this tutorial is to apply the acquired knowlege from the previous tutorials, to prepare a consumer component named 'message_consumer' and place it in _tutorials/orogen/_. Perform all steps up to the point where you can edit the orogen specification, i.e.:
 
  * Use [rock-create-orogen](110_basics_create_component.html) to create your component (note: you will need a
-   dependency on both message\_driver and message\_producer).
+   dependency on both tutorials/message\_driver and tutorials/orogen/message\_producer).
  * Check for any required dependencies and verify the 'manifest.xml'.
  * Add your component to the build configuration, i.e. to _autoproj/manifest_.
 
 The next step will be to adapt the orogen specification (_~/dev/tutorials/orogen/message_consumer/message_consumer.orogen_). The component should allow to receive messages on an input port, and to call the updateHook only when it receives a message. The specification should look as follows: 
 
 ~~~ ruby
+name 'message_consumer'
+
 using_library "message_driver"
 import_types_from "message_producer"
 
