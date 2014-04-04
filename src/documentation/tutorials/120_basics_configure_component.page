@@ -261,8 +261,6 @@ Wed Aug 03 09:40:28 +0200 2011 MESSAGE FROM MESSAGEDRIVER
 Wed Aug 03 09:40:29 +0200 2011 MESSAGE FROM MESSAGEDRIVER
 ~~~
 
-You can also try running the start.rb script. You will see, however, that the component will fail to start. Since you specified 'needs_configuration' in the component specification, it cannot be started without being configured beforehand.
-
 ### Use a configuration file
 Property values can be read from a file, what is especially handy in case of more properties to set. The configuration file is a yaml-file which organises the properties in a structured way. For the present example, create a file, e.g. _message_producer_config.yml_ with the
 following content:
@@ -316,13 +314,12 @@ config:
 ~~~
 
 In this file, __uppercase__ is 0, which of course is _False_, which is the default
-setting for the property (see configuration constructor). The comment in the second line
-would be the documentation string if the property would have one (brackets
-are necessary here, since the doc is attached with a dot)
+setting for the property (see configuration constructor). A comment before the declaring
+the property is automatically picked up as documentation line.
 
 ~~~ ruby
+    # Configuration property for the message driver
     property("config","message_driver/Config")
-        .doc("Configuration for the message driver.")
 ~~~
 
 The first line is the name for the configuration. It is possible to have multiple 
@@ -331,12 +328,12 @@ file called 'message_producer_multi.yml':
 
 ~~~ yaml
 \--- name:default
-# no documentation available for this property
+# Configuration property for the message driver
 config: 
   uppercase: 0
 
 \--- name:uppercase
-# no documentation available for this property
+# Configuration property for the message driver
 config: 
   uppercase: 1
 ~~~
