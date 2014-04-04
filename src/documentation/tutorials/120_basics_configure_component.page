@@ -27,8 +27,9 @@ acd message_driver
 
 Configure a component 
 ---------------------------------
-Some libraries will require configuration before you can use them, e.g. add a the following property to the MessageDriver library.
-Therefore, add the configuration object code to src/Config.hpp in the message
+Some libraries will require configuration before you can use them, e.g. here we want to add a property to the MessageDriver library to
+configure if our message should be presented in uppercase or not.
+Therefore, add the configuration object code to src/Config.hpp (you will have to create this file) in the message
 driver library:
 
 ~~~ cpp
@@ -110,7 +111,8 @@ MessageDriver::MessageDriver(const Config& config)
 ...
 ~~~
 
-### Update the build configuration 
+### Update the build configuration in src/CMakeLists.txt
+### This makes sure that the configuration header will also be installed
 
 ~~~ text
 rock_library(message_driver
@@ -126,9 +128,10 @@ In order to embed the configuration property into the oroGen component, we will
 have to do the following steps:
 
  1. __declare__ the property in message_producer.orogen specification file
- 2. __enable__ the PRE\_OPERATIONAL state. This is done by adding
-    needs\_configuration in the task description in the orogen file and by
-    uncommenting both configureHook and cleanupHook in tasks/Task.hpp and
+ 2. __enable__ the PRE\_OPERATIONAL state. For oroGen components this should already be set by default.
+    However, if not done initialially you have to add a needs\_configuration 
+    in the task description in the orogen file and
+    uncomment configureHook and cleanupHook in tasks/Task.hpp and
     tasks/Task.cpp
  3. __move__ the construction/destruction of the driver from the task's
     constructor and destructor into configureHook / cleanupHook
@@ -138,7 +141,7 @@ The final version of the component's code is in branch 'with_config' of basic_tu
 __(1)__ we modify the task description in the message_producer.orogen file.
 We add a property of the configuration type as follows (see also [Task
 Interface](../orogen/task_interface.html)). __(2)__ Since we want a specific configuration step, the new
-task should not be started without configuration, which can be set by adding the
+task should not be started without configuration, i.e. this is why we add the
 statement 'needs_configuration'.
 
 ~~~ ruby
@@ -187,35 +190,11 @@ void Task::cleanupHook()
 
 
 ### Build the task
-Now, build the task, and be aware: it will fail!
-
-Assuming that you are in the message_producer folder or in one of its
-subfolders,
+Now, build the task, i.e. assuming that you are in the message_producer folder or in one of its
+subfolders call:
 
 ~~~ cpp
 amake
-~~~
-
-Building the task fails, since some of the constructors need to be adapted to account for the configuration requirement. However, oroGen supports you with this tasks, since it always generates the latest task template *.hpp and *.cpp files into the templates folder. 
-Thus copy the constructor from templates/task/Task.hpp and templates/task/Task.cpp to replace the current ones in tasks/Task.hpp and task.cpp. 
-
-Finally your header and source file should contain the following constructors:
-
-~~~ cpp
-Task(std::string const& name = "message_producer::Task");
-Task(std::string const& name, RTT::ExecutionEngine* engine);
-~~~
-
-~~~ cpp
-Task::Task(std::string const& name)
-    : TaskBase(name), mpMessageDriver(0)
-{
-}
-
-Task::Task(std::string const& name, RTT::ExecutionEngine* engine)
-    : TaskBase(name, engine), mpMessageDriver(0)
-{
-}
 ~~~
 
 ### Embedding configuration into the ruby script
