@@ -6,13 +6,13 @@ sort_info: 120
 Abstract 
 ---------------------------------
 
-This tutorial will give you some handson experience on:
+This tutorial will give you some hands-on experience on:
  
- * how to add configuration support for your component
- * how to embed configuration into the Ruby script
+ * How to add configuration support for your component and
+ * how to embed that configuration into the Ruby script.
 
 Components and underlying libraries often need to be configured before starting them. This tutorial will teach you
-how to use oroGen component's properties to map to your library configuration option, and how to add the functionality
+how to use the oroGen component's properties to map to your library configuration option, and how to add the functionality
 to the oroGen component. 
 
 At the end of this tutorial, the component will look like:
@@ -20,7 +20,7 @@ At the end of this tutorial, the component will look like:
 ![Component Interface](120_producer_config.png)
 {: .align-center}
 
-Let's go back inside the message driver library
+Let's go back into the message driver library:
 
 acd message_driver
 {: .cmdline}
@@ -28,8 +28,10 @@ acd message_driver
 Configure a component 
 ---------------------------------
 Some libraries will require configuration before you can use them, e.g. here we want to add a property to the MessageDriver library to
-configure if our message should be presented in uppercase or not.
-Therefore, add the configuration object code to src/Config.hpp (you will have to create this file) in the message
+configure if the produced message should be presented in uppercase or not.
+Therefore, "cd" into the message driver library (_~/dev/tutorials/message_driver_).
+
+Add the configuration object code to _src/Config.hpp_ in the message
 driver library:
 
 ~~~ cpp
@@ -63,8 +65,10 @@ struct Config
 #endif // _MESSAGE_DRIVER_CONFIG_HPP_
 ~~~
 
-Then adapt the message driver class (in src/MessageDriver.cpp and
-src/MessageDriver.hpp)
+Then adapt the message driver class (in _src/MessageDriver.cpp_ and
+_src/MessageDriver.hpp_):
+
+_MessageDriver.hpp:_
 
 ~~~ cpp
 #include <message_driver/Message.hpp>
@@ -82,6 +86,8 @@ private:
         Config mConfig;
 
 ~~~
+
+_MessageDriver.cpp:_
 
 ~~~ cpp
 ...
@@ -114,6 +120,12 @@ MessageDriver::MessageDriver(const Config& config)
 ### Update the build configuration in src/CMakeLists.txt
 ### This makes sure that the configuration header will also be installed
 
+Remember: The build configuration can be found here:
+
+ _~/dev/tutorials/message_driver/src/CMakeLists.txt_
+
+Update the file as follows:
+
 ~~~ text
 rock_library(message_driver
     SOURCES MessageDriver.cpp
@@ -127,20 +139,22 @@ rock_library(message_driver
 In order to embed the configuration property into the oroGen component, we will
 have to do the following steps:
 
- 1. __declare__ the property in message_producer.orogen specification file
+ 1. __declare__ the property in the message_producer.orogen specification file (in _~/dev/tutorials/orogen/message_producer_).
  2. __enable__ the PRE\_OPERATIONAL state. For oroGen components this should already be set by default.
     However, if not done initialially you have to add a needs\_configuration 
     in the task description in the orogen file and
     uncomment configureHook and cleanupHook in tasks/Task.hpp and
     tasks/Task.cpp
  3. __move__ the construction/destruction of the driver from the task's
-    constructor and destructor into configureHook / cleanupHook
+    constructor and destructor into configureHook / cleanupHook.
 
-The final version of the component's code is in branch 'with_config' of basic_tutorials/orogen/message_producer (_git checkout with_config_). 
+The final version of the component's code is in branch 'with_config' of _basic_tutorials/orogen/message_producer_ (_git checkout with_config_). 
 
-__(1)__ we modify the task description in the message_producer.orogen file.
+__(1)__ We modify the task description in the message_producer.orogen file.
 We add a property of the configuration type as follows (see also [Task
-Interface](../orogen/task_interface.html)). __(2)__ Since we want a specific configuration step, the new
+Interface](../orogen/task_interface.html)).
+
+__(2)__ Since we want a specific configuration step, the new
 task should not be started without configuration, i.e. this is why we add the
 statement 'needs_configuration'.
 
@@ -156,15 +170,9 @@ task_context "Task" do
 end
 ~~~
 
-__(2)__ we edit task/Task.hpp and activate the configureHook and the cleanupHook by
-uncommenting them:
-
-~~~ cpp
-bool configureHook();
-void cleanupHook();
-~~~
-
 __(3)__ Finally, we remove the allocation and deallocation from the constructor and destructor, since it will be moved into the configureHook and the cleanupHook:
+
+In _~/dev/tutorials/orogen/message_producer/tasks/Task.cpp_:
 
 ~~~ cpp
 bool Task::configureHook()
@@ -190,7 +198,7 @@ void Task::cleanupHook()
 
 
 ### Build the task
-Now, build the task, i.e. assuming that you are in the message_producer folder or in one of its
+Now, build the task: Assuming that you are in the message_producer folder or in one of its
 subfolders call:
 
 ~~~ cpp
@@ -199,7 +207,8 @@ amake
 
 ### Embedding configuration into the ruby script
 
-Now, copy 'start.rb' to a new file 'configure.rb' -
+Now, "cd" into your folder _~/dev/tutorials/orogen/message_producer/scripts_, 
+and copy 'start.rb' to a new file 'configure.rb' -
 you will reuse 'start.rb' at a later stage. 
 Modify 'configure.rb' according to the following 
 code block:
@@ -245,7 +254,7 @@ ruby configure.rb
 ~~~
 
 Again, you should see something similar to the following. You can switch
-between uppercase and mixed case printing by using your newly defined configuration options. With the script above you should see something like the following:
+between uppercase and mixed case printing by using your newly defined configuration options. With the script above, you should see something like the following:
 
 ~~~ text
 Wed Aug 03 09:40:28 +0200 2011 MESSAGE FROM MESSAGEDRIVER
@@ -255,7 +264,7 @@ Wed Aug 03 09:40:29 +0200 2011 MESSAGE FROM MESSAGEDRIVER
 You can also try running the start.rb script. You will see, however, that the component will fail to start. Since you specified 'needs_configuration' in the component specification, it cannot be started without being configured beforehand.
 
 ### Use a configuration file
-Property values can be read from a file, what is especially handy in case of more properties to set. The configuration file is a yaml-file which organises the properties in a structured way. For the present example create a file e.g. _message_producer_config.yml_ with the
+Property values can be read from a file, what is especially handy in case of more properties to set. The configuration file is a yaml-file which organises the properties in a structured way. For the present example, create a file, e.g. _message_producer_config.yml_ with the
 following content:
 
 ~~~ yaml
@@ -284,31 +293,32 @@ The result when running the script should be the same as above. It is possible t
 have one configuration file per task context and then load the properties for each task
 from the corresponding file. Of course the properties in the file have to match the
 properties given in the orogen definition. A good way to create a proper configuration
-file is to generate such a file from the task model definition. To do so run the 
+file is to generate such a file from the task model definition. To do so, run the 
 following command from the shell:
 
 ~~~ sh
 oroconf extract message_producer::Task --save message_producer.yml
 ~~~
 
-_oroconf_ is the command to access the configuration of tasks. It can do more then 
-extracting configruation files (_\-\-help_) but we will stick to the command _extract_
-for now. The first argument after extract gives the task model which is the orogen
-name plus double colon plus task name. Behind _\-\-save_ the file is given to which the
+_oroconf_ is the command to access the configuration of tasks. It can do more than 
+extracting configuration files (_\-\-help_), but we will stick to the command _extract_
+for now. The first argument after _extract_ gives the task model which is the orogen
+name plus double colon plus task name. Behind _\-\-save_, the file is given to which the
 data should be written. You might note that there are some variations to the hand 
 written file:
 
 ~~~ yaml
 \--- name:default
-# no documentation available for this property
+# A configuration property (here, a std::string). Its value can be retrieved
+# in the C++ code with # _config_value.get() and _config_value.set(new_value).
 config: 
   uppercase: 0
 ~~~
 
-In this file __uppercase__ is 0 which of course is _False_ which is the default
-setting of the property (see configuration constructor). The comment in the second line
-would be the documentation string if the property would have one e.g. (brackets
-are necessary here since the doc is attached with a dot)
+In this file, __uppercase__ is 0, which of course is _False_, which is the default
+setting for the property (see configuration constructor). The comment in the second line
+would be the documentation string if the property would have one (brackets
+are necessary here, since the doc is attached with a dot)
 
 ~~~ ruby
     property("config","message_driver/Config")
@@ -340,19 +350,19 @@ Then one can apply the uppercase configuration with
         ["uppercase"])
 ~~~
 
-For more information on configuration files have a look [here](../runtime/configuration.html).
+For more information on configuration files, have a look [here](../runtime/configuration.html).
 
 Summary
 ----------------
-In this tutorial you have learned to: 
+In this tutorial, you have learned: 
 
- * how to embed configuration into an oroGen component
- * how to use the templates/ subfolder of an oroGen component
- * how to set configuration properties for your component in a ruby script
- * how to generate and use configuration files
+ * How to embed configuration into an oroGen component.
+ * How to use the _templates/_ subfolder of an oroGen component.
+ * How to set configuration properties for your component in a ruby script.
+ * How to generate and use configuration files.
 
-In the next tutorial you will learn how to create a data driven component and how to connect it
-with an existing component.
+In the next tutorial, you will learn how to create a data driven component and how to connect it
+to an existing component.
 
 Progress to the [next tutorial](130_basics_connect_components.html).
 
