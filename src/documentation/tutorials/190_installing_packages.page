@@ -5,7 +5,7 @@ sort_info: 190
 
 Abstract
 -----------
-In this tutorial you will learn how to install the rock widget collection 
+In this tutorial, you will learn how to install the rock widget collection 
 and Vizkit which are libraries for displaying online data and log data.
 
 Finding available packages and oroGen tasks
@@ -13,7 +13,7 @@ Finding available packages and oroGen tasks
 Rock's [package directory](/package_directory.html) gives you a general
 overview of available 'standard' packages, oroGen tasks and types that are used
 on oroGen tasks. It also gives you links to the API documentation for packages
-that provide one.  Go have a look.
+that provide one. Go have a look.
 
 Package / Packages Sets
 -----------
@@ -33,30 +33,30 @@ call on the command line (do not forget to source env.sh first):
 If the packages are known to autoproj but not installed, autoproj will report that *the following
 packages are not installed:*. In this case you can jump to the section below [Installing Packages](#installing-packages).
 
-If autoporj reports that it cannot find a match for the packages go to the section [Adding Package Sets](#adding-package-sets)
+If autoproj reports that it cannot find a match for the packages, go to the section [Adding Package Sets](#adding-package-sets)
 
-If both packages are already installed autoproj will show a list of packages and dependencies for gui/vizkit and gui/rock_widget_collection.
+If both packages are already installed, autoproj will show a list of packages and dependencies for gui/vizkit and gui/rock_widget_collection.
 Of course, this should not keep you off from reading the next both sections.
 
 Adding Package Sets {#adding-package-sets}
 -----------
-Here it is assumed that autoproj does not know the desired packages at all. In this
-case you have to tell autoproj where it can find the package sets which contains
+It is assumed that autoproj does not know the desired packages at all. In this
+case you have to tell autoproj where it can find the package sets which contain
 the desired packages. An easy way to figure out which package set contains
 which package is by looking at
 [http://www.rock-robotics.org/master/pkg/index.html](http://www.rock-robotics.org/master/pkg/index.html)
-. After you have find the desired package copy the displayed rock *short definition* 
+. After having found the desired package, copy the displayed rock *short definition* 
 string into the file autoproj/manifest of the current autoproj installation (click 'show/hide'). If you are not using the 
-default rock installation you can also use the displayed *autoproj definition* string which is independent of 
+default rock installation, you can also use the displayed *autoproj definition* string which is independent of 
 rock.
 
 ![Package set definition](package_set_definition.png)
 {: .align-center}
 
-In our case the website is reporting the following string for the package gui/vizkit
-which tells autoproj where to find the corresponding package set rock which in our case 
+In our case, the website is reporting the following string for the package gui/vizkit
+which tells autoproj where to find the corresponding package set which in our case 
 also luckily contains the rock_widget_collection. 
-To add this package set to your current autoproj installation copy the string to the
+To add this package set to your current autoproj installation, copy the string to the
 *package_sets:* section of the file autoproj/manifest.
 
 ***NOTE***: The manifest is following the yml syntax where you have to use blanks (no tabs).
@@ -72,13 +72,13 @@ go on to the next section.
 
 Installing Packages {#installing-packages}
 -----------
-Here it is assumed that autoproj knows the desired packages and *autoproj list-config package_name* reports
-that they are not checkout. If autoproj does not find a match for your desired package go to the section above.
+It is assumed that autoproj knows the desired packages and *autoproj list-config package_name* reports
+that they are not checkout. If autoproj does not find a match for your desired package, go to the section above.
 
-To tell autoproj to install known packages you have to add them to the layout section of 
+To tell autoproj to install known packages, you have to add them to the layout section of 
 the file *autoproj/manifest* of the current autoproj installation. 
 
-In this case we want to install the libraries 'vizkit' and 'rock_widget_collection'. For this add the following 
+In this case, we want to install the libraries 'vizkit' and 'rock_widget_collection'. For this, add the following 
 two lines to the autoproj/manifest layout section. 
 
 ***NOTE***: The manifest is following the yml syntax where you have to use blanks (no tabs).
@@ -90,13 +90,13 @@ layout:
   - gui/rock_widget_collection
 ~~~
 
-Now, if you call *amake* on the command line autoproj is will download and install the two libraries. 
+Now, if you call *amake* on the command line, autoproj is will download and install the two libraries. 
 
     amake
 
 If you want to check if everything went fine, in this case, open a new terminal, go to the
-autoproj installation, source the environment (source env.sh) and call
-rock-replay on the command line. A file browser should open and you should see a small help, how to use the
+autoproj installation, source the environment (_source env.sh_) and call
+_rock-replay_ on the command line. A file browser should open and you should see a small help, how to use the
 command line tool, otherwise vizkit was not installed.
     
     source env.sh
@@ -104,11 +104,11 @@ command line tool, otherwise vizkit was not installed.
 
 Summary
 ---------------------
-In this tutorial you have learned to: 
+In this tutorial, you have learned to: 
 
- * browse packages in the Rock package directory
- * find an oroGen task that provides or consumes a given datatype
- * install the package
+ * Browse packages in the Rock package directory,
+ * find an oroGen task that provides or consumes a given datatype and
+ * install the package.
 
 Progress to the [next tutorial](200_display_logging_and_replay.html).
 
