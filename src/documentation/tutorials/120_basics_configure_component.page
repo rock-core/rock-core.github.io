@@ -20,7 +20,7 @@ At the end of this tutorial, the component will look like:
 ![Component Interface](120_producer_config.png)
 {: .align-center}
 
-Let's go back into the message driver library:
+Let's go back into the MessageDriver library:
 
 acd message_driver
 {: .cmdline}
@@ -133,46 +133,49 @@ rock_library(message_driver
 
 
 ### Embed the configuration property into the oroGen component
+ 
+Since we want a specific configuration step, the new
+task should not be started without configuration, which should already have been
+set by adding the statement 'needs_configuration' in the task description in the orogen file.
 
 In order to embed the configuration property into the oroGen component, we will
 have to do the following steps:
 
- 1. __declare__ the property in the message_producer.orogen specification file (in _~/dev/tutorials/orogen/message_producer_).
- 2. __enable__ the PRE\_OPERATIONAL state. This is done by adding
-    needs\_configuration in the task description in the orogen file.
- 3. __move__ the construction/destruction of the driver from the task's
+ 1. __declare__ the property in the messages.orogen specification file (in _~/dev/tutorials/orogen/messages_).
+ 2. __move__ the construction/destruction of the driver from the task's
     constructor and destructor into configureHook / cleanupHook.
 
 The final version of the component's code is in branch 'with_config' of _basic_tutorials/orogen/message_producer_ (_git checkout with_config_). 
 
-__(1)__ We modify the task description in the message_producer.orogen file.
+__(1)__ We modify the task description in the messages.orogen file.
 We add a property of the configuration type as follows (see also [Task
 Interface](../orogen/task_interface.html)). 
-
-__(2)__ Since we want a specific configuration step, the new
-task should not be started without configuration, which can be set by adding the
-statement 'needs_configuration'.
 
 ~~~ ruby
 import_types_from "message_driver/Config.hpp"
 
-task_context "Task" do
+task_context "Producer" do
   needs_configuration
-    
-  property "config", "message_driver/Config"
 
+  property "config", "message_driver/Config"
+  ...
+
+task_context "Consumer" do
+  needs_configuration
+
+  property "config", "message_driver/Config"
   ...
 end
 ~~~
 
-__(3)__ Finally, we remove the allocation and deallocation from the constructor and destructor, since it will be moved into the configureHook and the cleanupHook:
+__(2)__ Finally, we remove the allocation and deallocation from the constructor and destructor, since it will be moved into the configureHook and the cleanupHook:
 
-In _~/dev/tutorials/orogen/message_producer/tasks/Task.cpp_:
+In _~/dev/tutorials/orogen/messages/tasks/Producer.cpp_:
 
 ~~~ cpp
-bool Task::configureHook()
+bool Producer::configureHook()
 {
-    if (! TaskBase::configureHook())
+    if (! ProducerBase::configureHook())
         return false;
 
     message_driver::Config configuration = _config.get();
@@ -183,45 +186,15 @@ bool Task::configureHook()
 ~~~
 
 ~~~ cpp
-void Task::cleanupHook()
+void Producer::cleanupHook()
 {
-    TaskBase::cleanupHook();
+    ProducerBase::cleanupHook();
 
     delete mpMessageDriver;
 }
 ~~~
 
-
 ### Build the task
-
-Before building the task, some of the constructors need to be adapted to account for the configuration requirement. Fortunately, oroGen supports you with these tasks, since it always generates the latest task template *.hpp and *.cpp files into the templates folder:
-
-_~/dev/tutorials/orogen/message_producer/templates/_
-
-Thus, copy the constructor from _templates/tasks/Task.hpp_ and _templates/tasks/Task.cpp_ to replace the current ones in _tasks/Task.hpp_ and _tasks/Task.cpp_. 
-
-Finally, your header and source file should contain the following constructors:
-
-_Task.hpp:_
-
-~~~ cpp
-Task(std::string const& name = "message_producer::Task");
-Task(std::string const& name, RTT::ExecutionEngine* engine);
-~~~
-
-_Task.cpp:_
-
-~~~ cpp
-Task::Task(std::string const& name)
-    : TaskBase(name), mpMessageDriver(0)
-{
-}
-
-Task::Task(std::string const& name, RTT::ExecutionEngine* engine)
-    : TaskBase(name, engine), mpMessageDriver(0)
-{
-}
-~~~
 
 Now, build the task: Assuming that you are in the message_producer folder or in one of its
 subfolders,
@@ -232,7 +205,7 @@ amake
 
 ### Embedding configuration into the ruby script
 
-Now, "cd" into your folder _~/dev/tutorials/orogen/message_producer/scripts_, 
+Now, "cd" into your folder _~/dev/tutorials/orogen/messages/scripts_, 
 and copy 'start.rb' to a new file 'configure.rb' -
 you will reuse 'start.rb' at a later stage. 
 Modify 'configure.rb' according to the following 
@@ -244,21 +217,21 @@ require 'orocos'
 include Orocos
 Orocos.initialize
 
-Orocos.run 'message_producer::Task' => 'message_producer' do  
+Orocos.run 'messages::Producer' => 'messages' do  
 
-    message_producer = Orocos.name_service.get 'message_producer'
+    messages = Orocos.name_service.get 'messages'
 
     # 'config' is the name of the property
-    message_producer.config do |p|
+    messages.config do |p|
         p.uppercase = true
     end
 
     # Call to configure is required for this component
     # since it has been generated with 'needs_configuration'
-    message_producer.configure
-    message_producer.start
+    messages.configure
+    messages.start
 
-    reader = message_producer.messages.reader
+    reader = messages.messages.reader
 
     while true
         if msg = reader.read_new
@@ -286,10 +259,8 @@ Wed Aug 03 09:40:28 +0200 2011 MESSAGE FROM MESSAGEDRIVER
 Wed Aug 03 09:40:29 +0200 2011 MESSAGE FROM MESSAGEDRIVER
 ~~~
 
-You can also try running the start.rb script. You will see, however, that the component will fail to start. Since you specified 'needs_configuration' in the component specification, it cannot be started without being configured beforehand.
-
 ### Use a configuration file
-Property values can be read from a file, what is especially handy in case of more properties to set. The configuration file is a yaml-file which organises the properties in a structured way. For the present example, create a file, e.g. _message_producer_config.yml_ with the
+Property values can be read from a file, what is especially handy in case of more properties to set. The configuration file is a yaml-file which organises the properties in a structured way. For the present example, create a file, e.g. _messages_config.yml_ with the
 following content:
 
 ~~~ yaml
@@ -302,7 +273,7 @@ Note that yaml uses indentation for organizing the data. The script can now be c
 
 ~~~ ruby
     # 'config' is the name of the property
-    message_producer.config do |p|
+    messages.config do |p|
         p.uppercase = true
     end
 ~~~
@@ -311,7 +282,7 @@ put
 
 ~~~ ruby
     # load property from configuration file
-    message_producer.apply_conf_file("message_producer_config.yml", ["default"])
+    messages.apply_conf_file("messages_config.yml", ["default"])
 ~~~
 
 The result when running the script should be the same as above. It is possible to
@@ -322,7 +293,7 @@ file is to generate such a file from the task model definition. To do so, run th
 following command from the shell:
 
 ~~~ sh
-oroconf extract message_producer::Task --save message_producer.yml
+oroconf extract messages::Producer --save messages.yml
 ~~~
 
 _oroconf_ is the command to access the configuration of tasks. It can do more than 
@@ -334,25 +305,24 @@ written file:
 
 ~~~ yaml
 \--- name:default
-# A configuration property (here, a std::string). Its value can be retrieved
-# in the C++ code with # _config_value.get() and _config_value.set(new_value).
-config: 
-  uppercase: 0
+# no documentation available for this property
+config:
+  uppercase: false
 ~~~
 
-In this file, __uppercase__ is 0, which of course is _False_, which is the default
+In this file, __uppercase__ is _false_, which is the default
 setting for the property (see configuration constructor). The comment in the second line
 would be the documentation string if the property would have one (brackets
 are necessary here, since the doc is attached with a dot)
 
 ~~~ ruby
-    property("config","message_driver/Config")
-        .doc("Configuration for the message driver.")
+    property("config","messages/Config")
+        .doc("Configuration for the messages component.")
 ~~~
 
 The first line is the name for the configuration. It is possible to have multiple 
 configurations in one file which can be distinguished by their name. Think of a
-file called 'message_producer_multi.yml':
+file called 'messages_multi.yml':
 
 ~~~ yaml
 \--- name:default
@@ -371,7 +341,7 @@ Then one can apply the uppercase configuration with
 
 ~~~ ruby
     # load property from configuration file
-    message_producer.apply_conf_file("message_producer_multi.yml", 
+    messages.apply_conf_file("messages_multi.yml", 
         ["uppercase"])
 ~~~
 

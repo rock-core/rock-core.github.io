@@ -11,7 +11,7 @@ This tutorial will teach you:
 * how to connect multiple components.
 
 The data driven component that is designed in this tutorial waits for incoming messages and outputs their 
-content once it receives a message. The incoming messages will be produced by the message_producer component
+content once it receives a message. The incoming messages will be produced by the producer component
 from the previous tutorials.
 
 The final setup will look like:
@@ -22,33 +22,77 @@ The final setup will look like:
 Create a consumer component
 -----------------------------
 
-Your first task in this tutorial is to apply the acquired knowlege from the previous tutorials, to prepare a consumer component named 'message_consumer' and place it in _tutorials/orogen/_. Perform all steps up to the point where you can edit the orogen specification, i.e.:
+The consumer component has already been created together with the producer
+component in [one of the previous tutorials](110_basics_create_component.html).
 
- * Use [rock-create-orogen](110_basics_create_component.html) to create your component (note: you will need a
-   dependency on both message\_driver and message\_producer).
- * Check for any required dependencies and verify the 'manifest.xml'.
- * Add your component to the build configuration, i.e. to _autoproj/manifest_.
-
-The next step will be to adapt the orogen specification (_~/dev/tutorials/orogen/message_consumer/message_consumer.orogen_). The component should allow to receive messages on an input port, and to call the updateHook only when it receives a message. The specification should look as follows: 
+The consumer component's part of the orogen specification
+(_~/dev/tutorials/orogen/messages/messages.orogen_)
+looks as follows:
 
 ~~~ ruby
-using_library "message_driver"
-import_types_from "message_producer"
+task_context "Consumer" do
+  needs_configuration
 
-task_context "Task" do
-   input_port "messages", "message_driver/Message"
+  property "config", "message_driver/Config"
 
-   port_driven "messages"
+  input_port "messages", "message_driver/Message"
+  port_driven 'messages'
 end
 ~~~
 
-The 'port_driven' statement allows you to specify ports, where incoming data triggers a call to the updateHook of the task (more details in the [documentation](../orogen/triggering/ports.html)).
-Implement the updateHook, so that every incoming message is printed to stdout, using the existing printMessage function of your 'message_driver' library.
+The component should allow to receive messages on an input port, and to call 
+the updateHook only when it receives a message.
+
+The 'port_driven' statement allows you to specify ports, where incoming data 
+triggers a call to the updateHook of the task (more details in the 
+[documentation](../orogen/triggering/ports.html)). 
+
+Update the consumer component's header file as follows:
+
+_~/dev/tutorials/messages/tasks/Consumer.hpp:_
 
 ~~~ cpp
-void Task::updateHook()
+#include <message_driver/MessageDriver.hpp>
+...
+    class Consumer : public ConsumerBase
+    {
+  friend class ConsumerBase;
+    protected:
+
+        message_driver::MessageDriver *mpMessageDriver;
+~~~
+
+In the consumer component's source file, update the constructors as follows:
+
+_~/dev/tutorials/messages/tasks/Consumer.cpp:_
+
+~~~ cpp
+Consumer::Consumer(std::string const& name)
+    : ConsumerBase(name),
+    mpMessageDriver(new message_driver::MessageDriver())
 {
-    TaskBase::updateHook();
+}
+
+Consumer::Consumer(std::string const& name, RTT::ExecutionEngine* engine)
+    : ConsumerBase(name, engine),
+    mpMessageDriver(new message_driver::MessageDriver())
+{
+}
+
+Consumer::~Consumer()
+{
+    delete mpMessageDriver;
+}
+~~~
+
+In the same file, implement the updateHook, 
+so that every incoming message is printed to stdout, using the existing 
+printMessage function of your 'message_driver' library.
+
+~~~ cpp
+void Consumer::updateHook()
+{
+    ConsumerBase::updateHook();
     
     message_driver::Message message;
     _messages.read(message);
@@ -63,7 +107,10 @@ Build your component with 'amake'.
 Connecting multiple components
 ------------------------------
 
-You have designed a component that produces messages and a component that consumes messages. To connect them, you will use the Ruby scripting interface. Create a file start.rb in your consumer component's script folder (you will have to create the folder first) with the following content: 
+You have designed a component that produces messages and a component that 
+consumes messages. To connect them, you will use the Ruby scripting interface. 
+Create a file _connect.rb_ in your component's script folder 
+(_~/dev/tutorials/orogen/messages/scripts_) with the following content: 
 
 ~~~ ruby
 require 'orocos'
@@ -91,8 +138,7 @@ Orocos.run 'message_producer::Task' => 'message_producer',
   
   message_consumer.start
   
-  Readline::readline("Press ENTER to exit\n") do
-  end 
+  Readline::readline("Press ENTER to exit\n")
 end
 ~~~
 
