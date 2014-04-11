@@ -27,7 +27,8 @@ acd message_driver
 
 Configure a component 
 ---------------------------------
-Some libraries will require configuration before you can use them, e.g. add the following property to the MessageDriver library.
+Some libraries will require configuration before you can use them, e.g. here we want to add a property to the MessageDriver library to
+configure if the produced message should be presented in uppercase or not.
 Therefore, "cd" into the message driver library (_~/dev/tutorials/message_driver_).
 
 Add the configuration object code to _src/Config.hpp_ in the message
@@ -116,7 +117,8 @@ MessageDriver::MessageDriver(const Config& config)
 ...
 ~~~
 
-### Update the build configuration 
+### Update the build configuration in src/CMakeLists.txt
+### This makes sure that the configuration header will also be installed
 
 Remember: The build configuration can be found here:
 
@@ -149,7 +151,11 @@ The final version of the component's code is in branch 'with_config' of _basic_t
 
 __(1)__ We modify the task description in the messages.orogen file.
 We add a property of the configuration type as follows (see also [Task
-Interface](../orogen/task_interface.html)). 
+Interface](../orogen/task_interface.html)).
+
+__(2)__ Since we want a specific configuration step, the new
+task should not be started without configuration, i.e. this is why we add the
+statement 'needs_configuration'.
 
 ~~~ ruby
 import_types_from "message_driver/Config.hpp"
@@ -197,7 +203,7 @@ void Producer::cleanupHook()
 ### Build the task
 
 Now, build the task: Assuming that you are in the message_producer folder or in one of its
-subfolders,
+subfolders call:
 
 ~~~ cpp
 amake
@@ -311,13 +317,12 @@ config:
 ~~~
 
 In this file, __uppercase__ is _false_, which is the default
-setting for the property (see configuration constructor). The comment in the second line
-would be the documentation string if the property would have one (brackets
-are necessary here, since the doc is attached with a dot)
+setting for the property (see configuration constructor). A comment before the declaring
+the property is automatically picked up as documentation line.
 
 ~~~ ruby
-    property("config","messages/Config")
-        .doc("Configuration for the messages component.")
+    # Configuration property for the message driver
+    property("config","message_driver/Config")
 ~~~
 
 The first line is the name for the configuration. It is possible to have multiple 
@@ -326,12 +331,12 @@ file called 'messages_multi.yml':
 
 ~~~ yaml
 \--- name:default
-# no documentation available for this property
+# Configuration property for the message driver
 config: 
   uppercase: 0
 
 \--- name:uppercase
-# no documentation available for this property
+# Configuration property for the message driver
 config: 
   uppercase: 1
 ~~~

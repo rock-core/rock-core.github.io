@@ -161,7 +161,7 @@ If everything has been done correctly, you will eventually see the consumer prin
 [20110803-10:59:58:068] Message from MessageDriver
 ~~~
 
-As usual, shut it down with CTRL+C. The script does the cleanup itself.
+Press ENTER to shut your script down -- the script does the cleanup itself once it leaves the Orocos.run block.
 
 Summary
 ---------------------
