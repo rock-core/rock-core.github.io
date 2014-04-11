@@ -5,7 +5,8 @@ sort_info: 200
 
 Abstract
 -----------
-In this tutorial you will learn how to examine your task, have a look on and log data produced by orogen tasks and finally how to replay them.
+In this tutorial you will learn how to examine your task, have a look at and 
+log data produced by orogen tasks and finally how to replay them.
 
 Task Inspector
 ---------------
