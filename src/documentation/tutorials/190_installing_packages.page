@@ -90,7 +90,7 @@ layout:
   - gui/rock_widget_collection
 ~~~
 
-Now, if you call *amake* on the command line, autoproj is will download and install the two libraries. 
+Now, if you call *amake* on the command line, autoproj will download and install the two libraries. 
 
     amake
 
