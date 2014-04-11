@@ -118,7 +118,7 @@ MessageDriver::MessageDriver(const Config& config)
 ~~~
 
 ### Update the build configuration in src/CMakeLists.txt
-### This makes sure that the configuration header will also be installed
+This makes sure that the configuration header will also be installed.
 
 Remember: The build configuration can be found here:
 
