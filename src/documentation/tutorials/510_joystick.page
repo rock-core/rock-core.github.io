@@ -5,34 +5,34 @@ sort_info: 510
 Tutorial Info
 -----------
 
-This tutorial will give you some handson experience on:
+This tutorial will give you some hands-on experience on:
 
- * how to find a 'standard' Rock package that provides a port X
- * how to install the package.
+ * How to find a 'standard' Rock package that provides a port X,
+ * how to install the package and
  * how to create a small control loop by attaching a Joystick to our rolling rock task.
 
 
 Finding a standard task that provides a port X.
 -----------
 
-We are using here an existing task of the rock-robotics framework and the task from the previous
+We are using an existing task of the rock-robotics framework and the task from the previous
 tutorial, so we don't have to implement anything.
 
-In order to get our control we need a task that supplies us with 'base::commands::Motion2D' (note that this
+In order to get our control, we need a task that supplies us with 'base::commands::Motion2D' (note that this
 type is equivalent to 'base::MotionCommand2D' which you will find in some older components).
 For that it is recommended to take a look into the [package directory](/package_directory.html).
 You will have two options there:
 
- * look for a specific orogen package in the Packages section. For instance, you can search for
-   "joystick orogen"
- * look for tasks that produce the type you require (here /base/commands/Motion2D) by going into
+ * Look for a specific orogen package in the packages section. For instance, you can search for
+   "joystick orogen".
+ * Look for tasks that produce the type you require (here '/base/commands/Motion2D') by going into
    the oroGen types section, selecting the type and looking at the 'Produced by' section at the
    top of the page.
 
 The package directory gives you a general overview of available 'standard' packages and types.
-For our purpose we need to look into the subcategory 'oroGen Types'. This category shows all
+For our purpose, we need to look into the subcategory 'oroGen Types'. This category shows all
 available types that are exported by any task in the standard rock packages. As we are interested
-in 'base::commands::Motion2D' we open the page about this type.
+in 'base::commands::Motion2D', we open the page about this type.
 
 As we want to integrate a joystick, we search for controldev::JoystickTask
 in the subcategory 'oroGen tasks' -- and find it defined in 'drivers/orogen/controldev'.
@@ -51,10 +51,10 @@ manifest file](100_basics_create_library.html#add-to-manifest).
 Integration of the task
 ----------
 
-Now that we have found a task, that supplies the needed motion commands we need to integrate it into
-our run script. Therefore we modify the last runscript. By adding a joystick driver to it.
-As we know from the package directory, the controldev package provides a tasks for our purpose. To find
-out which exact task we can use we call
+Now that we have found a task that supplies the needed motion commands, we need to integrate it into
+our run script. Therefore we modify the last runscript by adding a joystick driver to it.
+As we know from the package directory, the 'controldev' package provides a tasks for our purpose. To find
+out which exact task we can use, we call
 
 ~~~ text
 oroinspect -t controldev
@@ -87,12 +87,12 @@ g
     No attributes
     No operations
 
-This output tells us that there is a task controldev::JoystickTask, which has a
+This output tells us that there is a task 'controldev::JoystickTask', which has an
 output port with the name 'motion_command' of the type '/base/commands/Motion2D'.
 So it fits exactly our needs.
 
 Knowing this, we can now modify the script from the previous tutorial (copy it
-to scripts/rockTutorial2.rb):
+to _scripts/rockTutorial2.rb_):
 
 ~~~ ruby
 require 'orocos'
@@ -129,14 +129,14 @@ end
 
 ~~~
 
-This script is quite the same as the script from rock tutorial 1, but with some improvements. As you can see
-we execute a second Taskt named 'joystick', besides the 'rock_tutorial' task.
+This script is quite the same as the script from the previous tutorial, but with some improvements. As you can see,
+we execute a second Task named 'joystick', besides the 'rock_tutorial' task.
 
-Also we acquire a handle to the JoystickTask. Then we connect the output port 'motion_command'
-of the task 'joystick' with the equal named input port of the task 'rockControl'. The task 'joystick' of course uses the
-joystick input to generate motion commands. In the next step we could set a property named 'device' of the task 'joystick'.
-With that we can set a string which is the local device of the joystick on your machine. Next we configure the 'joystick'
-task by issuing the command 'joystick.configure'. At last we will start all the Tasks.
+Furthermore, we acquire a handle to the JoystickTask. Then we connect the output port 'motion_command'
+of the task 'joystick' to the equally named input port of the task 'rockControl'. The task 'joystick' of course uses the
+joystick input to generate motion commands. In the next step, we could set a property named 'device' of the task 'joystick'.
+Like that, we can set a string which is the local device of the joystick on your machine. Next, we configure the 'joystick'
+task with the command 'joystick.configure'. Finally, we start all the tasks.
 
 Run it
 ----------
@@ -150,4 +150,4 @@ And in another console:
 ~~~ text
     rock-display rock_tutorial_control
 ~~~
-Again with a right-click on the *pose* port you can start the visualization and enjoy commanding around the robot with the joystick.
+Again, with a right-click on the *pose* port, you can start the visualization and enjoy commanding around the robot with the joystick.
