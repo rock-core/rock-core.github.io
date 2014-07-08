@@ -352,6 +352,56 @@ Then one can apply the uppercase configuration with
 
 For more information on configuration files, have a look [here](../runtime/configuration.html).
 
+### Dynamic properties
+"Normal" properties - such as the ones dealt with in the preceding tutorial -
+should only be used for the starting configuration of the component and should
+not be changed at runtime. If a component allows dynamic changes of properties,
+those have to be declared explicitly as explained hereafter. 
+
+We need a callback function inside the task which is called by the framework
+(within the task's thread). This functions makes it possible that changes of
+properties can be accepted or rejected (if they are invalid).
+
+In the messages.orogen file, the aforementioned callback function is declared as
+follows:
+
+~~~ ruby
+property("some_dynamic_property","double",0.1).dynamic
+~~~
+
+Inside the task, the declared function will look as follows:
+
+~~~ cpp
+bool Task::setSome_Dynamic_Property(double value)
+{
+ //Implement the needed steps here
+ return(orogen_name::TaskBase::setSome_Dynamic_Property(value));
+}
+~~~
+
+The base class is called to make sure that superordinated tasks are called and
+properties can be changed by those tasks. If a superordinated task rejects the
+changes, the return value should be _false_.
+
+If the task has not yet been configured, consequently is not in a _running_
+or _stopped_ state, the callback will NOT be triggered in case of an external
+change of the property. What will happen, in that case, is that the property
+__some_dynamic_property_ will be updated.
+
+As a simplification for the user, if a task has dynamic properties, a callable
+function is generated  which calls all callback functions with the new 
+parameters. By calling _updateDynamicProperties()_ inside the configure hook
+after the component is set up, the changes of the dynamic properties can be 
+applied, avoiding code duplication.
+
+#### Special case inheriting tasks
+If a non-dynamic property shall become dynamic inside the inheriting task, it 
+must be declared as follows in the messages.orogen file:
+
+~~~ ruby
+make_property_dynamic("some_non-dynamic_property")
+~~~
+
 Summary
 ----------------
 In this tutorial, you have learned: 
