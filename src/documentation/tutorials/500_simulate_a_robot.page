@@ -17,9 +17,11 @@ Implementation
 We start by entering the tutorials folder and creating a library named 'rock-tutorial' by using the 'rock-create-lib' command. 
 
 ~~~ text
-cd tutorials
+cd ~/dev/tutorials
 rock-create-lib rock_tutorial
 ~~~
+
+The required dependencies for our library are 'base/types' and 'gui/vizkit3d'.
 
 The automatically generated dummy files can be removed as explained in the note of the [creating libraries](100_basics_create_library.html#creating-libraries) section.
 
@@ -29,16 +31,22 @@ This should give us an folder containing the following files:
 CMakeLists.txt  INSTALL  LICENSE  manifest.xml  README  src
 ~~~
 
-Make sure you add the required dependencies to the manifest.xml, i.e. here 'base/types' and 'gui/vizkit3d'.
+Your _src/CMakeLists.txt_ text file should be updated as follows:
 
 ~~~ text
-<depend package="base/types" />
+rock_library(rock_tutorial
+  SOURCES RockControl.cpp
+  HEADERS RockControl.hpp
+  DEPS_PKGCONFIG base-types)
 ~~~
 
-Afterwards, create a new class in the src folder named 'RockControl'.
+Afterwards, create a new class in the src folder named 'RockControl', i.e. _RockControl.cpp_
+and _RockControl.hpp_.
 
 This class will contain the (very basic) simulation logic for our Rock-Robot. Therefore it will calculate new positions
 of our robot given movement commands and a time step. 
+
+This is the content of the header file (_RockControl.hpp_):
 
 ~~~ cpp
 #ifndef ROCKCONTROL_H
@@ -95,11 +103,27 @@ private:
 #endif // ROCKCONTROL_H
 ~~~
 
+In the source file (_RockControl.cpp_), include the header
+file and to declare the namespace _rock_tutorial_.
 
-The implementation is rather straight forward and for readability reasons only relevant parts will be explained:
+The constructor and destructor should look as follows:
+
+~~~ cpp
+RockControl::RockControl() {
+  currentHeading = 0.0;
+  currentRoll = 0.0;
+  currentPose.position = base::Vector3d(0,0,0);
+}
+
+RockControl::~RockControl() {
+}
+~~~
+
+The comments in the header file should help you to implement the functionality
+of the methods _constrainAngle_ and _constrainValues_.
 
 The type base::commands::Motion2D contains a demanded translation and a rotation speed. Translation is measured in m/s and
-rotation in rad/s. The parameter deltaTime defines, how much time advanced since the last call. The function 
+rotation in rad/s. The parameter deltaTime defines how much time advanced since the last call. The function 
 +computeNextPose+ computes the new position and and rotation of our rock, in respect to the last pose.
 
 ~~~ cpp
@@ -136,22 +160,23 @@ base::samples::RigidBodyState RockControl::computeNextPose(
 }
 ~~~
 
+Finally, you can build your library using _amake_.
 
 ## Wrapping it up
 So, now that we are equipped with our library, we can go to the second step and wrap the code into an orocos task.
-Therefore we create a new orocos component we use the command 'rock-create-orogen'. 
+Therefore, we create a new orocos component. Again, we use the command 'rock-create-orogen'. 
 
 ~~~ text
-cd tutorials/orogen/
+cd ~/dev/tutorials/orogen/
 rock-create-orogen rock_tutorial
 ~~~
 
 ### Define task
 
-Again we start by adding the build dependencies in the mainfest.xml. In this case we only depend on 'rock_tutorial', as 
-rock_tutorial already depends on 'base/types' and the dependencies are resolved recursive.
+In this case, we only depend on 'tutorials/rock_tutorial', as 
+'rock_tutorial' already depends on 'base/types' and the dependencies are resolved recursively.
 
-In the rock_tutorial.orogen we will define the orocos task. For this tutorial we replace the existing entries by our definitions:
+In _rock_tutorial.orogen_, we will define the orocos task. For this tutorial, we replace the existing entries by our definitions:
 
 ~~~ ruby
 
@@ -175,13 +200,23 @@ end
 The task RockTutorialControl has an input port called 'motion_command' of type base::commands::Motion2D and an output port called 'pose'
 of type base::samples::RigidBodyState. This task will compute a new position and orientation each time the update hook will triggered, given 
 the translation and rotation speed it receives on its input port. The latest motion command will be used if there is no new one.
-The update hook of this task will triggered periodically.
+The update hook of this task will be triggered periodically.
 
-[As with all oroGen packages](110_basics_create_component.html), we call
-rock-create-orogen to finalize the package creation, and can then write the
-component implementation in tasks/RockTutorialControl.cpp.
+As with all [oroGen packages](110_basics_create_component.html), we call
+'rock-create-orogen' to finalize the package creation, and can then write the
+component implementation in _tasks/RockTutorialControl.hpp_ and 
+_tasks/RockTutorialControl.cpp_. You will need the following attributes:
 
-The implementation is simple, as the task only calls the library and passes on the result.
+~~~cpp
+RockControl* control;
+double taskPeriod;
+~~~
+
+These need to be declared in the header file and initialized in the
+constructors of the source file.
+
+The implementation of the _startHook_ and the _updateHook_ is simple, as the 
+task only calls the library and passes on the result.
 
 ~~~ cpp
 bool RockTutorialControl::startHook()
@@ -222,7 +257,7 @@ void RockTutorialControl::updateHook()
 Run it
 -----------
 
-Now we should run it to see if it works. Create a scripts/ folder and create a
+Now we should run it to see if it works. Create a _scripts_ folder and create a
 new <tt>rockTutorial1.rb</tt> script containing:
 
 ~~~ ruby
@@ -262,7 +297,7 @@ ruby rockTutorial1.rb
 {: .commandline}
 
 As in the basics tutorial, the Ruby commands lead to a start of the task, i.e. calling the 
-startHook() of the task. 
+_startHook()_ of the task. 
 Afterwards we use a port writer to write a motion command to the 'motion_command' port.
 
 In another console start the task inspector with
@@ -275,5 +310,5 @@ to show the rock's state. It will be presented by coordinate axes showing positi
 the rock.
 
 If you want to steer the rock using a joystick, progress to [the next
-tutorial](510_joystick.html). If you don't have a joystick
-go [to steer using a graphical interface](/documentation/tutorials/520_virtual_joystick.html)
+tutorial](510_joystick.html). If you don't have a joystick,
+go steer using a [graphical interface](/documentation/tutorials/520_virtual_joystick.html).

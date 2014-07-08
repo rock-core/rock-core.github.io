@@ -43,8 +43,8 @@ Adding Package Sets {#adding-package-sets}
 It is assumed that autoproj does not know the desired packages at all. In this
 case, you have to tell autoproj where it can find the package sets which contain
 the desired packages. An easy way to figure out which package set contains
-which package is by looking at
-[http://www.rock-robotics.org/master/pkg/index.html](http://www.rock-robotics.org/master/pkg/index.html)
+which package is by looking
+[at the package index](http://www.rock-robotics.org/master/pkg/index.html)
 . After having found the desired package, copy the displayed rock *short definition* 
 string into the file autoproj/manifest of the current autoproj installation (click 'show/hide'). If you are not using the 
 default rock installation, you can also use the displayed *autoproj definition* string which is independent of 
@@ -101,6 +101,18 @@ command line tool, otherwise vizkit was not installed.
     
     source env.sh
     rock-replay
+
+Further reading
+---------------------
+[Learn how to create your own package set](../autoproj/advanced/creating_pkg_set.html)
+
+[Learn more about the import of source packages and the source.yml file](../autoproj/advanced/importers.html)
+
+[Learn how to write your own autobuild scripts](../autoproj/advanced/autobuild.html)
+
+[Learn how to write your own package handlers](../autoproj/advanced/writing_package_handlers.html)
+
+[Learn more about the relationship between source packages and osdeps packages](../autoproj/advanced/osdeps.html)
 
 Summary
 ---------------------

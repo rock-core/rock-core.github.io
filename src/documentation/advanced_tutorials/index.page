@@ -5,10 +5,10 @@ sort_info: 0
 
 Advanced Rock Tutorials
 --------------------------
-After successfully gone through the [basic
-tutorials](/documentation/tutorials/index.html)  you might be interested in
-going deeper into rock.  Tutorials in this section deal with more advanced
-topics giving you more freedom to setup your system.
+After having successfully gone through the [basic
+tutorials](/documentation/tutorials/index.html), you might be interested in
+going deeper into Rock.  Tutorials in this section deal with more advanced
+topics, giving you more freedom to setup your system.
 
 What to expect from the advanced tutorials
 ----------------------------
@@ -18,12 +18,12 @@ specific topics that you might want to learn about:
  * **Deployments**. The basic tutorials showed you how to run tasks. This
    tutorial will show you how to customize how tasks should be executed for your
    particular system. For instance, one can declare that a task is periodic with
-   a period of 0.1 s by default, but for a particular system choose a period of
+   a period of 0.1s by default, but for a particular system, choose a period of
    1s.
  * **Log data and replay**. These tutorials will describe how to turn on
    logging, manage the resulting logfiles and replay the data in running
-   components for e.g. testing
- * **Vizkit Widgets and Vizkit 3D plugin creation**. How to extend vizkit,
+   components for e.g. testing.
+ * **Vizkit Widgets and Vizkit 3D plugin creation**. How to extend Vizkit,
    Rock's visualization library, by adding new widgets and/or new 3D
    visualization plugins. How to use the Qt designer to create graphical
    interfaces.
@@ -33,8 +33,9 @@ specific topics that you might want to learn about:
 
 Installing the tutorial results {#installing}
 -------------------------------
-In case you don't want to write all the package yourself, the Rock tutorials have been packaged so that you can easily retrieve them.
-If you want to add the tutorials to your installation add the package set to
+In case you don't want to write all the packages yourself, there is a package 
+available for the Rock tutorials so that you can easily retrieve them.
+If you want to add the tutorials to your installation, add the package set to
 your autoproj/manifest.
 
 autoproj/manifest should look like:
