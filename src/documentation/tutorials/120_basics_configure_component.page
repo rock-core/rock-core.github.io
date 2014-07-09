@@ -358,11 +358,11 @@ should only be used for the starting configuration of the component and should
 not be changed at runtime. If a component allows dynamic changes of properties,
 those have to be declared explicitly as explained hereafter. 
 
-We need a callback function inside the task which is called by the framework
-(within the task's thread). This functions makes it possible that changes of
+The framework automatically creates a callback function which is called
+within the task's thread. This functions makes it possible that changes of
 properties can be accepted or rejected (if they are invalid).
 
-In the messages.orogen file, the aforementioned callback function is declared as
+In the messages.orogen file, a dynamic property must be declared as
 follows:
 
 ~~~ ruby
@@ -378,6 +378,9 @@ bool Task::setSome_Dynamic_Property(double value)
  return(orogen_name::TaskBase::setSome_Dynamic_Property(value));
 }
 ~~~
+
+Note that if you modify a task which already exist, the code must be copied out 
+of the _templates/tasks_ folder!
 
 The base class is called to make sure that superordinated tasks are called and
 properties can be changed by those tasks. If a superordinated task rejects the
