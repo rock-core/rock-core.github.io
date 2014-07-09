@@ -360,7 +360,7 @@ those have to be declared explicitly as explained hereafter.
 
 The framework automatically creates a callback function which is called
 within the task's thread. This functions makes it possible that changes of
-properties can be accepted or rejected (if they are invalid).
+properties can be accepted or rejected if they are invalid.
 
 In the messages.orogen file, a dynamic property must be declared as
 follows:
