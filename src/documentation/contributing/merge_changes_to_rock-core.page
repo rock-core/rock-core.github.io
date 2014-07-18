@@ -1,7 +1,23 @@
+---
+title: Sending Your Changes
+---
+
 Abstract
 --------
+This page covers how to send modifications to code and documentation to the Rock
+developers, assuming that you did not get a direct commit access to the
+packages you modify.
+
 The Rock repositories have been moved from gitorious to github - they can now be
-found here: <https://github.com/rock-core>. This tutorial will teach you how to:
+found here: <https://github.com/rock-core>. 
+
+The other pages in this Contributing section cover the other aspects: how the
+documentation is done, how to create new packages, ...
+
+The main part of this page will deal with how to use github to submit changes
+to the Rock codebase and documentation.
+
+This tutorial will teach you how to:
 
  * Create your own working copy of a Rock repository,
  * configure your Rock installation accordingly and
@@ -9,7 +25,7 @@ found here: <https://github.com/rock-core>. This tutorial will teach you how to:
 
 Create your own working copy
 ----------------------------
-To create your own working copy of one of the Rock tutorials, fork the 
+To create your own working copy of one of the Rock repositories, fork the 
 _rock-core_ repository - this is done as follows:
 
 Go to the _rock-core_ repository on github - for example 
@@ -57,6 +73,6 @@ a pull request. The standard procedure is as follows:
  * You should give your pull request a meaningful name and enter a comment,
    so that the people checking your pull request easily understand what changes
    you made.
- * Click _Create pull request_. Your pull request will be checked and you will
-   receive an e-mail about comments posted or if it has been merged to 
-   _rock-core_.
+ * Click _Create pull request_. A mail will be sent out to notify the
+   core developers. Any comments on the request will alert you back via e-mail 
+   as well.
