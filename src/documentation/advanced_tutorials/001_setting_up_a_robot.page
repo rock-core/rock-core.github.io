@@ -1,4 +1,4 @@
-While the previous tutorials refer to the example "rock controlled by a 
+While the previous tutorials refer to the example "rock controlled by a
 joystick", we will now have a look at how to set up an actual robot.
 
 The following topics will be addressed by this tutorial, in the order in which
@@ -14,17 +14,17 @@ Create the build system
 -----------------------
 
 To create a new build system, it is best to start with an existing one and to
-adapt it according to your needs. Bootstrapping is explained 
-[here](http://rock-robotics.org/master/documentation/autoproj/bootstrap.html). 
+adapt it according to your needs. Bootstrapping is explained
+[here](http://rock-robotics.org/master/documentation/autoproj/bootstrap.html).
 As an example, _rock/buildconf_ is a basic Rock configuration.
 
 Add the build system to git version control
 -------------------------------------
 
 Pick a git hosting method and create a new project, containing two repositories.
-One of them should be named _buildconf.git_ - it is for your the main autoproj 
+One of them should be named _buildconf.git_ - it is for your the main autoproj
 configuration. The other one should be named _package_set.git_ - it is for your
-package set. Push your build system's current _autoproj_ folder to 
+package set. Push your build system's current _autoproj_ folder to
 _buildconf.git_ on git.
 
 In the main folder of your new build system (_acd your_project_name_), do:
@@ -33,8 +33,8 @@ In the main folder of your new build system (_acd your_project_name_), do:
 autoproj switch-config git@your_git_hosting_method:your_project_name/buildconf.git
 ~~~
 
-To add the package set to git version control, first create an empty 
-_package_set_ folder. Create a _source.yml_ file and edit the first line as 
+To add the package set to git version control, first create an empty
+_package_set_ folder. Create a _source.yml_ file and edit the first line as
 follows:
 
 ~~~
@@ -54,13 +54,13 @@ git push git@your_git_hosting_method:your_project_name/package_set.git HEAD:mast
 ~~~
 
 Choose the packages you need for your bundle from [the package directory]
-(http://rock-robotics.org/master/package_directory.html) and update the 
+(http://rock-robotics.org/master/package_directory.html) and update the
 _autoproj/manifest_ file accordingly.
 
 Bundles in Rock
 ---------------
 
-Bundles in Rock are needed to run (sub)systems. 
+Bundles in Rock are needed to run (sub)systems.
 
 In practice, bundles are Rock packages and they - most importantly - contain
 the following:
@@ -74,13 +74,13 @@ See [the wiki](http://rock.opendfki.de/wiki/WikiStart/Standards/RG7) for more
 information on bundles.
 
 Create the bundle
------------------ 
+-----------------
 
 ~~~
 rock-create-bundle desired/path/to/my/bundle
 ~~~
 
-The name of your bundle should, for logical reasons, equal the name of your 
+The name of your bundle should, for logical reasons, equal the name of your
 robot. It should be located in a _bundles_ folder in your Rock installation.
 
 Configure the bundle
@@ -90,15 +90,15 @@ _rock-inspect_ can help you to find existing tasks you might want to include
 in your bundle. For example, try _rock_inspect -t camera_ to get a list of
 all available tasks associated with "camera".
 
-The tasks you include into your bundle are configured using a YAML file. 
+The tasks you include into your bundle are configured using a YAML file.
 To create a new configuration file, do:
 
 ~~~
 oroconf extract taskname::Task --save=config/orogen/
 ~~~
 
-The new template file is generated in the config/orogen subfolder of the bundle, 
-with a file name that matches the oroGen model name (here, 
+The new template file is generated in the config/orogen subfolder of the bundle,
+with a file name that matches the oroGen model name (here,
 _config/orogen/taskname::Task.yml_)
 
 Configure the transformer
@@ -107,7 +107,7 @@ Configure the transformer
 When data is processed by your robotic system, there will usually be quite a
 number of transformations between different frames, e.g. between a laser scanner
 and the body-center of the robot. Rock's transformer handles the processing of
-geometrical information, so that in each component, only the needed 
+geometrical information, so that in each component, only the needed
 transformations have to be specified, while transformations specified in other
 components are made available during runtime.
 
@@ -134,10 +134,10 @@ dynamic_transform "producer_task_name.port_name",
 
 Where _producer_task_name_ and _port_name_ refer to the data stream that defines
 the required transformation. If the task has only one RigidBodyState output
-port, the port name can be left empty. 
+port, the port name can be left empty.
 
-As you can see, the _transforms.rb_ file contains the global information about 
-which transformation is specified in which task. Look 
+As you can see, the _transforms.rb_ file contains the global information about
+which transformation is specified in which task. Look
 [here](http://rock-robotics.org/master/documentation/data_processing/transformer_orogen.html)
-for more information about how transformations are specified in oroGen 
+for more information about how transformations are specified in oroGen
 components.
