@@ -22,8 +22,11 @@ rock-create-lib rock_tutorial
 ~~~
 
 The required dependencies for our library are 'base/types' and 'gui/vizkit3d'.
+See [the "Creating libraries" tutorial](100_basics_create_library.html) for a 
+precise explanation of adding dependencies to a Rock library.
 
-The automatically generated dummy files can be removed as explained in the note of the [creating libraries](100_basics_create_library.html#creating-libraries) section.
+The automatically generated dummy files can be removed as explained in the note 
+of [the "Creating libraries" tutorial](100_basics_create_library.html#creating-libraries).
 
 This should give us an folder containing the following files:
 
@@ -173,8 +176,9 @@ rock-create-orogen rock_tutorial
 
 ### Define task
 
-In this case, we only depend on 'tutorials/rock_tutorial', as 
-'rock_tutorial' already depends on 'base/types' and the dependencies are resolved recursively.
+Again we start by adding the build dependencies in the mainfest.xml. In this 
+case, we only depend on 'tutorials/rock_tutorial', as 'rock_tutorial' already 
+depends on 'base/types' and the dependencies are resolved recursively.
 
 In _rock_tutorial.orogen_, we will define the orocos task. For this tutorial, we replace the existing entries by our definitions:
 

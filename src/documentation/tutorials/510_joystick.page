@@ -129,8 +129,10 @@ end
 
 ~~~
 
-This script is quite the same as the script from the previous tutorial, but with some improvements. As you can see,
-we execute a second Task named 'joystick', besides the 'rock_tutorial' task.
+This script is quite the same as the script from 
+[the previous tutorial](./500_simulate_a_robot.html), but with some 
+improvements. As you can see, we execute a second Task named 'joystick', 
+besides the 'rock_tutorial' task.
 
 Furthermore, we acquire a handle to the JoystickTask. Then we connect the output port 'motion_command'
 of the task 'joystick' to the equally named input port of the task 'rockControl'. The task 'joystick' of course uses the
