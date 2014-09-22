@@ -3,11 +3,16 @@ title: Adding the build system to git version control
 sort_info: 200
 ---
 
-Pick a git hosting method and create a new project, containing two repositories.
-One of them should be named _buildconf.git_ - it is for your the main autoproj
-configuration. The other one should be named _package_set.git_ - it is for your
-package set. Push your build system's current _autoproj_ folder to
-_buildconf.git_ on git.
+Pick a git hosting method and create a new project, containing two
+repositories.  One of them is usually named _buildconf.git_ - it is for your
+the main autoproj configuration. The other one should be named
+_package_set.git_ - it describes the software collection of packages used in
+your project. Push your build system's current _autoproj_ folder to
+_buildconf.git_ on your git hoster.
+
+To get a feeling have a look at `rock-core`s
+[buildconf](https://github.com/rock-core/buildconf) and a
+[rock-package_set](https://github.com/rock-core/rock-package_set)
 
 In the main folder of your new build system (_acd your_project_name_), do:
 
@@ -53,7 +58,7 @@ _autoproj/manifest_ file. For the a.-m. example, it is:
 
 ~~~
 package_sets:
-  - gitorious: rock/package_set
+  - guthub: rock-core/package_set
 ~~~
 
-Call _amake_ to install the declared packages.
+Call _aup --all_ to install the declared packages.

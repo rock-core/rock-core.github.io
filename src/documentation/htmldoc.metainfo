@@ -30,9 +30,9 @@ system_management_tutorials:
     sort_info: 85
     title: System Management
 
-setting_up_a_robot:
+setting_up_a_project:
     sort_info: 87
-    title: Setting up a robot
+    title: Setting up a new Project
 
 additional_tutorials:
     sort_info: 90
