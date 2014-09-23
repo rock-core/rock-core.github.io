@@ -58,7 +58,7 @@ _autoproj/manifest_ file. For the a.-m. example, it is:
 
 ~~~
 package_sets:
-  - guthub: rock-core/package_set
+  - github: rock-core/package_set
 ~~~
 
 Call _aup --all_ to install the declared packages.
