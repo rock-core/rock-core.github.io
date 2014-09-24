@@ -4,7 +4,7 @@ sort_info: 500
 ---
 
 *Note:* This is a rather advanced topic. Feel free to
-[understand](http://rock-robotics.org/master/documentation/data_processing/transformer_orogen.html)
+[understand](../data_processing/transformer.html)
 it's working prior to configuring your own transformer.
 
 When data is processed by your robotic system, there will usually be quite a
@@ -54,6 +54,6 @@ dynamic_transform "servo.transform_samples",
 
 As you can see, the _transforms.rb_ file contains the global information about
 which transformation is specified in which task. Look
-[here](http://rock-robotics.org/master/documentation/data_processing/transformer_orogen.html)
+[here](../data_processing/transformer_orogen.html)
 for more information about how transformations are specified in oroGen
 components.

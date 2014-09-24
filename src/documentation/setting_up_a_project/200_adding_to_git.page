@@ -40,10 +40,10 @@ git commit -m "Initial commit"
 git push git@your_git_hoster:your_project/package_set.git HEAD:master
 ~~~
 
-Choose the packages you need for your bundle from [the package directory]
-(http://rock-robotics.org/master/package_directory.html) and update the
-_autoproj/manifest_ file accordingly. For more information about how to install
-packages, have a look [here](../tutorials/190_installing_packages.html).
+Choose the packages you need for your bundle from [the package
+directory](../../package_directory.html) and update the _autoproj/manifest_
+file accordingly. For more information about how to install packages, have a
+look [here](../tutorials/190_installing_packages.html).
 
 In short, the desired packages need to be added to the _layout_ section of your
 _autoproj/manifest_ file, for example - for a Hokuyo laser scanner:
