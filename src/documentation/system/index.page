@@ -5,9 +5,9 @@ sort_info: 0
 
 While one can use Syskit, Rock's system management layer, without knowing the
 underlying execution framework, Roby, reading both the
-[concept](http://rock-robotics.org/api/tools/roby/concepts/index.html) section
+[concept](../../api/tools/roby/concepts/index.html) section
 of the Roby user's guide, and followed the
-[tutorial](http://rock-robotics.org/api/tools/roby/tutorial/index.html) in the
+[tutorial](../../api/tools/roby/tutorial/index.html) in the
 same guide become beneficial when the complexity of your application grows.
 {: .note}
 

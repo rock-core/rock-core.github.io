@@ -135,7 +135,7 @@ if it is imported from a version control system.
 Finally comes the list of packages that are defined in this set.
 
 A better way to browse packages is to look into [the package
-directory](http://rock-robotics.org/package_directory)
+directory](../../package_directory)
 
 Picking the packages to build
 -----------------------------

@@ -5,10 +5,10 @@ sort_info: 10
 
 This page will detail guidelines, and means of implementation, for device
 drivers. While doing so, it dives into the usage of [the
-iodrivers_base::Driver](http://rock-robotics.org/api//drivers/iodrivers_base)
+iodrivers_base::Driver](../../api/drivers/iodrivers_base)
 class, which is the generic driver implementation in Rock.
 
-The following examples are examples from the implementation of [the DVL Teledyne driver](http://rock-robotics.org/stable/pkg/drivers/dvl_teledyne/index.html).
+The following examples are examples from the implementation of [the DVL Teledyne driver](../../pkg/drivers/dvl_teledyne/index.html).
 
 Guidelines
 ----------

@@ -38,7 +38,7 @@ Generating your own package directory
 
 The rock-directory script base/scripts allows you to create your own package
 directory looking like [the one from
-rock](http://rock-robotics.org/package_directory.html).
+rock](../../package_directory.html).
 
 To do so, run rock-directory **from the autoproj installation you want to
 document**:
