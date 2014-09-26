@@ -12,7 +12,7 @@ The benefits of doing it this way is twofold:
    them by their name (as e.g. the "static" and "sweeping" configurations for a
    pan-tilt unit)
  * this is the way configuration is handled in Rock's [system management
-   layer](http://rock-robotics.org/documentation/system/index.html), so -- if
+   layer](../system/index.html), so -- if
    you use these files -- you will be able to share these configurations between
    the system management and pure ruby scripts.
 

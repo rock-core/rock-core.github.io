@@ -190,7 +190,7 @@ odometry in a system requires, for instance, a properly configured instance of
 Skid4Odometry::Task to run. The default dependency setup therefore defines that
 there is a dependency constraint failure if the child task stops while the
 composition is running. In other words, [Roby's dependency
-relation](http://rock-robotics.org/api/tools/roby/task_relations/dependency.html) is
+relation](../../api/tools/roby/task_relations/dependency.html) is
 used with:
 
 ~~~ ruby
@@ -244,7 +244,7 @@ class Goto < Syskit::Composition
 end
 ~~~
 
-See [Roby's own documentation](http://rock-robotics.org/api/tools/roby) for more
+See [Roby's own documentation](../../api/tools/roby) for more
 information. In general, one would extend compositions with new events, scripts
 or poll blocks directly in the block given to composition. For instance:
 

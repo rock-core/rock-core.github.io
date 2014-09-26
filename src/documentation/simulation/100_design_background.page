@@ -4,7 +4,7 @@ sort_info: 100
 ---
 
 The General design of the Mars Integration of Rock follows the component-based design idea.
-Each Rock-Task is a [MarsPlugin](http://rock-robotics.org/stable/api/simulation/mars/doc/d8/dd8/tutorial_basic_plugin.html)
+Each Rock-Task is a [MarsPlugin](../../api/simulation/mars/doc/d8/dd8/tutorial_basic_plugin.html)
 This provides low-level access to the underlying simulation instances. Another 
 benifit is the syncronized access to the data structures without the need for
 locking. 

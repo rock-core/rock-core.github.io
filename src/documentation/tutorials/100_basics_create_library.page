@@ -119,11 +119,11 @@ for more information
 {: .warning}
 
 In Rock, common C++ types are defined [in the base/types package]({rock_pkg:
-base/types}). If some type you need is defined here, it is __highly recommended__
-to use the common type. In our case, we want to timestamp the message that our
-library will manipulate.  If we have a look at the base/types API documentation
-(follow the "API documentation" link from the package page above, or just click [here](http://rock-robotics.org/stable/api/base/types/structbase_1_1Time.html)), we can see that
-there is a base::Time type that suits our needs.
+base/types}). If some type you need is defined here, it is __highly
+recommended__ to use the common type. In our case, we want to timestamp the
+message that our library will manipulate.  If we have a look at the
+[base/types](../../api/base/types/structbase_1_1Time.html)) API documentation
+we can see that there is a base::Time type that suits our needs.
 
 First things first, we need to declare the dependency on the base/types package.
 Edit manifest.xml and make sure that the following line is there (it should already be there):

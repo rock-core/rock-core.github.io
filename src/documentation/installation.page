@@ -105,7 +105,7 @@ Other bootstrapping options
    You probably want to install the base system and then cherry-pick the packages you want. Have a look at [the package
    directory](/package_directory.html) and add the package names to the
    layout section in autoproj/manifest. For instance,  if you want to
-   get the [Xsens IMU component](http://rock-robotics.org/package_directory/packages/drivers_orogen_xsens_imu/index.html),
+   get the [Xsens IMU component](../package_directory/packages/drivers_orogen_xsens_imu/index.html),
    the layout section should look like:
 
        layout:

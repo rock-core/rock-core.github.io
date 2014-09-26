@@ -6,10 +6,10 @@ sort_info: 200
 Setting up the System
 ----------------
 To build a simulation of your system you first need the enviorment for the system and the system itself.
-To crete a scene please refer to the [Mars Documentation](http://rock-robotics.org/stable/api/simulation/mars/doc/d5/dc7/tutorial_basic_modeling.html)
+To crete a scene please refer to the [Mars Documentation](../../api/simulation/mars/doc/d5/dc7/tutorial_basic_modeling.html)
 
 The next step is to figure out which sensors you need and which tasks they require in turn.
-For this, see the [mars_core](http://www.rock-robotics.org/master/api/simulation/orogen/mars_core/) package.
+For this, see the [mars_core](../../api/simulation/orogen/mars_core/) package.
 
 Currently Rock provides support for:
  

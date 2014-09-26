@@ -5,10 +5,10 @@ sort_info: 10
 
 This page will detail guidelines, and means of implementation, for device
 drivers. While doing so, it dives into the usage of [the
-iodrivers_base::Driver](http://rock-robotics.org/api//drivers/iodrivers_base)
+iodrivers_base::Driver](../../api/drivers/iodrivers_base)
 class, which is the generic driver implementation in Rock.
 
-The following examples are examples from the implementation of [the DVL Teledyne driver](http://rock-robotics.org/stable/pkg/drivers/dvl_teledyne/index.html).
+The following examples are examples from the implementation of [the DVL Teledyne driver](../../pkg/drivers/dvl_teledyne/index.html).
 
 Guidelines
 ----------
@@ -69,7 +69,7 @@ Driver::Driver()
 ~~~
 
 The second thing is to overload [the extractPacket
-method](http://rock-robotics.org/api//drivers/iodrivers_base/classIODriver.html#a6574af5fbb06f9c8325933213d2a6a01).
+method](https://github.com/rock-drivers/drivers-iodrivers_base/blob/063e7a34602e7fb7dd2e14a761690a16df8f8229/src/Driver.hpp#L418).
 This method parses a given data buffer and tries to find packets from the device
 in it. See the API documentation linked above for a complete description.
 
