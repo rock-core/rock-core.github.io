@@ -5,7 +5,7 @@ sort_info: 500
 
 *Note:* This is a rather advanced topic. Feel free to
 [understand](../data_processing/transformer.html)
-it's working prior to configuring your own transformer.
+how it works prior to configuring your own transformer.
 
 When data is processed by your robotic system, there will usually be quite a
 number of transformations between different frames, e.g. between a laser scanner
