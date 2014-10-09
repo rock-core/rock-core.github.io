@@ -20,12 +20,15 @@ information on bundles.
 Creating the bundle
 -----------------
 
-Bundles cannot created anywhere, just in directories named in the environment
-variable <tt>$ROCK_BUNDLE_PATH</tt>. The name of the bundle will be the basename of
-the directory created.
+The name of the bundle will be the basename of the directory created. Bundles
+cannot created anywhere, use the `acd` command to change in the root-directory
+of the Rock-Installation and then enter the `bundles` directory. Creating
+bundles is possible in all directories named in the environment variable
+<tt>$ROCK_BUNDLE_PATH</tt>.
 
 ~~~
-cd $AUTOPROJ_CURRENT_ROOT/bundles
+acd
+cd bundles
 rock-create-bundle my_new_bundle_name
 ~~~
 
