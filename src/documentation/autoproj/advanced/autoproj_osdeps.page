@@ -82,7 +82,7 @@ bigger install by bootstrapping an existing installation, as for instance
 autoproj bootstrap git git://github.com/rock-core/buildall.git
 </pre>
 
-**And don't forget to send the patches to orocos-dev@orocos.org !**
+**And don't forget to [send us your patches](../../contributing/index.html) !**
 
 Since you just added a new OS, none of the existing osdeps files will
 have your OS in them. So you will need to edit the osdeps files from the package
