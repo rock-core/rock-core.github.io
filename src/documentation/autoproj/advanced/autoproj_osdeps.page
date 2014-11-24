@@ -64,12 +64,12 @@ rake dist:bootstrap
 </pre>
 
 The package is generated in pkg/ and the bootstrap script in
-doc/guide/src/autoproj_bootstrap
+bin/autoproj_bootstrap
 
 You can now go into a fresh directory and run
 
 <pre markdown="1" class="commandline">
-ruby _path_to_autoproj_/doc/guide/src/autoproj_bootstrap localdev
+ruby _path_to_autoproj_/bin/autoproj_bootstrap
 source env.sh
 gem install _path_to_autoproj_/pkg/*.gem
 autoproj bootstrap
