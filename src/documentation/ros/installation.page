@@ -36,6 +36,7 @@ layout section:
 Now, update and build. This is going to rebuild the oroGen packages as needed
 
 ~~~
+aup --all
 amake --all
 ~~~
 
