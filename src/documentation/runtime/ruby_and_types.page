@@ -192,8 +192,8 @@ Typelib.convert_from_ruby Time, '/base/Time' do |value, typelib_type|
 end
 ~~~
 
-See [the typelib_plugin.rb](https://gitorious.org/rock-base/types_ruby/blobs/master/lib/base/typelib_plugin.rb)
-file from the base/types_ruby package as an example.
+See [the typelib_plugin.rb](https://github.com/rock-core/base-types/blob/master/bindings/ruby/lib/base/typelib_plugin.rb)
+file from the base/types package as an example.
 {: .note}
 
 You can safely add a convert_to_ruby specification late in the

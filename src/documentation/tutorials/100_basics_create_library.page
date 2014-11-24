@@ -267,14 +267,13 @@ the previous line, here '- rock.toolchain'. The manifest file is parsed as
 
 ~~~ text
 package_sets:
-  - gitorious: rock-toolchain/package_set
+  - github: rock-core/package_set
 
 # Layout. Note that the rock.base, rock.toolchain
 # and orocos.toolchain sets are imported 
 # by other rock sets.
 layout:
-   - rock.base
-   - rock.toolchain
+   - rock.core
    - tutorials/message_driver
 ~~~
 

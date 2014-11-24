@@ -11,7 +11,7 @@ The Rock website is automatically generated using
 [webgen](http://webgen.rubyforge.org) from [Markdown
 files](http://kramdown.rubyforge.org/quickref.html) and uploaded to
 rock-robotics.org. The markdown files are stored in [a git repository on
-gitorious](http://gitorious.org/rock/doc).
+github](http://github.com/rock-core/base-doc).
 
 If you want to update the Rock reference documentation, i.e. the Rock website,
 you need first to check it out. From within a Rock installation, this can be

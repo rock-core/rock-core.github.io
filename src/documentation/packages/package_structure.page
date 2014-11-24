@@ -60,7 +60,7 @@ subproject, there is [the Hokuyo driver
 library](http://gitorious.org/rock-drivers/hokuyo) and the corresponding [oroGen
 component](http://gitorious.org/rock-drivers/orogen-hokuyo).
 
-Mapping between local installation and gitorious repositories
+Mapping between local installation and github repositories
 -------------------------------------------------------------
 
 A library (non-oroGen package) installed on the local system as
@@ -69,11 +69,9 @@ A library (non-oroGen package) installed on the local system as
 
 will be managed in a gitorious repository called
 
-    http://gitorious.org/rock-category/package_name
+    http://github.com/GITHUB_ORGANIZATION/category-package_name
 
-**Exception** the toolchain packages are installed in tools/ but are managed in
-the rock-toolchain project
-{: .warning}
+Where GITHUB_ORGANIZATION is usually but not necessarily rock-category.
 
 An oroGen package installed on the local system as
 
@@ -81,7 +79,7 @@ An oroGen package installed on the local system as
 
 will be managed in a gitorious repository called
 
-    http://gitorious.org/rock-category/orogen-package_name
+    http://github.com/GITHUB_ORGANIZATION/category-orogen-package_name
 
 When a one-to-one mapping exists between a library and an oroGen package (e.g.
 the hokuyo driver library and the hokuyo oroGen component), both will have the
@@ -92,7 +90,7 @@ same "package_name". For instance, when installed
 
 and on gitorious:
 
-    http://gitorious.org/rock-drivers/hokuyo
-    http://gitorious.org/rock-drivers/orogen-hokuyo
+    http://github.com/rock-drivers/drivers-iodrivers_base
+    http://github.com/rock-drivers/drivers-orogen-iodrivers_base
 
 

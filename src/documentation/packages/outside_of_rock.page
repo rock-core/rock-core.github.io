@@ -24,16 +24,23 @@ build Rock packages:
 
 Additionally, some packages will require autotools / automake to build
 
-The first thing you will need to do is install the base/types package. Check it
-out
+The first thing you will need to do is install the base/cmake and base/types
+package. Check them out
 
 ~~~ text
-git clone git://gitorious.org/rock-base/types.git
+git clone git://github.com/rock-core/base-cmake.git
+git clone git://github.com/rock-core/base-types.git
 ~~~
 
-and install it
+and install them
 
 ~~~ text
+cd cmake
+mkdir build
+cd build
+cmake -DCMAKE_INSTALL_PREFIX=$HOME/dev/install ..
+make install
+cd ..
 cd types
 mkdir build
 cd build

@@ -31,7 +31,7 @@ The process to get a package in Rock is:
  - [send these changes to the Rock developers](gitorious.html). Make sure that
    the purpose of the package(s) is clear.
  - at this point, there is the option of putting the source code within Rock's
-   gitorious projects. While it is not mandatory, it is the preferred option.
+   github projects. While it is not mandatory, it is the preferred option.
    The Rock developers will be in touch with you to discuss this (either through
    the [rock-users mailing list](http://www.dfki.de/mailman/cgi-bin/listinfo/rock-users) or through the merge request / ticket you created)
 

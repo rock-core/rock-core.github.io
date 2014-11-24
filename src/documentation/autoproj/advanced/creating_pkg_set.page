@@ -26,7 +26,7 @@ name: my_package_set_name
        git init
        git add source.yml
        git commit -m "create the my_package_set_name package set"
-       git push git@gitorious.com:my-project/package_set.git
+       git push git@github.com:my-project/package_set.git
 
  * add the package set to autoproj/manifest and run
      
@@ -82,7 +82,7 @@ the file, as for instance:
 version_control:
   - my/package:
       type: git
-      url: git://gitorious.com/blabla/my-package.git
+      url: git://github.com/blabla/my-package.git
 ~~~
 
 The corresponding subversion definition would be:

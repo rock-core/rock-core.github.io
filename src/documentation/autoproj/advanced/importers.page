@@ -44,7 +44,7 @@ the typelib library. So, while the orocos.toolchain has the following source.yml
 version_control:
     - .*:
         type: git
-        url: git://gitorious.com/orocos-toolchain/$PACKAGE.git
+        url: git://github.com/orocos-toolchain/$PACKAGE.git
 ~~~
 
 rock.toolchain has
@@ -52,7 +52,7 @@ rock.toolchain has
 ~~~ yaml
 overrides:
     - typelib:
-        url: git://gitorious.com/orocos-toolchain/rock-$PACKAGE.git
+        url: git://github.com/rock-core/$PACKAGE.git
 ~~~
 
 Another common use for overrides is to change the branch, for instance:
@@ -60,7 +60,7 @@ Another common use for overrides is to change the branch, for instance:
 ~~~ yaml
 overrides:
     - typelib:
-        url: git://gitorious.com/orocos-toolchain/rock-$PACKAGE.git
+        url: git://github.com/rock-core/$PACKAGE.git
     - rtt:
         branch: experimental
 ~~~

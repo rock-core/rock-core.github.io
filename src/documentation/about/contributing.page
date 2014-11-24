@@ -13,17 +13,17 @@ and/or [rock-dev](http://www.dfki.de/mailman/cgi-bin/listinfo/rock-dev) mailing
 lists [on the Rock trac](http://rock.opendfki.de).
 
 More advanced users can contribute bugfixes and enhancements to the main Rock
-codebase through [the gitorious interface](http://gitorious.org/). Clone a
+codebase through [the github interface](http://github.org/rock-core). Clone a
 repository, add your changes and create merge requests. Alternatively, one can
 also improve documentation, either by creating new pages [on the Rock
-trac](http://rock.opendfki.de) or by cloning [the main Rock documentation
-package](http://gitorious.org/rock/doc) from gitorious and proposing your
-changes through the gitorious interface.
+trac](http://trac.rock-robotics.org) or by cloning [the main Rock documentation
+package](http://github.com/rock-core/base-doc) from github and proposing your
+changes through the github interface.
 
 Finally, publish your packages by [creating your own package
 set](../autoproj/advanced/creating_pkg_set.html) to publish your
 libraries and components. Once you have put this package set and the code on a
-public place (gitorious, github or even a svn-oriented code hosting), drop us a
+public place (github is the preferred mean these days), drop us a
 line on the [rock-dev] mailing list. We would be glad to include it in a (to be
 created) third-party package directory.
 

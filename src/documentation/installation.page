@@ -54,8 +54,7 @@ Installation: the easy way
     ~~~
 
  2. Create and "cd" into the directory in which you want to install the toolchain.
- 3. To build the base system (base packages + toolchain, but no
-    libraries/components), use this
+ 3. To build the core system, use this
     [bootstrap.sh](https://raw.githubusercontent.com/rock-core/buildconf/master/bootstrap.sh)
     script. Save it in the folder you just created. For other options, see
     below.
@@ -109,8 +108,7 @@ Other bootstrapping options
    the layout section should look like:
 
        layout:
-          - rock.base
-          - rock.toolchain
+          - rock.core
           - drivers/orogen/xsens_imu
 
 <div class="warning" markdown="1">

@@ -18,7 +18,7 @@ and install the Gems it lists.
 Adding support in autoproj
 --------------------------
 
- 0. get the autoproj source code. It is [on Gitorious](http://gitorious.org/autoproj/autoproj)
+ 0. get the autoproj source code. It is [on Github](http://github.com/rock-core/autoproj)
 
     Also, add _autoproj_source_dir_/lib to RUBYLIB
 
@@ -79,7 +79,7 @@ If the last line went fine, then everything is probably OK. You can now try a
 bigger install by bootstrapping an existing installation, as for instance
 
 <pre markdown="1" class="commandline">
-autoproj bootstrap git git://gitorious.com/rock/build-all.git
+autoproj bootstrap git git://github.com/rock-core/buildall.git
 </pre>
 
 **And don't forget to send the patches to orocos-dev@orocos.org !**

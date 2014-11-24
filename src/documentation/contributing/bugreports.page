@@ -3,14 +3,8 @@ title: Reporting Bugs
 sort_info: 120
 ---
 
-The bug reports are managed within [the Rock Trac](http://trac.rock-robotics.org). New
-tickets can conveniently be created directly from the main Rock website.
+Bug reports are managed [using the Github
+interface](https://guides.github.com/features/issues/). However, you have to
+determine on which package the issue should be created. If you have a doubt,
+drop instead an email on [the rock-users mailing list](http://www.dfki.de/mailman/cgi-bin/listinfo/rock-users).
 
-![](rock_new_ticket.png)
-
-Existing tickets can be browsed from the Trac
-
-![](trac_ticket_list.png)
-
-Note that you do not have to have an account on the Rock trac to be allowed to
-create new tickets.

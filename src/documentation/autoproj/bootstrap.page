@@ -37,12 +37,12 @@ For instance, to build all packages made available by the Rock project,
 do
 
    wget http://rock-robotics.org/autoproj\_bootstrap <br />
-   ruby autoproj\_bootstrap git git://gitorious.org/rock/buildconf-all.git
+   ruby autoproj\_bootstrap git git://github.com/rock-core/buildconf-all.git
    {: .cmdline}
 
 Additional options can be given for the version control system. For instance,
 
    wget http://rock-robotics.org/autoproj\_bootstrap <br />
-   ruby autoproj\_bootstrap git git://gitorious.org/rock/buildconf.git branch=test
+   ruby autoproj\_bootstrap git git://github.com/rock-core/buildconf.git branch=test
    {: .cmdline}
 

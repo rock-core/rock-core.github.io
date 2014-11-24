@@ -16,7 +16,7 @@ documentation](documentation.html) on the Rock website.
 
 More advanced users can contribute bugfixes and enhancements to the main Rock
 codebase, by either sending patches to the rock-users mailing list or using
-gitorious cloning and merge request functionality. We also welcome you to
+github cloning and pull request functionality. We also welcome you to
 [publish packages and tell us about them](packages.html) so that they become
 part of the Rock package directory.
 

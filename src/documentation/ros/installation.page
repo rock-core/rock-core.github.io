@@ -15,8 +15,7 @@ In your autoproj manifest (autoproj/manifest) the package_sets section should
 contain (at least) the following: 
 
 ~~~
- - gitorious: rock/package_set
- - gitorious: rock-toolchain/package_set
+ - github: rock-core/package_set
  - gitorious: rock-ros/package_set
 ~~~
 
