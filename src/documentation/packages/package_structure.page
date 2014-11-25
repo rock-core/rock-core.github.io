@@ -8,20 +8,32 @@ Below, oroGen refers to the tool that is used in Rock to develop components
 
 Categories
 ----------
-The Rock packages are split into 6 main categories
+The Rock packages are organized into categories:
 
 * **base** base types, CMake script repositories, ...
+* **bundles** [bundle * packages](http://trac.rock-robotics.org/wiki/WikiStart/Standards/RG7)
+* **control** packages that are related to motion control
+* **data_processing** packages that are related to general data processing (e.g.
+  neural network, filtering, ...)
 * **drivers** packages that are related to device drivers: drivers themselves,
   and common libraries that ease their development
+* **gui** GUI and visualization packages
+* **image_processing** packages that are related to image processing
+* **multiagent** packages that are related to multiagent / multirobot
+  coordination
+* **planning** packages that are related to path and task planning
+* **simulation** packages that are related to simulation
 * **slam** packages that are related to localization and mapping both separately
   and as SLAM
-* **control** packages that are related to motion control
-* **planning** packages that are related to path and task planning
-* **toolchain** packages that are related to the toolchain
-* **image_processing** packages that are related to image processing
+* **test** packages that are needed for other unit tests
+* **tools** packages that are related to the toolchain and/or are general
+  utility packages
+* **tutorials** packages that are the result of tutorials
 
-On gitorious, each category has its own project, called rock-NAME (for instance,
-rock-drivers for the drivers).
+On github, each category has its own project, called rock-NAME (for instance,
+rock-drivers for the drivers). However, Rock is still in the process of
+migrating packages from gitorious to github, so some of the existing packages
+are still on gitorious. __All new packages should go to github__.
 
 When installed, packages go into folders that correspond to their main category.
 Moreover, the oroGen-independent packages are installed directly under that
@@ -60,7 +72,7 @@ subproject, there is [the Hokuyo driver
 library](http://gitorious.org/rock-drivers/hokuyo) and the corresponding [oroGen
 component](http://gitorious.org/rock-drivers/orogen-hokuyo).
 
-Mapping between local installation and gitorious repositories
+Mapping between local installation and github repositories
 -------------------------------------------------------------
 
 A library (non-oroGen package) installed on the local system as
@@ -69,11 +81,9 @@ A library (non-oroGen package) installed on the local system as
 
 will be managed in a gitorious repository called
 
-    http://gitorious.org/rock-category/package_name
+    http://github.com/GITHUB_ORGANIZATION/category-package_name
 
-**Exception** the toolchain packages are installed in tools/ but are managed in
-the rock-toolchain project
-{: .warning}
+Where GITHUB_ORGANIZATION is usually but not necessarily rock-category.
 
 An oroGen package installed on the local system as
 
@@ -81,7 +91,7 @@ An oroGen package installed on the local system as
 
 will be managed in a gitorious repository called
 
-    http://gitorious.org/rock-category/orogen-package_name
+    http://github.com/GITHUB_ORGANIZATION/category-orogen-package_name
 
 When a one-to-one mapping exists between a library and an oroGen package (e.g.
 the hokuyo driver library and the hokuyo oroGen component), both will have the
@@ -92,7 +102,7 @@ same "package_name". For instance, when installed
 
 and on gitorious:
 
-    http://gitorious.org/rock-drivers/hokuyo
-    http://gitorious.org/rock-drivers/orogen-hokuyo
+    http://github.com/rock-drivers/drivers-iodrivers_base
+    http://github.com/rock-drivers/drivers-orogen-iodrivers_base
 
 

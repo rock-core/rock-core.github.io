@@ -18,7 +18,7 @@ and install the Gems it lists.
 Adding support in autoproj
 --------------------------
 
- 0. get the autoproj source code. It is [on Gitorious](http://gitorious.org/autoproj/autoproj)
+ 0. get the autoproj source code. It is [on Github](http://github.com/rock-core/autoproj)
 
     Also, add _autoproj_source_dir_/lib to RUBYLIB
 
@@ -64,12 +64,12 @@ rake dist:bootstrap
 </pre>
 
 The package is generated in pkg/ and the bootstrap script in
-doc/guide/src/autoproj_bootstrap
+bin/autoproj_bootstrap
 
 You can now go into a fresh directory and run
 
 <pre markdown="1" class="commandline">
-ruby _path_to_autoproj_/doc/guide/src/autoproj_bootstrap localdev
+ruby _path_to_autoproj_/bin/autoproj_bootstrap
 source env.sh
 gem install _path_to_autoproj_/pkg/*.gem
 autoproj bootstrap
@@ -79,10 +79,10 @@ If the last line went fine, then everything is probably OK. You can now try a
 bigger install by bootstrapping an existing installation, as for instance
 
 <pre markdown="1" class="commandline">
-autoproj bootstrap git git://gitorious.com/rock/build-all.git
+autoproj bootstrap git git://github.com/rock-core/buildall.git
 </pre>
 
-**And don't forget to send the patches to orocos-dev@orocos.org !**
+**And don't forget to [send us your patches](../../contributing/index.html) !**
 
 Since you just added a new OS, none of the existing osdeps files will
 have your OS in them. So you will need to edit the osdeps files from the package

@@ -62,9 +62,9 @@ To add this package set to your current autoproj installation, copy the string t
 ***NOTE***: The manifest is following the yml syntax where you have to use blanks (no tabs).
 {: .warning}
 
-~~~ yml
+~~~ yaml
 package_sets:
-  - gitorious: rock/package_set
+  - github: rock/package_set
 ~~~
 
 Now autoproj knows all packages which are part of the rock package sets. If you want to install one of them,

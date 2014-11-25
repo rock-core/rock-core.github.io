@@ -42,13 +42,11 @@ autoproj/manifest should look like:
 
 ~~~ text
 package_sets:
-   - gitorious: rock-toolchain/package_set
-   - gitorious: rock/package_set
+   - github: rock-core/package_set
    - gitorious: rock-tutorials/package_set
 
 layout:
-   - rock.base
-   - rock.toolchain
+   - rock.core
    - rock.tutorials
 ~~~
 

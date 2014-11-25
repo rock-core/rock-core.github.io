@@ -12,18 +12,17 @@ The <tt>layout</tt> section of <tt>autoproj/manifest</tt> offers two things:
  * build packages in specific subdirectories
 
 This section lists packages or package sets that ought to be built by autoproj.
-For instance, in the following example, only the <tt>rtt</tt> and <tt>ocl</tt>
-packages of the rubim.orocos source will be built. The other will be excluded
-from the build.
+For instance, in the following example, only the <tt>orogen</tt> and
+<tt>tools/orocos.rb</tt> packages of the rock.core package set and their
+dependencies will be built. The other will be ignored.
 
 ~~~ yaml
 package_sets:
-  - type: git
-    url: git://gitorious.com/orocos-toolchain/autoproj.git
+  - github: rock-core/package_set
 
 layout:
-  - rtt
-  - ocl
+  - orogen
+  - tools/orocos.rb
 ~~~
 
 Instead of giving a package name, the name of a package set can be provided,
@@ -31,8 +30,8 @@ which translates into "all the packages of that set".
 
 As we mentionned before, the layout mechanism also allows you to place packages
 in subdirectories of the main installation. For instance, the following snippet
-will build the <tt>typelib</tt>, <tt>utilmm</tt> and <tt>utilrb</tt> libraries of rubim.orocos into
-the <tt>lib/</tt> subdirectory and all the <tt>orocos/</tt> packages in the root.
+will build the <tt>typelib</tt>, <tt>utilmm</tt> and <tt>utilrb</tt> libraries
+of orocos-toolchain into the <tt>lib/</tt> subdirectory and all the <tt>orocos/</tt> packages in the root.
 
 ~~~ yaml
 layout:
@@ -44,8 +43,10 @@ layout:
 ~~~
 
 Configuration files like <tt>autoproj/manifest</tt> are YAML file. As such, they
-are sensible to indentation. The snippet above should be read as: in the layout, there is first a "lib" part and second the packages whose names start with "orocos/" _(first level of indentation)_. In the "lib" part, the packages are "typelib", "utilmm"
- and "utilrb" _(second level of indentation)_. 
+are sensible to indentation. The snippet above should be read as: in the layout,
+there is first a "lib" part and second the packages whose names start with
+"orocos/" _(first level of indentation)_. In the "lib" part, the packages are
+"typelib", "utilmm" and "utilrb" _(second level of indentation)_. 
 {: .warning}
 
 Alternatively, the example above could be written:
@@ -67,18 +68,31 @@ Removing packages from the build (<tt>exclude_packages</tt>) {#exclude_packages}
 Instead of having to list all packages that you do want to build, it is possible
 to list the packages that you don't want to build. Simply list them in the
 <tt>exclude_packages</tt> section of the manifest file. In the following example, all
-of the rubim.orocos package set will be built *but* the pocosim-log package.
+of the rock-core package set will be built *but* the pocolog package.
 
 ~~~ yaml
+package_sets:
+  - github: rock-core/package_set
 layout:
-  - rubim.orocos
-
+  - rock.core
 exclude_packages:
-  - pocosim-log
+  - tools/pocolog
 ~~~
 
-If another package, that should be built, depends on an excluded package, [an
-error is generated](/documentation/autoproj/error_messages.html#exclusions).
+If another required package (i.e. a package listed in the layout) depends on an
+excluded package, the default behaviour is to fail with
+[an error](/documentation/autoproj/error_messages.html#exclusions).
+
+For some package sets, such as the rock package set, this behaviour can be
+relaxed by setting the package set's weak_dependencies flag to true in e.g. the
+package set's init.rb or autoproj/init.rb:
+
+``` ruby
+metapackage('rock').weak_dependencies = true
+```
+
+In this case, autoproj will only issue a warning and simply automatically
+exclude the offending packages from the build.
 
 Using packages that are already installed (<tt>ignore_packages</tt>) 
 -----------------------------------------
@@ -86,17 +100,18 @@ Using packages that are already installed (<tt>ignore_packages</tt>)
 If some packages are already installed elsewhere, and you want to use that
 version instead of the one listed in the package sets, list them in the
 <tt>ignore_packages</tt> section of the manifest. In the following example, the
-<tt>orocos/rtt</tt> package will *not* be built by autoproj.
+<tt>rtt</tt> package will *not* be built by autoproj, but autoproj will assume
+that it is present.
 
 ~~~ yaml
+package_sets:
+  - github: rock-core/package_set
 layout:
-  - rubim.orocos
-
+  - rock.core
 exclude_packages:
-  - pocosim-log
-
+  - tools/pocolog
 ignore_packages:
-  - orocos/rtt
+  - rtt
 ~~~
 
 Unlike with <tt>exclude_packages</tt>, no error is generated for ignored
@@ -116,7 +131,7 @@ package. Simply do:
 
 ~~~ yaml
 overrides:
-  - orocos/rtt:
+  - rtt:
     type: none
 ~~~
 
@@ -124,7 +139,7 @@ To track a different branch that the default branch, you will have to do:
 
 ~~~ yaml
 overrides:
-  - orocos/rtt:
+  - rtt:
     branch: experimental
 ~~~
 

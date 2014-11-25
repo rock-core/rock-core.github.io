@@ -15,16 +15,8 @@ In your autoproj manifest (autoproj/manifest) the package_sets section should
 contain (at least) the following: 
 
 ~~~
- - gitorious: rock/package_set
- - gitorious: rock-toolchain/package_set
+ - github: rock-core/package_set
  - gitorious: rock-ros/package_set
-~~~
-
-For the syntax above (gitorious: package_set-short-name) to work, your init.rb (autoproj/init.rb) has to contain: 
-
-~~~
-require 'autoproj/gitorious'
-Autoproj.gitorious_server_configuration('GITORIOUS', 'gitorious.org')
 ~~~
 
 Back in the autoproj manifest (autoproj/manifest) add the following to the 
@@ -37,6 +29,7 @@ layout section:
 Now, update and build. This is going to rebuild the oroGen packages as needed
 
 ~~~
+aup --all
 amake --all
 ~~~
 
