@@ -73,7 +73,7 @@ syskit run scripts/03_defines.rb random_def!
 ~~~
 
 As you see here, it is possible to specify definitions on the command line of
-syskit run, to avoid having to go through the shell for simple cases.
+`syskit run`, to avoid having to go through the shell for simple cases.
 {: .note}
 
 Multiple Component Configurations
@@ -116,10 +116,10 @@ In a definition, the requested configuration is selected with
 define 'random_slow', Tutorials::RockControl.use(TutBrownian::Task.use_conf('default', 'slow'))
 ~~~
 
-Which configuration is actually applied can be visualized in 'syskit
-instanciate' (the conf: flag) and in roby-display (simply double-click on the
+Which configuration is actually applied can be visualized in `syskit
+instanciate` (the conf: flag) and in roby-display (simply double-click on the
 task you are interested in to see its arguments). Finally, you can see it in the
-console output of syskit run (only the relevant output lines are shown below).
+console output of `syskit run` (only the relevant output lines are shown below).
 
 ~~~
 # syskit run 03_defines.rb random_slow_def!

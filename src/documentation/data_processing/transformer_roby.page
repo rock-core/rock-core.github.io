@@ -169,7 +169,7 @@ end
 ~~~
 
 The non-dynamic part of __the transformer configuration file__ is identical in
-syskit and in Ruby scripts. Assuming that a configuration file that does not
+Syskit and in Ruby scripts. Assuming that a configuration file that does not
 contain dynamic transformation statements is called
 config/transforms.rb, one would load it with
 

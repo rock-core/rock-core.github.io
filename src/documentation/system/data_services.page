@@ -57,7 +57,7 @@ browse](general_concept.html#browsing) to find out what is defined where.
 Model Hierarchy
 ---------------
 The fact that a data service Y can be used instead of another one X (for instance, a Pose
-data service that also provides an Orientation), is reflected by telling syskit
+data service that also provides an Orientation), is reflected by telling Syskit
 that "Y provides X"
 
 ~~~ ruby

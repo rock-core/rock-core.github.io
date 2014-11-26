@@ -21,7 +21,7 @@ In a more concrete manner, this tutorial will show you:
  * how to select which command source should be used.
 
 The next tutorial will then deal with the _runtime workflow_ when using
-syskit, e.g. how to switch between different modalities / sources and how to
+Syskit, e.g. how to switch between different modalities / sources and how to
 restart components that crashed.
 
 Data Services
