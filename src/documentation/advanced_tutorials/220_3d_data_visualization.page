@@ -12,14 +12,14 @@ For this tutorial, you should already have read the [data visualization](210_dat
 
 Vizkit 3D
 -----------
-In Vizkit, there is a dedicated subsystem for displaying 3D Data. It is called Vitkit3D. The 
+In Vizkit, there is a dedicated subsystem for displaying 3D Data. It is called Vizkit3D. The 
 basis for the 3D display is provided by a widget called 'Vizkit3dWidget', which is a vizkit widget.
-On the Vitkit3dWidget, one may register Vizkit3d-Plugins for displaying individual 3D data structures
+On the Vizkit3dWidget, one may register Vizkit3d-Plugins for displaying individual 3D data structures
 inside the widget. 
 
 As all of this is pretty confusing, here the naming in short form :
 
-  * VitzkitWidget : 2D Widget 
+  * VizkitWidget : 2D Widget 
   * Vizkit3dWidget : The Vizkit-provided Vizkit that allows you to display 3D data
   * Vizkit3dPlugin : A plugin which is registered on the Vizkit3dWidget
 
