@@ -58,7 +58,7 @@ TransformerTask task:
 ![Task Frames](1000_transformer_task_frames.png)
 
 This shows the frames that TransformerTask requires. These are declared when
-writing the component. Indeed, if you look at tutorials/orogen/tut_sensor:
+writing the component. Indeed, if you look at [tutorials/orogen/tut_sensor](https://gitorious.org/rock-tutorials/orogen-tut_sensor):
 
 ~~~ ruby
 transformer do
