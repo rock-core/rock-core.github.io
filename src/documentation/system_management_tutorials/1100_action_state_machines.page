@@ -25,10 +25,10 @@ This tutorial will guide you through:
    complex behaviours by using state machines
  * how these state machines can then be combined with each other
 
-The action state machines presented in this tutorial are not specific to syskit,
+The action state machines presented in this tutorial are not specific to Syskit,
 but are available to any Roby action. You may want to also read the [Roby
 documentation]({rock_api: tools/roby}) for more information about them. However, Syskit
-does extend these state machines to give some syskit-specific functionality.
+does extend these state machines to give some Syskit-specific functionality.
 
 Defining State Machines
 -----------------------
@@ -231,7 +231,7 @@ You can now start the state machine with
 syskit run -rtut-transformer fenced_random_move!
 ~~~
 
-and visualize the resulting behaviour using roby-display (for the syskit part)
+and visualize the resulting behaviour using roby-display (for the Syskit part)
 and rock-display (for the components)
 
 Combining State Machines
@@ -244,9 +244,9 @@ describe "combining state machines"
 action_state_machine 'main' do
   movement = state fenced_random_move
   # Use a hypothetical go_and_recharge action which can be any Roby action
-  # (syskit network, state machine, ...)
+  # (Syskit network, state machine, ...)
   recharge = state go_and_recharge
-  # And monitor the battery using a syskit definition
+  # And monitor the battery using a Syskit definition
   battery_monitor = state battery_monitor_def
 
   start movement
@@ -261,7 +261,7 @@ Summary
 
 This tutorial has shown you how:
 
- - combine the networks defined in the syskit profiles as states in a state
+ - combine the networks defined in the Syskit profiles as states in a state
    machine, thus allowing to combine them in a temporal way
  - define separate monitoring networks, and use them to trigger the transition
  - how state machines can then become part of bigger state machines

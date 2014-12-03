@@ -16,12 +16,12 @@ this documentation.
 Bundles
 -------
 Bundles in Rock are used to gather all that form a consistent robot application
-together. Outside of syskit, they gather configuration files ([for task
+together. Outside of Syskit, they gather configuration files ([for task
 contexts](../runtime/configuration.html) and for outside tooling such as the
 [transformer](../data_processing)
 
-When using syskit, they also will contain all the syskit-specific models and
-application information. Whenever you start a new syskit-based application,
+When using Syskit, they also will contain all the Syskit-specific models and
+application information. Whenever you start a new Syskit-based application,
 create a new bundle and convert it to a Syskit/Roby application with:
 
 ~~~ ruby
@@ -51,7 +51,7 @@ folder, so a bundle called "X" maps to a package called "bundles/X"
 {: .warning}
 
 Whenever it applies, the documentation will state where the bundle directory
-structure each parts of a syskit application should be placed. Then, this is
+structure each parts of a Syskit application should be placed. Then, this is
 going to be summarized [at the end of this guide](file_layout.html).
 
 Components
@@ -97,7 +97,7 @@ The second part will tell you all about building systems using these parts.
 Browsing {#browsing}
 --------
 
-All models defined in Syskit can be browsed using the syskit command. It gives
+All models defined in Syskit can be browsed using the `syskit` command. It gives
 all the information about the task contexts and types that are currently
 installed in your rock environment, as well as about compositions and
 components. Additionally, it shows where (file and line) a particular model is

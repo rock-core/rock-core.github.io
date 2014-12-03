@@ -45,7 +45,7 @@ instance by doing
 amake tutorials/orogen/rock_tutorial
 {: .cmdline}
 
-Then, in the syskit shell we just created, type
+Then, in the Syskit shell we just created, type
 
 syskit.restart_deployments RockTutorial::RockTutorialControl
 {: .cmdline}
@@ -55,7 +55,7 @@ To restart all deployments, don't provide any argument
 syskit.restart_deployments
 {: .cmdline}
 
-And, finally, CTRL+C the "syskit run" script. No need to stop the shell.
+And, finally, CTRL+C the `syskit run` script. No need to stop the shell.
 
 Defining modalities
 -------------------
@@ -115,7 +115,7 @@ Then run the joystick definition:
 localhost:48902 > joystick_def!
 ~~~
 
-It requests that syskit starts the joystick-based control, as you can
+It requests that Syskit starts the joystick-based control, as you can
 see in the log or in the live display (if you started it):
 
 ~~~
@@ -174,7 +174,7 @@ RockTutorial::RockTutorialControl, but that they are already used.
 
 Indeed, both the random and joystick definitions need a
 RockTutorial::RockTutorialControl component. Since they use it in a different
-way (the command port gets its data from different sources), syskit requires
+way (the command port gets its data from different sources), Syskit requires
 more than one deployment and it fails.
 
 Stop the controller with CTRL+C and the shell with "exit", and pass on to the

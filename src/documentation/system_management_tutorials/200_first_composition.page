@@ -22,7 +22,7 @@ and go on with the follow-up tutorials.
 
 A first model-based script
 ------------
-The root concept in syskit is the _composition_. A
+The root concept in Syskit is the _composition_. A
 composition is a group of components that, once bound together, do something
 useful. In our case, it would be moving the rock with a joystick. Create a new
 file scripts/01_joystick.rb and add the following code:
@@ -74,7 +74,7 @@ running anything. Without additional adaptation, though, you will hit an error w
 syskit instanciate scripts/01_joystick.rb
 ~~~
 
-This error might be visible in syskit GUI or in console. 
+This error might be visible in Syskit GUI or in console. 
 
 [![Instanciation with error](200_instanciate_error_output_thumb.png)](200_instanciate_error_output.png)
 {: .align-center}
@@ -84,7 +84,7 @@ __(Click to enlarge)__
 This error tells you that there are [no
 deployments](../advanced_tutorials/100_deployments.html) available for the
 oroGen component rock_tutorial::RockTutorialControl. There actually *are*
-available deployments, but you need to tell syskit which ones to use.
+available deployments, but you need to tell Syskit which ones to use.
 
 Make sure they are installed with
 
@@ -140,8 +140,8 @@ If you're happy with it, you can then run it with:
 syskit run scripts/01_joystick.rb
 ~~~
 
-__For people knowing Roby__ There is actually no difference between "roby run"
-and "syskit run".
+__For people knowing Roby__ There is actually no difference between `roby run`
+and `syskit run`.
 {: .warning}
 
 In another shell, display the task using rock-display: 

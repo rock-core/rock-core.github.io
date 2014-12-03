@@ -3,18 +3,18 @@ title: Syskit-enabled Bundles
 sort_info: 600
 ---
 
-When using syskit, the bundles are first Roby applications. As such, the
+When using Syskit, the bundles are first Roby applications. As such, the
 description [of the file layout in a Roby application]({rock_api:
 tools/roby}/building/file_layout.html) applies.
 
 This page will start by explaining how one turns a plain Roby application into a
-syskit-enabled bundle. We will then summarize parts that are added in addition
-to the Roby layout in a Roby application that uses syskit.
+Syskit-enabled bundle. We will then summarize parts that are added in addition
+to the Roby layout in a Roby application that uses Syskit.
 
 Creating Syskit-enabled Roby applications
 -----------------------------------------
 
-The bundles created in Rock are already syskit-enabled, i.e. if you do
+The bundles created in Rock are already Syskit-enabled, i.e. if you do
 
 ~~~
 rock-create-bundle mybundle
@@ -22,10 +22,10 @@ cd mybundle
 roby init
 ~~~
 
-The resulting application is already using syskit.
+The resulting application is already using Syskit.
 
-However, if you wrote a "plain" Roby application and want to use syskit in it,
-you should enable the syskit plugin *and* pick the temporal scheduler. Edit
+However, if you wrote a "plain" Roby application and want to use Syskit in it,
+you should enable the Syskit plugin *and* pick the temporal scheduler. Edit
 config/init.rb and add:
 
 ~~~ ruby
@@ -40,12 +40,12 @@ Once you have done that, run
 roby init
 ~~~
 
-To add templates for syskit-specific directories and files.
+To add templates for Syskit-specific directories and files.
 
 Syskit-specific File Layout
 ---------------------------
 This section deals with the parts of the file layout that are specific to
-syskit. Refer to [this page]({rock_api: tools/roby}/building/file_layout.html) for the
+Syskit. Refer to [this page]({rock_api: tools/roby}/building/file_layout.html) for the
 generic Roby parts
 
 config/orogen/

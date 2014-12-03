@@ -8,10 +8,7 @@ The result of this tutorial can be found in bundles/tutorials if you
 followed the instructions at the bottom of [this page](../tutorials/index.html).
 While the tip of the master branch contains the accumulated result of all the
 tutorials, you can get the specific result of this one by checking out the
-fault_response_tables tag with
-~~~
-git checkout fault_response_tables
-~~~
+fault_response_tables tag with the following git command: `git checkout fault_response_tables`
 </div>
 
 In the previous two tutorials, we first saw how to combine Syskit subsystem
@@ -165,7 +162,7 @@ action_state_machine 'fenced_random_move_with_faults' do
 end
 ~~~
 
-and not forget to add the
+and don't forget to add the
 
 ~~~ ruby
 require 'models/actions/fence'

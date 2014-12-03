@@ -21,7 +21,7 @@ In a more concrete manner, this tutorial will show you:
  * how to select which command source should be used.
 
 The next tutorial will then deal with the _runtime workflow_ when using
-syskit, e.g. how to switch between different modalities / sources and how to
+Syskit, e.g. how to switch between different modalities / sources and how to
 restart components that crashed.
 
 Data Services
@@ -135,15 +135,16 @@ so it picked it up automatically and generated the expected network.
 
 Adding a random-motion generator
 --------------------------------
-The rock.tutorials package set contains a random-motion generator
-(tutorials/orogen/tut_brownian) that we will now use as an alternative to the
-joystick. 
+The [rock.tutorials](https://gitorious.org/rock-tutorials) package set contains
+the random-motion generator
+([tutorials/orogen/tut_brownian](https://gitorious.org/rock-tutorials/orogen-tut_brownian)) that
+we will now use as an alternative to the joystick.
 
 First and foremost, when multiple oroGen projects start to be involved,
 deployments quickly become hard to manage. The accepted workflow when you are
 starting to build a complete system is to create a dedicated "deployment
 project" that creates all the deployments that your system needs. In the case of
-these tutorials, it is the tutorials/orogen/tut_deployment oroGen project. Have
+these tutorials, it is the [tutorials/orogen/tut_deployment](https://gitorious.org/rock-tutorials/orogen-tut_deployment) oroGen project. Have
 a look at it, and make sure that it is built in your installation by either
 adding manually to autoproj/manifest or [by building the whole rock.tutorials
 package set once and for all](../tutorials/index.html#installing)

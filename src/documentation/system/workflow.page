@@ -16,10 +16,10 @@ TODO: model browsing screencast
 
 Component models, in Rock, are always done by the component developers when they
 use oroGen. The toolchain is designed so that using oroGen is the __only__
-constraint that needs to be followed to be able to use syskit.
+constraint that needs to be followed to be able to use Syskit.
 
 Defining how components can be bound together is done by the system designer in
-syskit. It is done by creating so-called __compositions__, which are a
+Syskit. It is done by creating so-called __compositions__, which are a
 collection of components and connections between these components, necessary to
 provide a given function. In order to make these compositions reusable, the
 modelling allows you to define __abstract component models__ (or so-called data
@@ -31,7 +31,7 @@ Existing models can be browsed graphically using
 syskit browse
 {: .cmdline}
 
-TODO: syskit browse screenshot
+TODO: Syskit browse screenshot
 
 **System Model**
 Example showing the dataflow in the OrientationEstimator Composition from the AVALON AUV student project.
@@ -78,6 +78,6 @@ The next pages will run you through the creation of models: [data
 services](data_services.html), [compositions](compositions.html) and [task
 contexts](task_contexts.html). Then, we will go on with the description of
 subsystems and how they are organized in [profiles](profiles.html). Finally, the
-[interaction with a running Roby system](interaction.html) using syskit will be
+[interaction with a running Roby system](interaction.html) using Syskit will be
 covered.
 
