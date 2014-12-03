@@ -15,15 +15,15 @@ and the most important tools that exist to run and debug it.
 Note that this tutorial does require a (physical) joystick. The virtual joystick
 won't work. However, if you don't have one, you can do everything in this
 tutorial except running the generated component network. Moreover, the follow-up
-tutorials will not need the joystick anymore, so if you don't have one we
+tutorials will not need the joystick anymore, so if you don't have one, we
 suggest that you go through this tutorial anyway (just reading the running part)
 and go on with the follow-up tutorials.
 {: .warning}
 
 A first model-based script
 ------------
-The root concept in syskit is the _composition_. A
-composition is a group of component that, once bound together, do something
+The root concept in Syskit is the _composition_. A
+composition is a group of components that, once bound together, do something
 useful. In our case, it would be moving the rock with a joystick. Create a new
 file scripts/01_joystick.rb and add the following code:
 
@@ -68,13 +68,13 @@ add_mission Tutorials::RockControl
 Checking the script and running the network
 -------------------
 As this _defines_ a composition, it is possible to visualize it without
-running anything. Without additional adaptation though you will hit an error when doing:
+running anything. Without additional adaptation, though, you will hit an error when doing:
 
 ~~~
 syskit instanciate scripts/01_joystick.rb
 ~~~
 
-This error might be visible in syskit GUI or in console. 
+This error might be visible in Syskit GUI or in console. 
 
 [![Instanciation with error](200_instanciate_error_output_thumb.png)](200_instanciate_error_output.png)
 {: .align-center}
@@ -84,7 +84,7 @@ __(Click to enlarge)__
 This error tells you that there are [no
 deployments](../advanced_tutorials/100_deployments.html) available for the
 oroGen component rock_tutorial::RockTutorialControl. There actually *are*
-available deployments, but you need to tell syskit which ones to use.
+available deployments, but you need to tell Syskit which ones to use.
 
 Make sure they are installed with
 
@@ -92,7 +92,7 @@ Make sure they are installed with
 amake tutorial/orogen/tut_deployment
 ~~~
 
-You can then verify that they is indeed a deployment called 'rock_tutorial' that
+You can then verify that there is indeed a deployment called 'rock_tutorial' that
 is available:
 
 ~~~
@@ -115,7 +115,7 @@ defined in tut_deployment
 ~~~
 
 The new deployment can then be used in the script by adding, just after the
-other use_deployment line.
+other use_deployment line:
 
 ~~~ ruby
 Syskit.conf.use_deployment 'rock_tutorial'
@@ -140,8 +140,8 @@ If you're happy with it, you can then run it with:
 syskit run scripts/01_joystick.rb
 ~~~
 
-__For people knowing Roby__ There is actually no difference between "roby run"
-and "syskit run".
+__For people knowing Roby__ There is actually no difference between `roby run`
+and `syskit run`.
 {: .warning}
 
 In another shell, display the task using rock-display: 
@@ -221,6 +221,6 @@ This tutorial showed you:
   * how to graphically represent the result
 
 The following tutorial will go a bit further, introducing the concept of _data
-service_, which allows you to add a bit more of abstraction in your system.
+service_, which allows you to add a bit more of abstraction to your system.
 
 Progress to the [next tutorial](300_services.html) defining data services.

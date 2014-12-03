@@ -23,12 +23,12 @@ transformer.
 
 When using a system like the transformer, or ROS' tf if you are familiar with
 it, it gets quickly difficult to ensure that all the frames used in the network
-are consistent. In a dynamic network, such as what syskit enables, it is even
+are consistent. In a dynamic network, such as what Syskit enables, it is even
 more difficult: which frames are relevant for a particular component depends on
 which inputs and outputs it is connected to.
 
 This tutorial will guide you through the transformer usage in Syskit, as well as
-what syskit brings on the table w.r.t. reconfiguration and consistency-checking. It
+what Syskit brings on the table w.r.t. reconfiguration and consistency-checking. It
 will do so by using tut_sensor::TransformerTask, a drop-in replacement for
 tut_sensor::Task component that uses the transformer, a modification we prepared
 for [in the previous tutorial](900_reusing_profiles.html).
@@ -58,7 +58,7 @@ TransformerTask task:
 ![Task Frames](1000_transformer_task_frames.png)
 
 This shows the frames that TransformerTask requires. These are declared when
-writing the component. Indeed, if you look at tutorials/orogen/tut_sensor:
+writing the component. Indeed, if you look at [tutorials/orogen/tut_sensor](https://gitorious.org/rock-tutorials/orogen-tut_sensor):
 
 ~~~ ruby
 transformer do
@@ -77,7 +77,7 @@ How this works in Rock is that the frame names declared in the component are
 __local__ to the component. One needs to provide a mapping between the names of 
 these local frames and the corresponding actual names on the system. Outside
 Syskit, this is done by assigning the corresponding properties. When using
-syskit, this is done by specifying the frame selection in the instance
+Syskit, this is done by specifying the frame selection in the instance
 requirements. For instance, in the RocksWithTransformer profile in
 models/profiles/rocks.rb:
 
@@ -124,7 +124,7 @@ a task_name.port_name string. In Syskit, it can be any instance requirement --
 compositions, definitions, devices, ...
 
 In our case, the leader->world transformation is provided by the rock1 device,
-the follower->world transformation by the rock2 device. Let's tell syskit
+the follower->world transformation by the rock2 device. Let's tell Syskit
 exactly this:
 
 ~~~ ruby
@@ -156,11 +156,11 @@ syskit instanciate -rtut-transformer follower_def!
 ~~~
 
 Syskit automatically __added__ what was required to generate the transformation
-that the sensor component requires. Note that it is transparent: syskit will
+that the sensor component requires. Note that it is transparent: Syskit will
 always add (or reuse, if they are already in the network) the producers that a
 particular component needs, without having to specify it
 
-If you actually want the leader to move, just tell syskit so by also deploying
+If you actually want the leader to move, just tell Syskit so by also deploying
 the random definition:
 
 ~~~
@@ -169,7 +169,7 @@ syskit instanciate -rtut-transformer follower_def! random_def!
 
 Frame Consistency
 ------------------
-Another facet of the syskit transformer integration is that it is able to check
+Another facet of the Syskit transformer integration is that it is able to check
 for frame consistency, and provide some automatic configuration mechanisms. This
 is a two-edged sword: you get an extremely useful consistency checking, and
 better support for reconfiguration abilities, but you need to provide more
@@ -211,7 +211,7 @@ declarative-only, and is used only to check for consistency among frames.
 If we now instanciate the network and have a look at the frames, we see that the
 frames in the RockTutorialControl components __have been set__ (no need to add a
 use_frames statement). This has been done automatically by Syskit since the
-corresponding devices have been declared as producers (syskit can therefore
+corresponding devices have been declared as producers (Syskit can therefore
 deduce the local-to-global frame mapping).
 
 Let's now add a bit more, and express that the RockTutorialControl
@@ -251,11 +251,11 @@ class TutSensor::TransformerTask
 end 
 ~~~
 
-If you now look in the result of syskit instanciate (don't forget to show the
+If you now look in the result of `syskit instanciate` (don't forget to show the
 transformations), starting at the TutFollower task, you can see that there is a
 chain of ports and frames that go through most of the components. Moreover,
 notice that we did not have to add more use_frames statements in our definition,
-syskit could assign all missing frames.
+Syskit could assign all missing frames.
 
 Actually, we could even remove the 'ref' specification, since its value is
 required by the choice of rock1 as our 'controlled' rock:
@@ -281,18 +281,18 @@ else.
 [^1]: in principle, the motion commands and distance-bearing samples are
       constraining transformations, not frames, and therefore the 'world' frame could
       be propagated as well. This is a limitation in the current
-      syskit-transformer plugin.
+      Syskit-transformer plugin.
 
 Sharing configuration between Ruby scripts and Syskit
 -----------------------------------------------------
-When mixing ruby scripts and syskit, it is customary to create a root
+When mixing ruby scripts and Syskit, it is customary to create a root
 transformer configuration file that lists the frame names as well as the static
 transforms. The convention is to call it config/robotname-transformer.rb, e.g.
 tut-transformer-transformer.rb
 
 There should then be one file for scripts,
 config/robotname-transformer-scripts.rb that loads the previous one and adds the
-dynamic transformations, and then the relevant transformer blocks in the syskit
+dynamic transformations, and then the relevant transformer blocks in the Syskit
 profiles, in which the file is loaded with
 
 ~~~ ruby
@@ -305,11 +305,11 @@ end
 
 Summary
 -------
-In this tutorial, we have seen how the syskit-transformer integration allows to
+In this tutorial, we have seen how the Syskit-transformer integration allows to
 make the transformer configuration a part of the whole subsystem design, as well
 as making sure that the frame configurations are consisten across the network.
 Using this plugin, the frame selection becomes "just a part" of the overall
-system configuration, automated code making the transition between the syskit
+system configuration, automated code making the transition between the Syskit
 description of components, ports and dataflow and the transformer's description
 of frames, transformations and transformation producers.
 

@@ -25,7 +25,7 @@ This page will simply introduce where all the bits and pieces are stored in a
 given bundle, as well as additional concepts that were not introduced in the
 tutorials.
 
-When starting from a given bundle, the syskit application will __automatically__
+When starting from a given bundle, the Syskit application will __automatically__
 load all model files contained in said bundle. Therefore, when creating scripts
 in scripts/, all the models defined in models/ __are__ __available__. The
 modifications described in this page will therefore break the scripts which you
@@ -231,9 +231,9 @@ Syskit.conf.use_deployments_from 'tut_deployment'
 Finally
 -------
 
-You can finally use syskit run, syskit browse and syskit instanciate. syskit
-browse does not need any arguments. run and instanciate will need you to specify
-a -rtut argument, to tell roby that you want the 'tut' configuration to
+You can finally use `syskit run`, `syskit browse` and `syskit instanciate`. Note the `syskit
+browse` does not need any arguments, while the other two need you to specify
+a `-rtut` argument, to tell roby that you want the 'tut' configuration to
 be loaded:
 
 ~~~
@@ -258,7 +258,7 @@ bundle:
 
 (note, this is the default content in all new bundles)
 
-Run syskit browse (and ignore the error in skid4_control.rb, we'll fix that in
+Run `syskit browse` (and ignore the error in skid4_control.rb, we'll fix that in
 the next tutorial). If you look into the producers of
 Types::Base::MotionCommand2D, you will find Base::Motion2DControllerSrv. Which
 fits our components (we generate control commands of type Motion2D).
@@ -270,7 +270,7 @@ Delete models/blueprints/command_generator_srv.rb, and replace all occurences of
 require 'models/blueprints/command_generator_srv'
 ~~~
 
-by (as reported by syskit browse)
+by (as reported by `syskit browse`)
 
 ~~~ ruby
 require 'rock/models/blueprints/control'

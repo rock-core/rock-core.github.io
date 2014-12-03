@@ -9,7 +9,7 @@ component-oriented system like the one we are manipulating in Syskit, devices
 are __unique__: while it is possible to instanciate multiple image processing
 components, a robot cannot arbitrarily spawn a new camera.
 
-For these reasons, devices have a specialized place in syskit as well. This
+For these reasons, devices have a specialized place in Syskit as well. This
 is because:
 
  * devices are __unique__, for the reason above
@@ -49,12 +49,12 @@ Communication Busses
 --------------------
 A special type of device is a __communication bus__. The busses are meant to
 provide multiplexing/demultiplexing for other devices. They are handled directly
-by syskit, which has major advantages:
+by Syskit, which has major advantages:
 
  * it avoids the need to create a composition per device that is attached to the
    bus (the solution one would have so far).
  * once support for a given type of communication bus is written, any device
-   conforming to the syskit combus conventions can use it.
+   conforming to the Syskit combus conventions can use it.
  * the combus-to-driver relationship is setup in a meaningful way (i.e. com bus
    is started before the driver and stopped afterwards).
 
@@ -144,7 +144,7 @@ end
 
 Combus Support __(Advanced)__
 --------------
-Communication bus support in syskit relies on the following conventions:
+Communication bus support in Syskit relies on the following conventions:
 
  * the device driver must have at least one input or output of the combus
    message type (it can obviously have both, but having none is an error)
@@ -185,10 +185,10 @@ dynamic_output_port /.*/, "canbus/Message"
 ~~~
 
 The usage of the hbridge driver attached to the can combus is therefore
-__valid__ from syskit's point of view, and the network generation will
+__valid__ from Syskit's point of view, and the network generation will
 succeed. 
 
-__At runtime__, syskit will require the combus component to create, during
+__At runtime__, Syskit will require the combus component to create, during
 configuration, an output port of the same name than the device (i.e.
 "actuators"). This creation is done in the combus configure method. For instance
 (forget about the can_id thing for now, this is a quite advanced topic that will

@@ -17,7 +17,7 @@ services) to existing task contexts.
 
 Modelling
 ---------
-The syskit layer then generates a Ruby class that is a subclass of
+The Syskit layer then generates a Ruby class that is a subclass of
 {rdoc_class: Syskit::TaskContext} for each of the oroGen components it finds.
 Throught this class, one has access
 to all the runtime code execution features of Roby itself. See [Roby's own
@@ -61,7 +61,7 @@ will have an _io_error_ event that is forwarded to the _exception_ event.
 
 Configurations {#configuration}
 --------------
-Task context configurations, in syskit, are all managed through [the
+Task context configurations, in Syskit, are all managed through [the
 configuration directory
 mechanisms](../runtime/configuration.html#configuration-directories). The
 configuration files are looked for in config/orogen/ and must follow the

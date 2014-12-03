@@ -69,7 +69,7 @@ explanations [on devices](../system/devices.html).
 
 For our purposes here, we will want to have a data service that generates a pose
 (in particular, the poses of both our leader and follower). Let's have a look at
-what is available. Open the syskit model browser
+what is available. Open the Syskit model browser
 
 ~~~
 # syskit browse
@@ -236,7 +236,7 @@ RockTutorial::RockTutorialControl:0x515dad8{conf => [default]}[]: multiple possi
 ~~~
 
 This time, the issue is different: there are more than one deployment available
-for a particular task, and we therefore need to tell syskit which one should be
+for a particular task, and we therefore need to tell Syskit which one should be
 used. This is done by providing a regular expression that matches the
 deployment names that are _preferred_ for a particular subsystem. Let's do this:
 

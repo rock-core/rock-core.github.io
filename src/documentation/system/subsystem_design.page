@@ -10,7 +10,7 @@ the actual implementations.
 However, there is still the problem of telling the system what should __actually
 run__. This step is called _system deployment_.  
 At the root of everything are the __instance requirements__. They describe a
-subsystem so that the syskit engine can create the network associated with
+subsystem so that the Syskit engine can create the network associated with
 it. In essence, when creating instance requirements, one picks up what should
 run where. It represents, for instance, 'I want a PoseEstimation composition where the
 orientation child, which is originally declared as an orientation service, is
@@ -117,11 +117,11 @@ Rock::CorridorNavigation::Servoing.
 Summary
 -------
 This page explained the general syntax and concepts related to dependency
-injection in syskit. However, you probably noticed how it could become pretty
+injection in Syskit. However, you probably noticed how it could become pretty
 tedious for complex systems.
 
 To promote reuse of _configured subsystems_, as well as allowing to _name
-subsystems_, syskit introduces the concept of __profiles__. This is the subject
+subsystems_, Syskit introduces the concept of __profiles__. This is the subject
 of [the next page](profiles.html)
 
 In general, have a look at the documentation for

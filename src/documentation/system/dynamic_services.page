@@ -3,7 +3,7 @@ title: Dynamic Services
 sort_info: 700
 ---
 
-This section hits one of the functionalities that syskit is the only one to
+This section hits one of the functionalities that Syskit is the only one to
 offer in robotic model-based systems: the ability to deal with _dynamic
 interfaces_.
 
@@ -13,7 +13,7 @@ many devices they are attached to only when they access the hardware. Or, motion
 task merging paradigms such as itasc or whole body control would create ports as
 required by the number of motion tasks they should handle.
 
-In syskit, this aspect is handled in two parts:
+In Syskit, this aspect is handled in two parts:
  - on the modelling side, by declaring that a given task context (not a
    composition) has the ability to create new data services.
  - at runtime, by auto-configuring the underlying RTT task context according to

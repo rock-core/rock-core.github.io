@@ -87,7 +87,7 @@ end
 we see that a lot of it is actually specific for tut_sensor::Task. If we wanted
 to stick with specializations, we would create a first specialization for
 DistanceBearingSensorSrv, and then specialize it for TutSensor::Task. However,
-this kind of recursive specializations is not supported in syskit, so we'll have
+this kind of recursive specializations is not supported in Syskit, so we'll have
 to deal with it differently.
 
 Instead, we will create a RockFollower composition that is a __subclass__ of
@@ -124,7 +124,7 @@ The issue this time is the following:
  - we give a selection for 'target_pose', which is meant to be a child of
    RockFollower
  - the target_pose child is only defined in the specialization of RockFollower
- - nothing in the use() specification allows syskit to determine that it should
+ - nothing in the use() specification allows Syskit to determine that it should
    specialize.
 
 The solution is therefore to give the sensor component explicitly, so that the
@@ -171,7 +171,7 @@ profile 'BaseRocks' do
 
 __Second part__: making the two profiles, one that is identical to the one we
 had so far, and one for the transformer case. To achieve this, we create two new
-Rocks profile and tell syskit that they __use__ the base one. Finally we add
+Rocks profile and tell Syskit that they __use__ the base one. Finally we add
 some more dependency selection that is then __limited__ to these new profiles.
 At the end, we refine the follower definition in the no-transformer case to
 match what we had beforehand.
