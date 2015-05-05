@@ -72,7 +72,7 @@ autoproj/manifest should look like:
 ~~~ text
 package_sets:
    - github: rock-core/package_set
-   - gitorious: rock-tutorials/package_set
+   - github: rock-tutorials/package_set
 
 layout:
    - rock.core
