@@ -30,7 +30,8 @@ Device models are specialized forms of data services. They are declared in the
 same way than data services, but instead using the device_type stanza instead of
 the data_service_type one.
 
-<div class="markdown" class="1">
+
+<div class="block" markdown="1">
 __Generation__ A template file for a new device, which follows syskit naming and
 filesystem convention, can be generated with
 
@@ -87,7 +88,7 @@ communicate with that type of communication bus. It is customary to define the
 busses under the Dev::Bus namespace (see models/devices/categories.rb in the
 rock bundle for a common hierarchy).
 
-<div class="markdown" class="1">
+<div class="block" markdown="1">
 __Generation__ A template file for a new com bus, which follows syskit naming and
 filesystem convention, can be generated with
 
