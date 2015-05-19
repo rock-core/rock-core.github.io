@@ -15,7 +15,7 @@ necessary.
 This tutorial directly builds on the previous tutorials. Additionally, you have
 to have the rock packages gui/vizkit and gui/rock_widget_collection installed.
 
-In case you are starting here, the required packages are mentioned on the [introduction page](/documentation/advanced_tutorials/index.html).
+In case you are starting here, the required packages are mentioned on the [introduction page](index.html).
 
 Displaying Data with Vizkit
 -----------

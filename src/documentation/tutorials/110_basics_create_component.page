@@ -43,7 +43,7 @@ There are multiple advantages for using oroGen:
    complete Rock toolchain, from simple command-line execution to advanced
    model-based system management
 
-This tutorial does not cover all details of Orocos components but you will find further information in the [oroGen documentation](/documentation/orogen/index.html).
+This tutorial does not cover all details of Orocos components but you will find further information in the [oroGen documentation](../orogen/index.html).
 
 Similar to the creation of a library you create an oroGen component using the command 'rock-create-orogen'. 
 
