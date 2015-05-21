@@ -9,7 +9,7 @@ In this tutorial you will learn how to create a C++ vizkit widget for displaying
 2D data like images, numbers and text.
 
 For more general information about graphical user interface programming in Rock,
-see [here](../graphical_user_interface).
+see [here](../graphical_user_interface/).
 
 Create Qt Designer Widget
 -----------

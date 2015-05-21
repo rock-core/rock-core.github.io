@@ -50,7 +50,7 @@ Advanced System Management
 Finally, Rock gives you rock-roby, a [model-based system management
 layer](system/index.html) which will allow you to manage complex networks of
 components both at design and running time. Have a look first at the
-[corresponding tutorials](system_management_tutorials).
+[corresponding tutorials](system_management_tutorials/).
 
 <div class="fullwidth_video_400">
 {youtube: {video_id: QKl_0pGIfqI, width: 400, height: 300}}
