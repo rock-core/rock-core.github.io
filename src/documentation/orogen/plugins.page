@@ -29,12 +29,35 @@ seamless integration as it is the only one that has an API for code generation.
 Example of a very simple plugin:
 
 ~~~ ruby
-module OrogenSimplePlugin
-    def add_boolean_attribute(name)
-        add_base_member("simple_plugin", name, "bool")
+class BoolPlugin <  OroGen::Spec::TaskModelExtension
+    attr_accessor :varname
+
+    # implement extension for task
+    def early_register_for_generation(task)
+        task.add_base_member("simple_plugin", varname, "bool")
+        task.operations["getBool"].
+            base_body("return #{varname};")
     end
 end
-Orocos::Generation::TaskContext.include OrogenSimplePlugin
+
+class OroGen::Spec::TaskContext
+    def add_boolean_attribute(varname)
+        extension_name = "BoolPlugin"
+        # find previous instance of the extension
+        extension = find_extension(extension_name)
+        if !extension
+            # create new instance
+            boolp = BoolPlugin.new(extension_name)
+            boolp.varname = varname
+            # define interface for task
+            hidden_operation("getBool").
+                returns("bool")
+            register_extension(boolp)
+        else
+            raise OroGen::ConfigError, "Plugin '#{extension_name}' is already instantiated with base member '#{extension.varname}'. '#{varname}' will not be created."
+        end
+    end
+end
 ~~~
 
 If this plugin is present, the add_boolean_attribute method becomes available on
