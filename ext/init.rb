@@ -8,8 +8,6 @@
 # The +config+ variable below can be used to access the Webgen::Configuration object for the current
 # website.
 config = Webgen::WebsiteAccess.website.config
-config['sourcehandler.patterns']['Webgen::SourceHandler::Copy'] << '**/autoproj_bootstrap'
-config['sourcehandler.patterns']['Webgen::SourceHandler::Copy'] << '**/autoproj_bootstrap-dev'
 config['sourcehandler.patterns']['Webgen::SourceHandler::Copy'] << '**/manifest.xml'
 config['sourcehandler.patterns']['Webgen::SourceHandler::Copy'] << '**/*.svg'
 config['sourcehandler.patterns']['Webgen::SourceHandler::Copy'] << '**/*.pdf'
