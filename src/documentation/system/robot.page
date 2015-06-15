@@ -12,6 +12,7 @@ In Syskit, having different setups within the same bundle is achieved by
 defining different robots.
 
 A new robot is created with
+
 ~~~
 syskit gen robot ROBOT_NAME
 ~~~

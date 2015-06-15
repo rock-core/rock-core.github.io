@@ -154,6 +154,6 @@ end
 
 Ensuring that all the inflexion points of a given profile are properly using
 tags is not done every time the profile gets loaded (it would be too costly).
-Instead, this is done at [testing time](testing.html) with the it_should_be_self_contained
+Instead, this is done at testing time with the it_should_be_self_contained
 statement (which is enabled by default if you use syskit gen).
 

@@ -20,8 +20,8 @@ end
 ~~~
 
 <div class="block" markdown="1">
-__Generation__ A template for a new composition as well as [its related unit
-tests](testing.html), following Syskit's naming conventions and file system structure, can be
+__Generation__ A template for a new composition as well as its related unit
+tests, following Syskit's naming conventions and file system structure, can be
 generated with
 
 ~~~

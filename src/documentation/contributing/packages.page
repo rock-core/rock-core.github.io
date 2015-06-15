@@ -17,9 +17,9 @@ As a side note, it is important that you realize that your library can be
 integrated into Rock _without any changes_ to your library. The Rock build system is designed for
 that, as long as it follows widely-accepted standards (see for instance
 the "Build System Behaviour" section of the [corresponding Rock
-guidelines](http://rock.opendfki.de/wiki/WikiStart/Standards/RG4). Even the
-manifest.xml file, which is used to describe the package, [can be provided as
-part of the package set](../autoproj/advanced/manifest.xml#package_set) instead
+guidelines](http://rock.opendfki.de/wiki/WikiStart/Standards/RG4)). Even the
+[manifest.xml file](../autoproj/advanced/manifest-xml.html), which is used to
+describe the package, can be provided as part of the package set instead
 of as part of the package itself.
 
 The process to get a package into Rock is:
