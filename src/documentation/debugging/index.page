@@ -7,7 +7,10 @@ Introduction
 ----------------
 
 Rock provides a logger that facilitates and unifies debugging of system libraries. 
-The following section describes the functionality of the base logger and how to use it. 
+The following section describes the functionality of the base logger and how to use it.
+
+For debugging of running/existing components please refer to [Debugging Components](../runtime/debugging.html) 
+from the Core/Running Components section.
 
 Adding the base logger to a library
 --------------------------------

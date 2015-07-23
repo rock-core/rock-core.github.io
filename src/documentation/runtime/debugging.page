@@ -72,7 +72,32 @@ Orocos.run 'my_project::Task' => 'task', 'my_deployment',
 end
 ~~~
 
+
 in which case the valgrind output is redirected to a separate process logfile,
 which is the process' log file name with .valgrind appended (in the example
 above, task-PID.log.valgrind and my_deployment-PID.log.valgrind, where PID is
 the process ID of the started deployment)
+
+It is also possible to pass options to valgrind:
+
+~~~ ruby
+Orocos.run 'my_project::Task' => 'task', 'my_deployment',
+    :valgrind: true, :valgrind_options: ['--undef-value-errors=no'] do
+   ...
+end
+~~~
+
+Ignore RTT Exception Handling
+--------
+RTT catches by default all exeption from the tasks. 
+This is because RTT tries to be as safe as possible.
+A somehow crashed task should never influence the execution of
+other components within the same deployment. However, for debugging 
+purposes, it is convenient to let the exceptions be unhandled and 
+cause a process abort. This makes the debugging with gdb easier. 
+To activate this **debugging** behaviour set the environment 
+variable RTT_IGNORE_EXCEPTION to 1.
+
+~~~
+    RTT_IGNORE_EXCEPTION=1 ruby any_script.rb
+~~~
