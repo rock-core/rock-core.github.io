@@ -33,7 +33,7 @@ class BoolPlugin <  OroGen::Spec::TaskModelExtension
     attr_accessor :varname
 
     # implement extension for task
-    def early_register_for_generation(task)
+    def pre_generation_hook(task)
         task.add_base_member("simple_plugin", varname, "bool")
         task.operations["getBool"].
             base_body("return #{varname};")
@@ -175,3 +175,34 @@ and
 add_base_implementation_code(code, include_before)
 ~~~
 
+Different Kind of Steps during Generation
+-----------------------------------------
+
+There are three different hook available which plugins could use.
+The above listed ```pre_generation_hook``` makes it able to add code
+to existing base-methods or register new base methods for generation.
+
+The ```generation_hook``` is the normal use-case for plugins. In this generation step
+regular ports or methods can be created, but no new code can be added to existing base-members.
+
+The ```post_generation_hook``` is only intended to read the finally generated task-context.
+No modifications on the TaskContext or the generation should be done at this step. This hook
+is useful to extract information during compilation time.
+
+Adding user-defined classes to generation
+-----------------------------------------
+
+Plugins that want to register additional Classes during compilation
+could register a subfolders for the Cmake build system. These subfolders get 
+added to the compilation unit. The plugin developer has to make sure that the folder
+and a CMakeLists.txt within it has been generated during one of the above listed hooks.
+If this classes should be installed or linked against other parts, regular CMake commands must
+be used. The subfolders names must be export as a enumerable of string by the 
+```each_auto_gen_source_directory``` method of the plugin, example:
+
+
+~~~ ruby
+def each_auto_gen_source_directory(&block)
+    ['src1','src2'].each(&block)
+end
+~~~
