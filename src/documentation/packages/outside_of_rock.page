@@ -35,13 +35,13 @@ git clone git://github.com/rock-core/base-types.git
 and install them
 
 ~~~ text
-cd cmake
+cd base-cmake
 mkdir build
 cd build
 cmake -DCMAKE_INSTALL_PREFIX=$HOME/dev/install ..
 make install
-cd ..
-cd types
+cd ../../
+cd base-types
 mkdir build
 cd build
 cmake -DCMAKE_INSTALL_PREFIX=$HOME/dev/install ..
@@ -59,7 +59,7 @@ environment variables:
 ~~~ text
 export CMAKE_PREFIX_PATH=$HOME/dev/install
 export PKG_CONFIG_PATH=$HOME/dev/install/lib/pkgconfig:$HOME/dev/install/share/pkgconfig:$HOME/dev/install/lib64/pkgconfig:$PKG_CONFIG_PATH
-export LD_LIBRARY_PATH=$HOME/dev/install/lib:$HOME/dev/install/lib64:$PKG_CONFIG_PATH
+export LD_LIBRARY_PATH=$HOME/dev/install/lib:$HOME/dev/install/lib64:$LD_LIBRARY_PATH
 export PATH=$HOME/dev/install/bin:$PATH
 ~~~
 

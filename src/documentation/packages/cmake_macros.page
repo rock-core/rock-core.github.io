@@ -11,21 +11,16 @@ is done with:
 
 ~~~ text
 cmake_minimum_required(VERSION 2.6)
-include($ENV{ROCK_CMAKE_MACROS}/Rock.cmake)
+find_package(Rock)
 rock_init(dummyproject 0.1)
 rock_standard_layout()
 ~~~
 
-The ROCK_CMAKE_MACROS environment variable must be set externally for the CMake
-code to find the file that defines the macros. Rock's autoproj build
-configuration does that automatically.
-
 The signature of rock_init is:
 
-rock_init(project_name project_version)
-{: .cmdline}
+    rock_init(project_name project_version)
 
-The <tt>rock_standard_layout()</tt> call looks for sub-directories of the
+The `rock_standard_layout()` call looks for sub-directories of the
 standard C++ package layout and sets it up accordingly. See
 [the Rock guidelines](http://rock.opendfki.de/wiki/WikiStart/Standards/RG4) for
 information about the standard package directory structure
@@ -42,7 +37,7 @@ rock_executable(name
     [MOC qtsource1.hpp qtsource2.hpp])
 </pre>
 
-Creates a C++ executable and (optionally) installs it
+Creates a C++ executable and (optionally) installs it.
 
 The following arguments are mandatory:
 
