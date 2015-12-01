@@ -125,7 +125,7 @@ Orocos.run ... do
   lidar.lidar_samples.connect_to(filter.lidar_samples)
 
   # Finalize transformer configuration (see below for explanations)
-  # For static transformations the task should not not yet be configured
+  # For static transformations the task should not yet be configured
   Orocos.transformer.setup(lidar, filter, servo)
 
   lidar.configure
