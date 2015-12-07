@@ -12,15 +12,15 @@ This section lists the operating systems where Rock is _well tested_, is _untest
 For _well tested_ operating systems, our [build server makes sure that Rock builds
 fine](http://rock-robotics.org/status), and it is known to be actively used. _Untested_ operating systems have
 had users (so, it did work at some point), but it is unknown whether it is
-still being actively used. Finally, _unknown status_ operating systems are OSs where
+still being actively used. Finally, _unknown status_ operating systems are OS's where
 Rock should work, but we have had no known report of its success or failure.
 
-### Well tested OSs
+### Well tested OS's
 
 | ![Ubuntu](install/ubuntu.png) | Latest LTS and Latest non-LTS. We let 6 months after a LTS release before deprecating the previous LTS. |
 | ![Debian](install/debian.png) | testing or unstable |
 
-### Experimental OSes
+### Experimental OS's
 
 | ![Gentoo](install/gentoo.gif) | Last known working version end of 2011 |
 | ![Arch](install/arch.png) | Last known working version end of 2013 |
@@ -28,7 +28,7 @@ Rock should work, but we have had no known report of its success or failure.
 | ![Fedora](install/fedora.png) | Last known working version 2012 |
 
 Feel free to ask on the mailinglist to ask for support for porting to another System.
-Please let us know any experience if you are using one of the above listed OSs.
+Please let us know any experience if you are using one of the above listed OS's.
 
 #### Legal Comments
 This site is not affiliated with or endorsed by the Fedora Project.
@@ -46,9 +46,9 @@ Installation: the easy way
 --------------------------
 
  1. Make sure that the Ruby interpreter is installed on your machine. Rock
-    requires ruby 2.0 or higher, which on Debian and Ubuntu are provided by
-    the ruby2.0 package. However we **recomment the use of ruby 2.1** for all OS'es
-    expect ubuntu 14.04 where ruby2.0 should be taken.
+    requires ruby 2.0 or higher, which is provided on Debian and Ubuntu by
+    the ruby2.0 package. However we **recommend the use of ruby 2.1** for all OS's
+    except Ubuntu 14.04, where ruby2.0 should be chosen.
 
     ~~~
     ruby --version

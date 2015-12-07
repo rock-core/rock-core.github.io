@@ -16,6 +16,8 @@ task_context "Task" do
   transformer do
     transform "input", "body"
   end
+
+  port_driven "lidar_samples"
 end
 ~~~
 
