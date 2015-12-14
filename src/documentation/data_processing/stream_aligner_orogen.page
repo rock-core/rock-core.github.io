@@ -18,7 +18,7 @@ task_context "Task" do
     align_port "transformation", 0
   end
 
-  port_driven "lidar_samples", "transformation"
+  port_driven
 end
 ~~~
 
