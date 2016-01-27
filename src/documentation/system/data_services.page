@@ -45,13 +45,13 @@ output ports is the same [than in oroGen files](../orogen/task_interface.html#po
 __Generation__ Template files for a new data service can be generated with
 
 ~~~
-syskit gen subnamespace/name_of_service
+syskit gen srv subnamespace/name_of_service
 ~~~
 
 for instance
 
 ~~~
-syskit gen localization/pose
+syskit gen srv localization/pose
 ~~~
 
 would create the Rock::Services::Localization::Pose service in
