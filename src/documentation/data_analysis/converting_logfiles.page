@@ -31,7 +31,7 @@ by step guide how to write a ruby script for updating log files is given below.
 ~~~ ruby
 
 #load converter class
-require 'orocos/log/converter'
+require 'log_tools/converter'
 
 #initialize orocos ruby
 Orocos.initialize 
@@ -41,7 +41,7 @@ Orocos::CORBA.load_typkit 'custom_type'
 registry = Orocos.registry
 
 #create a new converter
-converter = Converter.new
+converter = LogTools::Converter.new
 
 #register a set of conversions which will be
 #applied if the sample is older than time
