@@ -71,7 +71,7 @@ pocolog _logfile_ -s _stream_name_
 
 The -\-from and -\-to options allow to limit the display to a given index range:
 
-pocolog _logfile_ -s _stream_name_ -\-from 10 -\-to 5
+pocolog _logfile_ -s _stream_name_ -\-from 10 -\-to 50
 {: .commandline}
 
 will skip the first 10 samples and then display 40 samples in a row.
