@@ -56,7 +56,7 @@ Installation: the easy way
 
  2. Create and "cd" into the directory in which you want to install the toolchain.
  3. To build the core system of the latest release, use this
-    [bootstrap.sh](http://www.rock-robotics.org/stable/bootstrap.sh)
+    [bootstrap.sh](http://www.rock-robotics.org/master/bootstrap.sh)
     script. Save it in the folder you just created. For other options, see
     below.
 
@@ -98,7 +98,7 @@ Installation: the easy way
 Other bootstrapping options
 ---------------------------
  * **Build the master (development) version of rock**
-   Use [this bootstrap.sh](http://www.rock-robotics.org/bootstrap.sh) instead of the one listed above.
+   Use [this bootstrap.sh](http://www.rock-robotics.org/master/bootstrap.sh) instead of the one listed above.
  * **Build all of rock**: Call 
   
    ~~~
