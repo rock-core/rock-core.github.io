@@ -116,7 +116,7 @@
 
       <!-- FOOTER -->
       <div class="footer">
-      		<div><p style="text-align:center;"><a href="{relocatable: impressum.html}">Imprint/Impressum</a></div></p>
+      		<div><p style="text-align:center;"><a href="{relocatable: impressum.html}">Imprint/Impressum Privacy Statement/Datenschutzerklärung</a></div></p>
           <div class="nav1">
               <ul>
                   <li><a href="{relocatable: documentation/about/index.html}">About Rock</a></li>
