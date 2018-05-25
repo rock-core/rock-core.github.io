@@ -47,11 +47,43 @@ their blog services.
 For more information about Tumblr's data processing, please refer to Tumblr's
 Privacy Policy <a href="https://www.tumblr.com/privacy">here</a>.
 
+<h2>Newsletter usage</h2>
+This website embeds a redirection to DFKI's Mailman service.
+Any registration will subsequently be based on DFKI's data policies as found
+<a href="https://www.dfki.de/web/data-protection-en">here</a><br/>
 
-<!--
+The newsletter service in particular requires to store your transmitted name and e-mail in combination with
+settings for your delivery preferences. 
+The processing of the data is lawful because it is necessary for the purpose of
+maintaining the newsletter service for you. You can at any time unsubscribe or
+request the removal from this service.<br/>
+
+For registration and deregistration please visit:<br/>
+<ul>
+<li>rock-dev: <a
+href="http://www.dfki.de/mailman/cgi-bin/listinfo/rock-dev">http://www.dfki.de/mailman/cgi-bin/listinfo/rock-dev</a></li>
+<li>rock-users: <a href="http://www.dfki.de/mailman/cgi-bin/listinfo/rock-users">http://www.dfki.de/mailman/cgi-bin/listinfo/rock-users</a></li>
+</ul>
+
+<h2>Contractor (Hosting/WebSpace Server) </h2>
+This website is hosted with the following contractor.
+<p>
+<b>Goserver GmbH</b><br/>
+Marssstr. 72<br/>
+80335 Munich/Germany<br/><br/>
+
+Phone: +49 89 540 42 50 0<br/>
+Email: <a href="mailto:info@goserver.de">info&#064;goserver.de</a><br/>
+<a href="http://www.goserver.de">Goserver GmbH</a><br/>
+</p>
+
 <h2>Access data</h2>
 On every access to our web site some usage, transmission and connection data
-will be collected, temporarily stored in a log file and regularly deleted after
+will be collected by our Hosting Contractor Goserver.
+For more information about Goserver's data processing, please refer to
+Goserver's Privacy Policy <a href="https://www.goserver.de/privacy-webtracking">here</a>.
+
+<!--temporarily stored in a log file and regularly deleted after
 90 days.
 On every access/retrieval the following data are stored:
 <ul>
