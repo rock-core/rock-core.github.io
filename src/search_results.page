@@ -2,7 +2,6 @@
 title: Search Results
 in_menu: false
 ---
-<div id="cse" style="width: 100%;">Loading</div>
 <link rel="stylesheet" href="http://www.google.com/cse/style/look/default.css" type="text/css" />
 <style type="text/css">
   .gsc-control-cse {
