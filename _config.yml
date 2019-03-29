@@ -1,0 +1,12 @@
+defaults:
+    -
+        scope:
+            path: ""
+        values:
+            layout: "page"
+markdown: kramdown
+kramdown:
+  input: GFM
+highlighter: rouge
+source: src
+

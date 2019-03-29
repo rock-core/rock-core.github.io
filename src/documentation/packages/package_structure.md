@@ -1,0 +1,109 @@
+---
+section: Managing Packages
+title: Package Structure
+sort_info: 150
+---
+
+Below, oroGen refers to the tool that is used in Rock to develop components
+{: .note}
+
+Categories
+----------
+The Rock packages are organized into categories:
+
+* **base** base types, CMake script repositories, ...
+* **bundles** [bundle * packages](http://trac.rock-robotics.org/wiki/WikiStart/Standards/RG7)
+* **control** packages that are related to motion control
+* **data_processing** packages that are related to general data processing (e.g.
+  neural network, filtering, ...)
+* **drivers** packages that are related to device drivers: drivers themselves,
+  and common libraries that ease their development
+* **gui** GUI and visualization packages
+* **image_processing** packages that are related to image processing
+* **multiagent** packages that are related to multiagent / multirobot
+  coordination
+* **planning** packages that are related to path and task planning
+* **simulation** packages that are related to simulation
+* **slam** packages that are related to localization and mapping both separately
+  and as SLAM
+* **test** packages that are needed for other unit tests
+* **tools** packages that are related to the toolchain and/or are general
+  utility packages
+* **tutorials** packages that are the result of tutorials
+
+On github, each category has its own project, called rock-NAME (for instance,
+rock-drivers for the drivers). However, Rock is still in the process of
+migrating packages from gitorious to github, so some of the existing packages
+are still on gitorious. __All new packages should go to github__.
+
+When installed, packages go into folders that correspond to their main category.
+Moreover, the oroGen-independent packages are installed directly under that
+folder, while the oroGen components are installed in an 'orogen' subfolder.
+
+For instance, the driver libraries are stored in drivers/ and the driver oroGen
+components in drivers/orogen/
+
+ * no other subdirectories other than "orogen" can be created under the main
+   categories
+ * opening new categories is indeed possible but **must** be discussed first on
+   the mailing list.
+
+Naming
+------
+
+ * snake_case for all path components (categories and package names)
+
+Libraries and oroGen components
+-------------------------------
+The most important design factor in the Rock package structure is that
+functionality should be implemented in a way that is **independent from any
+integration framework**
+
+In practice, it means that for most functionality, there will be two Rock
+packages:
+
+ * the "library" part which usually is a C++ library, that uses CMake to build,
+   with maybe some dependencies on other C++ libraries (other Rock libraries
+   and/or "common" libraries)
+ * the "orogen" part which is providing an integrated oroGen component for the
+   libraries.
+
+For instance, in the [rock-drivers](https://github.com/rock-drivers)
+subproject, there is [the Hokuyo driver
+library](https://github.com/rock-drivers/drivers-hokuyo) and the corresponding [oroGen
+component](https://github.com/rock-drivers/drivers-orogen-hokuyo).
+
+Mapping between local installation and github repositories
+-------------------------------------------------------------
+
+A library (non-oroGen package) installed on the local system as
+
+    category/package_name
+
+will be managed in a GitHub repository called
+
+    http://github.com/GITHUB_ORGANIZATION/category-package_name
+
+Where GITHUB_ORGANIZATION is usually but not necessarily rock-category.
+
+An oroGen package installed on the local system as
+
+    category/orogen/package_name
+
+will be managed in a GitHub repository called
+
+    http://github.com/GITHUB_ORGANIZATION/category-orogen-package_name
+
+When a one-to-one mapping exists between a library and an oroGen package (e.g.
+the hokuyo driver library and the hokuyo oroGen component), both will have the
+same "package_name". For instance, when installed
+
+    drivers/hokuyo
+    drivers/orogen/hokuyo
+
+and on GitHub:
+
+    http://github.com/rock-drivers/drivers-iodrivers_base
+    http://github.com/rock-drivers/drivers-orogen-iodrivers_base
+
+
