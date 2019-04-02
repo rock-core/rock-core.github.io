@@ -1,1 +1,1 @@
-src/documentation/index.md
+documentation/index.md

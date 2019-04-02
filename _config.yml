@@ -1,6 +1,5 @@
 title: Rock Robotics
 email: rock-dev@dfki.de
-baseurl: rock-core.github.io
 defaults:
     -
         scope:
@@ -11,5 +10,3 @@ markdown: kramdown
 kramdown:
   input: GFM
 highlighter: rouge
-source: src
-
