@@ -198,8 +198,8 @@ More complex customization
 --------------------------
 
 More complex customization can be achieved by accessing the [Autoproj
-API](/api/autoproj/index.html) and
-the [Autobuild API](/api/autobuild/index.html) directly in the <tt>autoproj/init.rb</tt> and
+API](http://rubydoc.info/gems/autoproj/frames) and
+the [Autobuild API](http://rubydoc.info/gems/autobuild/frames) directly in the <tt>autoproj/init.rb</tt> and
 <tt>autoproj/overrides.rb</tt>
 files. The former is loaded before all source files and the latter is loaded
 after all source files.
