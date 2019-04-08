@@ -12,7 +12,7 @@ Rock is an Open Source project, it is maintained by many more people with differ
 </p>
 
 <h2>Contact for content issues</h2>
-<a href="mailto:thomas.roehr@dfki.de">Thomas Roehr, thomas.roehr&#064;@dfki.de</a><br/>
+<a href="mailto:thomas.roehr@dfki.de">Thomas Roehr, thomas.roehr&#064;dfki.de</a><br/>
 <a href="mailto:sylvain.joyeux@m4x.org">Sylvain Joyeux, sylvain.joyeux&#064;m4x.org</a>
 
 <h2>Data Protection Notice</h2>
@@ -25,10 +25,13 @@ our web site.
 
 <h2>Controller</h2>
 Deutsches Forschungszentrum f&uuml;r K&uuml;nstliche Intelligenz (DFKI)<br/>
-Phone: +49 (0)631 / 205 75-0, E-Mail: <a href="mailto:info@dfki.de">info@dfki.de</a>, <a href="https://www.dfki.de/web/legal-info-en">Legal information</a>
+Phone: +49 (0)631 / 205 75-0<br/>
+E-Mail: <a href="mailto:info@dfki.de">info@dfki.de</a><br/>
+<a href="https://www.dfki.de/web/legal-info-en">Legal information</a>
 
 <h2>Data protection officer</h2>
-Phone: +49 (0)631 / 205 75-0, E-Mail: <a href="mailto:datenschutz@dfki.de">datenschutz@dfki.de</a>
+Phone: +49 (0)631 / 205 75-0<br/>
+E-Mail: <a href="mailto:datenschutz@dfki.de">datenschutz@dfki.de</a>
 
 
 <h2>Purpose of processing</h2>
@@ -39,13 +42,22 @@ of the DFKI Establishment of contact and correspondence with visitors and users
 <h2>Website usage</h2>
 Visit and usage of our web site are anonymous. At our web site personal data are
 only collected to the technically necessary extent.
+<br/><br/>
 Within our information offering we do embed
-information or service offerings of the social networking website Tumblr
+information or service offerings of the social networking website Tumblr.
 The interaction with the website will transmit data to Tumblr as part of
 their blog services.
-
 For more information about Tumblr's data processing, please refer to Tumblr's
 Privacy Policy <a href="https://www.tumblr.com/privacy">here</a>.
+
+<br/><br/>
+Within our information offering we do embed
+information or service offerings of the website Youtube.
+The interaction with the our website will transmit data to Youtube as part of
+their services.
+For more information about Youtube's data processing, please refer to Youtube's
+Privacy Policy <a href="https://policies.google.com/privacy">here</a>.
+
 
 <h2>Newsletter usage</h2>
 This website embeds a redirection to DFKI's Mailman service.
@@ -82,65 +94,6 @@ On every access to our web site some usage, transmission and connection data
 will be collected by our Hosting Contractor Goserver.
 For more information about Goserver's data processing, please refer to
 Goserver's Privacy Policy <a href="https://www.goserver.de/privacy-webtracking">here</a>.
-
-<!--temporarily stored in a log file and regularly deleted after
-90 days.
-On every access/retrieval the following data are stored:
-<ul>
-<li>IP address</li>
-<li>transmitted user agent information (in particular type/version of web browser, operating system etc.)</li>
-<li>transmitted referrer information (URL of the referring page)</li>
-<li>date and time of the access/retrieval</li>
-<li>transmitted access method/function</li>
-<li>transmitted input values (search terms etc.)</li>
-<li>retrieved page resp. file</li>
-<li>transmitted amount of data</li>
-<li>status of processing the access/retrieval</li>
-</ul>
-The processing of the access data is lawful because it is necessary for the
-purposes of the legitimate interests pursued by DFKI. The legitimate interests
-pursued by DFKI are the adaptation and optimisation of the information offering
-and the investigation, detection and prosecution of illegal activities in
-connection with the usage of our web site.
-
-The stored data records can be statistically evaluated in order to adapt and
-optimize our web site to the needs of our visitors. Any techniques that offer
-the possibility to retrace the access characteristics of users (tracking) will
-not be applied. The creation of user profiles and automated decision-making
-based on it is precluded.
-
-The stored data records are not attributable to specific persons. They are
-generally not being combined with other data sources. However, the stored data
-can be analysed and combined with other data sources, if we become aware of
-concrete indications of any illegal usage.
-
-<h2>Cookies</h2>
-We use so-called cookies on our web site. Cookies are small files that are being
-stored by your web browser. The cookies used on our web site do not harm your
-computer and do not contain any malicious software. They offer a user-friendly
-and effective usage of our web site. We do not use cookies for marketing
-purposes.
-
-We transmit so-called session cookies to your web browser. They are valid only
-for the duration of your visit on our web site and they do not have any meaning
-outside of our web site. The session cookies are needed in order to identify
-your session with a unique number during your visit and to transmit our
-contents in your preferred language. At the end of your visit the session
-cookies will be automatically deleted upon termination of your web browser.
-
-We also transmit permanent cookies to your web browser with a validity period of
-at most 365 days. We are exclusively using these cookies in order to respect
-your settings for the type of presentation (normal, inverted) and for the font
-size. Furthermore, it will be recorded whether you've taken notice of the
-information about the usage of cookies in your web browser.
-
-You can adjust your web browser such that you will be informed on setting
-cookies and allow cookies on an individual basis resp. exclude the acceptance of
-cookies for specific cases or generally. You also can adjust the automatic
-deletion of cookies upon termination of your web browser. Upon deactivation of
-cookies the functionality of our web site can be limited. In any case, our
-information offering is available to its full extent.
--->
 
 <h2>Correspondence</h2>
 You have the option to contact us by e-mail. We will use your e-mail address and
