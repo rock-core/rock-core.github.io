@@ -15,7 +15,7 @@ Anyway, what this section will talk about is:
  * general driver structure, naming, separation between driver library
    and driver oroGen component.
  * usage of the
-   [iodrivers_base](../../package_directory/packages/drivers/drivers_iodrivers_base/index.html)
+   [iodrivers_base](https://github.com/rock-core/drivers-iodrivers_base)
    package
  * integration in oroGen components
 

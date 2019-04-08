@@ -150,9 +150,9 @@ command.mode => :DM_PWM # beware, this is a Ruby symbol !!!
 
 The opaque types are manipulated, on the Ruby side, through their intermediate
 type. For instance, if a property of type
-[base::Vector3d](../../package_directory/orogen_types/_base_Vector3d.html) is created, it will be
+[base::Vector3d](https://github.com/rock-core/base-types/blob/master/src/Eigen.hpp) is created, it will be
 accessed as a structure [of the corresponding
-type](../../package_directory/orogen_types/_wrappers_Matrix__double_3_1_.html)
+type](https://github.com/rock-core/base-orogen-types/blob/master/base/wrappers/Eigen.hpp)
 
 Customization on the Ruby side
 ------------------------------
@@ -163,9 +163,9 @@ There are two ways to customize the C++ to Ruby mapping:
 
  * either by adding methods to the values. For instance, one could define the #+
    method on '/base/Time', which would add two times together
- * or by specifying convertions between some Ruby class and the
+ * or by specifying conversions between some Ruby class and the
    oroGen-registered types. For instance, converting between /base/Time and the
-   builting Time class in Ruby
+   building Time class in Ruby
 
 To add methods to an oroGen-registered type, one does
 
@@ -177,7 +177,7 @@ Typelib.specialize '/base/Time' do
 end
 ~~~
 
-To allow convertion between a Ruby class and an oroGen-registered type, one does
+To allow conversion between a Ruby class and an oroGen-registered type, one does
 
 ~~~ ruby
 # If we get a /base/Time, convert it to Ruby's Time class
@@ -207,7 +207,7 @@ Time object.
 C++-to-Ruby customization code in a scripts/typelib.rb in the oroGen components.
 This file will get installed automatically along with the oroGen code, in a
 place where it gets found and loaded automatically by typelib. Thus, the
-convertion code is made available to all Ruby scripts that use orocos.rb/orogen
+conversion code is made available to all Ruby scripts that use orocos.rb/orogen
 {: .note}
 
 Direct Access to the Type Models

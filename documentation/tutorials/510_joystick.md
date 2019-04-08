@@ -21,6 +21,9 @@ tutorial, so we don't have to implement anything.
 
 In order to get our control, we need a task that supplies us with 'base::commands::Motion2D' (note that this
 type is equivalent to 'base::MotionCommand2D' which you will find in some older components).
+
+{::comment}
+TBD: Update after package directory is reinstantiated
 For that it is recommended to take a look into the [package directory](../../package_directory.html).
 You will have two options there:
 
@@ -36,9 +39,11 @@ available types that are exported by any task in the standard rock packages. As 
 in 'base::commands::Motion2D', we open the page about this type.
 
 As we want to integrate a joystick, we search for controldev::JoystickTask
-in the subcategory 'oroGen tasks' -- and find it defined in 'drivers/orogen/controldev'.
+in the subcategory 'oroGen tasks' - and find it defined in 'drivers/orogen/controldev'.
 This task produces 'base::commands::Motion2D'.
+{:/comment}
 
+As we want to integrate a joystick, we require controldev::JoystickTask, which produces 'base::commands::Motion2D'.
 In order to install the package to your installation, either do
 
 ~~~ text

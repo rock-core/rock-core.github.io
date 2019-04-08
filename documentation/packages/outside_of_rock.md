@@ -81,9 +81,14 @@ do autoproj's job, namely:
 
 The rest of this page will outline these steps for you
 
-__To install the package dependencies__ the best way is to have a look on the
-[package directory](../../package_directory.html). The dependencies of each package
-are listed there.
+__To install the package dependencies__ the best way is to have a look into the
+standard package sets of rock, e.g.,
+[rock.core](https://github.com/rock-core/package_set) and
+[rock](https://github.com/rock-core/rock-package_set).
+The dependencies of each package can be queried with:
+~~~
+autoproj show <package_name>
+~~~
 
 __To configure and build the package__, the steps are essentially the same than
 for base/types, namely:

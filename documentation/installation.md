@@ -9,8 +9,8 @@ information (tutorials, ...).
 Level of support
 ----------------
 This section lists the operating systems where Rock is _well tested_, is _untested_ and where the status is _unknown_.
-For _well tested_ operating systems, our [build server makes sure that Rock builds
-fine](http://rock-robotics.org/status), and it is known to be actively used. _Untested_ operating systems have
+For _well tested_ operating systems, our build server makes sure that Rock builds
+fine, and it is known to be actively used. _Untested_ operating systems have
 had users (so, it did work at some point), but it is unknown whether it is
 still being actively used. Finally, _unknown status_ operating systems are OS's where
 Rock should work, but we have had no known report of its success or failure.
@@ -27,15 +27,15 @@ Rock should work, but we have had no known report of its success or failure.
 | ![OpenSuse](install/opensuse.png) | Beta state, started 2014 |
 | ![Fedora](install/fedora.png) | Last known working version 2012 |
 
-Feel free to ask on the mailinglist to ask for support for porting to another System.
+Feel free to ask on the mailing list to ask for support for porting to another System.
 Please let us know any experience if you are using one of the above listed OS's.
 
 #### Legal Comments
 This site is not affiliated with or endorsed by the Fedora Project.
 The Gentoo logo is a trademark of Gentoo Foundation Inc. and the rock-robotic framework is not part
 of the Gentoo project, and is not and is not directed or managed by Gentoo Foundation, Inc. 
-Simliar statements are true for all listed logos and systems. The Rock-Robotic framework itself is 
-independent from the operation systems and maintained on its own.
+Similar statements are true for all listed logos and systems. The Robot
+Construction Kit itself is independent from the operation systems and maintained on its own.
 
 ### Status for other 
 
@@ -46,9 +46,8 @@ Installation: the easy way
 --------------------------
 
  1. Make sure that the Ruby interpreter is installed on your machine. Rock
-    requires ruby 2.0 or higher, which is provided on Debian and Ubuntu by
-    the ruby2.0 package. However we **recommend the use of ruby 2.1** for all OS's
-    except Ubuntu 14.04, where ruby2.0 should be chosen.
+    requires ruby 2.3 or higher, which is provided on Debian and Ubuntu by
+    the ruby2.3 package.
 
     ~~~
     ruby --version
@@ -56,7 +55,7 @@ Installation: the easy way
 
  2. Create and "cd" into the directory in which you want to install the toolchain.
  3. To build the core system of the latest release, use this
-    [bootstrap.sh](http://www.rock-robotics.org/master/bootstrap.sh)
+    [bootstrap.sh](https://raw.githubusercontent.com/rock-core/buildconf/master/bootstrap.sh)
     script. Save it in the folder you just created. For other options, see
     below.
 
@@ -98,7 +97,7 @@ Installation: the easy way
 Other bootstrapping options
 ---------------------------
  * **Build the master (development) version of rock**
-   Use [this bootstrap.sh](http://www.rock-robotics.org/master/bootstrap.sh) instead of the one listed above.
+   Use [this bootstrap.sh](https://raw.githubusercontent.com/rock-core/buildconf/master/bootstrap.sh) instead of the one listed above.
  * **Build all of rock**: Call 
   
    ~~~
@@ -110,10 +109,15 @@ Other bootstrapping options
    a consistent installation if you forget to add '''--all-known-packages''' to any autoproj call.
    If you need a persistent complete installation of rock you must add all metapackages to your layout section.
  * **Create a custom version**
-   Use one of the previous bootstrap scripts to install the base system and then cherry-pick the packages you want. Have a look at [the package
-   directory](/package_directory.html) and add the package names to the
+   Use one of the previous bootstrap scripts to install the base system and then
+   cherry-pick the packages you want. Have a look at available packages, or
+   search with 
+   ~~~
+   autoproj show xsens
+   ~~~
+   Add the names of the required packages to the
    layout section in autoproj/manifest. For instance,  if you want to
-   get the [Xsens IMU component](../package_directory/packages/drivers_orogen_xsens_imu/index.html),
+   get the [Xsens IMU component](https://github.com/rock-drivers/drivers-xsens_imu)
    the layout section should look like:
 
        layout:

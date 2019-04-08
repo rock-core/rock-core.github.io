@@ -41,8 +41,7 @@ git commit -m "Initial commit"
 git push git@your_git_hoster:your_project/package_set.git HEAD:master
 ~~~
 
-Choose the packages you need for your bundle from [the package
-directory](../../package_directory.html) and update the _autoproj/manifest_
+Choose the packages you need for your bundle and update the _autoproj/manifest_
 file accordingly. For more information about how to install packages, have a
 look [here](../tutorials/190_installing_packages.html).
 

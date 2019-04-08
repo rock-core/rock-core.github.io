@@ -128,9 +128,6 @@ if it is imported from a version control system.
 
 Finally comes the list of packages that are defined in this set.
 
-A better way to browse packages is to look into [the package
-directory](../../package_directory)
-
 Picking the packages to build
 -----------------------------
 If you do not wish to build all the packages that are available (you rarely
