@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Class: Typelib::Registry
+  
+    &mdash; oroGen
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "Typelib::Registry";
+  relpath = '../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../_index.html">Index (R)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../Typelib.html" title="Typelib (module)">Typelib</a></span></span>
+     &raquo; 
+    <span class="title">Registry</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Class: Typelib::Registry
+  
+  
+  
+</h1>
+<div class="box_info">
+  
+  <dl>
+    <dt>Inherits:</dt>
+    <dd>
+      <span class="inheritName">Object</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">Typelib::Registry</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+    </dd>
+  </dl>
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>lib/orogen/gen/typekit.rb<span class="defines">,<br />
+  lib/orogen/typenames.rb</span>
+</dd>
+  </dl>
+  
+</div>
+
+
+
+
+
+
+
+
+  
+    <h2>
+      Class Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#base_rtt_type%3F-class_method" title="base_rtt_type? (class method)">.<strong>base_rtt_type?</strong>(type)  &#x21d2; Boolean </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns true if <code>type</code> is handled by the typekit that is
+included in the RTT itself, and false otherwise.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#rtt_typename-class_method" title="rtt_typename (class method)">.<strong>rtt_typename</strong>(type)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the typename used by RTT to register the given type.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+
+  <div id="class_method_details" class="method_details_list">
+    <h2>Class Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="base_rtt_type?-class_method">
+  
+    .<strong>base_rtt_type?</strong>(type)  &#x21d2; <tt>Boolean</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns true if <code>type</code> is handled by the typekit that is
+included in the RTT itself, and false otherwise.</p>
+
+<p>This is used in property bags and in the interface definition, as – among
+the simple types – only these can be used directly in interfaces.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/typenames.rb', line 126</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_base_rtt_type?'>base_rtt_type?</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='rparen'>)</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/std/string</span><span class='tstring_end'>&quot;</span></span>
+        <span class='kw'>return</span> <span class='kw'>true</span>
+    <span class='kw'>elsif</span> <span class='op'>!</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span> <span class='op'>&lt;=</span> <span class='const'><span class='object_link'><a href="../Typelib.html" title="Typelib (module)">Typelib</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="NumericType.html" title="Typelib::NumericType (class)">NumericType</a></span></span><span class='rparen'>)</span>
+        <span class='kw'>return</span> <span class='kw'>false</span>
+    <span class='kw'>end</span>
+
+    <span class='kw'>if</span> <span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_integer?'>integer?</span>
+        <span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/bool</span><span class='tstring_end'>&quot;</span></span> <span class='op'>||</span> <span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span> <span class='op'>==</span> <span class='int'>4</span>
+    <span class='kw'>else</span>
+        <span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/double</span><span class='tstring_end'>&quot;</span></span>
+    <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="rtt_typename-class_method">
+  
+    .<strong>rtt_typename</strong>(type)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the typename used by RTT to register the given type</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/typenames.rb', line 141</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_rtt_typename'>rtt_typename</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='rparen'>)</span>
+    <span class='kw'>if</span> <span class='op'>!</span><span class='ivar'>@typelib_to_rtt_mappings</span>
+        <span class='id identifier rubyid_cxx_types'>cxx_types</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../Typelib.html" title="Typelib (module)">Typelib</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Typelib::Registry (class)">Registry</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+        <span class='const'><span class='object_link'><a href="../Typelib.html" title="Typelib (module)">Typelib</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Typelib::Registry (class)">Registry</a></span></span><span class='period'>.</span><span class='id identifier rubyid_add_standard_cxx_types'>add_standard_cxx_types</span><span class='lparen'>(</span><span class='id identifier rubyid_cxx_types'>cxx_types</span><span class='rparen'>)</span>
+        <span class='ivar'>@typelib_to_rtt_mappings</span> <span class='op'>=</span> <span class='lbrace'>{</span>
+            <span class='id identifier rubyid_cxx_types'>cxx_types</span><span class='period'>.</span><span class='id identifier rubyid_get'>get</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>bool</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>bool</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
+            <span class='id identifier rubyid_cxx_types'>cxx_types</span><span class='period'>.</span><span class='id identifier rubyid_get'>get</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>int</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>int</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
+            <span class='id identifier rubyid_cxx_types'>cxx_types</span><span class='period'>.</span><span class='id identifier rubyid_get'>get</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>unsigned int</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>uint</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
+            <span class='id identifier rubyid_cxx_types'>cxx_types</span><span class='period'>.</span><span class='id identifier rubyid_get'>get</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>float</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>float</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
+            <span class='id identifier rubyid_cxx_types'>cxx_types</span><span class='period'>.</span><span class='id identifier rubyid_get'>get</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>double</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>double</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
+            <span class='id identifier rubyid_cxx_types'>cxx_types</span><span class='period'>.</span><span class='id identifier rubyid_get'>get</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>char</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>char</span><span class='tstring_end'>&#39;</span></span>
+        <span class='rbrace'>}</span>
+    <span class='kw'>end</span>
+
+    <span class='kw'>if</span> <span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/std/string</span><span class='tstring_end'>&quot;</span></span>
+        <span class='kw'>return</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>string</span><span class='tstring_end'>&quot;</span></span>
+    <span class='kw'>elsif</span> <span class='op'>!</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span> <span class='op'>&lt;=</span> <span class='const'><span class='object_link'><a href="../Typelib.html" title="Typelib (module)">Typelib</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="NumericType.html" title="Typelib::NumericType (class)">NumericType</a></span></span><span class='rparen'>)</span>
+        <span class='kw'>return</span> <span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span>
+    <span class='kw'>end</span>
+
+    <span class='kw'>if</span> <span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/bool</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>then</span> <span class='kw'>return</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>bool</span><span class='tstring_end'>&#39;</span></span>
+    <span class='kw'>elsif</span> <span class='id identifier rubyid_mapped'>mapped</span> <span class='op'>=</span> <span class='ivar'>@typelib_to_rtt_mappings</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_typelib'>typelib</span><span class='comma'>,</span> <span class='id identifier rubyid_rtt'>rtt</span><span class='op'>|</span> <span class='id identifier rubyid_typelib'>typelib</span> <span class='op'>==</span> <span class='id identifier rubyid_type'>type</span> <span class='rbrace'>}</span>
+        <span class='kw'>return</span> <span class='id identifier rubyid_mapped'>mapped</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span>
+    <span class='kw'>else</span>
+        <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_content'> is (probably) not registered on the RTT type system</span><span class='tstring_end'>&quot;</span></span>
+    <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+      <div id="footer">
+  Generated on Tue Apr  9 14:53:39 2019 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.19 (ruby-2.5.1).
+</div>
+
+    </div>
+  </body>
+</html>

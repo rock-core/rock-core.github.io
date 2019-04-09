@@ -1,0 +1,2691 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Class: OroGen::TypekitMarshallers::ROS::Plugin
+  
+    &mdash; oroGen
+  
+</title>
+
+  <link rel="stylesheet" href="../../../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../../../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "OroGen::TypekitMarshallers::ROS::Plugin";
+  relpath = '../../../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../../../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../../../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../../../class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../../../_index.html">Index (P)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../../../OroGen.html" title="OroGen (module)">OroGen</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../../TypekitMarshallers.html" title="OroGen::TypekitMarshallers (module)">TypekitMarshallers</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../ROS.html" title="OroGen::TypekitMarshallers::ROS (module)">ROS</a></span></span>
+     &raquo; 
+    <span class="title">Plugin</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../../../class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Class: OroGen::TypekitMarshallers::ROS::Plugin
+  
+  
+  
+</h1>
+<div class="box_info">
+  
+  <dl>
+    <dt>Inherits:</dt>
+    <dd>
+      <span class="inheritName">Object</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">OroGen::TypekitMarshallers::ROS::Plugin</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+    </dd>
+  </dl>
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>lib/orogen/marshallers/ros.rb</dd>
+  </dl>
+  
+</div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<p>Typekit generation plugin to handle ROS types</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+  
+    <h2>
+      Constant Summary
+      <small><a href="#" class="constants_summary_toggle">collapse</a></small>
+    </h2>
+
+    <dl class="constants">
+      
+        <dt id="ARRAY_TYPES-constant" class="">ARRAY_TYPES =
+          
+        </dt>
+        <dd><pre class="code"><span class='lbracket'>[</span><span class='const'><span class='object_link'><a href="../../../Typelib.html" title="Typelib (module)">Typelib</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../../Typelib/ContainerType.html" title="Typelib::ContainerType (class)">ContainerType</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="../../../Typelib.html" title="Typelib (module)">Typelib</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../../Typelib/ArrayType.html" title="Typelib::ArrayType (class)">ArrayType</a></span></span><span class='rbracket'>]</span></pre></dd>
+      
+    </dl>
+  
+
+
+
+
+  <h2>Instance Attribute Summary <small><a href="#" class="summary_toggle">collapse</a></small></h2>
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#boxed_msg_mappings-instance_method" title="#boxed_msg_mappings (instance method)">#<strong>boxed_msg_mappings</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Mappings from ROS boxed messages to the base type they are wrapping.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#type_to_msg-instance_method" title="#type_to_msg (instance method)">#<strong>type_to_msg</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Mappings from oroGen types to ROS message names.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#typekit-instance_method" title="#typekit (instance method)">#<strong>typekit</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>The underlying typekit.</p>
+</div></span>
+  
+</li>
+
+    
+  </ul>
+
+
+
+
+  
+    <h2>
+      Class Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#name-class_method" title="name (class method)">.<strong>name</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+    <h2>
+      Instance Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#boxed_ros_msg%3F-instance_method" title="#boxed_ros_msg? (instance method)">#<strong>boxed_ros_msg?</strong>(msg_name)  &#x21d2; Boolean </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Checks whether a ROS message name is a boxing type.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#dependencies-instance_method" title="#dependencies (instance method)">#<strong>dependencies</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Generates the set of compilation dependencies for the ROS transport.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#enabled=-instance_method" title="#enabled= (instance method)">#<strong>enabled=</strong>(value)  &#x21d2; Boolean </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>True if the plugin is enabled, i.e.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#enabled%3F-instance_method" title="#enabled? (instance method)">#<strong>enabled?</strong>  &#x21d2; Boolean </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>True if the plugin is enabled, i.e.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#generate-instance_method" title="#generate (instance method)">#<strong>generate</strong>(typesets)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Do the code generation for this ROS transport.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#generate_disabled-instance_method" title="#generate_disabled (instance method)">#<strong>generate_disabled</strong>(typesets, convert_types, convert_array_types, user_converted_types)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#generate_type_convertion_list-instance_method" title="#generate_type_convertion_list (instance method)">#<strong>generate_type_convertion_list</strong>(typeset)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#has_custom_convertions%3F-instance_method" title="#has_custom_convertions? (instance method)">#<strong>has_custom_convertions?</strong>  &#x21d2; Boolean </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>True if some custom oroGen-to-ROS convertions have been registered.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">#<strong>initialize</strong>(typekit)  &#x21d2; Plugin </a>
+    
+
+    
+  </span>
+  
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>A new instance of Plugin.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#load_ros_mappings-instance_method" title="#load_ros_mappings (instance method)">#<strong>load_ros_mappings</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#multidimensional_array%3F-instance_method" title="#multidimensional_array? (instance method)">#<strong>multidimensional_array?</strong>(type)  &#x21d2; Boolean </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#name-instance_method" title="#name (instance method)">#<strong>name</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#ros_arg_type-instance_method" title="#ros_arg_type (instance method)">#<strong>ros_arg_type</strong>(type, unbox = true)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the argument signature the C++ type for the ROS message that
+represents <code>type</code>.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#ros_base_type%3F-instance_method" title="#ros_base_type? (instance method)">#<strong>ros_base_type?</strong>(type)  &#x21d2; Boolean </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns true if <code>type</code> is a base type in ROS.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#ros_converted_type%3F-instance_method" title="#ros_converted_type? (instance method)">#<strong>ros_converted_type?</strong>(type)  &#x21d2; Boolean </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns whether <code>type</code> should be exported as a ROS message.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#ros_cxx_type-instance_method" title="#ros_cxx_type (instance method)">#<strong>ros_cxx_type</strong>(type, do_unboxing = true)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the C++ type name for the ROS message that represents
+<code>type</code>.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#ros_exported_type%3F-instance_method" title="#ros_exported_type? (instance method)">#<strong>ros_exported_type?</strong>(type)  &#x21d2; Boolean </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns whether <code>type</code> should be exported as a ROS message.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#ros_field_name-instance_method" title="#ros_field_name (instance method)">#<strong>ros_field_name</strong>(type, absolute = false)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the type name that should be used in a field in another ROS
+message.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#ros_mappings-instance_method" title="#ros_mappings (instance method)">#<strong>ros_mappings</strong>(mappings)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Define custom mappings from typegen types to ROS messages.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#ros_message_name-instance_method" title="#ros_message_name (instance method)">#<strong>ros_message_name</strong>(type, absolute = false)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the ROS message name for <code>type</code>.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#ros_package_name_for_typekit-instance_method" title="#ros_package_name_for_typekit (instance method)">#<strong>ros_package_name_for_typekit</strong>(typekit)  &#x21d2; String </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the ROS package name generated for a given typekit.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#ros_ref_type-instance_method" title="#ros_ref_type (instance method)">#<strong>ros_ref_type</strong>(type, unbox = true)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns a reference signature to the C++ type for the ROS message that
+represents <code>type</code>.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#separate_cmake%3F-instance_method" title="#separate_cmake? (instance method)">#<strong>separate_cmake?</strong>  &#x21d2; Boolean </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Generates the set of compilation dependencies for the ROS transport.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+<div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <h3 class="signature first" id="initialize-instance_method">
+  
+    #<strong>initialize</strong>(typekit)  &#x21d2; <tt><span class='object_link'><a href="" title="OroGen::TypekitMarshallers::ROS::Plugin (class)">Plugin</a></span></tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns a new instance of Plugin</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/marshallers/ros.rb', line 75</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_typekit'>typekit</span><span class='rparen'>)</span>
+    <span class='ivar'>@typekit</span> <span class='op'>=</span> <span class='id identifier rubyid_typekit'>typekit</span>
+    <span class='ivar'>@type_to_msg</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../ROS.html#DEFAULT_TYPE_TO_MSG-constant" title="OroGen::TypekitMarshallers::ROS::DEFAULT_TYPE_TO_MSG (constant)">DEFAULT_TYPE_TO_MSG</a></span></span><span class='period'>.</span><span class='id identifier rubyid_dup'>dup</span>
+    <span class='ivar'>@boxed_msg_mappings</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../ROS.html#DEFAULT_BOXED_MSG_MAPPINGS-constant" title="OroGen::TypekitMarshallers::ROS::DEFAULT_BOXED_MSG_MAPPINGS (constant)">DEFAULT_BOXED_MSG_MAPPINGS</a></span></span><span class='period'>.</span><span class='id identifier rubyid_dup'>dup</span>
+    <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_enabled'>enabled</span> <span class='op'>=</span> <span class='kw'>true</span>
+
+    <span class='const'><span class='object_link'><a href="../../../Typelib.html" title="Typelib (module)">Typelib</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../../Typelib/Type.html" title="Typelib::Type (class)">Type</a></span></span><span class='period'>.</span><span class='id identifier rubyid_extend'>extend</span> <span class='const'><span class='object_link'><a href="TypeExtension.html" title="OroGen::TypekitMarshallers::ROS::TypeExtension (module)">TypeExtension</a></span></span>
+    <span class='const'><span class='object_link'><a href="../../../Typelib.html" title="Typelib (module)">Typelib</a></span></span><span class='op'>::</span><span class='const'>OpaqueType</span><span class='period'>.</span><span class='id identifier rubyid_extend'>extend</span> <span class='const'><span class='object_link'><a href="OpaqueTypeExtension.html" title="OroGen::TypekitMarshallers::ROS::OpaqueTypeExtension (module)">OpaqueTypeExtension</a></span></span>
+    <span class='const'><span class='object_link'><a href="../../../Typelib.html" title="Typelib (module)">Typelib</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../../Typelib/ContainerType.html" title="Typelib::ContainerType (class)">ContainerType</a></span></span><span class='period'>.</span><span class='id identifier rubyid_extend'>extend</span> <span class='const'><span class='object_link'><a href="ContainerTypeExtension.html" title="OroGen::TypekitMarshallers::ROS::ContainerTypeExtension (module)">ContainerTypeExtension</a></span></span>
+    <span class='const'><span class='object_link'><a href="../../../Typelib.html" title="Typelib (module)">Typelib</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../../Typelib/ArrayType.html" title="Typelib::ArrayType (class)">ArrayType</a></span></span><span class='period'>.</span><span class='id identifier rubyid_extend'>extend</span> <span class='const'><span class='object_link'><a href="ArrayTypeExtension.html" title="OroGen::TypekitMarshallers::ROS::ArrayTypeExtension (module)">ArrayTypeExtension</a></span></span>
+    <span class='const'><span class='object_link'><a href="../../../Typelib.html" title="Typelib (module)">Typelib</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../../Typelib/CompoundType.html" title="Typelib::CompoundType (class)">CompoundType</a></span></span><span class='period'>.</span><span class='id identifier rubyid_extend'>extend</span> <span class='const'><span class='object_link'><a href="CompoundTypeExtension.html" title="OroGen::TypekitMarshallers::ROS::CompoundTypeExtension (module)">CompoundTypeExtension</a></span></span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+  <div id="instance_attr_details" class="attr_details">
+    <h2>Instance Attribute Details</h2>
+    
+      
+      <span id=""></span>
+      <div class="method_details first">
+  <h3 class="signature first" id="boxed_msg_mappings-instance_method">
+  
+    #<strong>boxed_msg_mappings</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Mappings from ROS boxed messages to the base type they are wrapping</p>
+
+<p>Base ROS types cannot be used as messages. One has to first box them into a
+std_msgs message. This registers these mappings. oroGen then always
+generate a convertion function for the boxed type whenever the type_to_msg
+specify a message that should be boxed.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><span class='object_link'><a href="#ros_mappings-instance_method" title="OroGen::TypekitMarshallers::ROS::Plugin#ros_mappings (method)">#ros_mappings</a></span></li>
+    
+  </ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+107
+108
+109</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/marshallers/ros.rb', line 107</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_boxed_msg_mappings'>boxed_msg_mappings</span>
+  <span class='ivar'>@boxed_msg_mappings</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="type_to_msg-instance_method">
+  
+    #<strong>type_to_msg</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Mappings from oroGen types to ROS message names</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><span class='object_link'><a href="#ros_mappings-instance_method" title="OroGen::TypekitMarshallers::ROS::Plugin#ros_mappings (method)">#ros_mappings</a></span></li>
+    
+  </ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+95
+96
+97</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/marshallers/ros.rb', line 95</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_type_to_msg'>type_to_msg</span>
+  <span class='ivar'>@type_to_msg</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="typekit-instance_method">
+  
+    #<strong>typekit</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>The underlying typekit</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+182
+183
+184</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/marshallers/ros.rb', line 182</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_typekit'>typekit</span>
+  <span class='ivar'>@typekit</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+
+  <div id="class_method_details" class="method_details_list">
+    <h2>Class Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="name-class_method">
+  
+    .<strong>name</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+72</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/marshallers/ros.rb', line 72</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='semicolon'>;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>ros</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="boxed_ros_msg?-instance_method">
+  
+    #<strong>boxed_ros_msg?</strong>(msg_name)  &#x21d2; <tt>Boolean</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Checks whether a ROS message name is a boxing type</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+116
+117
+118</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/marshallers/ros.rb', line 116</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_boxed_ros_msg?'>boxed_ros_msg?</span><span class='lparen'>(</span><span class='id identifier rubyid_msg_name'>msg_name</span><span class='rparen'>)</span>
+    <span class='op'>!</span><span class='op'>!</span><span class='id identifier rubyid_boxed_msg_mappings'>boxed_msg_mappings</span><span class='lbracket'>[</span><span class='id identifier rubyid_msg_name'>msg_name</span><span class='rbracket'>]</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="dependencies-instance_method">
+  
+    #<strong>dependencies</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Generates the set of compilation dependencies for the ROS transport</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/marshallers/ros.rb', line 149</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_dependencies'>dependencies</span>
+    <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+    <span class='id identifier rubyid_typekit'>typekit</span><span class='period'>.</span><span class='id identifier rubyid_used_typekits'>used_typekits</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_tk'>tk</span><span class='op'>|</span>
+        <span class='kw'>next</span> <span class='kw'>if</span> <span class='id identifier rubyid_tk'>tk</span><span class='period'>.</span><span class='id identifier rubyid_virtual?'>virtual?</span>
+        <span class='id identifier rubyid_build_dep'>build_dep</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Gen.html" title="OroGen::Gen (module)">Gen</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Gen/RTT_CPP.html" title="OroGen::Gen::RTT_CPP (module)">RTT_CPP</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Gen/RTT_CPP/BuildDependency.html" title="OroGen::Gen::RTT_CPP::BuildDependency (class)">BuildDependency</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="../../Gen/RTT_CPP/BuildDependency.html#initialize-instance_method" title="OroGen::Gen::RTT_CPP::BuildDependency#initialize (method)">new</a></span></span><span class='lparen'>(</span>
+            <span class='id identifier rubyid_tk'>tk</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_upcase'>upcase</span> <span class='op'>+</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>_TRANSPORT_ROS</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+            <span class='id identifier rubyid_tk'>tk</span><span class='period'>.</span><span class='id identifier rubyid_pkg_transport_name'>pkg_transport_name</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>ros</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='rparen'>)</span>
+            <span class='id identifier rubyid_build_dep'>build_dep</span><span class='period'>.</span><span class='id identifier rubyid_in_context'>in_context</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>ros</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>include</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+            <span class='id identifier rubyid_build_dep'>build_dep</span><span class='period'>.</span><span class='id identifier rubyid_in_context'>in_context</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>ros</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>link</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+            <span class='id identifier rubyid_result'>result</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_build_dep'>build_dep</span>
+    <span class='kw'>end</span>
+    <span class='id identifier rubyid_typekit'>typekit</span><span class='period'>.</span><span class='id identifier rubyid_used_libraries'>used_libraries</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_pkg'>pkg</span><span class='op'>|</span>
+        <span class='id identifier rubyid_needs_link'>needs_link</span> <span class='op'>=</span> <span class='id identifier rubyid_typekit'>typekit</span><span class='period'>.</span><span class='id identifier rubyid_linked_used_libraries'>linked_used_libraries</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_pkg'>pkg</span><span class='rparen'>)</span>
+        <span class='id identifier rubyid_result'>result</span> <span class='op'>&lt;&lt;</span> <span class='const'><span class='object_link'><a href="../../Gen.html" title="OroGen::Gen (module)">Gen</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Gen/RTT_CPP.html" title="OroGen::Gen::RTT_CPP (module)">RTT_CPP</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Gen/RTT_CPP/BuildDependency.html" title="OroGen::Gen::RTT_CPP::BuildDependency (class)">BuildDependency</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="../../Gen/RTT_CPP/BuildDependency.html#initialize-instance_method" title="OroGen::Gen::RTT_CPP::BuildDependency#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_pkg'>pkg</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_upcase'>upcase</span><span class='comma'>,</span> <span class='id identifier rubyid_pkg'>pkg</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span><span class='period'>.</span>
+            <span class='id identifier rubyid_in_context'>in_context</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>ros</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>include</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+        <span class='kw'>if</span> <span class='id identifier rubyid_needs_link'>needs_link</span>
+            <span class='id identifier rubyid_result'>result</span><span class='period'>.</span><span class='id identifier rubyid_last'>last</span><span class='period'>.</span><span class='id identifier rubyid_in_context'>in_context</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>ros</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>link</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+        <span class='kw'>end</span>
+    <span class='kw'>end</span>
+    <span class='id identifier rubyid_build_dep'>build_dep</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Gen.html" title="OroGen::Gen (module)">Gen</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Gen/RTT_CPP.html" title="OroGen::Gen::RTT_CPP (module)">RTT_CPP</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Gen/RTT_CPP/BuildDependency.html" title="OroGen::Gen::RTT_CPP::BuildDependency (class)">BuildDependency</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="../../Gen/RTT_CPP/BuildDependency.html#initialize-instance_method" title="OroGen::Gen::RTT_CPP::BuildDependency#initialize (method)">new</a></span></span><span class='lparen'>(</span>
+        <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>OROCOS_RTT_ROS</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+        <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>orocos-rtt-ros-${OROCOS_TARGET}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_build_dep'>build_dep</span><span class='period'>.</span><span class='id identifier rubyid_in_context'>in_context</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>ros</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>include</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_build_dep'>build_dep</span><span class='period'>.</span><span class='id identifier rubyid_in_context'>in_context</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>ros</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>link</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_result'>result</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_build_dep'>build_dep</span>
+    <span class='id identifier rubyid_result'>result</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="enabled=-instance_method">
+  
+    #<strong>enabled=</strong>(value)  &#x21d2; <tt>Boolean</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns true if the plugin is enabled, i.e. if the transport should be
+generated</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>true if the plugin is enabled, i.e. if the transport should be generated</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+90</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/marshallers/ros.rb', line 90</span>
+
+<span class='id identifier rubyid_attr_predicate'>attr_predicate</span> <span class='symbol'>:enabled?</span><span class='comma'>,</span> <span class='kw'>true</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="enabled?-instance_method">
+  
+    #<strong>enabled?</strong>  &#x21d2; <tt>Boolean</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns true if the plugin is enabled, i.e. if the transport should be
+generated</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>true if the plugin is enabled, i.e. if the transport should be generated</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+90</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/marshallers/ros.rb', line 90</span>
+
+<span class='id identifier rubyid_attr_predicate'>attr_predicate</span> <span class='symbol'>:enabled?</span><span class='comma'>,</span> <span class='kw'>true</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="generate-instance_method">
+  
+    #<strong>generate</strong>(typesets)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Do the code generation for this ROS transport</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+422
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450
+451
+452
+453
+454
+455
+456
+457
+458
+459
+460
+461
+462
+463
+464
+465
+466
+467
+468
+469
+470
+471
+472
+473
+474
+475
+476
+477
+478
+479
+480
+481
+482</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/marshallers/ros.rb', line 359</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_generate'>generate</span><span class='lparen'>(</span><span class='id identifier rubyid_typesets'>typesets</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_load_ros_mappings'>load_ros_mappings</span>
+
+    <span class='ivar'>@typekit</span> <span class='op'>=</span> <span class='id identifier rubyid_typekit'>typekit</span>
+
+    <span class='id identifier rubyid_rosmsg_registry'>rosmsg_registry</span> <span class='op'>=</span> <span class='id identifier rubyid_typesets'>typesets</span><span class='period'>.</span><span class='id identifier rubyid_minimal_registry'>minimal_registry</span><span class='period'>.</span><span class='id identifier rubyid_dup'>dup</span>
+
+    <span class='comment'># All the generated messages. Used to generate the CMake
+</span>    <span class='comment'># file
+</span>    <span class='id identifier rubyid_all_messages'>all_messages</span> <span class='op'>=</span> <span class='const'>Array</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+    <span class='id identifier rubyid_typesets'>typesets</span><span class='period'>.</span><span class='id identifier rubyid_converted_types'>converted_types</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_type'>type</span><span class='op'>|</span>
+        <span class='comment'># We are reusing an existing ROS message
+</span>        <span class='kw'>next</span> <span class='kw'>if</span> <span class='id identifier rubyid_type_to_msg'>type_to_msg</span><span class='period'>.</span><span class='id identifier rubyid_has_key?'>has_key?</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
+        <span class='id identifier rubyid_type_name'>type_name</span> <span class='op'>=</span> <span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span>
+        <span class='id identifier rubyid_msg_name'>msg_name</span>  <span class='op'>=</span> <span class='id identifier rubyid_ros_message_name'>ros_message_name</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='rparen'>)</span>
+
+        <span class='kw'>if</span> <span class='id identifier rubyid_ros_exported_type?'>ros_exported_type?</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='op'>!</span><span class='id identifier rubyid_typekit'>typekit</span><span class='period'>.</span><span class='id identifier rubyid_m_type?'>m_type?</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='rparen'>)</span>
+            <span class='kw'>if</span> <span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_opaque?'>opaque?</span>
+                <span class='id identifier rubyid_type'>type</span> <span class='op'>=</span> <span class='id identifier rubyid_typekit'>typekit</span><span class='period'>.</span><span class='id identifier rubyid_intermediate_type_for'>intermediate_type_for</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='rparen'>)</span>
+            <span class='kw'>end</span>
+
+            <span class='id identifier rubyid_msg'>msg</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Gen.html" title="OroGen::Gen (module)">Gen</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Gen/RTT_CPP.html" title="OroGen::Gen::RTT_CPP (module)">RTT_CPP</a></span></span><span class='period'>.</span><span class='id identifier rubyid_render_template'><span class='object_link'><a href="../../Gen/RTT_CPP.html#render_template-class_method" title="OroGen::Gen::RTT_CPP.render_template (method)">render_template</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>typekit</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>ros</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Type.msg</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_binding'>binding</span>
+            <span class='id identifier rubyid_typekit'>typekit</span><span class='period'>.</span><span class='id identifier rubyid_save_automatic'>save_automatic</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>transports</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>ros</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>msg</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_msg_name'>msg_name</span><span class='embexpr_end'>}</span><span class='tstring_content'>.msg</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_msg'>msg</span><span class='rparen'>)</span>
+            <span class='id identifier rubyid_all_messages'>all_messages</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_msg_name'>msg_name</span>
+        <span class='kw'>end</span>
+    <span class='kw'>end</span>
+
+    <span class='id identifier rubyid_all_messages'>all_messages</span> <span class='op'>=</span> <span class='id identifier rubyid_all_messages'>all_messages</span><span class='period'>.</span><span class='id identifier rubyid_sort'>sort</span>
+
+    <span class='id identifier rubyid_convert_types'>convert_types</span> <span class='op'>=</span> <span class='id identifier rubyid_generate_type_convertion_list'>generate_type_convertion_list</span><span class='lparen'>(</span>
+        <span class='id identifier rubyid_typesets'>typesets</span><span class='period'>.</span><span class='id identifier rubyid_converted_types'>converted_types</span><span class='period'>.</span>
+            <span class='id identifier rubyid_find_all'>find_all</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_t'>t</span><span class='op'>|</span> <span class='op'>!</span><span class='id identifier rubyid_type_to_msg'>type_to_msg</span><span class='lbracket'>[</span><span class='id identifier rubyid_t'>t</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='rbracket'>]</span> <span class='op'>&amp;&amp;</span> <span class='op'>!</span><span class='id identifier rubyid_typekit'>typekit</span><span class='period'>.</span><span class='id identifier rubyid_m_type?'>m_type?</span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='rparen'>)</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_convert_array_types'>convert_array_types</span> <span class='op'>=</span> <span class='id identifier rubyid_generate_type_convertion_list'>generate_type_convertion_list</span><span class='lparen'>(</span>
+        <span class='id identifier rubyid_typesets'>typesets</span><span class='period'>.</span><span class='id identifier rubyid_array_types'>array_types</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='symbol'>:deference</span><span class='rparen'>)</span><span class='period'>.</span>
+            <span class='id identifier rubyid_find_all'>find_all</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_t'>t</span><span class='op'>|</span> <span class='op'>!</span><span class='id identifier rubyid_typekit'>typekit</span><span class='period'>.</span><span class='id identifier rubyid_m_type?'>m_type?</span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='rparen'>)</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_user_converted_types'>user_converted_types</span> <span class='op'>=</span> <span class='id identifier rubyid_generate_type_convertion_list'>generate_type_convertion_list</span><span class='lparen'>(</span>
+        <span class='id identifier rubyid_typesets'>typesets</span><span class='period'>.</span><span class='id identifier rubyid_converted_types'>converted_types</span><span class='period'>.</span>
+            <span class='id identifier rubyid_find_all'>find_all</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_t'>t</span><span class='op'>|</span> <span class='id identifier rubyid_type_to_msg'>type_to_msg</span><span class='lbracket'>[</span><span class='id identifier rubyid_t'>t</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='rbracket'>]</span> <span class='rbrace'>}</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_user_converted_types'>user_converted_types</span><span class='period'>.</span><span class='id identifier rubyid_delete_if'>delete_if</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_type'>type</span><span class='comma'>,</span> <span class='id identifier rubyid_ros_type'>ros_type</span><span class='op'>|</span>
+        <span class='id identifier rubyid_ros_cxx_type'>ros_cxx_type</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='rparen'>)</span> <span class='op'>==</span> <span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_cxx_name'>cxx_name</span><span class='period'>.</span><span class='id identifier rubyid_gsub'>gsub</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^::</span><span class='regexp_end'>/</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+
+    <span class='kw'>if</span> <span class='op'>!</span><span class='id identifier rubyid_enabled?'>enabled?</span>
+        <span class='kw'>return</span> <span class='id identifier rubyid_generate_disabled'>generate_disabled</span><span class='lparen'>(</span><span class='id identifier rubyid_typesets'>typesets</span><span class='comma'>,</span> <span class='id identifier rubyid_convert_types'>convert_types</span><span class='comma'>,</span> <span class='id identifier rubyid_convert_array_types'>convert_array_types</span><span class='comma'>,</span> <span class='id identifier rubyid_user_converted_types'>user_converted_types</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+
+    <span class='comment'># Have a look the user_converted_types whether we need to
+</span>    <span class='comment'># generate some unboxing functions automatically
+</span>    <span class='id identifier rubyid_convert_boxed_types'>convert_boxed_types</span> <span class='op'>=</span> <span class='id identifier rubyid_user_converted_types'>user_converted_types</span><span class='period'>.</span><span class='id identifier rubyid_find_all'>find_all</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_type'>type</span><span class='comma'>,</span> <span class='id identifier rubyid_ros_type'>ros_type</span><span class='op'>|</span>
+        <span class='id identifier rubyid_boxed_ros_msg?'>boxed_ros_msg?</span><span class='lparen'>(</span><span class='id identifier rubyid_ros_message_name'>ros_message_name</span><span class='lparen'>(</span><span class='id identifier rubyid_ros_type'>ros_type</span><span class='comma'>,</span> <span class='kw'>true</span><span class='rparen'>)</span><span class='rparen'>)</span>
+    <span class='kw'>end</span><span class='period'>.</span><span class='id identifier rubyid_to_set'>to_set</span>
+
+    <span class='id identifier rubyid_rejected'>rejected</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+    <span class='id identifier rubyid_code_snippets'>code_snippets</span> <span class='op'>=</span> <span class='id identifier rubyid_typesets'>typesets</span><span class='period'>.</span><span class='id identifier rubyid_interface_types'>interface_types</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_type'>type</span><span class='op'>|</span>
+        <span class='kw'>if</span> <span class='op'>!</span><span class='id identifier rubyid_ros_exported_type?'>ros_exported_type?</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='rparen'>)</span>
+            <span class='id identifier rubyid_rejected'>rejected</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_type'>type</span>
+            <span class='kw'>next</span>
+        <span class='kw'>end</span>
+
+        <span class='kw'>if</span> <span class='lparen'>(</span><span class='id identifier rubyid_mapped'>mapped</span> <span class='op'>=</span> <span class='id identifier rubyid_type_to_msg'>type_to_msg</span><span class='lbracket'>[</span><span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='rbracket'>]</span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_boxed_ros_msg?'>boxed_ros_msg?</span><span class='lparen'>(</span><span class='id identifier rubyid_mapped'>mapped</span><span class='rparen'>)</span>
+            <span class='id identifier rubyid_convert_boxed_types'>convert_boxed_types</span> <span class='op'>&lt;&lt;</span> <span class='lbracket'>[</span><span class='id identifier rubyid_type'>type</span><span class='comma'>,</span> <span class='id identifier rubyid_type'>type</span><span class='rbracket'>]</span>
+        <span class='kw'>end</span>
+        <span class='id identifier rubyid_code'>code</span>  <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Gen.html" title="OroGen::Gen (module)">Gen</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Gen/RTT_CPP.html" title="OroGen::Gen::RTT_CPP (module)">RTT_CPP</a></span></span><span class='period'>.</span><span class='id identifier rubyid_render_template'><span class='object_link'><a href="../../Gen/RTT_CPP.html#render_template-class_method" title="OroGen::Gen::RTT_CPP.render_template (method)">render_template</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>typekit</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>ros</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Type.cpp</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_binding'>binding</span>
+        <span class='lbracket'>[</span><span class='id identifier rubyid_type'>type</span><span class='comma'>,</span> <span class='id identifier rubyid_code'>code</span><span class='rbracket'>]</span>
+    <span class='kw'>end</span><span class='period'>.</span><span class='id identifier rubyid_compact'>compact</span>
+
+    <span class='id identifier rubyid_headers'>headers</span><span class='comma'>,</span> <span class='id identifier rubyid_impl'>impl</span> <span class='op'>=</span> <span class='const'>Array</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='comma'>,</span> <span class='const'>Array</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+
+    <span class='id identifier rubyid_convert_boxed_types'>convert_boxed_types</span> <span class='op'>=</span> <span class='id identifier rubyid_convert_boxed_types'>convert_boxed_types</span><span class='period'>.</span><span class='id identifier rubyid_sort_by'>sort_by</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_t1'>t1</span><span class='comma'>,</span> <span class='id identifier rubyid_t2'>t2</span><span class='op'>|</span> <span class='lbracket'>[</span><span class='id identifier rubyid_t1'>t1</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_t2'>t2</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='rbracket'>]</span> <span class='rbrace'>}</span>
+    <span class='id identifier rubyid_code'>code</span>  <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Gen.html" title="OroGen::Gen (module)">Gen</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Gen/RTT_CPP.html" title="OroGen::Gen::RTT_CPP (module)">RTT_CPP</a></span></span><span class='period'>.</span><span class='id identifier rubyid_render_template'><span class='object_link'><a href="../../Gen/RTT_CPP.html#render_template-class_method" title="OroGen::Gen::RTT_CPP.render_template (method)">render_template</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>typekit</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>ros</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Convertions.hpp</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_binding'>binding</span>
+    <span class='id identifier rubyid_headers'>headers</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_typekit'>typekit</span><span class='period'>.</span><span class='id identifier rubyid_save_automatic'>save_automatic</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>transports</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>ros</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+                                      <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Convertions.hpp</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_code'>code</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_code'>code</span>  <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Gen.html" title="OroGen::Gen (module)">Gen</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Gen/RTT_CPP.html" title="OroGen::Gen::RTT_CPP (module)">RTT_CPP</a></span></span><span class='period'>.</span><span class='id identifier rubyid_render_template'><span class='object_link'><a href="../../Gen/RTT_CPP.html#render_template-class_method" title="OroGen::Gen::RTT_CPP.render_template (method)">render_template</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>typekit</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>ros</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Convertions.cpp</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_binding'>binding</span>
+    <span class='id identifier rubyid_impl'>impl</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_typekit'>typekit</span><span class='period'>.</span><span class='id identifier rubyid_save_automatic'>save_automatic</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>transports</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>ros</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+                                   <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Convertions.cpp</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_code'>code</span><span class='rparen'>)</span>
+
+    <span class='id identifier rubyid_code'>code</span>  <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Gen.html" title="OroGen::Gen (module)">Gen</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Gen/RTT_CPP.html" title="OroGen::Gen::RTT_CPP (module)">RTT_CPP</a></span></span><span class='period'>.</span><span class='id identifier rubyid_render_template'><span class='object_link'><a href="../../Gen/RTT_CPP.html#render_template-class_method" title="OroGen::Gen::RTT_CPP.render_template (method)">render_template</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>typekit</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>ros</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>TransportPlugin.hpp</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_binding'>binding</span>
+    <span class='id identifier rubyid_headers'>headers</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_typekit'>typekit</span><span class='period'>.</span><span class='id identifier rubyid_save_automatic'>save_automatic</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>transports</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>ros</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+                                      <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>TransportPlugin.hpp</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_code'>code</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_code'>code</span>  <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Gen.html" title="OroGen::Gen (module)">Gen</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Gen/RTT_CPP.html" title="OroGen::Gen::RTT_CPP (module)">RTT_CPP</a></span></span><span class='period'>.</span><span class='id identifier rubyid_render_template'><span class='object_link'><a href="../../Gen/RTT_CPP.html#render_template-class_method" title="OroGen::Gen::RTT_CPP.render_template (method)">render_template</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>typekit</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>ros</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>TransportPlugin.cpp</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_binding'>binding</span>
+    <span class='id identifier rubyid_impl'>impl</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_typekit'>typekit</span><span class='period'>.</span><span class='id identifier rubyid_save_automatic'>save_automatic</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>transports</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>ros</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+                                   <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>TransportPlugin.cpp</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_code'>code</span><span class='rparen'>)</span>
+    <span class='kw'>if</span> <span class='op'>!</span><span class='id identifier rubyid_user_converted_types'>user_converted_types</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
+        <span class='comment'># We need to generate a user part with the convertion
+</span>        <span class='comment'># functions. Reuse the templates !
+</span>        
+        <span class='id identifier rubyid_code'>code</span>  <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Gen.html" title="OroGen::Gen (module)">Gen</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Gen/RTT_CPP.html" title="OroGen::Gen::RTT_CPP (module)">RTT_CPP</a></span></span><span class='period'>.</span><span class='id identifier rubyid_render_template'><span class='object_link'><a href="../../Gen/RTT_CPP.html#render_template-class_method" title="OroGen::Gen::RTT_CPP.render_template (method)">render_template</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>typekit</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>ros</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>ROSConvertions.hpp</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_binding'>binding</span>
+        <span class='id identifier rubyid_headers'>headers</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_typekit'>typekit</span><span class='period'>.</span><span class='id identifier rubyid_save_user'>save_user</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>ROSConvertions.hpp</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_code'>code</span><span class='rparen'>)</span>
+        <span class='id identifier rubyid_code'>code</span>  <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Gen.html" title="OroGen::Gen (module)">Gen</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Gen/RTT_CPP.html" title="OroGen::Gen::RTT_CPP (module)">RTT_CPP</a></span></span><span class='period'>.</span><span class='id identifier rubyid_render_template'><span class='object_link'><a href="../../Gen/RTT_CPP.html#render_template-class_method" title="OroGen::Gen::RTT_CPP.render_template (method)">render_template</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>typekit</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>ros</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>ROSConvertions.cpp</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_binding'>binding</span>
+        <span class='id identifier rubyid_impl'>impl</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_typekit'>typekit</span><span class='period'>.</span><span class='id identifier rubyid_save_user'>save_user</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>ROSConvertions.cpp</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_code'>code</span><span class='rparen'>)</span>
+        <span class='const'><span class='object_link'><a href="../../Gen.html" title="OroGen::Gen (module)">Gen</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Gen/RTT_CPP.html" title="OroGen::Gen::RTT_CPP (module)">RTT_CPP</a></span></span><span class='period'>.</span><span class='id identifier rubyid_create_or_update_symlink'><span class='object_link'><a href="../../Gen/RTT_CPP.html#create_or_update_symlink-class_method" title="OroGen::Gen::RTT_CPP.create_or_update_symlink (method)">create_or_update_symlink</a></span></span><span class='lparen'>(</span>
+            <span class='id identifier rubyid_headers'>headers</span><span class='period'>.</span><span class='id identifier rubyid_last'>last</span><span class='comma'>,</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='id identifier rubyid_typekit'>typekit</span><span class='period'>.</span><span class='id identifier rubyid_automatic_dir'>automatic_dir</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>transports</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>ros</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>ROSConvertions.hpp</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+
+    <span class='id identifier rubyid_impl'>impl</span> <span class='op'>+=</span> <span class='id identifier rubyid_typekit'>typekit</span><span class='period'>.</span><span class='id identifier rubyid_render_typeinfo_snippets'>render_typeinfo_snippets</span><span class='lparen'>(</span><span class='id identifier rubyid_code_snippets'>code_snippets</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>transports</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>ros</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+
+    <span class='kw'>if</span> <span class='op'>!</span><span class='id identifier rubyid_rejected'>rejected</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
+        <span class='const'><span class='object_link'><a href="../ROS.html" title="OroGen::TypekitMarshallers::ROS (module)">ROS</a></span></span><span class='period'>.</span><span class='id identifier rubyid_warn'>warn</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_rejected'>rejected</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span><span class='embexpr_end'>}</span><span class='tstring_content'> types cannot be exported to ROS, you will not able to publish/subscribe ports of these types to/from ROS: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_rejected'>rejected</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='symbol'>:name</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_sort'>sort</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>, </span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='kw'>end</span>
+
+    <span class='id identifier rubyid_code'>code</span>  <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Gen.html" title="OroGen::Gen (module)">Gen</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Gen/RTT_CPP.html" title="OroGen::Gen::RTT_CPP (module)">RTT_CPP</a></span></span><span class='period'>.</span><span class='id identifier rubyid_render_template'><span class='object_link'><a href="../../Gen/RTT_CPP.html#render_template-class_method" title="OroGen::Gen::RTT_CPP.render_template (method)">render_template</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>typekit</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>ros</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Registration.hpp</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_binding'>binding</span>
+    <span class='id identifier rubyid_typekit'>typekit</span><span class='period'>.</span><span class='id identifier rubyid_save_automatic'>save_automatic</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>transports</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>ros</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Registration.hpp</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_code'>code</span><span class='rparen'>)</span>
+
+    <span class='id identifier rubyid_impl'>impl</span> <span class='op'>=</span> <span class='id identifier rubyid_impl'>impl</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_path'>path</span><span class='op'>|</span>
+        <span class='id identifier rubyid_typekit'>typekit</span><span class='period'>.</span><span class='id identifier rubyid_cmake_relative_path'>cmake_relative_path</span><span class='lparen'>(</span><span class='id identifier rubyid_path'>path</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>transports</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>ros</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+    <span class='kw'>end</span><span class='period'>.</span><span class='id identifier rubyid_sort'>sort</span>
+    <span class='id identifier rubyid_headers'>headers</span> <span class='op'>=</span> <span class='id identifier rubyid_headers'>headers</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_path'>path</span><span class='op'>|</span>
+        <span class='id identifier rubyid_typekit'>typekit</span><span class='period'>.</span><span class='id identifier rubyid_cmake_relative_path'>cmake_relative_path</span><span class='lparen'>(</span><span class='id identifier rubyid_path'>path</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>transports</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>ros</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+    <span class='kw'>end</span><span class='period'>.</span><span class='id identifier rubyid_sort'>sort</span>
+
+    <span class='id identifier rubyid_cmake_config'>cmake_config</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Gen.html" title="OroGen::Gen (module)">Gen</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Gen/RTT_CPP.html" title="OroGen::Gen::RTT_CPP (module)">RTT_CPP</a></span></span><span class='period'>.</span><span class='id identifier rubyid_render_template'><span class='object_link'><a href="../../Gen/RTT_CPP.html#render_template-class_method" title="OroGen::Gen::RTT_CPP.render_template (method)">render_template</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>typekit</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>ros</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>config.cmake.in</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_binding'>binding</span>
+    <span class='id identifier rubyid_typekit'>typekit</span><span class='period'>.</span><span class='id identifier rubyid_save_automatic'>save_automatic</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>transports</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>ros</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>orogen_</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_typekit'>typekit</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_content'>_msgs-config.cmake.in</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_cmake_config'>cmake_config</span><span class='rparen'>)</span>
+
+    <span class='id identifier rubyid_rosmap'>rosmap</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Gen.html" title="OroGen::Gen (module)">Gen</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Gen/RTT_CPP.html" title="OroGen::Gen::RTT_CPP (module)">RTT_CPP</a></span></span><span class='period'>.</span><span class='id identifier rubyid_render_template'><span class='object_link'><a href="../../Gen/RTT_CPP.html#render_template-class_method" title="OroGen::Gen::RTT_CPP.render_template (method)">render_template</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>typekit</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>ros</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>rosmap</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_binding'>binding</span>
+    <span class='id identifier rubyid_rosmap'>rosmap</span> <span class='op'>=</span> <span class='id identifier rubyid_typekit'>typekit</span><span class='period'>.</span><span class='id identifier rubyid_save_automatic'>save_automatic</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>transports</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>ros</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_typekit'>typekit</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_content'>.rosmap</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_rosmap'>rosmap</span><span class='rparen'>)</span>
+
+    <span class='id identifier rubyid_pkg_config'>pkg_config</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Gen.html" title="OroGen::Gen (module)">Gen</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Gen/RTT_CPP.html" title="OroGen::Gen::RTT_CPP (module)">RTT_CPP</a></span></span><span class='period'>.</span><span class='id identifier rubyid_render_template'><span class='object_link'><a href="../../Gen/RTT_CPP.html#render_template-class_method" title="OroGen::Gen::RTT_CPP.render_template (method)">render_template</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>typekit</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>ros</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>transport-ros.pc</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_binding'>binding</span>
+    <span class='id identifier rubyid_typekit'>typekit</span><span class='period'>.</span><span class='id identifier rubyid_save_automatic'>save_automatic</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>transports</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>ros</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_typekit'>typekit</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_content'>-transport-ros.pc.in</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_pkg_config'>pkg_config</span><span class='rparen'>)</span>
+
+    <span class='id identifier rubyid_cmake'>cmake</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Gen.html" title="OroGen::Gen (module)">Gen</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Gen/RTT_CPP.html" title="OroGen::Gen::RTT_CPP (module)">RTT_CPP</a></span></span><span class='period'>.</span><span class='id identifier rubyid_render_template'><span class='object_link'><a href="../../Gen/RTT_CPP.html#render_template-class_method" title="OroGen::Gen::RTT_CPP.render_template (method)">render_template</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>typekit</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>ros</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>CMakeLists.txt</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_binding'>binding</span>
+    <span class='id identifier rubyid_typekit'>typekit</span><span class='period'>.</span><span class='id identifier rubyid_save_automatic'>save_automatic</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>transports</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>ros</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>CMakeLists.txt</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_cmake'>cmake</span><span class='rparen'>)</span>
+
+    <span class='kw'>return</span> <span class='lbracket'>[</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="generate_disabled-instance_method">
+  
+    #<strong>generate_disabled</strong>(typesets, convert_types, convert_array_types, user_converted_types)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/marshallers/ros.rb', line 346</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_generate_disabled'>generate_disabled</span><span class='lparen'>(</span><span class='id identifier rubyid_typesets'>typesets</span><span class='comma'>,</span> <span class='id identifier rubyid_convert_types'>convert_types</span><span class='comma'>,</span> <span class='id identifier rubyid_convert_array_types'>convert_array_types</span><span class='comma'>,</span> <span class='id identifier rubyid_user_converted_types'>user_converted_types</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_rosmap'>rosmap</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Gen.html" title="OroGen::Gen (module)">Gen</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Gen/RTT_CPP.html" title="OroGen::Gen::RTT_CPP (module)">RTT_CPP</a></span></span><span class='period'>.</span><span class='id identifier rubyid_render_template'><span class='object_link'><a href="../../Gen/RTT_CPP.html#render_template-class_method" title="OroGen::Gen::RTT_CPP.render_template (method)">render_template</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>typekit</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>ros</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>rosmap</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_binding'>binding</span>
+    <span class='id identifier rubyid_rosmap'>rosmap</span> <span class='op'>=</span> <span class='id identifier rubyid_typekit'>typekit</span><span class='period'>.</span><span class='id identifier rubyid_save_automatic'>save_automatic</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>transports</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>ros</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_typekit'>typekit</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_content'>.rosmap</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_rosmap'>rosmap</span><span class='rparen'>)</span>
+
+    <span class='id identifier rubyid_pkg_config'>pkg_config</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Gen.html" title="OroGen::Gen (module)">Gen</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Gen/RTT_CPP.html" title="OroGen::Gen::RTT_CPP (module)">RTT_CPP</a></span></span><span class='period'>.</span><span class='id identifier rubyid_render_template'><span class='object_link'><a href="../../Gen/RTT_CPP.html#render_template-class_method" title="OroGen::Gen::RTT_CPP.render_template (method)">render_template</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>typekit</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>ros</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>transport-ros-disabled.pc</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_binding'>binding</span>
+    <span class='id identifier rubyid_typekit'>typekit</span><span class='period'>.</span><span class='id identifier rubyid_save_automatic'>save_automatic</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>transports</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>ros</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_typekit'>typekit</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_content'>-transport-ros.pc.in</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_pkg_config'>pkg_config</span><span class='rparen'>)</span>
+
+    <span class='id identifier rubyid_cmake'>cmake</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Gen.html" title="OroGen::Gen (module)">Gen</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Gen/RTT_CPP.html" title="OroGen::Gen::RTT_CPP (module)">RTT_CPP</a></span></span><span class='period'>.</span><span class='id identifier rubyid_render_template'><span class='object_link'><a href="../../Gen/RTT_CPP.html#render_template-class_method" title="OroGen::Gen::RTT_CPP.render_template (method)">render_template</a></span></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>typekit</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>ros</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>CMakeLists-disabled.txt</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_binding'>binding</span>
+    <span class='id identifier rubyid_typekit'>typekit</span><span class='period'>.</span><span class='id identifier rubyid_save_automatic'>save_automatic</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>transports</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>ros</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>CMakeLists.txt</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_cmake'>cmake</span><span class='rparen'>)</span>
+    <span class='kw'>return</span> <span class='lbracket'>[</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="generate_type_convertion_list-instance_method">
+  
+    #<strong>generate_type_convertion_list</strong>(typeset)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/marshallers/ros.rb', line 332</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_generate_type_convertion_list'>generate_type_convertion_list</span><span class='lparen'>(</span><span class='id identifier rubyid_typeset'>typeset</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_convert_types'>convert_types</span> <span class='op'>=</span> <span class='const'>Array</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+    <span class='id identifier rubyid_typeset'>typeset</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_type'>type</span><span class='op'>|</span>
+        <span class='kw'>next</span> <span class='kw'>if</span> <span class='op'>!</span><span class='id identifier rubyid_ros_converted_type?'>ros_converted_type?</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='rparen'>)</span>
+        <span class='id identifier rubyid_convert_types'>convert_types</span> <span class='op'>&lt;&lt;</span> <span class='lbracket'>[</span><span class='id identifier rubyid_type'>type</span><span class='comma'>,</span> <span class='id identifier rubyid_type'>type</span><span class='rbracket'>]</span>
+
+        <span class='id identifier rubyid_target_type'>target_type</span> <span class='op'>=</span> <span class='id identifier rubyid_typekit'>typekit</span><span class='period'>.</span><span class='id identifier rubyid_intermediate_type_for'>intermediate_type_for</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='rparen'>)</span>
+        <span class='kw'>if</span> <span class='id identifier rubyid_target_type'>target_type</span> <span class='op'>!=</span> <span class='id identifier rubyid_type'>type</span>
+            <span class='id identifier rubyid_convert_types'>convert_types</span> <span class='op'>&lt;&lt;</span> <span class='lbracket'>[</span><span class='id identifier rubyid_target_type'>target_type</span><span class='comma'>,</span> <span class='id identifier rubyid_type'>type</span><span class='rbracket'>]</span>
+        <span class='kw'>end</span>
+    <span class='kw'>end</span>
+    <span class='id identifier rubyid_convert_types'>convert_types</span><span class='period'>.</span><span class='id identifier rubyid_to_set'>to_set</span><span class='period'>.</span><span class='id identifier rubyid_to_a'>to_a</span><span class='period'>.</span><span class='id identifier rubyid_sort_by'>sort_by</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_t0'>t0</span><span class='comma'>,</span> <span class='id identifier rubyid_t1'>t1</span><span class='op'>|</span> <span class='lbracket'>[</span><span class='id identifier rubyid_t0'>t0</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_t1'>t1</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='rbracket'>]</span> <span class='rbrace'>}</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="has_custom_convertions?-instance_method">
+  
+    #<strong>has_custom_convertions?</strong>  &#x21d2; <tt>Boolean</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>True if some custom oroGen-to-ROS convertions have been registered</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+111
+112
+113</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/marshallers/ros.rb', line 111</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_has_custom_convertions?'>has_custom_convertions?</span>
+    <span class='op'>!</span><span class='id identifier rubyid_type_to_msg'>type_to_msg</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="load_ros_mappings-instance_method">
+  
+    #<strong>load_ros_mappings</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/marshallers/ros.rb', line 133</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_load_ros_mappings'>load_ros_mappings</span>
+    <span class='id identifier rubyid_typekit'>typekit</span><span class='period'>.</span><span class='id identifier rubyid_used_typekits'>used_typekits</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_tk'>tk</span><span class='op'>|</span>
+        <span class='kw'>next</span> <span class='kw'>if</span> <span class='id identifier rubyid_tk'>tk</span><span class='period'>.</span><span class='id identifier rubyid_virtual?'>virtual?</span>
+        <span class='kw'>begin</span>
+            <span class='comment'># Yuk ! Not dependent on the architecture, and
+</span>            <span class='comment'># hardcoded pkg-config stuff behaviour
+</span>            <span class='id identifier rubyid_raw_mapping'>raw_mapping</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../ROS.html" title="OroGen::TypekitMarshallers::ROS (module)">ROS</a></span></span><span class='period'>.</span><span class='id identifier rubyid_load_rosmap_by_package_name'><span class='object_link'><a href="../ROS.html#load_rosmap_by_package_name-class_method" title="OroGen::TypekitMarshallers::ROS.load_rosmap_by_package_name (method)">load_rosmap_by_package_name</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_tk'>tk</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
+            <span class='id identifier rubyid_raw_mapping'>raw_mapping</span><span class='period'>.</span><span class='id identifier rubyid_delete_if'>delete_if</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_type_name'>type_name</span><span class='comma'>,</span> <span class='id identifier rubyid__'>_</span><span class='op'>|</span> <span class='op'>!</span><span class='id identifier rubyid_typekit'>typekit</span><span class='period'>.</span><span class='id identifier rubyid_registry'>registry</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_type_name'>type_name</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
+            <span class='id identifier rubyid_ros_mappings'>ros_mappings</span><span class='lparen'>(</span><span class='id identifier rubyid_raw_mapping'>raw_mapping</span><span class='rparen'>)</span>
+        <span class='kw'>rescue</span> <span class='const'>Utilrb</span><span class='op'>::</span><span class='const'>PkgConfig</span><span class='op'>::</span><span class='const'>NotFound</span>
+        <span class='kw'>end</span>
+    <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="multidimensional_array?-instance_method">
+  
+    #<strong>multidimensional_array?</strong>(type)  &#x21d2; <tt>Boolean</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+295
+296
+297
+298</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/marshallers/ros.rb', line 295</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_multidimensional_array?'>multidimensional_array?</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='rparen'>)</span>
+    <span class='const'><span class='object_link'><a href="#ARRAY_TYPES-constant" title="OroGen::TypekitMarshallers::ROS::Plugin::ARRAY_TYPES (constant)">ARRAY_TYPES</a></span></span><span class='period'>.</span><span class='id identifier rubyid_any?'>any?</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_array_t'>array_t</span><span class='op'>|</span> <span class='id identifier rubyid_type'>type</span> <span class='op'>&lt;</span> <span class='id identifier rubyid_array_t'>array_t</span> <span class='rbrace'>}</span> <span class='op'>&amp;&amp;</span>
+        <span class='const'><span class='object_link'><a href="#ARRAY_TYPES-constant" title="OroGen::TypekitMarshallers::ROS::Plugin::ARRAY_TYPES (constant)">ARRAY_TYPES</a></span></span><span class='period'>.</span><span class='id identifier rubyid_any?'>any?</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_array_t'>array_t</span><span class='op'>|</span> <span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_deference'>deference</span> <span class='op'>&lt;</span> <span class='id identifier rubyid_array_t'>array_t</span> <span class='rbrace'>}</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="name-instance_method">
+  
+    #<strong>name</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+73</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/marshallers/ros.rb', line 73</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_name'>name</span><span class='semicolon'>;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>ros</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="ros_arg_type-instance_method">
+  
+    #<strong>ros_arg_type</strong>(type, unbox = true)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the argument signature the C++ type for the ROS message that
+represents <code>type</code></p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+289
+290
+291</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/marshallers/ros.rb', line 289</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_ros_arg_type'>ros_arg_type</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='comma'>,</span> <span class='id identifier rubyid_unbox'>unbox</span> <span class='op'>=</span> <span class='kw'>true</span><span class='rparen'>)</span>
+    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_ros_cxx_type'>ros_cxx_type</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='comma'>,</span> <span class='id identifier rubyid_unbox'>unbox</span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'> const&amp;</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="ros_base_type?-instance_method">
+  
+    #<strong>ros_base_type?</strong>(type)  &#x21d2; <tt>Boolean</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns true if <code>type</code> is a base type in ROS</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+185
+186
+187</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/marshallers/ros.rb', line 185</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_ros_base_type?'>ros_base_type?</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_type'>type</span> <span class='op'>&lt;</span> <span class='const'><span class='object_link'><a href="../../../Typelib.html" title="Typelib (module)">Typelib</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../../Typelib/NumericType.html" title="Typelib::NumericType (class)">NumericType</a></span></span> <span class='op'>||</span> <span class='id identifier rubyid_type'>type</span> <span class='op'>&lt;</span> <span class='const'><span class='object_link'><a href="../../../Typelib.html" title="Typelib (module)">Typelib</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../../Typelib/EnumType.html" title="Typelib::EnumType (class)">EnumType</a></span></span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="ros_converted_type?-instance_method">
+  
+    #<strong>ros_converted_type?</strong>(type)  &#x21d2; <tt>Boolean</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns whether <code>type</code> should be exported as a ROS message</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/marshallers/ros.rb', line 301</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_ros_converted_type?'>ros_converted_type?</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_type'>type</span> <span class='op'>=</span> <span class='id identifier rubyid_typekit'>typekit</span><span class='period'>.</span><span class='id identifier rubyid_intermediate_type_for'>intermediate_type_for</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='rparen'>)</span>
+    <span class='kw'>return</span> <span class='kw'>true</span> <span class='kw'>if</span> <span class='id identifier rubyid_type_to_msg'>type_to_msg</span><span class='period'>.</span><span class='id identifier rubyid_has_key?'>has_key?</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
+    <span class='kw'>return</span> <span class='kw'>if</span> <span class='id identifier rubyid_ros_base_type?'>ros_base_type?</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='rparen'>)</span>
+
+    <span class='kw'>if</span> <span class='id identifier rubyid_type'>type</span> <span class='op'>&lt;</span> <span class='const'><span class='object_link'><a href="../../../Typelib.html" title="Typelib (module)">Typelib</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../../Typelib/CompoundType.html" title="Typelib::CompoundType (class)">CompoundType</a></span></span>
+        <span class='id identifier rubyid_ros_exported_type?'>ros_exported_type?</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='rparen'>)</span>
+    <span class='kw'>elsif</span> <span class='id identifier rubyid_multidimensional_array?'>multidimensional_array?</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='rparen'>)</span>
+        <span class='kw'>return</span> <span class='kw'>false</span>
+    <span class='kw'>elsif</span> <span class='const'><span class='object_link'><a href="#ARRAY_TYPES-constant" title="OroGen::TypekitMarshallers::ROS::Plugin::ARRAY_TYPES (constant)">ARRAY_TYPES</a></span></span><span class='period'>.</span><span class='id identifier rubyid_any?'>any?</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_array_type'>array_type</span><span class='op'>|</span> <span class='id identifier rubyid_type'>type</span> <span class='op'>&lt;</span> <span class='id identifier rubyid_array_type'>array_type</span> <span class='rbrace'>}</span>
+        <span class='kw'>return</span> <span class='lparen'>(</span><span class='id identifier rubyid_ros_converted_type?'>ros_converted_type?</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_deference'>deference</span><span class='rparen'>)</span> <span class='op'>||</span> <span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_deference'>deference</span> <span class='op'>&lt;=</span> <span class='const'><span class='object_link'><a href="../../../Typelib.html" title="Typelib (module)">Typelib</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../../Typelib/EnumType.html" title="Typelib::EnumType (class)">EnumType</a></span></span><span class='rparen'>)</span>
+    <span class='kw'>else</span> <span class='kw'>true</span>
+    <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="ros_cxx_type-instance_method">
+  
+    #<strong>ros_cxx_type</strong>(type, do_unboxing = true)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the C++ type name for the ROS message that represents
+<code>type</code></p>
+
+<p>unboxed version of the message (i.e. std_msgs/Time would map to ros::Time).
+If false, the base message type name is kept</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>do_unboxing</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>if true, the returned type is the</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/marshallers/ros.rb', line 248</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_ros_cxx_type'>ros_cxx_type</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='comma'>,</span> <span class='id identifier rubyid_do_unboxing'>do_unboxing</span> <span class='op'>=</span> <span class='kw'>true</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_explicit_mapping'>explicit_mapping</span> <span class='op'>=</span> <span class='id identifier rubyid_type_to_msg'>type_to_msg</span><span class='lbracket'>[</span><span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='rbracket'>]</span>
+    <span class='kw'>if</span> <span class='op'>!</span><span class='id identifier rubyid_explicit_mapping'>explicit_mapping</span> <span class='op'>&amp;&amp;</span> <span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span> <span class='op'>&lt;</span> <span class='const'><span class='object_link'><a href="../../../Typelib.html" title="Typelib (module)">Typelib</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../../Typelib/ArrayType.html" title="Typelib::ArrayType (class)">ArrayType</a></span></span> <span class='op'>||</span> <span class='id identifier rubyid_type'>type</span> <span class='op'>&lt;</span> <span class='const'><span class='object_link'><a href="../../../Typelib.html" title="Typelib (module)">Typelib</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../../Typelib/ContainerType.html" title="Typelib::ContainerType (class)">ContainerType</a></span></span><span class='rparen'>)</span>
+        <span class='kw'>return</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>std::vector&lt; </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_ros_cxx_type'>ros_cxx_type</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_deference'>deference</span><span class='comma'>,</span> <span class='id identifier rubyid_do_unboxing'>do_unboxing</span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'> &gt;</span><span class='tstring_end'>&quot;</span></span>
+    <span class='kw'>end</span>
+
+    <span class='id identifier rubyid_msg_name'>msg_name</span> <span class='op'>=</span> <span class='id identifier rubyid_ros_message_name'>ros_message_name</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='comma'>,</span> <span class='kw'>true</span><span class='rparen'>)</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_do_unboxing'>do_unboxing</span> <span class='op'>&amp;&amp;</span> <span class='lparen'>(</span><span class='id identifier rubyid_unboxed'>unboxed</span> <span class='op'>=</span> <span class='id identifier rubyid_boxed_msg_mappings'>boxed_msg_mappings</span><span class='lbracket'>[</span><span class='id identifier rubyid_msg_name'>msg_name</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+        <span class='id identifier rubyid_msg_name'>msg_name</span> <span class='op'>=</span> <span class='id identifier rubyid_unboxed'>unboxed</span>
+    <span class='kw'>end</span>
+
+    <span class='kw'>if</span> <span class='id identifier rubyid_type'>type</span> <span class='op'>&lt;</span> <span class='const'><span class='object_link'><a href="../../../Typelib.html" title="Typelib (module)">Typelib</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../../Typelib/NumericType.html" title="Typelib::NumericType (class)">NumericType</a></span></span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_do_unboxing'>do_unboxing</span>
+        <span class='kw'>if</span> <span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_integer?'>integer?</span>
+            <span class='kw'>if</span> <span class='id identifier rubyid_msg_name'>msg_name</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>bool</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>then</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>bool</span><span class='tstring_end'>&quot;</span></span>
+            <span class='kw'>else</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>boost::</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_msg_name'>msg_name</span><span class='embexpr_end'>}</span><span class='tstring_content'>_t</span><span class='tstring_end'>&quot;</span></span>
+            <span class='kw'>end</span>
+        <span class='kw'>elsif</span> <span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span> <span class='op'>==</span> <span class='int'>4</span>
+            <span class='kw'>return</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>float</span><span class='tstring_end'>&quot;</span></span>
+        <span class='kw'>elsif</span> <span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span> <span class='op'>==</span> <span class='int'>8</span>
+            <span class='kw'>return</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>double</span><span class='tstring_end'>&quot;</span></span>
+        <span class='kw'>else</span> <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>don&#39;t know what to use to represent </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_type'>type</span><span class='embexpr_end'>}</span><span class='tstring_content'> on the ROS C++ mapping</span><span class='tstring_end'>&quot;</span></span>
+        <span class='kw'>end</span>
+    <span class='kw'>elsif</span> <span class='id identifier rubyid_type'>type</span> <span class='op'>&lt;</span> <span class='const'><span class='object_link'><a href="../../../Typelib.html" title="Typelib (module)">Typelib</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../../Typelib/EnumType.html" title="Typelib::EnumType (class)">EnumType</a></span></span>
+        <span class='kw'>return</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>boost::int32_t</span><span class='tstring_end'>&quot;</span></span>
+    <span class='kw'>elsif</span> <span class='id identifier rubyid_msg_name'>msg_name</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>time</span><span class='tstring_end'>&quot;</span></span>
+        <span class='kw'>return</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>ros::Time</span><span class='tstring_end'>&quot;</span></span>
+    <span class='kw'>elsif</span> <span class='id identifier rubyid_msg_name'>msg_name</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>string</span><span class='tstring_end'>&#39;</span></span>
+        <span class='kw'>return</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>std::string</span><span class='tstring_end'>&#39;</span></span>
+    <span class='kw'>else</span>
+        <span class='kw'>return</span> <span class='id identifier rubyid_msg_name'>msg_name</span><span class='period'>.</span><span class='id identifier rubyid_gsub'>gsub</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\/</span><span class='regexp_end'>/</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>::</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="ros_exported_type?-instance_method">
+  
+    #<strong>ros_exported_type?</strong>(type)  &#x21d2; <tt>Boolean</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns whether <code>type</code> should be exported as a ROS message</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/marshallers/ros.rb', line 317</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_ros_exported_type?'>ros_exported_type?</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_type'>type</span> <span class='op'>=</span> <span class='id identifier rubyid_typekit'>typekit</span><span class='period'>.</span><span class='id identifier rubyid_intermediate_type_for'>intermediate_type_for</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='rparen'>)</span>
+    <span class='kw'>return</span> <span class='kw'>true</span> <span class='kw'>if</span> <span class='id identifier rubyid_type_to_msg'>type_to_msg</span><span class='period'>.</span><span class='id identifier rubyid_has_key?'>has_key?</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
+    <span class='kw'>return</span> <span class='kw'>if</span> <span class='id identifier rubyid_ros_base_type?'>ros_base_type?</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='rparen'>)</span>
+    <span class='kw'>return</span> <span class='kw'>if</span> <span class='op'>!</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span> <span class='op'>&lt;</span> <span class='const'><span class='object_link'><a href="../../../Typelib.html" title="Typelib (module)">Typelib</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../../Typelib/CompoundType.html" title="Typelib::CompoundType (class)">CompoundType</a></span></span><span class='rparen'>)</span>
+    <span class='comment'># ROS cannot represent arrays in arrays. Filter those out
+</span>    <span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_recursive_dependencies'>recursive_dependencies</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_t'>t</span><span class='op'>|</span>
+        <span class='kw'>next</span> <span class='kw'>if</span> <span class='id identifier rubyid_type_to_msg'>type_to_msg</span><span class='period'>.</span><span class='id identifier rubyid_has_key?'>has_key?</span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
+        <span class='kw'>if</span> <span class='id identifier rubyid_multidimensional_array?'>multidimensional_array?</span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='rparen'>)</span>
+            <span class='kw'>return</span>
+        <span class='kw'>end</span>
+    <span class='kw'>end</span>
+    <span class='kw'>return</span> <span class='kw'>true</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="ros_field_name-instance_method">
+  
+    #<strong>ros_field_name</strong>(type, absolute = false)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the type name that should be used in a field in another ROS message</p>
+
+<p>For “normal” messages, this is the message name. For boxed messages (e.g.
+std_msgs/Time), it is the corresponding base type</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+195
+196
+197
+198
+199
+200
+201
+202</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/marshallers/ros.rb', line 195</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_ros_field_name'>ros_field_name</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='comma'>,</span> <span class='id identifier rubyid_absolute'>absolute</span> <span class='op'>=</span> <span class='kw'>false</span><span class='rparen'>)</span>
+    <span class='kw'>if</span> <span class='op'>!</span><span class='id identifier rubyid_type_to_msg'>type_to_msg</span><span class='period'>.</span><span class='id identifier rubyid_has_key?'>has_key?</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span> <span class='op'>&lt;=</span> <span class='const'><span class='object_link'><a href="../../../Typelib.html" title="Typelib (module)">Typelib</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../../Typelib/ArrayType.html" title="Typelib::ArrayType (class)">ArrayType</a></span></span> <span class='op'>||</span> <span class='id identifier rubyid_type'>type</span> <span class='op'>&lt;=</span> <span class='const'><span class='object_link'><a href="../../../Typelib.html" title="Typelib (module)">Typelib</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../../Typelib/ContainerType.html" title="Typelib::ContainerType (class)">ContainerType</a></span></span><span class='rparen'>)</span>
+        <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_ros_field_name'>ros_field_name</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_deference'>deference</span><span class='comma'>,</span> <span class='id identifier rubyid_absolute'>absolute</span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'>[]</span><span class='tstring_end'>&quot;</span></span>
+    <span class='kw'>else</span>
+        <span class='id identifier rubyid_msg_name'>msg_name</span> <span class='op'>=</span> <span class='id identifier rubyid_ros_message_name'>ros_message_name</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='comma'>,</span> <span class='id identifier rubyid_absolute'>absolute</span><span class='rparen'>)</span>
+        <span class='id identifier rubyid_boxed_msg_mappings'>boxed_msg_mappings</span><span class='lbracket'>[</span><span class='id identifier rubyid_msg_name'>msg_name</span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='id identifier rubyid_msg_name'>msg_name</span>
+    <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="ros_mappings-instance_method">
+  
+    #<strong>ros_mappings</strong>(mappings)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Define custom mappings from typegen types to ROS messages</p>
+
+<p>known to oroGen to the ROS message that should be used to represent it on
+the ROS side. The ROS message name should be fully qualified</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>mappings</span>
+      
+      
+        <span class='type'>(<tt>Hash{String=&gt;String}</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>mapping from the name of a type</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+126
+127
+128
+129
+130
+131</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/marshallers/ros.rb', line 126</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_ros_mappings'>ros_mappings</span><span class='lparen'>(</span><span class='id identifier rubyid_mappings'>mappings</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_mappings'>mappings</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_typename'>typename</span><span class='comma'>,</span> <span class='id identifier rubyid_ros_msg_name'>ros_msg_name</span><span class='op'>|</span>
+        <span class='id identifier rubyid_type'>type</span> <span class='op'>=</span> <span class='id identifier rubyid_typekit'>typekit</span><span class='period'>.</span><span class='id identifier rubyid_find_type'>find_type</span><span class='lparen'>(</span><span class='id identifier rubyid_typename'>typename</span><span class='rparen'>)</span>
+        <span class='id identifier rubyid_type_to_msg'>type_to_msg</span><span class='lbracket'>[</span><span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_ros_msg_name'>ros_msg_name</span>
+    <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="ros_message_name-instance_method">
+  
+    #<strong>ros_message_name</strong>(type, absolute = false)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the ROS message name for <code>type</code></p>
+
+<p>always contain its namespace. Otherwise, it contains its namespace only if
+not generated by <code>typekit</code>. This is required by the ROS message
+generator</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>type</span>
+      
+      
+        <span class='type'>(<tt>TypeClass</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the type as a typelib Type class</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>absolute</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>if true, the message name will</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/marshallers/ros.rb', line 222</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_ros_message_name'>ros_message_name</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='comma'>,</span> <span class='id identifier rubyid_absolute'>absolute</span> <span class='op'>=</span> <span class='kw'>false</span><span class='rparen'>)</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_type'>type</span> <span class='op'>&lt;</span> <span class='const'><span class='object_link'><a href="../../../Typelib.html" title="Typelib (module)">Typelib</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../../Typelib/EnumType.html" title="Typelib::EnumType (class)">EnumType</a></span></span>
+        <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>std_msgs/Int32</span><span class='tstring_end'>&quot;</span></span>
+    <span class='kw'>elsif</span> <span class='id identifier rubyid_msg_name'>msg_name</span> <span class='op'>=</span> <span class='id identifier rubyid_type_to_msg'>type_to_msg</span><span class='lbracket'>[</span><span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='rbracket'>]</span>
+        <span class='kw'>return</span> <span class='id identifier rubyid_msg_name'>msg_name</span>
+    <span class='kw'>elsif</span> <span class='id identifier rubyid_type'>type</span> <span class='op'>&lt;=</span> <span class='const'><span class='object_link'><a href="../../../Typelib.html" title="Typelib (module)">Typelib</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../../Typelib/ArrayType.html" title="Typelib::ArrayType (class)">ArrayType</a></span></span> <span class='op'>||</span> <span class='id identifier rubyid_type'>type</span> <span class='op'>&lt;=</span> <span class='const'><span class='object_link'><a href="../../../Typelib.html" title="Typelib (module)">Typelib</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../../Typelib/ContainerType.html" title="Typelib::ContainerType (class)">ContainerType</a></span></span>
+        <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_ros_message_name'>ros_message_name</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_deference'>deference</span><span class='comma'>,</span> <span class='id identifier rubyid_absolute'>absolute</span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'>[]</span><span class='tstring_end'>&quot;</span></span>
+    <span class='kw'>else</span>
+        <span class='id identifier rubyid_source_typekit'>source_typekit</span> <span class='op'>=</span> <span class='id identifier rubyid_typekit'>typekit</span><span class='period'>.</span><span class='id identifier rubyid_imported_typekits_for'>imported_typekits_for</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_first'>first</span>
+        <span class='kw'>if</span> <span class='id identifier rubyid_source_typekit'>source_typekit</span> <span class='op'>||</span> <span class='id identifier rubyid_absolute'>absolute</span>
+            <span class='id identifier rubyid_prefix'>prefix</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_ros_package_name_for_typekit'>ros_package_name_for_typekit</span><span class='lparen'>(</span><span class='id identifier rubyid_source_typekit'>source_typekit</span> <span class='op'>||</span> <span class='id identifier rubyid_typekit'>typekit</span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'>/</span><span class='tstring_end'>&quot;</span></span>
+        <span class='kw'>end</span>
+        <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_prefix'>prefix</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span> <span class='op'>+</span> <span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='period'>.</span>
+            <span class='id identifier rubyid_split'>split</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span>
+            <span class='id identifier rubyid_map'>map</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_n'>n</span><span class='op'>|</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_n'>n</span><span class='lbracket'>[</span><span class='int'>0</span><span class='comma'>,</span> <span class='int'>1</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_upcase'>upcase</span><span class='embexpr_end'>}</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_n'>n</span><span class='lbracket'>[</span><span class='int'>1</span><span class='op'>..</span><span class='op'>-</span><span class='int'>1</span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span> <span class='rbrace'>}</span><span class='period'>.</span>
+            <span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span>
+            <span class='id identifier rubyid_gsub'>gsub</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>[^\w]</span><span class='regexp_end'>/</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="ros_package_name_for_typekit-instance_method">
+  
+    #<strong>ros_package_name_for_typekit</strong>(typekit)  &#x21d2; <tt>String</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the ROS package name generated for a given typekit</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>the</span>
+      
+      
+        <span class='type'>(<tt>#<span class='object_link'><a href="#name-class_method" title="OroGen::TypekitMarshallers::ROS::Plugin.name (method)">name</a></span></tt>, <tt>#to_str</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>typekit or typekit name</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the corresponding ROS package name</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+208
+209
+210
+211
+212
+213</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/marshallers/ros.rb', line 208</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_ros_package_name_for_typekit'>ros_package_name_for_typekit</span><span class='lparen'>(</span><span class='id identifier rubyid_typekit'>typekit</span><span class='rparen'>)</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_typekit'>typekit</span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='symbol'>:name</span><span class='rparen'>)</span>
+        <span class='id identifier rubyid_typekit'>typekit</span> <span class='op'>=</span> <span class='id identifier rubyid_typekit'>typekit</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span>
+    <span class='kw'>end</span>
+    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>orogen_</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_typekit'>typekit</span><span class='embexpr_end'>}</span><span class='tstring_content'>_msgs</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="ros_ref_type-instance_method">
+  
+    #<strong>ros_ref_type</strong>(type, unbox = true)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns a reference signature to the C++ type for the ROS message that
+represents <code>type</code></p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+283
+284
+285</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/marshallers/ros.rb', line 283</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_ros_ref_type'>ros_ref_type</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='comma'>,</span> <span class='id identifier rubyid_unbox'>unbox</span> <span class='op'>=</span> <span class='kw'>true</span><span class='rparen'>)</span>
+    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_ros_cxx_type'>ros_cxx_type</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='comma'>,</span> <span class='id identifier rubyid_unbox'>unbox</span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'>&amp;</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="separate_cmake?-instance_method">
+  
+    #<strong>separate_cmake?</strong>  &#x21d2; <tt>Boolean</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Generates the set of compilation dependencies for the ROS transport</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+179</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/marshallers/ros.rb', line 179</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_separate_cmake?'>separate_cmake?</span><span class='semicolon'>;</span> <span class='kw'>true</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+      <div id="footer">
+  Generated on Tue Apr  9 14:53:47 2019 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.19 (ruby-2.5.1).
+</div>
+
+    </div>
+  </body>
+</html>

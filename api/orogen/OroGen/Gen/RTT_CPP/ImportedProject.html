@@ -1,0 +1,1774 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Class: OroGen::Gen::RTT_CPP::ImportedProject
+  
+    &mdash; oroGen
+  
+</title>
+
+  <link rel="stylesheet" href="../../../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../../../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "OroGen::Gen::RTT_CPP::ImportedProject";
+  relpath = '../../../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../../../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../../../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../../../class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../../../_index.html">Index (I)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../../../OroGen.html" title="OroGen (module)">OroGen</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../../Gen.html" title="OroGen::Gen (module)">Gen</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../RTT_CPP.html" title="OroGen::Gen::RTT_CPP (module)">RTT_CPP</a></span></span>
+     &raquo; 
+    <span class="title">ImportedProject</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../../../class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Class: OroGen::Gen::RTT_CPP::ImportedProject
+  
+  
+  
+</h1>
+<div class="box_info">
+  
+  <dl>
+    <dt>Inherits:</dt>
+    <dd>
+      <span class="inheritName"><span class='object_link'><a href="Project.html" title="OroGen::Gen::RTT_CPP::Project (class)">Project</a></span></span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next"><span class='object_link'><a href="Project.html" title="OroGen::Gen::RTT_CPP::Project (class)">Project</a></span></li>
+          
+            <li class="next">OroGen::Gen::RTT_CPP::ImportedProject</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+    </dd>
+  </dl>
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>lib/orogen/gen/imports.rb</dd>
+  </dl>
+  
+</div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<p>Instances of this class represent a task library loaded in a component,
+i.e.  a set of TaskContext defined externally and imported using
+#using_task_library.</p>
+
+<p>For the task contexts imported this way, TaskContext#external_definition? 
+returns true.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+
+
+  <h2>Constant Summary</h2>
+  
+  <h3 class="inherited">Constants inherited
+     from <span class='object_link'><a href="Project.html" title="OroGen::Gen::RTT_CPP::Project (class)">Project</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Project.html#CMAKE_GENERATED_CONFIG-constant" title="OroGen::Gen::RTT_CPP::Project::CMAKE_GENERATED_CONFIG (constant)">Project::CMAKE_GENERATED_CONFIG</a></span></p>
+
+
+  <h2>Instance Attribute Summary <small><a href="#" class="summary_toggle">collapse</a></small></h2>
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#main_project-instance_method" title="#main_project (instance method)">#<strong>main_project</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>The main <span class='object_link'><a href="Project.html" title="OroGen::Gen::RTT_CPP::Project (class)">Project</a></span> instance that groups all the imported task libraries.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#pkg-instance_method" title="#pkg (instance method)">#<strong>pkg</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>The pkg-config file defining this oroGen project.</p>
+</div></span>
+  
+</li>
+
+    
+  </ul>
+
+
+
+  
+  
+  <h3 class="inherited">Attributes inherited from <span class='object_link'><a href="Project.html" title="OroGen::Gen::RTT_CPP::Project (class)">Project</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Project.html#deffile-instance_method" title="OroGen::Gen::RTT_CPP::Project#deffile (method)">#deffile</a></span>, <span class='object_link'><a href="Project.html#define_default_deployments=-instance_method" title="OroGen::Gen::RTT_CPP::Project#define_default_deployments= (method)">#define_default_deployments</a></span>, <span class='object_link'><a href="Project.html#deployers-instance_method" title="OroGen::Gen::RTT_CPP::Project#deployers (method)">#deployers</a></span>, <span class='object_link'><a href="Project.html#disabled_namespaces-instance_method" title="OroGen::Gen::RTT_CPP::Project#disabled_namespaces (method)">#disabled_namespaces</a></span>, <span class='object_link'><a href="Project.html#enabled_transports-instance_method" title="OroGen::Gen::RTT_CPP::Project#enabled_transports (method)">#enabled_transports</a></span>, <span class='object_link'><a href="Project.html#extended_states=-instance_method" title="OroGen::Gen::RTT_CPP::Project#extended_states= (method)">#extended_states</a></span>, <span class='object_link'><a href="Project.html#loaded_deployments-instance_method" title="OroGen::Gen::RTT_CPP::Project#loaded_deployments (method)">#loaded_deployments</a></span>, <span class='object_link'><a href="Project.html#loaded_orogen_projects-instance_method" title="OroGen::Gen::RTT_CPP::Project#loaded_orogen_projects (method)">#loaded_orogen_projects</a></span>, <span class='object_link'><a href="Project.html#loaded_typekits-instance_method" title="OroGen::Gen::RTT_CPP::Project#loaded_typekits (method)">#loaded_typekits</a></span>, <span class='object_link'><a href="Project.html#opaque_registry-instance_method" title="OroGen::Gen::RTT_CPP::Project#opaque_registry (method)">#opaque_registry</a></span>, <span class='object_link'><a href="Project.html#opaques-instance_method" title="OroGen::Gen::RTT_CPP::Project#opaques (method)">#opaques</a></span>, <span class='object_link'><a href="Project.html#registry-instance_method" title="OroGen::Gen::RTT_CPP::Project#registry (method)">#registry</a></span>, <span class='object_link'><a href="Project.html#self_tasks-instance_method" title="OroGen::Gen::RTT_CPP::Project#self_tasks (method)">#self_tasks</a></span>, <span class='object_link'><a href="Project.html#tasks-instance_method" title="OroGen::Gen::RTT_CPP::Project#tasks (method)">#tasks</a></span>, <span class='object_link'><a href="Project.html#typekit_libraries-instance_method" title="OroGen::Gen::RTT_CPP::Project#typekit_libraries (method)">#typekit_libraries</a></span>, <span class='object_link'><a href="Project.html#used_libraries-instance_method" title="OroGen::Gen::RTT_CPP::Project#used_libraries (method)">#used_libraries</a></span>, <span class='object_link'><a href="Project.html#used_task_libraries-instance_method" title="OroGen::Gen::RTT_CPP::Project#used_task_libraries (method)">#used_task_libraries</a></span>, <span class='object_link'><a href="Project.html#used_typekits-instance_method" title="OroGen::Gen::RTT_CPP::Project#used_typekits (method)">#used_typekits</a></span></p>
+
+
+  
+    <h2>
+      Class Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#load-class_method" title="load (class method)">.<strong>load</strong>(main_project, pkg, file, verbose = true)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Import in the <code>base</code> component the task library whose orogen
+specification is included in <code>file</code>.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+    <h2>
+      Instance Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#eval-instance_method" title="#eval (instance method)">#<strong>eval</strong>(*args, &amp;block)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#export_types-instance_method" title="#export_types (instance method)">#<strong>export_types</strong>(*args)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Simply ignore type export directives.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#find_type-instance_method" title="#find_type (instance method)">#<strong>find_type</strong>(*args)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#generate-instance_method" title="#generate (instance method)">#<strong>generate</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Task library objects represent an import, and as such they cannot be
+generated.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#generate_build_system-instance_method" title="#generate_build_system (instance method)">#<strong>generate_build_system</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Task library objects represent an import, and as such they cannot be
+generated.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#import_types_from-instance_method" title="#import_types_from (instance method)">#<strong>import_types_from</strong>(name, *args)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#imported%3F-instance_method" title="#imported? (instance method)">#<strong>imported?</strong>  &#x21d2; Boolean </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#include_dirs-instance_method" title="#include_dirs (instance method)">#<strong>include_dirs</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">#<strong>initialize</strong>(main_project, pkg = nil)  &#x21d2; ImportedProject </a>
+    
+
+    
+  </span>
+  
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>A new instance of ImportedProject.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#load-instance_method" title="#load (instance method)">#<strong>load</strong>(*args, &amp;block)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#load_orogen_project-instance_method" title="#load_orogen_project (instance method)">#<strong>load_orogen_project</strong>(name, options = Hash.new)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#load_task_library-instance_method" title="#load_task_library (instance method)">#<strong>load_task_library</strong>(name)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#task_context-instance_method" title="#task_context (instance method)">#<strong>task_context</strong>(name, **options, &amp;block)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>:nodoc:.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#tasklib_pkg-instance_method" title="#tasklib_pkg (instance method)">#<strong>tasklib_pkg</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#tasklib_pkg_name-instance_method" title="#tasklib_pkg_name (instance method)">#<strong>tasklib_pkg_name</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>The pkg-config file for the task library of this oroGen project.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#to_s-instance_method" title="#to_s (instance method)">#<strong>to_s</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#type_export_policy-instance_method" title="#type_export_policy (instance method)">#<strong>type_export_policy</strong>(*args)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#typekit-instance_method" title="#typekit (instance method)">#<strong>typekit</strong>(create = nil, &amp;block)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>:nodoc:.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#using_library-instance_method" title="#using_library (instance method)">#<strong>using_library</strong>(*args)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#using_task_library-instance_method" title="#using_task_library (instance method)">#<strong>using_task_library</strong>(name)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#using_typekit-instance_method" title="#using_typekit (instance method)">#<strong>using_typekit</strong>(name)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods inherited from <span class='object_link'><a href="Project.html" title="OroGen::Gen::RTT_CPP::Project (class)">Project</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Project.html#additional_plugin_source_dirs-instance_method" title="OroGen::Gen::RTT_CPP::Project#additional_plugin_source_dirs (method)">#additional_plugin_source_dirs</a></span>, <span class='object_link'><a href="Project.html#base_dir-instance_method" title="OroGen::Gen::RTT_CPP::Project#base_dir (method)">#base_dir</a></span>, <span class='object_link'><a href="Project.html#default_task_superclass-instance_method" title="OroGen::Gen::RTT_CPP::Project#default_task_superclass (method)">#default_task_superclass</a></span>, <span class='object_link'><a href="Project.html#define_default_deployments%3F-instance_method" title="OroGen::Gen::RTT_CPP::Project#define_default_deployments? (method)">#define_default_deployments?</a></span>, <span class='object_link'><a href="Project.html#define_dummy_types=-instance_method" title="OroGen::Gen::RTT_CPP::Project#define_dummy_types= (method)">#define_dummy_types=</a></span>, <span class='object_link'><a href="Project.html#define_dummy_types%3F-instance_method" title="OroGen::Gen::RTT_CPP::Project#define_dummy_types? (method)">#define_dummy_types?</a></span>, <span class='object_link'><a href="Project.html#deployment-instance_method" title="OroGen::Gen::RTT_CPP::Project#deployment (method)">#deployment</a></span>, <span class='object_link'><a href="Project.html#disable_namespace-instance_method" title="OroGen::Gen::RTT_CPP::Project#disable_namespace (method)">#disable_namespace</a></span>, <span class='object_link'><a href="Project.html#enable_extension-instance_method" title="OroGen::Gen::RTT_CPP::Project#enable_extension (method)">#enable_extension</a></span>, <span class='object_link'><a href="Project.html#enable_namespace-instance_method" title="OroGen::Gen::RTT_CPP::Project#enable_namespace (method)">#enable_namespace</a></span>, <span class='object_link'><a href="Project.html#enable_transports-instance_method" title="OroGen::Gen::RTT_CPP::Project#enable_transports (method)">#enable_transports</a></span>, <span class='object_link'><a href="Project.html#exported_type%3F-instance_method" title="OroGen::Gen::RTT_CPP::Project#exported_type? (method)">#exported_type?</a></span>, <span class='object_link'><a href="Project.html#extended_state_support%3F-instance_method" title="OroGen::Gen::RTT_CPP::Project#extended_state_support? (method)">#extended_state_support?</a></span>, <span class='object_link'><a href="Project.html#extended_states%3F-instance_method" title="OroGen::Gen::RTT_CPP::Project#extended_states? (method)">#extended_states?</a></span>, <span class='object_link'><a href="Project.html#external_task_context-instance_method" title="OroGen::Gen::RTT_CPP::Project#external_task_context (method)">#external_task_context</a></span>, <span class='object_link'><a href="Project.html#find_deployment_by_name-instance_method" title="OroGen::Gen::RTT_CPP::Project#find_deployment_by_name (method)">#find_deployment_by_name</a></span>, <span class='object_link'><a href="Project.html#find_interface_type-instance_method" title="OroGen::Gen::RTT_CPP::Project#find_interface_type (method)">#find_interface_type</a></span>, <span class='object_link'><a href="Project.html#find_task_context-instance_method" title="OroGen::Gen::RTT_CPP::Project#find_task_context (method)">#find_task_context</a></span>, <span class='object_link'><a href="Project.html#find_typekit-instance_method" title="OroGen::Gen::RTT_CPP::Project#find_typekit (method)">#find_typekit</a></span>, <span class='object_link'><a href="Project.html#has_deployment%3F-instance_method" title="OroGen::Gen::RTT_CPP::Project#has_deployment? (method)">#has_deployment?</a></span>, <span class='object_link'><a href="Project.html#has_library%3F-instance_method" title="OroGen::Gen::RTT_CPP::Project#has_library? (method)">#has_library?</a></span>, <span class='object_link'><a href="Project.html#has_namespace%3F-instance_method" title="OroGen::Gen::RTT_CPP::Project#has_namespace? (method)">#has_namespace?</a></span>, <span class='object_link'><a href="Project.html#has_task_context%3F-instance_method" title="OroGen::Gen::RTT_CPP::Project#has_task_context? (method)">#has_task_context?</a></span>, <span class='object_link'><a href="Project.html#has_task_library%3F-instance_method" title="OroGen::Gen::RTT_CPP::Project#has_task_library? (method)">#has_task_library?</a></span>, <span class='object_link'><a href="Project.html#has_typekit%3F-instance_method" title="OroGen::Gen::RTT_CPP::Project#has_typekit? (method)">#has_typekit?</a></span>, <span class='object_link'><a href="Project.html#import_typekit-instance_method" title="OroGen::Gen::RTT_CPP::Project#import_typekit (method)">#import_typekit</a></span>, <span class='object_link'><a href="Project.html#imported_type%3F-instance_method" title="OroGen::Gen::RTT_CPP::Project#imported_type? (method)">#imported_type?</a></span>, <span class='object_link'><a href="Project.html#imported_typekits_for-instance_method" title="OroGen::Gen::RTT_CPP::Project#imported_typekits_for (method)">#imported_typekits_for</a></span>, <span class='object_link'><a href="Project.html#inspect-instance_method" title="OroGen::Gen::RTT_CPP::Project#inspect (method)">#inspect</a></span>, <span class='object_link'><a href="Project.html#linux%3F-instance_method" title="OroGen::Gen::RTT_CPP::Project#linux? (method)">#linux?</a></span>, <span class='object_link'><a href="Project.html#load_orogen_deployment-instance_method" title="OroGen::Gen::RTT_CPP::Project#load_orogen_deployment (method)">#load_orogen_deployment</a></span>, <span class='object_link'><a href="Project.html#load_typekit-instance_method" title="OroGen::Gen::RTT_CPP::Project#load_typekit (method)">#load_typekit</a></span>, <span class='object_link'><a href="Project.html#max_sizes-instance_method" title="OroGen::Gen::RTT_CPP::Project#max_sizes (method)">#max_sizes</a></span>, <span class='object_link'><a href="Project.html#namespace_disabled%3F-instance_method" title="OroGen::Gen::RTT_CPP::Project#namespace_disabled? (method)">#namespace_disabled?</a></span>, <span class='object_link'><a href="Project.html#orocos_target-instance_method" title="OroGen::Gen::RTT_CPP::Project#orocos_target (method)">#orocos_target</a></span>, <span class='object_link'><a href="Project.html#orogen_project-instance_method" title="OroGen::Gen::RTT_CPP::Project#orogen_project (method)">#orogen_project</a></span>, <span class='object_link'><a href="Project.html#orogen_project=-instance_method" title="OroGen::Gen::RTT_CPP::Project#orogen_project= (method)">#orogen_project=</a></span>, <span class='object_link'><a href="Project.html#orogen_project%3F-instance_method" title="OroGen::Gen::RTT_CPP::Project#orogen_project? (method)">#orogen_project?</a></span>, <span class='object_link'><a href="Project.html#orogen_project_description-instance_method" title="OroGen::Gen::RTT_CPP::Project#orogen_project_description (method)">#orogen_project_description</a></span>, <span class='object_link'><a href="Project.html#orogen_typekit_description-instance_method" title="OroGen::Gen::RTT_CPP::Project#orogen_typekit_description (method)">#orogen_typekit_description</a></span>, <span class='object_link'><a href="Project.html#pretty_print-instance_method" title="OroGen::Gen::RTT_CPP::Project#pretty_print (method)">#pretty_print</a></span>, <span class='object_link'><a href="Project.html#project-instance_method" title="OroGen::Gen::RTT_CPP::Project#project (method)">#project</a></span>, <span class='object_link'><a href="Project.html#register_loaded_project-instance_method" title="OroGen::Gen::RTT_CPP::Project#register_loaded_project (method)">#register_loaded_project</a></span>, <span class='object_link'><a href="Project.html#register_orogen_file-instance_method" title="OroGen::Gen::RTT_CPP::Project#register_orogen_file (method)">#register_orogen_file</a></span>, <span class='object_link'><a href="Project.html#register_typekit-instance_method" title="OroGen::Gen::RTT_CPP::Project#register_typekit (method)">#register_typekit</a></span>, <span class='object_link'><a href="Project.html#resolve_type-instance_method" title="OroGen::Gen::RTT_CPP::Project#resolve_type (method)">#resolve_type</a></span>, <span class='object_link'><a href="Project.html#rtt_registry-instance_method" title="OroGen::Gen::RTT_CPP::Project#rtt_registry (method)">#rtt_registry</a></span>, <span class='object_link'><a href="Project.html#simple_deployment-instance_method" title="OroGen::Gen::RTT_CPP::Project#simple_deployment (method)">#simple_deployment</a></span>, <span class='object_link'><a href="Project.html#standard_tasks-class_method" title="OroGen::Gen::RTT_CPP::Project.standard_tasks (method)">standard_tasks</a></span>, <span class='object_link'><a href="Project.html#static_deployment-instance_method" title="OroGen::Gen::RTT_CPP::Project#static_deployment (method)">#static_deployment</a></span>, <span class='object_link'><a href="Project.html#task_model_from_name-instance_method" title="OroGen::Gen::RTT_CPP::Project#task_model_from_name (method)">#task_model_from_name</a></span>, <span class='object_link'><a href="Project.html#tasklib_dependencies-instance_method" title="OroGen::Gen::RTT_CPP::Project#tasklib_dependencies (method)">#tasklib_dependencies</a></span>, <span class='object_link'><a href="Project.html#tasklib_used_task_libraries-instance_method" title="OroGen::Gen::RTT_CPP::Project#tasklib_used_task_libraries (method)">#tasklib_used_task_libraries</a></span>, <span class='object_link'><a href="Project.html#using_plugin-instance_method" title="OroGen::Gen::RTT_CPP::Project#using_plugin (method)">#using_plugin</a></span>, <span class='object_link'><a href="Project.html#using_project-instance_method" title="OroGen::Gen::RTT_CPP::Project#using_project (method)">#using_project</a></span>, <span class='object_link'><a href="Project.html#using_rtt_typekit-class_method" title="OroGen::Gen::RTT_CPP::Project.using_rtt_typekit (method)">using_rtt_typekit</a></span>, <span class='object_link'><a href="Project.html#validate_max_sizes_spec-instance_method" title="OroGen::Gen::RTT_CPP::Project#validate_max_sizes_spec (method)">#validate_max_sizes_spec</a></span>, <span class='object_link'><a href="Project.html#xenomai%3F-instance_method" title="OroGen::Gen::RTT_CPP::Project#xenomai? (method)">#xenomai?</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="OpaqueHandling.html" title="OroGen::Gen::RTT_CPP::OpaqueHandling (module)">OpaqueHandling</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="OpaqueHandling.html#find_opaque_for_intermediate-instance_method" title="OroGen::Gen::RTT_CPP::OpaqueHandling#find_opaque_for_intermediate (method)">#find_opaque_for_intermediate</a></span>, <span class='object_link'><a href="OpaqueHandling.html#intermediate_type%3F-instance_method" title="OroGen::Gen::RTT_CPP::OpaqueHandling#intermediate_type? (method)">#intermediate_type?</a></span>, <span class='object_link'><a href="OpaqueHandling.html#intermediate_type_for-instance_method" title="OroGen::Gen::RTT_CPP::OpaqueHandling#intermediate_type_for (method)">#intermediate_type_for</a></span>, <span class='object_link'><a href="OpaqueHandling.html#intermediate_type_name_for-instance_method" title="OroGen::Gen::RTT_CPP::OpaqueHandling#intermediate_type_name_for (method)">#intermediate_type_name_for</a></span>, <span class='object_link'><a href="OpaqueHandling.html#m_type%3F-instance_method" title="OroGen::Gen::RTT_CPP::OpaqueHandling#m_type? (method)">#m_type?</a></span>, <span class='object_link'><a href="OpaqueHandling.html#opaque_specification-instance_method" title="OroGen::Gen::RTT_CPP::OpaqueHandling#opaque_specification (method)">#opaque_specification</a></span></p>
+<div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <h3 class="signature first" id="initialize-instance_method">
+  
+    #<strong>initialize</strong>(main_project, pkg = nil)  &#x21d2; <tt><span class='object_link'><a href="" title="OroGen::Gen::RTT_CPP::ImportedProject (class)">ImportedProject</a></span></tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns a new instance of ImportedProject</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+203
+204
+205
+206
+207
+208
+209
+210
+211</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/gen/imports.rb', line 203</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_main_project'>main_project</span><span class='comma'>,</span> <span class='id identifier rubyid_pkg'>pkg</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
+    <span class='ivar'>@main_project</span> <span class='op'>=</span> <span class='id identifier rubyid_main_project'>main_project</span>
+    <span class='ivar'>@pkg</span> <span class='op'>=</span> <span class='id identifier rubyid_pkg'>pkg</span>
+    <span class='kw'>super</span><span class='lparen'>(</span><span class='rparen'>)</span>
+
+    <span class='kw'>if</span> <span class='id identifier rubyid_pkg'>pkg</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_main_project'>main_project</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_main_project'>main_project</span><span class='period'>.</span><span class='id identifier rubyid_has_typekit?'>has_typekit?</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
+        <span class='id identifier rubyid_using_typekit'>using_typekit</span> <span class='id identifier rubyid_pkg'>pkg</span><span class='period'>.</span><span class='id identifier rubyid_project_name'>project_name</span>
+    <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+  <div id="instance_attr_details" class="attr_details">
+    <h2>Instance Attribute Details</h2>
+    
+      
+      <span id=""></span>
+      <div class="method_details first">
+  <h3 class="signature first" id="main_project-instance_method">
+  
+    #<strong>main_project</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>The main <span class='object_link'><a href="Project.html" title="OroGen::Gen::RTT_CPP::Project (class)">Project</a></span> instance that groups all the imported task libraries</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+181
+182
+183</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/gen/imports.rb', line 181</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_main_project'>main_project</span>
+  <span class='ivar'>@main_project</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="pkg-instance_method">
+  
+    #<strong>pkg</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>The pkg-config file defining this oroGen project</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+183
+184
+185</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/gen/imports.rb', line 183</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_pkg'>pkg</span>
+  <span class='ivar'>@pkg</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+
+  <div id="class_method_details" class="method_details_list">
+    <h2>Class Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="load-class_method">
+  
+    .<strong>load</strong>(main_project, pkg, file, verbose = true)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Import in the <code>base</code> component the task library whose orogen
+specification is included in <code>file</code></p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+199
+200
+201</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/gen/imports.rb', line 199</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_load'>load</span><span class='lparen'>(</span><span class='id identifier rubyid_main_project'>main_project</span><span class='comma'>,</span> <span class='id identifier rubyid_pkg'>pkg</span><span class='comma'>,</span> <span class='id identifier rubyid_file'>file</span><span class='comma'>,</span> <span class='id identifier rubyid_verbose'>verbose</span> <span class='op'>=</span> <span class='kw'>true</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_main_project'>main_project</span><span class='comma'>,</span> <span class='id identifier rubyid_pkg'>pkg</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_load'>load</span><span class='lparen'>(</span><span class='id identifier rubyid_file'>file</span><span class='comma'>,</span> <span class='id identifier rubyid_verbose'>verbose</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="eval-instance_method">
+  
+    #<strong>eval</strong>(*args, &amp;block)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+234
+235
+236
+237
+238</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/gen/imports.rb', line 234</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_eval'>eval</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='kw'>super</span>
+    <span class='id identifier rubyid_validate_max_sizes_spec'>validate_max_sizes_spec</span>
+    <span class='id identifier rubyid_result'>result</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="export_types-instance_method">
+  
+    #<strong>export_types</strong>(*args)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Simply ignore type export directives</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+292</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/gen/imports.rb', line 292</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_export_types'>export_types</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>self</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="find_type-instance_method">
+  
+    #<strong>find_type</strong>(*args)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/gen/imports.rb', line 246</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_find_type'>find_type</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
+    <span class='comment'># Check first that this project has the requested type
+</span>    <span class='comment'># definition
+</span>    <span class='id identifier rubyid_t'>t</span> <span class='op'>=</span> <span class='kw'>super</span>
+    <span class='comment'># But, then, return the equivalent type from the master project
+</span>    <span class='kw'>if</span> <span class='id identifier rubyid_main_project'>main_project</span>
+        <span class='id identifier rubyid_main_project'>main_project</span><span class='period'>.</span><span class='id identifier rubyid_find_type'>find_type</span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
+    <span class='kw'>else</span> <span class='id identifier rubyid_t'>t</span>
+    <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="generate-instance_method">
+  
+    #<strong>generate</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Task library objects represent an import, and as such they cannot be
+generated.  This method raises NotImplementedError</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>NotImplementedError</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+323</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/gen/imports.rb', line 323</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_generate'>generate</span><span class='semicolon'>;</span> <span class='id identifier rubyid_raise'>raise</span> <span class='const'>NotImplementedError</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="generate_build_system-instance_method">
+  
+    #<strong>generate_build_system</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Task library objects represent an import, and as such they cannot be
+generated.  This method raises NotImplementedError</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>NotImplementedError</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+326</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/gen/imports.rb', line 326</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_generate_build_system'>generate_build_system</span><span class='semicolon'>;</span> <span class='id identifier rubyid_raise'>raise</span> <span class='const'>NotImplementedError</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="import_types_from-instance_method">
+  
+    #<strong>import_types_from</strong>(name, *args)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+264
+265
+266
+267
+268
+269</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/gen/imports.rb', line 264</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_import_types_from'>import_types_from</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_main_project'>main_project</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_main_project'>main_project</span><span class='period'>.</span><span class='id identifier rubyid_has_typekit?'>has_typekit?</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
+        <span class='id identifier rubyid_using_typekit'>using_typekit</span> <span class='id identifier rubyid_name'>name</span>
+    <span class='kw'>else</span> <span class='id identifier rubyid_typekit'>typekit</span>
+    <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="imported?-instance_method">
+  
+    #<strong>imported?</strong>  &#x21d2; <tt>Boolean</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+193
+194
+195</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/gen/imports.rb', line 193</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_imported?'>imported?</span>
+    <span class='kw'>true</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="include_dirs-instance_method">
+  
+    #<strong>include_dirs</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+213
+214
+215
+216
+217
+218</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/gen/imports.rb', line 213</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_include_dirs'>include_dirs</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_pkg'>pkg</span>
+        <span class='id identifier rubyid_pkg'>pkg</span><span class='period'>.</span><span class='id identifier rubyid_include_dirs'>include_dirs</span>
+    <span class='kw'>else</span> <span class='const'>Set</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+    <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="load-instance_method">
+  
+    #<strong>load</strong>(*args, &amp;block)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+240
+241
+242
+243
+244</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/gen/imports.rb', line 240</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_load'>load</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='kw'>super</span>
+    <span class='id identifier rubyid_validate_max_sizes_spec'>validate_max_sizes_spec</span>
+    <span class='id identifier rubyid_result'>result</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="load_orogen_project-instance_method">
+  
+    #<strong>load_orogen_project</strong>(name, options = Hash.new)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+220
+221
+222
+223
+224
+225</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/gen/imports.rb', line 220</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_load_orogen_project'>load_orogen_project</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='const'>Hash</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='rparen'>)</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_main_project'>main_project</span>
+        <span class='id identifier rubyid_main_project'>main_project</span><span class='period'>.</span><span class='id identifier rubyid_load_orogen_project'>load_orogen_project</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
+    <span class='kw'>else</span> <span class='kw'>super</span>
+    <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="load_task_library-instance_method">
+  
+    #<strong>load_task_library</strong>(name)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+227
+228
+229
+230
+231
+232</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/gen/imports.rb', line 227</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_load_task_library'>load_task_library</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_main_project'>main_project</span>
+        <span class='id identifier rubyid_main_project'>main_project</span><span class='period'>.</span><span class='id identifier rubyid_load_task_library'>load_task_library</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
+    <span class='kw'>else</span> <span class='kw'>super</span>
+    <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="task_context-instance_method">
+  
+    #<strong>task_context</strong>(name, **options, &amp;block)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>:nodoc:</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+281
+282
+283
+284
+285
+286
+287
+288
+289</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/gen/imports.rb', line 281</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_task_context'>task_context</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='op'>**</span><span class='id identifier rubyid_options'>options</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span> <span class='comment'># :nodoc:
+</span>    <span class='id identifier rubyid_task'>task</span> <span class='op'>=</span> <span class='kw'>super</span>
+    <span class='kw'>if</span> <span class='op'>!</span><span class='id identifier rubyid_task'>task</span>
+        <span class='comment'>#Task might not be created because it&#39;s namespace is disabled
+</span>        <span class='kw'>return</span>
+    <span class='kw'>end</span>
+    <span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_external_definition'>external_definition</span> <span class='op'>=</span> <span class='kw'>true</span>
+    <span class='id identifier rubyid_task'>task</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="tasklib_pkg-instance_method">
+  
+    #<strong>tasklib_pkg</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+189
+190
+191</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/gen/imports.rb', line 189</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_tasklib_pkg'>tasklib_pkg</span>
+    <span class='ivar'>@tasklib_pkg</span> <span class='op'>||=</span> <span class='const'>Utilrb</span><span class='op'>::</span><span class='const'>PkgConfig</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_tasklib_pkg_name'>tasklib_pkg_name</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="tasklib_pkg_name-instance_method">
+  
+    #<strong>tasklib_pkg_name</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>The pkg-config file for the task library of this oroGen project</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+185
+186
+187</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/gen/imports.rb', line 185</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_tasklib_pkg_name'>tasklib_pkg_name</span>
+    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_content'>-tasks-</span><span class='embexpr_beg'>#{</span><span class='const'><span class='object_link'><a href="../RTT_CPP.html" title="OroGen::Gen::RTT_CPP (module)">RTT_CPP</a></span></span><span class='period'>.</span><span class='id identifier rubyid_orocos_target'><span class='object_link'><a href="../RTT_CPP.html#orocos_target-class_method" title="OroGen::Gen::RTT_CPP.orocos_target (method)">orocos_target</a></span></span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="to_s-instance_method">
+  
+    #<strong>to_s</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+328
+329
+330</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/gen/imports.rb', line 328</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_to_s'>to_s</span>
+    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>#&lt;OroGen::Gen::RTT_CPP::ImportedProject: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_content'> on </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_main_project'>main_project</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_content'>&gt;</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="type_export_policy-instance_method">
+  
+    #<strong>type_export_policy</strong>(*args)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+293</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/gen/imports.rb', line 293</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_type_export_policy'>type_export_policy</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>self</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="typekit-instance_method">
+  
+    #<strong>typekit</strong>(create = nil, &amp;block)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>:nodoc:</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/gen/imports.rb', line 295</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_typekit'>typekit</span><span class='lparen'>(</span><span class='id identifier rubyid_create'>create</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span> <span class='comment'># :nodoc:
+</span>    <span class='kw'>if</span> <span class='ivar'>@typekit</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>&amp;&amp;</span> <span class='ivar'>@has_typekit</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+        <span class='ivar'>@has_typekit</span> <span class='op'>=</span>
+            <span class='kw'>if</span> <span class='id identifier rubyid_main_project'>main_project</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_main_project'>main_project</span><span class='period'>.</span><span class='id identifier rubyid_has_typekit?'>has_typekit?</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
+                <span class='kw'>true</span>
+            <span class='kw'>elsif</span> <span class='op'>!</span><span class='id identifier rubyid_name'>name</span>
+                <span class='comment'># This is a workaround about the fucked up reloading
+</span>                <span class='comment'># of orogen files. The issue at hand is that
+</span>                <span class='comment'># #typekit is called here and there in Project,
+</span>                <span class='comment'># while name is not set. if has_typekit was set to
+</span>                <span class='comment'># false, the typekit would never be loaded again
+</span>                <span class='kw'>nil</span>
+            <span class='kw'>else</span>
+                <span class='kw'>false</span>
+            <span class='kw'>end</span>
+
+        <span class='kw'>if</span> <span class='ivar'>@has_typekit</span>
+            <span class='ivar'>@typekit</span> <span class='op'>=</span> <span class='id identifier rubyid_using_typekit'>using_typekit</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
+        <span class='kw'>end</span>
+    <span class='kw'>end</span>
+    <span class='kw'>if</span> <span class='op'>!</span><span class='ivar'>@typekit</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_create'>create</span>
+        <span class='ivar'>@typekit</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Typekit.html" title="OroGen::Gen::RTT_CPP::Typekit (class)">Typekit</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Typekit.html#initialize-instance_method" title="OroGen::Gen::RTT_CPP::Typekit#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='kw'>self</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+    <span class='ivar'>@typekit</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="using_library-instance_method">
+  
+    #<strong>using_library</strong>(*args)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+271
+272</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/gen/imports.rb', line 271</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_using_library'>using_library</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="using_task_library-instance_method">
+  
+    #<strong>using_task_library</strong>(name)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+274
+275
+276
+277
+278
+279</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/gen/imports.rb', line 274</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_using_task_library'>using_task_library</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_main_project'>main_project</span>
+        <span class='kw'>super</span><span class='lparen'>(</span><span class='id identifier rubyid_main_project'>main_project</span><span class='period'>.</span><span class='id identifier rubyid_using_task_library'>using_task_library</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span><span class='rparen'>)</span>
+    <span class='kw'>else</span> <span class='kw'>super</span>
+    <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="using_typekit-instance_method">
+  
+    #<strong>using_typekit</strong>(name)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+257
+258
+259
+260
+261
+262</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/gen/imports.rb', line 257</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_using_typekit'>using_typekit</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_main_project'>main_project</span>
+        <span class='kw'>super</span><span class='lparen'>(</span><span class='id identifier rubyid_main_project'>main_project</span><span class='period'>.</span><span class='id identifier rubyid_using_typekit'>using_typekit</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span><span class='rparen'>)</span>
+    <span class='kw'>else</span> <span class='kw'>super</span>
+    <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+      <div id="footer">
+  Generated on Tue Apr  9 14:53:34 2019 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.19 (ruby-2.5.1).
+</div>
+
+    </div>
+  </body>
+</html>

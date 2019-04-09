@@ -1,0 +1,2818 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Class: OroGen::Spec::Deployment
+  
+    &mdash; oroGen
+  
+</title>
+
+  <link rel="stylesheet" href="../../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "OroGen::Spec::Deployment";
+  relpath = '../../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../../class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../../_index.html">Index (D)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../../OroGen.html" title="OroGen (module)">OroGen</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../Spec.html" title="OroGen::Spec (module)">Spec</a></span></span>
+     &raquo; 
+    <span class="title">Deployment</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../../class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Class: OroGen::Spec::Deployment
+  
+  
+  
+</h1>
+<div class="box_info">
+  
+  <dl>
+    <dt>Inherits:</dt>
+    <dd>
+      <span class="inheritName">Object</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">OroGen::Spec::Deployment</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+    </dd>
+  </dl>
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>lib/orogen/spec/deployment.rb</dd>
+  </dl>
+  
+</div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<p>Instances of this class are used to define a <em>deployment</em>. The
+deployment is the part in which the TaskContext classes are instanciated
+and associated with specific Activity classes.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><div id="subclasses">
+  <h2>Direct Known Subclasses</h2>
+  <p class="children"><span class='object_link'><a href="../Gen/RTT_CPP/Deployment.html" title="OroGen::Gen::RTT_CPP::Deployment (class)">Gen::RTT_CPP::Deployment</a></span>, <span class='object_link'><a href="../ROS/Spec/Launcher.html" title="OroGen::ROS::Spec::Launcher (class)">ROS::Spec::Launcher</a></span></p>
+</div>
+
+  
+    <h2>
+      Constant Summary
+      <small><a href="#" class="constants_summary_toggle">collapse</a></small>
+    </h2>
+
+    <dl class="constants">
+      
+        <dt id="KNOWN_LOG_LEVELS-constant" class="">KNOWN_LOG_LEVELS =
+          
+        </dt>
+        <dd><pre class="code"><span class='lbrace'>{</span>
+    <span class='symbol'>:info</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Info</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
+    <span class='symbol'>:debug</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Debug</span><span class='tstring_end'>&#39;</span></span>
+<span class='rbrace'>}</span></pre></dd>
+      
+    </dl>
+  
+
+
+
+
+  <h2>Instance Attribute Summary <small><a href="#" class="summary_toggle">collapse</a></small></h2>
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#connections-instance_method" title="#connections (instance method)">#<strong>connections</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>The set of connections set up for this deployment.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#name-instance_method" title="#name (instance method)">#<strong>name</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>The deployment name.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#peers-instance_method" title="#peers (instance method)">#<strong>peers</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>The set of peer pairs set up for this deployment.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#project-instance_method" title="#project (instance method)">#<strong>project</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>The underlying Project object.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#task_activities-instance_method" title="#task_activities (instance method)">#<strong>task_activities</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>The set of tasks that need to be deployed.</p>
+</div></span>
+  
+</li>
+
+    
+  </ul>
+
+
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#activity_ordered_tasks-instance_method" title="#activity_ordered_tasks (instance method)">#<strong>activity_ordered_tasks</strong>(ordered = Array.new)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>handels theActivity creation order to be sure that all activities are
+created in the right order.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#add_default_logger-instance_method" title="#add_default_logger (instance method)">#<strong>add_default_logger</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#add_peers-instance_method" title="#add_peers (instance method)">#<strong>add_peers</strong>(a, b)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Declare that the given tasks are peers.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#connect-instance_method" title="#connect (instance method)">#<strong>connect</strong>(from, to, policy = Hash.new)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Connects the two given ports or tasks.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#corba_enabled%3F-instance_method" title="#corba_enabled? (instance method)">#<strong>corba_enabled?</strong>  &#x21d2; Boolean </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>True if this deployment should export its tasks through CORBA.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#disable_corba-instance_method" title="#disable_corba (instance method)">#<strong>disable_corba</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Force disabling CORBA support even though the CORBA transport is enabled in
+this deployment.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#disable_transport-instance_method" title="#disable_transport (instance method)">#<strong>disable_transport</strong>(transport_name)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Forbid the deployment from loading the given transport.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#do_not_install-instance_method" title="#do_not_install (instance method)">#<strong>do_not_install</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Do not install that deployment.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#each_task-instance_method" title="#each_task (instance method)">#<strong>each_task</strong> {|task| ... } &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Enumerates the tasks defined on this deployment.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#enable_corba-instance_method" title="#enable_corba (instance method)">#<strong>enable_corba</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Force enabling CORBA support even though the CORBA transport is not enabled
+in this deployment.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#enable_transport-instance_method" title="#enable_transport (instance method)">#<strong>enable_transport</strong>(transport_name)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Make the deployment load the given transport.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#find_task_by_name-instance_method" title="#find_task_by_name (instance method)">#<strong>find_task_by_name</strong>(name)  &#x21d2; TaskDeployment<sup>?</sup> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the deployed task that has this name.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#get_lock_timeout_no_period-instance_method" title="#get_lock_timeout_no_period (instance method)">#<strong>get_lock_timeout_no_period</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#get_lock_timeout_period_factor-instance_method" title="#get_lock_timeout_period_factor (instance method)">#<strong>get_lock_timeout_period_factor</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">#<strong>initialize</strong>(project = nil, name = nil)  &#x21d2; Deployment </a>
+    
+
+    
+  </span>
+  
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>A new instance of Deployment.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize_copy-instance_method" title="#initialize_copy (instance method)">#<strong>initialize_copy</strong>(old)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#inspect-instance_method" title="#inspect (instance method)">#<strong>inspect</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#install%3F-instance_method" title="#install? (instance method)">#<strong>install?</strong>  &#x21d2; Boolean </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>True if this deployment should be installed.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#linux%3F-instance_method" title="#linux? (instance method)">#<strong>linux?</strong>  &#x21d2; Boolean </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>True if we are generating for Linux.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#load_type-instance_method" title="#load_type (instance method)">#<strong>load_type</strong>(typename)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Manually Request Loading of Types that are not Provided throught the
+task_contex typekit.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#lock_timeout_no_period-instance_method" title="#lock_timeout_no_period (instance method)">#<strong>lock_timeout_no_period</strong>(timeout_in_s)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Set the lock timeout of a thread, which has no period if set, the minimum
+setting is 1s.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#lock_timeout_period_factor-instance_method" title="#lock_timeout_period_factor (instance method)">#<strong>lock_timeout_period_factor</strong>(factor)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Set the mutex timeout for a thread with a given period  by a factor of its
+period if set, the minimum setting is factor 10 (times the period).</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#pretty_print-instance_method" title="#pretty_print (instance method)">#<strong>pretty_print</strong>(pp)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Displays this deployment&#39;s definition nicely.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#rtt_transports-instance_method" title="#rtt_transports (instance method)">#<strong>rtt_transports</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>The set of transports loaded by this deployment for which a transport
+should be loaded on the RTT itself.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#set_master_slave_activity-instance_method" title="#set_master_slave_activity (instance method)">#<strong>set_master_slave_activity</strong>(master, slave)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Define an master slave avtivity between tasks.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#task-instance_method" title="#task (instance method)">#<strong>task</strong>(name, klass)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>call-seq:   task name, task_context -&gt; task_deployment.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#to_s-instance_method" title="#to_s (instance method)">#<strong>to_s</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#transports-instance_method" title="#transports (instance method)">#<strong>transports</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>The set of transports loaded by this deployment, as an array of names.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#used_typekits-instance_method" title="#used_typekits (instance method)">#<strong>used_typekits</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the set of typekits required by this particular deployment (i.e.
+the tasks that are deployed in it).</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#uses_qt%3F-instance_method" title="#uses_qt? (instance method)">#<strong>uses_qt?</strong>  &#x21d2; Boolean </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#xenomai%3F-instance_method" title="#xenomai? (instance method)">#<strong>xenomai?</strong>  &#x21d2; Boolean </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>True if we are generating for Xenomai.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+<div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <h3 class="signature first" id="initialize-instance_method">
+  
+    #<strong>initialize</strong>(project = nil, name = nil)  &#x21d2; <tt><span class='object_link'><a href="" title="OroGen::Spec::Deployment (class)">Deployment</a></span></tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns a new instance of Deployment</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+532
+533
+534
+535
+536
+537
+538
+539
+540
+541
+542
+543
+544
+545
+546
+547
+548
+549
+550</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/spec/deployment.rb', line 532</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_project'>project</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_name'>name</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
+    <span class='ivar'>@project</span>       <span class='op'>=</span> <span class='id identifier rubyid_project'>project</span>
+    <span class='ivar'>@name</span>            <span class='op'>=</span> <span class='id identifier rubyid_name'>name</span>
+
+    <span class='ivar'>@install</span>         <span class='op'>=</span> <span class='kw'>true</span>
+    <span class='ivar'>@task_activities</span> <span class='op'>=</span> <span class='const'>Array</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+    <span class='ivar'>@file_reporters</span>  <span class='op'>=</span> <span class='const'>Hash</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+    <span class='ivar'>@loggers</span>         <span class='op'>=</span> <span class='const'>Hash</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+    <span class='ivar'>@connections</span>     <span class='op'>=</span> <span class='const'>Array</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+    <span class='ivar'>@tcp_reporters</span>   <span class='op'>=</span> <span class='const'>Hash</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+    <span class='ivar'>@peers</span>           <span class='op'>=</span> <span class='const'>Set</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+    <span class='ivar'>@corba_enabled</span>   <span class='op'>=</span> <span class='kw'>nil</span>
+    <span class='ivar'>@browse</span>          <span class='op'>=</span> <span class='kw'>nil</span>
+    <span class='ivar'>@loglevel</span>        <span class='op'>=</span> <span class='kw'>nil</span>
+    <span class='ivar'>@transports</span>      <span class='op'>=</span> <span class='const'>Array</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+    <span class='ivar'>@manually_loaded_types</span> <span class='op'>=</span> <span class='const'>Set</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+    <span class='ivar'>@lock_timeout_no_period</span> <span class='op'>=</span> <span class='kw'>nil</span>
+    <span class='ivar'>@lock_timeout_period_factor</span> <span class='op'>=</span>  <span class='kw'>nil</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+  <div id="instance_attr_details" class="attr_details">
+    <h2>Instance Attribute Details</h2>
+    
+      
+      <span id=""></span>
+      <div class="method_details first">
+  <h3 class="signature first" id="connections-instance_method">
+  
+    #<strong>connections</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>The set of connections set up for this deployment. This is a set of [from,
+to] PortDeployment objects.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+747
+748
+749</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/spec/deployment.rb', line 747</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_connections'>connections</span>
+  <span class='ivar'>@connections</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="name-instance_method">
+  
+    #<strong>name</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>The deployment name</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+516
+517
+518</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/spec/deployment.rb', line 516</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_name'>name</span>
+  <span class='ivar'>@name</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="peers-instance_method">
+  
+    #<strong>peers</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>The set of peer pairs set up for this deployment. This is a set of [a, b]
+TaskDeployment objects.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+743
+744
+745</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/spec/deployment.rb', line 743</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_peers'>peers</span>
+  <span class='ivar'>@peers</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="project-instance_method">
+  
+    #<strong>project</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>The underlying Project object</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+518
+519
+520</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/spec/deployment.rb', line 518</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_project'>project</span>
+  <span class='ivar'>@project</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="task_activities-instance_method">
+  
+    #<strong>task_activities</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>The set of tasks that need to be deployed</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+520
+521
+522</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/spec/deployment.rb', line 520</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_task_activities'>task_activities</span>
+  <span class='ivar'>@task_activities</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="activity_ordered_tasks-instance_method">
+  
+    #<strong>activity_ordered_tasks</strong>(ordered = Array.new)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>handels theActivity creation order to be sure that all activities are
+created in the right order</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+706
+707
+708
+709
+710
+711
+712
+713
+714
+715
+716
+717
+718
+719
+720
+721
+722
+723
+724</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/spec/deployment.rb', line 706</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_activity_ordered_tasks'>activity_ordered_tasks</span><span class='lparen'>(</span><span class='id identifier rubyid_ordered'>ordered</span><span class='op'>=</span><span class='const'>Array</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_oldsize'>oldsize</span> <span class='op'>=</span> <span class='id identifier rubyid_ordered'>ordered</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span><span class='lparen'>(</span><span class='rparen'>)</span>
+    <span class='lparen'>(</span><span class='id identifier rubyid_task_activities'>task_activities</span> <span class='op'>-</span> <span class='id identifier rubyid_ordered'>ordered</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_task'>task</span><span class='op'>|</span>
+        <span class='kw'>if</span> <span class='op'>!</span><span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_master'>master</span> <span class='op'>||</span> <span class='id identifier rubyid_ordered'>ordered</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_master'>master</span><span class='rparen'>)</span>
+            <span class='id identifier rubyid_ordered'>ordered</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_task'>task</span>
+        <span class='kw'>end</span>
+    <span class='kw'>end</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_ordered'>ordered</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span> <span class='op'>==</span> <span class='id identifier rubyid_task_activities'>task_activities</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span>
+        <span class='kw'>return</span> <span class='id identifier rubyid_ordered'>ordered</span>
+    <span class='kw'>elsif</span> <span class='id identifier rubyid_oldsize'>oldsize</span> <span class='op'>==</span> <span class='id identifier rubyid_ordered'>ordered</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span><span class='lparen'>(</span><span class='rparen'>)</span>
+        <span class='id identifier rubyid_activities'>activities</span> <span class='op'>=</span> <span class='id identifier rubyid_task_activities'>task_activities</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_task'>task</span><span class='op'>|</span>
+            <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\n  </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_content'> (master: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_master'>master</span> <span class='op'>?</span> <span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_master'>master</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span> <span class='op'>:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>none</span><span class='tstring_end'>&quot;</span></span><span class='embexpr_end'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span>
+        <span class='kw'>end</span>
+        <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>I cannot find an order in which to create the deployed tasks of </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_content'> during deployment</span><span class='tstring_end'>&quot;</span></span> <span class='op'>&lt;&lt;</span>
+            <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Did you created a loop among master and slave activities ?. The </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_activities'>activities</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span><span class='embexpr_end'>}</span><span class='tstring_content'> deployed tasks are:</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_activities'>activities</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\n  </span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='kw'>else</span>
+        <span class='kw'>return</span> <span class='id identifier rubyid_activity_ordered_tasks'>activity_ordered_tasks</span><span class='lparen'>(</span><span class='id identifier rubyid_ordered'>ordered</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="add_default_logger-instance_method">
+  
+    #<strong>add_default_logger</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+736
+737
+738
+739</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/spec/deployment.rb', line 736</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_add_default_logger'>add_default_logger</span>
+    <span class='id identifier rubyid_project'>project</span><span class='period'>.</span><span class='id identifier rubyid_using_task_library'>using_task_library</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>logger</span><span class='tstring_end'>&quot;</span></span>
+    <span class='id identifier rubyid_task'>task</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_content'>_Logger</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>logger::Logger</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="add_peers-instance_method">
+  
+    #<strong>add_peers</strong>(a, b)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Declare that the given tasks are peers</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+766
+767
+768
+769</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/spec/deployment.rb', line 766</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_add_peers'>add_peers</span><span class='lparen'>(</span><span class='id identifier rubyid_a'>a</span><span class='comma'>,</span> <span class='id identifier rubyid_b'>b</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_peers'>peers</span> <span class='op'>&lt;&lt;</span> <span class='lbracket'>[</span><span class='id identifier rubyid_a'>a</span><span class='comma'>,</span> <span class='id identifier rubyid_b'>b</span><span class='rbracket'>]</span>
+    <span class='kw'>self</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="connect-instance_method">
+  
+    #<strong>connect</strong>(from, to, policy = Hash.new)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Connects the two given ports or tasks</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+750
+751
+752
+753
+754
+755
+756
+757
+758
+759
+760
+761
+762
+763</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/spec/deployment.rb', line 750</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_connect'>connect</span><span class='lparen'>(</span><span class='id identifier rubyid_from'>from</span><span class='comma'>,</span> <span class='id identifier rubyid_to'>to</span><span class='comma'>,</span> <span class='id identifier rubyid_policy'>policy</span> <span class='op'>=</span> <span class='const'>Hash</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_add_peers'>add_peers</span> <span class='id identifier rubyid_from'>from</span><span class='period'>.</span><span class='id identifier rubyid_activity'>activity</span><span class='comma'>,</span> <span class='id identifier rubyid_to'>to</span><span class='period'>.</span><span class='id identifier rubyid_activity'>activity</span>
+
+    <span class='kw'>if</span> <span class='id identifier rubyid_from'>from</span><span class='period'>.</span><span class='id identifier rubyid_kind_of?'>kind_of?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="Port.html" title="OroGen::Spec::Port (class)">Port</a></span></span><span class='rparen'>)</span>
+        <span class='kw'>if</span> <span class='op'>!</span><span class='id identifier rubyid_from'>from</span><span class='period'>.</span><span class='id identifier rubyid_kind_of?'>kind_of?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="OutputPort.html" title="OroGen::Spec::OutputPort (class)">OutputPort</a></span></span><span class='rparen'>)</span>
+            <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>in connect(a, b), &#39;a&#39; must be a writer port</span><span class='tstring_end'>&quot;</span></span>
+        <span class='kw'>elsif</span> <span class='op'>!</span><span class='id identifier rubyid_to'>to</span><span class='period'>.</span><span class='id identifier rubyid_kind_of?'>kind_of?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="InputPort.html" title="OroGen::Spec::InputPort (class)">InputPort</a></span></span><span class='rparen'>)</span>
+            <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>in connect(a, b), &#39;b&#39; must be a reader port</span><span class='tstring_end'>&quot;</span></span>
+        <span class='kw'>end</span>
+    <span class='kw'>end</span>
+
+    <span class='id identifier rubyid_connections'>connections</span> <span class='op'>&lt;&lt;</span> <span class='lbracket'>[</span><span class='id identifier rubyid_from'>from</span><span class='comma'>,</span> <span class='id identifier rubyid_to'>to</span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="ConnPolicy.html" title="OroGen::Spec::ConnPolicy (class)">ConnPolicy</a></span></span><span class='period'>.</span><span class='id identifier rubyid_from_hash'><span class='object_link'><a href="ConnPolicy.html#from_hash-class_method" title="OroGen::Spec::ConnPolicy.from_hash (method)">from_hash</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_policy'>policy</span><span class='rparen'>)</span><span class='rbracket'>]</span>
+    <span class='kw'>self</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="corba_enabled?-instance_method">
+  
+    #<strong>corba_enabled?</strong>  &#x21d2; <tt>Boolean</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>True if this deployment should export its tasks through CORBA.</p>
+
+<p>It is true by default if the CORBA transport is enabled</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+686
+687
+688
+689
+690
+691</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/spec/deployment.rb', line 686</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_corba_enabled?'>corba_enabled?</span>
+    <span class='kw'>if</span> <span class='ivar'>@corba_enabled</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+        <span class='id identifier rubyid_transports'>transports</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>corba</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+    <span class='kw'>else</span> <span class='ivar'>@corba_enabled</span>
+    <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="disable_corba-instance_method">
+  
+    #<strong>disable_corba</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Force disabling CORBA support even though the CORBA transport is enabled in
+this deployment</p>
+
+<p>See #corba_enabled?</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+697</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/spec/deployment.rb', line 697</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_disable_corba'>disable_corba</span><span class='semicolon'>;</span> <span class='ivar'>@corba_enabled</span> <span class='op'>=</span> <span class='kw'>false</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="disable_transport-instance_method">
+  
+    #<strong>disable_transport</strong>(transport_name)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Forbid the deployment from loading the given transport</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+639
+640
+641</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/spec/deployment.rb', line 639</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_disable_transport'>disable_transport</span><span class='lparen'>(</span><span class='id identifier rubyid_transport_name'>transport_name</span><span class='rparen'>)</span>
+    <span class='ivar'>@transports</span><span class='period'>.</span><span class='id identifier rubyid_delete'>delete</span><span class='lparen'>(</span><span class='id identifier rubyid_transport_name'>transport_name</span><span class='period'>.</span><span class='id identifier rubyid_to_str'>to_str</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="do_not_install-instance_method">
+  
+    #<strong>do_not_install</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Do not install that deployment</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+523</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/spec/deployment.rb', line 523</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_do_not_install'>do_not_install</span><span class='semicolon'>;</span> <span class='ivar'>@install</span> <span class='op'>=</span> <span class='kw'>false</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="each_task-instance_method">
+  
+    #<strong>each_task</strong> {|task| ... } &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Enumerates the tasks defined on this deployment</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Yield Parameters:</p>
+<ul class="yieldparam">
+  
+    <li>
+      
+        <span class='name'>task</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="TaskDeployment.html" title="OroGen::Spec::TaskDeployment (class)">TaskDeployment</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>a deployed task</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+671
+672
+673</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/spec/deployment.rb', line 671</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_each_task'>each_task</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_task_activities'>task_activities</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="enable_corba-instance_method">
+  
+    #<strong>enable_corba</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Force enabling CORBA support even though the CORBA transport is not enabled
+in this deployment</p>
+
+<p>See #corba_enabled?</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+703</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/spec/deployment.rb', line 703</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_enable_corba'>enable_corba</span><span class='semicolon'>;</span> <span class='ivar'>@corba_enabled</span> <span class='op'>=</span> <span class='kw'>true</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="enable_transport-instance_method">
+  
+    #<strong>enable_transport</strong>(transport_name)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Make the deployment load the given transport</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+643
+644
+645</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/spec/deployment.rb', line 643</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_enable_transport'>enable_transport</span><span class='lparen'>(</span><span class='id identifier rubyid_transport_name'>transport_name</span><span class='rparen'>)</span>
+    <span class='ivar'>@transports</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_transport_name'>transport_name</span><span class='period'>.</span><span class='id identifier rubyid_to_str'>to_str</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="find_task_by_name-instance_method">
+  
+    #<strong>find_task_by_name</strong>(name)  &#x21d2; <tt><span class='object_link'><a href="TaskDeployment.html" title="OroGen::Spec::TaskDeployment (class)">TaskDeployment</a></span></tt><sup>?</sup> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the deployed task that has this name</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="TaskDeployment.html" title="OroGen::Spec::TaskDeployment (class)">TaskDeployment</a></span></tt>, <tt>nil</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the deployed task model, or nil if none exists with that name</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+679
+680
+681</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/spec/deployment.rb', line 679</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_find_task_by_name'>find_task_by_name</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_task_activities'>task_activities</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_act'>act</span><span class='op'>|</span> <span class='id identifier rubyid_act'>act</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span> <span class='op'>==</span> <span class='id identifier rubyid_name'>name</span> <span class='rbrace'>}</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="get_lock_timeout_no_period-instance_method">
+  
+    #<strong>get_lock_timeout_no_period</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+787
+788
+789</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/spec/deployment.rb', line 787</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_get_lock_timeout_no_period'>get_lock_timeout_no_period</span>
+    <span class='ivar'>@lock_timeout_no_period</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="get_lock_timeout_period_factor-instance_method">
+  
+    #<strong>get_lock_timeout_period_factor</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+797
+798
+799</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/spec/deployment.rb', line 797</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_get_lock_timeout_period_factor'>get_lock_timeout_period_factor</span>
+    <span class='ivar'>@lock_timeout_period_factor</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="initialize_copy-instance_method">
+  
+    #<strong>initialize_copy</strong>(old)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+552
+553
+554
+555
+556
+557
+558
+559
+560</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/spec/deployment.rb', line 552</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize_copy'>initialize_copy</span><span class='lparen'>(</span><span class='id identifier rubyid_old'>old</span><span class='rparen'>)</span>
+    <span class='kw'>super</span>
+    <span class='ivar'>@task_activities</span> <span class='op'>=</span> <span class='ivar'>@task_activities</span><span class='period'>.</span><span class='id identifier rubyid_dup'>dup</span>
+
+
+    <span class='ivar'>@transports</span> <span class='op'>=</span> <span class='ivar'>@transports</span><span class='period'>.</span><span class='id identifier rubyid_dup'>dup</span>
+    <span class='ivar'>@peers</span> <span class='op'>=</span> <span class='ivar'>@peers</span><span class='period'>.</span><span class='id identifier rubyid_dup'>dup</span>
+    <span class='ivar'>@manually_loaded_types</span> <span class='op'>=</span> <span class='ivar'>@manually_loaded_types</span><span class='period'>.</span><span class='id identifier rubyid_dup'>dup</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="inspect-instance_method">
+  
+    #<strong>inspect</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+571
+572
+573</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/spec/deployment.rb', line 571</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_inspect'>inspect</span>
+    <span class='id identifier rubyid_to_s'>to_s</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="install?-instance_method">
+  
+    #<strong>install?</strong>  &#x21d2; <tt>Boolean</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>True if this deployment should be installed</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+525</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/spec/deployment.rb', line 525</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_install?'>install?</span><span class='semicolon'>;</span> <span class='op'>!</span><span class='op'>!</span><span class='ivar'>@install</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="linux?-instance_method">
+  
+    #<strong>linux?</strong>  &#x21d2; <tt>Boolean</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>True if we are generating for Linux</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+528</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/spec/deployment.rb', line 528</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_linux?'>linux?</span><span class='semicolon'>;</span>     <span class='id identifier rubyid_project'>project</span><span class='period'>.</span><span class='id identifier rubyid_linux?'>linux?</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="load_type-instance_method">
+  
+    #<strong>load_type</strong>(typename)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Manually Request Loading of Types that are not Provided throught the
+task_contex typekit.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+580
+581
+582
+583
+584
+585</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/spec/deployment.rb', line 580</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_load_type'>load_type</span><span class='lparen'>(</span><span class='id identifier rubyid_typename'>typename</span><span class='rparen'>)</span>
+    <span class='kw'>if</span> <span class='op'>!</span><span class='id identifier rubyid_project'>project</span><span class='period'>.</span><span class='id identifier rubyid_imported_typekits_for'>imported_typekits_for</span><span class='lparen'>(</span><span class='id identifier rubyid_typename'>typename</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='symbol'>:name</span><span class='rparen'>)</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span>
+        <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>cannot find a typekit defining </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_typename'>typename</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='kw'>end</span>
+    <span class='ivar'>@manually_loaded_types</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_typename'>typename</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="lock_timeout_no_period-instance_method">
+  
+    #<strong>lock_timeout_no_period</strong>(timeout_in_s)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Set the lock timeout of a thread, which has no period if set, the minimum
+setting is 1s</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+793
+794
+795</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/spec/deployment.rb', line 793</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_lock_timeout_no_period'>lock_timeout_no_period</span><span class='lparen'>(</span><span class='id identifier rubyid_timeout_in_s'>timeout_in_s</span><span class='rparen'>)</span>
+    <span class='ivar'>@lock_timeout_no_period</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='int'>1</span><span class='comma'>,</span><span class='id identifier rubyid_timeout_in_s'>timeout_in_s</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_max'>max</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="lock_timeout_period_factor-instance_method">
+  
+    #<strong>lock_timeout_period_factor</strong>(factor)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Set the mutex timeout for a thread with a given period  by a factor of its
+period if set, the minimum setting is factor 10 (times the period)</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+804
+805
+806</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/spec/deployment.rb', line 804</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_lock_timeout_period_factor'>lock_timeout_period_factor</span><span class='lparen'>(</span><span class='id identifier rubyid_factor'>factor</span><span class='rparen'>)</span>
+    <span class='ivar'>@lock_timeout_period_factor</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='int'>10</span><span class='comma'>,</span><span class='id identifier rubyid_factor'>factor</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_max'>max</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="pretty_print-instance_method">
+  
+    #<strong>pretty_print</strong>(pp)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Displays this deployment&#39;s definition nicely</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+809
+810
+811
+812
+813
+814
+815
+816
+817
+818
+819
+820
+821
+822
+823
+824
+825
+826
+827
+828
+829
+830
+831
+832
+833</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/spec/deployment.rb', line 809</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_pretty_print'>pretty_print</span><span class='lparen'>(</span><span class='id identifier rubyid_pp'>pp</span><span class='rparen'>)</span> <span class='comment'># :nodoc:
+</span>    <span class='id identifier rubyid_pp'>pp</span><span class='period'>.</span><span class='id identifier rubyid_text'>text</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>------- </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_content'> ------</span><span class='tstring_end'>&quot;</span></span>
+    <span class='id identifier rubyid_pp'>pp</span><span class='period'>.</span><span class='id identifier rubyid_breakable'>breakable</span>
+    <span class='kw'>if</span> <span class='op'>!</span><span class='id identifier rubyid_task_activities'>task_activities</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
+        <span class='id identifier rubyid_pp'>pp</span><span class='period'>.</span><span class='id identifier rubyid_text'>text</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Tasks</span><span class='tstring_end'>&quot;</span></span>
+        <span class='id identifier rubyid_pp'>pp</span><span class='period'>.</span><span class='id identifier rubyid_nest'>nest</span><span class='lparen'>(</span><span class='int'>2</span><span class='rparen'>)</span> <span class='kw'>do</span>
+            <span class='id identifier rubyid_pp'>pp</span><span class='period'>.</span><span class='id identifier rubyid_breakable'>breakable</span>
+            <span class='id identifier rubyid_pp'>pp</span><span class='period'>.</span><span class='id identifier rubyid_seplist'>seplist</span><span class='lparen'>(</span><span class='id identifier rubyid_task_activities'>task_activities</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_act'>act</span><span class='op'>|</span>
+                <span class='id identifier rubyid_act'>act</span><span class='period'>.</span><span class='id identifier rubyid_pretty_print'>pretty_print</span><span class='lparen'>(</span><span class='id identifier rubyid_pp'>pp</span><span class='rparen'>)</span>
+            <span class='kw'>end</span>
+        <span class='kw'>end</span>
+    <span class='kw'>end</span>
+
+    <span class='kw'>if</span> <span class='op'>!</span><span class='id identifier rubyid_connections'>connections</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
+        <span class='id identifier rubyid_pp'>pp</span><span class='period'>.</span><span class='id identifier rubyid_breakable'>breakable</span> <span class='kw'>if</span> <span class='op'>!</span><span class='id identifier rubyid_task_activities'>task_activities</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
+        <span class='id identifier rubyid_pp'>pp</span><span class='period'>.</span><span class='id identifier rubyid_text'>text</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Connections</span><span class='tstring_end'>&quot;</span></span>
+        <span class='id identifier rubyid_pp'>pp</span><span class='period'>.</span><span class='id identifier rubyid_nest'>nest</span><span class='lparen'>(</span><span class='int'>2</span><span class='rparen'>)</span> <span class='kw'>do</span>
+            <span class='id identifier rubyid_pp'>pp</span><span class='period'>.</span><span class='id identifier rubyid_breakable'>breakable</span>
+            <span class='id identifier rubyid_pp'>pp</span><span class='period'>.</span><span class='id identifier rubyid_seplist'>seplist</span><span class='lparen'>(</span><span class='id identifier rubyid_connections'>connections</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_conn'>conn</span><span class='op'>|</span>
+                <span class='id identifier rubyid_from'>from</span><span class='comma'>,</span> <span class='id identifier rubyid_to'>to</span><span class='comma'>,</span> <span class='id identifier rubyid_policy'>policy</span> <span class='op'>=</span> <span class='op'>*</span><span class='id identifier rubyid_conn'>conn</span>
+                <span class='id identifier rubyid_pp'>pp</span><span class='period'>.</span><span class='id identifier rubyid_text'>text</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_from'>from</span><span class='period'>.</span><span class='id identifier rubyid_activity'>activity</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_content'> =&gt; </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_to'>to</span><span class='period'>.</span><span class='id identifier rubyid_activity'>activity</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_content'> [</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_policy'>policy</span><span class='period'>.</span><span class='id identifier rubyid_inspect'>inspect</span><span class='embexpr_end'>}</span><span class='tstring_content'>]</span><span class='tstring_end'>&quot;</span></span>
+            <span class='kw'>end</span>
+        <span class='kw'>end</span>
+    <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="rtt_transports-instance_method">
+  
+    #<strong>rtt_transports</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>The set of transports loaded by this deployment for which a transport
+should be loaded on the RTT itself</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+628
+629
+630
+631
+632</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/spec/deployment.rb', line 628</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_rtt_transports'>rtt_transports</span>
+    <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_transports'>transports</span>
+    <span class='id identifier rubyid_result'>result</span><span class='period'>.</span><span class='id identifier rubyid_delete'>delete</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>typelib</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_result'>result</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="set_master_slave_activity-instance_method">
+  
+    #<strong>set_master_slave_activity</strong>(master, slave)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Define an master slave avtivity between tasks</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+727
+728
+729
+730</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/spec/deployment.rb', line 727</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_set_master_slave_activity'>set_master_slave_activity</span><span class='lparen'>(</span><span class='id identifier rubyid_master'>master</span><span class='comma'>,</span> <span class='id identifier rubyid_slave'>slave</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_slave'>slave</span><span class='period'>.</span><span class='id identifier rubyid_slave_of'>slave_of</span><span class='lparen'>(</span><span class='id identifier rubyid_master'>master</span><span class='rparen'>)</span>
+    <span class='kw'>self</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="task-instance_method">
+  
+    #<strong>task</strong>(name, klass)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>call-seq:</p>
+
+<pre class="code ruby"><code class="ruby">task name, task_context -&gt; task_deployment
+</code></pre>
+
+<p>Deploys a new task using the given task context type, and returns the
+corresponding TaskDeployment object. This instance can be used to configure
+the task further (for instance specifying the activity). See TaskDeployment
+documentation for available options.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+654
+655
+656
+657
+658
+659
+660
+661
+662
+663
+664
+665
+666</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/spec/deployment.rb', line 654</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_task'>task</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_klass'>klass</span><span class='rparen'>)</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_klass'>klass</span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='symbol'>:to_str</span><span class='rparen'>)</span>
+        <span class='id identifier rubyid_task_context'>task_context</span> <span class='op'>=</span> <span class='id identifier rubyid_project'>project</span><span class='period'>.</span><span class='id identifier rubyid_task_model_from_name'>task_model_from_name</span><span class='lparen'>(</span><span class='id identifier rubyid_klass'>klass</span><span class='rparen'>)</span>
+    <span class='kw'>else</span> <span class='id identifier rubyid_task_context'>task_context</span> <span class='op'>=</span> <span class='id identifier rubyid_klass'>klass</span>
+    <span class='kw'>end</span>
+
+    <span class='kw'>if</span> <span class='id identifier rubyid_find_task_by_name'>find_task_by_name</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
+        <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>there is already a task </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_content'> on the deployment </span><span class='embexpr_beg'>#{</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='kw'>end</span>
+    <span class='id identifier rubyid_deployment'>deployment</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="TaskDeployment.html" title="OroGen::Spec::TaskDeployment (class)">TaskDeployment</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="TaskDeployment.html#initialize-instance_method" title="OroGen::Spec::TaskDeployment#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_task_context'>task_context</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_task_activities'>task_activities</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_deployment'>deployment</span>
+    <span class='id identifier rubyid_deployment'>deployment</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="to_s-instance_method">
+  
+    #<strong>to_s</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+567
+568
+569</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/spec/deployment.rb', line 567</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_to_s'>to_s</span>
+    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>#&lt;</span><span class='embexpr_beg'>#{</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='embexpr_end'>}</span><span class='tstring_content'> name=</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_content'> tasks=</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_task_activities'>task_activities</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_t'>t</span><span class='op'>|</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_t'>t</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span> <span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>, </span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'>&gt;</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="transports-instance_method">
+  
+    #<strong>transports</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>The set of transports loaded by this deployment, as an array of names</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+635
+636
+637</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/spec/deployment.rb', line 635</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_transports'>transports</span>
+    <span class='ivar'>@transports</span><span class='period'>.</span><span class='id identifier rubyid_to_a'>to_a</span><span class='period'>.</span><span class='id identifier rubyid_sort'>sort</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="used_typekits-instance_method">
+  
+    #<strong>used_typekits</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the set of typekits required by this particular deployment (i.e.
+the tasks that are deployed in it)</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+589
+590
+591
+592
+593
+594
+595
+596
+597
+598
+599
+600
+601
+602
+603
+604
+605
+606
+607
+608
+609
+610
+611</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/spec/deployment.rb', line 589</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_used_typekits'>used_typekits</span>
+    <span class='id identifier rubyid_task_typekits'>task_typekits</span> <span class='op'>=</span> <span class='id identifier rubyid_task_activities'>task_activities</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_deployed_task'>deployed_task</span><span class='op'>|</span>
+        <span class='id identifier rubyid_deployed_task'>deployed_task</span><span class='period'>.</span><span class='id identifier rubyid_task_model'>task_model</span><span class='period'>.</span><span class='id identifier rubyid_used_typekits'>used_typekits</span><span class='period'>.</span>
+            <span class='id identifier rubyid_map'>map</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='symbol'>:name</span><span class='rparen'>)</span>
+    <span class='kw'>end</span><span class='period'>.</span><span class='id identifier rubyid_flatten'>flatten</span><span class='period'>.</span><span class='id identifier rubyid_to_set'>to_set</span>
+   
+    <span class='ivar'>@manually_loaded_types</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_type'>type</span><span class='op'>|</span>
+        <span class='id identifier rubyid_tk'>tk</span> <span class='op'>=</span> <span class='id identifier rubyid_project'>project</span><span class='period'>.</span><span class='id identifier rubyid_imported_typekits_for'>imported_typekits_for</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='symbol'>:name</span><span class='rparen'>)</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span>
+        <span class='kw'>if</span> <span class='op'>!</span><span class='id identifier rubyid_tk'>tk</span>
+            <span class='id identifier rubyid_raise'>raise</span> <span class='const'><span class='object_link'><a href="../InternalError.html" title="OroGen::InternalError (class)">InternalError</a></span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>could not find manually loaded type \&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_type'>type</span><span class='embexpr_end'>}</span><span class='tstring_content'>\&quot;</span><span class='tstring_end'>&quot;</span></span>
+        <span class='kw'>end</span>
+        <span class='id identifier rubyid_task_typekits'>task_typekits</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_tk'>tk</span>
+    <span class='kw'>end</span>
+
+    <span class='id identifier rubyid_task_typekits'>task_typekits</span><span class='period'>.</span><span class='id identifier rubyid_sort'>sort</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_used_name'>used_name</span><span class='op'>|</span>
+        <span class='id identifier rubyid_this_tk'>this_tk</span> <span class='op'>=</span> <span class='id identifier rubyid_project'>project</span><span class='period'>.</span><span class='id identifier rubyid_find_typekit'>find_typekit</span><span class='lparen'>(</span><span class='id identifier rubyid_used_name'>used_name</span><span class='rparen'>)</span>
+        <span class='kw'>next</span> <span class='kw'>if</span> <span class='id identifier rubyid_this_tk'>this_tk</span><span class='period'>.</span><span class='id identifier rubyid_virtual?'>virtual?</span>
+        <span class='kw'>if</span> <span class='op'>!</span><span class='id identifier rubyid_this_tk'>this_tk</span>
+            <span class='id identifier rubyid_raise'>raise</span> <span class='const'><span class='object_link'><a href="../InternalError.html" title="OroGen::InternalError (class)">InternalError</a></span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_used_name'>used_name</span><span class='embexpr_end'>}</span><span class='tstring_content'> is a typekit that is listed by one of the tasks of the </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_content'> deployment, but the oroGen project </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_project'>project</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_content'> does not list it</span><span class='tstring_end'>&quot;</span></span>
+        <span class='kw'>end</span>
+        <span class='id identifier rubyid_this_tk'>this_tk</span>
+    <span class='kw'>end</span><span class='period'>.</span><span class='id identifier rubyid_compact'>compact</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="uses_qt?-instance_method">
+  
+    #<strong>uses_qt?</strong>  &#x21d2; <tt>Boolean</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+575
+576
+577</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/spec/deployment.rb', line 575</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_uses_qt?'>uses_qt?</span>
+    <span class='id identifier rubyid_task_activities'>task_activities</span><span class='period'>.</span><span class='id identifier rubyid_any?'>any?</span><span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_t'>t</span><span class='op'>|</span> <span class='id identifier rubyid_t'>t</span><span class='period'>.</span><span class='id identifier rubyid_task_model'>task_model</span><span class='period'>.</span><span class='id identifier rubyid_uses_qt?'>uses_qt?</span><span class='rbrace'>}</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="xenomai?-instance_method">
+  
+    #<strong>xenomai?</strong>  &#x21d2; <tt>Boolean</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>True if we are generating for Xenomai</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+530</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/spec/deployment.rb', line 530</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_xenomai?'>xenomai?</span><span class='semicolon'>;</span>   <span class='id identifier rubyid_project'>project</span><span class='period'>.</span><span class='id identifier rubyid_xenomai?'>xenomai?</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+      <div id="footer">
+  Generated on Tue Apr  9 14:53:50 2019 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.19 (ruby-2.5.1).
+</div>
+
+    </div>
+  </body>
+</html>

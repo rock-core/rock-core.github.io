@@ -1,0 +1,1335 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Class: OroGen::Loaders::Files
+  
+    &mdash; oroGen
+  
+</title>
+
+  <link rel="stylesheet" href="../../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "OroGen::Loaders::Files";
+  relpath = '../../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../../class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../../_index.html">Index (F)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../../OroGen.html" title="OroGen (module)">OroGen</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../Loaders.html" title="OroGen::Loaders (module)">Loaders</a></span></span>
+     &raquo; 
+    <span class="title">Files</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../../class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Class: OroGen::Loaders::Files
+  
+  
+  
+</h1>
+<div class="box_info">
+  
+  <dl>
+    <dt>Inherits:</dt>
+    <dd>
+      <span class="inheritName"><span class='object_link'><a href="Base.html" title="OroGen::Loaders::Base (class)">Base</a></span></span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next"><span class='object_link'><a href="Base.html" title="OroGen::Loaders::Base (class)">Base</a></span></li>
+          
+            <li class="next">OroGen::Loaders::Files</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+    </dd>
+  </dl>
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>lib/orogen/loaders/files.rb</dd>
+  </dl>
+  
+</div>
+
+
+
+
+
+  <h2>Instance Attribute Summary <small><a href="#" class="summary_toggle">collapse</a></small></h2>
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#available_projects-instance_method" title="#available_projects (instance method)">#<strong>available_projects</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute available_projects.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#available_typekits-instance_method" title="#available_typekits (instance method)">#<strong>available_typekits</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute available_typekits.</p>
+</div></span>
+  
+</li>
+
+    
+  </ul>
+
+
+
+  
+  
+  <h3 class="inherited">Attributes inherited from <span class='object_link'><a href="Base.html" title="OroGen::Loaders::Base (class)">Base</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Base.html#interface_typelist-instance_method" title="OroGen::Loaders::Base#interface_typelist (method)">#interface_typelist</a></span>, <span class='object_link'><a href="Base.html#loaded_deployment_models-instance_method" title="OroGen::Loaders::Base#loaded_deployment_models (method)">#loaded_deployment_models</a></span>, <span class='object_link'><a href="Base.html#loaded_projects-instance_method" title="OroGen::Loaders::Base#loaded_projects (method)">#loaded_projects</a></span>, <span class='object_link'><a href="Base.html#loaded_task_models-instance_method" title="OroGen::Loaders::Base#loaded_task_models (method)">#loaded_task_models</a></span>, <span class='object_link'><a href="Base.html#loaded_typekits-instance_method" title="OroGen::Loaders::Base#loaded_typekits (method)">#loaded_typekits</a></span>, <span class='object_link'><a href="Base.html#project_load_callbacks-instance_method" title="OroGen::Loaders::Base#project_load_callbacks (method)">#project_load_callbacks</a></span>, <span class='object_link'><a href="Base.html#registry-instance_method" title="OroGen::Loaders::Base#registry (method)">#registry</a></span>, <span class='object_link'><a href="Base.html#root_loader-instance_method" title="OroGen::Loaders::Base#root_loader (method)">#root_loader</a></span>, <span class='object_link'><a href="Base.html#typekit_load_callbacks-instance_method" title="OroGen::Loaders::Base#typekit_load_callbacks (method)">#typekit_load_callbacks</a></span>, <span class='object_link'><a href="Base.html#typekits_by_type_name-instance_method" title="OroGen::Loaders::Base#typekits_by_type_name (method)">#typekits_by_type_name</a></span></p>
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#clear-instance_method" title="#clear (instance method)">#<strong>clear</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#deployment_model_from_name-instance_method" title="#deployment_model_from_name (instance method)">#<strong>deployment_model_from_name</strong>(name)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#each_available_deployment_name-instance_method" title="#each_available_deployment_name (instance method)">#<strong>each_available_deployment_name</strong>(&amp;block)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#each_available_project_name-instance_method" title="#each_available_project_name (instance method)">#<strong>each_available_project_name</strong>(&amp;block)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#each_available_typekit_name-instance_method" title="#each_available_typekit_name (instance method)">#<strong>each_available_typekit_name</strong>(&amp;block)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#each_project-instance_method" title="#each_project (instance method)">#<strong>each_project</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#find_project_from_deployment_name-instance_method" title="#find_project_from_deployment_name (instance method)">#<strong>find_project_from_deployment_name</strong>(name)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#find_task_library_from_task_model_name-instance_method" title="#find_task_library_from_task_model_name (instance method)">#<strong>find_task_library_from_task_model_name</strong>(name)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#has_project%3F-instance_method" title="#has_project? (instance method)">#<strong>has_project?</strong>(name)  &#x21d2; Boolean </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#has_typekit%3F-instance_method" title="#has_typekit? (instance method)">#<strong>has_typekit?</strong>(name)  &#x21d2; Boolean </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">#<strong>initialize</strong>(root_loader = self)  &#x21d2; Files </a>
+    
+
+    
+  </span>
+  
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>A new instance of Files.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#project_model_text_from_name-instance_method" title="#project_model_text_from_name (instance method)">#<strong>project_model_text_from_name</strong>(name)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#register_orogen_file-instance_method" title="#register_orogen_file (instance method)">#<strong>register_orogen_file</strong>(path, name = nil)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#register_typekit-instance_method" title="#register_typekit (instance method)">#<strong>register_typekit</strong>(path, name)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#to_s-instance_method" title="#to_s (instance method)">#<strong>to_s</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#typekit_model_text_from_name-instance_method" title="#typekit_model_text_from_name (instance method)">#<strong>typekit_model_text_from_name</strong>(name)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods inherited from <span class='object_link'><a href="Base.html" title="OroGen::Loaders::Base (class)">Base</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Base.html#added_child-instance_method" title="OroGen::Loaders::Base#added_child (method)">#added_child</a></span>, <span class='object_link'><a href="Base.html#define_dummy_types=-instance_method" title="OroGen::Loaders::Base#define_dummy_types= (method)">#define_dummy_types=</a></span>, <span class='object_link'><a href="Base.html#define_dummy_types%3F-instance_method" title="OroGen::Loaders::Base#define_dummy_types? (method)">#define_dummy_types?</a></span>, <span class='object_link'><a href="Base.html#deployed_task_model_from_name-instance_method" title="OroGen::Loaders::Base#deployed_task_model_from_name (method)">#deployed_task_model_from_name</a></span>, <span class='object_link'><a href="Base.html#find_deployments_from_deployed_task_name-instance_method" title="OroGen::Loaders::Base#find_deployments_from_deployed_task_name (method)">#find_deployments_from_deployed_task_name</a></span>, <span class='object_link'><a href="Base.html#has_loaded_project%3F-instance_method" title="OroGen::Loaders::Base#has_loaded_project? (method)">#has_loaded_project?</a></span>, <span class='object_link'><a href="Base.html#has_loaded_typekit%3F-instance_method" title="OroGen::Loaders::Base#has_loaded_typekit? (method)">#has_loaded_typekit?</a></span>, <span class='object_link'><a href="Base.html#imported_typekits_for-instance_method" title="OroGen::Loaders::Base#imported_typekits_for (method)">#imported_typekits_for</a></span>, <span class='object_link'><a href="Base.html#inspect-instance_method" title="OroGen::Loaders::Base#inspect (method)">#inspect</a></span>, <span class='object_link'><a href="Base.html#interface_type%3F-instance_method" title="OroGen::Loaders::Base#interface_type? (method)">#interface_type?</a></span>, <span class='object_link'><a href="Base.html#intermediate_type%3F-instance_method" title="OroGen::Loaders::Base#intermediate_type? (method)">#intermediate_type?</a></span>, <span class='object_link'><a href="Base.html#intermediate_type_for-instance_method" title="OroGen::Loaders::Base#intermediate_type_for (method)">#intermediate_type_for</a></span>, <span class='object_link'><a href="Base.html#m_type%3F-instance_method" title="OroGen::Loaders::Base#m_type? (method)">#m_type?</a></span>, <span class='object_link'><a href="Base.html#on_project_load-instance_method" title="OroGen::Loaders::Base#on_project_load (method)">#on_project_load</a></span>, <span class='object_link'><a href="Base.html#on_typekit_load-instance_method" title="OroGen::Loaders::Base#on_typekit_load (method)">#on_typekit_load</a></span>, <span class='object_link'><a href="Base.html#opaque_type_for-instance_method" title="OroGen::Loaders::Base#opaque_type_for (method)">#opaque_type_for</a></span>, <span class='object_link'><a href="Base.html#project_model_from_name-instance_method" title="OroGen::Loaders::Base#project_model_from_name (method)">#project_model_from_name</a></span>, <span class='object_link'><a href="Base.html#project_model_from_text-instance_method" title="OroGen::Loaders::Base#project_model_from_text (method)">#project_model_from_text</a></span>, <span class='object_link'><a href="Base.html#register_deployment_model-instance_method" title="OroGen::Loaders::Base#register_deployment_model (method)">#register_deployment_model</a></span>, <span class='object_link'><a href="Base.html#register_project_model-instance_method" title="OroGen::Loaders::Base#register_project_model (method)">#register_project_model</a></span>, <span class='object_link'><a href="Base.html#register_task_context_model-instance_method" title="OroGen::Loaders::Base#register_task_context_model (method)">#register_task_context_model</a></span>, <span class='object_link'><a href="Base.html#register_type_model-instance_method" title="OroGen::Loaders::Base#register_type_model (method)">#register_type_model</a></span>, <span class='object_link'><a href="Base.html#register_typekit_model-instance_method" title="OroGen::Loaders::Base#register_typekit_model (method)">#register_typekit_model</a></span>, <span class='object_link'><a href="Base.html#remove_project_load_callback-instance_method" title="OroGen::Loaders::Base#remove_project_load_callback (method)">#remove_project_load_callback</a></span>, <span class='object_link'><a href="Base.html#resolve_interface_type-instance_method" title="OroGen::Loaders::Base#resolve_interface_type (method)">#resolve_interface_type</a></span>, <span class='object_link'><a href="Base.html#resolve_type-instance_method" title="OroGen::Loaders::Base#resolve_type (method)">#resolve_type</a></span>, <span class='object_link'><a href="Base.html#task_library_model_from_name-instance_method" title="OroGen::Loaders::Base#task_library_model_from_name (method)">#task_library_model_from_name</a></span>, <span class='object_link'><a href="Base.html#task_model_from_name-instance_method" title="OroGen::Loaders::Base#task_model_from_name (method)">#task_model_from_name</a></span>, <span class='object_link'><a href="Base.html#typekit_model_from_name-instance_method" title="OroGen::Loaders::Base#typekit_model_from_name (method)">#typekit_model_from_name</a></span>, <span class='object_link'><a href="Base.html#typelib_type_for-instance_method" title="OroGen::Loaders::Base#typelib_type_for (method)">#typelib_type_for</a></span></p>
+<div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <h3 class="signature first" id="initialize-instance_method">
+  
+    #<strong>initialize</strong>(root_loader = self)  &#x21d2; <tt><span class='object_link'><a href="" title="OroGen::Loaders::Files (class)">Files</a></span></tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns a new instance of Files</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+7
+8
+9
+10
+11</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/loaders/files.rb', line 7</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_root_loader'>root_loader</span> <span class='op'>=</span> <span class='kw'>self</span><span class='rparen'>)</span>
+    <span class='ivar'>@available_projects</span> <span class='op'>=</span> <span class='const'>Hash</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+    <span class='ivar'>@available_typekits</span> <span class='op'>=</span> <span class='const'>Hash</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+    <span class='kw'>super</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+  <div id="instance_attr_details" class="attr_details">
+    <h2>Instance Attribute Details</h2>
+    
+      
+      <span id=""></span>
+      <div class="method_details first">
+  <h3 class="signature first" id="available_projects-instance_method">
+  
+    #<strong>available_projects</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute available_projects</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+4
+5
+6</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/loaders/files.rb', line 4</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_available_projects'>available_projects</span>
+  <span class='ivar'>@available_projects</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="available_typekits-instance_method">
+  
+    #<strong>available_typekits</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute available_typekits</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+5
+6
+7</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/loaders/files.rb', line 5</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_available_typekits'>available_typekits</span>
+  <span class='ivar'>@available_typekits</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="clear-instance_method">
+  
+    #<strong>clear</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+13
+14
+15
+16
+17</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/loaders/files.rb', line 13</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_clear'>clear</span>
+    <span class='ivar'>@available_projects</span><span class='period'>.</span><span class='id identifier rubyid_clear'>clear</span>
+    <span class='ivar'>@available_typekits</span><span class='period'>.</span><span class='id identifier rubyid_clear'>clear</span>
+    <span class='kw'>super</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="deployment_model_from_name-instance_method">
+  
+    #<strong>deployment_model_from_name</strong>(name)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../DeploymentModelNotFound.html" title="OroGen::DeploymentModelNotFound (class)">DeploymentModelNotFound</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/loaders/files.rb', line 55</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_deployment_model_from_name'>deployment_model_from_name</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_model'>model</span> <span class='op'>=</span> <span class='id identifier rubyid_loaded_deployment_models'>loaded_deployment_models</span><span class='lbracket'>[</span><span class='id identifier rubyid_name'>name</span><span class='rbracket'>]</span>
+        <span class='kw'>return</span> <span class='id identifier rubyid_model'>model</span>
+    <span class='kw'>end</span>
+
+    <span class='id identifier rubyid_each_project'>each_project</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_project'>project</span><span class='op'>|</span>
+        <span class='kw'>if</span> <span class='id identifier rubyid_m'>m</span> <span class='op'>=</span> <span class='id identifier rubyid_project'>project</span><span class='period'>.</span><span class='id identifier rubyid_find_deployment_by_name'>find_deployment_by_name</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
+            <span class='id identifier rubyid_loaded_deployment_models'>loaded_deployment_models</span><span class='lbracket'>[</span><span class='id identifier rubyid_name'>name</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_m'>m</span>
+            <span class='kw'>return</span> <span class='id identifier rubyid_m'>m</span>
+        <span class='kw'>end</span>
+    <span class='kw'>end</span>
+    <span class='id identifier rubyid_raise'>raise</span> <span class='const'><span class='object_link'><a href="../DeploymentModelNotFound.html" title="OroGen::DeploymentModelNotFound (class)">DeploymentModelNotFound</a></span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>there is no deployment called </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_content'> on </span><span class='embexpr_beg'>#{</span><span class='kw'>self</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="each_available_deployment_name-instance_method">
+  
+    #<strong>each_available_deployment_name</strong>(&amp;block)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+119
+120
+121
+122
+123
+124
+125
+126
+127</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/loaders/files.rb', line 119</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_each_available_deployment_name'>each_available_deployment_name</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
+    <span class='kw'>return</span> <span class='id identifier rubyid_enum_for'>enum_for</span><span class='lparen'>(</span><span class='id identifier rubyid___method__'>__method__</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='op'>!</span><span class='id identifier rubyid_block_given?'>block_given?</span>
+    <span class='id identifier rubyid_each_project'>each_project</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_project'>project</span><span class='op'>|</span>
+        <span class='id identifier rubyid_project'>project</span><span class='period'>.</span><span class='id identifier rubyid_each_deployment'>each_deployment</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_spec'>spec</span><span class='op'>|</span>
+            <span class='kw'>yield</span><span class='lparen'>(</span><span class='id identifier rubyid_spec'>spec</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
+        <span class='kw'>end</span>
+    <span class='kw'>end</span>
+    <span class='kw'>nil</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="each_available_project_name-instance_method">
+  
+    #<strong>each_available_project_name</strong>(&amp;block)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+111
+112
+113</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/loaders/files.rb', line 111</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_each_available_project_name'>each_available_project_name</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
+    <span class='kw'>return</span> <span class='id identifier rubyid_available_projects'>available_projects</span><span class='period'>.</span><span class='id identifier rubyid_each_key'>each_key</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="each_available_typekit_name-instance_method">
+  
+    #<strong>each_available_typekit_name</strong>(&amp;block)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+115
+116
+117</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/loaders/files.rb', line 115</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_each_available_typekit_name'>each_available_typekit_name</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
+    <span class='kw'>return</span> <span class='id identifier rubyid_available_typekits'>available_typekits</span><span class='period'>.</span><span class='id identifier rubyid_each_key'>each_key</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="each_project-instance_method">
+  
+    #<strong>each_project</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/loaders/files.rb', line 77</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_each_project'>each_project</span>
+    <span class='kw'>return</span> <span class='id identifier rubyid_enum_for'>enum_for</span><span class='lparen'>(</span><span class='id identifier rubyid___method__'>__method__</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='op'>!</span><span class='id identifier rubyid_block_given?'>block_given?</span>
+
+    <span class='id identifier rubyid_available_projects'>available_projects</span><span class='period'>.</span><span class='id identifier rubyid_each_key'>each_key</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_project_name'>project_name</span><span class='op'>|</span>
+        <span class='id identifier rubyid_project'>project</span> <span class='op'>=</span> <span class='kw'>begin</span>
+                      <span class='id identifier rubyid_root_loader'>root_loader</span><span class='period'>.</span><span class='id identifier rubyid_project_model_from_name'>project_model_from_name</span><span class='lparen'>(</span><span class='id identifier rubyid_project_name'>project_name</span><span class='rparen'>)</span>
+                  <span class='kw'>rescue</span> <span class='const'>Exception</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'>e</span>
+                      <span class='const'><span class='object_link'><a href="../../OroGen.html" title="OroGen (module)">OroGen</a></span></span><span class='period'>.</span><span class='id identifier rubyid_warn'>warn</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>could not load </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_project_name'>project_name</span><span class='embexpr_end'>}</span><span class='tstring_content'>: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'>e</span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+                      <span class='kw'>next</span>
+                  <span class='kw'>end</span>
+
+        <span class='kw'>yield</span><span class='lparen'>(</span><span class='id identifier rubyid_project'>project</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+    <span class='kw'>nil</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="find_project_from_deployment_name-instance_method">
+  
+    #<strong>find_project_from_deployment_name</strong>(name)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+102
+103
+104
+105
+106
+107
+108
+109</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/loaders/files.rb', line 102</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_find_project_from_deployment_name'>find_project_from_deployment_name</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_each_project'>each_project</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_project'>project</span><span class='op'>|</span>
+        <span class='kw'>if</span> <span class='id identifier rubyid_project'>project</span><span class='period'>.</span><span class='id identifier rubyid_find_deployment_by_name'>find_deployment_by_name</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
+            <span class='kw'>return</span> <span class='id identifier rubyid_project'>project</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span>
+        <span class='kw'>end</span>
+    <span class='kw'>end</span>
+    <span class='kw'>nil</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="find_task_library_from_task_model_name-instance_method">
+  
+    #<strong>find_task_library_from_task_model_name</strong>(name)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+93
+94
+95
+96
+97
+98
+99
+100</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/loaders/files.rb', line 93</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_find_task_library_from_task_model_name'>find_task_library_from_task_model_name</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_each_project'>each_project</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_project'>project</span><span class='op'>|</span>
+        <span class='kw'>if</span> <span class='id identifier rubyid_project'>project</span><span class='period'>.</span><span class='id identifier rubyid_find_task_context'>find_task_context</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
+            <span class='kw'>return</span> <span class='id identifier rubyid_project'>project</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span>
+        <span class='kw'>end</span>
+    <span class='kw'>end</span>
+    <span class='kw'>nil</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="has_project?-instance_method">
+  
+    #<strong>has_project?</strong>(name)  &#x21d2; <tt>Boolean</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+33
+34
+35</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/loaders/files.rb', line 33</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_has_project?'>has_project?</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_available_projects'>available_projects</span><span class='period'>.</span><span class='id identifier rubyid_has_key?'>has_key?</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="has_typekit?-instance_method">
+  
+    #<strong>has_typekit?</strong>(name)  &#x21d2; <tt>Boolean</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+37
+38
+39</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/loaders/files.rb', line 37</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_has_typekit?'>has_typekit?</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_available_typekits'>available_typekits</span><span class='period'>.</span><span class='id identifier rubyid_has_key?'>has_key?</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="project_model_text_from_name-instance_method">
+  
+    #<strong>project_model_text_from_name</strong>(name)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+24
+25
+26
+27
+28
+29
+30
+31</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/loaders/files.rb', line 24</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_project_model_text_from_name'>project_model_text_from_name</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_path'>path</span> <span class='op'>=</span> <span class='id identifier rubyid_available_projects'>available_projects</span><span class='lbracket'>[</span><span class='id identifier rubyid_name'>name</span><span class='rbracket'>]</span>
+    <span class='kw'>if</span> <span class='op'>!</span><span class='id identifier rubyid_path'>path</span>
+        <span class='id identifier rubyid_raise'>raise</span> <span class='const'><span class='object_link'><a href="../ProjectNotFound.html" title="OroGen::ProjectNotFound (class)">ProjectNotFound</a></span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>no project called </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_content'> on </span><span class='embexpr_beg'>#{</span><span class='kw'>self</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='kw'>end</span>
+
+    <span class='kw'>return</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_read'>read</span><span class='lparen'>(</span><span class='id identifier rubyid_path'>path</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='id identifier rubyid_path'>path</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="register_orogen_file-instance_method">
+  
+    #<strong>register_orogen_file</strong>(path, name = nil)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+19
+20
+21
+22</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/loaders/files.rb', line 19</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_register_orogen_file'>register_orogen_file</span><span class='lparen'>(</span><span class='id identifier rubyid_path'>path</span><span class='comma'>,</span> <span class='id identifier rubyid_name'>name</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_name'>name</span> <span class='op'>||=</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_basename'>basename</span><span class='lparen'>(</span><span class='id identifier rubyid_path'>path</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>.orogen</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_available_projects'>available_projects</span><span class='lbracket'>[</span><span class='id identifier rubyid_name'>name</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_path'>path</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="register_typekit-instance_method">
+  
+    #<strong>register_typekit</strong>(path, name)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+41
+42
+43
+44
+45</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/loaders/files.rb', line 41</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_register_typekit'>register_typekit</span><span class='lparen'>(</span><span class='id identifier rubyid_path'>path</span><span class='comma'>,</span> <span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_typelist'>typelist</span> <span class='op'>=</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='id identifier rubyid_path'>path</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_content'>.typelist</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_tlb'>tlb</span>      <span class='op'>=</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='id identifier rubyid_path'>path</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_content'>.tlb</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_available_typekits'>available_typekits</span><span class='lbracket'>[</span><span class='id identifier rubyid_name'>name</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='id identifier rubyid_typelist'>typelist</span><span class='comma'>,</span> <span class='id identifier rubyid_tlb'>tlb</span><span class='rbracket'>]</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="to_s-instance_method">
+  
+    #<strong>to_s</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+73
+74
+75</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/loaders/files.rb', line 73</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_to_s'>to_s</span><span class='semicolon'>;</span>
+    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>#&lt;OroGen::Loaders::Files(</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_object_id'>object_id</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='lparen'>(</span><span class='int'>16</span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'>) projects=</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_available_projects'>available_projects</span><span class='period'>.</span><span class='id identifier rubyid_keys'>keys</span><span class='period'>.</span><span class='id identifier rubyid_sort'>sort</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>,</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'> typekits=</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_available_typekits'>available_typekits</span><span class='period'>.</span><span class='id identifier rubyid_keys'>keys</span><span class='period'>.</span><span class='id identifier rubyid_sort'>sort</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>,</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'>&gt;</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="typekit_model_text_from_name-instance_method">
+  
+    #<strong>typekit_model_text_from_name</strong>(name)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+47
+48
+49
+50
+51
+52
+53</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/loaders/files.rb', line 47</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_typekit_model_text_from_name'>typekit_model_text_from_name</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_typelist'>typelist</span><span class='comma'>,</span> <span class='id identifier rubyid_tlb'>tlb</span> <span class='op'>=</span> <span class='id identifier rubyid_available_typekits'>available_typekits</span><span class='lbracket'>[</span><span class='id identifier rubyid_name'>name</span><span class='rbracket'>]</span>
+    <span class='kw'>if</span> <span class='op'>!</span><span class='id identifier rubyid_typelist'>typelist</span>
+        <span class='id identifier rubyid_raise'>raise</span> <span class='const'><span class='object_link'><a href="../TypekitNotFound.html" title="OroGen::TypekitNotFound (class)">TypekitNotFound</a></span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='kw'>self</span><span class='embexpr_end'>}</span><span class='tstring_content'> has not typekit named </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='kw'>end</span>
+    <span class='kw'>return</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_read'>read</span><span class='lparen'>(</span><span class='id identifier rubyid_tlb'>tlb</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_read'>read</span><span class='lparen'>(</span><span class='id identifier rubyid_typelist'>typelist</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+      <div id="footer">
+  Generated on Tue Apr  9 14:53:59 2019 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.19 (ruby-2.5.1).
+</div>
+
+    </div>
+  </body>
+</html>

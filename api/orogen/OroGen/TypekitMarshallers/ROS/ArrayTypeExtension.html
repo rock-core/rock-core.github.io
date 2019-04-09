@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Module: OroGen::TypekitMarshallers::ROS::ArrayTypeExtension
+  
+    &mdash; oroGen
+  
+</title>
+
+  <link rel="stylesheet" href="../../../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../../../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "OroGen::TypekitMarshallers::ROS::ArrayTypeExtension";
+  relpath = '../../../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../../../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../../../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../../../class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../../../_index.html">Index (A)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../../../OroGen.html" title="OroGen (module)">OroGen</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../../TypekitMarshallers.html" title="OroGen::TypekitMarshallers (module)">TypekitMarshallers</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../ROS.html" title="OroGen::TypekitMarshallers::ROS (module)">ROS</a></span></span>
+     &raquo; 
+    <span class="title">ArrayTypeExtension</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../../../class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Module: OroGen::TypekitMarshallers::ROS::ArrayTypeExtension
+  
+  
+  
+</h1>
+<div class="box_info">
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>lib/orogen/marshallers/ros.rb</dd>
+  </dl>
+  
+</div>
+
+
+
+
+
+
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#call_from_ros-instance_method" title="#call_from_ros (instance method)">#<strong>call_from_ros</strong>(value_var, ros_var)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#call_to_ros-instance_method" title="#call_to_ros (instance method)">#<strong>call_to_ros</strong>(ros_var, value_var)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#from_ros-instance_method" title="#from_ros (instance method)">#<strong>from_ros</strong>(typekit, buffer, indent)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Convert a C++ value into the corresponding ROS value The C++ value is
+called &#39;value&#39; and is a ref to the C++ type.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#to_ros-instance_method" title="#to_ros (instance method)">#<strong>to_ros</strong>(typekit, buffer, indent)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Convert a C++ value into the corresponding ROS value The C++ value is
+called &#39;value&#39; and is a const-ref to the C++ type.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="call_from_ros-instance_method">
+  
+    #<strong>call_from_ros</strong>(value_var, ros_var)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+555
+556
+557</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/marshallers/ros.rb', line 555</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_call_from_ros'>call_from_ros</span><span class='lparen'>(</span><span class='id identifier rubyid_value_var'>value_var</span><span class='comma'>,</span> <span class='id identifier rubyid_ros_var'>ros_var</span><span class='rparen'>)</span>
+    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>fromROS(</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_value_var'>value_var</span><span class='embexpr_end'>}</span><span class='tstring_content'>, </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_ros_var'>ros_var</span><span class='embexpr_end'>}</span><span class='tstring_content'>, </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_length'>length</span><span class='embexpr_end'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="call_to_ros-instance_method">
+  
+    #<strong>call_to_ros</strong>(ros_var, value_var)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+552
+553
+554</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/marshallers/ros.rb', line 552</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_call_to_ros'>call_to_ros</span><span class='lparen'>(</span><span class='id identifier rubyid_ros_var'>ros_var</span><span class='comma'>,</span> <span class='id identifier rubyid_value_var'>value_var</span><span class='rparen'>)</span>
+    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>toROS(</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_ros_var'>ros_var</span><span class='embexpr_end'>}</span><span class='tstring_content'>, </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_value_var'>value_var</span><span class='embexpr_end'>}</span><span class='tstring_content'>, </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_length'>length</span><span class='embexpr_end'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="from_ros-instance_method">
+  
+    #<strong>from_ros</strong>(typekit, buffer, indent)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Convert a C++ value into the corresponding ROS value The C++ value is
+called &#39;value&#39; and is a ref to the C++ type. The ROS value is
+called &#39;ros&#39; and is a const-ref.</p>
+
+<p>The method must return the string that will be used for convertion</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+576
+577
+578
+579
+580</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/marshallers/ros.rb', line 576</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_from_ros'>from_ros</span><span class='lparen'>(</span><span class='id identifier rubyid_typekit'>typekit</span><span class='comma'>,</span> <span class='id identifier rubyid_buffer'>buffer</span><span class='comma'>,</span> <span class='id identifier rubyid_indent'>indent</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_buffer'>buffer</span> <span class='op'>&lt;&lt;</span>
+        <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_indent'>indent</span><span class='embexpr_end'>}</span><span class='tstring_content'>for (size_t idx = 0; idx &lt; length; ++idx)\n</span><span class='tstring_end'>&quot;</span></span> <span class='op'>&lt;&lt;</span>
+        <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_indent'>indent</span><span class='embexpr_end'>}</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_deference'>deference</span><span class='period'>.</span><span class='id identifier rubyid_call_from_ros'>call_from_ros</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>value[idx]</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>ros[idx]</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'>;\n</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="to_ros-instance_method">
+  
+    #<strong>to_ros</strong>(typekit, buffer, indent)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Convert a C++ value into the corresponding ROS value The C++ value is
+called &#39;value&#39; and is a const-ref to the C++ type. The ROS value is
+called &#39;ros&#39; and is a ref.</p>
+
+<p>The method must return the string that will be used for convertion</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+564
+565
+566
+567
+568
+569</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/marshallers/ros.rb', line 564</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_to_ros'>to_ros</span><span class='lparen'>(</span><span class='id identifier rubyid_typekit'>typekit</span><span class='comma'>,</span> <span class='id identifier rubyid_buffer'>buffer</span><span class='comma'>,</span> <span class='id identifier rubyid_indent'>indent</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_buffer'>buffer</span> <span class='op'>&lt;&lt;</span>
+        <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_indent'>indent</span><span class='embexpr_end'>}</span><span class='tstring_content'>ros.resize(</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_length'>length</span><span class='embexpr_end'>}</span><span class='tstring_content'>);\n</span><span class='tstring_end'>&quot;</span></span> <span class='op'>&lt;&lt;</span>
+        <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_indent'>indent</span><span class='embexpr_end'>}</span><span class='tstring_content'>for (size_t idx = 0; idx &lt; length; ++idx)\n</span><span class='tstring_end'>&quot;</span></span> <span class='op'>&lt;&lt;</span>
+        <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_indent'>indent</span><span class='embexpr_end'>}</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_deference'>deference</span><span class='period'>.</span><span class='id identifier rubyid_call_to_ros'>call_to_ros</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>ros[idx]</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>value[idx]</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'>;\n</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+      <div id="footer">
+  Generated on Tue Apr  9 14:53:30 2019 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.19 (ruby-2.5.1).
+</div>
+
+    </div>
+  </body>
+</html>

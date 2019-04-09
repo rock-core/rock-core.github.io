@@ -1,0 +1,1429 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Module: OroGen::Gen::RTT_CPP::SelfTest
+  
+    &mdash; oroGen
+  
+</title>
+
+  <link rel="stylesheet" href="../../../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../../../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "OroGen::Gen::RTT_CPP::SelfTest";
+  relpath = '../../../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../../../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../../../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../../../class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../../../_index.html">Index (S)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../../../OroGen.html" title="OroGen (module)">OroGen</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../../Gen.html" title="OroGen::Gen (module)">Gen</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../RTT_CPP.html" title="OroGen::Gen::RTT_CPP (module)">RTT_CPP</a></span></span>
+     &raquo; 
+    <span class="title">SelfTest</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../../../class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Module: OroGen::Gen::RTT_CPP::SelfTest
+  
+  
+  
+</h1>
+<div class="box_info">
+  
+
+  
+  
+  
+  
+  <dl>
+      <dt>Includes:</dt>
+      <dd><span class='object_link'><a href="../../Gen.html" title="OroGen::Gen (module)">OroGen::Gen</a></span>, <span class='object_link'><a href="../RTT_CPP.html" title="OroGen::Gen::RTT_CPP (module)">OroGen::Gen::RTT_CPP</a></span></dd>
+  </dl>
+  
+  
+
+  
+  <dl>
+    <dt>Included in:</dt>
+    <dd><span class='object_link'><a href="../../../OroGen.html" title="OroGen (module)">OroGen</a></span></dd>
+  </dl>
+  
+
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>lib/orogen/gen/test.rb</dd>
+  </dl>
+  
+</div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<p>This module includes common methods used by orogen&#39;s test suite. The
+basic idea is to have a set of methods that allow:</p>
+
+<pre class="code ruby"><code class="ruby">- each module to be built and installed in a separate directory
+- that working directory to be automatically removed at teardown
+</code></pre>
+
+<p>Moreover, two environment variables allow to change the cleanup behaviour.</p>
+
+<p>Normally, when a module build is requested, whatever files that are in the
+module&#39;s working directory is deleted, and that same directory is
+removed at teardown.</p>
+
+<p>If TEST_KEEP_WC is set, the module&#39;s working directory won&#39;t be
+deleted at teardown.</p>
+
+<p>If TEST_DONT_CLEAN is set, the module&#39;s working directory is not
+cleaned. It speeds up the testing process when the test files don&#39;t
+change but orogen does change.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+
+
+  <h2>Constant Summary</h2>
+  
+  <h3 class="inherited">Constants included
+     from <span class='object_link'><a href="../RTT_CPP.html" title="OroGen::Gen::RTT_CPP (module)">OroGen::Gen::RTT_CPP</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="../RTT_CPP.html#AUTOMATIC_AREA_NAME-constant" title="OroGen::Gen::RTT_CPP::AUTOMATIC_AREA_NAME (constant)">AUTOMATIC_AREA_NAME</a></span>, <span class='object_link'><a href="../RTT_CPP.html#Attribute-constant" title="OroGen::Gen::RTT_CPP::Attribute (constant)">Attribute</a></span>, <span class='object_link'><a href="../RTT_CPP.html#ConfigError-constant" title="OroGen::Gen::RTT_CPP::ConfigError (constant)">ConfigError</a></span>, <span class='object_link'><a href="../RTT_CPP.html#ConfigurationObject-constant" title="OroGen::Gen::RTT_CPP::ConfigurationObject (constant)">ConfigurationObject</a></span>, <span class='object_link'><a href="../RTT_CPP.html#DynamicInputPort-constant" title="OroGen::Gen::RTT_CPP::DynamicInputPort (constant)">DynamicInputPort</a></span>, <span class='object_link'><a href="../RTT_CPP.html#DynamicOutputPort-constant" title="OroGen::Gen::RTT_CPP::DynamicOutputPort (constant)">DynamicOutputPort</a></span>, <span class='object_link'><a href="../RTT_CPP.html#InputPort-constant" title="OroGen::Gen::RTT_CPP::InputPort (constant)">InputPort</a></span>, <span class='object_link'><a href="../RTT_CPP.html#OROGEN_LIB_DIR-constant" title="OroGen::Gen::RTT_CPP::OROGEN_LIB_DIR (constant)">OROGEN_LIB_DIR</a></span>, <span class='object_link'><a href="../RTT_CPP.html#Operation-constant" title="OroGen::Gen::RTT_CPP::Operation (constant)">Operation</a></span>, <span class='object_link'><a href="../RTT_CPP.html#OutputPort-constant" title="OroGen::Gen::RTT_CPP::OutputPort (constant)">OutputPort</a></span>, <span class='object_link'><a href="../RTT_CPP.html#Port-constant" title="OroGen::Gen::RTT_CPP::Port (constant)">Port</a></span>, <span class='object_link'><a href="../RTT_CPP.html#Property-constant" title="OroGen::Gen::RTT_CPP::Property (constant)">Property</a></span>, <span class='object_link'><a href="../RTT_CPP.html#TaskContext-constant" title="OroGen::Gen::RTT_CPP::TaskContext (constant)">TaskContext</a></span></p>
+
+
+  <h2>Instance Attribute Summary <small><a href="#" class="summary_toggle">collapse</a></small></h2>
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#subdir-instance_method" title="#subdir (instance method)">#<strong>subdir</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute subdir.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#working_directory-instance_method" title="#working_directory (instance method)">#<strong>working_directory</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute working_directory.</p>
+</div></span>
+  
+</li>
+
+    
+  </ul>
+
+
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#build_test_project-instance_method" title="#build_test_project (instance method)">#<strong>build_test_project</strong>(dirname, transports = [], test_bin = nil, wc_dirname = nil)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#build_typegen-instance_method" title="#build_typegen (instance method)">#<strong>build_typegen</strong>(name, header_files, transports)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#call_make-instance_method" title="#call_make (instance method)">#<strong>call_make</strong>(*args)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#clear_wc-instance_method" title="#clear_wc (instance method)">#<strong>clear_wc</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#compile_and_test-instance_method" title="#compile_and_test (instance method)">#<strong>compile_and_test</strong>(project, test_bin)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#compile_wc-instance_method" title="#compile_wc (instance method)">#<strong>compile_wc</strong>(project = nil, *subdir)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#copy_in_wc-instance_method" title="#copy_in_wc (instance method)">#<strong>copy_in_wc</strong>(file, destination = nil)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#create_wc-instance_method" title="#create_wc (instance method)">#<strong>create_wc</strong>(*subdir)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#in_prefix-instance_method" title="#in_prefix (instance method)">#<strong>in_prefix</strong>(&amp;block)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#in_wc-instance_method" title="#in_wc (instance method)">#<strong>in_wc</strong>(*subdir, &amp;block)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#install-instance_method" title="#install (instance method)">#<strong>install</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#logfile-instance_method" title="#logfile (instance method)">#<strong>logfile</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#prefix_directory-instance_method" title="#prefix_directory (instance method)">#<strong>prefix_directory</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#redirect_to_logfile-instance_method" title="#redirect_to_logfile (instance method)">#<strong>redirect_to_logfile</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#setup-instance_method" title="#setup (instance method)">#<strong>setup</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#teardown-instance_method" title="#teardown (instance method)">#<strong>teardown</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="../RTT_CPP.html" title="OroGen::Gen::RTT_CPP (module)">OroGen::Gen::RTT_CPP</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="../RTT_CPP.html#adapt_namespace-class_method" title="OroGen::Gen::RTT_CPP.adapt_namespace (method)">adapt_namespace</a></span>, <span class='object_link'><a href="../RTT_CPP.html#base_dir-class_method" title="OroGen::Gen::RTT_CPP.base_dir (method)">base_dir</a></span>, <span class='object_link'><a href="../RTT_CPP.html#clean-class_method" title="OroGen::Gen::RTT_CPP.clean (method)">clean</a></span>, <span class='object_link'><a href="../RTT_CPP.html#cleanup_dir-class_method" title="OroGen::Gen::RTT_CPP.cleanup_dir (method)">cleanup_dir</a></span>, <span class='object_link'><a href="../RTT_CPP.html#cmake_pkgconfig_link-class_method" title="OroGen::Gen::RTT_CPP.cmake_pkgconfig_link (method)">cmake_pkgconfig_link</a></span>, <span class='object_link'><a href="../RTT_CPP.html#cmake_pkgconfig_link_corba-class_method" title="OroGen::Gen::RTT_CPP.cmake_pkgconfig_link_corba (method)">cmake_pkgconfig_link_corba</a></span>, <span class='object_link'><a href="../RTT_CPP.html#cmake_pkgconfig_link_noncorba-class_method" title="OroGen::Gen::RTT_CPP.cmake_pkgconfig_link_noncorba (method)">cmake_pkgconfig_link_noncorba</a></span>, <span class='object_link'><a href="../RTT_CPP.html#cmake_pkgconfig_require-class_method" title="OroGen::Gen::RTT_CPP.cmake_pkgconfig_require (method)">cmake_pkgconfig_require</a></span>, <span class='object_link'><a href="../RTT_CPP.html#create_or_update_symlink-class_method" title="OroGen::Gen::RTT_CPP.create_or_update_symlink (method)">create_or_update_symlink</a></span>, <span class='object_link'><a href="../RTT_CPP.html#default_deployment_name-class_method" title="OroGen::Gen::RTT_CPP.default_deployment_name (method)">default_deployment_name</a></span>, <span class='object_link'><a href="../RTT_CPP.html#define_default_deployments=-class_method" title="OroGen::Gen::RTT_CPP.define_default_deployments= (method)">define_default_deployments=</a></span>, <span class='object_link'><a href="../RTT_CPP.html#define_default_deployments_enabled%3F-class_method" title="OroGen::Gen::RTT_CPP.define_default_deployments_enabled? (method)">define_default_deployments_enabled?</a></span>, <span class='object_link'><a href="../RTT_CPP.html#enable-class_method" title="OroGen::Gen::RTT_CPP.enable (method)">enable</a></span>, <span class='object_link'><a href="../RTT_CPP.html#extended_states=-class_method" title="OroGen::Gen::RTT_CPP.extended_states= (method)">extended_states=</a></span>, <span class='object_link'><a href="../RTT_CPP.html#extended_states_enabled%3F-class_method" title="OroGen::Gen::RTT_CPP.extended_states_enabled? (method)">extended_states_enabled?</a></span>, <span class='object_link'><a href="../RTT_CPP.html#load_template-class_method" title="OroGen::Gen::RTT_CPP.load_template (method)">load_template</a></span>, <span class='object_link'><a href="../RTT_CPP.html#multiline_string_to_cxx-class_method" title="OroGen::Gen::RTT_CPP.multiline_string_to_cxx (method)">multiline_string_to_cxx</a></span>, <span class='object_link'><a href="../RTT_CPP.html#orocos_target-class_method" title="OroGen::Gen::RTT_CPP.orocos_target (method)">orocos_target</a></span>, <span class='object_link'><a href="../RTT_CPP.html#orocos_target=-class_method" title="OroGen::Gen::RTT_CPP.orocos_target= (method)">orocos_target=</a></span>, <span class='object_link'><a href="../RTT_CPP.html#really_clean-class_method" title="OroGen::Gen::RTT_CPP.really_clean (method)">really_clean</a></span>, <span class='object_link'><a href="../RTT_CPP.html#render_template-class_method" title="OroGen::Gen::RTT_CPP.render_template (method)">render_template</a></span>, <span class='object_link'><a href="../RTT_CPP.html#save_automatic-class_method" title="OroGen::Gen::RTT_CPP.save_automatic (method)">save_automatic</a></span>, <span class='object_link'><a href="../RTT_CPP.html#save_generated-class_method" title="OroGen::Gen::RTT_CPP.save_generated (method)">save_generated</a></span>, <span class='object_link'><a href="../RTT_CPP.html#save_public_automatic-class_method" title="OroGen::Gen::RTT_CPP.save_public_automatic (method)">save_public_automatic</a></span>, <span class='object_link'><a href="../RTT_CPP.html#save_user-class_method" title="OroGen::Gen::RTT_CPP.save_user (method)">save_user</a></span>, <span class='object_link'><a href="../RTT_CPP.html#template_path-class_method" title="OroGen::Gen::RTT_CPP.template_path (method)">template_path</a></span>, <span class='object_link'><a href="../RTT_CPP.html#touch-class_method" title="OroGen::Gen::RTT_CPP.touch (method)">touch</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="TaskDeploymentGeneration.html" title="OroGen::Gen::RTT_CPP::TaskDeploymentGeneration (module)">TaskDeploymentGeneration</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="TaskDeploymentGeneration.html#generate_activity_setup-instance_method" title="OroGen::Gen::RTT_CPP::TaskDeploymentGeneration#generate_activity_setup (method)">#generate_activity_setup</a></span>, <span class='object_link'><a href="TaskDeploymentGeneration.html#method_missing-instance_method" title="OroGen::Gen::RTT_CPP::TaskDeploymentGeneration#method_missing (method)">#method_missing</a></span>, <span class='object_link'><a href="TaskDeploymentGeneration.html#rtt_priority-instance_method" title="OroGen::Gen::RTT_CPP::TaskDeploymentGeneration#rtt_priority (method)">#rtt_priority</a></span>, <span class='object_link'><a href="TaskDeploymentGeneration.html#rtt_scheduler-instance_method" title="OroGen::Gen::RTT_CPP::TaskDeploymentGeneration#rtt_scheduler (method)">#rtt_scheduler</a></span>, <span class='object_link'><a href="TaskDeploymentGeneration.html#to_deployer_xml-instance_method" title="OroGen::Gen::RTT_CPP::TaskDeploymentGeneration#to_deployer_xml (method)">#to_deployer_xml</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  <div id="method_missing_details" class="method_details_list">
+  <h2>Dynamic Method Handling</h2>
+  <p class="notice super">
+    This class handles dynamic methods through the <tt>method_missing</tt> method
+    
+      in the class <span class='object_link'><a href="TaskDeploymentGeneration.html#method_missing-instance_method" title="OroGen::Gen::RTT_CPP::TaskDeploymentGeneration#method_missing (method)">OroGen::Gen::RTT_CPP::TaskDeploymentGeneration</a></span>
+    
+  </p>
+  
+</div>
+
+  <div id="instance_attr_details" class="attr_details">
+    <h2>Instance Attribute Details</h2>
+    
+      
+      <span id=""></span>
+      <div class="method_details first">
+  <h3 class="signature first" id="subdir-instance_method">
+  
+    #<strong>subdir</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute subdir</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+36
+37
+38</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/gen/test.rb', line 36</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_subdir'>subdir</span>
+  <span class='ivar'>@subdir</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="working_directory-instance_method">
+  
+    #<strong>working_directory</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute working_directory</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+30
+31
+32</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/gen/test.rb', line 30</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_working_directory'>working_directory</span>
+  <span class='ivar'>@working_directory</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="build_test_project-instance_method">
+  
+    #<strong>build_test_project</strong>(dirname, transports = [], test_bin = nil, wc_dirname = nil)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/gen/test.rb', line 168</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_build_test_project'>build_test_project</span><span class='lparen'>(</span><span class='id identifier rubyid_dirname'>dirname</span><span class='comma'>,</span> <span class='id identifier rubyid_transports'>transports</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_test_bin'>test_bin</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_wc_dirname'>wc_dirname</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_source'>source</span>             <span class='op'>=</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='id identifier rubyid_path_to_data'>path_to_data</span><span class='comma'>,</span> <span class='id identifier rubyid_dirname'>dirname</span><span class='rparen'>)</span>
+    <span class='ivar'>@working_directory</span> <span class='op'>=</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='id identifier rubyid_path_to_test'>path_to_test</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>wc</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_wc_dirname'>wc_dirname</span> <span class='op'>||</span> <span class='id identifier rubyid_dirname'>dirname</span><span class='rparen'>)</span>
+    <span class='ivar'>@subdir</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='id identifier rubyid_dirname'>dirname</span><span class='rbracket'>]</span>
+
+    <span class='kw'>if</span> <span class='const'>ENV</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>TEST_DONT_CLEAN</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='op'>!=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>1</span><span class='tstring_end'>&#39;</span></span> <span class='op'>||</span> <span class='op'>!</span><span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_directory?'>directory?</span><span class='lparen'>(</span><span class='id identifier rubyid_working_directory'>working_directory</span><span class='rparen'>)</span>
+        <span class='comment'># Copy +dirname+ in place of wc
+</span>        <span class='const'>FileUtils</span><span class='period'>.</span><span class='id identifier rubyid_rm_rf'>rm_rf</span> <span class='id identifier rubyid_working_directory'>working_directory</span>
+        <span class='const'>FileUtils</span><span class='period'>.</span><span class='id identifier rubyid_mkdir_p'>mkdir_p</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_dirname'>dirname</span><span class='lparen'>(</span><span class='id identifier rubyid_working_directory'>working_directory</span><span class='rparen'>)</span>
+        <span class='const'>FileUtils</span><span class='period'>.</span><span class='id identifier rubyid_cp_r'>cp_r</span> <span class='id identifier rubyid_source'>source</span><span class='comma'>,</span> <span class='id identifier rubyid_working_directory'>working_directory</span>
+    <span class='kw'>end</span>
+
+    <span class='id identifier rubyid_project'>project</span> <span class='op'>=</span> <span class='kw'>nil</span>
+    <span class='id identifier rubyid_in_wc'>in_wc</span> <span class='kw'>do</span>
+        <span class='id identifier rubyid_spec'>spec</span> <span class='op'>=</span> <span class='const'>Dir</span><span class='period'>.</span><span class='id identifier rubyid_glob'>glob</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>*.orogen</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_to_a'>to_a</span><span class='period'>.</span><span class='id identifier rubyid_first'>first</span>
+        <span class='id identifier rubyid_project'>project</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Project.html" title="OroGen::Gen::RTT_CPP::Project (class)">Project</a></span></span><span class='period'>.</span><span class='id identifier rubyid_load'><span class='object_link'><a href="Project.html#load-class_method" title="OroGen::Gen::RTT_CPP::Project.load (method)">load</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_spec'>spec</span><span class='rparen'>)</span>
+        <span class='id identifier rubyid_project'>project</span><span class='period'>.</span><span class='id identifier rubyid_enable_transports'>enable_transports</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_transports'>transports</span><span class='rparen'>)</span>
+
+        <span class='id identifier rubyid_compile_wc'>compile_wc</span><span class='lparen'>(</span><span class='id identifier rubyid_project'>project</span><span class='rparen'>)</span> <span class='kw'>do</span>
+            <span class='const'>FileUtils</span><span class='period'>.</span><span class='id identifier rubyid_cp'>cp</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>templates/CMakeLists.txt</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>CMakeLists.txt</span><span class='tstring_end'>&#39;</span></span>
+            <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_open'>open</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>CMakeLists.txt</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>a</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_io'>io</span><span class='op'>|</span>
+                <span class='kw'>yield</span><span class='lparen'>(</span><span class='id identifier rubyid_io'>io</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_block_given?'>block_given?</span>
+            <span class='kw'>end</span>
+        <span class='kw'>end</span>
+    <span class='kw'>end</span>
+
+    <span class='kw'>if</span> <span class='id identifier rubyid_test_bin'>test_bin</span>
+        <span class='id identifier rubyid_in_prefix'>in_prefix</span> <span class='kw'>do</span>
+            <span class='id identifier rubyid_assert'>assert</span><span class='lparen'>(</span><span class='id identifier rubyid_system'>system</span><span class='lparen'>(</span><span class='id identifier rubyid_test_bin'>test_bin</span><span class='comma'>,</span> <span class='id identifier rubyid_redirect_to_logfile'>redirect_to_logfile</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>failed to run test program </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_test_bin'>test_bin</span><span class='embexpr_end'>}</span><span class='tstring_content'>, see </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_logfile'>logfile</span><span class='embexpr_end'>}</span><span class='tstring_content'> for output</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+        <span class='kw'>end</span>
+    <span class='kw'>end</span>
+    <span class='id identifier rubyid_project'>project</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="build_typegen-instance_method">
+  
+    #<strong>build_typegen</strong>(name, header_files, transports)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/gen/test.rb', line 139</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_build_typegen'>build_typegen</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_header_files'>header_files</span><span class='comma'>,</span> <span class='id identifier rubyid_transports'>transports</span><span class='rparen'>)</span>
+    <span class='ivar'>@working_directory</span> <span class='op'>=</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='id identifier rubyid_path_to_test'>path_to_test</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>wc</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_header_files'>header_files</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='op'>*</span><span class='id identifier rubyid_header_files'>header_files</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_file'>file</span><span class='op'>|</span>
+        <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='id identifier rubyid_path_to_data'>path_to_data</span><span class='comma'>,</span> <span class='id identifier rubyid_file'>file</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+
+    <span class='kw'>if</span> <span class='const'>ENV</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>TEST_DONT_CLEAN</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='op'>!=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>1</span><span class='tstring_end'>&#39;</span></span> <span class='op'>||</span> <span class='op'>!</span><span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_directory?'>directory?</span><span class='lparen'>(</span><span class='id identifier rubyid_working_directory'>working_directory</span><span class='rparen'>)</span>
+        <span class='comment'># Copy +dirname+ in place of wc
+</span>        <span class='const'>FileUtils</span><span class='period'>.</span><span class='id identifier rubyid_rm_rf'>rm_rf</span> <span class='id identifier rubyid_working_directory'>working_directory</span>
+        <span class='const'>FileUtils</span><span class='period'>.</span><span class='id identifier rubyid_mkdir_p'>mkdir_p</span> <span class='id identifier rubyid_working_directory'>working_directory</span>
+    <span class='kw'>end</span>
+
+    <span class='id identifier rubyid_in_wc'>in_wc</span> <span class='kw'>do</span>
+        <span class='const'>FileUtils</span><span class='period'>.</span><span class='id identifier rubyid_mkdir_p'>mkdir_p</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>types</span><span class='tstring_end'>&quot;</span></span>
+        <span class='id identifier rubyid_header_files'>header_files</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_file'>file</span><span class='op'>|</span>
+            <span class='const'>FileUtils</span><span class='period'>.</span><span class='id identifier rubyid_cp'>cp</span> <span class='id identifier rubyid_file'>file</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>types</span><span class='tstring_end'>&quot;</span></span>
+        <span class='kw'>end</span>
+        <span class='id identifier rubyid_cmdline'>cmdline</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>typegen</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span>
+        <span class='kw'>if</span> <span class='op'>!</span><span class='id identifier rubyid_transports'>transports</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
+            <span class='id identifier rubyid_cmdline'>cmdline</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>--transports=</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_transports'>transports</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>,</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+        <span class='kw'>end</span>
+        <span class='id identifier rubyid_cmdline'>cmdline</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>-o</span><span class='tstring_end'>&quot;</span></span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>typekit_output</span><span class='tstring_end'>&quot;</span></span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_name'>name</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>types</span><span class='tstring_end'>&quot;</span></span>
+
+        <span class='id identifier rubyid_assert'>assert</span><span class='lparen'>(</span><span class='id identifier rubyid_system'>system</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_cmdline'>cmdline</span><span class='comma'>,</span> <span class='id identifier rubyid_redirect_to_logfile'>redirect_to_logfile</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>typegen failed, log file in </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_logfile'>logfile</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+
+    <span class='id identifier rubyid_compile_wc'>compile_wc</span><span class='lparen'>(</span><span class='kw'>nil</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>typekit_output</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="call_make-instance_method">
+  
+    #<strong>call_make</strong>(*args)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+131
+132
+133
+134
+135
+136
+137</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/gen/test.rb', line 131</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_call_make'>call_make</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_make_cmd'>make_cmd</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>make</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span>
+    <span class='kw'>if</span> <span class='const'>ENV</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>TEST_MAKE_OPTIONS</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
+        <span class='id identifier rubyid_make_cmd'>make_cmd</span><span class='period'>.</span><span class='id identifier rubyid_concat'>concat</span><span class='lparen'>(</span><span class='const'>ENV</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>TEST_MAKE_OPTIONS</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_split'>split</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>,</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+    <span class='id identifier rubyid_system'>system</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_make_cmd'>make_cmd</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='comma'>,</span> <span class='id identifier rubyid_redirect_to_logfile'>redirect_to_logfile</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="clear_wc-instance_method">
+  
+    #<strong>clear_wc</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+61
+62
+63
+64
+65
+66
+67
+68</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/gen/test.rb', line 61</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_clear_wc'>clear_wc</span>
+    <span class='kw'>if</span> <span class='const'>ENV</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>TEST_KEEP_WC</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='op'>!=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>1</span><span class='tstring_end'>&#39;</span></span> <span class='op'>&amp;&amp;</span> <span class='const'>ENV</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>TEST_DONT_CLEAN</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='op'>!=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>1</span><span class='tstring_end'>&#39;</span></span>
+        <span class='kw'>if</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_directory?'>directory?</span><span class='lparen'>(</span><span class='id identifier rubyid_path_to_wc_root'>path_to_wc_root</span><span class='rparen'>)</span>
+            <span class='const'>FileUtils</span><span class='period'>.</span><span class='id identifier rubyid_rm_rf'>rm_rf</span> <span class='id identifier rubyid_path_to_wc_root'>path_to_wc_root</span>
+            <span class='ivar'>@working_directory</span> <span class='op'>=</span> <span class='kw'>nil</span>
+        <span class='kw'>end</span>
+    <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="compile_and_test-instance_method">
+  
+    #<strong>compile_and_test</strong>(project, test_bin)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/gen/test.rb', line 203</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_compile_and_test'>compile_and_test</span><span class='lparen'>(</span><span class='id identifier rubyid_project'>project</span><span class='comma'>,</span> <span class='id identifier rubyid_test_bin'>test_bin</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_compile_wc'>compile_wc</span><span class='lparen'>(</span><span class='id identifier rubyid_project'>project</span><span class='rparen'>)</span> <span class='kw'>do</span>
+        <span class='const'>FileUtils</span><span class='period'>.</span><span class='id identifier rubyid_cp'>cp</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>templates/CMakeLists.txt</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>CMakeLists.txt</span><span class='tstring_end'>&#39;</span></span>
+        <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_open'>open</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>CMakeLists.txt</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>a</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_io'>io</span><span class='op'>|</span>
+            <span class='kw'>yield</span><span class='lparen'>(</span><span class='id identifier rubyid_io'>io</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_block_given?'>block_given?</span>
+        <span class='kw'>end</span>
+    <span class='kw'>end</span>
+
+    <span class='id identifier rubyid_in_prefix'>in_prefix</span> <span class='kw'>do</span>
+        <span class='id identifier rubyid_assert'>assert</span><span class='lparen'>(</span><span class='id identifier rubyid_system'>system</span><span class='lparen'>(</span><span class='id identifier rubyid_test_bin'>test_bin</span><span class='comma'>,</span> <span class='id identifier rubyid_redirect_to_logfile'>redirect_to_logfile</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>failed to run test program </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_test_bin'>test_bin</span><span class='embexpr_end'>}</span><span class='tstring_content'>, see </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_logfile'>logfile</span><span class='embexpr_end'>}</span><span class='tstring_content'> for output</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="compile_wc-instance_method">
+  
+    #<strong>compile_wc</strong>(project = nil, *subdir)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/gen/test.rb', line 112</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_compile_wc'>compile_wc</span><span class='lparen'>(</span><span class='id identifier rubyid_project'>project</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_subdir'>subdir</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_in_wc'>in_wc</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_subdir'>subdir</span><span class='rparen'>)</span> <span class='kw'>do</span>
+        <span class='kw'>if</span> <span class='id identifier rubyid_project'>project</span>
+            <span class='kw'>unless</span> <span class='id identifier rubyid_project'>project</span><span class='period'>.</span><span class='id identifier rubyid_deffile'>deffile</span>
+                <span class='id identifier rubyid_project'>project</span><span class='period'>.</span><span class='id identifier rubyid_deffile'>deffile</span> <span class='op'>=</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='id identifier rubyid_working_directory'>working_directory</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_project'>project</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_content'>.orogen</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+            <span class='kw'>end</span>
+            <span class='id identifier rubyid_project'>project</span><span class='period'>.</span><span class='id identifier rubyid_generate'>generate</span>
+        <span class='kw'>end</span>
+
+        <span class='kw'>yield</span> <span class='kw'>if</span> <span class='id identifier rubyid_block_given?'>block_given?</span>
+
+        <span class='const'>FileUtils</span><span class='period'>.</span><span class='id identifier rubyid_mkdir'>mkdir</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>build</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='kw'>unless</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_directory?'>directory?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>build</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+        <span class='const'>Dir</span><span class='period'>.</span><span class='id identifier rubyid_chdir'>chdir</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>build</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='kw'>do</span>
+            <span class='id identifier rubyid_assert'>assert</span><span class='lparen'>(</span><span class='id identifier rubyid_system'>system</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_prefix_directory'>prefix_directory</span><span class='embexpr_end'>}</span><span class='tstring_content'> ..</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_redirect_to_logfile'>redirect_to_logfile</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>failed to configure, see </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_logfile'>logfile</span><span class='embexpr_end'>}</span><span class='tstring_content'> for more details</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+            <span class='id identifier rubyid_assert'>assert</span><span class='lparen'>(</span><span class='id identifier rubyid_call_make'>call_make</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>failed to build, see </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_logfile'>logfile</span><span class='embexpr_end'>}</span><span class='tstring_content'> for more details</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+        <span class='kw'>end</span>
+    <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="copy_in_wc-instance_method">
+  
+    #<strong>copy_in_wc</strong>(file, destination = nil)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+70
+71
+72
+73
+74
+75
+76
+77</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/gen/test.rb', line 70</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_copy_in_wc'>copy_in_wc</span><span class='lparen'>(</span><span class='id identifier rubyid_file'>file</span><span class='comma'>,</span> <span class='id identifier rubyid_destination'>destination</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_destination'>destination</span>
+        <span class='id identifier rubyid_destination'>destination</span> <span class='op'>=</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_expand_path'>expand_path</span><span class='lparen'>(</span><span class='id identifier rubyid_destination'>destination</span><span class='comma'>,</span> <span class='id identifier rubyid_working_directory'>working_directory</span><span class='rparen'>)</span>
+        <span class='const'>FileUtils</span><span class='period'>.</span><span class='id identifier rubyid_mkdir_p'>mkdir_p</span> <span class='id identifier rubyid_destination'>destination</span>
+    <span class='kw'>end</span>
+
+    <span class='const'>FileUtils</span><span class='period'>.</span><span class='id identifier rubyid_cp'>cp</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_expand_path'>expand_path</span><span class='lparen'>(</span><span class='id identifier rubyid_file'>file</span><span class='comma'>,</span> <span class='id identifier rubyid_path_to_test'>path_to_test</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='lparen'>(</span><span class='id identifier rubyid_destination'>destination</span> <span class='op'>||</span> <span class='id identifier rubyid_working_directory'>working_directory</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="create_wc-instance_method">
+  
+    #<strong>create_wc</strong>(*subdir)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+52
+53
+54
+55
+56
+57
+58
+59</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/gen/test.rb', line 52</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_create_wc'>create_wc</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_subdir'>subdir</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_required_wc'>required_wc</span> <span class='op'>=</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='id identifier rubyid_path_to_test'>path_to_test</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>wc</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_subdir'>subdir</span><span class='rparen'>)</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_working_directory'>working_directory</span> <span class='op'>!=</span> <span class='id identifier rubyid_required_wc'>required_wc</span>
+        <span class='ivar'>@working_directory</span> <span class='op'>=</span> <span class='id identifier rubyid_required_wc'>required_wc</span>
+        <span class='const'>FileUtils</span><span class='period'>.</span><span class='id identifier rubyid_mkdir_p'>mkdir_p</span> <span class='id identifier rubyid_working_directory'>working_directory</span>
+        <span class='ivar'>@subdir</span> <span class='op'>=</span> <span class='id identifier rubyid_subdir'>subdir</span>
+    <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="in_prefix-instance_method">
+  
+    #<strong>in_prefix</strong>(&amp;block)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/gen/test.rb', line 94</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_in_prefix'>in_prefix</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_old_pkgconfig'>old_pkgconfig</span> <span class='op'>=</span> <span class='const'>ENV</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>PKG_CONFIG_PATH</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
+    <span class='id identifier rubyid_in_wc'>in_wc</span> <span class='kw'>do</span>
+        <span class='const'>Dir</span><span class='period'>.</span><span class='id identifier rubyid_chdir'>chdir</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>build</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='kw'>do</span>
+            <span class='id identifier rubyid_assert'>assert</span><span class='lparen'>(</span><span class='id identifier rubyid_call_make'>call_make</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>install</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>failed to install, see </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_logfile'>logfile</span><span class='embexpr_end'>}</span><span class='tstring_content'> for more details</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+        <span class='kw'>end</span>
+
+        <span class='const'>ENV</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>PKG_CONFIG_PATH</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='op'>+=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>:</span><span class='tstring_end'>&quot;</span></span> <span class='op'>+</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='id identifier rubyid_prefix_directory'>prefix_directory</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>lib</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>pkgconfig</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+        <span class='const'>Dir</span><span class='period'>.</span><span class='id identifier rubyid_chdir'>chdir</span><span class='lparen'>(</span><span class='id identifier rubyid_prefix_directory'>prefix_directory</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+<span class='kw'>ensure</span>
+    <span class='const'>ENV</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>PKG_CONFIG_PATH</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_old_pkgconfig'>old_pkgconfig</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="in_wc-instance_method">
+  
+    #<strong>in_wc</strong>(*subdir, &amp;block)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+79
+80
+81</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/gen/test.rb', line 79</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_in_wc'>in_wc</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_subdir'>subdir</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
+    <span class='const'>Dir</span><span class='period'>.</span><span class='id identifier rubyid_chdir'>chdir</span><span class='lparen'>(</span><span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='id identifier rubyid_working_directory'>working_directory</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_subdir'>subdir</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="install-instance_method">
+  
+    #<strong>install</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+87
+88
+89
+90
+91
+92
+93</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/gen/test.rb', line 87</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_install'>install</span>
+    <span class='id identifier rubyid_in_wc'>in_wc</span> <span class='kw'>do</span>
+        <span class='const'>Dir</span><span class='period'>.</span><span class='id identifier rubyid_chdir'>chdir</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>build</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='kw'>do</span>
+            <span class='id identifier rubyid_assert'>assert</span><span class='lparen'>(</span><span class='id identifier rubyid_call_make'>call_make</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>install</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>failed to install, see </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_logfile'>logfile</span><span class='embexpr_end'>}</span><span class='tstring_content'> for more details</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+        <span class='kw'>end</span>
+    <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="logfile-instance_method">
+  
+    #<strong>logfile</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+108
+109
+110</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/gen/test.rb', line 108</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_logfile'>logfile</span>
+    <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='id identifier rubyid_working_directory'>working_directory</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>test.log</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="prefix_directory-instance_method">
+  
+    #<strong>prefix_directory</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+32
+33
+34</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/gen/test.rb', line 32</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_prefix_directory'>prefix_directory</span>
+    <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='id identifier rubyid_path_to_wc_root'>path_to_wc_root</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>prefix</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_subdir'>subdir</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="redirect_to_logfile-instance_method">
+  
+    #<strong>redirect_to_logfile</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+83
+84
+85</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/gen/test.rb', line 83</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_redirect_to_logfile'>redirect_to_logfile</span>
+    <span class='const'>Hash</span><span class='lbracket'>[</span><span class='lbracket'>[</span><span class='const'>STDOUT</span><span class='comma'>,</span><span class='const'>STDERR</span><span class='rbracket'>]</span> <span class='op'>=&gt;</span> <span class='lbracket'>[</span><span class='id identifier rubyid_logfile'>logfile</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>a</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='rbracket'>]</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="setup-instance_method">
+  
+    #<strong>setup</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+38
+39
+40
+41
+42</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/gen/test.rb', line 38</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_setup'>setup</span>
+    <span class='ivar'>@subdir</span> <span class='op'>=</span> <span class='const'>Array</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+    <span class='ivar'>@old_pkg_config</span> <span class='op'>=</span> <span class='const'>ENV</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>PKG_CONFIG_PATH</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_dup'>dup</span> <span class='kw'>if</span> <span class='const'>ENV</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>PKG_CONFIG_PATH</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
+    <span class='kw'>super</span> <span class='kw'>if</span> <span class='kw'>defined?</span> <span class='kw'>super</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="teardown-instance_method">
+  
+    #<strong>teardown</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+44
+45
+46
+47
+48
+49
+50</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/orogen/gen/test.rb', line 44</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_teardown'>teardown</span>
+    <span class='id identifier rubyid_clear_wc'>clear_wc</span>
+    <span class='const'>ENV</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>PKG_CONFIG_PATH</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='ivar'>@old_pkg_config</span>
+    <span class='const'>Utilrb</span><span class='op'>::</span><span class='const'>PkgConfig</span><span class='period'>.</span><span class='id identifier rubyid_clear_cache'>clear_cache</span>
+    <span class='kw'>super</span> <span class='kw'>if</span> <span class='kw'>defined?</span> <span class='kw'>super</span>
+    <span class='id identifier rubyid_flexmock_teardown'>flexmock_teardown</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+      <div id="footer">
+  Generated on Tue Apr  9 14:53:32 2019 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.19 (ruby-2.5.1).
+</div>
+
+    </div>
+  </body>
+</html>
