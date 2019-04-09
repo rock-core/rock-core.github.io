@@ -9,12 +9,14 @@ Abstract
 In this tutorial, you will learn how to install the rock widget collection 
 and Vizkit which are libraries for displaying online data and log data.
 
+{::comment}
 Finding available packages and oroGen tasks
 -------------
 Rock's [package directory](../../package_directory.html) gives you a general
 overview of available 'standard' packages, oroGen tasks and types that are used
 on oroGen tasks. It also gives you links to the API documentation for packages
 that provide one. Go have a look.
+{:/comment}
 
 Package / Package Sets
 -----------
@@ -23,21 +25,24 @@ is called a package. They are organised in package sets which define for autopro
 and install the containing packages.
 
 In this case, we want to install two libraries called 'vizkit' and 'rock_widget_collection'. For this we first
-check if the packages are already installed or defined in one of the known package sets. To do so,
+check if the packages are defined in one of the known package sets. To do so,
 call on the command line (do not forget to source env.sh first):
 
-    autoproj list-config rock_widget_collection
-    autoproj list-config vizkit
+    autoproj show gui/rock_widget_collection
+    autoproj show gui/vizkit
 
+If the packages are known to autoproj, but not checked out, autoproj will
+report:
 
+~~~
+source package gui/rock_widget_collection
+  this package is not checked out yet, the dependency information will probably
+  be incomplete
+~~~
 
-If the packages are known to autoproj, but not installed, autoproj will report that *the following
-packages are not installed:*. In this case you can jump to the section below [Installing Packages](#installing-packages).
+In this case you can jump to the section below [Installing Packages](#installing-packages).
 
 If autoproj reports that it cannot find a match for the packages, go to the section [Adding Package Sets](#adding-package-sets)
-
-If both packages are already installed, autoproj will show a list of packages and dependencies for gui/vizkit and gui/rock_widget_collection.
-Of course, this should not keep you off from reading the next two sections.
 
 Adding Package Sets {#adding-package-sets}
 -----------
@@ -65,7 +70,7 @@ To add this package set to your current autoproj installation, copy the string t
 
 ~~~ yaml
 package_sets:
-  - github: rock/package_set
+  - github: rock-core/package_set
 ~~~
 
 Now autoproj knows all packages which are part of the rock package sets. If you want to install one of them,

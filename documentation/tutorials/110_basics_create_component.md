@@ -247,10 +247,10 @@ void Producer::updateHook()
 To build your first component call:
 
 ~~~ text
-amake tutorials/orogen/message_producer
+amake tutorials/orogen/messages
 ~~~
 
-Or, assuming that you are in the message_producer folder or in one of its
+Or, assuming that you are in the messages folder or in one of its
 subfolders, you can use
 
 ~~~ text
