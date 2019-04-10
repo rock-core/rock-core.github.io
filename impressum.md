@@ -77,17 +77,10 @@ href="http://www.dfki.de/mailman/cgi-bin/listinfo/rock-dev">http://www.dfki.de/m
 <li>rock-users: <a href="http://www.dfki.de/mailman/cgi-bin/listinfo/rock-users">http://www.dfki.de/mailman/cgi-bin/listinfo/rock-users</a></li>
 </ul>
 
-<h2>Contractor (Hosting/WebSpace Server) </h2>
-This website is hosted with the following contractor.
-<p>
-<b>Goserver GmbH</b><br/>
-Marssstr. 72<br/>
-80335 Munich/Germany<br/><br/>
-
-Phone: +49 89 540 42 50 0<br/>
-Email: <a href="mailto:info@goserver.de">info&#064;goserver.de</a><br/>
-<a href="http://www.goserver.de">Goserver GmbH</a><br/>
-</p>
+<h2>Hosting Server</h2>
+This website is hosted with <a href="https://github.com">Github</a>.
+For more information about github's data processing and contacts, please refer to the
+Privacy Policy <a href="https://help.github.com/en/articles/github-privacy-statement">here</a>.
 
 <h2>Access data</h2>
 On every access to our web site some usage, transmission and connection data
