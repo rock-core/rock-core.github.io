@@ -11,39 +11,40 @@ The canonical way is the following:
 
  * install Ruby by yourself. On Debian or Ubuntu, this is done with
    done with
-
-   sudo apt-get install wget ruby1.9
-   {: .cmdline}
-
-   If you are using an older Ubuntu, make sure that you install Ruby 1.9.3
+```bash
+      sudo apt-get install wget ruby
+```
 
  * then, [download this script](../../autoproj_bootstrap) *in the directory where
    you want to create an autoproj installation*, and run it. This can be done with
 
-   wget http://rock-robotics.org/autoproj\_bootstrap <br />
-   ruby autoproj\_bootstrap
-   {: .cmdline}
+```bash
+      wget http://rock-robotics.org/autoproj_bootstrap
+```
 
- * follow the instructions printed by the script
+There are several options how to go on:
 
-Additionally, if you are given a reference to a source code repository in which
+* `ruby autoproj_bootstrap`
+* `ruby autoproj_bootstrap VCSTYPE URL`
+
+
+After this: follow the instructions printed by the script
+
+In the second example reference to a source code repository is given, in which
 an autoproj configuration is stored (i.e. a directory in which a manifest is
 present), you can bootstrap this configuration directly:
 
-   wget http://rock-robotics.org/autoproj\_bootstrap <br />
-   ruby autoproj\_bootstrap VCS 
-   {: .cmdline}
-
 For instance, to build all packages made available by the Rock project,
 do
+  
+```bash
+      ruby autoproj_bootstrap git https://github.com/rock-core/buildconf-all.git
+```
 
-   wget http://rock-robotics.org/autoproj\_bootstrap <br />
-   ruby autoproj\_bootstrap git git://github.com/rock-core/buildconf-all.git
-   {: .cmdline}
 
 Additional options can be given for the version control system. For instance,
 
-   wget http://rock-robotics.org/autoproj\_bootstrap <br />
-   ruby autoproj\_bootstrap git git://github.com/rock-core/buildconf.git branch=test
-   {: .cmdline}
+```bash   
+      ruby autoproj_bootstrap git https://github.com/rock-core/buildconf.git branch=test
+```
 
