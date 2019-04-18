@@ -2,7 +2,7 @@
 section: Build System
 title: Customizing the installation
 sort_info: 48
---- name:content
+---
 
 Changing the installation's layout
 ----------------------------------
