@@ -4,46 +4,53 @@ title: Bootstrapping
 sort_info: 25
 ---
 
-Bootstrapping
--------------
+### Bootstrapping Autoproj
+
+
 "Bootstrapping" means getting, building and installing autoproj before it can be used.
 The canonical way is the following:
 
- * install Ruby by yourself. On Debian or Ubuntu, this is done with
-   done with
+0. Install Ruby by yourself. On Debian or Ubuntu, this is done with done with
 
-   sudo apt-get install wget ruby1.9
-   {: .cmdline}
+        sudo apt-get install wget ruby
 
-   If you are using an older Ubuntu, make sure that you install Ruby 1.9.3
+0. [Download this script](../../autoproj_bootstrap) *in the directory where you want to create an autoproj installation*. This can be done with
 
- * then, [download this script](../../autoproj_bootstrap) *in the directory where
-   you want to create an autoproj installation*, and run it. This can be done with
+        http://rock-robotics.org/autoproj_bootstrap
+    
+    After this, the help function is availabe:
 
-   wget http://rock-robotics.org/autoproj\_bootstrap <br />
-   ruby autoproj\_bootstrap
-   {: .cmdline}
+        ruby autoproj_bootstrap --help
 
- * follow the instructions printed by the script
+**There two options how to go on:**
 
-Additionally, if you are given a reference to a source code repository in which
-an autoproj configuration is stored (i.e. a directory in which a manifest is
-present), you can bootstrap this configuration directly:
+0. Install autoproj only: 
 
-   wget http://rock-robotics.org/autoproj\_bootstrap <br />
-   ruby autoproj\_bootstrap VCS 
-   {: .cmdline}
+        ruby autoproj_bootstrap
 
-For instance, to build all packages made available by the Rock project,
-do
+0. Install with an existing configuration from a Version Control System:
 
-   wget http://rock-robotics.org/autoproj\_bootstrap <br />
-   ruby autoproj\_bootstrap git git://github.com/rock-core/buildconf-all.git
-   {: .cmdline}
+        ruby autoproj_bootstrap VCSTYPE URL
+
+      Where VCSTYPE is one of:
+      **git,git-lfs,svn,cvs,hg,darcs,archive (tar, tgz, etc.)**.
+
+**When Running this: follow the instructions printed by the script**
+
+### Examples:
+
+In the second example above, a reference to a source code repository is given, in which an autoproj configuration is stored (i.e. a directory in which a manifest is present), you can bootstrap this configuration directly:
+
+For instance, to build all packages made available by the Rock project, do
+  
+```
+ruby autoproj_bootstrap git https://github.com/rock-core/buildconf-all.git
+```
+
 
 Additional options can be given for the version control system. For instance,
 
-   wget http://rock-robotics.org/autoproj\_bootstrap <br />
-   ruby autoproj\_bootstrap git git://github.com/rock-core/buildconf.git branch=test
-   {: .cmdline}
+```bash
+ruby autoproj_bootstrap git https://github.com/rock-core/buildconf.git branch=test
+```
 
