@@ -2,7 +2,7 @@
 section: Triggering
 title: Triggering Mechanisms
 sort_info: 0
---- name:content
+---
 
 At runtime, a task context requires to be triggered. It means that the state
 hook methods need to be called at specified times/in reaction to specific

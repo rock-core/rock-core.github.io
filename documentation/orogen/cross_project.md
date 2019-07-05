@@ -2,7 +2,7 @@
 section: Developing Components
 title: Cross-project dependencies
 sort_info: 500
---- name:content pipeline:tags,markdown,blocks
+---
 
 Each oroGen project can be separated in three things:
 

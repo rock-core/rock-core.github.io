@@ -2,7 +2,7 @@
 section: Developing Components
 title: Advanced - Opaque types
 sort_info: 550
---- name:content pipeline:tags,markdown,blocks
+---
 
 The opaque type support is not yet available to the users of typeGen
 {: .warning}

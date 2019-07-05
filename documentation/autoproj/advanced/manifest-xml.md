@@ -3,7 +3,7 @@ secondsection: Advanced
 section: Build System
 title: The manifest.xml file
 sort_info: 100
---- name:content
+---
 
 The manifest.xml is an optional (but *very recommended*) file that lies in the
 root of every source package. This file describes both what the package *is*

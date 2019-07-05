@@ -2,7 +2,7 @@
 section: Developing Components
 title: Advanced - Writing oroGen plugins
 sort_info: 520
---- name:content pipeline:tags,markdown,blocks
+---
 
 oroGen plugins offer ways to add new statements to the oroGen specification
 file, allowing to integrate some libraries in the component development

@@ -2,7 +2,7 @@
 section: Triggering
 title: Periodic Triggering
 sort_info: 100
---- name:content
+---
 
 This is the most simple triggering method. When a task is declared periodic, the
 task context's <tt>updateHook()</tt> method will be called with a fixed time

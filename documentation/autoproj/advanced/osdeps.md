@@ -3,7 +3,7 @@ secondsection: Advanced
 section: Build System
 title: Operating System dependencies
 sort_info: 300
---- name:content
+---
 
 Autoproj offers the possibility to use OS-packaged software instead of building
 it, to leverage the underlying platform's software. This page details how it's

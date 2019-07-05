@@ -3,7 +3,7 @@ secondsection: Advanced
 section: Build System
 title: Package import
 sort_info: 250
---- name:content
+---
 
 As [we already mentioned](creating_pkg_set.html), the source.yml file contains information
 on where to import the source packages from. This information is included in the

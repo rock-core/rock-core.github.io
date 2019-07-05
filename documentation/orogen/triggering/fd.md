@@ -2,7 +2,7 @@
 section: Triggering
 title: FD-driven tasks
 sort_info: 300
---- name:content
+---
 
 The IO triggering mechanism, if enabled, will make sure that updateHook() is
 called whenever new data is made available on a file descriptor. It allows to

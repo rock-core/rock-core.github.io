@@ -3,7 +3,7 @@ secondsection: Advanced
 section: Build System
 title: Cross-Set Dependencies
 sort_info: 275
---- name:content
+---
 
 A given package set can tell autoproj to import another one BEFORE it gets
 loaded. This is done in the 'imports' section of the source.yml file, using the

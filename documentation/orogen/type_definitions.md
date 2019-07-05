@@ -2,7 +2,7 @@
 section: Developing Components
 title: Type definitions
 sort_info: 50
---- name:content pipeline:tags,markdown,blocks
+---
 
 One of the first thing that a component designer has to think about is defining
 the data structures that will be used in the component's interfaces:

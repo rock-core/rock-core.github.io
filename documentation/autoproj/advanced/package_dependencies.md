@@ -3,7 +3,7 @@ secondsection: Advanced
 section: Build System
 title: Package Dependencies
 sort_info: 260
---- name:content
+---
 
 There are two ways to specify dependencies between packages. In order of
 "general use":

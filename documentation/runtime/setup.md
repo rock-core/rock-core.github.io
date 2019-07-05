@@ -2,7 +2,7 @@
 section: Running Components
 title: Starting the system up
 sort_info: 50
---- name:content pipeline:tags,markdown,blocks
+---
 
 Setting up CORBA
 ----------------

@@ -2,7 +2,7 @@
 section: Running Components
 title: Quickstart
 sort_info: 20
---- name:content pipeline:tags,markdown,blocks
+---
 
 The following example uses orocos.rb's functionality to manage processes. While
 it works only for [deployments generated using

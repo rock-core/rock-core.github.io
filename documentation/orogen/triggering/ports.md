@@ -2,7 +2,7 @@
 section: Triggering
 title: Data-Driven Tasks
 sort_info: 200
---- name:content
+---
 
 A data-driven task is a task that wants to perform computations whenever new
 data is available on its input ports. In general, data-processing tasks (as for
