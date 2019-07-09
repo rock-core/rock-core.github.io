@@ -10,3 +10,6 @@ src/types/*
 src/osdeps/*
 /nbproject/private/
 _site/*
+*~
+.jekyll-cache/*
+.jekyll-metadata
