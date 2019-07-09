@@ -1,5 +1,6 @@
 ---
-section: Triggering
+secondsection: Triggering
+section: Developing Components
 title: Periodic Triggering
 sort_info: 100
 ---
