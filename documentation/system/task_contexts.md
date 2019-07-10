@@ -1,5 +1,4 @@
 ---
-secondsection: system
 section: System Management
 title: Task Contexts
 sort_info: 150

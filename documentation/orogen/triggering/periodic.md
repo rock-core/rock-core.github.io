@@ -1,5 +1,5 @@
 ---
-secondsection: Triggering
+subsection: Triggering Mechanisms
 section: Developing Components
 title: Periodic Triggering
 sort_info: 100

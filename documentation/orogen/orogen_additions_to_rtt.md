@@ -1,6 +1,7 @@
 ---
 section: Developing Components
-title: Advanced - oroGen additions to the standard RTT component interface
+subsection: oroGen Advanced Usage
+title: oroGen additions to the standard RTT component interface
 sort_info: 530
 ---
 

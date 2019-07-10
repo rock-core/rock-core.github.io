@@ -1,5 +1,4 @@
 ---
-secondsection: system
 section: System Management
 title: Introduction
 sort_info: 0

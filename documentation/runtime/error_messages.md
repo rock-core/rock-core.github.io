@@ -1,6 +1,6 @@
 ---
 section: Running Components
-title: Error messages
+title: Error Messages
 sort_info: 300
 ---
 

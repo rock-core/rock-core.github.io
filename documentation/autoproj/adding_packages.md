@@ -1,6 +1,6 @@
 ---
 section: Build System
-title: Adding packages
+title: Adding Packages
 sort_info: 50
 ---
 

@@ -1,6 +1,6 @@
 ---
-secondsection: Advanced
 section: Build System
+subsection: Advanced Usage
 title: Package Dependencies
 sort_info: 260
 ---

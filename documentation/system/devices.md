@@ -1,5 +1,4 @@
 ---
-secondsection: system
 section: System Management
 title: Devices
 sort_info: 520

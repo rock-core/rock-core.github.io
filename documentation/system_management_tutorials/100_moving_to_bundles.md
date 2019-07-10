@@ -1,6 +1,5 @@
 ---
-secondsection: Tutorials
-section: System Management
+section: Managing Systems
 title: Moving to bundles
 sort_info: 100
 ---

@@ -1,6 +1,6 @@
 ---
-section: ROS/Rock bridge
-title: The ROS-Rock Bridge
+section: ROS/Rock Bridge
+title: Introduction
 sort_info: 0
 ---
 

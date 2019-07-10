@@ -1,7 +1,7 @@
 ---
-secondsection: Advanced
 section: Build System
-title: Writing autobuild scripts
+subsection: Advanced Usage
+title: Writing Autobuild Scripts
 sort_info: 200
 ---
 

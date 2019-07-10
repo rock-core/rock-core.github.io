@@ -119,9 +119,8 @@ body {margin: 0px auto; padding: 0px; background: url(img/background_body_grey.g
   padding-left: 10px; font-weight: bold;
 }
 
-
 .nav3 li.webgen-menu-level3 a, .nav3 li.webgen-menu-level3 span {
-    padding-left: 15px; font-weight: normal; font-size: 90%;
+    padding-left: 35px; font-weight: normal; font-size: 90%;
 }
 
 

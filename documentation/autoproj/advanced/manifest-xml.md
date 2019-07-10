@@ -1,7 +1,7 @@
 ---
-secondsection: Advanced
 section: Build System
-title: The manifest.xml file
+subsection: Advanced Usage
+title: The manifest.xml File
 sort_info: 100
 ---
 

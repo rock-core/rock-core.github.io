@@ -1,5 +1,5 @@
 ---
-section: ROS/Rock bridge
+section: ROS/Rock Bridge
 title: Example
 sort_info: 300
 ---

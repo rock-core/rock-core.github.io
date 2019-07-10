@@ -1,7 +1,6 @@
 ---
-secondsection: system
 section: System Management
-title: Running and interacting with a Roby/Syskit system
+title: Running and Interacting with a Roby/Syskit System
 sort_info: 600
 ---
 

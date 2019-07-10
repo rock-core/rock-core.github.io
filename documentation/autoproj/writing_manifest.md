@@ -1,6 +1,6 @@
 ---
 section: Build System
-title: The manifest file.
+title: The Manifest File
 sort_info: 50
 ---
 

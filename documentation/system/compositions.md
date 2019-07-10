@@ -1,5 +1,4 @@
 ---
-secondsection: system
 section: System Management
 title: Compositions
 sort_info: 300

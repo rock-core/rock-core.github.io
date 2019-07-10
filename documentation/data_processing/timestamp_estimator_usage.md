@@ -1,6 +1,6 @@
 ---
 section: Data Processing
-title: "  ... API and oroGen usage"
+title: "  ... API and oroGen Usage"
 sort_info: 55
 ---
 

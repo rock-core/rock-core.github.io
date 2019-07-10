@@ -1,5 +1,4 @@
 ---
-secondsection: system
 section: System Management
 title: Naming Conventions
 sort_info: 800

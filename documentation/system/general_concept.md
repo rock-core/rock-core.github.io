@@ -1,5 +1,4 @@
 ---
-secondsection: system
 section: System Management
 title: General Concept
 sort_info: 100

@@ -1,6 +1,5 @@
 ---
-secondsection: Tutorials
-section: System Management
+section: Managing Systems
 title: Going abstract - Data Services
 sort_info: 300
 ---

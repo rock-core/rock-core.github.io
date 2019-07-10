@@ -1,5 +1,4 @@
 ---
-secondsection: system
 section: System Management
 title: Data Services
 sort_info: 140

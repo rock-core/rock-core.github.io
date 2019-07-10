@@ -1,6 +1,5 @@
 ---
-secondsection: Tutorials
-section: System Management
+section: Managing Systems
 title: Reusing Profiles
 sort_info: 900
 ---

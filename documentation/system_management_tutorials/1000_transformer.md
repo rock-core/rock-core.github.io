@@ -1,6 +1,5 @@
 ---
-secondsection: Tutorials
-section: System Management
+section: Managing Systems
 title: Transformer
 sort_info: 1000
 ---

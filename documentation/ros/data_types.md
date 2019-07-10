@@ -1,5 +1,5 @@
 ---
-section: ROS/Rock bridge
+section: ROS/Rock Bridge
 title: Data Types
 sort_info: 100
 ---

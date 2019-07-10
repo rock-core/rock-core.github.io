@@ -1,6 +1,6 @@
 ---
 section: Device Drivers
-title: Writing a device driver
+title: Writing a Device Driver
 sort_info: 10
 ---
 

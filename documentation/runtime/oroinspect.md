@@ -1,6 +1,6 @@
 ---
 section: Running Components
-title: oroinspect - finding out what is there
+title: Inspecting Component Models
 sort_info: 25
 ---
 

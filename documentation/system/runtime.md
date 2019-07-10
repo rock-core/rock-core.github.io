@@ -1,5 +1,4 @@
 ---
-secondsection: system
 section: System Management
 title: Runtime Behaviour
 sort_info: 550

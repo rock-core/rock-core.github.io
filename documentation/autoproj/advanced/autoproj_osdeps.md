@@ -1,7 +1,7 @@
 ---
-secondsection: Advanced
 section: Build System
-title: Supporting new OSes in autoproj
+subsection: Advanced Usage
+title: Supporting new OSes
 sort_info: 400
 ---
 

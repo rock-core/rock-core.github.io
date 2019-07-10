@@ -1,7 +1,7 @@
 ---
-secondsection: Advanced
 section: Build System
-title: Tooling with shell scripts
+subsection: Advanced Usage
+title: Tooling with Shell Scripts
 sort_info: 51
 ---
 

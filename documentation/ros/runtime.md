@@ -1,5 +1,5 @@
 ---
-section: ROS/Rock bridge
+section: ROS/Rock Bridge
 title: Runtime Setup
 sort_info: 200
 ---

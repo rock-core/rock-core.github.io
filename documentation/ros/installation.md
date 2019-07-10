@@ -1,5 +1,5 @@
 ---
-section: ROS/Rock bridge
+section: ROS/Rock Bridge
 title: Installation
 sort_info: 50
 ---

@@ -1,5 +1,4 @@
 ---
-secondsection: system
 section: System Management
 title: Dynamic Services
 sort_info: 700

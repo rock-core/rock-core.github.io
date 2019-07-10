@@ -1,6 +1,5 @@
 ---
-secondsection: Tutorials
-section: System Management
+section: Managing Systems
 title: First composition
 sort_info: 200
 ---

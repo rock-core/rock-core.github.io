@@ -2,7 +2,6 @@
 section: About Rock
 title: What is Rock? 
 sort_info: 0
-section: About Rock
 ---
 
 Overview

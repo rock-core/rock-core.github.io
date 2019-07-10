@@ -1,6 +1,6 @@
 ---
-secondsection: Triggering
 section: Developing Components
+subsection: Triggering Mechanisms
 title: FD-driven tasks
 sort_info: 300
 ---

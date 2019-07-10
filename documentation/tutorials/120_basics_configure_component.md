@@ -1,6 +1,6 @@
 ---
 section: Basics
-title: Configure components
+title: Configure Components
 sort_info: 120
 ---
 

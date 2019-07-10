@@ -1,6 +1,6 @@
 ---
 section: Data Processing
-title: ... in Syskit
+title: "  ... in Syskit"
 sort_info: 240
 ---
 

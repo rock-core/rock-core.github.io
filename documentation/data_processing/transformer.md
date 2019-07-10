@@ -1,6 +1,6 @@
 ---
 section: Data Processing
-title: Handling Geometry - the Transformer
+title: The Transformer
 sort_info: 200
 ---
 In the example used [for the stream aligner](stream_aligner.html), we introduced

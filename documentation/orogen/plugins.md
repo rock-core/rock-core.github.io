@@ -1,6 +1,7 @@
 ---
 section: Developing Components
-title: Advanced - Writing oroGen plugins
+subsection: oroGen Advanced Usage
+title: Writing oroGen Plugins
 sort_info: 520
 ---
 

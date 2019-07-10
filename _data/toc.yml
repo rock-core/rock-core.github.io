@@ -1,0 +1,375 @@
+# While an alternative: https://jekyllrb.com/tutorials/navigation/#scenario-8-retrieving-items-based-on-front-matter-properties
+# for toc generation exists, the explicit definition of the doc facilitiates the
+# mixin of menu entries to external references
+
+# Menu generation is done _layouts/page.html
+# Itwill allow to use a relative path for the 'page' attribute of a subsection as long as you do not change the directory within your
+# subsection, e.g. as result of nested advanced sections or similar - see section Developing Components.
+# Better start from the document root here /documentation/...
+toc:
+    - chapter: Intro
+      sections:
+        - section: Overview
+          page: /documentation/index.html
+        - section: About Rock
+          page: /documentation/about/index.html
+          subsections:
+              - subsection: Relation to Others
+                page: /documentation/about/others.html
+              - subsection: Release Strategy
+                page: /documentation/about/releases.html
+              - subsection: Acknowledging Rock
+                page: /documentation/about/ack.html
+        - section: Installation
+          page: /documentation/installation.html
+        - section: Managing Packages
+          page: /documentation/packages/index.html
+          subsections:
+              - subsection: Package Structure
+                page: /documentation/packages/package_structure.html
+              - subsection: Rock CMake Macros
+                page: /documentation/packages/cmake_macros.html
+              - subsection: Using Rock Packages outside of Rock
+                page: /documentation/packages/outside_of_rock.html
+        - section: Contributing
+          page: /documentation/contributing/index.html
+          subsections:
+              - subsection: Documentation
+                page: /documentation/contributing/documentation.html
+              - subsection: Reporting Bugs
+                page: /documentation/contributing/bugreports.html
+              - subsection: Packages
+                page: /documentation/contributing/packages.html
+              - subsection: Sending Your Changes
+                page: /documentation/contributing/merge_changes_to_rock-core.html
+        - section: Packages API
+          page: https://www.rock-robotics.org/apidocs
+          subsections:
+    - chapter: Tutorials
+      sections:
+        - section: Basics
+          page: /documentation/tutorials/index.html
+          subsections:
+              - subsection: Creating Libraries
+                page: /documentation/tutorials/100_basics_create_library.html
+              - subsection: Creating Components
+                page: /documentation/tutorials/110_basics_create_component.html
+              - subsection: Configure Components
+                page: /documentation/tutorials/120_basics_configure_component.html
+              - subsection: Connecting Components
+                page: /documentation/tutorials/130_basics_connect_components.html
+              - subsection: Installing Packages
+                page: /documentation/tutorials/190_installing_packages.html
+              - subsection: Viewing The Data (Live / Log Files)
+                page: /documentation/tutorials/200_display_logging_and_replay.html
+              - subsection: Simulate a Robot
+                page: /documentation/tutorials/500_simulate_a_robot.html
+              - subsection: Adding a Joystick into the Mix
+                page: /documentation/tutorials/510_joystick.html
+              - subsection: Control through a Virtual Joystick
+                page: /documentation/tutorials/520_virtual_joystick.html
+        - section: Advanced
+          page: /documentation/advanced_tutorials/index.html
+          subsections:
+              - subsection: Deployments
+                page: /documentation/advanced_tutorials/100_deployments.html
+              - subsection: Replaying Data in Scripts
+                page: /documentation/advanced_tutorials/200_replay_1.html
+              - subsection: Data Visualization
+                page: /documentation/advanced_tutorials/210_data_visualization.html
+              - subsection: 3D Data Visualization
+                page: /documentation/advanced_tutorials/220_3d_data_visualization.html
+              - subsection: Writing a Vizkit C++ Widget
+                page: /documentation/advanced_tutorials/300_vizkit_widget.html
+              - subsection: Writing a 3D Vizkit plugin
+                page: /documentation/advanced_tutorials/600_vizkit_plugin.html
+              - subsection: Multi Widget Display
+                page: /documentation/advanced_tutorials/620_multi_widget_display.html
+              - subsection: Using Avahi to find the tasks
+                page: /documentation/advanced_tutorials/700_nameservice.html
+        - section: Managing Systems
+          page: /documentation/system_management_tutorials/index.html
+          subsections:
+              - subsection: Moving to bundles
+                page: /documentation/system_management_tutorials/100_moving_to_bundles.html
+              - subsection: First composition
+                page: /documentation/system_management_tutorials/200_first_composition.html
+              - subsection: Going abstract - Data Services
+                page: /documentation/system_management_tutorials/300_services.html
+              - subsection: Runtime Workflow
+                page: /documentation/system_management_tutorials/400_runtime_workflow.html
+              - subsection: Configuration Files
+                page: /documentation/system_management_tutorials/500_config_files.html
+              - subsection: Refining models - a leader/follower system
+                page: /documentation/system_management_tutorials/600_more_complex.html
+              - subsection: Bundle File Structure
+                page: /documentation/system_management_tutorials/700_file_structure.html
+              - subsection: Devices
+                page: /documentation/system_management_tutorials/800_devices.html
+              - subsection: Reusing Profiles
+                page: /documentation/system_management_tutorials/900_reusing_profiles.html
+              - subsection: Transformer
+                page: /documentation/system_management_tutorials/1000_transformer.html
+              - subsection: Action State Machines
+                page: /documentation/system_management_tutorials/1100_action_state_machines.html
+              - subsection: Data Monitors
+                page: /documentation/system_management_tutorials/1200_data_monitors.html
+              - subsection: Fault Response Tables
+                page: /documentation/system_management_tutorials/1300_fault_response_tables.html
+        - section: Setting up a New Project
+          page: /documentation/setting_up_a_project/index.html
+          subsections:
+              - subsection: Setting up the build system
+                page: /documentation/setting_up_a_project/100_setting_up_the_build_system.html
+              - subsection: Add build system to git
+                page: /documentation/setting_up_a_project/200_adding_to_git.html
+              - subsection: Bundles in Rock
+                page: /documentation/setting_up_a_project/300_bundles.html
+              - subsection: Configuration files for tasks
+                page: /documentation/setting_up_a_project/400_configuration_files_for_tasks.html
+              - subsection: Configuring the transformer
+                page: /documentation/setting_up_a_project/500_configure_transformer.html
+    - chapter: Core
+      sections:
+          - section: Base Types
+            page: /documentation/base_types.html
+          - section: Build System
+            page: /documentation/autoproj/index.html
+            subsections:
+                - subsection: Bootstrapping
+                  page: /documentation/autoproj/bootstrap.html
+                - subsection: Basic Usage
+                  page: /documentation/autoproj/basic_usage.html
+                - subsection: Customizing the Installation
+                  page: /documentation/autoproj/customization.html
+                - subsection: Adding Packages
+                  page: /documentation/autoproj/adding_packages.html
+                - subsection: The Manifest File
+                  page: /documentation/autoproj/writing_manifest.html
+                - subsection: Understanding Autoproj Error Messages
+                  page: /documentation/autoproj/error_messages.html
+                - subsection: The osdeps system
+                  page: /documentation/autoproj/osdeps.html
+                - subsection: Advanced Usage
+                  page: /documentation/autoproj/advanced/index.html
+                  subsubsections:
+                      - subsubsection: Tooling with Shell Scripts
+                        page: /documentation/autoproj/advanced/query.html
+                      - subsubsection: The manifest.xml File
+                        page: /documentation/autoproj/advanced/manifest-xml.html
+                      - subsubsection: Creating a Package Set
+                        page: /documentation/autoproj/advanced/creating_pkg_set.html
+                      - subsubsection: Writing Autobuild Scripts
+                        page: /documentation/autoproj/advanced/autobuild.html
+                      - subsubsection: Writing Package Handlers
+                        page: /documentation/autoproj/advanced/writing_package_handlers.html
+                      - subsubsection: Package Import
+                        page: /documentation/autoproj/advanced/importers.html
+                      - subsubsection: Package Dependencies
+                        page: /documentation/autoproj/advanced/package_dependencies.html
+                      - subsubsection: Cross-Set Dependencies
+                        page: /documentation/autoproj/advanced/cross_set_dependencies.html
+                      - subsubsection: osdeps - Operating System Dependencies
+                        page: /documentation/autoproj/advanced/osdeps.html
+                      - subsubsection: Supporting new OSes
+                        page: /documentation/autoproj/advanced/autoproj_osdeps.html
+                - subsection: Autoproj API
+                  page: https://rubydoc.info/gems/autoproj/frames
+                - subsection: Autobuild API
+                  page: https://rubydoc.info/gems/autobuild/frames
+          - section: Developing Components
+            page: /documentation/orogen/index.html
+            subsections:
+                - subsection: Cheat Sheet (PDF)
+                  page: /documentation/orogen/orogen_cheat_sheet.pdf
+                - subsection: Type definitions
+                  page: /documentation/orogen/type_definitions.html
+                - subsection: Task Interface
+                  page: /documentation/orogen/task_interface.html
+                - subsection: Task States
+                  page: /documentation/orogen/task_states.html
+                - subsection: Task Inheritance
+                  page: /documentation/orogen/task_inheritance.html
+                - subsection: Deployments
+                  page: /documentation/orogen/deployment.html
+                - subsection: Triggering Mechanisms
+                  page: /documentation/orogen/triggering/index.html
+                  subsubsections:
+                      - subsubsection: Data-Driven Tasks
+                        page: /documentation/orogen/triggering/ports.html
+                      - subsubsection: Periodic Triggering
+                        page: /documentation/orogen/triggering/periodic.html
+                      - subsubsection: FD-driven tasks
+                        page: /documentation/orogen/triggering/fd.html
+                - subsection: Cross-project dependencies
+                  page: /documentation/orogen/cross_project.html
+                - subsection: oroGen Advanced Usage
+                  page: /documentation/orogen/plugins.html
+                  subsubsections:
+                      - subsubsection: oroGen Plugins
+                        page: /documentation/orogen/plugins.html
+                      - subsubsection: oroGen additions to the standard RTT component interface
+                        page: /documentation/orogen/orogen_additions_to_rtt.html
+                      - subsubsection: Opaque Types
+                        page: /documentation/orogen/opaque_types.html
+                - subsection: API
+                  page: https://www.rock-robotics.org/apidocs/orogen/index.html
+                - subsection: Transports
+                  page: /documentation/orogen/transports/index.html
+                  subsubsections:
+                      - subsubsection: ROS
+                        page: /documentation/orogen/transports/ros.html
+          - section: Running Components
+            page: /documentation/runtime/index.html
+            subsections:
+                - subsection: Quickstart
+                  page: /documentation/runtime/quickstart.html
+                - subsection: Inspecting Component Models
+                  page: /documentation/runtime/oroinspect.html
+                - subsection: oroGen types and Ruby scripts
+                  page: /documentation/runtime/ruby_and_types.html
+                - subsection: Starting the system up
+                  page: /documentation/runtime/setup.html
+                - subsection: Debugging Components
+                  page: /documentation/runtime/debugging.html
+                - subsection: Manipulating Tasks
+                  page: /documentation/runtime/tasks.html
+                - subsection: Properties
+                  page: /documentation/runtime/properties.html
+                - subsection: Data Connections
+                  page: /documentation/runtime/ports.html
+                - subsection: Configuration Files
+                  page: /documentation/runtime/configuration.html
+                - subsection: Error Messages
+                  page: /documentation/runtime/error_messages.html
+                - subsection: API
+                  page: https://www.rock-robotics.org/apidocs/tools/orocos.rb/index.html
+          - section: System Management
+            page: /documentation/system/index.html
+            subsections:
+                - subsection: General Concept
+                  page: /documentation/system/general_concept.html
+                - subsection: Workflow
+                  page: /documentation/system/workflow.html
+                - subsection: Robot Configurations
+                  page: /documentation/system/robot.html
+                - subsection: Data Services
+                  page: /documentation/system/data_services.html
+                - subsection: Task Contexts
+                  page: /documentation/system/task_contexts.html
+                - subsection: Compositions
+                  page: /documentation/system/compositions.html
+                - subsection: Subsystem Design
+                  page: /documentation/system/subsystem_design.html
+                - subsection: Profiles
+                  page: /documentation/system/profiles.html
+                - subsection: Devices
+                  page: /documentation/system/devices.html
+                - subsection: Syskit-enabled Bundles
+                  page: /documentation/system/file_layout.html
+                - subsection: Running and Interacting with a Roby/Syskit System
+                  page: /documentation/system/interaction.html
+                - subsection: Dataflow Dynamics
+                  page: /documentation/system/dataflow_dynamics.html
+                - subsection: Dynamic Services
+                  page: /documentation/system/dynamic_services.html
+                - subsection: Naming Conventions
+                  page: /documentation/system/naming_conventions.html
+                - subsection: Syskit
+                  page: https://www.rock-robotics.org/apidocs/tools/syskit
+                - subsection: Roby Guide
+                  page: https://www.rubydoc.info/github/rock-core/tools-roby
+          - section: Data Analysis
+            page: /documentation/data_analysis/index.html
+            subsections:
+                - subsection: Setting Up Data Logging
+                  page: logging.html
+                - subsection: Reading Log Data
+                  page: reading_logfiles.html
+                - subsection: Replay Log Data
+                  page: replaying_logfiles.html
+                - subsection: Updating Log Files
+                  page: converting_logfiles.html
+          - section: Graphical User Interface
+            page: /documentation/graphical_user_interface/index.html
+            subsections:
+                - subsection: Developing a Simple GUI
+                  page: 200_simple_gui.html
+                - subsection: Displaying Log Files
+                  page: 300_displaying_logfiles.html
+                - subsection: Plotting Data
+                  page: 350_plotting.html
+                - subsection: Qt Designer
+                  page: 400_qt_designer.html
+                - subsection: Vizkit 3D
+                  page: 450_vizkit3d.html
+                - subsection: Available Widgets
+                  page: 500_available_widgets.html
+                - subsection: Writing Vizkit Widgets
+                  page: 600_writing_vizkit_widget.html
+          - section: Simulating a Robot
+            page: /documentation/simulation/index.html
+            subsections:
+                - subsection: Design Background
+                  page: 100_design_background.html
+                - subsection: Usage Simulation
+                  page: 200_usage_of_the_simulation.html
+    - chapter: Additional Core Functionality
+      sections:
+          - section: Data Processing
+            page: /documentation/data_processing/index.html
+            subsections:
+                - subsection: Data is King
+                  page: /documentation/data_processing/data.html
+                - subsection: The Timestamp Estimator
+                  page: /documentation/data_processing/timestamping.html
+                - subsection: "  ... API and oroGen Usage"
+                  page: /documentation/data_processing/timestamp_estimator_usage.html
+                - subsection: The Stream Aligner
+                  page: /documentation/data_processing/stream_aligner.html
+                - subsection: "  ... in oroGen"
+                  page: /documentation/data_processing/stream_aligner_orogen.html
+                - subsection: "  ... at runtime"
+                  page: /documentation/data_processing/stream_aligner_runtime.html
+                - subsection: The Transformer
+                  page: /documentation/data_processing/transformer.html
+                - subsection: "  ... in oroGen"
+                  page: /documentation/data_processing/transformer_orogen.html
+                - subsection: "  ... at runtime"
+                  page: /documentation/data_processing/transformer_runtime.html
+                - subsection: "  ... in Syskit"
+                  page: /documentation/data_processing/transformer_roby.html
+          - section: Device Drivers
+            page: /documentation/device_drivers/index.html
+            subsections:
+                - subsection: Writing a Device Driver
+                  page: /documentation/device_drivers/writing_driver.html
+                - subsection: oroGen Integration
+                  page: /documentation/device_drivers/writing_orogen_driver.html
+          - section: Envire
+            page: /documentation/envire/index.html
+            subsections:
+                - subsection: Core Features
+                  page: /documentation/envire/core.html
+                - subsection: Frame Tree
+                  page: /documentation/envire/frames.html
+                - subsection: Maps
+                  page: /documentation/envire/maps.html
+                - subsection: Operators
+                  page: /documentation/envire/operators.html
+          - section: Debugging Techniques
+            page: /documentation/debugging/index.html
+          - section: ROS/Rock Bridge
+            page: /documentation/ros/index.html
+            subsections:
+                - subsection: Installation
+                  page: /documentation/ros/installation.html
+                - subsection: Data Types
+                  page: /documentation/ros/data_types.html
+                - subsection: Runtime Setup
+                  page: /documentation/ros/runtime.html
+                - subsection: Example
+                  page: /documentation/ros/example.html
+
+
+

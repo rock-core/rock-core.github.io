@@ -1,7 +1,6 @@
 ---
-secondsection: Tutorials
-section: System Management
-title: Configuration files
+section: Managing Systems
+title: Configuration Files
 sort_info: 500
 ---
 
