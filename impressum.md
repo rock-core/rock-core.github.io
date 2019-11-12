@@ -124,13 +124,12 @@ protection regulations.
 	E-Mail: <a href="mailto:robotik@dfki.de">robotik&#064;dfki.de</a><br />
 	Leitung: Prof. Dr. Dr. h.c. Frank Kirchner
     </p>
-
     <p>
-    <b>Gesch&auml;ftsf&uuml;hrung:</b><br />
-    Prof. Dr. Jana Koehler (Vorsitzende),<br />
+    <b>Geschäftsführung:</b><br />
+    Prof. Dr. Antonio Krüger (Vorsitzender),<br />
     Dr. Walter Olthoff<br /><br />
     Vorsitzender des Aufsichtsrates:<br />
-    Prof. Dr. h.c. Hans A. Aukes<br /><br />
+    Dr. Gabriël Clemens<br /><br />
     Registergericht: Amtsgericht Kaiserslautern<br />
     Registernummer: HRB 2313<br />
     <b>ID-Nummer:</b> DE 148 646 973
