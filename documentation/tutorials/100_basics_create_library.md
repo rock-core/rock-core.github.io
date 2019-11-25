@@ -50,7 +50,7 @@ output is the output of the script AND the expected answers. Do not copy/paste
 the whole block at once !
 
 ~~~ text
-Initialized empty Git repository 
+Initialized empty Git repository
 in ~/dev/tutorials/message_driver/.git/
 Do you want to start the configuration of
 the cmake project: message_driver
@@ -61,19 +61,19 @@ We require some information to update the manifest.xml
 ------------------------------------------
 Brief package description (Press ENTER when finished):
 A message_driver for the basic Rock tutorial
-Long description: 
+Long description:
 This is a library that allows message production
 and message handling for the the basic Rock tutorial
-Author: 
+Author:
 New user
-Author email: 
+Author email:
 new-user@rock-robotics.org
 Url (optional):
 
 Enter your dependencies as a comma separated list.
 Press ENTER when finished:
 base/types
-Initialized empty shared Git repository 
+Initialized empty shared Git repository
 in ~/dev/tutorials/message_driver/.git/
 [master (root-commit) 37aa552] Initial commit
 8 files changed, 108 insertions(+), 0 deletions(-)
@@ -148,7 +148,7 @@ namespace message_driver
 {
     struct Message
     {   
-        // The message content 
+        // The message content
         std::string content;
 
         // The timestamp when the message was created
@@ -182,19 +182,19 @@ src/MessageDriver.hpp should therefore contain:
 
 #include <message_driver/Message.hpp>
 
-namespace message_driver 
+namespace message_driver
 {
 
 class MessageDriver
 {
 
-public: 
+public:
     /**
      * Create a timestamped message
      * \return A timestamped message
      */
     Message createMessage();
-    
+
     /**
      * Print a message to stdout
      * \param msg Message to be printed
@@ -225,7 +225,7 @@ Message MessageDriver::createMessage()
 
 void MessageDriver::printMessage(const Message& msg)
 {
-        std::cout << "[" << msg.time.toString() 
+        std::cout << "[" << msg.time.toString()
                   << "] " << msg.content
                   << std::endl;
 }
@@ -249,7 +249,7 @@ rock_library(message_driver
     HEADERS MessageDriver.hpp Message.hpp
     DEPS_PKGCONFIG base-types)
 
-# Do not forget to remove the rock_executable line that 
+# Do not forget to remove the rock_executable line that
 # compiles Main.cpp, as it is not used anymore
 ~~~
 
@@ -271,7 +271,7 @@ package_sets:
   - github: rock-core/package_set
 
 # Layout. Note that the rock.base, rock.toolchain
-# and orocos.toolchain sets are imported 
+# and orocos.toolchain sets are imported
 # by other rock sets.
 layout:
    - rock.core
@@ -314,7 +314,13 @@ rock_testsuite(test_suite suite.cpp
     DEPS message_driver)
 ~~~
 
-After adapting the CMakeLists.txt for the test_suite we can just build the library again and run the test_suite.
+Also enable test building for the library via command line-
+
+~~~ text
+~/dev/tutorials/message_driver$ autoproj test enable tutorials/message_driver
+~~~
+
+After adapting the CMakeLists.txt for the test_suite and enabling test building we can just build the library again and run the test_suite.
 
 ~~~ text
 ~/dev/tutorials/message_driver$ amake
@@ -329,7 +335,7 @@ You already finished your first Rock tutorial.
 
 Summary
 ----------------------------
-In this tutorial you have learned to: 
+In this tutorial you have learned to:
 
  * Create a C++ library from the Rock template and
  * embed new packages into the build system.
