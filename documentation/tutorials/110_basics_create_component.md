@@ -214,7 +214,7 @@ Include the header of the message driver and its allocation/deallocation to the 
 
 Producer::Producer(std::string const& name)
     : ProducerBase(name),
-    ++ mpMessageDriver(new message_driver::MessageDriver())
+    mpMessageDriver(new message_driver::MessageDriver())
 {
 }
 
