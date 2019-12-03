@@ -20,6 +20,8 @@ toc:
                 page: /documentation/about/releases.html
               - subsection: Acknowledging Rock
                 page: /documentation/about/ack.html
+              - subsection: Available packages
+                page: /documentation/about/packages.html
         - section: Installation
           page: /documentation/installation.html
         - section: Managing Packages
