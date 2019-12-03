@@ -1,6 +1,6 @@
 ---
 section: Data Analysis
-title: Updating log files 
+title: Updating Log Files
 sort_info: 600
 ---
 

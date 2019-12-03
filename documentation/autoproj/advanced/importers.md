@@ -1,7 +1,7 @@
 ---
-secondsection: Advanced
 section: Build System
-title: Package import
+subsection: Advanced Usage
+title: Package Import
 sort_info: 250
 ---
 

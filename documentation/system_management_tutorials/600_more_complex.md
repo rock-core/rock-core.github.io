@@ -1,6 +1,5 @@
 ---
-secondsection: Tutorials
-section: System Management
+section: Managing Systems
 title: Refining models - a leader/follower system
 sort_info: 600
 ---

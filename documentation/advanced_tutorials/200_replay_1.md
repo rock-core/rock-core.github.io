@@ -1,6 +1,6 @@
 ---
 section: Advanced
-title: Replaying data in scripts
+title: Replaying Data in Scripts
 sort_info: 200
 ---
 

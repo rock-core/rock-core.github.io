@@ -1,6 +1,6 @@
 ---
 section: Running Components
-title: Data connections
+title: Data Connections
 sort_info: 150
 ---
 

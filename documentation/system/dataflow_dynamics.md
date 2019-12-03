@@ -1,5 +1,4 @@
 ---
-secondsection: system
 section: System Management
 title: Dataflow Dynamics
 sort_info: 600

@@ -1,6 +1,6 @@
 ---
 section: Contributing
-title: Contributing
+title: How to Contribute?
 sort_info: 0
 in_menu: false
 ---

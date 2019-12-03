@@ -1,6 +1,6 @@
 ---
 section: Build System
-title: Basic usage
+title: Basic Usage
 sort_info: 26
 ---
 

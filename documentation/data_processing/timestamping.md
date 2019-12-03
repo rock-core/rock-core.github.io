@@ -1,6 +1,6 @@
 ---
 section: Data Processing
-title: The timestamp estimator
+title: The Timestamp Estimator
 sort_info: 50
 ---
 

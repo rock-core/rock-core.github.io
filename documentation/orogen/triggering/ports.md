@@ -1,5 +1,5 @@
 ---
-secondsection: Triggering
+subsection: Triggering Mechanisms
 section: Developing Components
 title: Data-Driven Tasks
 sort_info: 200

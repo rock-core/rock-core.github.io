@@ -1,5 +1,4 @@
 ---
-secondsection: system
 section: System Management
 title: Syskit-enabled Bundles
 sort_info: 600

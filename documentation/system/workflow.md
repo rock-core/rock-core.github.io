@@ -1,5 +1,4 @@
 ---
-secondsection: system
 section: System Management
 title: Workflow
 sort_info: 110

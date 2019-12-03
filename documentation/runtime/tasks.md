@@ -1,6 +1,6 @@
 ---
 section: Running Components
-title: Manipulating tasks
+title: Manipulating Tasks
 sort_info: 100
 ---
 

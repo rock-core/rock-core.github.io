@@ -1,6 +1,6 @@
 ---
 section: Managing Packages
-title: Using Rock packages outside of Rock
+title: Using Rock Packages outside of Rock
 sort_info: 200
 ---
 

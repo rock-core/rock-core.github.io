@@ -1,6 +1,6 @@
 ---
 section: Data Processing
-title: "  ... at Runtime"
+title: "  ... at runtime"
 sort_info: 120
 ---
 At runtime, components that are using the stream aligner behave more or less

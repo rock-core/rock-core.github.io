@@ -1,6 +1,6 @@
 ---
-secondsection: Advanced
 section: Build System
+subsection: Advanced Usage
 title: Advanced Topics
 sort_info: 0
 ---

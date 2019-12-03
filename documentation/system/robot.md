@@ -1,5 +1,4 @@
 ---
-secondsection: system
 section: System Management
 title: Robot Configurations
 sort_info: 130

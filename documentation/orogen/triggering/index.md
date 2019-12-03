@@ -1,6 +1,6 @@
 ---
-secondsection: Triggering
 section: Developing Components
+subsection: Triggering Mechanisms
 title: Triggering Mechanisms
 sort_info: 0
 ---

@@ -1,6 +1,6 @@
 ---
 section: Basics
-title: Creating components
+title: Creating Components
 sort_info: 110
 ---
 

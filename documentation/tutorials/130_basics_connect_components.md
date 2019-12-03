@@ -1,6 +1,6 @@
 ---
 section: Basics
-title: Connecting components
+title: Connecting Components
 sort_info: 130
 ---
 

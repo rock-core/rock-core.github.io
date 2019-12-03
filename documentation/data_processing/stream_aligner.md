@@ -1,6 +1,6 @@
 ---
 section: Data Processing
-title: Processing Data - the Stream Aligner
+title: The Stream Aligner
 sort_info: 100
 ---
 

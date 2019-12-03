@@ -1,6 +1,6 @@
 ---
 section: Build System
-title: Customizing the installation
+title: Customizing the Installation
 sort_info: 48
 ---
 

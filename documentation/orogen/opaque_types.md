@@ -1,6 +1,7 @@
 ---
 section: Developing Components
-title: Advanced - Opaque types
+subsection: oroGen Advanced Usage
+title: Opaque Types
 sort_info: 550
 ---
 

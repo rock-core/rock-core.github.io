@@ -1,6 +1,6 @@
 ---
 section: Build System
-title: Understanding autoproj error messages
+title: Understanding Autoproj Error Messages
 sort_info: 90
 ---
 

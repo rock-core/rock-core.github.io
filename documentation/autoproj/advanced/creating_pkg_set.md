@@ -1,7 +1,7 @@
 ---
-secondsection: Advanced
 section: Build System
-title: Creating a package set
+subsection: Advanced Usage
+title: Creating a Package Set
 sort_info: 150
 ---
 

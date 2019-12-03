@@ -2,7 +2,7 @@
 section: Advanced
 title: Using Avahi to find the tasks
 sort_info: 700
---- 
+---
 
 Abstract
 ----------------

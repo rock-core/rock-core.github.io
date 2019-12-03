@@ -1,5 +1,4 @@
 ---
-secondsection: system
 section: System Management
 title: Profiles
 sort_info: 510

@@ -1,7 +1,7 @@
 ---
-secondsection: Advanced
 section: Build System
-title: Operating System dependencies
+subsection: Advanced Usage
+title: osdeps - Operating System Dependencies
 sort_info: 300
 ---
 

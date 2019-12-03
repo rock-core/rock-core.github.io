@@ -1,6 +1,6 @@
 ---
 section: Basics
-title: Creating libraries
+title: Creating Libraries
 sort_info: 100
 ---
 

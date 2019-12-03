@@ -1,5 +1,4 @@
 ---
-secondsection: system
 section: System Management
 title: Subsystem Design
 sort_info: 500
