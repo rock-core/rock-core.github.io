@@ -1,0 +1,71 @@
+.pkg_collapsible {
+  background-color: rgb(219,245,251);
+  color: #000;
+  cursor: pointer;
+  padding: 2px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 12px;
+  font-style: bold;
+}
+
+.pkg_description {
+  background-color: rgb(219,245,251);
+  color: #222;
+  cursor: pointer;
+  padding: 0px;
+  width: 80%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 10px;
+  margin-left: 50px;
+  //display: inline;
+}
+
+.pkg_content {
+  padding: 0 18px;
+  display: none;
+  overflow: hidden;
+  background-color: #fff;
+}
+
+.pkg_content-table {
+  text-align: left;
+  vertical-align: top
+}
+
+.pkg_content-td {
+  text-align: left;
+  vertical-align: top;
+}
+
+.pkg_content-key {
+  font-style: bold;
+  font-size: 12px;
+  width: 100px;
+
+}
+.pkg_content-value {
+  font-size: 12px;
+  margin-left: 50px;
+}
+
+.pkg_collapsible:before {
+  content: '\02795'; /* Unicode character for "plus" sign (+) */
+  font-size: 8px;
+  float: right;
+  margin-left: 5px;
+}
+
+.active:before {
+  content: "\2796"; /* Unicode character for "minus" sign (-) */
+}
+
+.reload_button {
+    font-size: 11px;
+    display: inline;
+    margin-left: 50px;
+}
