@@ -119,20 +119,19 @@ ruby literal.
 Logger integration
 ------------------
 
-If you installed orogen's logger component, specific statements are made
-available to you in the deployment block.
+If you installed orogen's logger component, a default logger is made available
+to you in the deployment block.
 
-First, the <tt>add\_default\_logger</tt> statement would create a logger task
+The <tt>add\_default\_logger</tt> statement creates a logger task
 (i) whose name is deploymentname\_Logger and (ii) which log file is
 deploymentname.log. This convention is used by orocos.rb, for instance, to
 implement automated logging setup.
 
-If this default logger does not suit you, you can also add specific loggers
-with:
+If this default logger does not suit you, you can add your own logger task:
 
 ~~~ ruby
-logger("file name", "task_name").
-    report(other_task.output_port_name).
-    report(third_task.another_output_port)
+task("logger_name", "logger::Logger")
 ~~~
 
+In contrast to the default logger (<tt>add\_default\_logger</tt>), no automatic configuration is applied. The created logger task has to be configured manually, e.g. by writing a ruby script.<br></br>
+Currently available properties and operations can be taken from the [orogen file](https://github.com/rock-core/tools-logger/blob/master/logger.orogen).
