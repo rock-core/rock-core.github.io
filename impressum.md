@@ -126,12 +126,12 @@ protection regulations.
     </p>
     <p>
     <b>Geschäftsführung:</b><br />
-    Prof. Dr. Antonio Krüger (Vorsitzender),<br />
-    Dr. Walter Olthoff<br /><br />
-    Vorsitzender des Aufsichtsrates:<br />
+    Prof. Dr. Antonio Krüger<br />
+    <br />
+    <b>Vorsitzender des Aufsichtsrates:</b><br />
     Dr. Gabriël Clemens<br /><br />
-    Registergericht: Amtsgericht Kaiserslautern<br />
-    Registernummer: HRB 2313<br />
+    <b>Registergericht:</b> Amtsgericht Kaiserslautern<br />
+    <b>Registernummer:</b> HRB 2313<br />
     <b>ID-Nummer:</b> DE 148 646 973
     </p>
 </div>
