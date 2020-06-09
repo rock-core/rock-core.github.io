@@ -17,7 +17,7 @@ Background of the Rock Mars Integration
 ----------------
 Rock currently provides a direct interface to the MARS Simulation. This
 simulation is not directly part of rock. Nevertheless the MARS simulation was developed within the field 
-of Rock. The MARS Documentation could be found here [here](../../api/simulation/mars/doc/).
+of Rock. The MARS Documentation could be found [here](https://rock-simulation.github.io/mars/index.html).
 MARS was developed as a standalone Simulation which runs on Windows/MacOS/Linux System, but for easier
 use within the ROCK Framework Rock core-developers started to integrate MARS into Rock, for more details 
 visit the [design background](100_design_background.html) page.
