@@ -50,7 +50,7 @@ It is assumed that autoproj does not know the desired packages at all. In this
 case, you have to tell autoproj where it can find the package sets which contain
 the desired packages. An easy way to figure out which package set contains
 which package is by looking
-[at the package index](../../about/packages.html)
+[at the package index](../about/packages.html)
 . After having found the desired package, copy the displayed rock *short definition* 
 string into the file autoproj/manifest of the current autoproj installation (click 'show/hide'). If you are not using the 
 default rock installation, you can also use the displayed *autoproj definition* string which is independent of 
