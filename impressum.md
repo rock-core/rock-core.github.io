@@ -127,6 +127,7 @@ protection regulations.
     <p>
     <b>Geschäftsführung:</b><br />
     Prof. Dr. Antonio Krüger<br />
+    Helmut Ditzer<br />
     <br />
     <b>Vorsitzender des Aufsichtsrates:</b><br />
     Dr. Gabriël Clemens<br /><br />
