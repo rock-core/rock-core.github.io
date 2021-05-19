@@ -116,6 +116,15 @@ gnuplot:
     debian: gnuplot
 ~~~~~~~~~~~~~~~~~~
 
+In addition to that, RubyGems can be pinned/restricted to certain versions.
+For example, the following snippet would pin 'hoe' to versions below 2.x
+
+~~~~~~~~~~~~~~~~~~
+hoe:
+    gem:
+        hoe<2.0.0
+~~~~~~~~~~~~~~~~~~
+
 Ignoring some dependencies
 --------------------------
 It is possible that, on some operating systems, a given package should simply be
