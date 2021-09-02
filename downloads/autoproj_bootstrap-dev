@@ -261,7 +261,6 @@ module Autoproj
                  "ruby \"#{RUBY_VERSION}\" if respond_to?(:ruby)", 
                  "gem \"autoproj\", git: \"https://github.com/rock-core/autoproj.git\", branch: \"master\"",
                  "gem \"autobuild\", git: \"https://github.com/rock-core/autobuild.git\", branch: \"master\"",
-                 "gem \"qtbindings\", git: \"https://github.com/rock-core/qtbindings.git\", branch: \"add_version\"",
                  "gem \"utilrb\", \">= 3.0.1\""].join("\n")
             end
 
