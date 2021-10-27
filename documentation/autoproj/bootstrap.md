@@ -12,7 +12,7 @@ The canonical way is the following:
 
 0. Install Ruby by yourself. On Debian or Ubuntu, this is done with done with
 
-        sudo apt-get install wget ruby
+        sudo apt-get install ruby ruby-dev wget build-essential
 
 0. [Download this script](../../autoproj_bootstrap) *in the directory where you want to create an autoproj installation*. This can be done with
 
