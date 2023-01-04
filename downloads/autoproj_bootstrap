@@ -269,11 +269,10 @@ module Autoproj
             # @param [String] autoproj_version a constraint on the autoproj version
             #   that should be used
             # @return [String]
-            def default_gemfile_contents(autoproj_version = ">= 2.1.0")
+            def default_gemfile_contents(autoproj_version = ">= 2.16.0")
                 ["source \"#{gem_source}\"",
                  "ruby \"#{RUBY_VERSION}\" if respond_to?(:ruby)",
-                 "gem \"autoproj\", \"#{autoproj_version}\"",
-                 "gem \"utilrb\", \">= 3.0.1\""].join("\n")
+                 "gem \"autoproj\", \"#{autoproj_version}\""].join("\n")
             end
 
             def add_seed_config(path)
@@ -323,6 +322,7 @@ module Autoproj
                            "when reinstalling an existing autoproj workspace, do not "\
                            "use the config in .autoproj/ as seed" do
                         @config.clear
+                        @config["bundler_version"] = Install.default_bundler_version
                     end
                     opt.on "--seed-config=PATH", String, "path to a seed file that "\
                                                          "should be used to initialize the configuration" do |path|
@@ -756,9 +756,15 @@ require 'bundler/setup'
                 end
 
                 @config = config
+                @config["bundler_version"] ||= self.class.default_bundler_version
+
                 %w[gems_install_path prefer_indep_over_os_packages].each do |flag|
                     instance_variable_set "@#{flag}", config.fetch(flag, false)
                 end
+            end
+
+            def self.default_bundler_version
+                "2.3.6" if Gem::Version.new(RUBY_VERSION) < Gem::Version.new("2.6.0")
             end
 
             def save_config
