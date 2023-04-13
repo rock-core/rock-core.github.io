@@ -12,7 +12,7 @@ Rock is an Open Source project, it is maintained by many more people with differ
 </p>
 
 <h2>Contact for content issues</h2>
-<a href="mailto:thomas.roehr@dfki.de">Thomas Roehr, thomas.roehr&#064;dfki.de</a><br/>
+<a href="mailto:steffen.planthaber@dfki.de">Steffen Planthaber, steffen.planthaber&#064;dfki.de</a><br/>
 <a href="mailto:sylvain.joyeux@m4x.org">Sylvain Joyeux, sylvain.joyeux&#064;m4x.org</a>
 
 <h2>Data Protection Notice</h2>
