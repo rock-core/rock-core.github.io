@@ -129,8 +129,6 @@ protection regulations.
     Prof. Dr. Antonio Krüger<br />
     Helmut Ditzer<br />
     <br />
-    <b>Vorsitzender des Aufsichtsrates:</b><br />
-    Dr. Gabriël Clemens<br /><br />
     <b>Registergericht:</b> Amtsgericht Kaiserslautern<br />
     <b>Registernummer:</b> HRB 2313<br />
     <b>ID-Nummer:</b> DE 148 646 973
