@@ -450,6 +450,7 @@ module Autoproj
                 contents = <<~BUNDLERSHIM
                     #!#{Gem.ruby}
                     ENV['BUNDLE_GEMFILE'] ||= '#{autoproj_gemfile_path}'
+                    ENV['BUNDLE_LOCKFILE'] ||= '#{autoproj_gemfile_path}.lock'
                     ENV['GEM_HOME'] = '#{gems_gem_home}'
                     ENV.delete('GEM_PATH')
                     Gem.paths = Hash['GEM_HOME' => '#{gems_gem_home}', 'GEM_PATH' => '']
@@ -464,11 +465,14 @@ module Autoproj
                 # Force bundler to update. If the user does not want this, let
                 # him specify a Gemfile with tighter version constraints
                 lockfile = File.join(dot_autoproj, "Gemfile.lock")
+                shims_path = File.join(dot_autoproj, "bin")
                 FileUtils.rm lockfile if File.exist?(lockfile)
 
                 run_bundler(bundler, "config", "set", "--local", "path", gems_install_path,
                             bundler_version: bundler_version)
                 run_bundler(bundler, "config", "set", "--local", "shebang", Gem.ruby,
+                            bundler_version: bundler_version)
+                run_bundler(bundler, "config", "set", "--local", "bin", shims_path,
                             bundler_version: bundler_version)
 
                 install_args = ["--gemfile=#{autoproj_gemfile_path}"]
@@ -476,8 +480,7 @@ module Autoproj
                 run_bundler(bundler, "install", *install_args,
                             bundler_version: bundler_version)
 
-                shims_path = File.join(dot_autoproj, "bin")
-                run_bundler(bundler, "binstubs", "--all", "--force", "--path", shims_path,
+                run_bundler(bundler, "binstubs", "--all", "--force",
                             bundler_version: bundler_version)
 
                 bundle_shim_path = File.join(shims_path, "bundle")
@@ -571,6 +574,7 @@ module Autoproj
 # Autoproj generated preamble
 #{WITHOUT_BUNDLER}
 ENV['BUNDLE_GEMFILE'] ||= '#{autoproj_gemfile_path}'
+ENV['BUNDLE_LOCKFILE'] ||= '#{autoproj_gemfile_path}.lock'
 ENV['GEM_HOME'] = '#{gems_gem_home}'
 ENV.delete('GEM_PATH')
 Gem.paths = Hash['GEM_HOME' => '#{gems_gem_home}', 'GEM_PATH' => '']
@@ -583,6 +587,7 @@ Gem.paths = Hash['GEM_HOME' => '#{gems_gem_home}', 'GEM_PATH' => '']
 
 #{WITHOUT_BUNDLER}
 ENV['BUNDLE_GEMFILE'] ||= '#{autoproj_gemfile_path}'
+ENV['BUNDLE_LOCKFILE'] ||= '#{autoproj_gemfile_path}.lock'
 ENV['GEM_HOME'] = '#{gems_gem_home}'
 ENV.delete('GEM_PATH')
 Gem.paths = Hash['GEM_HOME' => '#{gems_gem_home}', 'GEM_PATH' => '']
@@ -608,6 +613,7 @@ load Gem.bin_path('bundler', 'bundler')"
 # Autoproj generated preamble, v1
 #{RUBYLIB_REINIT}
 ENV['BUNDLE_GEMFILE'] = '#{autoproj_gemfile_path}'
+ENV['BUNDLE_LOCKFILE'] = '#{autoproj_gemfile_path}.lock'
 ENV['AUTOPROJ_CURRENT_ROOT'] = '#{root_dir}'
 Gem.paths = Hash['GEM_HOME' => '#{gems_gem_home}', 'GEM_PATH' => '']
                 AUTOPROJ_PREAMBLE
@@ -620,6 +626,7 @@ Gem.paths = Hash['GEM_HOME' => '#{gems_gem_home}', 'GEM_PATH' => '']
 
 #{RUBYLIB_REINIT}
 ENV['BUNDLE_GEMFILE'] = '#{autoproj_gemfile_path}'
+ENV['BUNDLE_LOCKFILE'] = '#{autoproj_gemfile_path}.lock'
 ENV['AUTOPROJ_CURRENT_ROOT'] = '#{root_dir}'
 require 'rubygems'
 Gem.paths = Hash['GEM_HOME' => '#{gems_gem_home}', 'GEM_PATH' => '']
